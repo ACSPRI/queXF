@@ -1,0 +1,8 @@
+Please note that for DDI output using PHP5, an XSL wrapper script will
+have to be downloaded and stored in this directory from here:
+
+http://alexandre.alapetite.net/doc-alex/domxml-php4-php5/
+
+The file is:
+
+domxml-php4-to-php5.php
