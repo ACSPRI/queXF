@@ -156,7 +156,7 @@ if (isset($r['fid']))
 
 	
 	print "<div id=\"left\">";
-	print "<img src=\"showmissingpage.php?mpid=$mpid\" style=\"width: 100%;\"/> ";
+	print "<img src=\"../showmissingpage.php?mpid=$mpid\" style=\"width: 100%;\"/> ";
 	print "</div>";
 
 	//display possible pages within set to assign to
@@ -203,7 +203,7 @@ if (isset($r['fid']))
 			{
 				$npid = $np['pid'];
 				$qid = $np['qid'];
-				print "<img src=\"showpage.php?qid=$qid&pid=$npid\" style=\"width: 100%;\"/>";
+				print "<img src=\"../showpage.php?qid=$qid&pid=$npid\" style=\"width: 100%;\"/>";
 			}
 		}
 	}
