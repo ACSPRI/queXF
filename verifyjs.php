@@ -121,7 +121,9 @@ function bgidtocss($zoom = 1,$fid,$pid)
 		}
 		else if ($btid == 3 || $btid == 4) //text or number
 		{
-		
+			$maxlength = "maxlength=\"1\"";
+			$onkeypress = "onkeypress=\"textPress(this,event,$bbgid,$bid)\"";
+
 			if ($btid == 4)
 			{
 				if (!is_numeric($val)) $val = "";
@@ -129,10 +131,21 @@ function bgidtocss($zoom = 1,$fid,$pid)
 
 			$val = htmlspecialchars($val);
 	
-			print "<div><input type=\"text\" name=\"bid$bid\" id=\"textBox$bid\" value=\"$val\" maxlength=\"1\" style=\"z-index: 1; position:absolute; top:" . (($box['tly'] / $zoom) + (($box['bry'] - $box['tly'] ) / $zoom)) . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px;\" onclick=\"\" onfocus=\"select()\" onkeypress=\"textPress(this,event,$bbgid,$bid)\" /></div>";
+			print "<div><input type=\"text\" name=\"bid$bid\" id=\"textBox$bid\" value=\"$val\" $maxlength style=\"z-index: 1; position:absolute; top:" . (($box['tly'] / $zoom) + (($box['bry'] - $box['tly'] ) / $zoom)) . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px;\" onclick=\"\" onfocus=\"select()\" $onkeypress /></div>";
 
 		
 			print "<div id=\"textImage$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: white; text-align:center; font-weight:bold;\" onclick=\"textClick('$bid','$bbgid');\">$val</div>";
+		}
+		else if ($btid == 6)
+		{
+			$val = htmlspecialchars($val);
+	
+			print "<div><textarea name=\"bid$bid\" id=\"textBox$bid\" style=\"z-index: 1; position:absolute; top:" . (($box['tly'] / $zoom) + (($box['bry'] - $box['tly'] ) / $zoom)) . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px;\" onclick=\"\" onfocus=\"select()\" rows=\"20\" cols=\"80\">$val</textarea></div>";
+
+		
+			print "<div id=\"textImage$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: white; text-align:center; font-weight:bold;\" onclick=\"textClick('$bid','$bbgid');\">$val</div>";
+
+
 		}
 	}
 	print "<div><input type=\"hidden\" name=\"piddone\" value=\"$pid\"/></div>";
@@ -185,6 +198,17 @@ if (isset($_GET['complete']))
 			{
 				$sql = "INSERT INTO formboxverifychar (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid','{$box['val']}')";
 			}
+		}
+		if ($box['btid'] == 6)
+		{
+			if ($box['val'] == "" || $box['val'] == " ")
+			{
+				$sql = "INSERT INTO formboxverifytext (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid',NULL)";
+			}else
+			{
+				$sql = "INSERT INTO formboxverifytext (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid','{$box['val']}')";
+			}
+
 		}
 		$db->Execute($sql);
 		//print "$sql</br>";
@@ -496,7 +520,7 @@ function nextTask()
 	{
 		document.getElementById('boxGroupBox_' + x ).style.visibility = 'hidden';
 
-		if (bgidtype[x] == 3 || bgidtype[x] == 4)
+		if (bgidtype[x] == 3 || bgidtype[x] == 4 || bgidtype[x] == 6)
 		{	
 			for (y in bgidbid[x])
 			{
@@ -510,7 +534,7 @@ function nextTask()
 		{
 			curbgid = x;
 
-			if (bgidtype[x] == 3 || bgidtype[x] == 4)
+			if (bgidtype[x] == 3 || bgidtype[x] == 4 || bgidtype[x] == 6)
 			{	
 				for (y in bgidbid[x])
 				{

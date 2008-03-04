@@ -49,6 +49,7 @@ function pidtomap($pid,$zoom = 1,$mapname = "boxes")
 		if ($box['btid'] == 2) $colour = "blue"; 
 		if ($box['btid'] == 3) $colour = "purple"; 
 		if ($box['btid'] == 4) $colour = "orange"; 
+		if ($box['btid'] == 6) $colour = "pink"; 
 		print "<div style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:.60; -moz-opacity: 0.60;\" onclick=\"window.open('../modifybox.php?bid={$box['bid']}')\"></div>";
 	}
 
