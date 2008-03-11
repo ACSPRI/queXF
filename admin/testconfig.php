@@ -23,14 +23,19 @@ if (!($db->Execute($sql)))
 	print "<p>Database connection succeeded</p>";
 }
 
-if (file_exists(GS_BIN)) {
+if (is_file(GS_BIN)) {
 	$ver = exec(GS_BIN . " --version");
 	if ($ver)
 	{
 		print "<p>Found GhostScript version $ver</p>";
 	}
+	else
+	{
+		print "<p>" . GS_BIN . " exists but can not execute it. Please make sure you are pointing to the executable file, not just the directory of Ghostscript</p>";
+		$fail = true;
+	}
 } else {
-	echo "<p>Could not find GhostScript in path: " . GS_BIN .  "</p><p>Please modify config.inc.php, GS_BIN to point to the gs executable</p>";
+	echo "<p>Could not find GhostScript in path: " . GS_BIN .  "</p><p>Please modify config.inc.php, GS_BIN to point to the gs executable. Also please make sure you are pointing to the executable file, not just the directory of Ghostscript</p>";
 	$fail = true;
 }
 
