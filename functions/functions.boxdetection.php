@@ -93,14 +93,16 @@ function horiBoxDetection($lw)
 	//print_r($startx);
 	//print "<br/><br/>";
 
-	foreach($startx as $key => $value)
+	$aliasArray =& $startx;
+
+	foreach($aliasArray as $key => $value)
 	{
-		if (next($startx))
+		if (current($aliasArray))
 		{
 			//if there is a next element, move to it
-			$key2 = key($startx);
-			$value2 = current($startx);
-	
+			$key2 = key($aliasArray);
+			$value2 = current($aliasArray);	
+
 			//print "$key2 - $key < $asize / 4<br/>";
 	
 			//if they are close
@@ -108,11 +110,11 @@ function horiBoxDetection($lw)
 			{
 				//remove the record with the lowest value
 				if ($value < $value2){
-					$startx[$key] = 0;
+					$aliasArray[$key] = 0;
 				}
 				else
 				{
-					$startx[$key2] = 0;
+					$aliasArray[$key2] = 0;
 				}		
 			}
 	
@@ -125,12 +127,12 @@ function horiBoxDetection($lw)
 	$abrx = array();
 	$abry = array();
 
-	foreach($startx as $key => $value)
+	foreach($aliasArray as $key => $value)
 	{
 		//ignore small boxes
 		if ($value >= ($asize / 16))
 		{
-	//		print "HORI BOX: $key,$tly : " . ($key + $asize) . ",$bry<br/>";
+			//print "HORI BOX: $key,$tly : " . ($key + $asize) . ",$bry<br/>";
 			$atlx[] = $key;
 			$atly[] = $tly;
 			$abrx[] = $key + $asize;
@@ -326,13 +328,15 @@ function vertBoxDetection($lw)
 
 	$bsy[] = key($starty);
 
-	foreach($starty as $key => $value)
+	$aliasArray =& $starty;
+
+	foreach($aliasArray as $key => $value)
 	{
-		if (next($starty))
+		if (current($aliasArray))
 		{
 			//if there is a next element, move to it
-			$key2 = key($starty);
-			$value2 = current($starty);
+			$key2 = key($aliasArray);
+			$value2 = current($aliasArray);
 	
 			//print "$key2 - $key < $asize / 4<br/>";
 	
@@ -341,11 +345,11 @@ function vertBoxDetection($lw)
 			{
 				//remove the record with the lowest value
 				if ($value < $value2){
-					$starty[$key] = 0;
+					$aliasArray[$key] = 0;
 				}
 				else
 				{
-					$starty[$key2] = 0;
+					$aliasArray[$key2] = 0;
 				}		
 			}else
 			{
@@ -360,8 +364,8 @@ function vertBoxDetection($lw)
 			
 	}
 
-	end($starty);
-	$bey[] = key($starty);
+	end($aliasArray);
+	$bey[] = key($aliasArray);
 
 	//print_r($bsy);
 	//print_r($bey);
@@ -381,7 +385,7 @@ function vertBoxDetection($lw)
 
 	/*
 
-	foreach($starty as $key => $value)
+	foreach($aliasArray as $key => $value)
 	{
 		if ($value != 0)
 		{
