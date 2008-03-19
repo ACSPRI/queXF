@@ -42,14 +42,14 @@ if (is_file(GS_BIN)) {
 if (OCR_ENABLED)
 {
 	
-if (file_exists(TESSERACT_BIN)) {
+if (is_file(TESSERACT_BIN)) {
 	print "<p>Found Tesseract</p>";
 } else {
 	echo "<p>Could not find Tesseract in path: " . TESSERACT_BIN .  "</p><p>Please modify config.inc.php, TESSERACT_BIN to point to the tesseract executable or disable OCR by changing OCR_ENABLED to false</p>";
 		$fail = true;
 }
 
-if (file_exists(CONVERT_BIN)) {
+if (is_file(CONVERT_BIN)) {
 	print "<p>Found ImageMagick</p>";
 } else
 {
