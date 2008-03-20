@@ -492,7 +492,7 @@ CREATE ALGORITHM=UNDEFINED  VIEW `boxesfillable` AS select `b`.`bid` AS `bid`,`b
 --
 DROP TABLE IF EXISTS `boxesgroupstypes`;
 
-CREATE ALGORITHM=UNDEFINED  VIEW `boxesgroupstypes` AS select `b`.`bid` AS `bid`,`b`.`tlx` AS `tlx`,`b`.`tly` AS `tly`,`b`.`brx` AS `brx`,`b`.`bry` AS `bry`,`b`.`pid` AS `pid`,`t`.`btid` AS `btid`,`g`.`bgid` AS `bgid`,`p`.`qid` AS `qid`,`t`.`varname` AS `varname`,`t`.`sortorder` AS `sortorder` from (((`boxes` `b` join `boxgroups` `g`) join `boxgroupstype` `t`) join `pages` `p`) where ((`b`.`bid` = `g`.`bid`) and (`g`.`bgid` = `t`.`bgid`) and (`p`.`pid` = `b`.`pid`));
+CREATE ALGORITHM=UNDEFINED  VIEW `boxesgroupstypes` AS select `b`.`bid` AS `bid`,`b`.`tlx` AS `tlx`,`b`.`tly` AS `tly`,`b`.`brx` AS `brx`,`b`.`bry` AS `bry`,`b`.`pid` AS `pid`,`t`.`btid` AS `btid`,`g`.`bgid` AS `bgid`,`p`.`qid` AS `qid`,`t`.`width` AS `width`,`t`.`varname` AS `varname`,`t`.`sortorder` AS `sortorder` from (((`boxes` `b` join `boxgroups` `g`) join `boxgroupstype` `t`) join `pages` `p`) where ((`b`.`bid` = `g`.`bid`) and (`g`.`bgid` = `t`.`bgid`) and (`p`.`pid` = `b`.`pid`));
 
 -- --------------------------------------------------------
 
