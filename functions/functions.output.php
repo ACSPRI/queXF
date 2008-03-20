@@ -39,7 +39,7 @@ function outputdata($qid,$fid = "")
 
 	//first get data desc
 
-	$sql = "SELECT bgid, btid, count( bid ) as count
+	$sql = "SELECT bgid, btid, count( bid ) as count,width
 		FROM boxesgroupstypes
 		WHERE qid = '$qid'
 		AND btid > 0
@@ -79,17 +79,25 @@ function outputdata($qid,$fid = "")
 		ORDER BY b.sortorder, b.bid";
 
 
-		$sql = "select b.bid,b.bgid,g.btid,f.val
+		$sql = "(select b.bid,b.bgid,g.btid,f.val,sortorder
 		from boxes as b, boxgroupstype as g, pages as p, formboxverifychar as f
 		where b.bgid = g.bgid
 		and g.btid > 0
 		and p.pid = b.pid
 		and p.qid = '$qid'
-		and f.bid = b.bid and f.vid = '{$form['vid']}' and f.fid = '{$form['fid']}'
-		order by sortorder asc,b.bid asc";
-			
+		and f.bid = b.bid and f.vid = '{$form['vid']}' and f.fid = '{$form['fid']}')
+		UNION
+		(select b.bid,b.bgid,g.btid,f.val,sortorder
+		from boxes as b, boxgroupstype as g, pages as p, formboxverifytext as f
+		where b.bgid = g.bgid
+		and g.btid = 6
+		and p.pid = b.pid
+		and p.qid = '$qid'
+		and f.bid = b.bid and f.vid = '{$form['vid']}' and f.fid = '{$form['fid']}')
+		order by sortorder asc,bid asc";
 
 		$data =  $db->GetAll($sql);
+
 
 
 		$bgid = "";
@@ -119,6 +127,10 @@ function outputdata($qid,$fid = "")
 					print str_pad($count, strlen($desc[$bgid]['count']), " ", STR_PAD_LEFT); //pad to width
 					$done = 1;
 				}
+			}
+			else if ($val['btid'] == 6)
+			{
+				print str_pad($val['val'],$desc[$bgid]['width']," ",STR_PAD_RIGHT);
 			}
 			else
 			{
@@ -213,7 +225,7 @@ function export_ddi($qid)
 
 	//first get data desc
 
-	$sql = "SELECT bgid, btid, varname, count( bid ) as count
+	$sql = "SELECT bgid, btid, varname, count( bid ) as count,width
 		FROM boxesgroupstypes
 		WHERE qid = '$qid'
 		AND btid > 0
@@ -229,8 +241,8 @@ function export_ddi($qid)
 		$length = $row['count'];
 		$vartype = "number";
 		if ($row['btid'] == 1) $length = strlen($row['count']);
-		if ($row['btid'] == 3) $vartype = "character";
-		
+		if ($row['btid'] == 3 || $row['btid'] == 6) $vartype = "character";
+		if ($row['btid'] == 6) $length = $row['width'];
 
 
 		$name = $row['varname'];
