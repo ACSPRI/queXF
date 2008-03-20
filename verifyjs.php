@@ -38,6 +38,7 @@ function bgidtocss($zoom = 1,$fid,$pid)
 		FROM `boxesgroupstypes`
 		WHERE pid = '$pid'
 		AND btid > 0
+		AND btid != 5
 		GROUP BY bgid";
 
 	$boxgroups = $db->GetAll($sql);
@@ -52,6 +53,7 @@ function bgidtocss($zoom = 1,$fid,$pid)
 		FROM boxesgroupstypes
 		WHERE pid = '$pid'
 		AND btid > 0
+		AND btid != 5
 		ORDER BY bid ASC";
 
 	$boxes = $db->GetAll($sql);
@@ -317,6 +319,7 @@ if (!isset($_SESSION['boxes'])) {
 		AND c.vid =0
 		AND c.bid = b.bid
 		WHERE b.btid > 0
+		AND b.btid != 5
 		AND b.qid = '$qid'
 		ORDER BY sortorder ASC";
 
@@ -325,6 +328,7 @@ if (!isset($_SESSION['boxes'])) {
 		FROM boxesgroupstypes
 		WHERE qid = '$qid' 
 		AND btid > 0
+		AND btid != 5
 		GROUP BY bgid
 		ORDER BY sortorder ASC";
 
