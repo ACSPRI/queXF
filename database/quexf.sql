@@ -98,6 +98,24 @@ CREATE TABLE IF NOT EXISTS `boxesnumber` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `boxesbarcode`
+--
+CREATE TABLE IF NOT EXISTS `boxesbarcode` (
+`bid` bigint(20) unsigned
+,`tlx` int(11)
+,`tly` int(11)
+,`brx` int(11)
+,`bry` int(11)
+,`pid` bigint(20)
+,`btid` int(11)
+,`bgid` bigint(20) unsigned
+,`sortorder` int(11)
+);
+-- --------------------------------------------------------
+
+
+
+--
 -- Stand-in structure for view `boxessinglemultiple`
 --
 CREATE TABLE IF NOT EXISTS `boxessinglemultiple` (
@@ -504,6 +522,17 @@ DROP TABLE IF EXISTS `boxesnumber`;
 CREATE ALGORITHM=UNDEFINED  VIEW `boxesnumber` AS select `b`.`bid` AS `bid`,`b`.`tlx` AS `tlx`,`b`.`tly` AS `tly`,`b`.`brx` AS `brx`,`b`.`bry` AS `bry`,`b`.`pid` AS `pid`,`t`.`btid` AS `btid`,`g`.`bgid` AS `bgid`,`t`.`sortorder` AS `sortorder` from ((`boxes` `b` join `boxgroups` `g`) join `boxgroupstype` `t`) where ((`b`.`bid` = `g`.`bid`) and (`g`.`bgid` = `t`.`bgid`) and (`t`.`btid` = 4));
 
 -- --------------------------------------------------------
+
+--
+-- Structure for view `boxesbarcode`
+--
+DROP TABLE IF EXISTS `boxesbarcode`;
+
+CREATE ALGORITHM=UNDEFINED  VIEW `boxesbarcode` AS select `b`.`bid` AS `bid`,`b`.`tlx` AS `tlx`,`b`.`tly` AS `tly`,`b`.`brx` AS `brx`,`b`.`bry` AS `bry`,`b`.`pid` AS `pid`,`t`.`btid` AS `btid`,`g`.`bgid` AS `bgid`,`t`.`sortorder` AS `sortorder` from ((`boxes` `b` join `boxgroups` `g`) join `boxgroupstype` `t`) where ((`b`.`bid` = `g`.`bid`) and (`g`.`bgid` = `t`.`bgid`) and (`t`.`btid` = 5));
+
+-- --------------------------------------------------------
+
+
 
 --
 -- Structure for view `boxessinglemultiple`

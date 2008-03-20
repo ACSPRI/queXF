@@ -49,6 +49,7 @@ function pidtomap($pid,$zoom = 1,$mapname = "boxes")
 		if ($box['btid'] == 2) $colour = "blue"; 
 		if ($box['btid'] == 3) $colour = "purple"; 
 		if ($box['btid'] == 4) $colour = "orange"; 
+		if ($box['btid'] == 5) $colour = "brown"; 
 		if ($box['btid'] == 6) $colour = "pink"; 
 		print "<div style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:.60; -moz-opacity: 0.60;\" onclick=\"window.open('../modifybox.php?bid={$box['bid']}')\"></div>";
 	}
@@ -208,7 +209,9 @@ if (isset($_GET['qid']))
 			{
 				//done now calculate map
 				include("../functions/functions.boxdetection.php");
-			
+				include("../functions/functions.image.php");
+				include("../functions/functions.barcode.php");
+
 				$map = $_GET['map'];
 				$map = substr($map,1);
 				$coords = explode(",",$map);
@@ -229,21 +232,39 @@ if (isset($_GET['qid']))
 			
 				$image = imagecreatefromstring($row['image']);
 
-				$lw = lineWidth($sx,$sy,$x,$y,$image);
-	
-				$a = 0;
 
-				//print_r($lw);
+				$barcode = crop($image,array("tlx" => $sx, "tly" => $sy, "brx" => $x, "bry" => $y));
 
-				$a = vasBoxDetection($lw);				
-				if ($a == false)
+				//check for barcode
+				$barcodenum = barcode($barcode);
+				if ($barcodenum)
 				{
-					if (($x - $sx) > ($y - $sy))
-						$a = horiBoxDetection($lw);
-					else
-						$a = vertBoxDetection($lw);
+					$a = array();
+					$a[] = array($sx);
+					$a[] = array($sy);
+					$a[] = array($x);
+					$a[] = array($y);
+					$barcodewidth = strlen($barcodenum);
 				}
+				else
+				{
 
+					$lw = lineWidth($sx,$sy,$x,$y,$image);
+		
+					$a = 0;
+	
+					//print_r($lw);
+	
+					$a = vasBoxDetection($lw);				
+					if ($a == false)
+					{
+						if (($x - $sx) > ($y - $sy))
+							$a = horiBoxDetection($lw);
+						else
+							$a = vertBoxDetection($lw);
+					}
+				}
+	
 				$boxes = count($a[0]);
 
 				//convert to box format
@@ -264,8 +285,11 @@ if (isset($_GET['qid']))
 				$crop['brx'] = $x;
 				$crop['bry'] = $y;
 
-				//create temp box group
-				$bgid = createboxgroup($boxes,1,'tmp',$pid,0);
+
+				if ($barcodenum) //create barcode box group
+					$bgid = createboxgroup($boxes,$barcodewidth,'tmpbarcode',$pid,5);
+				else 	//create temp box group
+					$bgid = createboxgroup($boxes,1,'tmp',$pid,0);
 
 				//display cropped image with selection
 				//print "<img src=\"../showpage.php?bgid=$bgid\"/>";

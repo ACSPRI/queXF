@@ -45,6 +45,9 @@ function processpage($pid,$fid,$image,$offset)
 	//number boxes
 	numberboxes($pid,$image,$fid,$offset[0],$offset[1]);
 
+	//barcode boxes
+	barcodeboxes($pid,$image,$fid,$offset[0],$offset[1]);
+
 	//singlechoiceguess
 	singlechoiceguess($pid,$fid);
 
@@ -63,6 +66,19 @@ function charbox($bid,$fid,$val)
 		formboxverifychar (vid,bid,fid,val) 
 		VALUES ('0','$bid','$fid',$q)");
 }
+
+function textbox($bid,$fid,$val)
+{
+	global $db;
+	$q = "NULL";
+	if ($val != "")  $q = "'$val'";
+	$db->Query("
+		INSERT INTO
+		formboxverifytext (vid,bid,fid,val) 
+		VALUES ('0','$bid','$fid',$q)");
+}
+
+
 
 
 function charboxes($pid,$image,$fid,$offx,$offy)
@@ -124,6 +140,25 @@ function numberboxes($pid,$image,$fid,$offx,$offy)
 
 }
 
+
+function barcodeboxes($pid,$image,$fid,$offx,$offy)
+{
+	global $db;
+
+	$boxes = $db->GetAll("
+		SELECT b.bid, b.tlx, b.tly, b.brx, b.bry, b.pid
+		FROM boxesbarcode AS b
+		WHERE b.pid = '$pid'");
+
+	foreach ($boxes as $i)
+	{
+		$barval = barcode(crop($image,calcoffset($i,$offx,$offy)));
+
+		//print "{$i['bid']} - :$barval:<br/>";
+		textbox($i['bid'],$fid,$barval);
+	}
+
+}
 
 
 function boxfilled($bid,$fid,$filled)
