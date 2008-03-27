@@ -88,12 +88,10 @@ function outputdata($qid,$fid = "")
 		and f.bid = b.bid and f.vid = '{$form['vid']}' and f.fid = '{$form['fid']}')
 		UNION
 		(select b.bid,b.bgid,g.btid,f.val,sortorder
-		from boxes as b, boxgroupstype as g, pages as p, formboxverifytext as f
-		where b.bgid = g.bgid
-		and g.btid = 6
-		and p.pid = b.pid
-		and p.qid = '$qid'
-		and f.bid = b.bid and f.vid = '{$form['vid']}' and f.fid = '{$form['fid']}')
+		from boxes as b
+		JOIN  boxgroupstype as g on (b.bgid = g.bgid and g.btid = 6)
+		JOIN pages as p on  (p.pid = b.pid and p.qid = '$qid')
+		LEFT JOIN formboxverifytext as f on (f.bid = b.bid and f.vid = '{$form['vid']}' and f.fid = '{$form['fid']}'))
 		UNION
 		(select b.bid,b.bgid,g.btid,f.val,sortorder
 		from boxes as b, boxgroupstype as g, pages as p, formboxverifytext as f
@@ -103,6 +101,7 @@ function outputdata($qid,$fid = "")
 		and p.qid = '$qid'
 		and f.bid = b.bid and f.vid = '0' and f.fid = '{$form['fid']}')
 		order by sortorder asc,bid asc";
+
 
 		$data =  $db->GetAll($sql);
 
@@ -136,7 +135,7 @@ function outputdata($qid,$fid = "")
 					$done = 1;
 				}
 			}
-			else if ($val['btid'] == 6 && $val['btid'] == 5)
+			else if ($val['btid'] == 6 || $val['btid'] == 5)
 			{
 				print str_pad($val['val'],$desc[$bgid]['width']," ",STR_PAD_RIGHT);
 			}
