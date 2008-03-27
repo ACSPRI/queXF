@@ -449,18 +449,30 @@ function import($filename){
 			}
 			else
 			{
-				//need to do blank page detection here
+				if(is_blank_page($image))
+				{
+					print "Blank page: ignoring<br/>";
 
+					//for testing:
+					//store in missing pages table
+					$sql = "INSERT INTO missingpages
+						(mpid,fid,image)
+						VALUES (NULL,'999999','" . addslashes($data) . "')";
+		
+					$db->Execute($sql);
 
+				}
+				else
+				{
+					print "Could not get pid, inserting into missing pages...<br/>";
 
-				print "Could not get pid, inserting into missing pages...<br/>";
-
-				//store in missing pages table
-				$sql = "INSERT INTO missingpages
-					(mpid,fid,image)
-					VALUES (NULL,'$fid','" . addslashes($data) . "')";
-	
-				$db->Execute($sql);
+					//store in missing pages table
+					$sql = "INSERT INTO missingpages
+						(mpid,fid,image)
+						VALUES (NULL,'$fid','" . addslashes($data) . "')";
+		
+					$db->Execute($sql);
+				}
 			}
 		}
 	}

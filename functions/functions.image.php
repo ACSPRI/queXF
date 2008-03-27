@@ -23,6 +23,34 @@
  */
 
 
+/* Use the presence of corner lines to see if the page is blank or not
+ *
+ */
+function is_blank_page($image)
+{
+	$b = array();
+
+	$b[] = vertlinex(140,140,267,500,$image,8);
+	$b[] = horiliney(140,140,570,300,$image,8);
+
+	$b[] = vertlinex(2195,194,2400,560,$image,8);
+	$b[] = horiliney(1950,140,2400,325,$image,8);
+
+	$b[] = vertlinex(140,2977,300,3400,$image,8);
+	$b[] = horiliney(140,3150,600,3400,$image,8);
+
+	$b[] = vertlinex(2195,2977,2400,3400,$image,8);
+	$b[] = horiliney(1950,3192,2400,3400,$image,8);
+
+	$total = 0;
+	foreach ($b as $key => $value)
+		$total += $value;
+
+	if ($total == 0) return true;
+	return false;
+}
+
+
 
 //calculate the offset of an image given DCARF standard corner lines
 //and original page id
