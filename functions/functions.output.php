@@ -137,7 +137,7 @@ function outputdata($qid,$fid = "")
 			}
 			else if ($val['btid'] == 6 || $val['btid'] == 5)
 			{
-				print str_pad($val['val'],$desc[$bgid]['width']," ",STR_PAD_RIGHT);
+				print substr(str_pad($val['val'],$desc[$bgid]['width']," ",STR_PAD_RIGHT),0,$desc[$bgid]['width']);
 			}
 			else
 			{
