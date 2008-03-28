@@ -449,7 +449,7 @@ function import($filename){
 			}
 			else
 			{
-				if(is_blank_page($image))
+				if(BLANK_PAGE_DETECTION && is_blank_page($image))
 				{
 					print "Blank page: ignoring<br/>";
 

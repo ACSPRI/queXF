@@ -48,6 +48,9 @@ define('MULTIPLE_CHOICE_MAX_FILLED', 0.60);
 define('SINGLE_CHOICE_MIN_FILLED', 0.85);
 define('SINGLE_CHOICE_MAX_FILLED', 0.60);
 
+//Blank page detection
+define('BLANK_PAGE_DETECTION', true);
+
 //REQUIRED: Ghostscript binary
 define('GS_BIN', "/usr/bin/gs");
 
@@ -55,7 +58,6 @@ define('GS_BIN', "/usr/bin/gs");
 define('OCR_ENABLED', false);
 define('CONVERT_BIN', "/usr/bin/convert");
 define('TESSERACT_BIN', "/usr/bin/tesseract");
-
 
 //global database variable
 $db = newADOConnection(DB_TYPE);
