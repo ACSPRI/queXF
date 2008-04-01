@@ -452,15 +452,7 @@ function import($filename){
 				if(BLANK_PAGE_DETECTION && is_blank_page($image))
 				{
 					print "Blank page: ignoring<br/>";
-
-					//for testing:
-					//store in missing pages table
-					$sql = "INSERT INTO missingpages
-						(mpid,fid,image)
-						VALUES (NULL,'999999','" . addslashes($data) . "')";
-		
-					$db->Execute($sql);
-
+					//let this page dissolve into the ether
 				}
 				else
 				{
