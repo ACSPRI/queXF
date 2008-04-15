@@ -36,5 +36,6 @@
 <a href="import.directory.php">Import a directory of PDF files</a><br/>
 <a href="missingpages.php">Handle missing pages</a><br/>
 <a href="output.php">Output data/ddi</a><br/>
+<a href="progress.php">Display progress of form verification</a><br/>
 </body>
 </html>
