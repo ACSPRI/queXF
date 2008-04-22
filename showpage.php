@@ -88,29 +88,43 @@ else if (isset($_GET['pid']))
 
 		if (empty($row)) exit;
 
-
-
 		$im = imagecreatefromstring($row['image']);
 
-		$width = imagesx($im);
-		$height = imagesy($im);
+		if (isset($_GET['bid']))
+		{
+			$bid = intval($_GET['bid']);
+			$sql = "SELECT tlx,tly,brx,bry
+				FROM boxes
+				WHERE bid = '$bid'";
+			$box = $db->GetRow($sql);
 
-		$newwidth = 800;
-		$newheight = round($height * (800/$width));
+			header("Content-type: image/png");
+			imagepng(crop($im,calcoffset($box,$row['offx'],$row['offy'])));
+		}
+		else
+		{
+			/*
+			
+			header("Content-type: image/png");
+			echo ($row['image']);
+	
+			 */
 
-		$thumb = imagecreatetruecolor($newwidth, $newheight);
-		imagepalettecopy($thumb,$im);
+			$width = imagesx($im);
+			$height = imagesy($im);
+	
+			$newwidth = 800;
+			$newheight = round($height * (800/$width));
+	
+			$thumb = imagecreatetruecolor($newwidth, $newheight);
+			imagepalettecopy($thumb,$im);
+	
+			imagecopyresized($thumb, $im, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+	
+			header("Content-type: image/png");
+			imagepng($thumb);
 
-		imagecopyresized($thumb, $im, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-
-		header("Content-type: image/png");
-		imagepng($thumb);
-
-		/*
-		
-		header("Content-type: image/png");
-		echo ($row['image']);
-		 */
+		}
 	}
 	else
 	{

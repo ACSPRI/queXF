@@ -389,6 +389,43 @@ CREATE TABLE IF NOT EXISTS `missingpages` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ocrtrain`
+--
+
+CREATE TABLE `ocrtrain` (
+  `val` char(1) NOT NULL,
+  `r1` tinyint(1) unsigned NOT NULL,
+  `r2` tinyint(1) unsigned NOT NULL,
+  `r3` tinyint(1) unsigned NOT NULL,
+  `r4` tinyint(1) unsigned NOT NULL,
+  `r5` tinyint(1) unsigned NOT NULL,
+  `r6` tinyint(1) unsigned NOT NULL,
+  `r7` tinyint(1) unsigned NOT NULL,
+  `r8` tinyint(1) unsigned NOT NULL,
+  `r9` tinyint(1) unsigned NOT NULL,
+  `r10` tinyint(1) unsigned NOT NULL,
+  `r11` tinyint(1) unsigned NOT NULL,
+  `r12` tinyint(1) unsigned NOT NULL,
+  `r13` tinyint(1) unsigned NOT NULL,
+  `r14` tinyint(1) unsigned NOT NULL,
+  `r15` tinyint(1) unsigned NOT NULL,
+  `r16` tinyint(1) unsigned NOT NULL,
+  `r17` tinyint(1) unsigned NOT NULL,
+  `r18` tinyint(1) unsigned NOT NULL,
+  `r19` tinyint(1) unsigned NOT NULL,
+  `r20` tinyint(1) unsigned NOT NULL,
+  `r21` tinyint(1) unsigned NOT NULL,
+  `r22` tinyint(1) unsigned NOT NULL,
+  `r23` tinyint(1) unsigned NOT NULL,
+  `r24` tinyint(1) unsigned NOT NULL,
+  `r25` tinyint(1) unsigned NOT NULL,
+  `ratio` tinyint(1) unsigned NOT NULL,
+  KEY `character` (`val`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pages`
 --
 
