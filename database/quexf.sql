@@ -420,7 +420,9 @@ CREATE TABLE `ocrtrain` (
   `r24` tinyint(1) unsigned NOT NULL,
   `r25` tinyint(1) unsigned NOT NULL,
   `ratio` tinyint(1) unsigned NOT NULL,
+  `fid` bigint(20) NOT NULL,
   KEY `character` (`val`)
+  KEY `fid` (`fid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
