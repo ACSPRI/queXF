@@ -32,7 +32,7 @@
 /**
  * Return the most likely character given the box data
  */
-function quexf_ocr($boxes)
+function quexf_ocr($boxes,$justnumbers = false)
 {
 	include_once(dirname(__FILE__).'/../config.inc.php');
 
@@ -83,8 +83,23 @@ function quexf_ocr($boxes)
 		POW((r24 - {$boxes['r24']}),2) +
 		POW((r25 - {$boxes['r25']}),2) +
 		POW((ratio - {$boxes['ratio']}),2)) as confidence
-		FROM ocrtrain
-		ORDER BY confidence ASC
+		FROM ocrtrain ";
+
+	if ($justnumbers)
+	{
+		$sql .= " WHERE (val = '0' 
+				or val = '1'
+				or val = '2'
+				or val = '3'
+				or val = '4'
+				or val = '5'
+				or val = '6'
+				or val = '7'
+				or val = '8'
+				or val = '9') ";
+	}
+
+	$sql .= " ORDER BY confidence ASC
 		LIMIT 1";
 
 	$rs = $db->GetRow($sql);
@@ -113,10 +128,9 @@ function get_bounding_box($image,$a)
 			'bry' => floor(($a['bry'] + $a['tly']) / 2),
 			'brx' => floor(($a['brx'] + $a['tlx']) / 2));
 
-	$edge = 5; //take this many pixels of the side due to form box drawing
 
-	for ($x = $a['tlx'] + $edge; $x < $a['brx'] - $edge; $x++) {
-		for ($y = $a['tly'] + $edge; $y < $a['bry'] - $edge; $y++) {
+	for ($x = ($a['tlx'] + BOX_EDGE); $x < ($a['brx'] - BOX_EDGE); $x++) {
+		for ($y = ($a['tly'] + BOX_EDGE); $y < ($a['bry'] - BOX_EDGE); $y++) {
 			$rgb = imagecolorat($image, $x, $y);
 			if (!$rgb) //0 is black
 			{

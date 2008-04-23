@@ -43,14 +43,36 @@ session_start();
 div.float {
   float: left;
  margin: 0 0 10px 10px;
- background-color: #ddd;
+ background-color: #00cc00;
  padding: 10px;
  border: 1px solid #666;
 
 }
 </style>
+
+<script type='text/javascript'>
+function toggle(eid)
+{
+	d = document.getElementById('div_' + eid);
+	i = document.getElementById('input_' + eid);
+
+	if (i.disabled == "")
+	{
+		i.disabled = "disabled";
+		d.style.backgroundColor = "#cc0000";
+	}
+	else
+	{
+		i.disabled = "";
+		d.style.backgroundColor = "#00cc00";
+	}
+}
+
+</script>
 </head>
 <body>
+
+
 
 <?
 
@@ -88,6 +110,7 @@ if (isset($_POST['submit']))
 			//print_r($boxes);
 			//print "<br/>";
 			$boxes['val'] = $val;
+			$boxes['fid'] = $fid;
 
 			$rs = $db->Execute("SELECT * from ocrtrain LIMIT 0");
 			$sql = $db->GetInsertSQL($rs,$boxes);
@@ -98,6 +121,19 @@ if (isset($_POST['submit']))
 
 
 }
+
+if (isset($_GET['delete']))
+{
+	$fid = intval($_GET['delete']);
+
+	$sql = "DELETE FROM ocrtrain
+		WHERE fid = '$fid'";
+
+	$db->Execute($sql);
+
+}
+
+
 
 
 if (isset($_GET['fid']) && isset($_GET['qid']) && isset($_GET['vid']))
@@ -115,11 +151,13 @@ if (isset($_GET['fid']) && isset($_GET['qid']) && isset($_GET['vid']))
 			WHERE (b.btid = 3 or b.btid = 4)
 			AND b.qid = '$qid'
 			AND c.val IS NOT NULL
+			AND c.val != ' '
 			ORDER BY b.pid ASC, sortorder ASC";
 
 	$rs = $db->GetAll($sql);
 
 	print "<div><a href='?'>Back to index</a></div>";
+	print "<p>Make sure the letter in the box matches the image. If you do not want to import a box, click on it to disable it (click again to enable).</p>";
 	print "<form action='?' method='post'><div>";
 	foreach($rs as $r)
 	{
@@ -131,7 +169,7 @@ if (isset($_GET['fid']) && isset($_GET['qid']) && isset($_GET['vid']))
 		$bry = $r['bry'];
 
 
-		print "<div class='float'><img alt='ocrimage' src='../showpage.php?pid=$pid&amp;bid=$bid&amp;fid=$fid'/><br/><p><input name='".$pid."_".$fid."_".$tlx."_".$tly."_".$brx."_".$bry."' type='text' value='{$r['val']}' size='3'/></p></div>";
+		print "<div class='float' id='div_".$pid."_".$fid."_".$tlx."_".$tly."_".$brx."_".$bry."' onclick=\"toggle('".$pid."_".$fid."_".$tlx."_".$tly."_".$brx."_".$bry."')\"><img alt='ocrimage' src='../showpage.php?pid=$pid&amp;bid=$bid&amp;fid=$fid'/><br/><p><input id='input_".$pid."_".$fid."_".$tlx."_".$tly."_".$brx."_".$bry."' name='".$pid."_".$fid."_".$tlx."_".$tly."_".$brx."_".$bry."' type='text' value='{$r['val']}' size='3'/></p></div>";
 
 	}
 	print "</div><p><input name='submit' id='submit' type='submit'/></p></form>";
@@ -145,17 +183,25 @@ else
 {
 	//select a form to do
 
-	$sql = "SELECT f.fid,f.qid,f.assigned_vid as vid,f.description as fd,v.description as vd,q.description as qd
-		FROM forms as f, verifiers as v, questionnaires as q
-		WHERE f.done = '1'
-		AND f.assigned_vid = v.vid
-		AND f.qid = q.qid";
+	$sql = "SELECT f.fid, f.qid, f.assigned_vid AS vid, f.description AS fd, v.description AS vd, q.description AS qd, o.c AS ocr
+		FROM forms AS f
+		JOIN (verifiers AS v, questionnaires AS q) ON ( f.done = '1' AND f.assigned_vid = v.vid AND f.qid = q.qid )
+		LEFT JOIN (
+			SELECT count( * ) AS c, fid
+			FROM ocrtrain
+			GROUP BY fid
+			) AS o ON ( o.fid = f.fid )
+		ORDER BY f.fid ASC";
 
 	$rs = $db->GetAll($sql);	
 
 	foreach ($rs as $r)
 	{
-		print "<div><a href='?fid=".$r['fid']."&amp;qid=".$r['qid']."&amp;vid=".$r['vid']."'>".$r['qd']." form: ".$r['fd']." by: ".$r['vd']."</a></div>";
+		$ocr = $r['ocr'];
+		if (empty($ocr))
+			print "<div><a href='?fid=".$r['fid']."&amp;qid=".$r['qid']."&amp;vid=".$r['vid']."'>".$r['qd']." form: ".$r['fd']." by: ".$r['vd']." - Not Trained</a></div>";
+		else
+			print "<div>".$r['qd']." form: ".$r['fd']." by: ".$r['vd']." - $ocr boxes trained <a href='?delete=".$r['fid']."'>Delete from training database</a></div>";
 	}
 
 }
