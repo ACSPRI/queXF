@@ -56,6 +56,7 @@ define('GS_BIN', "/usr/bin/gs");
 
 //OCR requires CONVERT_BIN (imagemagick convert binary) and TESSERACT_BIN (tessearct binary) to be enabled
 define('OCR_ENABLED', false);
+define('BOX_EDGE',5); //take this many pixels of the side due to form box drawing
 define('CONVERT_BIN', "/usr/bin/convert");
 define('TESSERACT_BIN', "/usr/bin/tesseract");
 
