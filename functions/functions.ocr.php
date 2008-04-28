@@ -90,25 +90,28 @@ function ST_Cost($im1,$im2)
  
 function erode_charimage($image)
 {
-  $white = imagecolorallocate($image, 255, 255, 255);	
-   /* for true pixels. kill pixel if there is at least one false neighbor */
+  $xdim = imagesx($image);    
+  $ydim = imagesy($image);
+  imagecopy($im2,$image,0,0,0,0,$xdim,$ydim);
+  $white = imagecolorallocate($im2, 255, 255, 255);
+ /* for true pixels. kill pixel if there is at least one false neighbor */
   for ( $row = 0 ; $row < 32 ; $row++ )
   {
       for ( $col = 0 ; $col < 32 ; $col++ )
       {  
-         if (!imagecolorat($image,$row,$col))      /* erode only operates on true pixels */
+         if (imagecolorat($image,$row,$col) == 0)      /* erode only operates on true pixels */
          {
             /* more efficient with C's left to right evaluation of     */
             /* conjuctions. E N S functions not executed if W is false */
             if (!(get_west8 ($image,$row,$col) &&
                   get_east8 ($image,$row,$col,32) &&
                   get_north8($image,$row,$col) &&
-                  get_south8($image,$row,$col,32)))
-		  imagesetpixel($image,$row,$col,$white); //set to background
-	 }
-      }  
+		  get_south8($image,$row,$col,32)))
+		    imagesetpixel($im2,$row,$col,$white); //set to background
+	    }
+      }
   }
-  return $image;
+  return $im2;
 }
 
 /******************************************************************/
@@ -151,7 +154,7 @@ function get_south8($im, $x, $y, $height)
    if ($y >= $height-1) /* catch case where image is undefined southwards   */
       return 0;     /* use plane geometry and return false.             */
 
-   return !imagecolorat($im,$x,($y +1));
+   return (imagecolorat($im,$x,($y +1)) == 0);
 }
 
 /**
@@ -162,7 +165,7 @@ function get_north8($im, $x, $y)
    if ($y < 1)     /* catch case where image is undefined northwards     */
       return 0;     /* use plane geometry and return false.              */
 
-   return !imagecolorat($im,$x,($y - 1));
+   return (imagecolorat($im,$x,($y - 1)) == 0);
 }
 
 /**
@@ -173,7 +176,7 @@ function get_east8($im, $x, $y, $width)
    if ($x >= $width-1) /* catch case where image is undefined eastwards    */
       return 0;     /* use plane geometry and return false.             */
 
-   return !imagecolorat($im,($x+1),$y);
+   return (imagecolorat($im,($x+1),$y) == 0);
 }
 
 
@@ -185,7 +188,7 @@ function get_west8($im, $x, $y)
    if ($x < 1)     /* catch case where image is undefined westwards     */
       return 0;     /* use plane geometry and return false.              */
 
-   return !imagecolorat($im,($x-1),$y);
+   return (imagecolorat($im,($x-1),$y) == 0);
 }
 
 
@@ -271,25 +274,28 @@ function st_ocr($image,$a)
 	//normalise image to a 20x32 image on a 32x32 box
 	$image = normalise_image($image,$bound);
 
+
 	//erode or dilate based on number of black pixels in image
 	$npix = fillcount($image);    
 	if($npix > 412){
 		if($npix > 560) {
 			$image = erode_charimage(erode_charimage($image));
          	}
-         	else {
+		else {
 			$image = erode_charimage($image);
          	}
       	}
       	else if ($npix < 256) {
 		if($npix < 108){
-			$image = dilate_charimage(dilate_charimage($image));
+			$image = erode_charimage(erode_charimage($image));
 		}
 		else {
-			$image = dilate_charimage($image);
+			$image = erode_charimage($image);
 		}
 	}
 
+	$image = erode_charimage($image);
+	return $image;
 	//shear image
 	$image = image_shear($image);	
 
@@ -326,7 +332,8 @@ function fillcount($image)
 	$total = 0;
 	for ($x = 0; $x < $xdim; $x++) {
 		for ($y = 0; $y < $ydim; $y++) {
-			$total += !imagecolorat($image, $x, $y);
+			if (!imagecolorat($image, $x, $y))
+				$total++;
 		}
 	}
 	return $total;
