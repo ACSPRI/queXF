@@ -23,11 +23,321 @@
  */
 
 
+
+/**
+ * Implmentatino of the ST_Cost algorithm from
+ *  "A new shape transformation approach to handwritten character recognition", N Liolios, E. Kavallieratou, N. Fakotakis and G. Kokkinakis
+ */
+function ST_Cost($im1,$im2)
+{
+	$width = imagesx($im1);
+	$height = imagesy($im1);
+
+	//pixels in im1, not common to both
+	$im1m = array();
+
+	//pixes in im2, not common to both
+	$im2m = array();
+
+
+	// calculate the pixels in each image not common to both
+	for ($i = 0; $i < $width; $i++) {
+		for ($j = 0; $j < $height; $j++) {
+			$im1rgb = !imagecolorat($im1,$i,$j);
+			$im2rgb = !imagecolorat($im2,$i,$j);
+			if ($im1rgb && !$im2rgb) $im1m[] = array($i,$j);
+			if ($im2rgb && !$im1rgb) $im2m[] = array($i,$j);
+		}
+	}
+
+
+	$cost = 0; //cost of transforming im1 to im2
+
+	$dmax = 1024;
+
+	//calcuate euclidian distance between each pixel that is not common to both images
+	foreach($im1m as $i1)
+	{
+		$dmin = $dmax;
+		foreach($im2m as $i2)
+		{
+			//euclidian distance between pixels
+			$d = sqrt((($i1[0]-$i2[0])*($i1[0]-$i2[0]))+(($i1[1]-$i2[1])*($i1[1]-$i2[1])));
+			if ($d < $dmin)
+				$dmin = $d;
+		}
+		$cost += $dmin;
+	}
+
+
+	return $cost;
+}
+
+
+
+/**
+ *From NIST morphchr.c
+ *
+ *
+ */
+/******************************************************************/
+/* erode a one bit per byte char image, inp. Result is out which  */
+/* must be disjoint with inp. The data in out before the call is  */
+/* irrelevant, and is zeroed and filled by this routine. iw and   */
+/* ih are the width and height of the image in pixels. Both inp   */
+/* and out point to iw*ih bytes                                   */
+/******************************************************************/
+ 
+function erode_charimage($image)
+{
+  $white = imagecolorallocate($image, 255, 255, 255);	
+   /* for true pixels. kill pixel if there is at least one false neighbor */
+  for ( $row = 0 ; $row < 32 ; $row++ )
+  {
+      for ( $col = 0 ; $col < 32 ; $col++ )
+      {  
+         if (!imagecolorat($image,$row,$col))      /* erode only operates on true pixels */
+         {
+            /* more efficient with C's left to right evaluation of     */
+            /* conjuctions. E N S functions not executed if W is false */
+            if (!(get_west8 ($image,$row,$col) &&
+                  get_east8 ($image,$row,$col,32) &&
+                  get_north8($image,$row,$col) &&
+                  get_south8($image,$row,$col,32)))
+		  imagesetpixel($image,$row,$col,$white); //set to background
+	 }
+      }  
+  }
+  return $image;
+}
+
+/******************************************************************/
+/* dilate a one bit per byte char image, inp. Result is out which  */
+/* must be disjoint with inp. The data in out before the call is  */
+/* irrelevant, and is zeroed and filled by this routine. iw and   */
+/* ih are the width and height of the image in pixels. Both inp   */
+/* and out point to iw*ih bytes                                   */
+/******************************************************************/
+ 
+function dilate_charimage($image)
+{
+   $black = imagecolorallocate($image, 0, 0, 0);
+   /* for all pixels. set pixel if there is at least one true neighbor */
+   for ( $row = 0 ; $row < 32 ; $row++ )
+     {
+      for ( $col = 0 ; $col < 32 ; $col++ )
+      {  
+         if (imagecolorat($image,$row,$col))     /* pixel is already true, neighbors irrelevant */
+         {
+            /* more efficient with C's left to right evaluation of     */
+            /* conjuctions. E N S functions not executed if W is false */
+            if (get_west8 ($image,$row,$col) ||
+                  get_east8 ($image,$row,$col,32) ||
+                  get_north8($image,$row,$col) ||
+                  get_south8($image,$row,$col,32))
+               imagesetpixel($image,$row,$col,$black); //set to black
+         }
+      }  
+     }
+   return $image;
+}
+
+
+/**
+ *From NIST morphchr.c
+ */
+function get_south8($im, $x, $y, $height)
+{
+   if ($y >= $height-1) /* catch case where image is undefined southwards   */
+      return 0;     /* use plane geometry and return false.             */
+
+   return !imagecolorat($im,$x,($y +1));
+}
+
+/**
+ *From NIST morphchr.c
+ */
+function get_north8($im, $x, $y)
+{
+   if ($y < 1)     /* catch case where image is undefined northwards     */
+      return 0;     /* use plane geometry and return false.              */
+
+   return !imagecolorat($im,$x,($y - 1));
+}
+
+/**
+ *From NIST morphchr.c
+ */
+function get_east8($im, $x, $y, $width)
+{
+   if ($x >= $width-1) /* catch case where image is undefined eastwards    */
+      return 0;     /* use plane geometry and return false.             */
+
+   return !imagecolorat($im,($x+1),$y);
+}
+
+
+/**
+ *From NIST morphchr.c
+ */
+function get_west8($im, $x, $y)
+{
+   if ($x < 1)     /* catch case where image is undefined westwards     */
+      return 0;     /* use plane geometry and return false.              */
+
+   return !imagecolorat($im,($x-1),$y);
+}
+
+
+/**
+ * Shear an image by finding the left most pixel in the top row
+ * then the leftmost in the bottom row, calculating the angle
+ * and straightening all rows by shifting pixels across
+ *
+ *
+ */
+function image_shear($image)
+{
+	//find top left most black pixel location, 
+	//and bottom left most black pixel location
+	$xdim = imagesx($image);
+	$ydim = imagesy($image);
+	$tly = "";
+	$tlx = "";
+	$bly = "";
+	$blx = "";
+
+	for ($y = 0; $y < $ydim; $y++) {
+		for ($x = 0; $x < $xdim; $x++) {
+			if(!imagecolorat($image, $x, $y))
+			{
+				$tly = $y;
+				$tlx = $x;
+				break 2;
+			}
+		}
+	}
+	
+
+	for ($y = ($ydim - 1); $y >= 0; $y--) {
+		for ($x = 0; $x < $xdim; $x++) {
+			if(!imagecolorat($image, $x, $y))
+			{
+				$bly = $y;
+				$blx = $x;
+				break 2;
+			}
+		}
+	}
+
+
+	$slope = (($tlx-$blx)/($bly-$tly));
+
+	$im2 = imagecreate($xdim,$ydim);
+	imagepalettecopy($im2,$image);
+	$white = imagecolorallocate($im2, 255, 255, 255);
+
+
+	$m = floor($ydim / 2);
+
+
+	for ($y = 0; $y < $ydim; $y++) {
+		$shift = ($y - $m) * $slope;
+		for ($x = 0; $x < $xdim; $x++) {
+
+			$ox = $x - $shift;
+			if ($ox >= $xdim || $ox < 0) //if off the charts
+				imagesetpixel($im2,$x,$y,$white); //set blank
+			else
+				imagesetpixel($im2,$x,$y,imagecolorat($image,$ox,$y));
+		}
+	}
+
+	return $im2;
+}
+
+
+
+
+/**
+ * stocr
+ *
+ */
+function st_ocr($image,$a)
+{
+	//calc bounding box
+	$bound = get_bounding_box($image,$a);
+
+	//normalise image to a 20x32 image on a 32x32 box
+	$image = normalise_image($image,$bound);
+
+	//erode or dilate based on number of black pixels in image
+	$npix = fillcount($image);    
+	if($npix > 412){
+		if($npix > 560) {
+			$image = erode_charimage(erode_charimage($image));
+         	}
+         	else {
+			$image = erode_charimage($image);
+         	}
+      	}
+      	else if ($npix < 256) {
+		if($npix < 108){
+			$image = dilate_charimage(dilate_charimage($image));
+		}
+		else {
+			$image = dilate_charimage($image);
+		}
+	}
+
+	//shear image
+	$image = image_shear($image);	
+
+	return $image;
+}
+
+
+
+
+
+/**
+ * Normalise image to a size of 20x32 given the bounding box
+ * to an image of size 32x32
+ *
+ */
+function normalise_image($image,$bound)
+{
+	$nim = imagecreate(32,32);
+	$white = imagecolorallocate($nim, 255, 255, 255);	
+	imagepalettecopy($nim,$image);
+	imagecopyresized($nim,$image,6,0,$bound['tlx'],$bound['tly'],20,32,($bound['brx']-$bound['tlx']),($bound['bry']-$bound['tly']));
+	return $nim;
+}
+
+
+/**
+ * Return the number of filled pixels in an image
+ *
+ */
+function fillcount($image)
+{
+	$xdim = imagesx($image);
+	$ydim = imagesy($image);
+	$total = 0;
+	for ($x = 0; $x < $xdim; $x++) {
+		for ($y = 0; $y < $ydim; $y++) {
+			$total += !imagecolorat($image, $x, $y);
+		}
+	}
+	return $total;
+}
+
+
+
 /**
  *Character recognition algorithm from here:
  *  http://www.cs.berkeley.edu/~fateman/kathey/char_recognition.html
  */
-
 
 /**
  * Return the most likely character given the box data
@@ -106,7 +416,7 @@ function quexf_ocr($boxes,$justnumbers = false)
 
 	print $rs['val'] . ": " . $rs['confidence'] . "<br/>";
 
-	if ($rs['confidence'] < 10000000)
+	if ($rs['confidence'] < 20000)
 		return $rs['val'];
 	else 
 		return " ";
