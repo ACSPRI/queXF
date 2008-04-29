@@ -103,19 +103,17 @@ if (isset($_POST['submit']))
 				$im = imagecreatefromstring($row['image']);
 			}
 
-			$bound = get_bounding_box($im,$box);
-			$boxes = get_25_boxes($im,$bound);
+			$image = st_ocr($im,$box);
+			ob_start();
+			imagegd2($image);
+			$image = ob_get_contents();
+			ob_end_clean();
 
-			//print "VAL: $val ";
-			//print_r($boxes);
-			//print "<br/>";
-			$boxes['val'] = $val;
-			$boxes['fid'] = $fid;
+			$sql = "INSERT INTO ocrtrainst (val,fid,image)
+				VALUES ('$val','$fid','". addslashes($image) . "')";
 
-			$rs = $db->Execute("SELECT * from ocrtrain LIMIT 0");
-			$sql = $db->GetInsertSQL($rs,$boxes);
 			$db->Execute($sql);
-			//quexf_ocr($boxes);
+
 		}
 	}
 
@@ -126,7 +124,7 @@ if (isset($_GET['delete']))
 {
 	$fid = intval($_GET['delete']);
 
-	$sql = "DELETE FROM ocrtrain
+	$sql = "DELETE FROM ocrtrainst
 		WHERE fid = '$fid'";
 
 	$db->Execute($sql);
@@ -188,7 +186,7 @@ else
 		JOIN (verifiers AS v, questionnaires AS q) ON ( f.done = '1' AND f.assigned_vid = v.vid AND f.qid = q.qid )
 		LEFT JOIN (
 			SELECT count( * ) AS c, fid
-			FROM ocrtrain
+			FROM ocrtrainst
 			GROUP BY fid
 			) AS o ON ( o.fid = f.fid )
 		ORDER BY f.fid ASC";
