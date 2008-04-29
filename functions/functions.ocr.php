@@ -22,6 +22,45 @@
  *
  */
 
+function ST_Guess($image,$numbersonly = false)
+{
+	include_once(dirname(__FILE__).'/../config.inc.php');
+
+	global $db;
+
+	$sql = "SELECT val,image
+		FROM ocrtrainst";
+
+	if ($numbersonly)
+		$sql .= " WHERE (val = '0' 
+				or val = '1'
+				or val = '2'
+				or val = '3'
+				or val = '4'
+				or val = '5'
+				or val = '6'
+				or val = '7'
+				or val = '8'
+				or val = '9') ";
+
+	$images = $db->CacheGetAll($sql);
+
+	$dmax = 1024;
+	$cmin = 1024*1024;
+	$val = "";
+	foreach($images as $i)
+	{
+		$im = imagecreatefromstring($i['image']);
+		$ct = ST_Cost($image,$im);
+		if ($ct < $cmin)
+		{
+			$val = $i['val'];
+			$cmin = $ct;
+		}
+	}
+
+	return $val;
+}
 
 
 /**
@@ -43,8 +82,8 @@ function ST_Cost($im1,$im2)
 	// calculate the pixels in each image not common to both
 	for ($i = 0; $i < $width; $i++) {
 		for ($j = 0; $j < $height; $j++) {
-			$im1rgb = !imagecolorat($im1,$i,$j);
-			$im2rgb = !imagecolorat($im2,$i,$j);
+			$im1rgb = (imagecolorat($im1,$i,$j) == 0);
+			$im2rgb = (imagecolorat($im2,$i,$j) == 0);
 			if ($im1rgb && !$im2rgb) $im1m[] = array($i,$j);
 			if ($im2rgb && !$im1rgb) $im2m[] = array($i,$j);
 		}
@@ -92,6 +131,7 @@ function erode_charimage($image)
 {
   $xdim = imagesx($image);    
   $ydim = imagesy($image);
+  $im2 = imagecreate($xdim,$ydim);
   imagecopy($im2,$image,0,0,0,0,$xdim,$ydim);
   $white = imagecolorallocate($im2, 255, 255, 255);
  /* for true pixels. kill pixel if there is at least one false neighbor */
@@ -287,15 +327,13 @@ function st_ocr($image,$a)
       	}
       	else if ($npix < 256) {
 		if($npix < 108){
-			$image = erode_charimage(erode_charimage($image));
+			$image = dilate_charimage(dilate_charimage($image));
 		}
 		else {
-			$image = erode_charimage($image);
+			$image = dilate_charimage($image);
 		}
 	}
 
-	$image = erode_charimage($image);
-	return $image;
 	//shear image
 	$image = image_shear($image);	
 

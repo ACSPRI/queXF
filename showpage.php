@@ -98,12 +98,13 @@ else if (isset($_GET['pid']))
 				WHERE bid = '$bid'";
 			$box = $db->GetRow($sql);
 
-			
+			/*
 			include("functions/functions.ocr.php");
 			$im = st_ocr($im,calcoffset($box,$row['offx'],$row['offy']));
 			header("Content-type: image/png");
 			imagepng($im);
 			exit;
+			 */
 			
 			$box['tlx']+= BOX_EDGE;
 			$box['tly']+= BOX_EDGE;

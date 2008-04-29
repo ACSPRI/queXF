@@ -99,7 +99,7 @@ function charboxes($pid,$image,$fid,$offx,$offy)
 		if ($i['filled'] < 0.95 && OCR_ENABLED)
 		{		
 			include_once("functions.ocr.php");
-			$ocr = quexf_ocr(get_25_boxes($image,get_bounding_box($image,calcoffset($i,$offx,$offy))));
+			$ocr = ST_Guess(st_ocr($image,calcoffset($i,$offx,$offy)));
 			if (empty($ocr)) $ocr = " ";
 		}else
 		{
@@ -128,7 +128,7 @@ function numberboxes($pid,$image,$fid,$offx,$offy)
 		if ($i['filled'] < 0.95 && OCR_ENABLED)
 		{		
 			include_once("functions.ocr.php");
-			$ocr = quexf_ocr(get_25_boxes($image,get_bounding_box($image,calcoffset($i,$offx,$offy))),true);
+			$ocr = ST_Guess(st_ocr($image,calcoffset($i,$offx,$offy)),true);
 			if (empty($ocr)) $ocr = " ";
 		}else
 		{
