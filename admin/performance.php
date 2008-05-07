@@ -34,7 +34,7 @@ include("../functions/functions.database.php");
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Progress</title>
+<title>Performance</title>
 <style type="text/css">
 .tclass th {
 	text-align:left;
@@ -52,7 +52,90 @@ include("../functions/functions.database.php");
 
 <?
 
-$sql = "SELECT CONCAT( f.qid, '_', w.vid ) AS qv, count( * ) AS c, count( * ) / ( SUM( TIMESTAMPDIFF(
+/**
+ * Display data about this questionnaire
+ *
+ */
+if (isset($_GET['qid']))
+{
+	$qid = intval($_GET['qid']);
+
+$sql = "SELECT q.description as qu, v.description as ve,f.qid,w.vid , count( * ) AS c, count( * ) / ( SUM( TIMESTAMPDIFF(
+	SECOND , w.assigned, w.completed ) ) /3600 ) AS CPH, (
+	(
+	
+	SELECT count( pid )
+	FROM pages
+	WHERE qid = f.qid
+	) * count( * )
+	) / ( SUM( TIMESTAMPDIFF(
+	SECOND , w.assigned, w.completed ) ) /3600 ) AS PPH
+	FROM worklog AS w
+	JOIN forms AS f ON ( f.fid = w.fid )
+	JOIN questionnaires as q on (f.qid = q.qid)
+	JOIN verifiers as v on (v.vid = w.vid)
+	WHERE f.qid = '$qid'
+	GROUP BY f.qid, w.vid
+	ORDER BY CPH DESC";
+
+	$rs = $db->GetAll($sql);
+	
+	if (!empty($rs))
+	{
+		print "<h1>{$rs[0]['qu']}</h1><table><tr><th>Operator</th><th>Completed Forms</th><th>Completions Per Hour</th><th>Pages Per Hour</th></tr>";
+		foreach ($rs as $r)
+		{
+			print "<tr><td>{$r['ve']}</td><td>{$r['c']}</td><td>{$r['CPH']}</td><td>{$r['PPH']}</td></tr>";
+		}
+		print "</table>";
+	}
+
+}
+
+/**
+ * Display data about this operator
+ */
+else if (isset($_GET['vid']))
+{
+	$vid = intval($_GET['vid']);
+
+$sql = "SELECT q.description as qu, v.description as ve,f.qid,w.vid , count( * ) AS c, count( * ) / ( SUM( TIMESTAMPDIFF(
+	SECOND , w.assigned, w.completed ) ) /3600 ) AS CPH, (
+	(
+	
+	SELECT count( pid )
+	FROM pages
+	WHERE qid = f.qid
+	) * count( * )
+	) / ( SUM( TIMESTAMPDIFF(
+	SECOND , w.assigned, w.completed ) ) /3600 ) AS PPH
+	FROM worklog AS w
+	JOIN forms AS f ON ( f.fid = w.fid )
+	JOIN questionnaires as q on (f.qid = q.qid)
+	JOIN verifiers as v on (v.vid = w.vid)
+	WHERE w.vid = '$vid'
+	GROUP BY f.qid, w.vid
+	ORDER BY CPH DESC";
+
+	$rs = $db->GetAll($sql);
+
+	if (!empty($rs))
+	{
+		print "<h1>{$rs[0]['ve']}</h1><table><tr><th>Questionnaire</th><th>Completed Forms</th><th>Completions Per Hour</th><th>Pages Per Hour</th></tr>";
+		foreach ($rs as $r)
+		{
+			print "<tr><td>{$r['qu']}</td><td>{$r['c']}</td><td>{$r['CPH']}</td><td>{$r['PPH']}</td></tr>";
+		}
+		print "</table>";
+	}
+
+
+}
+
+
+else 
+{
+	$sql = "SELECT CONCAT( f.qid, '_', w.vid ) AS qv, count( * ) AS c, count( * ) / ( SUM( TIMESTAMPDIFF(
 	SECOND , w.assigned, w.completed ) ) /3600 ) AS CPH, (
 	(
 	
@@ -65,63 +148,53 @@ $sql = "SELECT CONCAT( f.qid, '_', w.vid ) AS qv, count( * ) AS c, count( * ) / 
 	FROM worklog AS w
 	JOIN forms AS f ON ( f.fid = w.fid )
 	GROUP BY f.qid, w.vid
-	ORDER BY qid ASC , CPH DESC , vid ASC	";
+	ORDER BY qid ASC , CPH DESC , qid ASC	";
 	
-$qs = $db->GetAssoc($sql);
-
-
-$sql = "SELECT qid,description
-	FROM questionnaires
-	ORDER by qid ASC";
-
-$questionnaires = $db->GetAll($sql);
-
-$sql = "SELECT vid,description
-	FROM verifiers
-	ORDER by vid ASC";
-
-$verifiers = $db->GetAll($sql);
-
-
-print "<table><tr><th></th>";
-foreach($questionnaires as $q)
-{
-	print "<td>{$q['description']}</td>";
-}
-print "</tr>";
-
-foreach($verifiers as $v)
-{
-	print "<tr><td>{$v['description']}</td>";
-	$tq = -1;
+	$qs = $db->GetAssoc($sql);
+	
+	
+	$sql = "SELECT qid,description
+		FROM questionnaires
+		ORDER by qid ASC";
+	
+	$questionnaires = $db->GetAll($sql);
+	
+	$sql = "SELECT vid,description
+		FROM verifiers
+		ORDER by vid ASC";
+	
+	$verifiers = $db->GetAll($sql);
+		
+		
+	print "<table><tr><th></th>";
 	foreach($questionnaires as $q)
 	{
-		$checked = "";
-		
-		print "<td>";
-		if (isset($qs[$q['qid'] . "_" . $v['vid']]))
-		{
-			if ($tq != $q['qid'])
-			{
-				print "<div class='bold'>";
-				$tq = $q['qid'];
-			}
-			else
-				print "<div>";
-			
-			print $qs[$q['qid'] . "_" . $v['vid']]['CPH']."</div>";
-		}
-
-		print "</td>";
+		print "<td><a href='?qid={$q['qid']}'>{$q['description']}</a></td>";
 	}
 	print "</tr>";
+
+	foreach($verifiers as $v)
+	{
+		print "<tr><td><a href='?vid={$v['vid']}'>{$v['description']}</a></td>";
+		foreach($questionnaires as $q)
+		{
+			$checked = "";
+			
+			print "<td>";
+			if (isset($qs[$q['qid'] . "_" . $v['vid']]))
+			{
+				print "<div>".$qs[$q['qid'] . "_" . $v['vid']]['CPH']."</div>";
+			}
+
+			print "</td>";
+		}
+		print "</tr>";
+	}
+
+
+	print "</table>";
 }
 
-
-print "</table>";
-
-
 ?>
-
 </body></html>
 
