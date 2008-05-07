@@ -37,5 +37,6 @@
 <a href="missingpages.php">Handle missing pages</a><br/>
 <a href="output.php">Output data/ddi</a><br/>
 <a href="progress.php">Display progress of form verification</a><br/>
+<a href="performance.php">Display performance of verifiers (Completions per hour)</a><br/>
 </body>
 </html>
