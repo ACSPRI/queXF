@@ -316,9 +316,11 @@ function multiplechoiceguess($pid,$fid)
  *
  *
  */
-function import($filename){
+function import($filename,$description = false){
 
 	set_time_limit(240);
+
+	if (!$description) $description = $filename;
 
 	global $db;
 
@@ -400,7 +402,7 @@ function import($filename){
 
 		//create form entry in DB
 		$sql = "INSERT INTO forms (fid,qid,description)
-			VALUES (NULL,'$qid','$filename')";
+			VALUES (NULL,'$qid','$description')";
 
 		$db->Execute($sql);
 
