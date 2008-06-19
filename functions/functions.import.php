@@ -482,5 +482,35 @@ function import($filename,$description = false){
 }
 
 
+/**
+ * Import a directory of files and rename them once done
+ *
+ * @param string $dir The directory to look for files to import
+ */
+function import_directory($dir)
+{
+
+	if ($handle = opendir($dir)) {
+	
+		while (false !== ($file = readdir($handle))) {
+			if ($file != "." && $file != ".." && substr($file,-4) != "done")
+			{
+				if (substr($file,-3) == "pdf")
+				{
+					print "$file<br/>";
+			                 import("$dir/$file");
+					 //unlink($file);
+					 rename("$dir/$file","$dir/$file.done");
+				}
+			}
+		}
+	
+		closedir($handle);
+	
+	}
+
+}
+
+
 
 ?>

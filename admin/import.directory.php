@@ -26,31 +26,6 @@
 include("../functions/functions.import.php");
 
 
-function import_directory($dir)
-{
-
-	if ($handle = opendir($dir)) {
-	
-		while (false !== ($file = readdir($handle))) {
-			if ($file != "." && $file != ".." && substr($file,-4) != "done")
-			{
-				if (substr($file,-3) == "pdf")
-				{
-					print "$file<br/>";
-			                 import("$dir/$file");
-					 //unlink($file);
-					 rename("$dir/$file","$dir/$file.done");
-				}
-			}
-		}
-	
-		closedir($handle);
-	
-	}
-
-}
-
-
 if (isset($_POST['dir']))
 {
 	$dir = $_POST['dir'];

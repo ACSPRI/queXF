@@ -80,8 +80,6 @@ if (isset($_GET['npid']) && isset($_GET['mpid']) && isset($_GET['fid']))
       <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>MISSING PAGES</title>
-<script type="text/javascript">
-
 <style type="text/css">
 #topper {
   position : fixed;
