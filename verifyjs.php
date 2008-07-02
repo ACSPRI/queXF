@@ -542,13 +542,14 @@ function nextTask()
 			{	
 				for (y in bgidbid[x])
 				{
+					document.getElementById('textImage' + bgidbid[x][y]).style.visibility = 'hidden';
+					document.getElementById('textBox' + bgidbid[x][y]).style.visibility = 'visible';
 					if (focusdone == 0)
 					{
 						focusText(bgidbid[x][y]);
 						focusdone = 1;
 					}
-					document.getElementById('textImage' + bgidbid[x][y]).style.visibility = 'hidden';
-					document.getElementById('textBox' + bgidbid[x][y]).style.visibility = 'visible';
+
 				}
 			}else
 			{
