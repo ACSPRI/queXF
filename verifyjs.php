@@ -476,6 +476,7 @@ var bgidbid = new Array();
 var bgidtype = new Array();
 var curbgid = 0;
 var pagedone = 0;
+var newwindow;
 
 <?
 //print array of done/not done box groups for this page
@@ -607,6 +608,13 @@ function detectEvent(e) {
 		return false;
 	}
 
+
+	if (evt.keyCode == 90 || evt.keyCode == 91)
+	{
+		images = document.getElementsByTagName('img');
+		poptastic(images[0].src + '&zoom');
+		return false;
+	}
 
 	if(evt.keyCode != 13){ //if generated character code is equal to ascii 13 (if enter key)
 		return document.defaultAction;
@@ -960,6 +968,12 @@ function focusText(field)
 		document.getElementById('textBox'+field).focus();
 		document.getElementById('textBox'+field).select();
 	}
+}
+
+function poptastic(url)
+{
+	newwindow=window.open(url,'name','height=600,width=350,resizable=yes,scrollbars=yes,toolbar=no,status=no');
+	if (window.focus) {newwindow.focus()}
 }
 
 
