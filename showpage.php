@@ -116,27 +116,27 @@ else if (isset($_GET['pid']))
 		}
 		else
 		{
-			/*
-			
-			header("Content-type: image/png");
-			echo ($row['image']);
-	
-			 */
-
-			$width = imagesx($im);
-			$height = imagesy($im);
-	
-			$newwidth = 800;
-			$newheight = round($height * (800/$width));
-	
-			$thumb = imagecreatetruecolor($newwidth, $newheight);
-			imagepalettecopy($thumb,$im);
-	
-			imagecopyresized($thumb, $im, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-	
-			header("Content-type: image/png");
-			imagepng($thumb);
-
+			if (isset($_GET['zoom']))
+			{
+				header("Content-type: image/png");
+				echo ($row['image']);
+			}
+			else
+			{
+				$width = imagesx($im);
+				$height = imagesy($im);
+		
+				$newwidth = 800;
+				$newheight = round($height * (800/$width));
+		
+				$thumb = imagecreatetruecolor($newwidth, $newheight);
+				imagepalettecopy($thumb,$im);
+		
+				imagecopyresized($thumb, $im, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+		
+				header("Content-type: image/png");
+				imagepng($thumb);
+			}
 		}
 	}
 	else
