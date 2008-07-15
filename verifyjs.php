@@ -608,8 +608,7 @@ function detectEvent(e) {
 		return false;
 	}
 
-
-	if (evt.keyCode == 90 || evt.keyCode == 91)
+	if (evt.keyCode == 91 || evt.keyCode == 92)
 	{
 		images = document.getElementsByTagName('img');
 		poptastic(images[0].src + '&zoom');
