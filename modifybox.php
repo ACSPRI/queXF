@@ -42,6 +42,48 @@ function updateboxgroup($bgid,$width,$varname,$btid)
 	$db->CompleteTrans();
 }
 
+/**
+ * When boxes are evenly spaced, boxes are created inbetween
+ * Delete the inbetween boxes
+ */
+function deleteinbetween($bgid)
+{
+	global $db;
+	$db->StartTrans();
+
+	$sql = "SELECT bid 
+		FROM boxgroups 
+		WHERE bgid = '$bgid'";
+
+	$rows = $db->GetAll($sql);
+
+	$rc = 1;
+	foreach($rows as $row)
+	{
+		if (($rc % 2) == 0 && next($rows)) // if even and there is at least one more box
+		{
+			$sql = "DELETE
+				FROM boxes
+				WHERE bid = '{$row['bid']}'";
+	
+			$db->Execute($sql);
+
+			$sql = "DELETE 
+				FROM boxgroups
+				WHERE bid = '{$row['bid']}'";
+	
+			$db->Execute($sql);
+		}
+		$rc++;
+	}
+
+	$db->CompleteTrans();
+
+	return $bgid;
+
+}
+
+
 /* Delete a box group in the DB
  */
 function deleteboxgroup($bgid)
@@ -87,6 +129,12 @@ if (isset($_GET['deletebgid']))
 	deleteboxgroup(intval($_GET['deletebgid']));
 	exit();
 }
+
+if (isset($_GET['deleteinbetween']))
+{
+	deleteinbetween(intval($_GET['deleteinbetween']));
+}
+
 
 
 if (isset($_POST['submit']))
@@ -146,7 +194,9 @@ if (isset($_GET['bgid']) || isset($_GET['bid']))
 
 	?><input  TYPE="hidden" VALUE="<? echo $bgid; ?>" NAME="bgid"><br/><input type="submit" value="Submit" name="submit"/></form><?
 
-	?><a href="<?php echo $_SERVER['PHP_SELF'] . "?deletebgid=$bgid";?>">Delete this group</a><?
+	?><p><a href="<?php echo $_SERVER['PHP_SELF'] . "?deletebgid=$bgid";?>">Delete this group</a></p>
+		<p><a href="<?php echo $_SERVER['PHP_SELF'] . "?deleteinbetween=$bgid&amp;bgid=$bgid";?>">Delete in between boxes</a></p>
+	<?
 }
 
 
