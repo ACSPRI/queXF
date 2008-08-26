@@ -144,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `boxestofill` (
 ,`btid` int(11)
 ,`filename` text
 ,`fid` bigint(20)
-,`image` blob
+,`image` mediumblob
 ,`offx` int(11)
 ,`offy` int(11)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -297,7 +297,7 @@ CREATE TABLE IF NOT EXISTS `formboxestoverifychar` (
 ,`btid` int(11)
 ,`bgid` bigint(20) unsigned
 ,`fid` bigint(20)
-,`image` blob
+,`image` mediumblob
 ,`offx` int(11)
 ,`offy` int(11)
 ,`filled` double
@@ -350,7 +350,7 @@ CREATE TABLE IF NOT EXISTS `formpages` (
   `fid` bigint(20) NOT NULL,
   `pid` bigint(20) NOT NULL,
   `filename` text NOT NULL,
-  `image` blob NOT NULL,
+  `image` mediumblob NOT NULL,
   `offx` int(11) default NULL COMMENT 'Offset X value',
   `offy` int(11) default NULL COMMENT 'Offset Y value',
   PRIMARY KEY  (`fid`,`pid`)
@@ -382,7 +382,7 @@ CREATE TABLE IF NOT EXISTS `forms` (
 CREATE TABLE IF NOT EXISTS `missingpages` (
   `mpid` bigint(20) NOT NULL auto_increment,
   `fid` bigint(20) NOT NULL,
-  `image` blob NOT NULL,
+  `image` mediumblob NOT NULL,
   PRIMARY KEY  (`mpid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -445,7 +445,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `bly` int(11) NOT NULL,
   `brx` int(11) NOT NULL,
   `bry` int(11) NOT NULL,
-  `image` blob NOT NULL,
+  `image` mediumblob NOT NULL,
   `store` binary(1) NOT NULL default '1',
   `process` binary(1) NOT NULL default '1',
   PRIMARY KEY  (`pid`),
