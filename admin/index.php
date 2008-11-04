@@ -21,22 +21,30 @@
  *
  */
 
+/**
+ * XHTML functions
+ */
+include ("../functions/functions.xhtml.php");
+
+xhtml_head("queXF Administrative Functions",true,array("../css/admin.css"),array("../js/link.js"));
 
 ?>
-<html>
-<head>
-<title>queXF Admin Functions</title>
-</head>
-<body>
+
+<div id="menu">
 <h1>queXF Admin Functions</h1>
-<a href="new.php">Import a new form from a PDF file</a><br/>
-<a href="band.php">Band and order variables for a form</a><br/>
-<a href="operators.php">Add operators</a><br/>
-<a href="verifierquestionnaire.php">Assign forms to operators</a><br/>
-<a href="import.directory.php">Import a directory of PDF files</a><br/>
-<a href="missingpages.php">Handle missing pages</a><br/>
-<a href="output.php">Output data/ddi</a><br/>
-<a href="progress.php">Display progress of form verification</a><br/>
-<a href="performance.php">Display performance of verifiers (Completions per hour)</a><br/>
-</body>
-</html>
+<a href="javascript:link('mainobj','new.php');">Import a new form from a PDF file</a><br/>
+<a href="javascript:link('mainobj','band.php');">Band and order variables for a form</a><br/>
+<a href="javascript:link('mainobj','operators.php');">Add operators</a><br/>
+<a href="javascript:link('mainobj','verifierquestionnaire.php');">Assign forms to operators</a><br/>
+<a href="javascript:link('mainobj','import.directory.php');">Import a directory of PDF files</a><br/>
+<a href="javascript:link('mainobj','missingpages.php');">Handle missing pages</a><br/>
+<a href="javascript:link('mainobj','output.php');">Output data/ddi</a><br/>
+<a href="javascript:link('mainobj','progress.php');">Display progress of form verification</a><br/>
+<a href="javascript:link('mainobj','performance.php');">Display performance of verifiers (Completions per hour)</a>
+</div>
+<div id='main'><object class='embeddedobject' id='mainobj' data='new.php' standby='Loading panel...' type='application/xhtml+xml'><p>Error, try with Firefox</p></object></div>
+<?
+
+xhtml_foot();
+
+?>
