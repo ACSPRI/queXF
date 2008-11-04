@@ -174,7 +174,7 @@ if (isset($_GET['qid']))
 		$zoomup = $zoom - 1; if ($zoomup < 1) $zoomup = 1;
 		$zoomdown = $zoom + 1;
 
-		print " <a href=\"band.php?zoom=$zoom#boxGroup\">Choose another questionnaire</a> <a href=\"band.php?zoom=$zoomup#boxGroup\">Increase zoom</a> <a href=\"band.php?zoom=$zoomdown#boxGroup\">Decrease zoom</a><br/> ";
+		print " <a href=\"band.php?zoom=$zoom\">Choose another questionnaire</a> <a href=\"band.php?zoom=$zoomup&qid=$qid&pid=$pid\">Increase zoom</a> <a href=\"band.php?zoom=$zoomdown&qid=$qid&pid=$pid\">Decrease zoom</a><br/> ";
 
 		//print all available pages as a link google style
 		$sql = "SELECT pid
@@ -191,7 +191,7 @@ if (isset($_GET['qid']))
 				print " <font size=+2>$p</font> ";
 			}else
 			{
-				print " <a href=\"band.php?pid={$page['pid']}&qid=$qid&zoom=$zoom#boxGroup\">$p</a> ";
+				print " <a href=\"band.php?pid={$page['pid']}&qid=$qid&zoom=$zoom\">$p</a> ";
 			}
 			$p++;
 		}
@@ -350,7 +350,7 @@ if (isset($_GET['qid']))
 		$p = 1;
 		foreach($pages as $page)
 		{
-			print " <a href=\"band.php?pid={$page['pid']}&qid=$qid&zoom=$zoom#boxGroup\">$p</a> ";
+			print " <a href=\"band.php?pid={$page['pid']}&qid=$qid&zoom=$zoom\">$p</a> ";
 			$p++;
 		}
 		print "<br/>";
@@ -372,7 +372,7 @@ else
 	foreach($qs as $q)
 	{
 
-		print "<a href=\"band.php?zoom=$zoom&qid={$q['qid']}#boxGroup\">Band: {$q['description']}</a> <a href=\"band.php?reorder=reorder&zoom=$zoom&qid={$q['qid']}\">Reorder variables: {$q['description']}</a>";
+		print "<a href=\"band.php?zoom=$zoom&qid={$q['qid']}\">Band: {$q['description']}</a> <a href=\"band.php?reorder=reorder&zoom=$zoom&qid={$q['qid']}\">Reorder variables: {$q['description']}</a>";
 		print "<br/>";
 	}
 
