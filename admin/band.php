@@ -51,8 +51,11 @@ function pidtomap($pid,$zoom = 1,$mapname = "boxes")
 		if ($box['btid'] == 4) $colour = "orange"; 
 		if ($box['btid'] == 5) $colour = "brown"; 
 		if ($box['btid'] == 6) $colour = "pink"; 
-		print "<div style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:.60; -moz-opacity: 0.60;\" onclick=\"window.open('../modifybox.php?bid={$box['bid']}')\"></div>";
+	
+		print "<div id=\"modbox" . $box['bid'] . "\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:.60; -moz-opacity: 0.60;\" onclick=\"window.open('../modifybox.php?bid={$box['bid']}')\"></div>";
+
 	}
+
 
 
 
@@ -106,24 +109,29 @@ session_start();
       <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Band</title>
+
 <script type="text/javascript">
 function init()
 {
 <?
-		if (isset($_GET['start']))
-		{
-			$start = $_GET['start'];
-			$start = substr($start,1);
-			$scoords = explode(",",$start);
-			$x = $scoords[0];
-			$y = $scoords[1];
-			//print "document.body.scrollLeft = $x;\n";
-			//print "document.body.scrollTop = $y;\n";
-			print "window.scroll($x,$y);";
-			//print "document.getElementById('content').scrollLeft = 1000;\n";
-			//print "document.getElementById('content').scrollTop = 1500;\n";
-		}
+	
+
+	if (isset($_GET['start']))
+	{
+		$start = $_GET['start'];
+		$start = substr($start,1);
+		$scoords = explode(",",$start);
+		$x = $scoords[0];
+		$y = $scoords[1];
+		//print "document.body.scrollLeft = $x;\n";
+		//print "document.body.scrollTop = $y;\n";
+		print "window.scroll($x,$y);";
+		//print "document.getElementById('content').scrollLeft = 1000;\n";
+		//print "document.getElementById('content').scrollTop = 1500;\n";
+	}
+		
 ?>
+
 }
 
 function al()
@@ -147,9 +155,11 @@ function al()
 
 }
 
+
 window.onload = init;
 
 </script>
+</head>		
 <body>
 <div id="content">
 <?
@@ -174,7 +184,7 @@ if (isset($_GET['qid']))
 		$zoomup = $zoom - 1; if ($zoomup < 1) $zoomup = 1;
 		$zoomdown = $zoom + 1;
 
-		print " <a href=\"band.php?zoom=$zoom\">Choose another questionnaire</a> <a href=\"band.php?zoom=$zoomup&qid=$qid&pid=$pid\">Increase zoom</a> <a href=\"band.php?zoom=$zoomdown&qid=$qid&pid=$pid\">Decrease zoom</a><br/> ";
+		print " <a href=\"band.php?zoom=$zoom\">Choose another questionnaire</a> <a href=\"band.php?zoom=$zoomup&amp;qid=$qid&amp;pid=$pid\">Increase zoom</a> <a href=\"band.php?zoom=$zoomdown&amp;qid=$qid&amp;pid=$pid\">Decrease zoom</a><br/> ";
 
 		//print all available pages as a link google style
 		$sql = "SELECT pid
@@ -188,10 +198,10 @@ if (isset($_GET['qid']))
 		{
 			if ($page['pid'] == $pid)
 			{	
-				print " <font size=+2>$p</font> ";
+				print " <span style=\"font-size:150%;\">$p</span> ";
 			}else
 			{
-				print " <a href=\"band.php?pid={$page['pid']}&qid=$qid&zoom=$zoom\">$p</a> ";
+				print " <a href=\"band.php?pid={$page['pid']}&amp;qid=$qid&amp;zoom=$zoom\">$p</a> ";
 			}
 			$p++;
 		}
@@ -301,10 +311,11 @@ if (isset($_GET['qid']))
 				pidtomap($pid,$zoom);
 				print "<div id=\"boxGroup\" style=\"position:absolute; top:{$scoords[0]}px; width:1px; height:1px; background-color: white;opacity:.0;\"></div>";
 
-				print "<a href=\"band.php?pid=$pid&qid=$qid&zoom=$zoom&start=\">";
+				print "<a href=\"band.php?pid=$pid&amp;qid=$qid&amp;zoom=$zoom&amp;start=\">";
 				$w = floor(2480 / $zoom);
 				$h = floor(3508 / $zoom);
-				print "<img src=\"../showpage.php?pid=$pid\" ismap width=\"$w\" height=\"$h\" USEMAP=\"#boxes\" border=\"0\"></a>";
+				print "<img id=\"sampleid\" src=\"../showpage.php?pid=$pid\" style=\"border:0\" width=\"$w\" height=\"$h\" ismap=\"ismap\"  alt=\"page image\"/>";
+				print "</a>";
 				print "</div>";
 
 
@@ -315,10 +326,11 @@ if (isset($_GET['qid']))
 				print "<div id=\"tmp\" style=\"position:relative;\">";
 				pidtomap($pid,$zoom);
 				print "<div id=\"boxGroup\" style=\"position:absolute; top:{$scoords[0]}px; width:1px; height:1px; background-color: white;opacity:.0;\"></div>";
-				print "<a href=\"band.php?pid=$pid&qid=$qid&zoom=$zoom&start=?{$scoords[0]},{$scoords[1]}&map=\">";
+				print "<a href=\"band.php?pid=$pid&amp;qid=$qid&amp;zoom=$zoom&amp;start=?{$scoords[0]},{$scoords[1]}&amp;map=\">";
 				$w = floor(2480 / $zoom);
 				$h = floor(3508 / $zoom);
-				print "<img src=\"../showpage.php?pid=$pid\" ismap border=\"0\" width=\"$w\" height=\"$h\" USEMAP=\"#boxes\"></a>";
+				print "<img id=\"sampleid\"  src=\"../showpage.php?pid=$pid\" style=\"border:0\" width=\"$w\" height=\"$h\" ismap=\"ismap\"  alt=\"page image\" />";
+				print "</a>";
 				print "</div>";
 
 
@@ -329,10 +341,12 @@ if (isset($_GET['qid']))
 			//show image with no coords selected
 			print "<div id=\"tmp\" style=\"position:relative;\">";
 			pidtomap($pid,$zoom);
-			print "<a href=\"band.php?pid=$pid&qid=$qid&zoom=$zoom&start=\">";
-							$w = floor(2480 / $zoom);
-				$h = floor(3508 / $zoom);
-			print "<img src=\"../showpage.php?pid=$pid\" ismap border=\"0\" width=\"$w\" height=\"$h\" USEMAP=\"#boxes\"></a>";
+			print "<a href=\"band.php?pid=$pid&amp;qid=$qid&amp;zoom=$zoom&amp;start=\">";
+			$w = floor(2480 / $zoom);
+			$h = floor(3508 / $zoom);
+			print "<img id=\"sampleid\"  src=\"../showpage.php?pid=$pid\" style=\"border:0\" width=\"$w\" height=\"$h\" ismap=\"ismap\" alt=\"page image\"/>";
+			print "</a>";
+			
 			print "</div>";
 
 		}
@@ -350,7 +364,7 @@ if (isset($_GET['qid']))
 		$p = 1;
 		foreach($pages as $page)
 		{
-			print " <a href=\"band.php?pid={$page['pid']}&qid=$qid&zoom=$zoom\">$p</a> ";
+			print " <a href=\"band.php?pid={$page['pid']}&amp;qid=$qid&amp;zoom=$zoom\">$p</a> ";
 			$p++;
 		}
 		print "<br/>";
@@ -372,7 +386,7 @@ else
 	foreach($qs as $q)
 	{
 
-		print "<a href=\"band.php?zoom=$zoom&qid={$q['qid']}\">Band: {$q['description']}</a> <a href=\"band.php?reorder=reorder&zoom=$zoom&qid={$q['qid']}\">Reorder variables: {$q['description']}</a>";
+		print "<a href=\"band.php?zoom=$zoom&amp;qid={$q['qid']}\">Band: {$q['description']}</a> <a href=\"band.php?reorder=reorder&amp;zoom=$zoom&amp;qid={$q['qid']}\">Reorder variables: {$q['description']}</a>";
 		print "<br/>";
 	}
 
