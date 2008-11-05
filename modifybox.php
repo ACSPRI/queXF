@@ -84,6 +84,34 @@ function deleteinbetween($bgid)
 }
 
 
+/**
+ * Delete a box from a boxgroup
+ */
+function deletebox($bid)
+{
+	global $db;
+	$db->StartTrans();
+
+	$sql = "DELETE
+		FROM boxes
+		WHERE bid = '$bid'";
+	
+	$db->Execute($sql);
+
+	$sql = "DELETE 
+		FROM boxgroups
+		WHERE bid = '$bid'";
+
+	$db->Execute($sql);
+
+	$db->CompleteTrans();
+
+	return $bid;
+
+}
+
+
+
 /* Delete a box group in the DB
  */
 function deleteboxgroup($bgid)
@@ -130,11 +158,23 @@ if (isset($_GET['deletebgid']))
 	exit();
 }
 
+if (isset($_GET['deletebid']))
+{
+	deletebox(intval($_GET['deletebid']));
+	exit();
+}
+
+
 if (isset($_GET['deleteinbetween']))
 {
 	deleteinbetween(intval($_GET['deleteinbetween']));
 }
 
+
+if (isset($_GET['bgid']) && isset($_GET['btid']))
+{
+	updateboxgroup(intval($_GET['bgid']),1,'',$intval($_GET['btid']));
+}
 
 
 if (isset($_POST['submit']))

@@ -48,7 +48,7 @@ function xhtml_head($title="",$body=true,$css=false,$javascript=false,$bodytext=
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
 	   "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-	<head><title><? if (empty($title)) print "queXS"; else print "queXS: $title"; ?></title>
+	<head><title><? if (empty($title)) print "queXF"; else print "queXF: $title"; ?></title>
 <?
 	if ($css)
 		foreach ($css as $c) print "<link rel='stylesheet' href='$c' type='text/css'></link>";

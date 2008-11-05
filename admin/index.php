@@ -34,6 +34,7 @@ xhtml_head("queXF Administrative Functions",true,array("../css/admin.css"),array
 <h1>queXF Admin Functions</h1>
 <a href="javascript:link('mainobj','new.php');">Import a new form from a PDF file</a><br/>
 <a href="javascript:link('mainobj','band.php');">Band and order variables for a form</a><br/>
+<a href="javascript:link('mainobj','bandajax.php');">Band and order variables for a form (using interactive banding)</a><br/>
 <a href="javascript:link('mainobj','operators.php');">Add operators</a><br/>
 <a href="javascript:link('mainobj','verifierquestionnaire.php');">Assign forms to operators</a><br/>
 <a href="javascript:link('mainobj','import.directory.php');">Import a directory of PDF files</a><br/>
