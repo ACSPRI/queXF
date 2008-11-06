@@ -28,6 +28,7 @@
 include_once("config.inc.php");
 include_once("db.inc.php");
 include("functions/functions.image.php");
+include("functions/functions.xhtml.php");
 include("functions/functions.database.php");
 				
 
@@ -273,12 +274,15 @@ if (isset($_GET['assign']))
 	session_unset();
 	$fid = assign_to($vid);
 	if ($fid == false) 
-	{print "NO MORE WORK";
+	{
+		xhtml_head("Verify: No more work");
+		print "<p>NO MORE WORK</p>";
 		print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?assign=assign\">Check for more work</a></p>";
 		unset($_SESSION['boxgroups']);
 		unset($_SESSION['boxes']);
-	       	unset($_SESSION['pages']);	
+		unset($_SESSION['pages']);	
 		session_unset();
+		xhtml_foot();
 		exit();
 	}
 	//set assigned time session variable
@@ -287,6 +291,7 @@ if (isset($_GET['assign']))
 
 if ($fid == false)
 {
+	xhtml_head("Verify: Assign form");
 	print "<div id=\"links\">";
 	print "<p>There is no form currently assigned to you</p>";
 	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?assign=assign\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">Assign next form</a></p>";
@@ -294,6 +299,7 @@ if ($fid == false)
 	print "<div id=\"wait\" style=\"visibility: hidden;\">
 <p>Assigning next form: Please wait...</p>
 </div>";
+	xhtml_foot();
 	exit();
 }
 
@@ -340,11 +346,18 @@ if (!isset($_SESSION['boxes'])) {
 		ORDER BY sortorder ASC ";
 
 	$a = $db->GetAssoc($sql);
-	if (empty($a)) {print "NO MORE WORK";
-
+	if (empty($a)) 
+	{
+		xhtml_head("Verify: No more work");
+		print "<p>NO MORE WORK</p>";
 		print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?assign=assign\">Check for more work</a></p>";
-	unset($_SESSION['boxgroups']); 	unset($_SESSION['pages']);
-	unset($_SESSION['boxes']); 	session_unset(); exit();}
+		unset($_SESSION['boxgroups']);
+		unset($_SESSION['pages']);
+		unset($_SESSION['boxes']);
+		session_unset();
+		xhtml_foot();
+		exit();
+	}
 
 	$b = $db->GetAssoc($sql2);
 	$c = $db->GetAssoc($sql3);
@@ -444,6 +457,7 @@ if ($bgid != "")
 else if ($pid == "") 
 {
 	//we are done
+	xhtml_head("Verify: Done");
 	print "<p>The required fields have been filled</p>";
 	print "<div id=\"links\">";
 	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?complete=complete\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">Submit completed form to database</a></p>";
@@ -453,7 +467,7 @@ else if ($pid == "")
 	print "<div id=\"wait\" style=\"visibility: hidden;\">
 <p>Submitting: Please wait...</p>
 </div>";
-
+	xhtml_foot();
 
 	exit();
 }	
@@ -1059,7 +1073,6 @@ if ($pid == "")
 	print "<div id=\"wait\" style=\"visibility: hidden;\">
 <p>Submitting: Please wait...</p>
 </div>";
-
 
 }
 else

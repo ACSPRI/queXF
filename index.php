@@ -23,20 +23,17 @@
  *
  */
 
+include("functions/functions.xhtml.php");
+
+xhtml_head();
 ?>
 
-<html>
-<head>
-<title>queXF</title>
-</head>
-<body>
 <h1>queXF</h1>
-<a href="verifyjs.php">Verify</a><br/>
-<a href="review.php">Review a form</a><br/>
-</body>
-</html>
+<p><a href="verifyjs.php">Verify</a></p>
+<p><a href="review.php">Review a form</a></p>
 
 <?
+xhtml_foot();
 
 //display list of jobs
 //display totals for work done
