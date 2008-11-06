@@ -3,9 +3,9 @@
   width : 20%;
   height : 100%;
   top : 0;
-  right : 0;
   bottom : auto;
   left : 0;
+  overflow: auto;
   /*border-bottom: 1px solid #aaa;*/
 }
 #main {
