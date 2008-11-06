@@ -25,10 +25,13 @@
 
 include_once("../config.inc.php");
 include_once("../db.inc.php");
+include_once("../functions/functions.xhtml.php");
 
 global $db;
 
 $a = false;
+
+xhtml_head("Add an operator");
 
 if (isset($_POST['operator']))
 {
@@ -49,15 +52,6 @@ if (isset($_POST['operator']))
 	}
 }
 
-
-?>
-
-<html>
-<head>
-<title>Add an operator</title>
-</head>
-<body>
-<? 
 if ($a)
 {
 ?>
@@ -69,10 +63,8 @@ if ($a)
 <p>Adding an operator here will give the user the ability to verify forms once they have assigned a form using the <a href="verifierquestionnaire.php">Assign Verifier to Questionnaire</a> tool.</p>
 <p>Use this form to enter the username of a user based on your directory security system. For example, if you have secured the base directory of queXF using Apache file based security, enter the usernames of the users here. When the user accesses the verification page, they will uniquely be assigned a form.</p>
 <form enctype="multipart/form-data" action="" method="post">
-	Enter the username of an operator to add: <input name="operator" type="text"/><br/>
-	<input type="submit" value="Add user" />
+<p>Enter the username of an operator to add: <input name="operator" type="text"/></p>
+<p><input type="submit" value="Add user" /></p>
 </form>
-
 </body>
 </html>
-

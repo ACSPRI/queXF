@@ -26,6 +26,7 @@
 include_once("../config.inc.php");
 include_once("../db.inc.php");
 include ("../functions/functions.output.php");
+include ("../functions/functions.xhtml.php");
 
 if (isset($_GET['ddi']))
 {
@@ -40,16 +41,7 @@ if (isset($_GET['data']))
 }
 
 
-?>
-
-<html>
-<head>
-<title>Output data</title>
-</head>
-<body>
-
-<?
-
+xhtml_head("Output data");
 
 $sql = "SELECT qid,description
 	FROM questionnaires
@@ -61,12 +53,9 @@ $qs = $db->GetAll($sql);
 
 foreach ($qs as $q)
 {
-	print "{$q['description']}: <a href=\"{$_SERVER['PHP_SELF']}?data={$q['qid']}\">Data</a> <a href=\"{$_SERVER['PHP_SELF']}?ddi={$q['qid']}\">DDI</a><br/>";
+	print "<p>{$q['description']}: <a href=\"{$_SERVER['PHP_SELF']}?data={$q['qid']}\">Data</a> <a href=\"{$_SERVER['PHP_SELF']}?ddi={$q['qid']}\">DDI</a></p>";
 }
 
-
+xhtml_foot();
 
 ?>
-</body>
-</html>
-

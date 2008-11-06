@@ -26,7 +26,10 @@ include_once("../config.inc.php");
 include_once("../db.inc.php");
 include('../functions/functions.barcode.php');
 include('../functions/functions.image.php');
+include('../functions/functions.xhtml.php');
 
+
+xhtml_head("Add new questionnaire");
 
 /* Add a questionnaire to the database
  *
@@ -81,7 +84,7 @@ function newquestionnaire($filename,$desc = ""){
 		$pid = barcode($barcode);
 		if ($pid)
 		{
-			print "BARCODE: $pid<br/>";
+			print "<p>BARCODE: $pid</p>";
 
 			//calc offset
 			$offset = offset($image,0,0);
@@ -128,17 +131,6 @@ if (isset($_FILES['form']))
 }
 
 
-?>
-
-
-<html>
-<head>
-<title>Add new questionnaire</title>
-</head>
-<body>
-
-<?
-
 if ($a)
 {
 	if ($r)
@@ -152,22 +144,19 @@ if ($a)
 
 }
 
-
-
 ?>
 
 
 <h1>New questionnaire</h1>
 <form enctype="multipart/form-data" action="" method="post">
-	<input type="hidden" name="MAX_FILE_SIZE" value="1000000000" />
-	Select PDF file to create form from: <input name="form" type="file" /><br/>
-	Enter description of form: <input name="desc" type="text"/><br/>
-	<input type="submit" value="Upload form" />
+	<p><input type="hidden" name="MAX_FILE_SIZE" value="1000000000" /></p>
+	<p>Select PDF file to create form from: <input name="form" type="file" /></p>
+	<p>Enter description of form: <input name="desc" type="text"/><br/></p>
+	<p><input type="submit" value="Upload form" /></p>
 </form>
 
-</body>
+<?
 
-</html>
+xhtml_foot();
 
-
-
+?>

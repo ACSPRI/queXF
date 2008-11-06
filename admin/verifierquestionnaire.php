@@ -26,6 +26,7 @@
 include_once("../config.inc.php");
 include_once("../db.inc.php");
 include("../functions/functions.database.php");
+include("../functions/functions.xhtml.php");
 				
 
 function vq($vid,$qid)
@@ -102,11 +103,9 @@ $sql = "SELECT vid,description
 
 $verifiers = $db->GetAll($sql);
 
+xhtml_head("Assign verifier to questionnaire",false);
 
 ?>
-
-<html>
-<head>
 <script type="text/javascript">
 
 <?
@@ -185,25 +184,22 @@ function checkVid(v)
 		VidOn = 0;
 }
 
-
-
 </script>
 </head>
 <body>
-
 
 <?
 
 
 
-print "<form action=\"\" type=\"GET\"><table>";
+print "<form action=\"\" method=\"get\"><table>";
 
-print "<th>";
+print "<tr>";
 foreach($questionnaires as $q)
 {
-	print "<td><a href=\"javascript:checkQid({$q['qid']})\">{$q['description']}</a></td>";
+	print "<th><a href=\"javascript:checkQid({$q['qid']})\">{$q['description']}</a></th>";
 }
-print "</th>";
+print "</tr>";
 
 foreach($verifiers as $v)
 {
@@ -212,15 +208,15 @@ foreach($verifiers as $v)
 	foreach($questionnaires as $q)
 	{
 		$checked = "";
-		if (vq($v['vid'],$q['qid'])) $checked="checked=checked";
-		print "<td><input type=\"checkbox\" name=\"cb_{$q['qid']}_{$v['vid']}\" id=\"cb_{$q['qid']}_{$v['vid']}\" $checked></input></td>";
+		if (vq($v['vid'],$q['qid'])) $checked="checked='checked'";
+		print "<td><input type=\"checkbox\" name=\"cb_{$q['qid']}_{$v['vid']}\" id=\"cb_{$q['qid']}_{$v['vid']}\" $checked/></td>";
 	}
 
 	print "</tr>";
 }
 
 
-print "</table><input type=\"submit\" name=\"submit\"/></form>";
+print "</table><p><input type=\"submit\" name=\"submit\"/></p></form>";
 
 
 
@@ -228,4 +224,3 @@ print "</table><input type=\"submit\" name=\"submit\"/></form>";
 
 </body>
 </html>
-

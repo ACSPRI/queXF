@@ -24,33 +24,22 @@
 
 
 include("../functions/functions.import.php");
+include("../functions/functions.xhtml.php");
 
+xhtml_head("Import a directory of PDF files");
 
 if (isset($_POST['dir']))
 {
 	$dir = $_POST['dir'];
 	import_directory($dir);
 }
-else
-{
-?>
 
-<html>
-<head>
-<title>Import a directory of PDF files</title>
-</head>
-<body>
+?>	
 <h1>Directory</h1>
 <form enctype="multipart/form-data" action="" method="post">
-Enter directory local to the server (eg /mnt/iss/tmp/images): <input name="dir" type="text" value="<? echo realpath("../doc/filled"); ?>"/><br/>
-	<input type="submit" value="Process directory" />
+<p>Enter directory local to the server (eg /mnt/iss/tmp/images): <input name="dir" type="text" value="<? echo realpath("../doc/filled"); ?>"/></p>
+<p><input type="submit" value="Process directory" /></p>
 </form>
-
-</body>
-
-</html>
-
 <?
-}
-
+xhtml_foot();
 ?>

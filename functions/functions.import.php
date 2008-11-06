@@ -370,7 +370,7 @@ function import($filename,$description = false){
 	//find the qid
 	foreach ($pages as $imagearray)
 	{
-		print "Finding qid...<br/>";
+		print "<p>Finding qid...</p>";
 
 		$image = $imagearray[0];
 
@@ -399,7 +399,7 @@ function import($filename,$description = false){
 
 	if ($qid != "")
 	{
-		print "Got qid: $qid...<br/>";
+		print "<p>Got qid: $qid...</p>";
 
 		//create form entry in DB
 		$sql = "INSERT INTO forms (fid,qid,description)
@@ -422,7 +422,7 @@ function import($filename,$description = false){
 			$pid = barcode($barcode);
 			if ($pid)
 			{
-				print "Processing pid: $pid...<br/>";
+				print "<p>Processing pid: $pid...</p>";
 
 				//get the page id from the page table
 				$sql = "SELECT * FROM pages
@@ -454,12 +454,12 @@ function import($filename,$description = false){
 			{
 				if(BLANK_PAGE_DETECTION && is_blank_page($image))
 				{
-					print "Blank page: ignoring<br/>";
+					print "<p>Blank page: ignoring</p>";
 					//let this page dissolve into the ether
 				}
 				else
 				{
-					print "Could not get pid, inserting into missing pages...<br/>";
+					print "<p>Could not get pid, inserting into missing pages...</p>";
 
 					//store in missing pages table
 					$sql = "INSERT INTO missingpages
@@ -475,7 +475,7 @@ function import($filename,$description = false){
 	{
 		//form could not be identified...
 		//do nothing?
-		print "Could not get qid...<br/>";
+		print "<p>Could not get qid...</p>";
 	}
 
 	//complete transaction
@@ -498,7 +498,7 @@ function import_directory($dir)
 			{
 				if (substr($file,-3) == "pdf")
 				{
-					print "$file<br/>";
+					print "<p>$file</p>";
 			                 import("$dir/$file");
 					 //unlink($file);
 					 rename("$dir/$file","$dir/$file.done");

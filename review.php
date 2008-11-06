@@ -127,7 +127,7 @@ if (isset($_GET['var']))
 //show content
 print "<div id=\"content\">";
 	print "<div style=\"position:relative;\"><img src=\"showpage.php?pid=$pid&amp;fid=$fid\" style=\"width:800px;\" alt=\"Image of page $pid, form $fid\" />";
-print "</div>";
+print "</div></div>";
 
 //show list of bgid for this fid
 print "<div id=\"header\">";
@@ -135,11 +135,11 @@ print "<div id=\"header\">";
 
 ?>
 
-	<form action="" method="GET">
-	Form: <input type="textbox" size="5" name="fid" value="<? echo $fid ?>"/>
-		Variable: <input type="textbox" size="9" name="var" value="<? echo $var ?>"/>
-		Page: <input type="textbox" size="4" name="pid" value="<? echo $pid ?>"/>
-		<input type="submit"/>
+	<form action="" method="get">
+	<div>Form: <input type="text" size="5" name="fid" value="<? echo $fid ?>"/>
+		Variable: <input type="text" size="9" name="var" value="<? echo $var ?>"/>
+		Page: <input type="text" size="4" name="pid" value="<? echo $pid ?>"/>
+		<input type="submit"/></div>
 	</form>
 
 <?
