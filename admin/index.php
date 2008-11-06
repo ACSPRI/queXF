@@ -32,16 +32,17 @@ xhtml_head("queXF Administrative Functions",true,array("../css/admin.css"),array
 
 <div id="menu">
 <h1>queXF Admin Functions</h1>
-<a href="javascript:link('mainobj','new.php');">Import a new form from a PDF file</a><br/>
-<a href="javascript:link('mainobj','band.php');">Band and order variables for a form</a><br/>
-<a href="javascript:link('mainobj','bandajax.php');">Band and order variables for a form (using interactive banding)</a><br/>
-<a href="javascript:link('mainobj','operators.php');">Add operators</a><br/>
-<a href="javascript:link('mainobj','verifierquestionnaire.php');">Assign forms to operators</a><br/>
-<a href="javascript:link('mainobj','import.directory.php');">Import a directory of PDF files</a><br/>
-<a href="javascript:link('mainobj','missingpages.php');">Handle missing pages</a><br/>
-<a href="javascript:link('mainobj','output.php');">Output data/ddi</a><br/>
-<a href="javascript:link('mainobj','progress.php');">Display progress of form verification</a><br/>
-<a href="javascript:link('mainobj','performance.php');">Display performance of verifiers (Completions per hour)</a>
+<p><a href="javascript:link('mainobj','new.php');">Import a new form from a PDF file</a></p>
+<p><a href="javascript:link('mainobj','delete.php');">Delete a form (only if no forms yet imported)</a></p>
+<p><a href="javascript:link('mainobj','band.php');">Band and order variables for a form</a></p>
+<p><a href="javascript:link('mainobj','bandajax.php');">Band and order variables for a form (using interactive banding)</a></p>
+<p><a href="javascript:link('mainobj','operators.php');">Add operators</a></p>
+<p><a href="javascript:link('mainobj','verifierquestionnaire.php');">Assign forms to operators</a></p>
+<p><a href="javascript:link('mainobj','import.directory.php');">Import a directory of PDF files</a></p>
+<p><a href="javascript:link('mainobj','missingpages.php');">Handle missing pages</a></p>
+<p><a href="javascript:link('mainobj','output.php');">Output data/ddi</a></p>
+<p><a href="javascript:link('mainobj','progress.php');">Display progress of form verification</a></p>
+<p><a href="javascript:link('mainobj','performance.php');">Display performance of verifiers (Completions per hour)</a></p>
 </div>
 <div id='main'><object class='embeddedobject' id='mainobj' data='new.php' standby='Loading panel...' type='application/xhtml+xml'><p>Error, try with Firefox</p></object></div>
 <?

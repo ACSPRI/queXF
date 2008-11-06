@@ -30,7 +30,7 @@ include_once("../db.inc.php");
 include("../functions/functions.database.php");
 
 //given a pageid, print an HTML image map for each box
-function pidtomap($pid,$zoom = 1,$mapname = "boxes")
+function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM,$mapname = "boxes")
 {
 	global $db;
 
@@ -169,7 +169,7 @@ if (isset($_GET['qid']))
 {
 	$qid = intval($_GET['qid']);
 
-	$zoom = 1;
+	$zoom = BAND_DEFAULT_ZOOM;
 	if (isset($_GET['zoom'])) $zoom = intval($_GET['zoom']);
 
 	if (isset($_GET['reorder'])) 
@@ -379,7 +379,7 @@ else
 	
 	$qs = $db->GetAll($sql);
 
-	$zoom = 1;
+	$zoom = BAND_DEFAULT_ZOOM;
 	if (isset($_GET['zoom'])) $zoom = intval($_GET['zoom']);
 
 

@@ -144,16 +144,25 @@ else
 	$verifiers = $db->GetAll($sql);
 		
 		
-	print "<table><tr><th></th>";
+	print "<table class='tclass'><tr><th></th>";
 	foreach($questionnaires as $q)
 	{
-		print "<td><a href='?qid={$q['qid']}'>{$q['description']}</a></td>";
+		print "<th><a href='?qid={$q['qid']}'>{$q['description']}</a></th>";
 	}
 	print "</tr>";
 
+	$odd = 1;
 	foreach($verifiers as $v)
 	{
-		print "<tr><td><a href='?vid={$v['vid']}'>{$v['description']}</a></td>";
+		print "<tr ";
+		if ($odd)
+		{
+			print "class='odd'";
+			$odd = 0;
+		}
+		else
+			$odd = 1;
+		print "><th><a href='?vid={$v['vid']}'>{$v['description']}</a></th>";
 		foreach($questionnaires as $q)
 		{
 			$checked = "";

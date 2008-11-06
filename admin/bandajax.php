@@ -33,7 +33,7 @@ include("../functions/functions.database.php");
 
 
 //given a pageid, print XHTML for each box as an image overlay
-function pidtomap($pid,$zoom = 1)
+function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 {
 	global $db;
 
@@ -406,7 +406,7 @@ if (isset($_GET['qid']))
 {
 	$qid = intval($_GET['qid']);
 
-	$zoom = 1;
+	$zoom = BAND_DEFAULT_ZOOM;
 	if (isset($_GET['zoom'])) $zoom = intval($_GET['zoom']);
 
 	if (isset($_GET['reorder'])) 
@@ -471,7 +471,7 @@ else
 	
 	$qs = $db->GetAll($sql);
 
-	$zoom = 1;
+	$zoom = BAND_DEFAULT_ZOOM;
 	if (isset($_GET['zoom'])) $zoom = intval($_GET['zoom']);
 
 	

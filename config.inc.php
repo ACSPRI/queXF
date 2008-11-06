@@ -81,6 +81,7 @@ define('NUMBER_COLOUR','orange');
 define('BARCODE_COLOUR','brown');
 define('LONGTEXT_COLOUR','pink');
 define('BAND_OPACITY',0.60);
+define('BAND_DEFAULT_ZOOM',3);
 
 //Approximate widths of page guide lines (in pixels)
 define('HORI_WIDTH',6);

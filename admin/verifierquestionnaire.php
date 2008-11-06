@@ -103,7 +103,7 @@ $sql = "SELECT vid,description
 
 $verifiers = $db->GetAll($sql);
 
-xhtml_head("Assign verifier to questionnaire",false);
+xhtml_head("Assign verifier to questionnaire",false,array("../css/table.css"));
 
 ?>
 <script type="text/javascript">
@@ -192,19 +192,27 @@ function checkVid(v)
 
 
 
-print "<form action=\"\" method=\"get\"><table>";
+print "<form action=\"\" method=\"get\"><table class='tclass'>";
 
-print "<tr>";
+print "<tr><th></th>";
 foreach($questionnaires as $q)
 {
 	print "<th><a href=\"javascript:checkQid({$q['qid']})\">{$q['description']}</a></th>";
 }
 print "</tr>";
 
+$odd = 1;
 foreach($verifiers as $v)
 {
-	print "<tr>";
-	print "<td><a href=\"javascript:checkVid({$v['vid']})\">{$v['description']}</a></td>";
+	print "<tr";
+	if ($odd)
+	{
+		print " class='odd'";
+		$odd = 0;
+	}
+	else
+		$odd = 1;
+	print "><td><a href=\"javascript:checkVid({$v['vid']})\">{$v['description']}</a></td>";
 	foreach($questionnaires as $q)
 	{
 		$checked = "";
