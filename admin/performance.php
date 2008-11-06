@@ -28,30 +28,9 @@
 include_once("../config.inc.php");
 include_once("../db.inc.php");
 include("../functions/functions.database.php");
+include("../functions/functions.xhtml.php");
 
-?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-      <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-<title>Performance</title>
-<style type="text/css">
-.tclass th {
-	text-align:left;
-	border: 1px solid #aaa;
-}
-.tclass td {
-	border: 1px solid #aaa;
-}
-.bold {
-	font-weight:bold;
-}
-</style>
-</head>
-<body>
-
-<?
+xhtml_head("Performance",true,array("../css/table.css"));
 
 /**
  * Display data about this questionnaire
@@ -83,12 +62,11 @@ $sql = "SELECT q.description as qu, v.description as ve,f.qid,w.vid , count( * )
 	
 	if (!empty($rs))
 	{
-		print "<h1>{$rs[0]['qu']}</h1><table><tr><th>Operator</th><th>Completed Forms</th><th>Completions Per Hour</th><th>Pages Per Hour</th></tr>";
-		foreach ($rs as $r)
-		{
-			print "<tr><td>{$r['ve']}</td><td>{$r['c']}</td><td>{$r['CPH']}</td><td>{$r['PPH']}</td></tr>";
-		}
-		print "</table>";
+		print "<h1>{$rs[0]['qu']}</h1>";
+
+		xhtml_table($rs,array('ve','c','CPH','PPH'),array("Operator","Completed Forms","Completions Per Hour","Pages Per Hour"));
+
+	
 	}
 
 }
@@ -122,12 +100,11 @@ $sql = "SELECT q.description as qu, v.description as ve,f.qid,w.vid , count( * )
 
 	if (!empty($rs))
 	{
-		print "<h1>{$rs[0]['ve']}</h1><table><tr><th>Questionnaire</th><th>Completed Forms</th><th>Completions Per Hour</th><th>Pages Per Hour</th></tr>";
-		foreach ($rs as $r)
-		{
-			print "<tr><td>{$r['qu']}</td><td>{$r['c']}</td><td>{$r['CPH']}</td><td>{$r['PPH']}</td></tr>";
-		}
-		print "</table>";
+
+		print "<h1>{$rs[0]['ve']}</h1>";
+
+		xhtml_table($rs,array('qu','c','CPH','PPH'),array("Questionnaire","Completed Forms","Completions Per Hour","Pages Per Hour"));
+	
 	}
 
 
@@ -196,6 +173,6 @@ else
 	print "</table>";
 }
 
-?>
-</body></html>
+xhtml_foot();
 
+?>

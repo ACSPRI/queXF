@@ -28,26 +28,9 @@
 include_once("../config.inc.php");
 include_once("../db.inc.php");
 include("../functions/functions.database.php");
+include("../functions/functions.xhtml.php");
 
-?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-      <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-<title>Progress</title>
-<style type="text/css">
-.tclass th {
-	text-align:left;
-	border: 1px solid #aaa;
-}
-.tclass td {
-	border: 1px solid #aaa;
-}
-</style>
-</head>
-<body>
-<?
+xhtml_head("Progress",true,array("../css/table.css"));
 
 $sql = "SELECT q.description, f1.c AS done, f2.c AS remain
 	FROM questionnaires AS q
@@ -73,19 +56,27 @@ print "<table class='tclass'><tr><th>Questionnaire</th><th>Done</th><th>Remain</
 $done = 0;
 $remain = 0;
 $rtotal = 0;
+$odd = 1;
+$class = "class='odd'";
 foreach($qs as $q)
 {
 	$rtotal = $q['done'] + $q['remain'];
 	$remain += $q['remain'];
 	$done += $q['done'];
-	print "<tr><td>{$q['description']}</td><td>{$q['done']}</td><td>{$q['remain']}</td><td>$rtotal</td></tr>";
+	print "<tr ";
+	if ($odd)
+	{
+		$odd = 0;
+		print $class;
+	}
+	else
+		$odd = 1;
+	print "><td>{$q['description']}</td><td>{$q['done']}</td><td>{$q['remain']}</td><td>$rtotal</td></tr>";
 }
 $rtotal = $done + $remain;
 print "<tr><td>Total:</td><td>$done</td><td>$remain</td><td>$rtotal</td></tr>";
 print "</table>";
 
+xhtml_foot();
 
 ?>
-
-</body></html>
-

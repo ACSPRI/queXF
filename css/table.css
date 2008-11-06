@@ -1,0 +1,13 @@
+tr.odd {
+	background-color: #eeeeee;
+}
+.tclass th {
+	text-align:left;
+	border: 1px solid #aaa;
+}
+.tclass td {
+	border: 1px solid #aaa;
+}
+.highlight {
+	background-color: #cccccc;
+}
