@@ -22,51 +22,27 @@
  *
  */
 
+include_once(dirname(__FILE__) . '/config.inc.php');
 
-include_once("../config.inc.php");
-include_once("../db.inc.php");
-include ("../functions/functions.output.php");
+/* DB FILE */
 
-if (isset($_GET['ddi']))
+if (!(include_once(ADODB_DIR . 'adodb.inc.php')))
 {
-	export_ddi(intval($_GET['ddi']));
-	exit();
+	print "<p>ERROR: Please modify config.inc.php to point to your ADODb installation</p>";
+}
+if (!(include_once(ADODB_DIR . 'session/adodb-session2.php')))
+{
+	print "<p>ERROR: Please modify config.inc.php to point to your ADODb installation</p>";
 }
 
-if (isset($_GET['data']))
-{
-	outputdata(intval($_GET['data']));
-	exit();
-}
+
+//global database variable
+$db = newADOConnection(DB_TYPE);
+$db->Connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+$db->SetFetchMode(ADODB_FETCH_ASSOC);
+
+//store session in database (see sessions2 table)
+ADOdb_Session::config(DB_TYPE, DB_HOST, DB_USER, DB_PASS, DB_NAME,$options=false);
 
 
 ?>
-
-<html>
-<head>
-<title>Output data</title>
-</head>
-<body>
-
-<?
-
-
-$sql = "SELECT qid,description
-	FROM questionnaires
-	ORDER BY qid ASC";
-
-
-$qs = $db->GetAll($sql);
-
-
-foreach ($qs as $q)
-{
-	print "{$q['description']}: <a href=\"{$_SERVER['PHP_SELF']}?data={$q['qid']}\">Data</a> <a href=\"{$_SERVER['PHP_SELF']}?ddi={$q['qid']}\">DDI</a><br/>";
-}
-
-
-
-?>
-</body>
-</html>
-

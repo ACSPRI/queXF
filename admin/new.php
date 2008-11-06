@@ -22,7 +22,8 @@
  *
  */
 
-include('../config.inc.php');
+include_once("../config.inc.php");
+include_once("../db.inc.php");
 include('../functions/functions.barcode.php');
 include('../functions/functions.image.php');
 
@@ -72,7 +73,7 @@ function newquestionnaire($filename,$desc = ""){
 		//open file
 		$data = file_get_contents($file);
 		$image = imagecreatefromstring($data);
-		$barcode = crop($image,array("tlx" => 1470, "tly" => 0, "brx" => 2327, "bry" => 300));
+		$barcode = crop($image,array("tlx" => BARCODE_TLX, "tly" => BARCODE_TLY, "brx" => BARCODE_BRX, "bry" => BARCODE_BRY));
 
 		//imagepng($barcode,"/mnt/iss/tmp/temp$n.png");
 
@@ -96,7 +97,7 @@ function newquestionnaire($filename,$desc = ""){
 
 		}
 		else
-			print "INVALID - IGNORING BLANK PAGE";
+			print "<p>INVALID - IGNORING BLANK PAGE</p>";
 
 		//delete temp file
 		unlink($file);

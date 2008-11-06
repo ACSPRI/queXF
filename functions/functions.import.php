@@ -24,6 +24,7 @@
 
 
 include_once(dirname(__FILE__).'/../config.inc.php');
+include_once(dirname(__FILE__).'/../db.inc.php');
 include('functions.barcode.php');
 include('functions.image.php');
 
@@ -96,7 +97,7 @@ function charboxes($pid,$image,$fid,$offx,$offy)
 
 	foreach ($boxes as $i)
 	{
-		if ($i['filled'] < 0.95 && OCR_ENABLED)
+		if ($i['filled'] < OCR_FILL_MIN && OCR_ENABLED)
 		{		
 			include_once("functions.ocr.php");
 			$ocr = ST_Guess(st_ocr($image,calcoffset($i,$offx,$offy)));
@@ -125,7 +126,7 @@ function numberboxes($pid,$image,$fid,$offx,$offy)
 
 	foreach ($boxes as $i)
 	{
-		if ($i['filled'] < 0.95 && OCR_ENABLED)
+		if ($i['filled'] < OCR_FILL_MIN && OCR_ENABLED)
 		{		
 			include_once("functions.ocr.php");
 			$ocr = ST_Guess(st_ocr($image,calcoffset($i,$offx,$offy)),true);
@@ -373,7 +374,7 @@ function import($filename,$description = false){
 
 		$image = $imagearray[0];
 
-		$barcode = crop($image,array("tlx" => 1470, "tly" => 0, "brx" => 2327, "bry" => 300));
+		$barcode = crop($image,array("tlx" => BARCODE_TLX, "tly" => BARCODE_TLY, "brx" => BARCODE_BRX, "bry" => BARCODE_BRY));
 
 		//check for barcode
 		$pid = barcode($barcode);
@@ -417,7 +418,7 @@ function import($filename,$description = false){
 			$data = $imagearray[1];
 
 			//check for barcode
-			$barcode = crop($image,array("tlx" => 1470, "tly" => 0, "brx" => 2327, "bry" => 300));
+			$barcode = crop($image,array("tlx" => BARCODE_TLX, "tly" => BARCODE_TLY, "brx" => BARCODE_BRX, "bry" => BARCODE_BRY));
 			$pid = barcode($barcode);
 			if ($pid)
 			{

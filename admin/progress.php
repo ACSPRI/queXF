@@ -25,7 +25,8 @@
 
 //display the progress of questionnaires
 
-include_once('../config.inc.php');
+include_once("../config.inc.php");
+include_once("../db.inc.php");
 include("../functions/functions.database.php");
 
 ?>

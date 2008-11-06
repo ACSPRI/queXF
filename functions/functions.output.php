@@ -24,6 +24,7 @@
 
 
 include_once(dirname(__FILE__).'/../config.inc.php');
+include_once(dirname(__FILE__).'/../db.inc.php');
 
 if (version_compare(PHP_VERSION,'5','>='))
  include_once('domxml-php4-to-php5.php');

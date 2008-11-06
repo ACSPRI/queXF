@@ -25,7 +25,8 @@
 
 //verifier
 
-include("config.inc.php");
+include_once("config.inc.php");
+include_once("db.inc.php");
 include("functions/functions.image.php");
 include("functions/functions.database.php");
 				
@@ -75,14 +76,14 @@ function bgidtocss($zoom = 1,$fid,$pid)
 
 		$bgid = $boxgroup['bgid'];
 
-		//make box group higher by 40 pixels
-		$ttop = ($crop['tly'] / $zoom) - 40;
+		//make box group display higher
+		$ttop = ($crop['tly'] / $zoom) - DISPLAY_GAP;
 		if ($ttop < 0) $ttop = 0;
 
-		print "<div id=\"boxGroup_$bgid\" style=\"position:absolute; top:" . $ttop . "px; width:1px; height:1px; background-color: white;opacity:.0;\"></div>";
+		print "<div id=\"boxGroup_$bgid\" style=\"position:absolute; top:" . $ttop . "px; width:1px; height:1px; background-color: " . BOX_BACKGROUND_COLOUR . ";opacity:.0;\"></div>";
 
 
-		print "<div id=\"boxGroupBox_$bgid\" onclick=\"groupChange('$bgid');\" style=\"position:absolute; top:" . $crop['tly'] / $zoom . "px; left:" . $crop['tlx'] / $zoom . "px; width:" . ($crop['brx'] - $crop['tlx'] ) / $zoom . "px; height:" . ($crop['bry'] - $crop['tly'] ) / $zoom . "px; background-color: orange;opacity:.40; visibility: $vis;\"></div>";
+		print "<div id=\"boxGroupBox_$bgid\" onclick=\"groupChange('$bgid');\" style=\"position:absolute; top:" . $crop['tly'] / $zoom . "px; left:" . $crop['tlx'] / $zoom . "px; width:" . ($crop['brx'] - $crop['tlx'] ) / $zoom . "px; height:" . ($crop['bry'] - $crop['tly'] ) / $zoom . "px; background-color: " . BOX_GROUP_BACKGROUND_COLOUR . ";opacity:" .  BOX_GROUP_BACKGROUND_OPACITY . "; visibility: $vis;\"></div>";
 
 
 		print "<div><input type=\"checkbox\" name=\"bgid$bgid\" id=\"bgid$bgid\" style=\"opacity:0.0; \"/></div>";
@@ -108,17 +109,17 @@ function bgidtocss($zoom = 1,$fid,$pid)
 
 		if ($btid == 1) //single
 		{
-				if ($val == 0) {$checked = ""; $colour = "white"; } else {$checked = "checked=\"checked\""; $colour = "green";}
+				if ($val == 0) {$checked = ""; $colour = BOX_BACKGROUND_COLOUR; } else {$checked = "checked=\"checked\""; $colour = BOX_SELECT_COLOUR;}
 				print "<div><input type=\"checkbox\" name=\"bid$bid\" id=\"checkBox$bid\" value=\"$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; opacity:0.0; \" onclick=\"radioUpdate('$bid','$bbgid'); \" $checked onkeypress=\"checkEnter(event,$bbgid,$bid)\"/></div>";
-				print "<div id=\"checkImage$bid\" onkeypress=\"checkEnter(event,$bbgid,$bid)\" onclick=\"radioChange('$bid','$bbgid'); \" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:.25; \"></div>";
+				print "<div id=\"checkImage$bid\" onkeypress=\"checkEnter(event,$bbgid,$bid)\" onclick=\"radioChange('$bid','$bbgid'); \" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" .  BOX_OPACITY . "; \"></div>";
 	
 		}
 		else if ($btid == 2) //multiple
 		{
 	
-				if ($val == 0) {$checked = ""; $colour = "white"; } else {$checked = "checked=\"checked\""; $colour = "green";}
+				if ($val == 0) {$checked = ""; $colour = BOX_BACKGROUND_COLOUR; } else {$checked = "checked=\"checked\""; $colour = BOX_SELECT_COLOUR;}
 				print "<div><input type=\"checkbox\" name=\"bid$bid\" id=\"checkBox$bid\" value=\"$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; opacity:0.0; \" onclick=\"checkUpdate('$bid','$bbgid'); \" $checked onkeypress=\"checkEnter(event,$bbgid,$bid)\" /></div>";
-				print "<div id=\"checkImage$bid\" onkeypress=\"checkEnter(event,$bbgid,$bid)\" onclick=\"checkChange('$bid','$bbgid'); \" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:.25;  \"></div>";
+				print "<div id=\"checkImage$bid\" onkeypress=\"checkEnter(event,$bbgid,$bid)\" onclick=\"checkChange('$bid','$bbgid'); \" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" .  BOX_OPACITY . ";  \"></div>";
 
 		}
 		else if ($btid == 3 || $btid == 4) //text or number
@@ -136,7 +137,7 @@ function bgidtocss($zoom = 1,$fid,$pid)
 			print "<div><input type=\"text\" name=\"bid$bid\" id=\"textBox$bid\" value=\"$val\" $maxlength style=\"z-index: 1; position:absolute; top:" . (($box['tly'] / $zoom) + (($box['bry'] - $box['tly'] ) / $zoom)) . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px;\" onclick=\"\" onfocus=\"select()\" $onkeypress /></div>";
 
 		
-			print "<div id=\"textImage$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: white; text-align:center; font-weight:bold;\" onclick=\"textClick('$bid','$bbgid');\">$val</div>";
+			print "<div id=\"textImage$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: " . BOX_BACKGROUND_COLOUR . "; text-align:center; font-weight:bold;\" onclick=\"textClick('$bid','$bbgid');\">$val</div>";
 		}
 		else if ($btid == 6)
 		{
@@ -145,7 +146,7 @@ function bgidtocss($zoom = 1,$fid,$pid)
 			print "<div><textarea name=\"bid$bid\" id=\"textBox$bid\" style=\"z-index: 1; position:absolute; top:" . (($box['tly'] / $zoom) + (($box['bry'] - $box['tly'] ) / $zoom)) . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px;\" onclick=\"\" onfocus=\"select()\" rows=\"20\" cols=\"80\">$val</textarea></div>";
 
 		
-			print "<div id=\"textImage$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: white; text-align:center; font-weight:bold;\" onclick=\"textClick('$bid','$bbgid');\">$val</div>";
+			print "<div id=\"textImage$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: " . BOX_BACKGROUND_COLOUR . "; text-align:center; font-weight:bold;\" onclick=\"textClick('$bid','$bbgid');\">$val</div>";
 
 
 		}
@@ -563,7 +564,7 @@ function nextTask()
 
 
 			document.getElementById('boxGroupBox_' + x ).style.visibility = 'visible';
-			document.getElementById('content').scrollTop = document.getElementById('boxGroupBox_' + x).offsetTop - 40;
+			document.getElementById('content').scrollTop = document.getElementById('boxGroupBox_' + x).offsetTop - <? echo DISPLAY_GAP;?>;
 		 	done = 1;
 		}
 	}
@@ -682,16 +683,16 @@ function checkFocus(bid,bgid) {
 			box.focus();
 			if (box.checked)
 			{
-				image.style.backgroundColor='green';
+				image.style.backgroundColor='<? echo BOX_SELECT_COLOUR; ?>';
 			} else {
-				image.style.backgroundColor='yellow';
+				image.style.backgroundColor='<? echo BOX_FOCUS_COLOUR; ?>';
 			}
 		} else {
 			if (box.checked)
 			{
-				image.style.backgroundColor='green';
+				image.style.backgroundColor='<? echo BOX_SELECT_COLOUR; ?>';
 			} else {
-				image.style.backgroundColor='white';
+				image.style.backgroundColor='<? echo BOX_BACKGROUND_COLOUR; ?>';
 			}
 	
 		}
@@ -739,16 +740,16 @@ function radioChange(bid,bgid) {
 			if (box.checked)
 			{
 				box.checked = '';
-				image.style.backgroundColor='white';
+				image.style.backgroundColor='<? echo BOX_BACKGROUND_COLOUR; ?>';
 			} else {
 				box.checked = 'checked';
-				image.style.backgroundColor='green';
+				image.style.backgroundColor='<? echo BOX_SELECT_COLOUR; ?>';
 				box.focus();
 			}
 		} else {
 
 			box.checked = '';
-			image.style.backgroundColor='white';
+			image.style.backgroundColor='<? echo BOX_BACKGROUND_COLOUR; ?>';
 		}
 	}
 
@@ -769,14 +770,14 @@ function radioUpdate(bid,bgid) {
 			if (box.checked)
 			{
 				box.checked = 'checked';
-				image.style.backgroundColor='green';
+				image.style.backgroundColor='<? echo BOX_SELECT_COLOUR; ?>';
 			} else {
 				box.checked = '';
-				image.style.backgroundColor='white';
+				image.style.backgroundColor='<? echo BOX_BACKGROUND_COLOUR; ?>';
 			}
 		} else {
 			box.checked = '';
-			image.style.backgroundColor='white';
+			image.style.backgroundColor='<? echo BOX_BACKGROUND_COLOUR; ?>';
 		}
 	}
 
@@ -799,10 +800,10 @@ function checkChange(bid,bgid) {
 
 	if(box.checked) {
 		box.checked = '';
-		image.style.backgroundColor='white';
+		image.style.backgroundColor='<? echo BOX_BACKGROUND_COLOUR; ?>';
 	} else {
 		box.checked = 'checked';
-		image.style.backgroundColor='green';
+		image.style.backgroundColor='<? echo BOX_SELECT_COLOUR; ?>';
 		box.focus();
 	}
 }
@@ -830,10 +831,10 @@ function checkUpdate(bid,bgid) {
 	image = document.getElementById('checkImage' + bid);
 
 	if(box.checked) {
-		image.style.backgroundColor='green';
+		image.style.backgroundColor='<? echo BOX_SELECT_COLOUR; ?>';
 		box.focus();
 	} else {
-		image.style.backgroundColor='white';
+		image.style.backgroundColor='<? echo BOX_BACKGROUND_COLOUR; ?>';
 	}
 
 
@@ -1065,8 +1066,8 @@ else
 {
 	
 	//show content
-	print "<div style=\"position:relative;\"><img src=\"showpage.php?pid=$pid&amp;fid=$fid\" style=\"width:800px;\" alt=\"Image of page $pid, form $fid\" />";
-	bgidtocss((2480.0/800.0),$fid,$pid);
+	print "<div style=\"position:relative;\"><img src=\"showpage.php?pid=$pid&amp;fid=$fid\" style=\"width:" . DISPLAY_PAGE_WIDTH . "px;\" alt=\"Image of page $pid, form $fid\" />";
+	bgidtocss((PAGE_WIDTH/DISPLAY_PAGE_WIDTH),$fid,$pid);
 	print "</div>";
 	print "</div>";
 

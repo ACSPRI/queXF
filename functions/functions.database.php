@@ -25,6 +25,7 @@
 
 
 include_once(dirname(__FILE__).'/../config.inc.php');
+include_once(dirname(__FILE__).'/../db.inc.php');
 
 /* Sort box groups by pageid then box tly tlx
  *

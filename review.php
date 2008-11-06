@@ -23,8 +23,9 @@
  */
 
 
-include("config.inc.php");
-include("functions/functions.database.php");
+include_once("config.inc.php");
+include_once("db.inc.php");
+include_once("functions/functions.database.php");
 				
 global $db;
 

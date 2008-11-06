@@ -23,6 +23,9 @@
  */
 
 
+include_once(dirname(__FILE__).'/../config.inc.php');
+
+
 /* Given a 1 bit image containing a barcode
  * Return an array of bar widths
  */
@@ -81,14 +84,18 @@ function nwWidth($array)
  */
 function widthsToNW($widths,$narrow,$wide)
 {
-	//give a third tolerance
+	//give a large tolerance
 
-	$tolerance = ($wide - $narrow) / 3;
+	$tolerance = (($wide - $narrow) - 2) / 2;
 	$string = "";
+
+	$nmin = ($narrow - $tolerance);
+	if ($nmin <= 0) $nmin = 1;
+
 
 	foreach($widths as $width)
 	{
-		if (($width >= ($narrow - $tolerance)) && ($width <= ($narrow + $tolerance))) $string .= "N";
+		if (($width >= ($nmin)) && ($width <= ($narrow + $tolerance))) $string .= "N";
 		if (($width >= ($wide - $tolerance)) && ($width <= ($wide + $tolerance))) $string .= "W";
 	}
 	
@@ -145,7 +152,7 @@ function validate($s)
  * Currently steps pixel by pixel (step = 1)
  *
  */
-function barcode($image, $step = 1)
+function barcode($image, $step = 1, $length = false)
 {
 	//search
 
@@ -159,7 +166,7 @@ function barcode($image, $step = 1)
 			$s = widthsToNW($a,$w['n'],$w['w']);
 			if(validate($s)){
 				$code = NWtoCode($s);
-				if ($code != "false" && strlen($code) == 8)
+				if ($code != "false" && (!$length || strlen($code) == $length))
 					return $code;
 			}
 		}

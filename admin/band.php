@@ -25,8 +25,8 @@
 
 //BAND a form
 
-
-include_once('../config.inc.php');
+include_once("../config.inc.php");
+include_once("../db.inc.php");
 include("../functions/functions.database.php");
 
 //given a pageid, print an HTML image map for each box
@@ -44,15 +44,15 @@ function pidtomap($pid,$zoom = 1,$mapname = "boxes")
 
 	foreach($boxes as $box)
 	{
-		$colour = "red";
-		if ($box['btid'] == 1) $colour = "green"; 
-		if ($box['btid'] == 2) $colour = "blue"; 
-		if ($box['btid'] == 3) $colour = "purple"; 
-		if ($box['btid'] == 4) $colour = "orange"; 
-		if ($box['btid'] == 5) $colour = "brown"; 
-		if ($box['btid'] == 6) $colour = "pink"; 
+		$colour = TEMPORARY_COLOUR;
+		if ($box['btid'] == 1) $colour = SINGLECHOICE_COLOUR; 
+		if ($box['btid'] == 2) $colour = MULTIPLECHOICE_COLOUR; 
+		if ($box['btid'] == 3) $colour = TEXT_COLOUR; 
+		if ($box['btid'] == 4) $colour = NUMBER_COLOUR; 
+		if ($box['btid'] == 5) $colour = BARCODE_COLOUR; 
+		if ($box['btid'] == 6) $colour = LONGTEXT_COLOUR; 
 	
-		print "<div id=\"modbox" . $box['bid'] . "\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:.60; -moz-opacity: 0.60;\" onclick=\"window.open('../modifybox.php?bid={$box['bid']}')\"></div>";
+		print "<div id=\"modbox" . $box['bid'] . "\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" . BAND_OPACITY . "; -moz-opacity: " . BAND_OPACITY . ";\" onclick=\"window.open('../modifybox.php?bid={$box['bid']}')\"></div>";
 
 	}
 
@@ -312,8 +312,8 @@ if (isset($_GET['qid']))
 				print "<div id=\"boxGroup\" style=\"position:absolute; top:{$scoords[0]}px; width:1px; height:1px; background-color: white;opacity:.0;\"></div>";
 
 				print "<a href=\"band.php?pid=$pid&amp;qid=$qid&amp;zoom=$zoom&amp;start=\">";
-				$w = floor(2480 / $zoom);
-				$h = floor(3508 / $zoom);
+				$w = floor(PAGE_WIDTH / $zoom);
+				$h = floor(PAGE_HEIGHT / $zoom);
 				print "<img id=\"sampleid\" src=\"../showpage.php?pid=$pid\" style=\"border:0\" width=\"$w\" height=\"$h\" ismap=\"ismap\"  alt=\"page image\"/>";
 				print "</a>";
 				print "</div>";
@@ -327,8 +327,8 @@ if (isset($_GET['qid']))
 				pidtomap($pid,$zoom);
 				print "<div id=\"boxGroup\" style=\"position:absolute; top:{$scoords[0]}px; width:1px; height:1px; background-color: white;opacity:.0;\"></div>";
 				print "<a href=\"band.php?pid=$pid&amp;qid=$qid&amp;zoom=$zoom&amp;start=?{$scoords[0]},{$scoords[1]}&amp;map=\">";
-				$w = floor(2480 / $zoom);
-				$h = floor(3508 / $zoom);
+				$w = floor(PAGE_WIDTH / $zoom);
+				$h = floor(PAGE_HEIGHT / $zoom);
 				print "<img id=\"sampleid\"  src=\"../showpage.php?pid=$pid\" style=\"border:0\" width=\"$w\" height=\"$h\" ismap=\"ismap\"  alt=\"page image\" />";
 				print "</a>";
 				print "</div>";
@@ -342,8 +342,8 @@ if (isset($_GET['qid']))
 			print "<div id=\"tmp\" style=\"position:relative;\">";
 			pidtomap($pid,$zoom);
 			print "<a href=\"band.php?pid=$pid&amp;qid=$qid&amp;zoom=$zoom&amp;start=\">";
-			$w = floor(2480 / $zoom);
-			$h = floor(3508 / $zoom);
+			$w = floor(PAGE_WIDTH / $zoom);
+			$h = floor(PAGE_HEIGHT / $zoom);
 			print "<img id=\"sampleid\"  src=\"../showpage.php?pid=$pid\" style=\"border:0\" width=\"$w\" height=\"$h\" ismap=\"ismap\" alt=\"page image\"/>";
 			print "</a>";
 			

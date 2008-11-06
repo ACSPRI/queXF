@@ -22,6 +22,7 @@
  *
  */
 
+include_once(dirname(__FILE__).'/../config.inc.php');
 
 /* Use the presence of corner lines to see if the page is blank or not
  *
@@ -30,17 +31,17 @@ function is_blank_page($image)
 {
 	$b = array();
 
-	$b[] = vertlinex(140,140,267,500,$image,8);
-	$b[] = horiliney(140,140,570,300,$image,8);
+	$b[] = vertlinex(TL_VERT_TLX,TL_VERT_TLY,TL_VERT_BRX,TL_VERT_BRY,$image,VERT_WIDTH);
+	$b[] = horiliney(TL_HORI_TLX,TL_HORI_TLY,TL_HORI_BRX,TL_HORI_BRY,$image,HORI_WIDTH);
 
-	$b[] = vertlinex(2195,194,2400,560,$image,8);
-	$b[] = horiliney(1950,140,2400,325,$image,8);
+	$b[] = vertlinex(TR_VERT_TLX,TR_VERT_TLY,TR_VERT_BRX,TR_VERT_BRY,$image,VERT_WIDTH);
+	$b[] = horiliney(TR_HORI_TLX,TR_HORI_TLY,TR_HORI_BRX,TR_HORI_BRY,$image,HORI_WIDTH);
 
-	$b[] = vertlinex(140,2977,300,3400,$image,8);
-	$b[] = horiliney(140,3150,600,3400,$image,8);
+	$b[] = vertlinex(BL_VERT_TLX,BL_VERT_TLY,BL_VERT_BRX,BL_VERT_BRY,$image,VERT_WIDTH);
+	$b[] = horiliney(BL_HORI_TLX,BL_HORI_TLY,BL_HORI_BRX,BL_HORI_BRY,$image,HORI_WIDTH);
 
-	$b[] = vertlinex(2195,2977,2400,3400,$image,8);
-	$b[] = horiliney(1950,3192,2400,3400,$image,8);
+	$b[] = vertlinex(BR_VERT_TLX,BR_VERT_TLY,BR_VERT_BRX,BR_VERT_BRY,$image,VERT_WIDTH);
+	$b[] = horiliney(BR_HORI_TLX,BR_HORI_TLY,BR_HORI_BRX,BR_HORI_BRY,$image,HORI_WIDTH);
 
 	$total = 0;
 	foreach ($b as $key => $value)
@@ -69,17 +70,17 @@ function offset($image,$a,$compare = 1)
 		return $c;
 	}
 
-	$b[] = vertlinex(140,140,267,500,$image,8);
-	$b[] = horiliney(140,140,570,300,$image,8);
+	$b[] = vertlinex(TL_VERT_TLX,TL_VERT_TLY,TL_VERT_BRX,TL_VERT_BRY,$image,VERT_WIDTH);
+	$b[] = horiliney(TL_HORI_TLX,TL_HORI_TLY,TL_HORI_BRX,TL_HORI_BRY,$image,HORI_WIDTH);
 
-	$b[] = vertlinex(2195,194,2400,560,$image,8);
-	$b[] = horiliney(1950,140,2400,325,$image,8);
+	$b[] = vertlinex(TR_VERT_TLX,TR_VERT_TLY,TR_VERT_BRX,TR_VERT_BRY,$image,VERT_WIDTH);
+	$b[] = horiliney(TR_HORI_TLX,TR_HORI_TLY,TR_HORI_BRX,TR_HORI_BRY,$image,HORI_WIDTH);
 
-	$b[] = vertlinex(140,2977,300,3400,$image,8);
-	$b[] = horiliney(140,3150,600,3400,$image,8);
+	$b[] = vertlinex(BL_VERT_TLX,BL_VERT_TLY,BL_VERT_BRX,BL_VERT_BRY,$image,VERT_WIDTH);
+	$b[] = horiliney(BL_HORI_TLX,BL_HORI_TLY,BL_HORI_BRX,BL_HORI_BRY,$image,HORI_WIDTH);
 
-	$b[] = vertlinex(2195,2977,2400,3400,$image,8);
-	$b[] = horiliney(1950,3192,2400,3400,$image,8);
+	$b[] = vertlinex(BR_VERT_TLX,BR_VERT_TLY,BR_VERT_BRX,BR_VERT_BRY,$image,VERT_WIDTH);
+	$b[] = horiliney(BR_HORI_TLX,BR_HORI_TLY,BR_HORI_BRX,BR_HORI_BRY,$image,HORI_WIDTH);
 
 
 	if ($compare == 0) return $b;

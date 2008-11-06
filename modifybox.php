@@ -23,7 +23,8 @@
  */
 
 
-include("config.inc.php");
+include_once("config.inc.php");
+include_once("db.inc.php");
 
 
 /* Create a box group in the DB

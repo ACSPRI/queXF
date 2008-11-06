@@ -24,8 +24,9 @@
 
 if (isset($_GET['mpid']))
 {
-	include("config.inc.php");
-	
+	include_once("config.inc.php");
+	include_once("db.inc.php");
+
 	global $db;
 
 	$mpid = intval($_GET['mpid']);

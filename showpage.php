@@ -24,8 +24,9 @@
 
 if (isset($_GET['bgid'])){
 
+	include_once("config.inc.php");
+	include_once("db.inc.php");
 	include("functions/functions.image.php");
-	include "config.inc.php";
 	
 	global $db;
 
@@ -68,8 +69,9 @@ if (isset($_GET['bgid'])){
 }
 else if (isset($_GET['pid']))
 {
+	include("config.inc.php");
+	include("db.inc.php");
 	include("functions/functions.image.php");
-	include "config.inc.php";
 	
 	global $db;
 	
@@ -126,8 +128,8 @@ else if (isset($_GET['pid']))
 				$width = imagesx($im);
 				$height = imagesy($im);
 		
-				$newwidth = 800;
-				$newheight = round($height * (800/$width));
+				$newwidth = DISPLAY_PAGE_WIDTH;
+				$newheight = round($height * (DISPLAY_PAGE_WIDTH/$width));
 		
 				$thumb = imagecreatetruecolor($newwidth, $newheight);
 				imagepalettecopy($thumb,$im);
@@ -149,7 +151,7 @@ else if (isset($_GET['pid']))
 
 		if (empty($row)) exit;
 
-		header("Content-type: image/png");
+		header("Content-Type: image/png");
 		echo ($row['image']);
 
 	}

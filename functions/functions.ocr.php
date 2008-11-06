@@ -25,6 +25,7 @@
 function ST_Guess($image,$numbersonly = false)
 {
 	include_once(dirname(__FILE__).'/../config.inc.php');
+	include_once(dirname(__FILE__).'/../db.inc.php');
 
 	global $db;
 
@@ -390,6 +391,7 @@ function fillcount($image)
 function quexf_ocr($boxes,$justnumbers = false)
 {
 	include_once(dirname(__FILE__).'/../config.inc.php');
+	include_once(dirname(__FILE__).'/../db.inc.php');
 
 	global $db;
 	/*

@@ -23,6 +23,7 @@
  */
 
 
+include_once(dirname(__FILE__).'/../config.inc.php');
 
 
 /* Find boxes in a horizontal selection
@@ -198,7 +199,7 @@ function vasBoxDetection($lw)
 	}
 
 
-	if ($asize >= 1200 && $asize <= 1236)
+	if ($asize >= VAS_LENGTH_MIN && $asize <= VAS_LENGTH_MAX)
 	{
 		//length of line will be 1200px
 
@@ -231,7 +232,7 @@ function vasBoxDetection($lw)
 
 		//find x of end of line
 			//x of start + length of line
-		$xend = $xstart + 1200;
+		$xend = $xstart + VAS_LENGTH_MIN;
 
 		//find y of bottom of border
 			//last y
@@ -246,11 +247,11 @@ function vasBoxDetection($lw)
 		$abrx = array();
 		$abry = array();		
 
-		for ($i = 0; $i < 100; $i++)
+		for ($i = 0; $i < VAS_BOXES; $i++)
 		{
 			$atlx[] = $xstart;
 			$atly[] = $ystart;
-			$xstart += 12;
+			$xstart += VAS_BOX_WIDTH;
 			$abrx[] = $xstart;
 			$abry[] = $yend;
 	

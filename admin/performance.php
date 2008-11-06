@@ -25,7 +25,8 @@
 
 //display the performance of operators (Completions per hour, Pages per hour)
 
-include_once('../config.inc.php');
+include_once("../config.inc.php");
+include_once("../db.inc.php");
 include("../functions/functions.database.php");
 
 ?>

@@ -26,7 +26,8 @@
 //BAND a form
 
 
-include_once('../config.inc.php');
+include_once("../config.inc.php");
+include_once("../db.inc.php");
 include("../functions/functions.xhtml.php");
 include("../functions/functions.database.php");
 
@@ -48,15 +49,15 @@ function pidtomap($pid,$zoom = 1)
 
 	foreach($boxes as $box)
 	{
-		$colour = "red";
-		if ($box['btid'] == 1) $colour = "green"; 
-		if ($box['btid'] == 2) $colour = "blue"; 
-		if ($box['btid'] == 3) $colour = "purple"; 
-		if ($box['btid'] == 4) $colour = "orange"; 
-		if ($box['btid'] == 5) $colour = "brown"; 
-		if ($box['btid'] == 6) $colour = "pink"; 
+		$colour = TEMPORARY_COLOUR;
+		if ($box['btid'] == 1) $colour = SINGLECHOICE_COLOUR; 
+		if ($box['btid'] == 2) $colour = MULTIPLECHOICE_COLOUR; 
+		if ($box['btid'] == 3) $colour = TEXT_COLOUR; 
+		if ($box['btid'] == 4) $colour = NUMBER_COLOUR; 
+		if ($box['btid'] == 5) $colour = BARCODE_COLOUR; 
+		if ($box['btid'] == 6) $colour = LONGTEXT_COLOUR; 
 	
-		print "<div id=\"modbox$t\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:.60; -moz-opacity: 0.60; z-index: 50;\" onclick=\"window.open('../modifybox.php?bid={$box['bid']}')\"></div>";
+		print "<div id=\"modbox$t\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" . BAND_OPACITY . "; -moz-opacity: " . BAND_OPACITY . "; z-index: 50;\" onclick=\"window.open('../modifybox.php?bid={$box['bid']}')\"></div>";
 
 	print "<script type=\"text/javascript\">
 new Proto.Menu({
@@ -454,8 +455,8 @@ if (isset($_GET['qid']))
 		pidtomap($pid,$zoom);
 		print "</div>";
 		print "<div id=\"imageimage\">";
-		$w = floor(2480 / $zoom);
-		$h = floor(3508 / $zoom);
+		$w = floor(PAGE_WIDTH / $zoom);
+		$h = floor(PAGE_HEIGHT / $zoom);
 		print "<img id=\"sampleid\" src=\"../showpage.php?pid=$pid\" style=\"border:0\" width=\"$w\" height=\"$h\" alt=\"page $pid image\"/>";
 		print "</div>";
 		print "</div>";
