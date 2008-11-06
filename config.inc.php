@@ -34,6 +34,7 @@ define('DB_TYPE', 'mysqlt');
 
 define('ADODB_DIR', dirname(__FILE__).'/../adodb/');
 
+//Fill ratios of boxes (1 is empty, 0 is filled completely)
 define('MULTIPLE_CHOICE_MIN_FILLED', 0.85);
 define('MULTIPLE_CHOICE_MAX_FILLED', 0.60);
 define('SINGLE_CHOICE_MIN_FILLED', 0.85);
@@ -44,6 +45,9 @@ define('BLANK_PAGE_DETECTION', true);
 
 //REQUIRED: Ghostscript binary
 define('GS_BIN', "/usr/bin/gs");
+
+//Temporary directory
+define('TEMPORARY_DIRECTORY', "/tmp");
 
 //OCR requires CONVERT_BIN (imagemagick convert binary) and TESSERACT_BIN (tessearct binary) to be enabled
 define('OCR_ENABLED', false);
@@ -78,10 +82,11 @@ define('BARCODE_COLOUR','brown');
 define('LONGTEXT_COLOUR','pink');
 define('BAND_OPACITY',0.60);
 
-//Locations of page guide lines bounding box
+//Approximate widths of page guide lines (in pixels)
 define('HORI_WIDTH',6);
 define('VERT_WIDTH',6);
 
+//Locations of page guide lines bounding box (in pixels)
 //Top left horizontal
 define('TL_HORI_TLX',90);
 define('TL_HORI_TLY',90);

@@ -100,7 +100,7 @@ function charboxes($pid,$image,$fid,$offx,$offy)
 		if ($i['filled'] < OCR_FILL_MIN && OCR_ENABLED)
 		{		
 			include_once("functions.ocr.php");
-			$ocr = ST_Guess(st_ocr($image,calcoffset($i,$offx,$offy)));
+			$ocr = ocr(crop($image,calcoffset($i,$offx,$offy)));
 			if (empty($ocr)) $ocr = " ";
 		}else
 		{
@@ -129,7 +129,7 @@ function numberboxes($pid,$image,$fid,$offx,$offy)
 		if ($i['filled'] < OCR_FILL_MIN && OCR_ENABLED)
 		{		
 			include_once("functions.ocr.php");
-			$ocr = ST_Guess(st_ocr($image,calcoffset($i,$offx,$offy)),true);
+			$ocr = ocr(crop($image,calcoffset($i,$offx,$offy)));
 			if (empty($ocr)) $ocr = " ";
 		}else
 		{
@@ -335,7 +335,7 @@ function import($filename,$description = false){
 
 
 	//generate temp file
-	$tmp = tempnam("/tmp", "FORM");
+	$tmp = tempnam(TEMPORARY_DIRECTORY, "FORM");
 	
 	//use ghostscript to convert to individual PNG pages
 	exec(GS_BIN . " -sDEVICE=pngmono -r300 -sOutputFile=$tmp%d.png -dNOPAUSE -dBATCH $filename");

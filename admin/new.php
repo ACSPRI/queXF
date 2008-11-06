@@ -39,7 +39,7 @@ function newquestionnaire($filename,$desc = ""){
 	if ($desc == "") $desc = $filename;
 
 	//generate temp file
-	$tmp = tempnam("/tmp", "FORM");
+	$tmp = tempnam(TEMPORARY_DIRECTORY, "FORM");
 
 	//print "Creating PNG files<br/>";
 
