@@ -45,8 +45,6 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 
 	if (empty($boxes)) return;
 
-	$t = 1;
-
 	foreach($boxes as $box)
 	{
 		$colour = TEMPORARY_COLOUR;
@@ -57,29 +55,94 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 		if ($box['btid'] == 5) $colour = BARCODE_COLOUR; 
 		if ($box['btid'] == 6) $colour = LONGTEXT_COLOUR; 
 	
-		print "<div id=\"modbox$t\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" . BAND_OPACITY . "; -moz-opacity: " . BAND_OPACITY . "; z-index: 50;\" onclick=\"window.open('../modifybox.php?bid={$box['bid']}')\"></div>";
-
-	print "<script type=\"text/javascript\">
-new Proto.Menu({
-  selector: '#modbox$t', 
-  className: 'menu desktop',
-  menuItems: [";
-if (!($box['btid'] == 0)) print  "{    name: 'Disable this group',  className: 'edit',  callback: function() { updateBoxes(" . $box['bid'] . ",0);  }   },";
-if (!($box['btid'] == 1)) print  "    {    name: 'Set to type: Single choice', className: 'edit',   callback: function() { updateBoxes(" . $box['bid'] . ",1); } },";
-if (!($box['btid'] == 2)) print  "    {    name: 'Set to type: Multiple choice', className: 'copy', callback: function() {  updateBoxes(" . $box['bid'] . ",2); }   },";
-if (!($box['btid'] == 3)) print  "    {    name: 'Set to type: Text and Numbers',  className: 'copy', callback: function() {  updateBoxes(" . $box['bid'] . ",3); }   },";
-if (!($box['btid'] == 4)) print  "    {    name: 'Set to type: Numbers only', className: 'copy',  callback: function() { updateBoxes(" . $box['bid'] . ",4);  }  },";
-if (!($box['btid'] == 5)) print  "    {    name: 'Set to type: Interleaved 2 of 5 Barcode', className: 'copy',  callback: function() { updateBoxes(" . $box['bid'] . ",5); } },";
-if (!($box['btid'] == 6)) print  "    {    name: 'Set to type: Long text', className: 'copy',  callback: function() { updateBoxes(" . $box['bid'] . ",6);  } },";
-print "    {    separator: true  },
-    {    name: 'Delete this box',    className: 'save',    callback: function() {   deleteBox(" . $box['bid'] . ");    } }, 
-    {    name: 'Delete this box group',    className: 'save',    callback: function() {      deleteBoxGroup(" . $box['bid'] . ");  }  }
-] });
-</script>";
-
-
-		$t+= 1;
+		print "<div id=\"modbox{$box['bid']}\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" . BAND_OPACITY . "; -moz-opacity: " . BAND_OPACITY . "; z-index: 50;\" onclick=\"window.open('../modifybox.php?bid={$box['bid']}')\"></div>";
 	}
+
+
+	print "<script type=\"text/javascript\">";
+
+	print "var myMenuItems = [
+{    
+	name: 'Disable this box group',
+	className: 'save',
+	callback: function(e) {
+		var tagId = e.element().id.substring(6);
+		updateBoxes(tagId,0);
+	}
+},		
+{    
+	name: 'Set to type: Single choice',
+	className: 'edit',
+	callback: function(e) {
+		var tagId = e.element().id.substring(6);
+		updateBoxes(tagId,1);
+	}
+},
+{    
+	name: 'Set to type: Multiple choice',
+	className: 'edit',
+	callback: function(e) {
+		var tagId = e.element().id.substring(6);
+		updateBoxes(tagId,2);
+	}
+},
+{    
+	name: 'Set to type: Text and Numbers',
+	className: 'edit',
+	callback: function(e) {
+		var tagId = e.element().id.substring(6);
+		updateBoxes(tagId,3);
+	}
+},
+{    
+	name: 'Set to type: Numbers only',
+	className: 'edit',
+	callback: function(e) {
+		var tagId = e.element().id.substring(6);
+		updateBoxes(tagId,4);
+	}
+},
+{    
+	name: 'Set to type: Interleaved 2 of 5 Barcode',
+	className: 'edit',
+	callback: function(e) {
+		var tagId = e.element().id.substring(6);
+		updateBoxes(tagId,5);
+	}
+},	
+{    
+	name: 'Set to type: Long text',
+	className: 'edit',
+	callback: function(e) {
+		var tagId = e.element().id.substring(6);
+		updateBoxes(tagId,6);
+	}
+},	
+{    separator: true  },
+{    
+	name: 'Delete this box',
+	className: 'edit',
+	callback: function(e) {
+		var tagId = e.element().id.substring(6);
+		deleteBox(tagId);
+	}
+},	
+{    
+	name: 'Delete this box group',
+	className: 'edit',
+	callback: function(e) {
+		var tagId = e.element().id.substring(6);
+		deleteBoxGroup(tagId);
+	}
+},	
+];
+
+";
+	print " new Proto.Menu({
+	  selector: '#imageboxes', 
+	  className: 'menu desktop',
+	  menuItems: myMenuItems });";
+	print "</script>";
 
 
 
