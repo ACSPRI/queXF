@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `boxes` (
   `pid` bigint(20) NOT NULL,
   `bgid` bigint(20) NOT NULL,
   PRIMARY KEY  (`bid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `boxestofill` (
 ,`image` mediumblob
 ,`offx` int(11)
 ,`offy` int(11)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 -- --------------------------------------------------------
 
 --
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `boxestype` (
 ,`bry` int(11)
 ,`pid` bigint(20)
 ,`btid` int(11)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 -- --------------------------------------------------------
 
 --
@@ -172,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `boxgroups` (
   `bgid` bigint(20) unsigned NOT NULL,
   `bid` bigint(20) unsigned NOT NULL,
   PRIMARY KEY  (`bgid`,`bid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -190,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `boxgroupstype` (
   PRIMARY KEY  (`bgid`),
   KEY `btid` (`btid`),
   KEY `pid` (`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -202,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `boxgrouptypes` (
   `btid` int(11) NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY  (`btid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -215,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `differences` (
   `bid` bigint(20) NOT NULL,
   `fid` bigint(20) NOT NULL,
   PRIMARY KEY  (`did`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -228,7 +228,7 @@ CREATE TABLE IF NOT EXISTS `formboxes` (
   `fid` bigint(20) NOT NULL,
   `filled` double NOT NULL,
   PRIMARY KEY  (`bid`,`fid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -324,7 +324,7 @@ CREATE TABLE IF NOT EXISTS `formboxverifychar` (
   `fid` bigint(20) NOT NULL,
   `val` char(1) default NULL,
   PRIMARY KEY  (`vid`,`bid`,`fid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -338,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `formboxverifytext` (
   `fid` bigint(20) NOT NULL,
   `val` longtext NOT NULL,
   PRIMARY KEY  (`vid`,`bid`,`fid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -354,7 +354,7 @@ CREATE TABLE IF NOT EXISTS `formpages` (
   `offx` int(11) default NULL COMMENT 'Offset X value',
   `offy` int(11) default NULL COMMENT 'Offset Y value',
   PRIMARY KEY  (`fid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -371,7 +371,7 @@ CREATE TABLE IF NOT EXISTS `forms` (
   PRIMARY KEY  (`fid`),
   KEY `assigned_vid` (`assigned_vid`),
   KEY `done` (`done`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -384,7 +384,7 @@ CREATE TABLE IF NOT EXISTS `missingpages` (
   `fid` bigint(20) NOT NULL,
   `image` mediumblob NOT NULL,
   PRIMARY KEY  (`mpid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 -- --------------------------------------------------------
@@ -424,7 +424,7 @@ CREATE TABLE IF NOT EXISTS `ocrtrain` (
   `fid` bigint(20) NOT NULL,
   KEY `character` (`val`),
   KEY `formid` (`fid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 
@@ -450,7 +450,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `process` binary(1) NOT NULL default '1',
   PRIMARY KEY  (`pid`),
   UNIQUE KEY `pidentifierval` (`pidentifierval`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -464,7 +464,7 @@ CREATE TABLE IF NOT EXISTS `questionnaires` (
   `sheets` int(11) NOT NULL,
   `page_size` enum('A4','A3') NOT NULL default 'A4',
   PRIMARY KEY  (`qid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -482,7 +482,7 @@ CREATE TABLE IF NOT EXISTS `sessions2` (
   PRIMARY KEY  (`sesskey`),
   KEY `sess2_expiry` (`expiry`),
   KEY `sess2_expireref` (`expireref`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -494,7 +494,7 @@ CREATE TABLE IF NOT EXISTS `verifierquestionnaire` (
   `vid` bigint(20) NOT NULL,
   `qid` bigint(20) NOT NULL,
   PRIMARY KEY  (`vid`,`qid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -509,7 +509,7 @@ CREATE TABLE IF NOT EXISTS `verifiers` (
   `http_username` varchar(255) NOT NULL,
   PRIMARY KEY  (`vid`),
   UNIQUE KEY `http_username` (`http_username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -523,9 +523,34 @@ CREATE TABLE IF NOT EXISTS `worklog` (
   `assigned` datetime NOT NULL,
   `completed` datetime NOT NULL,
   PRIMARY KEY  (`vid`,`fid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- --------------------------------------------------------
+
+--
+-- Table structure for table `clientquestionnaire`
+--
+
+CREATE TABLE IF NOT EXISTS `clientquestionnaire` (
+  `cid` bigint(20) NOT NULL,
+  `qid` bigint(20) NOT NULL,
+  PRIMARY KEY  (`cid`,`qid`)
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clients`
+--
+
+CREATE TABLE IF NOT EXISTS `clients` (
+  `cid` bigint(20) NOT NULL auto_increment,
+  `username` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  PRIMARY KEY  (`cid`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
 
 --
 -- Structure for view `boxeschar`
