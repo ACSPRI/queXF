@@ -32,19 +32,27 @@ xhtml_head("queXF Administrative Functions",true,array("../css/admin.css"),array
 
 <div id="menu">
 <h1>queXF Admin Functions</h1>
-<p><a href="javascript:link('mainobj','new.php');">Import a new form from a PDF file</a></p>
-<p><a href="javascript:link('mainobj','delete.php');">Delete a form (only if no forms yet imported)</a></p>
-<p><a href="javascript:link('mainobj','band.php');">Band and order variables for a form</a></p>
-<p><a href="javascript:link('mainobj','bandajax.php');">Band and order variables for a form (using interactive banding)</a></p>
-<p><a href="javascript:link('mainobj','operators.php');">Add operators</a></p>
-<p><a href="javascript:link('mainobj','verifierquestionnaire.php');">Assign forms to operators</a></p>
-<p><a href="javascript:link('mainobj','import.directory.php');">Import a directory of PDF files</a></p>
-<p><a href="javascript:link('mainobj','missingpages.php');">Handle missing pages</a></p>
-<p><a href="javascript:link('mainobj','output.php');">Output data/ddi</a></p>
-<p><a href="javascript:link('mainobj','progress.php');">Display progress of form verification</a></p>
-<p><a href="javascript:link('mainobj','performance.php');">Display performance of verifiers (Completions per hour)</a></p>
+<h3>Setup</h3>
+<div><a href="javascript:link('mainobj','new.php');">Import a new form from a PDF file</a></div>
+<div><a href="javascript:link('mainobj','delete.php');">Delete a form (only if no forms yet imported)</a></div>
+<div><a href="javascript:link('mainobj','band.php');">Band and order variables for a form</a></div>
+<div><a href="javascript:link('mainobj','bandajax.php');">Band and order variables for a form (using interactive banding)</a></div>
+<h3>Users</h3>
+<div><a href="javascript:link('mainobj','operators.php');">Add operators</a></div>
+<div><a href="javascript:link('mainobj','verifierquestionnaire.php');">Assign forms to operators</a></div>
+<h3>Importing</h3>
+<div><a href="javascript:link('mainobj','import.directory.php');">Import a directory of PDF files</a></div>
+<div><a href="javascript:link('mainobj','missingpages.php');">Handle missing pages</a></div>
+<h3>Output</h3>
+<div><a href="javascript:link('mainobj','output.php');">Output data/ddi</a></div>
+<h3>Progress</h3>
+<div><a href="javascript:link('mainobj','progress.php');">Display progress of form verification</a></div>
+<div><a href="javascript:link('mainobj','performance.php');">Display performance of verifiers (Completions per hour)</a></div>
+<h3>Clients</h3>
+<div><a href="javascript:link('mainobj','clients.php');">Add clients</a></div>
+<div><a href="javascript:link('mainobj','clientquestionnaire.php');">Assign clients to forms</a></div>
 </div>
-<div id='main'><object class='embeddedobject' id='mainobj' data='new.php' standby='Loading panel...' type='application/xhtml+xml'><p>Error, try with Firefox</p></object></div>
+<div id='main'><object class='embeddedobject' id='mainobj' data='new.php' standby='Loading panel...' type='application/xhtml+xml'><div>Error, try with Firefox</div></object></div>
 <?
 
 xhtml_foot();

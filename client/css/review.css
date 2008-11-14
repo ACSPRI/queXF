@@ -1,0 +1,35 @@
+#topper {
+  position : fixed;
+  width : 100%;
+  height : 5%;
+  top : 0;
+  right : 0;
+  bottom : auto;
+  left : 0;
+  border-bottom : 2px solid #cccccc;
+  overflow : auto;
+	text-align:center;
+}
+
+#header {
+  position : fixed;
+  width : 15%;
+  height : 95%;
+  top : 5%;
+  right : 0;
+  bottom : auto;
+  left : 0;
+  border-bottom : 2px solid #cccccc;
+  overflow : auto;
+}
+#content {
+  position : fixed;
+  top : 5%;
+  left : 15%;
+  bottom : auto;
+  width : 85%;
+  height : 100%;
+  color : #000000;
+  overflow : auto;
+}
+
