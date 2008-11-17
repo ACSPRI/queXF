@@ -102,8 +102,52 @@ function widthsToNW($widths,$narrow,$wide)
 	return $string;
 }
 
+/* Given a string of n's and w's return a code (for CodaBar)
+ * Bar widthds sourced from: http://www.barcodesymbols.com/codabar.htm
+ *
+ * Added an extra "N" to the end of each to account for intercode spacing (always narrow)
+ */
+function NWtoCodeCodaBar($s)
+{
+	$hash = array();
 
-/* Given a string of n's and w's return a code
+	$hash['NNNNNWWN'] = 0;
+	$hash['NNNNWWNN'] = 1;
+	$hash['NNNWNNWN'] = 2;
+	$hash['WWNNNNNN'] = 3;
+	$hash['NNWNNWNN'] = 4;
+	$hash['WNNNNWNN'] = 5;
+	$hash['NWNNNNWN'] = 6;
+	$hash['NWNNWNNN'] = 7;
+	$hash['NWWNNNNN'] = 8;
+	$hash['WNNWNNNN'] = 9;
+	$hash['NNNWWNNN'] = '-';
+	$hash['NNWWNNNN'] = '$';
+	$hash['WNNNWNWN'] = ':';
+	$hash['WNWNNNWN'] = '/';
+	$hash['WNWNWNNN'] = '.';
+	$hash['NNWNWNWN'] = '+';
+	$hash['NNWWNWNN'] = 'A';
+	$hash['NWNWNNWN'] = 'B';
+	$hash['NNNWNWWN'] = 'C';
+	$hash['NNNWWWNN'] = 'D';
+	
+	$code = "";
+	for ($i = 0; $i < strlen($s); $i+= 8)
+	{
+		$b1 = substr($s,$i,8);
+		if (!isset($hash[$b1]))
+			return "false";
+		else
+			$code .= $hash[$b1];
+	}
+
+	return $code;
+}
+
+
+
+/* Given a string of n's and w's return a code (for Interleaved 2 of 5)
  */
 function NWtoCode($s)
 {
@@ -146,6 +190,24 @@ function validate($s)
 
 }
 
+function validateCodaBar($s)
+{
+	//length + 1 must be a multiple of 8 (each character is 7 bars/spaces and a space)
+	//must start and end with a start/stop character (A,B,C or D)
+	
+	if ( (fmod((strlen($s) + 1),8.0) == 0))
+	{
+		$start = NWtoCodeCodaBar(substr($s,0,8));
+		$end = NWtoCodeCodaBar(substr($s,-7) . "N");
+		if (($start == 'A' || $start  == 'B' || $start == 'C' || $start == 'D') && ($end == 'A' || $end  == 'B' || $end == 'C' || $end == 'D'))
+			return true;	
+	}
+	return false;
+
+}
+
+
+
 /* Given a GD image, Find an interleaved 2 of 5 barcode and return it otherwise
  * return false
  *
@@ -168,6 +230,16 @@ function barcode($image, $step = 1, $length = false)
 				$code = NWtoCode($s);
 				if ($code != "false" && (!$length || strlen($code) == $length))
 					return $code;
+			}
+			else if (validateCodaBar($s))
+			{
+				$code = NWtoCodeCodaBar($s . "N"); //remember to add the last space
+				if ($code != "false")
+				{
+					$code = substr($code,1,-1); //remove the start and stop characters
+					if (!$length || strlen($code) == $length)
+						return $code;
+				}
 			}
 		}
 	}
