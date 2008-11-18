@@ -103,7 +103,7 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 	}
 },
 {    
-	name: 'Set to type: Interleaved 2 of 5 Barcode',
+	name: 'Set to type: Barcode',
 	className: 'edit',
 	callback: function(e) {
 		var tagId = e.element().id.substring(6);

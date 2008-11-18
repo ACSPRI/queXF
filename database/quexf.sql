@@ -679,7 +679,7 @@ INSERT INTO `boxgrouptypes` VALUES(1, 'Single choice');
 INSERT INTO `boxgrouptypes` VALUES(2, 'Multiple choice');
 INSERT INTO `boxgrouptypes` VALUES(3, 'Text');
 INSERT INTO `boxgrouptypes` VALUES(4, 'Number');
-INSERT INTO `boxgrouptypes` VALUES(5, 'Interleaved 2 of 5');
+INSERT INTO `boxgrouptypes` VALUES(5, 'Barcode');
 INSERT INTO `boxgrouptypes` VALUES(6, 'Long text');
 
 
