@@ -627,15 +627,6 @@ CREATE ALGORITHM=UNDEFINED  VIEW `boxestype` AS select `b`.`bid` AS `bid`,`b`.`t
 -- --------------------------------------------------------
 
 --
--- Structure for view `formboxesgroupsbelow90`
---
-DROP TABLE IF EXISTS `formboxesgroupsbelow90`;
-
-CREATE ALGORITHM=UNDEFINED  VIEW `formboxesgroupsbelow90` AS select `formboxesgroupstype`.`fid` AS `fid`,`formboxesgroupstype`.`bgid` AS `bgid`,`formboxesgroupstype`.`bid` AS `bid` from `formboxesgroupstype` where ((`formboxesgroupstype`.`btid` = 1) or ((`formboxesgroupstype`.`btid` = 2) and (`formboxesgroupstype`.`filled` < 0.90))) group by `formboxesgroupstype`.`fid`,`formboxesgroupstype`.`bgid`;
-
--- --------------------------------------------------------
-
---
 -- Structure for view `formboxesgroupstype`
 --
 DROP TABLE IF EXISTS `formboxesgroupstype`;

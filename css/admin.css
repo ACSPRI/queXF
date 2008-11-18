@@ -1,3 +1,26 @@
+#menu ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#menu ul ul{
+  list-style: square inside;
+  margin: 5px;
+  marker-offset: auto;
+}
+#menu h3 {
+  font-size: 100%;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+#menu h1 {
+  font-size: 140%;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+
 #menu {
   position : fixed;
   width : 20%;
