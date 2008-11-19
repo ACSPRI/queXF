@@ -53,18 +53,62 @@ if (isset($_GET['npid']) && isset($_GET['mpid']) && isset($_GET['fid']))
 	{
 		$db->StartTrans();
 
-		$sql = "INSERT INTO formpages
-			(fid,pid,filename,image,offx,offy)
-			SELECT '$fid','$npid','',image,'0','0'
-			FROM missingpages where mpid = '$mpid'";
+		if (PROCESS_MISSING_PAGES)
+		{
+			include_once("../functions/functions.import.php");
+			
+			//process the page once accepted
 
-		$db->Execute($sql);
+			$sql = "SELECT image
+				FROM missingpages 
+				WHERE mpid = '$mpid'";
+
+			$im = $db->GetRow($sql);
+
+			$image = imagecreatefromstring($im['image']);
+
+			//get the page id from the page table
+			$sql = "SELECT * FROM pages
+				WHERE pid = '$npid'";
+
+			$page = $db->GetRow($sql);
+
+			if ($page['store'] == 1)
+			{
+				//calc offset
+				$offset = offset($image,$page,1);
+		
+				//save image to db including offset
+				$sql = "INSERT INTO formpages
+					(fid,pid,filename,image,offx,offy)
+					VALUES ('$fid','{$page["pid"]}','','" . addslashes($im['image']) . "','{$offset[0]}','{$offset[1]}')";
+		
+				$db->Execute($sql);
+			}
+			if ($page['process'] == 1)
+			{		
+				//process variables on this page
+				processpage($page["pid"],$fid,$image,$offset);
+			}
+
+		}
+		else
+		{
+			//just copy the page across, do not process
+			$sql = "INSERT INTO formpages
+				(fid,pid,filename,image,offx,offy)
+				SELECT '$fid','$npid','',image,'0','0'
+				FROM missingpages where mpid = '$mpid'";
+	
+			$db->Execute($sql);
+		}
 
 		$sql = "DELETE 
 			FROM missingpages
 			WHERE mpid = '$mpid'";
 
 		$db->Execute($sql);
+
 
 		$db->CompleteTrans();
 	}
@@ -155,7 +199,7 @@ if (isset($r['fid']))
 
 	
 	print "<div id=\"left\">";
-	print "<img src=\"../showmissingpage.php?mpid=$mpid\" style=\"width: 100%;\"/> ";
+	print "<img src=\"../showmissingpage.php?mpid=$mpid\" style=\"width: 100%;\" alt=\"Missing page $mpid\"/> ";
 	print "</div>";
 
 	//display possible pages within set to assign to
@@ -191,7 +235,7 @@ if (isset($r['fid']))
 			}
 			else
 			{
-				print " <a href=\"{$_SERVER['PHP_SELF']}?pid={$np['pid']}&fid=$fid&mpid=$mpid\">$p</a> ";
+				print " <a href=\"{$_SERVER['PHP_SELF']}?pid={$np['pid']}&amp;fid=$fid&amp;mpid=$mpid\">$p</a> ";
 			}
 			$p++;
 		}
@@ -202,7 +246,7 @@ if (isset($r['fid']))
 			{
 				$npid = $np['pid'];
 				$qid = $np['qid'];
-				print "<img src=\"../showpage.php?qid=$qid&pid=$npid\" style=\"width: 100%;\"/>";
+				print "<img src=\"../showpage.php?qid=$qid&amp;pid=$npid\" style=\"width: 100%;\" alt=\"Page $npid of Form $qid\"/>";
 			}
 		}
 	}
@@ -216,7 +260,7 @@ if (isset($r['fid']))
 
 
 	print "<div id=\"bottom\">";
-	print "<a href=\"{$_SERVER['PHP_SELF']}?fid=$fid&mpid=$mpid&npid=$npid&accept=accept\">Accept</a>  <a href=\"{$_SERVER['PHP_SELF']}?fid=$fid&mpid=$mpid&npid=$npid&delete=delete\">Delete</a>";
+	print "<a href=\"{$_SERVER['PHP_SELF']}?fid=$fid&amp;mpid=$mpid&amp;npid=$npid&amp;accept=accept\">Accept</a>  <a href=\"{$_SERVER['PHP_SELF']}?fid=$fid&amp;mpid=$mpid&amp;npid=$npid&amp;delete=delete\">Delete</a>";
 	print "</div>";
 }
 else

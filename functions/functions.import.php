@@ -426,28 +426,43 @@ function import($filename,$description = false){
 
 				//get the page id from the page table
 				$sql = "SELECT * FROM pages
-					WHERE pidentifierval = '$pid'";
+					WHERE pidentifierval = '$pid'
+					AND qid = '$qid'";
 
 				$page = $db->GetRow($sql);
 
-				if ($page['store'] == 1)
+				if (empty($page))
 				{
+					print "<p>Pid not identified for this questionnaire, inserting into missing pages...</p>";
 
-					//calc offset
-					$offset = offset($image,$page,1);
-	
-					//save image to db including offset
-					$sql = "INSERT INTO formpages
-						(fid,pid,filename,image,offx,offy)
-						VALUES ('$fid','{$page["pid"]}','','" . addslashes($data) . "','{$offset[0]}','{$offset[1]}')";
+					//store in missing pages table
+					$sql = "INSERT INTO missingpages
+						(mpid,fid,image)
+						VALUES (NULL,'$fid','" . addslashes($data) . "')";
 		
 					$db->Execute($sql);
 				}
+				else
+				{
+					if ($page['store'] == 1)
+					{
 	
-				if ($page['process'] == 1)
-				{		
-					//process variables on this page
-					processpage($page["pid"],$fid,$image,$offset);
+						//calc offset
+						$offset = offset($image,$page,1);
+		
+						//save image to db including offset
+						$sql = "INSERT INTO formpages
+							(fid,pid,filename,image,offx,offy)
+							VALUES ('$fid','{$page["pid"]}','','" . addslashes($data) . "','{$offset[0]}','{$offset[1]}')";
+				
+						$db->Execute($sql);
+					}
+		
+					if ($page['process'] == 1)
+					{		
+						//process variables on this page
+						processpage($page["pid"],$fid,$image,$offset);
+					}
 				}
 			}
 			else

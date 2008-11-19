@@ -42,6 +42,7 @@ define('SINGLE_CHOICE_MAX_FILLED', 0.60);
 
 //Blank page detection
 define('BLANK_PAGE_DETECTION', true);
+define('PROCESS_MISSING_PAGES',true);
 
 //REQUIRED: Ghostscript binary
 define('GS_BIN', "/usr/bin/gs");
