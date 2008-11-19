@@ -64,6 +64,40 @@ function sort_order_pageid_box($qid)
 
 }
 
+/* Sort box groups by their variable name
+ *
+ */
+function sort_order_varname($qid)
+{
+	global $db;
+
+
+	$db->StartTrans();
+
+	$sql = "SELECT b.bgid as bgid
+		FROM `boxgroupstype` AS b, pages AS p
+		WHERE p.qid = '$qid'
+		AND b.pid = p.pid
+		ORDER BY b.varname ASC";
+
+	$all = $db->GetAll($sql);
+
+	$i = 0;
+	foreach ($all as $row)
+	{
+		$sql = "UPDATE boxgroupstype
+			SET sortorder = '$i'
+			WHERE bgid = '{$row['bgid']}'";
+
+		$db->Execute($sql);
+
+		$i++;
+	}
+
+	$db->CompleteTrans();
+
+}
+
 
 /*
  * Assign the next free form to a verifier

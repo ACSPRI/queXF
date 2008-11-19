@@ -472,10 +472,6 @@ if (isset($_GET['qid']))
 	$zoom = BAND_DEFAULT_ZOOM;
 	if (isset($_GET['zoom'])) $zoom = intval($_GET['zoom']);
 
-	if (isset($_GET['reorder'])) 
-	{
-		sort_order_pageid_box($qid);	
-	}
 
 	$zoomup = $zoom - 1; if ($zoomup < 1) $zoomup = 1;
 	$zoomdown = $zoom + 1;
@@ -540,7 +536,7 @@ else
 	
 	foreach($qs as $q)
 	{
-		print "<a href=\"?zoom=$zoom&amp;qid={$q['qid']}\">Band: {$q['description']}</a> <a href=\"?reorder=reorder&amp;zoom=$zoom&amp;qid={$q['qid']}\">Reorder variables: {$q['description']}</a>";
+		print "<a href=\"?zoom=$zoom&amp;qid={$q['qid']}\">Band: {$q['description']}</a>";
 		print "<br/>";
 	}
 }

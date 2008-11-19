@@ -36,8 +36,9 @@ xhtml_head("queXF Administrative Functions",true,array("../css/admin.css"),array
 <li><h3>Setup</h3>
 <ul><li><a href="javascript:link('mainobj','new.php');">Import a new form from a PDF file</a></li>
 <li><a href="javascript:link('mainobj','delete.php');">Delete a form (only if no forms yet imported)</a></li>
-<li><a href="javascript:link('mainobj','band.php');">Band and order variables for a form</a></li>
-<li><a href="javascript:link('mainobj','bandajax.php');">Band and order variables for a form (using interactive banding)</a></li></ul></li>
+<li><a href="javascript:link('mainobj','band.php');">Band a form</a></li>
+<li><a href="javascript:link('mainobj','bandajax.php');">Band a form using interactive banding</a></li>
+<li><a href="javascript:link('mainobj','reorder.php');">Order variables on the form</a></li></ul></li>
 <li><h3>Users</h3>
 <ul><li><a href="javascript:link('mainobj','operators.php');">Add operators</a></li>
 <li><a href="javascript:link('mainobj','verifierquestionnaire.php');">Assign forms to operators</a></li></ul></li>
