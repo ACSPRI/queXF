@@ -159,12 +159,10 @@ function outputdatacsv($qid,$fid = "")
 		LEFT JOIN formboxverifytext as f on (f.bid = b.bid and f.vid = '{$form['vid']}' and f.fid = '{$form['fid']}'))
 		UNION
 		(select b.bid,b.bgid,g.btid,f.val,sortorder
-		from boxes as b, boxgroupstype as g, pages as p, formboxverifytext as f
-		where b.bgid = g.bgid
-		and g.btid = 5
-		and p.pid = b.pid
-		and p.qid = '$qid'
-		and f.bid = b.bid and f.vid = '0' and f.fid = '{$form['fid']}')
+		from boxes as b
+		JOIN  boxgroupstype as g on (b.bgid = g.bgid and g.btid = 5)
+		JOIN pages as p on  (p.pid = b.pid and p.qid = '$qid')
+		LEFT JOIN formboxverifytext as f on (f.bid = b.bid and f.vid = 0 and f.fid = '{$form['fid']}'))
 		order by sortorder asc,bid asc";
 
 
@@ -180,6 +178,10 @@ function outputdatacsv($qid,$fid = "")
 		$rr = array();
 
 		$tmpstr = "";
+
+		$data[] = array('btid' => 0,  'bgid' => 0, 'val' => "");
+
+		//print_r($data);
 
 		foreach($data as $val)
 		{
@@ -227,6 +229,7 @@ function outputdatacsv($qid,$fid = "")
 			$prebtid = $val['btid'];
 		}
 
+		/*
 		if ($prebtid == 1)
 			if ($done == 1)
 				$rr[] = $count; //if single choice, val is the number of the box selected
@@ -234,7 +237,9 @@ function outputdatacsv($qid,$fid = "")
 				$rr[] = ""; //blank if no val entered
 		else if ($prebtid == 3 || $prebtid == 4)
 			$rr[] = $tmpstr;
-
+		else if ($prebtid == 6 || $prebtid == 5) 
+			$rr[] = $val['val'];
+		 */
 
 		$rr[] = $form['fid']; //print str_pad($form['fid'], 10, " ", STR_PAD_LEFT);
 
@@ -310,12 +315,10 @@ function outputdata($qid,$fid = "")
 		LEFT JOIN formboxverifytext as f on (f.bid = b.bid and f.vid = '{$form['vid']}' and f.fid = '{$form['fid']}'))
 		UNION
 		(select b.bid,b.bgid,g.btid,f.val,sortorder
-		from boxes as b, boxgroupstype as g, pages as p, formboxverifytext as f
-		where b.bgid = g.bgid
-		and g.btid = 5
-		and p.pid = b.pid
-		and p.qid = '$qid'
-		and f.bid = b.bid and f.vid = '0' and f.fid = '{$form['fid']}')
+		from boxes as b
+		JOIN  boxgroupstype as g on (b.bgid = g.bgid and g.btid = 5)
+		JOIN pages as p on  (p.pid = b.pid and p.qid = '$qid')
+		LEFT JOIN formboxverifytext as f on (f.bid = b.bid and f.vid = 0 and f.fid = '{$form['fid']}'))
 		order by sortorder asc,bid asc";
 
 
