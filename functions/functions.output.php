@@ -31,6 +31,221 @@ if (version_compare(PHP_VERSION,'5','>='))
 
 set_time_limit(600);
 
+
+function csv($fields = array(), $delimiter = ',', $enclosure = '"')
+{
+    $str = '';
+    $escape_char = '\\';
+    foreach ($fields as $value)
+    {
+      if (strpos($value, $delimiter) !== false ||
+          strpos($value, $enclosure) !== false ||
+          strpos($value, "\n") !== false ||
+          strpos($value, "\r") !== false ||
+          strpos($value, "\t") !== false ||
+          strpos($value, ' ') !== false)
+      {
+        $str2 = $enclosure;
+        $escaped = 0;
+        $len = strlen($value);
+        for ($i=0;$i<$len;$i++)
+        {
+          if ($value[$i] == $escape_char)
+            $escaped = 1;
+          else if (!$escaped && $value[$i] == $enclosure)
+            $str2 .= $enclosure;
+          else
+            $escaped = 0;
+          $str2 .= $value[$i];
+        }
+        $str2 .= $enclosure;
+        $str .= $str2.$delimiter;
+      }
+      else
+        $str .= $value.$delimiter;
+    }
+    $str = substr($str,0,-1);
+    $str .= "\n";
+    return $str;
+}
+
+
+
+/*
+ * CSV data output */
+function outputdatacsv($qid,$fid = "")
+{
+	global $db;
+
+	//first get data desc
+
+	$sql = "SELECT bgid, btid, count( bid ) as count,width
+		FROM boxesgroupstypes
+		WHERE qid = '$qid'
+		AND btid > 0
+		GROUP BY bgid
+		ORDER BY sortorder";
+
+	$desc = $db->GetAssoc($sql);
+
+	//get completed forms for this qid
+
+	$sql = "SELECT w.vid AS vid, w.fid AS fid, w.assigned AS assigned, w.completed AS completed, f.qid AS qid, f.description AS description
+		FROM `worklog` AS w
+		LEFT JOIN forms AS f ON w.fid = f.fid
+		WHERE f.qid = '$qid'";
+
+	if ($fid != "")
+		$sql .= " AND f.fid = '$fid'";
+
+	$forms = $db->GetAll($sql);
+
+
+	header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+	header ("Content-Type: text/ascii");
+	header ("Content-Length: ");
+	header ("Content-Disposition: attachment; filename=temp.csv");
+
+	$sql = "SELECT varname,btid, count(bid) as count
+		FROM boxesgroupstypes
+		WHERE qid = '$qid'
+		AND btid > 0
+		GROUP BY bgid
+		ORDER BY sortorder";
+
+	$varnames = $db->GetAll($sql);
+
+	$rv = array();
+	foreach($varnames as $vn)
+	{
+		if ($vn['btid'] == 2)
+		{
+			for ($i = 1; $i <= $vn['count']; $i++)
+				$rv[] = $vn['varname'] . "_$i";
+		}
+		else
+			$rv[] = $vn['varname'];
+	}
+
+	$rv[] = "formid";
+
+	//print the header row
+	print csv($rv);
+
+	foreach ($forms as $form)
+	{
+		$sql = "SELECT btid,val
+		FROM `boxesgroupstypes` AS b
+		LEFT JOIN formboxverifychar AS f ON ( f.vid = '{$form['vid']}'
+		AND f.fid = '{$form['fid']}'
+		AND f.bid = b.bid )
+		WHERE b.qid = '$qid'
+		AND b.btid >0
+		ORDER BY b.sortorder, b.bid";
+
+
+		$sql = "(select b.bid,b.bgid,g.btid,f.val,sortorder
+		from boxes as b, boxgroupstype as g, pages as p, formboxverifychar as f
+		where b.bgid = g.bgid
+		and g.btid > 0
+		and p.pid = b.pid
+		and p.qid = '$qid'
+		and f.bid = b.bid and f.vid = '{$form['vid']}' and f.fid = '{$form['fid']}')
+		UNION
+		(select b.bid,b.bgid,g.btid,f.val,sortorder
+		from boxes as b
+		JOIN  boxgroupstype as g on (b.bgid = g.bgid and g.btid = 6)
+		JOIN pages as p on  (p.pid = b.pid and p.qid = '$qid')
+		LEFT JOIN formboxverifytext as f on (f.bid = b.bid and f.vid = '{$form['vid']}' and f.fid = '{$form['fid']}'))
+		UNION
+		(select b.bid,b.bgid,g.btid,f.val,sortorder
+		from boxes as b, boxgroupstype as g, pages as p, formboxverifytext as f
+		where b.bgid = g.bgid
+		and g.btid = 5
+		and p.pid = b.pid
+		and p.qid = '$qid'
+		and f.bid = b.bid and f.vid = '0' and f.fid = '{$form['fid']}')
+		order by sortorder asc,bid asc";
+
+
+		$data =  $db->GetAll($sql);
+
+		//print $sql;
+
+		$bgid = $data[0]['bgid'];
+		$btid = "";
+		$count = 1;
+		$done = "";
+
+		$rr = array();
+
+		$tmpstr = "";
+
+		foreach($data as $val)
+		{
+			$btid = $val['btid'];
+
+			if ($bgid != $val['bgid']) //we have changed box groups
+			{
+				if ($prebtid ==	1 || $prebtid == 3 || $prebtid == 4)
+				{
+					//multiple boxes -> down to one variable
+					if ($prebtid == 1)
+						if ($done == 1)
+							$rr[] = $count; //if single choice, val is the number of the box selected
+						else
+							$rr[] = ""; //blank if no val entered
+					else
+						$rr[] = $tmpstr;
+	
+					$tmpstr = "";
+				}
+
+				if ($val['btid'] == 6 || $val['btid'] == 5) 
+				{
+					//one box per variable - just export
+					$rr[] = $val['val'];
+				}
+
+				$bgid = $val['bgid']; //reset counters
+				$count = 1;
+				$done = 0;
+			}
+
+			if ($val['btid'] == 1)
+			{
+				if ($val['val'] == 1)
+					$done = 1;
+				if ($done != 1)
+					$count++;
+			}
+			else if ($val['btid'] == 3 || $val['btid'] == 4)
+				$tmpstr .= $val['val'];
+			else if ($val['btid'] == 2)
+				$rr[] = $val['val'];
+
+			$prebtid = $val['btid'];
+		}
+
+		if ($prebtid == 1)
+			if ($done == 1)
+				$rr[] = $count; //if single choice, val is the number of the box selected
+			else
+				$rr[] = ""; //blank if no val entered
+		else if ($prebtid == 3 || $prebtid == 4)
+			$rr[] = $tmpstr;
+
+
+		$rr[] = $form['fid']; //print str_pad($form['fid'], 10, " ", STR_PAD_LEFT);
+
+		//print_r($rr);
+		print csv($rr);
+	}
+}
+
+
+
+
 /*
  * Fixed width data output */
 
@@ -113,6 +328,7 @@ function outputdata($qid,$fid = "")
 		$count = 1;
 		$done = "";
 
+
 		foreach($data as $val)
 		{
 			if ($bgid != $val['bgid'])
@@ -157,9 +373,6 @@ function outputdata($qid,$fid = "")
 		print "\r\n";
 
 	}
-
-
-
 }
 
 /* Returns a new var dom element given info
@@ -291,13 +504,13 @@ function export_ddi($qid)
 	}
 
 
-	$nvar = variable_ddi($dom,50,"formid","formid",$startpos,"character");
+	$nvar = variable_ddi($dom,10,"formid","formid",$startpos,"number");
 
 	$d->append_child($nvar);
 
 	$nvlocations = $nvar->get_elements_by_tagname("location");     
 	foreach ($nvlocations as $nvlocation)
-		$nvlocation->set_attribute("width", "50");
+		$nvlocation->set_attribute("width", "10");
 
 
 	//return a formatted version of the DDI file as as string
