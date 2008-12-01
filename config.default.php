@@ -56,6 +56,10 @@ if (!defined('PROCESS_MISSING_PAGES')) define('PROCESS_MISSING_PAGES',true);
 //REQUIRED: Ghostscript binary
 if (!defined('GS_BIN')) define('GS_BIN', "/usr/bin/gs");
 
+//PHP Executables (for forking when running background processes)
+if (!defined('WINDOWS_PHP_EXEC')) define('WINDOWS_PHP_EXEC', "start /b php");
+if (!defined('PHP_EXEC')) define('PHP_EXEC', "php");
+
 //Temporary directory
 if (!defined('TEMPORARY_DIRECTORY')) define('TEMPORARY_DIRECTORY', "/tmp");
 

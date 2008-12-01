@@ -455,6 +455,21 @@ CREATE TABLE IF NOT EXISTS `pages` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `process`
+--
+
+CREATE TABLE `process` (
+  `process_id` bigint(20) NOT NULL auto_increment,
+  `start` datetime NOT NULL,
+  `stop` datetime default NULL,
+  `kill` tinyint(1) NOT NULL default '0',
+  `data` longtext collate utf8_unicode_ci NOT NULL,
+  PRIMARY KEY  (`process_id`)
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `questionnaires`
 --
 
