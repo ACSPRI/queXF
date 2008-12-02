@@ -106,7 +106,10 @@ function newquestionnaire($filename,$desc = ""){
 		unlink($file);
 
 		$n++;
-		$file = $tmp . $n . ".png";	
+		$file = $tmp . $n . ".png";
+		unset($data);
+		unset($image);
+		unset($barcode);	
 	}
 
 
