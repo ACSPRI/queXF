@@ -66,7 +66,7 @@ while (!is_process_killed($process_id))
 			{
 				if (substr($file,-3) == "pdf")
 				{
-					print "<p>$file</p>";
+					print "$dir/$file";
 			                import("$dir/$file");
 					//unlink($file);
 					rename("$dir/$file","$dir/$file.done");

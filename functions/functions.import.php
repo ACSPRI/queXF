@@ -343,36 +343,19 @@ function import($filename,$description = false){
 	//$qid = 1;
 
 	$qid = "";
-	$fid = "";
+	$fid = "";	
 
-	$pages = array();
-	
-	//read pages from 1 to n - stop when n does not exist
+	//find the qid
 	$n = 1;
 	$file = $tmp . $n . ".png";
 	while (file_exists($file))
 	{
+		print "<p>Finding qid...</p>";
+
 		//open file
 		$data = file_get_contents($file);
 		$image = imagecreatefromstring($data);
-		$pages[] = array($image,$data);
-
-		//print "GOT PAGE: $n<br/>";
-
-		//delete temp file
-		unlink($file);
-
-		$n++;
-		$file = $tmp . $n . ".png";	
-	}
-
-	
-	//find the qid
-	foreach ($pages as $imagearray)
-	{
-		print "<p>Finding qid...</p>";
-
-		$image = $imagearray[0];
+		unset($data);
 
 		$barcode = crop($image,array("tlx" => BARCODE_TLX, "tly" => BARCODE_TLY, "brx" => BARCODE_BRX, "bry" => BARCODE_BRY));
 
@@ -394,6 +377,11 @@ function import($filename,$description = false){
 				break;
 			}
 		}
+
+		unset($image);
+		unset($barcode);
+		$n++;
+		$file = $tmp . $n . ".png";	
 	}
 
 
@@ -412,10 +400,13 @@ function import($filename,$description = false){
 
 
 		//process each page
-		foreach ($pages as $imagearray)
+		$n = 1;
+		$file = $tmp . $n . ".png";
+		while (file_exists($file))
 		{
-			$image = $imagearray[0];
-			$data = $imagearray[1];
+			//open file
+			$data = file_get_contents($file);
+			$image = imagecreatefromstring($data);
 
 			//check for barcode
 			$barcode = crop($image,array("tlx" => BARCODE_TLX, "tly" => BARCODE_TLY, "brx" => BARCODE_BRX, "bry" => BARCODE_BRY));
@@ -484,6 +475,14 @@ function import($filename,$description = false){
 					$db->Execute($sql);
 				}
 			}
+
+			$n++;
+			$file = $tmp . $n . ".png";	
+
+			//unset data
+			unset($data);
+			unset($image);
+			unset($barcode);
 		}
 	}
 	else
@@ -492,6 +491,20 @@ function import($filename,$description = false){
 		//do nothing?
 		print "<p>Could not get qid...</p>";
 	}
+
+
+	//Delete temporary pages
+	$n = 1;
+	$file = $tmp . $n . ".png";
+	while (file_exists($file))
+	{
+		//delete temp file
+		unlink($file);
+
+		$n++;
+		$file = $tmp . $n . ".png";	
+	}
+
 
 	//complete transaction
 	$db->CommitTrans();
