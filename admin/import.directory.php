@@ -72,6 +72,9 @@ else
 	<p><input name='watch' id='watch' type="submit" value="Watch this directory in the background (recommended)" /></p>
 	</form>
 	<?
+
+	print "<h2>Outcome of last process run (if any)</h2>";
+	print process_get_last_data();
 }
 xhtml_foot();
 ?>

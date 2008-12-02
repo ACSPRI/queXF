@@ -210,4 +210,27 @@ function process_get_data($process_id)
 	return "";
 }
 
+/**
+ * Get data from the last process run
+ *
+ * @return string Data from the last process, or an empty string if not available
+ *
+ */
+function process_get_last_data()
+{
+	global $db;
+
+	$sql = "SELECT `data`
+		FROM `process`
+		ORDER BY `process_id` DESC
+		LIMIT 1";
+
+	$rs = $db->GetRow($sql);
+
+	if (!empty($rs))
+		return $rs['data'];
+
+	return "";
+}
+
 ?>

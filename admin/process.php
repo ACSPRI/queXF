@@ -30,7 +30,7 @@ function update_callback($buffer)
 {
 	global $process_id;
 
-	process_append_data($process_id,$buffer);
+	process_append_data($process_id,"<div>".$buffer."</div>");
 
 	return ""; //empty buffer
 }
@@ -50,9 +50,7 @@ register_shutdown_function('end_process',$process_id);
 
 ob_start('update_callback',2);
 
-print "<p>Processing directory: $dir</p>";
-
-$errors = 0;
+print "Processing directory: $dir";
 
 while (!is_process_killed($process_id))
 {
@@ -83,13 +81,9 @@ while (!is_process_killed($process_id))
 	}
 	else
 	{
-		print "<p>Cannot process this directory - check that it is valid and permissions are correct</p>";
-		$errors++;
-		if ($errors >= 10)
-			break;
-		sleep(10); //sleep when error with directory
+		print "Cannot process this directory - check that it is valid and permissions are correct";
+		break; //break the loop
 	}
-
 }
 
 ob_get_contents();
