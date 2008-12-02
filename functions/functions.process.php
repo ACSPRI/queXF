@@ -45,8 +45,7 @@ function is_process_running()
 
 	$sql = "SELECT `process_id`
 		FROM `process`
-		WHERE `kill` = 0
-		AND `stop` IS NULL";
+		WHERE `stop` IS NULL";
 
 	$rs = $db->GetRow($sql);
 

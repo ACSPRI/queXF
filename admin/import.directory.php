@@ -36,20 +36,19 @@ if (isset($_POST['dir']) && isset($_POST['watch']))
 
 $p = is_process_running();
 
-
 if ($p)
 {
+	if (isset($_GET['kill']))
+		kill_process($p);
+
 	xhtml_head("Import a directory of PDF files",true,false,false,false,10);
 
 	print "<h1>Process $p running...</h1>";
 
 	print "<h2>Note: This page will automatically refresh every 10 seconds</h2>";
 
-	if (isset($_GET['kill']))
-	{
-		kill_process($p);
+	if (is_process_killed($p))
 		print "<h3>Kill signal sent: Please wait...</h3>";
-	}
 	else
 		print "<p><a href='?kill=kill'>Kill the running process</a> (may take up to a few minutes to take effect)</p>";
 
