@@ -35,7 +35,7 @@ xhtml_head("Add new questionnaire");
  *
  */
 
-function newquestionnaire($filename,$desc = ""){
+function newquestionnaire($filename,$desc = "",$type="pngmono"){
 
 	global $db;
 
@@ -47,7 +47,7 @@ function newquestionnaire($filename,$desc = ""){
 	//print "Creating PNG files<br/>";
 
 	//use ghostscript to convert to PNG
-	exec(GS_BIN . " -sDEVICE=pngmono -r300 -sOutputFile=$tmp%d.png -dNOPAUSE -dBATCH $filename");
+	exec(GS_BIN . " -sDEVICE=$type -r300 -sOutputFile=$tmp%d.png -dNOPAUSE -dBATCH $filename");
 	//print("gs -sDEVICE=pngmono -r300 -sOutputFile=$tmp%d.png -dNOPAUSE -dBATCH $filename");
 	
 	//print "Creating PNG files<br/>";
@@ -59,8 +59,37 @@ function newquestionnaire($filename,$desc = ""){
 
 	$db->StartTrans();
 
-	$sql = "INSERT INTO questionnaires (qid,description)
-		VALUES (NULL,'$desc')";
+
+	//Copy the default settings to the database
+	$tb = array('t','b');
+	$lr = array('l','r');
+	$vh = array('vert','hori');
+	$el = array('tlx','tly','brx','bry');
+
+	$v = "";
+	foreach($tb as $a)
+		foreach($lr as $b)
+			foreach($vh as $c)					
+			{
+				$vname = "$a$b" . "_" . $c ."_";
+				foreach($el as $d)
+					$v .= "," . $vname . $d;
+			}
+	
+
+	$w = "";
+	foreach($tb as $a)
+		foreach($lr as $b)
+			foreach($vh as $c)					
+			{
+				$vname = "$a$b" . "_" . $c ."_";
+				foreach($el as $d)
+					$w .= ",'" . constant(strtoupper($vname . $d)) . "'";
+			}
+	
+
+	$sql = "INSERT INTO questionnaires (qid,description,image_type,barcode_tlx,barcode_tly,barcode_brx,barcode_bry$v)
+		VALUES (NULL,'$desc','$type','" . BARCODE_TLX . "','" . BARCODE_TLY . "','" . BARCODE_BRX . "','" . BARCODE_BRY . "'$w)";
 
 	$db->Execute($sql);
 
@@ -151,6 +180,16 @@ if ($a)
 
 
 <h1>New questionnaire</h1>
+<p>You will get the best results if you:</p>
+<ul>
+<li>Print out the form using the same method that you will for all the printed forms</li>
+<li>Scan the (blank) form to a PDF using the same options that you will for the filled forms</li>
+<li>Best options for scanning in are:
+<ul><li>Monochrome (1 bit)</li>
+<li>300DPI Resolution</li></ul>
+</li>
+</ul>
+
 <form enctype="multipart/form-data" action="" method="post">
 	<p><input type="hidden" name="MAX_FILE_SIZE" value="1000000000" /></p>
 	<p>Select PDF file to create form from: <input name="form" type="file" /></p>

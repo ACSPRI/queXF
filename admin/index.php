@@ -33,7 +33,7 @@ xhtml_head("queXF Administrative Functions",true,array("../css/admin.css"),array
 <div id="menu">
 <h1>queXF Admin Functions</h1>
 <ul>
-<li><h3>Setup</h3>
+<li><h3>Form setup</h3>
 <ul><li><a href="javascript:link('mainobj','new.php');">Import a new form from a PDF file</a></li>
 <li><a href="javascript:link('mainobj','delete.php');">Delete a form (only if no forms yet imported)</a></li>
 <li><a href="javascript:link('mainobj','band.php');">Band a form</a></li>
@@ -53,6 +53,8 @@ xhtml_head("queXF Administrative Functions",true,array("../css/admin.css"),array
 <li><h3>Clients</h3>
 <ul><li><a href="javascript:link('mainobj','clients.php');">Add clients</a></li>
 <li><a href="javascript:link('mainobj','clientquestionnaire.php');">Assign clients to forms</a></li></ul></li>
+<li><h3>System setup</h3>
+<ul><li><a href="javascript:link('mainobj','pagesetup.php');">Page setup</a></li></ul></li>
 </ul>
 </div>
 <div id='main'><object class='embeddedobject' id='mainobj' data='new.php' standby='Loading panel...' type='application/xhtml+xml'><div>Error, try with Firefox</div></object></div>

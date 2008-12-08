@@ -67,6 +67,13 @@ if (isset($_GET['bgid'])){
 
 
 }
+else if (isset($_GET['filename']))
+{
+	$im = imagecreatefrompng($_GET['filename']);
+	header('Content-type: image/png');
+	imagepng($im);
+	imagedestroy($im);
+}
 else if (isset($_GET['pid']))
 {
 	include("config.inc.php");

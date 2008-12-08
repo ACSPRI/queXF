@@ -41,6 +41,14 @@ function submitArea() {
 
 }
 
+function updateArea(bid,tlx,tly,brx,bry) {
+	va = getUrlVars();
+	new Ajax.Updater('imageboxes', 'pagelayout.php', {parameters: 'bid=' + bid + '&tlx=' + tlx + '&tly=' + tly + '&brx=' + brx + '&bry=' + bry + '&pid=' + va['pid'] + '&zoom=' + va['zoom'] + '&qid=' + va['qid'],  method: 'get', evalScripts: 'true'  });
+
+}
+
+
+
 function updateBoxes(bid,btid) {
 	va = getUrlVars();
 	new Ajax.Updater('imageboxes', 'bandajax.php', {parameters: 'bid=' + bid + '&btid=' + btid + '&pid=' + va['pid'] + '&zoom=' + va['zoom'] + '&qid=' + va['qid'],  method: 'get', evalScripts: 'true'  });
