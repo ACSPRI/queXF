@@ -59,37 +59,8 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 
 	$db->StartTrans();
 
-
-	//Copy the default settings to the database
-	$tb = array('t','b');
-	$lr = array('l','r');
-	$vh = array('vert','hori');
-	$el = array('tlx','tly','brx','bry');
-
-	$v = "";
-	foreach($tb as $a)
-		foreach($lr as $b)
-			foreach($vh as $c)					
-			{
-				$vname = "$a$b" . "_" . $c ."_";
-				foreach($el as $d)
-					$v .= "," . $vname . $d;
-			}
-	
-
-	$w = "";
-	foreach($tb as $a)
-		foreach($lr as $b)
-			foreach($vh as $c)					
-			{
-				$vname = "$a$b" . "_" . $c ."_";
-				foreach($el as $d)
-					$w .= ",'" . constant(strtoupper($vname . $d)) . "'";
-			}
-	
-
-	$sql = "INSERT INTO questionnaires (qid,description,image_type,barcode_tlx,barcode_tly,barcode_brx,barcode_bry$v)
-		VALUES (NULL,'$desc','$type','" . BARCODE_TLX . "','" . BARCODE_TLY . "','" . BARCODE_BRX . "','" . BARCODE_BRY . "'$w)";
+	$sql = "INSERT INTO questionnaires (qid,description)
+		VALUES (NULL,'$desc')";
 
 	$db->Execute($sql);
 
