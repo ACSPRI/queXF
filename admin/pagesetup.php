@@ -190,6 +190,23 @@ dragresize.isHandle = function(elm)
  if (elm.className && elm.className.indexOf('drsMoveHandle') > -1) return true;
 };
 
+
+function getUrlVars()
+{
+var vars = [], hash;
+var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+ 
+for(var i = 0; i < hashes.length; i++)
+{
+hash = hashes[i].split('=');
+vars.push(hash[0]);
+vars[hash[0]] = hash[1];
+}
+ 
+return vars;
+}
+
+
 // You can define optional functions that are called as elements are dragged/resized.
 // Some are passed true if the source event was a resize, or false if it's a drag.
 // The focus/blur events are called as handles are added/removed from an object,
@@ -203,30 +220,32 @@ dragresize.ondragmove = function(isResize) {  };
 dragresize.ondragend = function(isResize) {
 	var l = $$('div .drsElement');
 	var s = '';
+	v = getUrlVars();
+	var z = v['zoom'];
 	for (var i=0; i < l.length; i++)
 	{
 		s += '<div>define(\''
 		s += l[i].id.toUpperCase();
 		s += 'TLX\','
-		s += parseInt(l[i].style.left.replace('px',''));
+		s += parseInt(l[i].style.left.replace('px','')) * z;
 		s += ');</div>'
 
 		s += '<div>define(\''
 		s += l[i].id.toUpperCase();
 		s += 'TLY\','
-		s += parseInt(l[i].style.top.replace('px',''));
+		s += parseInt(l[i].style.top.replace('px','')) * z;
 		s += ');</div>'
 
 		s += '<div>define(\''
 		s += l[i].id.toUpperCase();
 		s += 'BRX\','
-		s += (parseInt(l[i].style.width.replace('px','')) + parseInt(l[i].style.left.replace('px','')));
+		s += (parseInt(l[i].style.width.replace('px','')) + parseInt(l[i].style.left.replace('px',''))) * z;
 		s += ');</div>'
 
 		s += '<div>define(\''
 		s += l[i].id.toUpperCase();
-		s += 'TLX\','
-		s += (parseInt(l[i].style.height.replace('px','')) + parseInt(l[i].style.top.replace('px','')));
+		s += 'BRY\','
+		s += (parseInt(l[i].style.height.replace('px','')) + parseInt(l[i].style.top.replace('px',''))) * z;
 		s += ');</div>'			
 
 	}
