@@ -353,6 +353,12 @@ CREATE TABLE IF NOT EXISTS `formpages` (
   `image` mediumblob NOT NULL,
   `offx` int(11) default NULL COMMENT 'Offset X value',
   `offy` int(11) default NULL COMMENT 'Offset Y value',
+  `costheta` double default NULL,
+  `sintheta` double default NULL,
+  `scalex` double default NULL,
+  `scaley` double default NULL,
+  `centroidx` double default NULL,
+  `centroidy` double default NULL,
   PRIMARY KEY  (`fid`,`pid`)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
@@ -445,6 +451,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `bly` int(11) NOT NULL,
   `brx` int(11) NOT NULL,
   `bry` int(11) NOT NULL,
+  `rotation` double NOT NULL default '0' COMMENT 'rotation of image in radians',
   `image` mediumblob NOT NULL,
   `store` binary(1) NOT NULL default '1',
   `process` binary(1) NOT NULL default '1',

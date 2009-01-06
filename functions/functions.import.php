@@ -35,19 +35,19 @@ include('functions.image.php');
  *
  *
  */
-function processpage($pid,$fid,$image,$offset)
+function processpage($pid,$fid,$image,$transforms)
 {
 	//fill boxes for this page
-	fillboxes($pid,$image,$fid,$offset[0],$offset[1]);
+	fillboxes($pid,$image,$fid,$transforms);
 
 	//char boxes
-	charboxes($pid,$image,$fid,$offset[0],$offset[1]);
+	charboxes($pid,$image,$fid,$transforms);
 
 	//number boxes
-	numberboxes($pid,$image,$fid,$offset[0],$offset[1]);
+	numberboxes($pid,$image,$fid,$transforms);
 
 	//barcode boxes
-	barcodeboxes($pid,$image,$fid,$offset[0],$offset[1]);
+	barcodeboxes($pid,$image,$fid,$transforms);
 
 	//singlechoiceguess
 	singlechoiceguess($pid,$fid);
@@ -82,7 +82,7 @@ function textbox($bid,$fid,$val)
 
 
 
-function charboxes($pid,$image,$fid,$offx,$offy)
+function charboxes($pid,$image,$fid,$transforms)
 {
 	global $db;
 
@@ -100,7 +100,7 @@ function charboxes($pid,$image,$fid,$offx,$offy)
 		if ($i['filled'] < OCR_FILL_MIN && OCR_ENABLED)
 		{		
 			include_once("functions.ocr.php");
-			$ocr = ocr(crop($image,calcoffset($i,$offx,$offy)));
+			$ocr = ocr(crop($image,applytransforms($i,$transforms)));
 			if (empty($ocr)) $ocr = " ";
 		}else
 		{
@@ -112,7 +112,7 @@ function charboxes($pid,$image,$fid,$offx,$offy)
 
 }
 
-function numberboxes($pid,$image,$fid,$offx,$offy)
+function numberboxes($pid,$image,$fid,$transforms)
 {
 	global $db;
 
@@ -129,7 +129,7 @@ function numberboxes($pid,$image,$fid,$offx,$offy)
 		if ($i['filled'] < OCR_FILL_MIN && OCR_ENABLED)
 		{		
 			include_once("functions.ocr.php");
-			$ocr = ocr(crop($image,calcoffset($i,$offx,$offy)));
+			$ocr = ocr(crop($image,applytransforms($i,$transforms)));
 			if (empty($ocr)) $ocr = " ";
 		}else
 		{
@@ -142,7 +142,7 @@ function numberboxes($pid,$image,$fid,$offx,$offy)
 }
 
 
-function barcodeboxes($pid,$image,$fid,$offx,$offy)
+function barcodeboxes($pid,$image,$fid,$transforms)
 {
 	global $db;
 
@@ -153,7 +153,7 @@ function barcodeboxes($pid,$image,$fid,$offx,$offy)
 
 	foreach ($boxes as $i)
 	{
-		$barval = barcode(crop($image,calcoffset($i,$offx,$offy)));
+		$barval = barcode(crop($image,applytransforms($i,$transforms)));
 
 		//print "{$i['bid']} - :$barval:<br/>";
 		textbox($i['bid'],$fid,$barval);
@@ -173,7 +173,7 @@ function boxfilled($bid,$fid,$filled)
 
 
 
-function fillboxes($pid,$image,$fid,$offx,$offy)
+function fillboxes($pid,$image,$fid,$transforms)
 {
 	global $db;
 
@@ -181,7 +181,7 @@ function fillboxes($pid,$image,$fid,$offx,$offy)
 
 	foreach ($boxes as $i)
 	{
-		$fill = fillratio($image,calcoffset($i,$offx,$offy));
+		$fill = fillratio($image,applytransforms($i,$transforms));
 	        //print "{$i['bid']} - $fill<br/>";
 		boxfilled($i['bid'],$fid,$fill);
 	}
@@ -347,6 +347,7 @@ function import($filename,$description = false){
 
 	//find the qid
 	$n = 1;
+
 	$file = $tmp . $n . ".png";
 	while (file_exists($file))
 	{
@@ -439,12 +440,25 @@ function import($filename,$description = false){
 					{
 	
 						//calc offset
-						$offset = offset($image,$page,1);
+						//$offset = offset($image,$page,1);
 		
+						//calc transforms
+						$transforms = detecttransforms($image,$page);
+
 						//save image to db including offset
 						$sql = "INSERT INTO formpages
-							(fid,pid,filename,image,offx,offy)
-							VALUES ('$fid','{$page["pid"]}','','" . addslashes($data) . "','{$offset[0]}','{$offset[1]}')";
+							(fid,pid,filename,image";
+						
+						foreach($transforms as $key => $val)
+							$sql .= ",$key";
+
+						$sql .=	")
+							VALUES ('$fid','{$page["pid"]}','','" . addslashes($data) . "'";
+
+						foreach($transforms as $key => $val)
+							$sql .= ",'$val'";
+
+						$sql .=	")";
 				
 						$db->Execute($sql);
 					}
@@ -452,7 +466,7 @@ function import($filename,$description = false){
 					if ($page['process'] == 1)
 					{		
 						//process variables on this page
-						processpage($page["pid"],$fid,$image,$offset);
+						processpage($page["pid"],$fid,$image,$transforms);
 					}
 				}
 			}

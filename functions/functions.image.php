@@ -24,6 +24,46 @@
 
 include_once(dirname(__FILE__).'/../config.inc.php');
 
+function keytoindex($a)
+{
+	$b = array();
+	$b[0] = $a['tlx'];
+	$b[1] = $a['tly'];
+	$b[2] = $a['trx'];
+	$b[3] = $a['try'];
+	$b[4] = $a['blx'];
+	$b[5] = $a['bly'];
+	$b[6] = $a['brx'];
+	$b[7] = $a['bry'];
+	return $b;
+}
+
+function indextokey($a)
+{
+	$b = array();
+	$b['tlx'] = $a[0];
+	$b['tly'] = $a[1];
+	$b['trx'] = $a[2];
+	$b['try'] = $a[3];
+	$b['blx'] = $a[4];
+	$b['bly'] = $a[5];
+	$b['brx'] = $a[6];
+	$b['bry'] = $a[7];
+	return $b;
+}
+
+/**
+* Validate a pixel location
+*/
+function validatepixel($a)
+{
+	if ($a[0] < 0) $a[0] = 0;
+	if ($a[1] < 0) $a[1] = 0;
+	if ($a[0] > PAGE_WIDTH) $a[0] = PAGE_WIDTH;
+	if ($a[1] > PAGE_HEIGHT) $a[1] = PAGE_HEIGHT;
+	return $a;
+}
+
 /* Use the presence of corner lines to see if the page is blank or not
  *
  */
@@ -108,6 +148,14 @@ function offset($image,$a,$compare = 1)
 	return $c;
 }
 
+function offsetxy($a,$offset)
+{
+	$b = array();
+	$b[0] = $a[0] + $offset[0];
+	$b[1] = $a[1] + $offset[1];
+	return $b;
+}
+
 
 function calcoffset($a,$ox=0,$oy=0)
 {
@@ -121,6 +169,173 @@ function calcoffset($a,$ox=0,$oy=0)
 	return $b;
 }
 
+
+/**
+* Detect the rotation, scale and offset of the given image 
+* Use the template page offsets for calculations of scale and offset
+*
+*/
+function detecttransforms($image,$page)
+{
+	$offset = offset($image,false,0);
+	$centroid = calccentroid($offset);
+	$rotate = calcrotate($offset);
+	$rotate = $rotate - $page['rotation'];
+
+	//rotate offset
+	for ($i = 0; $i <= 6; $i += 2)	
+		list($offset[$i],$offset[$i+1]) = rotate($rotate,array($offset[$i],$offset[$i+1]),$centroid);
+
+	$scale = calcscale($page,$offset);
+
+	//scale offset
+	for ($i = 0; $i <= 6; $i += 2)	
+		list($offset[$i],$offset[$i+1]) = scale($scale,array($offset[$i],$offset[$i+1]),$centroid);
+	
+	//calc offset
+	$offsetxy = array();
+	$offsetxy[0] = $page['tlx'] - $offset[0];
+	$offsetxy[1] = $page['tly'] - $offset[1];
+	
+	//reverse all values
+	$offsetxy[0] *= -1.0;
+	$offsetxy[1] *= -1.0;
+	$scale[0] = 1.0 / $scale[0];
+	$scale[1] = 1.0 / $scale[1];
+	$rotate *= -1.0;
+	
+	$transforms = array('offx' => $offsetxy[0], 'offy' => $offsetxy[1], 'scalex' => $scale[0], 'scaley' => $scale[1], 'centroidx' => $centroid[0], 'centroidy' => $centroid[1], 'costheta' => cos($rotate), 'sintheta' => sin($rotate));
+
+	return $transforms;
+}
+
+
+/**
+* 
+* @param array $a A box group to transform
+* @param array $transforms the transforms from the database offx,offy,centroidx,centroidy,scalex,scaley,costheta,sintheta
+*/
+function applytransforms($a,$transforms)
+{
+	$b = array();
+	$scale = array($transforms['scalex'],$transforms['scaley']);
+	$offsetxy = array($transforms['offx'],$transforms['offy']);
+	$centroid = array($transforms['centroidx'],$transforms['centroidy']);
+
+	list($b['tlx'],$b['tly']) = validatepixel(rotate(false,scale($scale,offsetxy(array($a['tlx'],$a['tly']),$offsetxy),$centroid),$centroid,$transforms['costheta'],$transforms['sintheta']));
+	list($b['brx'],$b['bry']) = validatepixel(rotate(false,scale($scale,offsetxy(array($a['brx'],$a['bry']),$offsetxy),$centroid),$centroid,$transforms['costheta'],$transforms['sintheta']));
+
+	return $b;
+}
+
+
+/**
+* Calculate the centroid of an image based on the corner lines
+*
+* @return array The x and y of the centroid
+*/
+function calccentroid($a)
+{
+	$b = array();
+
+	$xb = 0;
+	$yb = 0;
+	$xc = 0;
+	$yc = 0;
+
+	if ($a[0] != 0){ $xb += $a[0]; $xc++; }
+	if ($a[2] != 0){ $xb += $a[2]; $xc++; }
+	if ($a[4] != 0){ $xb += $a[4]; $xc++; }
+	if ($a[6] != 0){ $xb += $a[6]; $xc++; }
+
+	if ($a[1] != 0){ $yb += $a[1]; $yc++; }
+	if ($a[3] != 0){ $yb += $a[3]; $yc++; }
+	if ($a[5] != 0){ $yb += $a[5]; $yc++; }
+	if ($a[7] != 0){ $yb += $a[7]; $yc++; }
+
+	$b[0] = round($xb / $xc);
+	$b[1] = round($yb / $yc);
+
+	return $b;
+}
+
+/**
+* Calculate the amount of rotation of an image based on the corner lines
+*
+*/
+function calcrotate($a)
+{
+	//the angle at the top
+	// remember: sohcahtoa
+
+	$topangle = atan(($a[1] - $a[3]) / ($a[2] - $a[0]));
+	$bottomangle = atan(($a[5] - $a[7]) / ($a[6] - $a[4]));
+
+	$leftangle = atan(($a[0] - $a[4]) / ($a[1] - $a[5]));
+	$rightangle = atan(($a[2] - $a[6]) / ($a[3] - $a[7]));
+
+	//print "<p>ANGLES: $topangle $bottomangle $leftangle $rightangle</p>";
+	//take the average
+	return (($topangle + $bottomangle + $leftangle + $rightangle) / 4.0);
+}
+
+/**
+* Calculate the new pixel location based on the rotation and centroid
+*
+*
+*/
+function rotate($angle=false,$point,$centroid,$costheta=false,$sintheta=false)
+{
+	if ($angle != false)
+	{
+		$sintheta = sin($angle);
+		$costheta = cos($angle);
+	}
+	
+	$a = array();
+	$a[0] = round((($costheta*($point[0]-$centroid[0])) - ($sintheta*($point[1]-$centroid[1]))) + $centroid[0]);
+	$a[1] = round((($sintheta*($point[0]-$centroid[0])) + ($costheta*($point[1]-$centroid[1]))) + $centroid[1]);
+
+	return $a;
+}
+
+/**
+* Calculate the x and y scaling of the image based on the corner lines
+*
+* @param array $a An array containing the 4 corner coordinates of the existing image
+* @param array $b An array containing the 4 corner coordinates of the new image
+* @return array The scale factor on the x and y axis
+*/
+function calcscale($a,$b)
+{
+	$c = array();
+	
+	//Top and bottom horizontal - x - average
+	$c[0] = (((($a['trx'] - $a['tlx']) + ($a['brx'] - $a['blx'])) / 2.0) / ((($b[2] - $b[0]) + ($b[6] - $b[4])) / 2.0));
+	//Left vertical and Right vertical - y - average
+	$c[1] = (((($a['bly'] - $a['tly']) + ($a['bry'] - $a['try'])) / 2.0) / ((($b[5] - $b[1]) + ($b[7] - $b[3])) / 2.0));
+
+	return $c;
+}
+
+
+/**
+* Return a new pixel location based on the scale and centroid
+*
+*/
+function scale($scale,$point,$centroid)
+{
+	//calculate distance from centroid, multiply by scale and add to centroid
+	$dx = ($point[0] - $centroid[0]);
+	$dy = ($point[1] - $centroid[1]);
+
+	$c = array();
+
+	$c[0] = round(($dx*$scale[0]) + $centroid[0]);
+	$c[1] = round(($dy*$scale[1]) + $centroid[1]);
+
+	return $c;
+}
 
 
 function crop($image,$a)

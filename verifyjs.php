@@ -45,9 +45,9 @@ function bgidtocss($zoom = 1,$fid,$pid)
 
 	$boxgroups = $db->GetAll($sql);
 
-	$sql = "SELECT offx,offy 
-		FROM formpages
-		WHERE pid = $pid and fid = $fid";
+	$sql = "SELECT offx,offy,centroidx,centroidy,costheta,sintheta,scalex,scaley
+		FROM formpages as f
+		WHERE f.pid = $pid and f.fid = $fid";
 	
 	$row = $db->GetRow($sql);
 
@@ -73,7 +73,7 @@ function bgidtocss($zoom = 1,$fid,$pid)
 
 	foreach ($boxgroups as $boxgroup)
 	{
-		$crop = calcoffset($boxgroup,$row['offx'],$row['offy']);
+		$crop = applytransforms($boxgroup,$row);
 
 		$bgid = $boxgroup['bgid'];
 
@@ -105,8 +105,7 @@ function bgidtocss($zoom = 1,$fid,$pid)
 		$bbgid = $_SESSION['boxes'][$bid]['bgid'];
 		$btid = $_SESSION['boxes'][$bid]['btid'];
 
-		$box = calcoffset($box,$row['offx'],$row['offy']);
-
+		$box = applytransforms($box,$row);
 
 		if ($btid == 1) //single
 		{
