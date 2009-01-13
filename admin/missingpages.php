@@ -75,20 +75,28 @@ if (isset($_GET['npid']) && isset($_GET['mpid']) && isset($_GET['fid']))
 
 			if ($page['store'] == 1)
 			{
-				//calc offset
-				$offset = offset($image,$page,1);
-		
+				//calc transforms
+				$transforms = detecttransforms($image,$page);
+
 				//save image to db including offset
 				$sql = "INSERT INTO formpages
-					(fid,pid,filename,image,offx,offy)
-					VALUES ('$fid','{$page["pid"]}','','" . addslashes($im['image']) . "','{$offset[0]}','{$offset[1]}')";
-		
+					(fid,pid,filename,image";
+						
+				foreach($transforms as $key => $val)
+					$sql .= ",$key";
+					$sql .=	")
+					VALUES ('$fid','{$page["pid"]}','','" . addslashes($im['image']) . "'";
+
+				foreach($transforms as $key => $val)
+					$sql .= ",'$val'";
+					$sql .=	")";
+
 				$db->Execute($sql);
 			}
 			if ($page['process'] == 1)
 			{		
 				//process variables on this page
-				processpage($page["pid"],$fid,$image,$offset);
+				processpage($page["pid"],$fid,$image,$transforms);
 			}
 
 		}
