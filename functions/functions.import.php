@@ -155,7 +155,7 @@ function barcodeboxes($pid,$image,$fid,$transforms)
 	{
 		$barval = barcode(crop($image,applytransforms($i,$transforms)));
 
-		//print "{$i['bid']} - :$barval:<br/>";
+		//print "<p>{$i['bid']} - :$barval:</p>";
 		textbox($i['bid'],$fid,$barval);
 	}
 
@@ -517,6 +517,66 @@ function import($filename,$description = false){
 
 		$n++;
 		$file = $tmp . $n . ".png";	
+	}
+
+
+	//If only one page is missing, and one page in the missing pages database,
+	//assume this is the missing page and process it.
+	if (isset($fid))
+	{
+		$sql = "SELECT mpid, mp.image as mpimage, p.*
+			FROM forms AS f, pages AS p
+			LEFT JOIN formpages AS fp ON (fp.fid = '$fid' and fp.pid = p.pid )
+			LEFT JOIN missingpages as mp ON (mp.fid = '$fid')
+			WHERE f.fid = '$fid'
+			AND p.qid = f.qid
+			AND fp.pid IS NULL
+			AND mp.image is NOT NULL";
+
+		$rs = $db->GetAll($sql);
+
+		if (count($rs) == 1)
+		{
+			//There is one page in the missing database and one page missing from the form
+			$row = $rs[0];
+		
+			print "<p>Automatically processing the 1 missing page for this form - assuming pid: {$row['pid']}</p>";
+			
+			$mpid = $row['mpid'];
+			$image = imagecreatefromstring($row['mpimage']);
+
+			if ($row['store'] == 1)
+			{
+				//calc transforms
+				$transforms = detecttransforms($image,$row);
+
+				//save image to db including offset
+				$sql = "INSERT INTO formpages
+					(fid,pid,filename,image";
+						
+				foreach($transforms as $key => $val)
+					$sql .= ",$key";
+					$sql .=	")
+					VALUES ('$fid','{$row["pid"]}','','" . addslashes($row['mpimage']) . "'";
+
+				foreach($transforms as $key => $val)
+					$sql .= ",'$val'";
+					$sql .=	")";
+
+				$db->Execute($sql);
+			}
+			if ($row['process'] == 1)
+			{		
+				//process variables on this page
+				processpage($row["pid"],$fid,$image,$transforms);
+			}
+
+			$sql = "DELETE 
+				FROM missingpages
+				WHERE mpid = '$mpid'";
+
+			$db->Execute($sql);
+		}
 	}
 
 
