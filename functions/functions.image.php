@@ -369,6 +369,7 @@ function fillratio($image,$a)
 			//print $rgb . "<br/>\n";
 		}
 	}
+	if ($count == 0) return 0;
 	return $total/$count;
 }
 

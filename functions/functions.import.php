@@ -425,7 +425,7 @@ function import($filename,$description = false){
 
 				if (empty($page))
 				{
-					print "<p>Pid not identified for this page, inserting into <a href='missingpages.php'>missing pages</a>...</p>";
+					print "<p>Pid not identified for this page, inserting into missing pages...</p>";
 
 					//store in missing pages table
 					$sql = "INSERT INTO missingpages
@@ -479,7 +479,7 @@ function import($filename,$description = false){
 				}
 				else
 				{
-					print "<p>Could not get pid, inserting into <a href='missingpages.php'>missing pages</a>...</p>";
+					print "<p>Could not get pid, inserting into missing pages...</p>";
 
 					//store in missing pages table
 					$sql = "INSERT INTO missingpages
