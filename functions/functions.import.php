@@ -317,13 +317,39 @@ function multiplechoiceguess($pid,$fid)
  *
  *
  */
-function import($filename,$description = false){
+function import($filename,$description = false)
+{
+	global $db;
+
+	$filehash = sha1_file($filename);
+
+	//First check if this file can be imported
+	$sql = "SELECT pfid,allowanother
+		FROM processforms
+		WHERE filehash = '$filehash'
+		OR filepath = " . $db->qstr($filename,get_magic_quotes_gpc());
+
+	$pf = $db->GetAll($sql);
+
+	$pfid = false;
+
+	if (count($pf) >= 1)
+	{
+		if ($pf[0]['allowanother'] == 1) //update record instead of creating new one
+			$pfid = $pf[0]['pfid'];
+		else
+			return false; //this form has already been processed	
+	}
+	
+
+	//Import the file
+	print "<p>Importing: $filename</p>";
+
 
 	set_time_limit(240);
 
 	if (!$description) $description = $filename;
 
-	global $db;
 
 
 	//START TRANSACTION:
@@ -498,12 +524,67 @@ function import($filename,$description = false){
 			unset($image);
 			unset($barcode);
 		}
+
+		//Update or insert record in to processforms log database
+		if ($pfid == false)
+		{
+			//insert a new record as no existing for this form
+			$sql = "INSERT INTO processforms (pfid,filepath,filehash,date,status,allowanother)
+				VALUES (NULL,'$filename','$filehash',NOW(),1,0)";
+
+			$db->Execute($sql);
+
+			$pfid = $db->Insert_ID();
+		}
+		else
+		{	
+			//update exisiting record
+			$sql = "UPDATE processforms
+				SET date = NOW(),
+				filepath = '$filename',
+				filehash = '$filehash',
+				status = 1,
+				allowanother = 0
+				WHERE pfid = '$pfid'";
+
+			$db->Execute($sql);
+		}
+
+		//Update form table with pfid
+		$sql = "UPDATE forms
+			SET pfid = '$pfid'
+			WHERE fid = '$fid'";
+
+		$db->Execute($sql);
 	}
 	else
 	{
 		//form could not be identified...
 		//do nothing?
 		print "<p>Could not get qid...</p>";
+	
+		//Update or insert record in to processforms log database
+		if ($pfid == false)
+		{
+			//insert a new record as no existing for this form
+			$sql = "INSERT INTO processforms (pfid,filepath,filehash,date,status,allowanother)
+				VALUES (NULL,'$filename','$filehash',NOW(),2,0)";
+
+			$db->Execute($sql);
+		}
+		else
+		{	
+			//update exisiting record
+			$sql = "UPDATE processforms
+				SET date = NOW(),
+				filepath = '$filename',
+				filehash = '$filehash',
+				status = 2,
+				allowanother = 0
+				WHERE pfid = '$pfid'";
+
+			$db->Execute($sql);
+		}
 	}
 
 
@@ -582,6 +663,8 @@ function import($filename,$description = false){
 
 	//complete transaction
 	$db->CommitTrans();
+
+	return true;
 }
 
 
@@ -600,10 +683,12 @@ function import_directory($dir)
 			{
 				if (substr($file,-3) == "pdf")
 				{
-					print "<p>$file</p>";
-			                 import("$dir/$file");
+					//print "<p>$file</p>";
+			                $r = import("$dir/$file");
+					if ($r == false)
+						print "<p>File already in database</p>";
 					 //unlink($file);
-					 rename("$dir/$file","$dir/$file.done");
+					 //rename("$dir/$file","$dir/$file.done");
 				}
 			}
 		}

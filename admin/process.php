@@ -59,6 +59,7 @@ while (!is_process_killed($process_id))
 
 	if ($handle) 
 	{
+		print date(DATE_RFC822) . " Watching...";
 		$filedone = 0;
 		while ((false !== ($file = readdir($handle))) && $filedone == 0 ) 
 		{
@@ -66,11 +67,11 @@ while (!is_process_killed($process_id))
 			{
 				if (substr($file,-3) == "pdf")
 				{
-					print "$dir/$file";
-			                import("$dir/$file");
+			                $r = import("$dir/$file");
 					//unlink($file);
-					rename("$dir/$file","$dir/$file.done");
-					$filedone = 1;
+					//rename("$dir/$file","$dir/$file.done");
+					if ($r != false)
+						$filedone = 1;
 				}
 			}
 		}

@@ -372,11 +372,13 @@ CREATE TABLE IF NOT EXISTS `forms` (
   `fid` bigint(20) NOT NULL auto_increment,
   `qid` bigint(20) NOT NULL,
   `description` text NOT NULL,
+  `pfid` bigint(20) default NULL,
   `assigned_vid` bigint(20) default NULL,
   `done` int(11) NOT NULL default '0',
   PRIMARY KEY  (`fid`),
   KEY `assigned_vid` (`assigned_vid`),
-  KEY `done` (`done`)
+  KEY `done` (`done`),
+  KEY `pfid` (`pfid`)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -473,6 +475,24 @@ CREATE TABLE `process` (
   `data` longtext collate utf8_unicode_ci NOT NULL,
   PRIMARY KEY  (`process_id`)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `processforms`
+--
+
+CREATE TABLE `processforms` (
+  `pfid` bigint(20) NOT NULL auto_increment,
+  `filepath` varchar(1024) collate utf8_unicode_ci NOT NULL,
+  `filehash` char(40) collate utf8_unicode_ci NOT NULL,
+  `date` datetime NOT NULL,
+  `status` tinyint(1) NOT NULL default '0',
+  `allowanother` tinyint(1) NOT NULL default '0',
+  PRIMARY KEY  (`pfid`),
+  KEY `filepath` (`filepath`(255)),
+  KEY `filehash` (`filehash`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 

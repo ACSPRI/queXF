@@ -44,6 +44,9 @@ xhtml_head("queXF Administrative Functions",true,array("../css/admin.css"),array
 <li><a href="javascript:link('mainobj','verifierquestionnaire.php');">Assign forms to operators</a></li></ul></li>
 <li><h3>Importing</h3>
 <ul><li><a href="javascript:link('mainobj','import.directory.php');">Import a directory of PDF files</a></li>
+<li><a href="javascript:link('mainobj','listfiles.php?status=1');">Successfully imported files</a></li>
+<li><a href="javascript:link('mainobj','listfiles.php?status=2');">Failed imported files</a></li>
+<li><a href="javascript:link('mainobj','listduplicates.php');">Duplicate forms</a></li>
 <li><a href="javascript:link('mainobj','missingpages.php');">Handle missing pages</a></li></ul></li>
 <li><h3>Output</h3>
 <ul><li><a href="javascript:link('mainobj','output.php');">Output data/ddi</a></li></ul></li>
