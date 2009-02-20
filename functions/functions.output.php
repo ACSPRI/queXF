@@ -254,7 +254,7 @@ function outputdatacsv($qid,$fid = "")
 /*
  * Fixed width data output */
 
-function outputdata($qid,$fid = "")
+function outputdata($qid,$fid = "", $header =true)
 {
 	global $db;
 
@@ -281,12 +281,13 @@ function outputdata($qid,$fid = "")
 
 	$forms = $db->GetAll($sql);
 
-
-	header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-	header ("Content-Type: text/ascii");
-	header ("Content-Length: ");
-	header ("Content-Disposition: attachment; filename=temp.dat");
-
+	if ($header)
+	{
+		header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+		header ("Content-Type: text/ascii");
+		header ("Content-Length: ");
+		header ("Content-Disposition: attachment; filename=temp.dat");
+	}
 
 	foreach ($forms as $form)
 	{
@@ -528,6 +529,93 @@ function export_ddi($qid)
 	echo $ret;
 
 }
+
+
+/**
+ * Escape a string to work properly with PSPP
+ *
+ * @param string $string The string to escape
+ * @param int $length The maximum length of the string
+ * @return string The escaped and cut string
+ */
+function pspp_escape($string,$length = 250)
+{
+	$from = array("'", "\r\n", "\n");
+	$to   = array("", "", "");
+	return substr(str_replace($from, $to, $string),0,$length);
+}
+
+
+/**
+ * Export the data in PSPP form (may also work with SPSS)
+ *
+ * @param int qid The qid to export
+ *
+ */
+function export_pspp($qid)
+{
+	global $db;
+
+	header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+	header ("Content-Type: text");
+	header ("Content-Disposition: attachment; filename=data_$qid.sps");
+
+
+	echo "DATA LIST FIXED /";
+
+	$sql = "SELECT bgid, btid, varname, count( bid ) as count,width
+		FROM boxesgroupstypes
+		WHERE qid = '$qid'
+		AND btid > 0
+		GROUP BY bgid
+		ORDER BY sortorder";
+
+	$cols = $db->GetAll($sql);
+
+	$startpos = 1;
+	$width = 0;
+
+	foreach ($cols as $col)
+	{
+		$varname = $col['varname'];
+		$length = $row['count'];
+		$vartype = " ";
+		if ($row['btid'] == 1) $length = strlen($row['count']);
+		if ($row['btid'] == 3 || $row['btid'] == 6) $vartype = "(A) ";
+		if ($row['btid'] == 6 || $row['btid'] == 5) $length = $row['width'];
+
+		$startpos = $startpos + $width;
+
+		$width = $length;
+		
+		$endpos = ($startpos + $width) - 1;
+
+		echo "$varname $startpos-$endpos $vartype";
+	}
+
+	echo "\nVARIABLE LABELS ";
+
+	$first = true;
+	foreach ($cols as $col)
+	{
+		$vardescription = pspp_escape($col['varname']);
+		$varname = $col['varname'];
+		
+		if ($first)			
+			$first = false;
+		else
+			echo "/";
+
+		echo "$varname '$vardescription' ";
+	}
+
+	echo "\nBEGIN DATA.\n";
+
+	outputdata($qid,"",false);
+
+	echo "END DATA.\n";
+}
+
 
 
 

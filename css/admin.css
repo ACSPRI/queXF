@@ -29,6 +29,7 @@
   bottom : auto;
   left : 0;
   overflow: auto;
+  font-size: 0.8em;
   /*border-bottom: 1px solid #aaa;*/
 }
 #main {

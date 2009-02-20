@@ -327,7 +327,7 @@ function import($filename,$description = false)
 	$sql = "SELECT pfid,allowanother
 		FROM processforms
 		WHERE filehash = '$filehash'
-		OR filepath = " . $db->qstr($filename,get_magic_quotes_gpc());
+		OR filepath = " . $db->qstr($filename);
 
 	$pf = $db->GetAll($sql);
 
@@ -621,7 +621,7 @@ function import($filename,$description = false)
 			//There is one page in the missing database and one page missing from the form
 			$row = $rs[0];
 		
-			print "<p>Automatically processing the 1 missing page for this form - assuming pid: {$row['pid']}</p>";
+			print "<p>Automatically processing the 1 missing page for this form - assuming pid: {$row['pid']} - {$row['pidentifierval']}</p>";
 			
 			$mpid = $row['mpid'];
 			$image = imagecreatefromstring($row['mpimage']);
