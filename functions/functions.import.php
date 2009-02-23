@@ -321,6 +321,8 @@ function import($filename,$description = false)
 {
 	global $db;
 
+	set_time_limit(240);
+	
 	$filehash = sha1_file($filename);
 
 	//First check if this file can be imported
@@ -346,7 +348,6 @@ function import($filename,$description = false)
 	print "<p>Importing: $filename</p>";
 
 
-	set_time_limit(240);
 
 	if (!$description) $description = $filename;
 

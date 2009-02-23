@@ -78,7 +78,7 @@ while (!is_process_killed($process_id))
 		closedir($handle);
 
 		if ($filedone == 0) //only sleep when no form processed
-			sleep(3600); //sleep for an hour
+			sleep(PROCESS_SLEEP); //sleep
 	}
 	else
 	{

@@ -162,4 +162,6 @@ if (!defined('VAS_LENGTH_MAX')) define('VAS_LENGTH_MAX',1236); //Length in pixel
 if (!defined('VAS_BOXES')) define('VAS_BOXES',100); //Number of boxes to generate for a VAS line
 if (!defined('VAS_BOX_WIDTH')) define('VAS_BOX_WIDTH',12); //width of VAS boxes generated in pixels
 
+//Time to wait before checking directory for new files (in seconds)
+if (!defined('PROCESS_SLEEP')) define('PROCESS_SLEEP',3600); 
 ?>
