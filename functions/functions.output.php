@@ -563,7 +563,7 @@ function export_pspp($qid)
 
 	echo "DATA LIST FIXED /";
 
-	$sql = "SELECT bgid, btid, varname, count( bid ) as count,width
+	$sql = "SELECT bgid, btid, (CASE WHEN varname = '' THEN CONCAT('Q_',bgid) ELSE varname END) as varname, count( bid ) as count,width
 		FROM boxesgroupstypes
 		WHERE qid = '$qid'
 		AND btid > 0
@@ -578,11 +578,11 @@ function export_pspp($qid)
 	foreach ($cols as $col)
 	{
 		$varname = $col['varname'];
-		$length = $row['count'];
+		$length = $col['count'];
 		$vartype = " ";
-		if ($row['btid'] == 1) $length = strlen($row['count']);
-		if ($row['btid'] == 3 || $row['btid'] == 6) $vartype = "(A) ";
-		if ($row['btid'] == 6 || $row['btid'] == 5) $length = $row['width'];
+		if ($col['btid'] == 1) $length = strlen($col['count']);
+		if ($col['btid'] == 3 || $col['btid'] == 6) $vartype = "(A) ";
+		if ($col['btid'] == 6 || $col['btid'] == 5) $length = $col['width'];
 
 		$startpos = $startpos + $width;
 
