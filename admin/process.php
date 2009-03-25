@@ -57,7 +57,7 @@ $sleepinterval = 10;
 
 while (!is_process_killed($process_id)) //check if process killed every $sleepinterval
 {
-	if ($sleeptime >= PROCESS_SLEEP)
+	if ($sleeptime >= PROCESS_SLEEP || $filedone == 1)
 	{
 		//read directory listing and process one file at a time
 		$handle = opendir($dir);
