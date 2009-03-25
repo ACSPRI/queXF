@@ -52,38 +52,48 @@ ob_start('update_callback',2);
 
 print "Processing directory: $dir";
 
-while (!is_process_killed($process_id))
-{
-	//read directory listing and process one file at a time
-	$handle = opendir($dir);
+$sleeptime = PROCESS_SLEEP;
+$sleepinterval = 10;
 
-	if ($handle) 
+while (!is_process_killed($process_id)) //check if process killed every $sleepinterval
+{
+	if ($sleeptime >= PROCESS_SLEEP)
 	{
-		print date(DATE_RFC822) . " Watching...";
-		$filedone = 0;
-		while ((false !== ($file = readdir($handle))) && $filedone == 0 ) 
+		//read directory listing and process one file at a time
+		$handle = opendir($dir);
+	
+		if ($handle) 
 		{
-			if ($file != "." && $file != ".." && substr($file,-4) != "done")
+			print date(DATE_RFC822) . " Watching...";
+			$filedone = 0;
+			while ((false !== ($file = readdir($handle))) && $filedone == 0 ) 
 			{
-				if (substr($file,-3) == "pdf")
+				if ($file != "." && $file != ".." && substr($file,-4) != "done")
 				{
-			                $r = import("$dir/$file");
-					//unlink($file);
-					//rename("$dir/$file","$dir/$file.done");
-					if ($r != false)
-						$filedone = 1;
+					if (substr($file,-3) == "pdf")
+						{
+				                $r = import("$dir/$file");
+						//unlink($file);
+						//rename("$dir/$file","$dir/$file.done");
+						if ($r != false)
+							$filedone = 1;
+					}
 				}
 			}
+			closedir($handle);
+	
+			$sleeptime = 0; //reset sleep counter
 		}
-		closedir($handle);
-
-		if ($filedone == 0) //only sleep when no form processed
-			sleep(PROCESS_SLEEP); //sleep
+		else
+		{
+			print "Cannot process this directory - check that it is valid and permissions are correct";
+			break; //break the loop
+		}
 	}
 	else
 	{
-		print "Cannot process this directory - check that it is valid and permissions are correct";
-		break; //break the loop
+		sleep($sleepinterval);
+		$sleeptime += $sleepinterval;
 	}
 }
 
