@@ -150,8 +150,8 @@ if (isset($_GET['filename']))
 			
 
 		print "<div id=\"imageimage\">";
-		$w = floor(PAGE_WIDTH / $zoom);
-		$h = floor(PAGE_HEIGHT / $zoom);
+		$w = floor($fwidth / $zoom);
+		$h = floor($fheight / $zoom);
 		print "<img id=\"sampleid\" src=\"../showpage.php?";
 		if(isset($_GET['filename'])) 
 			print "filename=" . $_GET['filename'] . "$pid.png";

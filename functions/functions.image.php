@@ -24,6 +24,22 @@
 
 include_once(dirname(__FILE__).'/../config.inc.php');
 
+
+/**
+ * Integer division
+ * 
+ * @param $x 
+ * @param $y
+ * @return the result of x/y or FALSE if div by 0
+ *
+ * sourced from: http://us.php.net/manual/en/language.operators.arithmetic.php#76887
+ */
+function int_divide($x, $y) {
+    if ($x == 0) return 0;
+    if ($y == 0) return FALSE;
+    return ($x - ($x % $y)) / $y;
+}
+
 function keytoindex($a)
 {
 	$b = array();
@@ -382,11 +398,11 @@ function horiliney($tlx,$tly,$brx,$bry,$image,$approxw)
 	//0 is black, 1 is white
 	$y = 0;
 	//try 10 times to find start of line
-	$xadd = (($brx - $tlx) / 10);
+	$xadd = int_divide(($brx - $tlx), 10);
 	$s = array();
 	$count = 0;
 	$avg = 0;
-	$tolerance = $approxw / 3;
+	$tolerance = int_divide($approxw, 3);
 	for ($x = $tlx; $x < $brx; $x+=$xadd) {
 		$col = imagecolorat($image, $x, $y);
 		$width = 1;
@@ -396,7 +412,7 @@ function horiliney($tlx,$tly,$brx,$bry,$image,$approxw)
 			if ($rgb != $col){
 				if ($width >= $approxw - $tolerance && $width <= $approxw + $tolerance && $col == 0){
 					//record middle of line
-					$s[$start + ($width / 2)] = $x;
+					$s[$start + int_divide($width, 2)] = $x;
 					//$count++;
 					//$avg += $start;
 				}
@@ -411,9 +427,11 @@ function horiliney($tlx,$tly,$brx,$bry,$image,$approxw)
 	}
 	//s is an array of with key being y val of middle of line, value being x val
 
+	//print_r($s);
+
 	//run a scanline through the key val to determine the longest line
 	$line = 0;
-	$longest = 0;
+	$longest = key($s);
 	foreach($s as $y => $xval)
 	{
 		$col = imagecolorat($image, $tlx, $y);
@@ -448,11 +466,11 @@ function vertlinex($tlx,$tly,$brx,$bry,$image,$approxw)
 	//0 is black, 1 is white
 	$x = 0;
 	//try 10 times to find start of line
-	$yadd = (($bry - $tly) / 10);
+	$yadd = int_divide(($bry - $tly) ,10);
 	$s = array();
 	$count = 0;
 	$avg = 0;
-	$tolerance = $approxw / 3;
+	$tolerance = int_divide($approxw, 3);
 	for ($y = $tly; $y < $bry; $y+=$yadd) {
 		$col = imagecolorat($image, $x, $y);
 		$width = 0;
@@ -461,7 +479,7 @@ function vertlinex($tlx,$tly,$brx,$bry,$image,$approxw)
 			$rgb = imagecolorat($image, $x, $y);
 			if ($rgb != $col){
 				if ($width >= $approxw - $tolerance && $width <= $approxw + $tolerance && $col == 0){
-					$s[$start + ($width / 2)] = $y;
+					$s[$start + int_divide($width, 2)] = $y;
 					$count++;
 					$avg += $start;
 				}
@@ -476,7 +494,7 @@ function vertlinex($tlx,$tly,$brx,$bry,$image,$approxw)
 	}
 
 	$line = 0;
-	$longest = 0;
+	$longest = key($s);
 	foreach($s as $x => $yval)
 	{
 		$col = imagecolorat($image, $x, $tly);
