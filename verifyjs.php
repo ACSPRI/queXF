@@ -169,11 +169,15 @@ $fid = get_fid($vid);
 if (isset($_GET['centre']) && isset($_GET['fid']) && isset($_GET['pid']) )
 {
 	$pid = $_GET['pid'];
+	$cx = round(PAGE_WIDTH / 2);
+	$cy = round(PAGE_HEIGHT / 2);
 
 	$sql = "UPDATE formpages
-		SET offx = 0, offy = 0
+		SET offx = 0, offy = 0, costheta = 1, sintheta = 0, scalex = 1, scaley = 1, `centroidy` = '$cy', `centroidx` = '$cx'
 		WHERE fid = '$fid'
 		AND pid = '$pid'";
+
+	
 
 	$db->Execute($sql);
 }
