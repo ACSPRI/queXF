@@ -25,6 +25,7 @@
 
 include_once("config.inc.php");
 include_once("db.inc.php");
+include_once("functions/functions.xhtml.php");
 
 
 /* Create a box group in the DB
@@ -226,7 +227,7 @@ if (isset($_GET['bgid']) || isset($_GET['bid']))
 
 	print T_("Group type:");
 	translate_array($rs,array("description"));
-	display_chooser($rs,"btid","btid",false,false,false,true,false);
+	display_chooser($rs,"btid","btid",false,false,false,false,false);
 
 	//display variable name
 	?><br/><? echo T_("Variable name:"); ?> <input type="text" size="12" value="<? echo $varname; ?>" name="varname"><br/><?

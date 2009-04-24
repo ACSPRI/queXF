@@ -74,7 +74,7 @@ foreach($qs as $q)
 	print "><td>{$q['description']}</td><td>{$q['done']}</td><td>{$q['remain']}</td><td>$rtotal</td></tr>";
 }
 $rtotal = $done + $remain;
-print "<tr><td>" T_("Total") . ":</td><td>$done</td><td>$remain</td><td>$rtotal</td></tr>";
+print "<tr><td>" . T_("Total") . ":</td><td>$done</td><td>$remain</td><td>$rtotal</td></tr>";
 print "</table>";
 
 xhtml_foot();

@@ -53,10 +53,10 @@ if ($cid)
 	
 	?>
 	<form action="" method="get">
-	<div>Form: <input type="text" size="5" name="fid" value="<? echo $fid ?>"/>
-		Variable: <input type="text" size="9" name="var" value="<? echo $var ?>"/>
-		Page: <input type="text" size="4" name="pid" value="<? echo $pid ?>"/>
-		<input type="submit" value="Review"/></div>
+	<div><? echo T_("Form:"); ?> <input type="text" size="5" name="fid" value="<? echo $fid ?>"/>
+		<? echo T_("Variable:"); ?> <input type="text" size="9" name="var" value="<? echo $var ?>"/>
+		<? echo T_("Page:"); ?> <input type="text" size="4" name="pid" value="<? echo $pid ?>"/>
+		<input type="submit" value="<? echo T_("Review"); ?>"/></div>
 	</form>
 	
 	<?

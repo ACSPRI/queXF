@@ -53,49 +53,6 @@ define('TEMPORARY_DIRECTORY', "/tmp");
 //OCR requires CONVERT_BIN (imagemagick convert binary) and TESSERACT_BIN (tessearct binary) to be enabled
 define('OCR_ENABLED', false);
 
-define('CONVERT_BIN', "/usr/bin/convert");
-define('TESSERACT_BIN', "/usr/bin/tesseract");
-
-
-define('PAGE_WIDTH',2480);
-define('PAGE_HEIGHT',3508);
-define('TL_VERT_TLX',135);
-define('TL_VERT_TLY',90);
-define('TL_VERT_BRX',366);
-define('TL_VERT_BRY',504);
-define('TL_HORI_TLX',135);
-define('TL_HORI_TLY',93);
-define('TL_HORI_BRX',531);
-define('TL_HORI_BRY',288);
-define('TR_VERT_TLX',2208);
-define('TR_VERT_TLY',90);
-define('TR_VERT_BRX',2397);
-define('TR_VERT_BRY',480);
-define('TR_HORI_TLX',1980);
-define('TR_HORI_TLY',90);
-define('TR_HORI_BRX',2370);
-define('TR_HORI_BRY',279);
-define('BL_VERT_TLX',114);
-define('BL_VERT_TLY',2865);
-define('BL_VERT_BRX',351);
-define('BL_VERT_BRY',3333);
-define('BL_HORI_TLX',117);
-define('BL_HORI_TLY',3105);
-define('BL_HORI_BRX',618);
-define('BL_HORI_BRY',3360);
-define('BR_VERT_TLX',2145);
-define('BR_VERT_TLY',2853);
-define('BR_VERT_BRX',2376);
-define('BR_VERT_BRY',3315);
-define('BR_HORI_TLX',1872);
-define('BR_HORI_TLY',3141);
-define('BR_HORI_BRX',2364);
-define('BR_HORI_BRY',3378);
-define('BARCODE_TLX',1500);
-define('BARCODE_TLY',3);
-define('BARCODE_BRX',2325);
-define('BARCODE_BRY',198);
-
 
 //Do not remove the following line:
 include(dirname(__FILE__) . '/config.default.php');

@@ -64,7 +64,7 @@ $qs = $db->GetAll($sql);
 
 foreach ($qs as $q)
 {
-	print "<p>{$q['description']}: <a href=\"{$_SERVER['PHP_SELF']}?data={$q['qid']}\">" T_("Data") . "</a> <a href=\"{$_SERVER['PHP_SELF']}?ddi={$q['qid']}\">DDI</a> <a href=\"{$_SERVER['PHP_SELF']}?csv={$q['qid']}\">CSV</a> <a href=\"{$_SERVER['PHP_SELF']}?pspp={$q['qid']}\">PSPP (SPSS)</a></p>";
+	print "<p>{$q['description']}: <a href=\"{$_SERVER['PHP_SELF']}?data={$q['qid']}\">" . T_("Data") . "</a> <a href=\"{$_SERVER['PHP_SELF']}?ddi={$q['qid']}\">DDI</a> <a href=\"{$_SERVER['PHP_SELF']}?csv={$q['qid']}\">CSV</a> <a href=\"{$_SERVER['PHP_SELF']}?pspp={$q['qid']}\">PSPP (SPSS)</a></p>";
 }
 
 xhtml_foot();

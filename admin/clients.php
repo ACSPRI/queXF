@@ -85,7 +85,7 @@ if ($a)
 <form enctype="multipart/form-data" action="" method="post">
 	<p><? echo T_("Enter the username of a client to add:"); ?> <input name="client" type="text"/></p>
 	<p><? echo T_("Enter the description of the client to add:"); ?> <input name="description" type="text"/></p>
-	<p><input type="submit" value="Add user" /></p>
+	<p><input type="submit" value="<? echo T_("Add user"); ?>" /></p>
 </form>
 
 <?

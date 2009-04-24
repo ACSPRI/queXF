@@ -123,7 +123,7 @@ if (isset($_GET['filename']))
 	}
 	print "<br/>";
 
-	print "<div id='configarea'><p>" T_("Configuration settings (copy and paste in to config.inc.php)") . "</p><div id='pagesize'><div>define('PAGE_WIDTH',$fwidth);</div><div>define('PAGE_HEIGHT',$fheight);</div></div><div id='config'></div></div>";
+	print "<div id='configarea'><p>" . T_("Configuration settings (copy and paste in to config.inc.php)") . "</p><div id='pagesize'><div>define('PAGE_WIDTH',$fwidth);</div><div>define('PAGE_HEIGHT',$fheight);</div></div><div id='config'></div></div>";
 
 
 	if (isset($_GET['pid']))
@@ -133,7 +133,7 @@ if (isset($_GET['filename']))
 		print " <a href=\"?zoom=$zoomup&amp;pid=$pid";
 		if(isset($_GET['filename'])) 
 			print "&amp;filename=" . $_GET['filename'];
-		print "\">" T_("Increase zoom") . "</a> <a href=\"?zoom=$zoomdown&amp;pid=$pid";
+		print "\">" . T_("Increase zoom") . "</a> <a href=\"?zoom=$zoomdown&amp;pid=$pid";
 		if(isset($_GET['filename'])) 
 			print "&amp;filename=" . $_GET['filename'];
 		print "\">" . T_("Decrease zoom") . "</a><br/> ";

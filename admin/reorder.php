@@ -118,7 +118,7 @@ if (isset($_GET['qid']))
 
 		print "<p>" . T_("Reorder variables by dragging and dropping, then clicking on 'Save Changes' below") . "</p>";
 
-		print "<p><a href='reorder.php'>" . T _("Click here") . "</a> " . T_("to return without saving changes") . "</p>";
+		print "<p><a href='reorder.php'>" . T_("Click here") . "</a> " . T_("to return without saving changes") . "</p>";
 
 		print "<ul id='phoneticlong' class='boxy'>";
 		foreach($vars as $var)
