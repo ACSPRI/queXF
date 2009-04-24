@@ -22,6 +22,7 @@
  */
 
 include("functions/functions.xhtml.php");
+include("lang.inc.php");
 
 xhtml_head();
 ?>
