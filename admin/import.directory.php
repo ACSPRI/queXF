@@ -41,22 +41,22 @@ if ($p)
 	if (isset($_GET['kill']))
 		kill_process($p);
 
-	xhtml_head("Import a directory of PDF files",true,false,false,false,10);
+	xhtml_head(T_("Import a directory of PDF files"),true,false,false,false,10);
 
-	print "<h1>Process $p running...</h1>";
+	print "<h1>" . T_("Process") . " $p " . T_("running...") . "</h1>";
 
-	print "<h2>Note: This page will automatically refresh every 10 seconds</h2>";
+	print "<h2>" . T_("Note: This page will automatically refresh every 10 seconds") . "</h2>";
 
 	if (is_process_killed($p))
-		print "<h3>Kill signal sent: Please wait...</h3>";
+		print "<h3>" . T_("Kill signal sent: Please wait..." ) . "</h3>";
 	else
-		print "<p><a href='?kill=kill'>Kill the running process</a> (may take up to a few minutes to take effect)</p>";
+		print "<p><a href='?kill=kill'>" . T_("Kill the running process") . "</a> (" . T_("may take up to a few minutes to take effect") .")</p>";
 
 	print process_get_data($p);
 }
 else
 {
-	xhtml_head("Import a directory of PDF files");
+	xhtml_head(T_("Import a directory of PDF files"));
 
 	if (isset($_POST['dir']) && isset($_POST['process']))
 	{
@@ -65,15 +65,15 @@ else
 	}
 
 	?>	
-	<h1>Directory</h1>
+	<h1><? echo T_("Directory"); ?></h1>
 	<form enctype="multipart/form-data" action="?" method="post">
-	<p>Enter directory local to the server (eg /mnt/iss/tmp/images): <input name="dir" type="text" value="<? echo realpath("../doc/filled"); ?>"/></p>
-	<p><input name='process' id='process' type="submit" value="Process directory: browser window must remain open" /></p>
-	<p><input name='watch' id='watch' type="submit" value="Watch this directory in the background (recommended)" /></p>
+	<p><? echo T_("Enter directory local to the server (eg /mnt/iss/tmp/images)"); ?>: <input name="dir" type="text" value="<? echo realpath("../doc/filled"); ?>"/></p>
+	<p><input name='process' id='process' type="submit" value="<? echo T_("Process directory: browser window must remain open"); ?>" /></p>
+	<p><input name='watch' id='watch' type="submit" value="<? echo T_("Watch this directory in the background (recommended)"); ?>" /></p>
 	</form>
 	<?
 
-	print "<h2>Outcome of last process run (if any)</h2>";
+	print "<h2>" . T_("Outcome of last process run (if any)") . "</h2>";
 	print process_get_last_data();
 }
 xhtml_foot();

@@ -378,7 +378,7 @@ function import($filename,$description = false)
 	$file = $tmp . $n . ".png";
 	while (file_exists($file))
 	{
-		print "<p>Finding qid...</p>";
+		print "<p>" . T_("Finding qid") . "...</p>";
 
 		//open file
 		$data = file_get_contents($file);
@@ -415,7 +415,7 @@ function import($filename,$description = false)
 
 	if ($qid != "")
 	{
-		print "<p>Got qid: $qid...</p>";
+		print "<p>" . T_("Got qid") . ": $qid...</p>";
 
 		//create form entry in DB
 		$sql = "INSERT INTO forms (fid,qid,description)
@@ -441,7 +441,7 @@ function import($filename,$description = false)
 			$pid = barcode($barcode);
 			if ($pid)
 			{
-				print "<p>Processing pid: $pid...</p>";
+				print "<p>" . T_("Processing pid") . ": $pid...</p>";
 
 				//get the page id from the page table
 				$sql = "SELECT * FROM pages
@@ -452,7 +452,7 @@ function import($filename,$description = false)
 
 				if (empty($page))
 				{
-					print "<p>Pid not identified for this page, inserting into missing pages...</p>";
+					print "<p>" . T_("Pid not identified for this page, inserting into missing pages...") . "</p>";
 
 					//store in missing pages table
 					$sql = "INSERT INTO missingpages
@@ -501,12 +501,12 @@ function import($filename,$description = false)
 			{
 				if(BLANK_PAGE_DETECTION && is_blank_page($image))
 				{
-					print "<p>Blank page: ignoring</p>";
+					print "<p>". T_("Blank page: ignoring") . "</p>";
 					//let this page dissolve into the ether
 				}
 				else
 				{
-					print "<p>Could not get pid, inserting into missing pages...</p>";
+					print "<p>". T_("Could not get pid, inserting into missing pages...") . "</p>";
 
 					//store in missing pages table
 					$sql = "INSERT INTO missingpages
@@ -562,7 +562,7 @@ function import($filename,$description = false)
 	{
 		//form could not be identified...
 		//do nothing?
-		print "<p>Could not get qid...</p>";
+		print "<p>" . T_("Could not get qid...") . "</p>";
 	
 		//Update or insert record in to processforms log database
 		if ($pfid == false)
@@ -622,7 +622,7 @@ function import($filename,$description = false)
 			//There is one page in the missing database and one page missing from the form
 			$row = $rs[0];
 		
-			print "<p>Automatically processing the 1 missing page for this form - assuming pid: {$row['pid']} - {$row['pidentifierval']}</p>";
+			print "<p>" . T_("Automatically processing the 1 missing page for this form - assuming pid:"). " {$row['pid']} - {$row['pidentifierval']}</p>";
 			
 			$mpid = $row['mpid'];
 			$image = imagecreatefromstring($row['mpimage']);
@@ -687,7 +687,7 @@ function import_directory($dir)
 					//print "<p>$file</p>";
 			                $r = import("$dir/$file");
 					if ($r == false)
-						print "<p>File already in database</p>";
+						print "<p>" . T_("File already in database") . "</p>";
 					 //unlink($file);
 					 //rename("$dir/$file","$dir/$file.done");
 				}

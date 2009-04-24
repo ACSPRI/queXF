@@ -132,7 +132,7 @@ if (isset($_GET['npid']) && isset($_GET['mpid']) && isset($_GET['fid']))
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>MISSING PAGES</title>
+<title><? echo T_("Missing Pages"); ?></title>
 <style type="text/css">
 #topper {
   position : fixed;
@@ -207,7 +207,7 @@ if (isset($r['fid']))
 
 	
 	print "<div id=\"left\">";
-	print "<img src=\"../showmissingpage.php?mpid=$mpid\" style=\"width: 100%;\" alt=\"Missing page $mpid\"/> ";
+	print "<img src=\"../showmissingpage.php?mpid=$mpid\" style=\"width: 100%;\" alt=\"". T_("Missing page") . " $mpid\"/> ";
 	print "</div>";
 
 	//display possible pages within set to assign to
@@ -254,7 +254,7 @@ if (isset($r['fid']))
 			{
 				$npid = $np['pid'];
 				$qid = $np['qid'];
-				print "<img src=\"../showpage.php?qid=$qid&amp;pid=$npid\" style=\"width: 100%;\" alt=\"Page $npid of Form $qid\"/>";
+				print "<img src=\"../showpage.php?qid=$qid&amp;pid=$npid\" style=\"width: 100%;\" alt=\"" . T_("Page") . " $npid " . T_("of Form") . " $qid\"/>";
 			}
 		}
 	}
@@ -268,16 +268,14 @@ if (isset($r['fid']))
 
 
 	print "<div id=\"bottom\">";
-	print "<a href=\"{$_SERVER['PHP_SELF']}?fid=$fid&amp;mpid=$mpid&amp;npid=$npid&amp;accept=accept\">Accept</a>  <a href=\"{$_SERVER['PHP_SELF']}?fid=$fid&amp;mpid=$mpid&amp;npid=$npid&amp;delete=delete\">Delete</a>";
+	print "<a href=\"{$_SERVER['PHP_SELF']}?fid=$fid&amp;mpid=$mpid&amp;npid=$npid&amp;accept=accept\">". T_("Accept") . "</a>  <a href=\"{$_SERVER['PHP_SELF']}?fid=$fid&amp;mpid=$mpid&amp;npid=$npid&amp;delete=delete\">" . T_("Delete") . "</a>";
 	print "</div>";
 }
 else
 {
-	 print "<div id=\"topper\">No missing pages</div>";
+	 print "<div id=\"topper\">" . T_("No missing pages") . "</div>";
 }
 
 
 ?>
-
-
 </body></html>

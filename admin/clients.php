@@ -28,7 +28,6 @@
  * @license http://opensource.org/licenses/gpl-2.0.php The GNU General Public License (GPL) Version 2
  * 
  *
- * @todo Make timezone a drop down list
  *
  */
 
@@ -64,14 +63,14 @@ if (isset($_POST['client']))
 			VALUES (NULL , $client, $description);";
 	
 		if ($db->Execute($sql))
-			$a = ("Added: $client");	
+			$a = (T_("Added") . ": $client");	
 		else
-			$a = ("Could not add") . " " . $client . ". " . ("There may already be an client of this name");
+			$a = T_("Could not add") . " " . $client . ". " . T_("There may already be an client of this name");
 	}
 }
 
 
-xhtml_head(("Add a client"));
+xhtml_head(T_("Add a client"));
 
 if ($a)
 {
@@ -80,12 +79,12 @@ if ($a)
 <?
 }
 ?>
-<h1><? echo ("Add a client"); ?></h1>
-<p><? echo ("Adding a client here will allow them to access project information in the client subdirectory. You can assign a client to a particular project using the"); ?> <a href="clientquestionnaire.php"><? echo ("Assign client to Form"); ?></a> <? echo ("tool."); ?></p>
-<p><? echo ("Use this form to enter the username of a user based on your directory security system. For example, if you have secured the base directory of queXF using Apache file based security, enter the usernames of the users here."); ?></p>
+<h1><? echo T_("Add a client"); ?></h1>
+<p><? echo T_("Adding a client here will allow them to access project information in the client subdirectory. You can assign a client to a particular project using the"); ?> <a href="clientquestionnaire.php"><? echo T_("Assign client to Form"); ?></a> <? echo T_("tool."); ?></p>
+<p><? echo T_("Use this form to enter the username of a user based on your directory security system. For example, if you have secured the base directory of queXF using Apache file based security, enter the usernames of the users here."); ?></p>
 <form enctype="multipart/form-data" action="" method="post">
-	<p><? echo ("Enter the username of a client to add:"); ?> <input name="client" type="text"/></p>
-	<p><? echo ("Enter the description of the client to add:"); ?> <input name="description" type="text"/></p>
+	<p><? echo T_("Enter the username of a client to add:"); ?> <input name="client" type="text"/></p>
+	<p><? echo T_("Enter the description of the client to add:"); ?> <input name="description" type="text"/></p>
 	<p><input type="submit" value="Add user" /></p>
 </form>
 
@@ -94,4 +93,3 @@ if ($a)
 xhtml_foot();
 
 ?>
-

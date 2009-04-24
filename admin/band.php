@@ -108,7 +108,7 @@ session_start();
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Band</title>
+<title><? echo T_("Band"); ?></title>
 
 <script type="text/javascript">
 function init()
@@ -179,7 +179,7 @@ if (isset($_GET['qid']))
 		$zoomup = $zoom - 1; if ($zoomup < 1) $zoomup = 1;
 		$zoomdown = $zoom + 1;
 
-		print " <a href=\"band.php?zoom=$zoom\">Choose another questionnaire</a> <a href=\"band.php?zoom=$zoomup&amp;qid=$qid&amp;pid=$pid\">Increase zoom</a> <a href=\"band.php?zoom=$zoomdown&amp;qid=$qid&amp;pid=$pid\">Decrease zoom</a><br/> ";
+		print " <a href=\"band.php?zoom=$zoom\">" . T_("Choose another questionnaire") . "</a> <a href=\"band.php?zoom=$zoomup&amp;qid=$qid&amp;pid=$pid\">" . T_("Increase zoom") . "</a> <a href=\"band.php?zoom=$zoomdown&amp;qid=$qid&amp;pid=$pid\">" . T_("Decrease zoom") . "</a><br/> ";
 
 		//print all available pages as a link google style
 		$sql = "SELECT pid
@@ -381,7 +381,7 @@ else
 	foreach($qs as $q)
 	{
 
-		print "<a href=\"band.php?zoom=$zoom&amp;qid={$q['qid']}\">Band: {$q['description']}</a>";
+		print "<a href=\"band.php?zoom=$zoom&amp;qid={$q['qid']}\">" . T_("Band") . ": {$q['description']}</a>";
 		print "<br/>";
 	}
 
@@ -389,7 +389,4 @@ else
 }
 
 ?>
-
-
 </div></body></html>
-

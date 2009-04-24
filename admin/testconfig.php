@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Test Installation</title>
+<title><? echo T_("Test Installation"); ?></title>
 </head>
 <body>
 <?
@@ -72,4 +72,3 @@ else
 ?>
 </body>
 </html>
-

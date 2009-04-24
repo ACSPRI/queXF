@@ -43,9 +43,9 @@ function printquestionnaires()
 	
 	$qs = $db->GetAll($sql);
 
-	xhtml_head("Reorder variables",true,array("../css/table.css"));
+	xhtml_head(T_("Reorder variables"),true,array("../css/table.css"));
 
-	print "<table class='tclass'><tr><th>Questionnaire</th><th></th><th></th><th></th></tr>";
+	print "<table class='tclass'><tr><th>" . T_("Questionnaire") . "</th><th></th><th></th><th></th></tr>";
 	$c = 1;
 	foreach($qs as $q)
 	{
@@ -57,7 +57,7 @@ function printquestionnaires()
 			$c = 1;
 			print "class='odd'";
 		}
-		print "><td>{$q['description']}</td><td><a href=\"?qid={$q['qid']}\">Manual reorder</a></td><td><a href=\"?qid={$q['qid']}&amp;position=position\">Reorder by position</a></td><td><a href=\"?qid={$q['qid']}&amp;varname=varname\">Reorder by variable name</a></td></tr>";
+		print "><td>{$q['description']}</td><td><a href=\"?qid={$q['qid']}\">" . T_("Manual reorder") . "</a></td><td><a href=\"?qid={$q['qid']}&amp;position=position\">" . T_("Reorder by position") . "</a></td><td><a href=\"?qid={$q['qid']}&amp;varname=varname\">" . T_("Reorder by variable name") . "</a></td></tr>";
 	}
 	print "</table>";
 }
@@ -80,7 +80,7 @@ if (isset($_GET['qid']))
 	}
 	else
 	{
-		xhtml_head("Reorder variables",true,array("../css/toolman/lists.css","../css/table.css"),array("../js/toolman/core.js","../js/toolman/events.js","../js/toolman/css.js","../js/toolman/coordinates.js","../js/toolman/drag.js","../js/toolman/dragsort.js","../js/toolman/cookies.js","../js/reorder.js"));
+		xhtml_head(T_("Reorder variables"),true,array("../css/toolman/lists.css","../css/table.css"),array("../js/toolman/core.js","../js/toolman/events.js","../js/toolman/css.js","../js/toolman/coordinates.js","../js/toolman/drag.js","../js/toolman/dragsort.js","../js/toolman/cookies.js","../js/reorder.js"));
 
 		if (isset($_POST['list']))
 		{
@@ -116,9 +116,9 @@ if (isset($_GET['qid']))
 	
 		$vars = $db->GetAll($sql);
 
-		print "<p>Reorder variables by dragging and dropping, then clicking on 'Save Changes' below</p>";
+		print "<p>" . T_("Reorder variables by dragging and dropping, then clicking on 'Save Changes' below") . "</p>";
 
-		print "<p><a href='reorder.php'>Click here</a> to return without saving changes</p>";
+		print "<p><a href='reorder.php'>" . T _("Click here") . "</a> " . T_("to return without saving changes") . "</p>";
 
 		print "<ul id='phoneticlong' class='boxy'>";
 		foreach($vars as $var)
@@ -127,7 +127,7 @@ if (isset($_GET['qid']))
 		}
 		print "</ul>";
 	
-		print "<form method='post' action='' onsubmit=\"return saveOrderList('phoneticlong');\"><p><input type='hidden' name='list' id='list'/></p><p><input type='submit' name='submit' id='submit' value='Save changes'/></p></form>";
+		print "<form method='post' action='' onsubmit=\"return saveOrderList('phoneticlong');\"><p><input type='hidden' name='list' id='list'/></p><p><input type='submit' name='submit' id='submit' value='" .  T_("Save changes") . "'/></p></form>";
 	}
 }
 else

@@ -161,7 +161,7 @@ session_start();
 
 $vid = get_vid();
 
-if($vid == false){ print "Please log in"; exit;}
+if($vid == false){ print T_("Please log in"); exit;}
 
 $fid = get_fid($vid);
 
@@ -278,9 +278,9 @@ if (isset($_GET['assign']))
 	$fid = assign_to($vid);
 	if ($fid == false) 
 	{
-		xhtml_head("Verify: No more work");
-		print "<p>NO MORE WORK</p>";
-		print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?assign=assign\">Check for more work</a></p>";
+		xhtml_head(T_("Verify: No more work"));
+		print "<p>" . T_("NO MORE WORK") . "</p>";
+		print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?assign=assign\">" . T_("Check for more work") . "</a></p>";
 		unset($_SESSION['boxgroups']);
 		unset($_SESSION['boxes']);
 		unset($_SESSION['pages']);	
@@ -294,13 +294,13 @@ if (isset($_GET['assign']))
 
 if ($fid == false)
 {
-	xhtml_head("Verify: Assign form");
+	xhtml_head(T_("Verify: Assign form"));
 	print "<div id=\"links\">";
-	print "<p>There is no form currently assigned to you</p>";
-	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?assign=assign\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">Assign next form</a></p>";
+	print "<p>" . T_("There is no form currently assigned to you") . "</p>";
+	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?assign=assign\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">" . T_("Assign next form") . "</a></p>";
 	print "</div>";
 	print "<div id=\"wait\" style=\"visibility: hidden;\">
-<p>Assigning next form: Please wait...</p>
+<p>" T_("Assigning next form: Please wait...") . "</p>
 </div>";
 	xhtml_foot();
 	exit();
@@ -351,9 +351,9 @@ if (!isset($_SESSION['boxes'])) {
 	$a = $db->GetAssoc($sql);
 	if (empty($a)) 
 	{
-		xhtml_head("Verify: No more work");
-		print "<p>NO MORE WORK</p>";
-		print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?assign=assign\">Check for more work</a></p>";
+		xhtml_head(T_("Verify: No more work"));
+		print "<p>" . T_("NO MORE WORK") . "</p>";
+		print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?assign=assign\">" T_("Check for more work") . "</a></p>";
 		unset($_SESSION['boxgroups']);
 		unset($_SESSION['pages']);
 		unset($_SESSION['boxes']);
@@ -460,15 +460,15 @@ if ($bgid != "")
 else if ($pid == "") 
 {
 	//we are done
-	xhtml_head("Verify: Done");
-	print "<p>The required fields have been filled</p>";
+	xhtml_head(T_("Verify: Done"));
+	print "<p>" . T("The required fields have been filled") . "</p>";
 	print "<div id=\"links\">";
-	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?complete=complete\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">Submit completed form to database</a></p>";
-	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?review=review#boxGroup\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">Review all questions again</a></p>";
-	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?clear=clear#boxGroup\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">Clear all entered data and review again</a></p></div>";
+	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?complete=complete\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">" T_("Submit completed form to database") . "</a></p>";
+	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?review=review#boxGroup\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">" . T_("Review all questions again") . "</a></p>";
+	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?clear=clear#boxGroup\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">" . T_("Clear all entered data and review again") . "</a></p></div>";
 
 	print "<div id=\"wait\" style=\"visibility: hidden;\">
-<p>Submitting: Please wait...</p>
+<p>" T_("Submitting: Please wait...") . "</p>
 </div>";
 	xhtml_foot();
 
@@ -484,7 +484,7 @@ else if ($pid == "")
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Verifier - <? print "QID:$qid FID:$fid DESC:$description"; ?></title>
+<title><? echo T_("Verifier"); ?> - <? print "QID:$qid FID:$fid DESC:$description"; ?></title>
 <script type="text/javascript">
 
 /* <![CDATA[ */
@@ -1067,14 +1067,14 @@ print "<div id=\"content\">";
 if ($pid == "")
 {
 	//no more to do:
-	print "<p>The required fields have been filled</p>";
+	print "<p>" . T_("The required fields have been filled") . "</p>";
 	print "<div id=\"links\">";
-	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?complete=complete\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">Submit completed form to database</a></p>";
-	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?review=review#boxGroup\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">Review all questions again</a></p>";
-	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?clear=clear#boxGroup\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">Clear all entered data and review again</a></p></div>";
+	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?complete=complete\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">" . T_("Submit completed form to database") . "</a></p>";
+	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?review=review#boxGroup\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">" . T_("Review all questions again") . "</a></p>";
+	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?clear=clear#boxGroup\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">" . T_("Clear all entered data and review again") . "</a></p></div>";
 
 	print "<div id=\"wait\" style=\"visibility: hidden;\">
-<p>Submitting: Please wait...</p>
+<p>" . T_("Submitting: Please wait...") . "</p>
 </div>";
 
 }
@@ -1082,7 +1082,7 @@ else
 {
 	
 	//show content
-	print "<div style=\"position:relative;\"><img src=\"showpage.php?pid=$pid&amp;fid=$fid\" style=\"width:" . DISPLAY_PAGE_WIDTH . "px;\" alt=\"Image of page $pid, form $fid\" />";
+	print "<div style=\"position:relative;\"><img src=\"showpage.php?pid=$pid&amp;fid=$fid\" style=\"width:" . DISPLAY_PAGE_WIDTH . "px;\" alt=\"" . T_("Image of page") . " $pid, " . T_("form") . " $fid\" />";
 	bgidtocss((PAGE_WIDTH/DISPLAY_PAGE_WIDTH),$fid,$pid);
 	print "</div>";
 	print "</div>";
@@ -1091,7 +1091,7 @@ else
 	print "<div id=\"header\">";
 	
 	print "<p>Q:$qid F:$fid P:$pid</p>";
-	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?pid=$pid&amp;fid=$fid&amp;centre=centre\">Centre Page</a></p>";
+	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?pid=$pid&amp;fid=$fid&amp;centre=centre\">" T_("Centre Page") . "</a></p>";
 
 
 	foreach($_SESSION['boxgroups'] as $key => $val)

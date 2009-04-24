@@ -63,7 +63,7 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 
 	print "var myMenuItems = [
 {    
-	name: 'Disable this box group',
+	name: '" . T_("Disable this box group") . "',
 	className: 'save',
 	callback: function(e) {
 		var tagId = e.element().id.substring(6);
@@ -71,7 +71,7 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 	}
 },		
 {    
-	name: 'Set to type: Single choice',
+	name: '" . T_("Set to type:") . " " . T_("Single choice") . "',
 	className: 'edit',
 	callback: function(e) {
 		var tagId = e.element().id.substring(6);
@@ -79,7 +79,7 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 	}
 },
 {    
-	name: 'Set to type: Multiple choice',
+	name: '" . T_("Set to type:") . " " . T_("Multiple choice") . "',
 	className: 'edit',
 	callback: function(e) {
 		var tagId = e.element().id.substring(6);
@@ -87,7 +87,7 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 	}
 },
 {    
-	name: 'Set to type: Text and Numbers',
+	name: '" . T_("Set to type:") . " " . T_("Text and Numbers") . "',
 	className: 'edit',
 	callback: function(e) {
 		var tagId = e.element().id.substring(6);
@@ -95,7 +95,7 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 	}
 },
 {    
-	name: 'Set to type: Numbers only',
+	name: '" . T_("Set to type:") . " " . T_("Numbers only") . "',
 	className: 'edit',
 	callback: function(e) {
 		var tagId = e.element().id.substring(6);
@@ -103,7 +103,7 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 	}
 },
 {    
-	name: 'Set to type: Barcode',
+	name: '" . T_("Set to type:") . " " . T_("Barcode") . "',
 	className: 'edit',
 	callback: function(e) {
 		var tagId = e.element().id.substring(6);
@@ -111,7 +111,7 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 	}
 },	
 {    
-	name: 'Set to type: Long text',
+	name: '" . T_("Set to type:") . " " . T_("Long text") . "',
 	className: 'edit',
 	callback: function(e) {
 		var tagId = e.element().id.substring(6);
@@ -120,7 +120,7 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 },	
 {    separator: true  },
 {    
-	name: 'Delete this box',
+	name: '" . T_("Delete this box") . "',
 	className: 'edit',
 	callback: function(e) {
 		var tagId = e.element().id.substring(6);
@@ -128,7 +128,7 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 	}
 },	
 {    
-	name: 'Delete this box group',
+	name: '" . T_("Delete this box group") . "',
 	className: 'edit',
 	callback: function(e) {
 		var tagId = e.element().id.substring(6);
@@ -460,7 +460,7 @@ if (isset($_GET['pid']) && isset($_GET['qid']) && isset($_GET['zoom']))
 	}	
 }
 
-xhtml_head("Band",true,array("../css/proto.menu.0.6.css","../css/marker.css"),array("../js/prototype-1.6.0.2.js","../js/proto.menu.0.6.js","../js/rectmarquee.js","../js/band.js"));
+xhtml_head(T_("Band"),true,array("../css/proto.menu.0.6.css","../css/marker.css"),array("../js/prototype-1.6.0.2.js","../js/proto.menu.0.6.js","../js/rectmarquee.js","../js/band.js"));
 
 print "<div id='content'>";
 
@@ -505,7 +505,7 @@ if (isset($_GET['qid']))
 	{
 		$pid = intval($_GET['pid']);
 
-		print " <a href=\"?zoom=$zoom\">Choose another questionnaire</a> <a href=\"?zoom=$zoomup&amp;qid=$qid&amp;pid=$pid\">Increase zoom</a> <a href=\"?zoom=$zoomdown&amp;qid=$qid&amp;pid=$pid\">Decrease zoom</a><br/> ";
+		print " <a href=\"?zoom=$zoom\">" . T_("Choose another questionnaire") . "</a> <a href=\"?zoom=$zoomup&amp;qid=$qid&amp;pid=$pid\">" . T_("Increase zoom") . "</a> <a href=\"?zoom=$zoomdown&amp;qid=$qid&amp;pid=$pid\">" . T_("Decrease zoom") . "</a><br/> ";
 
 
 		//show image with no coords selected
@@ -536,7 +536,7 @@ else
 	
 	foreach($qs as $q)
 	{
-		print "<a href=\"?zoom=$zoom&amp;qid={$q['qid']}\">Band: {$q['description']}</a>";
+		print "<a href=\"?zoom=$zoom&amp;qid={$q['qid']}\">". T_("Band") . ": {$q['description']}</a>";
 		print "<br/>";
 	}
 }

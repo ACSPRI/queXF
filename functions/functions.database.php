@@ -134,7 +134,7 @@ function assign_to($vid)
 		}
 		else if (count($rs) > 1)
 		{
-			print "ERROR: Multiple forms assigned, please see a technical officer";
+			print T_("ERROR: Multiple forms assigned, please see a technical officer");
 			exit();
 		}
 	}

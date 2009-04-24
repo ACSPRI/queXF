@@ -30,7 +30,7 @@ include_once("../db.inc.php");
 include("../functions/functions.database.php");
 include("../functions/functions.xhtml.php");
 
-xhtml_head("Progress",true,array("../css/table.css"));
+xhtml_head(T_("Progress"),true,array("../css/table.css"));
 
 $sql = "SELECT q.description, f1.c AS done, f2.c AS remain
 	FROM questionnaires AS q
@@ -52,7 +52,7 @@ $sql = "SELECT q.description, f1.c AS done, f2.c AS remain
 	
 $qs = $db->GetAll($sql);
 
-print "<table class='tclass'><tr><th>Questionnaire</th><th>Done</th><th>Remain</th><th>Total forms imported</th></tr>";
+print "<table class='tclass'><tr><th>" . T_("Questionnaire") . "</th><th>" . T_("Done") . "</th><th>" . T_("Remain") . "</th><th>" . T_("Total forms imported") . "</th></tr>";
 $done = 0;
 $remain = 0;
 $rtotal = 0;
@@ -74,7 +74,7 @@ foreach($qs as $q)
 	print "><td>{$q['description']}</td><td>{$q['done']}</td><td>{$q['remain']}</td><td>$rtotal</td></tr>";
 }
 $rtotal = $done + $remain;
-print "<tr><td>Total:</td><td>$done</td><td>$remain</td><td>$rtotal</td></tr>";
+print "<tr><td>" T_("Total") . ":</td><td>$done</td><td>$remain</td><td>$rtotal</td></tr>";
 print "</table>";
 
 xhtml_foot();

@@ -23,6 +23,7 @@
  */
 
 include_once(dirname(__FILE__) . '/config.inc.php');
+include_once(dirname(__FILE__) . '/lang.inc.php');
 
 /* DB FILE */
 

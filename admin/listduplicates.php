@@ -28,7 +28,7 @@ include_once("../db.inc.php");
 include("../functions/functions.database.php");
 include("../functions/functions.xhtml.php");
 
-xhtml_head("Listing of duplicate forms",true,array("../css/table.css"));
+xhtml_head(T_("Listing of duplicate forms"),true,array("../css/table.css"));
 
 $sql = "SELECT q.description, f.fid, f.pfid
 	FROM forms as f
@@ -44,9 +44,9 @@ $sql = "SELECT q.description, f.fid, f.pfid
 
 $fs = $db->GetAll($sql);
 
-print "<h1>Duplicate form listing</h1><p>Forms with the same PFID are duplicates</p>";
+print "<h1>" . T_("Duplicate form listing") . "</h1><p>" . T_("Forms with the same PFID are duplicates") . "</p>";
 
-xhtml_table($fs,array('description','fid','pfid'),array('Questionnaire','Formid','PFID'));
+xhtml_table($fs,array('description','fid','pfid'),array(T_("Questionnaire"),T_("Formid"),T_("PFID")));
 
 
 xhtml_foot();

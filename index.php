@@ -1,6 +1,4 @@
 <?
-
-
 /*	Copyright Deakin University 2007,2008
  *	Written by Adam Zammit - adam.zammit@deakin.edu.au
  *	For the Deakin Computer Assisted Research Facility: http://www.deakin.edu.au/dcarf/
@@ -28,9 +26,9 @@ include("functions/functions.xhtml.php");
 xhtml_head();
 ?>
 
-<h1>queXF</h1>
-<p><a href="verifyjs.php">Verify</a></p>
-<p><a href="review.php">Review a form</a></p>
+<h1><? echo T_("queXF"); ?></h1>
+<p><a href="verifyjs.php"><? echo T_("Verify"); ?></a></p>
+<p><a href="review.php"><? echo T_("Review a form"); ?></a></p>
 
 <?
 xhtml_foot();

@@ -141,7 +141,7 @@ $sql = "SELECT cid,description
 $clients = $db->GetAll($sql);
 
 
-xhtml_head(("Assign clients to questionnaires"),false,array("../css/table.css"));
+xhtml_head(T_("Assign clients to questionnaires"),false,array("../css/table.css"));
 
 ?>
 
@@ -268,6 +268,3 @@ print "</table><p><input type=\"submit\" name=\"submit\"/></p></form>";
 xhtml_foot();
 
 ?>
-
-
-

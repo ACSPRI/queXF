@@ -29,7 +29,7 @@ include_once("../functions/functions.database.php");
 include_once("../functions/functions.client.php");
 include_once("../functions/functions.xhtml.php");
 
-xhtml_head("Review forms",true,array("css/review.css"));
+xhtml_head(T_("Review forms"),true,array("css/review.css"));
 
 $cid = get_client_id();
 
@@ -72,7 +72,7 @@ if ($cid)
 	$rs = $db->GetRow($sql);
 
 	if (empty($rs))
-		print "<div id='content'><p>This form not available for you to review. Please enter a form id in the box on the left</p></div>";
+		print "<div id='content'><p>" . T_("This form not available for you to review. Please enter a form id in the box on the left") . "</p></div>";
 	else
 	{
 		$qid = $rs['qid'];
@@ -130,7 +130,7 @@ if ($cid)
 }	
 else
 {
-	print "<p>You are not authorised to review any forms</p>";
+	print "<p>" . T_("You are not authorised to review any forms") . "</p>";
 }
 
 xhtml_foot();	

@@ -77,7 +77,7 @@ if (isset($_GET['var']))
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Review Form - <? print "FID:$fid"; ?></title>
+<title><? echo T_("Review Form"); ?> - <? print "FID:$fid"; ?></title>
 <style type="text/css">
 #topper {
   position : fixed;
@@ -136,9 +136,9 @@ print "<div id=\"header\">";
 ?>
 
 	<form action="" method="get">
-	<div>Form: <input type="text" size="5" name="fid" value="<? echo $fid ?>"/>
-		Variable: <input type="text" size="9" name="var" value="<? echo $var ?>"/>
-		Page: <input type="text" size="4" name="pid" value="<? echo $pid ?>"/>
+	<div><? echo T_("Form:"); ?> <input type="text" size="5" name="fid" value="<? echo $fid ?>"/>
+		<? echo T_("Variable:"); ?> <input type="text" size="9" name="var" value="<? echo $var ?>"/>
+		<? echo T_("Page:"); ?> <input type="text" size="4" name="pid" value="<? echo $pid ?>"/>
 		<input type="submit"/></div>
 	</form>
 

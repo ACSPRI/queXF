@@ -103,7 +103,7 @@ $sql = "SELECT vid,description
 
 $verifiers = $db->GetAll($sql);
 
-xhtml_head("Assign verifier to questionnaire",false,array("../css/table.css"));
+xhtml_head(T_("Assign verifier to questionnaire"),false,array("../css/table.css"));
 
 ?>
 <script type="text/javascript">

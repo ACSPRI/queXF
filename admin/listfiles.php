@@ -46,15 +46,15 @@ if (isset($_GET['submit']))
 	}
 }
 
-xhtml_head("Listing of imported files by status",true,array("../css/table.css"));
+xhtml_head(T_("Listing of imported files by status"),true,array("../css/table.css"));
 
 $status = 1;
 if (isset($_GET['status'])) $status = intval($_GET['status']);
 
 if ($status == 1)
-	print "<h1>Forms successfully imported</h1>";
+	print "<h1>" . T_("Forms successfully imported") . "</h1>";
 if ($status == 2)
-	print "<h1>Forms not imported</h1>";
+	print "<h1>" . T_("Forms not imported") . "</h1>";
 
 $sql = "SELECT pfid,filepath,filehash,date,status, CONCAT('<input type=\'radio\' value=\'1\' name=\'pfid', pfid, '\' ', CASE WHEN allowanother = '1' THEN 'checked=\'checked\'' ELSE '' END, '/> Yes <input type=\'radio\' value=\'0\' name=\'pfid', pfid, '\' ', CASE WHEN allowanother = '0' THEN 'checked=\'checked\'' ELSE '' END, '/> No') as allowanother
 	FROM processforms
@@ -65,9 +65,9 @@ $fs = $db->GetAll($sql);
 
 print "<form method='get' action=''>";
 
-xhtml_table($fs,array('filepath','filehash','date','allowanother'),array('File','SHA1','Date','Allow import again?'));
+xhtml_table($fs,array('filepath','filehash','date','allowanother'),array(T_('File'),T_('SHA1'),T_('Date'),T_('Allow import again?')));
 
-print "<p><input name='submit' type='submit' value='Save changes'/></p></form>";
+print "<p><input name='submit' type='submit' value='" . T_("Save changes") . "'/></p></form>";
 
 xhtml_foot();
 

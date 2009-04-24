@@ -29,7 +29,7 @@ include('../functions/functions.image.php');
 include('../functions/functions.xhtml.php');
 
 
-xhtml_head("Add new questionnaire");
+xhtml_head(T_("Add new questionnaire"));
 
 /* Add a questionnaire to the database
  *
@@ -84,7 +84,7 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 		$pid = barcode($barcode);
 		if ($pid)
 		{
-			print "<p>BARCODE: $pid</p>";
+			print "<p>" . T_("BARCODE") . ": $pid</p>";
 
 			//calc offset
 			$offset = offset($image,0,0);
@@ -103,7 +103,7 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 
 		}
 		else
-			print "<p>INVALID - IGNORING BLANK PAGE</p>";
+			print "<p>" . T_("INVALID - IGNORING BLANK PAGE") . "</p>";
 
 		//delete temp file
 		unlink($file);
@@ -141,34 +141,30 @@ if ($a)
 {
 	if ($r)
 	{
-		print "<h1>SUCCESSFULLY INSERTED NEW QUESTIONNAIRE</h1>";
+		print "<h1>" . T_("Successfully inserted new questionnaire") . "</h1>";
 	}else
 	{
-		print "<h1>FAILED to insert new questionnaire. Could have conflicting page id's</h1>";
+		print "<h1>" . T("Failed to insert new questionnaire. Could have conflicting page id's") . "</h1>";
 	}
 
 
 }
 
+print "<h1>" . T_("New questionnaire") . "</h1>";
+print "<p>" . T_("You will get the best results if you:") . "</p>";
+print "<ul><li>" . T_("Print out the form using the same method that you will for all the printed forms") . "</li>";
+print "<li>" . T_("Scan the (blank) form to a PDF using the same options that you will for the filled forms") . "</li>";
+print "<li>" . T_("Best options for scanning in are:");
+print "<ul><li>" . T_("Monochrome (1 bit)") . "</li>";
+print "<li>" . T_("300DPI Resolution") . "</li></ul></li></ul>";
+
 ?>
-
-
-<h1>New questionnaire</h1>
-<p>You will get the best results if you:</p>
-<ul>
-<li>Print out the form using the same method that you will for all the printed forms</li>
-<li>Scan the (blank) form to a PDF using the same options that you will for the filled forms</li>
-<li>Best options for scanning in are:
-<ul><li>Monochrome (1 bit)</li>
-<li>300DPI Resolution</li></ul>
-</li>
-</ul>
 
 <form enctype="multipart/form-data" action="" method="post">
 	<p><input type="hidden" name="MAX_FILE_SIZE" value="1000000000" /></p>
-	<p>Select PDF file to create form from: <input name="form" type="file" /></p>
-	<p>Enter description of form: <input name="desc" type="text"/><br/></p>
-	<p><input type="submit" value="Upload form" /></p>
+	<p><? echo T_("Select PDF file to create form from"); ?>: <input name="form" type="file" /></p>
+	<p><? echo T_("Enter description of form"); ?>: <input name="desc" type="text"/><br/></p>
+	<p><input type="submit" value="<? echo T_("Upload form"); ?>" /></p>
 </form>
 
 <?

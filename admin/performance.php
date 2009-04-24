@@ -30,7 +30,7 @@ include_once("../db.inc.php");
 include("../functions/functions.database.php");
 include("../functions/functions.xhtml.php");
 
-xhtml_head("Performance",true,array("../css/table.css"));
+xhtml_head(T_("Performance"),true,array("../css/table.css"));
 
 /**
  * Display data about this questionnaire
@@ -64,7 +64,7 @@ $sql = "SELECT q.description as qu, v.description as ve,f.qid,w.vid , count( * )
 	{
 		print "<h1>{$rs[0]['qu']}</h1>";
 
-		xhtml_table($rs,array('ve','c','CPH','PPH'),array("Operator","Completed Forms","Completions Per Hour","Pages Per Hour"));
+		xhtml_table($rs,array('ve','c','CPH','PPH'),array(T_("Operator"),T_("Completed Forms"),T_("Completions Per Hour"),T_("Pages Per Hour")));
 
 	
 	}
@@ -103,7 +103,7 @@ $sql = "SELECT q.description as qu, v.description as ve,f.qid,w.vid , count( * )
 
 		print "<h1>{$rs[0]['ve']}</h1>";
 
-		xhtml_table($rs,array('qu','c','CPH','PPH'),array("Questionnaire","Completed Forms","Completions Per Hour","Pages Per Hour"));
+		xhtml_table($rs,array('qu','c','CPH','PPH'),array(T_("Questionnaire"),T_("Completed Forms"),T_("Completions Per Hour"),T_("Pages Per Hour")));
 	
 	}
 

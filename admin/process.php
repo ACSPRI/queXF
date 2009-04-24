@@ -25,6 +25,7 @@
 
 include(dirname(__FILE__) . "/../functions/functions.import.php");
 include(dirname(__FILE__) . "/../functions/functions.process.php");
+include_once(dirname(__FILE__) . "/../lang.inc.php");
 
 function update_callback($buffer)
 {
@@ -50,7 +51,7 @@ register_shutdown_function('end_process',$process_id);
 
 ob_start('update_callback',2);
 
-print "Processing directory: $dir";
+print T_("Processing directory") . ": $dir";
 
 $sleeptime = PROCESS_SLEEP;
 $sleepinterval = 10;
@@ -64,7 +65,7 @@ while (!is_process_killed($process_id)) //check if process killed every $sleepin
 	
 		if ($handle) 
 		{
-			print date(DATE_RFC822) . " Watching...";
+			print date(DATE_RFC822) . " " . T_("Watching...");
 			$filedone = 0;
 			while ((false !== ($file = readdir($handle))) && $filedone == 0 ) 
 			{
@@ -86,7 +87,7 @@ while (!is_process_killed($process_id)) //check if process killed every $sleepin
 		}
 		else
 		{
-			print "Cannot process this directory - check that it is valid and permissions are correct";
+			print T_("Cannot process this directory - check that it is valid and permissions are correct");
 			break; //break the loop
 		}
 	}

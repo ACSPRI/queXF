@@ -74,7 +74,7 @@ function definetomap($zoom)
 
 }
 
-xhtml_head("Set page layout",true,array("../css/dragresize.css","../css/pagesetup.css"),array("../js/prototype-1.6.0.2.js","../js/dragresize.js","../js/pagelayout.js"));
+xhtml_head(T_("Set page layout"),true,array("../css/dragresize.css","../css/pagesetup.css"),array("../js/prototype-1.6.0.2.js","../js/dragresize.js","../js/pagelayout.js"));
 
 print "<div id='content'>";
 
@@ -123,7 +123,7 @@ if (isset($_GET['filename']))
 	}
 	print "<br/>";
 
-	print "<div id='configarea'><p>Configuration settings (copy and paste in to config.inc.php)</p><div id='pagesize'><div>define('PAGE_WIDTH',$fwidth);</div><div>define('PAGE_HEIGHT',$fheight);</div></div><div id='config'></div></div>";
+	print "<div id='configarea'><p>" T_("Configuration settings (copy and paste in to config.inc.php)") . "</p><div id='pagesize'><div>define('PAGE_WIDTH',$fwidth);</div><div>define('PAGE_HEIGHT',$fheight);</div></div><div id='config'></div></div>";
 
 
 	if (isset($_GET['pid']))
@@ -133,10 +133,10 @@ if (isset($_GET['filename']))
 		print " <a href=\"?zoom=$zoomup&amp;pid=$pid";
 		if(isset($_GET['filename'])) 
 			print "&amp;filename=" . $_GET['filename'];
-		print "\">Increase zoom</a> <a href=\"?zoom=$zoomdown&amp;pid=$pid";
+		print "\">" T_("Increase zoom") . "</a> <a href=\"?zoom=$zoomdown&amp;pid=$pid";
 		if(isset($_GET['filename'])) 
 			print "&amp;filename=" . $_GET['filename'];
-		print "\">Decrease zoom</a><br/> ";
+		print "\">" . T_("Decrease zoom") . "</a><br/> ";
 
 
 		//show image with no coords selected
@@ -268,21 +268,21 @@ else
 {
 	//form to upload a document
 ?>
-<h1>Page setup</h1>
-<p>You will get the best results if you:</p>
+<h1><? echo T_("Page setup"); ?></h1>
+<p><? echo T_("You will get the best results if you:"); ?></p>
 <ul>
-<li>Print out the form using the same method that you will for all the printed forms</li>
-<li>Scan the form to a PDF using the same options that you will for the filled forms</li>
-<li>Best options for scanning in are:
-<ul><li>Monochrome (1 bit)</li>
-<li>300DPI Resolution</li></ul>
+<li><? echo T_("Print out the form using the same method that you will for all the printed forms"); ?></li>
+<li><? echo T_("Scan the form to a PDF using the same options that you will for the filled forms"); ?></li>
+<li><? echo T_("Best options for scanning in are:"); ?>
+<ul><li><? echo T_("Monochrome (1 bit)"); ?></li>
+<li><? echo T_("300DPI Resolution"); ?></li></ul>
 </li>
 </ul>
 
 <form enctype="multipart/form-data" action="" method="post">
 	<p><input type="hidden" name="MAX_FILE_SIZE" value="1000000000" /></p>
-	<p>Select PDF file to upload: <input name="form" type="file" /></p>
-	<p><input type="submit" value="Upload form" /></p>
+	<p><? echo T_("Select PDF file to upload:"); ?><input name="form" type="file" /></p>
+	<p><input type="submit" value="<? echo T_("Upload form"); ?>"/></p>
 </form>
 
 <?
@@ -294,4 +294,3 @@ print "</div>";
 xhtml_foot();
 
 ?>
-

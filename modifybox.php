@@ -219,24 +219,25 @@ if (isset($_GET['bgid']) || isset($_GET['bid']))
 	?><form method="post" action="<?php echo $_SERVER['PHP_SELF'] . "?bgid=$bgid";?>"><?
 
 	//display group selection
-	$sql = "SELECT description,btid
+	$sql = "SELECT description,btid as value, CASE WHEN btid = '$btid' THEN 'selected=\'selected\'' ELSE '' END AS selected
 		FROM boxgrouptypes";
 
-	$rs = $db->Execute($sql);
+	$rs = $db->GetAll($sql);
 
-	print "Group type:";
-	print $rs->GetMenu2("btid",$btid);
+	print T_("Group type:");
+	translate_array($rs,array("description"));
+	display_chooser($rs,"btid","btid",false,false,false,true,false);
 
 	//display variable name
-	?><br/>Variable name: <input type="text" size="12" value="<? echo $varname; ?>" name="varname"><br/><?
+	?><br/><? echo T_("Variable name:"); ?> <input type="text" size="12" value="<? echo $varname; ?>" name="varname"><br/><?
 
 	//display width
-	?>Width: <input type="text" size="12" value="<? echo $width; ?>" name="width"><br/><?
+	?><? echo T_("Width:"); ?> <input type="text" size="12" value="<? echo $width; ?>" name="width"><br/><?
 
-	?><input  TYPE="hidden" VALUE="<? echo $bgid; ?>" NAME="bgid"><br/><input type="submit" value="Submit" name="submit"/></form><?
+	?><input  TYPE="hidden" VALUE="<? echo $bgid; ?>" NAME="bgid"><br/><input type="submit" value="<? echo T_("Submit"); ?>" name="submit"/></form><?
 
-	?><p><a href="<?php echo $_SERVER['PHP_SELF'] . "?deletebgid=$bgid";?>">Delete this group</a></p>
-		<p><a href="<?php echo $_SERVER['PHP_SELF'] . "?deleteinbetween=$bgid&amp;bgid=$bgid";?>">Delete in between boxes</a></p>
+	?><p><a href="<?php echo $_SERVER['PHP_SELF'] . "?deletebgid=$bgid";?>"><? echo T_("Delete this group"); ?></a></p>
+		<p><a href="<?php echo $_SERVER['PHP_SELF'] . "?deleteinbetween=$bgid&amp;bgid=$bgid";?>"><? echo T_("Delete in between boxes"); ?></a></p>
 	<?
 }
 

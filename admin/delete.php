@@ -48,7 +48,7 @@ if (isset($_GET['qid']))
 	$db->CompleteTrans();
 }
 
-xhtml_head("Delete a questionnaire");
+xhtml_head(T_("Delete a questionnaire"));
 
 //select only questionnaires where there are no forms attached
 $sql = "SELECT q.qid, q.description
@@ -63,12 +63,12 @@ $sql = "SELECT q.qid, q.description
 
 $qs = $db->GetAll($sql);
 
-print "<h3>Click to delete questionnaire</h3>";
-print "<p>The following questionnaires have no forms associated with them so are safe to delete</p>";
+print "<h3>" . T_("Click to delete questionnaire") . "</h3>";
+print "<p>" . T_("The following questionnaires have no forms associated with them so are safe to delete") . "</p>";
 
 foreach ($qs as $q)
 {
-	print "<p>Delete: <a href=\"?qid={$q['qid']}\">{$q['description']}</a></p>";
+	print "<p>" . T_("Delete") . ": <a href=\"?qid={$q['qid']}\">{$q['description']}</a></p>";
 }
 
 xhtml_foot();
