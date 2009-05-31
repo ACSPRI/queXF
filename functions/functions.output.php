@@ -593,7 +593,7 @@ function export_pspp($qid)
 		echo "$varname $startpos-$endpos $vartype";
 	}
 
-	echo "\nVARIABLE LABELS ";
+	echo " .\nVARIABLE LABELS ";
 
 	$first = true;
 	foreach ($cols as $col)
@@ -609,7 +609,7 @@ function export_pspp($qid)
 		echo "$varname '$vardescription' ";
 	}
 
-	echo "\nBEGIN DATA.\n";
+	echo " .\nBEGIN DATA.\n";
 
 	outputdata($qid,"",false);
 

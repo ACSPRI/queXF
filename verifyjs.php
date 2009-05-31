@@ -461,7 +461,7 @@ else if ($pid == "")
 {
 	//we are done
 	xhtml_head(T_("Verify: Done"));
-	print "<p>" . T("The required fields have been filled") . "</p>";
+	print "<p>" . T_("The required fields have been filled") . "</p>";
 	print "<div id=\"links\">";
 	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?complete=complete\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">" . T_("Submit completed form to database") . "</a></p>";
 	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?review=review#boxGroup\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">" . T_("Review all questions again") . "</a></p>";
