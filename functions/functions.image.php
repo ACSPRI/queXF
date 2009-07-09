@@ -544,4 +544,27 @@ function overlay($image, $boxes)
 }
 
 
+function split_scanning($image)
+{
+	//check if we need to split
+	if (SPLIT_SCANNING)
+	{
+		$width = imagesx($image);
+		$height = imagesy($image);
+		$swidth = $width / 2.0;
+	
+		if ((PAGE_WIDTH - SPLIT_SCANNING_THRESHOLD) < $swidth && $swidth < (PAGE_WIDTH + SPLIT_SCANNING_THRESHOLD))
+		{
+			//if image is side by side double the page size, it needs to be split
+			
+			$image1 = crop($image, array("tlx" => 0, "tly" => 0, "brx" => ($swidth), "bry" => $height));
+			$image2 = crop($image, array("tlx" => ($swidth ), "tly" => 0, "brx" => $width, "bry" => $height));
+			
+			return array($image1,$image2);
+		}	
+	}
+	
+	return array($image); //just return the image if not splitting
+}
+
 ?>

@@ -164,4 +164,9 @@ if (!defined('VAS_BOX_WIDTH')) define('VAS_BOX_WIDTH',12); //width of VAS boxes 
 
 //Time to wait before checking directory for new files (in seconds)
 if (!defined('PROCESS_SLEEP')) define('PROCESS_SLEEP',3600); 
+
+//Whether to check if a scan is to be split (side by side scanning, i.e. A3 size with two pages side by side, to be split to 2 x A4)
+if (!defined('SPLIT_SCANNING')) define('SPLIT_SCANNING',true);
+if (!defined('SPLIT_SCANNING_THRESHOLD')) define('SPLIT_SCANNING_THRESHOLD',10);
+
 ?>

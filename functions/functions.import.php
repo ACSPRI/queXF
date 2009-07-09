@@ -385,29 +385,37 @@ function import($filename,$description = false)
 		$image = imagecreatefromstring($data);
 		unset($data);
 
-		$barcode = crop($image,array("tlx" => BARCODE_TLX, "tly" => BARCODE_TLY, "brx" => BARCODE_BRX, "bry" => BARCODE_BRY));
+		$images = split_scanning($image);
 
-		//check for barcode
-		$pid = barcode($barcode);
-		if ($pid)
+		foreach($images as $image)
 		{
-			//print "BARCODE: $pid<br/>";
+			$barcode = crop($image,array("tlx" => BARCODE_TLX, "tly" => BARCODE_TLY, "brx" => BARCODE_BRX, "bry" => BARCODE_BRY));
 
-			//get the page id from the page table
-			$sql = "SELECT qid FROM pages
-				WHERE pidentifierval = '$pid'";
-
-			$page = $db->GetRow($sql);
-
-			if (isset($page['qid']))
+			//check for barcode
+			$pid = barcode($barcode);
+			if ($pid)
 			{
-				$qid = $page['qid'];
-				break;
+				//print "BARCODE: $pid<br/>";
+	
+				//get the page id from the page table
+				$sql = "SELECT qid FROM pages
+					WHERE pidentifierval = '$pid'";
+	
+				$page = $db->GetRow($sql);
+	
+				if (isset($page['qid']))
+				{
+					$qid = $page['qid'];
+					break;
+				}
 			}
+	
+			unset($image);
+			unset($barcode);
 		}
+		
+		unset($images);
 
-		unset($image);
-		unset($barcode);
 		$n++;
 		$file = $tmp . $n . ".png";	
 	}
@@ -436,94 +444,108 @@ function import($filename,$description = false)
 			$data = file_get_contents($file);
 			$image = imagecreatefromstring($data);
 
-			//check for barcode
-			$barcode = crop($image,array("tlx" => BARCODE_TLX, "tly" => BARCODE_TLY, "brx" => BARCODE_BRX, "bry" => BARCODE_BRY));
-			$pid = barcode($barcode);
-			if ($pid)
+			$images = split_scanning($image);
+			unset($data);
+			unset($image);
+
+			foreach($images as $image)
 			{
-				print "<p>" . T_("Processing pid") . ": $pid...</p>";
+				//get the data from the image
+				ob_start();
+				imagepng($image);
+				$data = ob_get_contents();
+				ob_end_clean();
 
-				//get the page id from the page table
-				$sql = "SELECT * FROM pages
-					WHERE pidentifierval = '$pid'
-					AND qid = '$qid'";
-
-				$page = $db->GetRow($sql);
-
-				if (empty($page))
+				//check for barcode
+				$barcode = crop($image,array("tlx" => BARCODE_TLX, "tly" => BARCODE_TLY, "brx" => BARCODE_BRX, "bry" => BARCODE_BRY));
+				$pid = barcode($barcode);
+				if ($pid)
 				{
-					print "<p>" . T_("Pid not identified for this page, inserting into missing pages...") . "</p>";
-
-					//store in missing pages table
-					$sql = "INSERT INTO missingpages
-						(mpid,fid,image)
-						VALUES (NULL,'$fid','" . addslashes($data) . "')";
-		
-					$db->Execute($sql);
-				}
-				else
-				{
-					if ($page['store'] == 1)
-					{
+					print "<p>" . T_("Processing pid") . ": $pid...</p>";
 	
-						//calc offset
-						//$offset = offset($image,$page,1);
-		
-						//calc transforms
-						$transforms = detecttransforms($image,$page);
-
-						//save image to db including offset
-						$sql = "INSERT INTO formpages
-							(fid,pid,filename,image";
-						
-						foreach($transforms as $key => $val)
-							$sql .= ",$key";
-
-						$sql .=	")
-							VALUES ('$fid','{$page["pid"]}','','" . addslashes($data) . "'";
-
-						foreach($transforms as $key => $val)
-							$sql .= ",'$val'";
-
-						$sql .=	")";
-				
+					//get the page id from the page table
+					$sql = "SELECT * FROM pages
+						WHERE pidentifierval = '$pid'
+						AND qid = '$qid'";
+	
+					$page = $db->GetRow($sql);
+	
+					if (empty($page))
+					{
+						print "<p>" . T_("Pid not identified for this page, inserting into missing pages...") . "</p>";
+	
+						//store in missing pages table
+						$sql = "INSERT INTO missingpages
+							(mpid,fid,image)
+							VALUES (NULL,'$fid','" . addslashes($data) . "')";
+			
 						$db->Execute($sql);
 					}
+					else
+					{
+						if ($page['store'] == 1)
+						{
 		
-					if ($page['process'] == 1)
-					{		
-						//process variables on this page
-						processpage($page["pid"],$fid,$image,$transforms);
+							//calc offset
+							//$offset = offset($image,$page,1);
+			
+							//calc transforms
+							$transforms = detecttransforms($image,$page);
+	
+							//save image to db including offset
+							$sql = "INSERT INTO formpages
+								(fid,pid,filename,image";
+							
+							foreach($transforms as $key => $val)
+								$sql .= ",$key";
+	
+							$sql .=	")
+								VALUES ('$fid','{$page["pid"]}','','" . addslashes($data) . "'";
+	
+							foreach($transforms as $key => $val)
+								$sql .= ",'$val'";
+	
+							$sql .=	")";
+					
+							$db->Execute($sql);
+						}
+			
+						if ($page['process'] == 1)
+						{		
+							//process variables on this page
+							processpage($page["pid"],$fid,$image,$transforms);
+						}
 					}
-				}
-			}
-			else
-			{
-				if(BLANK_PAGE_DETECTION && is_blank_page($image))
-				{
-					print "<p>". T_("Blank page: ignoring") . "</p>";
-					//let this page dissolve into the ether
 				}
 				else
 				{
-					print "<p>". T_("Could not get pid, inserting into missing pages...") . "</p>";
-
-					//store in missing pages table
-					$sql = "INSERT INTO missingpages
-						(mpid,fid,image)
-						VALUES (NULL,'$fid','" . addslashes($data) . "')";
-		
-					$db->Execute($sql);
+					if(BLANK_PAGE_DETECTION && is_blank_page($image))
+					{
+						print "<p>". T_("Blank page: ignoring") . "</p>";
+						//let this page dissolve into the ether
+					}
+					else
+					{
+						print "<p>". T_("Could not get pid, inserting into missing pages...") . "</p>";
+	
+						//store in missing pages table
+						$sql = "INSERT INTO missingpages
+							(mpid,fid,image)
+							VALUES (NULL,'$fid','" . addslashes($data) . "')";
+			
+						$db->Execute($sql);
+					}
 				}
-			}
-
+	
+				unset($data);
+				unset($image);
+				unset($barcode);
+			}	
 			$n++;
 			$file = $tmp . $n . ".png";	
 
 			//unset data
-			unset($data);
-			unset($image);
-			unset($barcode);
+			unset($images);
 		}
 
 		//Update or insert record in to processforms log database

@@ -26,6 +26,7 @@
 include_once("../config.inc.php");
 include_once("../db.inc.php");
 include("../functions/functions.xhtml.php");
+include("../functions/functions.image.php");
 
 
 if (isset($_FILES['form']))
@@ -87,6 +88,37 @@ if (isset($_GET['filename']))
 
 	$zoomup = $zoom - 1; if ($zoomup < 1) $zoomup = 1;
 	$zoomdown = $zoom + 1;
+
+	$n = 1;
+	$file = $_GET['filename'] . $n . ".png";
+
+	if (SPLIT_SCANNING)
+	{
+		while(file_exists($file))
+		{
+			$n++;
+			$file = $_GET['filename'] . $n . ".png";
+		}
+
+		$filecount =  $n - 1;
+
+		$n = 1;
+		
+		while($n <= $filecount)
+		{
+			$file = $_GET['filename'] . $n . ".png";
+			//split all the files
+			$data = file_get_contents($file);
+			$image = imagecreatefromstring($data);
+			$images = split_scanning($image);
+			if (count($images) == 2)
+			{		
+				imagepng($images[0],$_GET['filename'] . $n . ".png");
+				imagepng($images[1],$_GET['filename'] . ($n + $filecount) . ".png");
+			}
+			$n++;
+		}
+	}
 
 	$n = 1;
 	$file = $_GET['filename'] . $n . ".png";

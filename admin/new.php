@@ -76,43 +76,59 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 		//open file
 		$data = file_get_contents($file);
 		$image = imagecreatefromstring($data);
-		$barcode = crop($image,array("tlx" => BARCODE_TLX, "tly" => BARCODE_TLY, "brx" => BARCODE_BRX, "bry" => BARCODE_BRY));
+		
+		$images = split_scanning($image);
+		unset($image);
+		unset($data);
 
-		//imagepng($barcode,"/mnt/iss/tmp/temp$n.png");
-
-		//check for barcode
-		$pid = barcode($barcode);
-		if ($pid)
+		foreach($images as $image)
 		{
-			print "<p>" . T_("BARCODE") . ": $pid</p>";
+			//get the data from the image
+			ob_start();
+			imagepng($image);
+			$data = ob_get_contents();
+			ob_end_clean();
 
-			//calc offset
-			$offset = offset($image,0,0);
+			$barcode = crop($image,array("tlx" => BARCODE_TLX, "tly" => BARCODE_TLY, "brx" => BARCODE_BRX, "bry" => BARCODE_BRY));
 
-			//calc rotation
-			$rotation = calcrotate($offset);
-	
-			//save image to db including offset and rotation
-			$sql = "INSERT INTO pages
-				(pid,qid,pidentifierbgid,pidentifierval,tlx,tly,trx,try,blx,bly,brx,bry,image,rotation)
-				VALUES (NULL,'$qid','1','$pid','{$offset[0]}','{$offset[1]}','{$offset[2]}','{$offset[3]}','{$offset[4]}','{$offset[5]}','{$offset[6]}','{$offset[7]}','" . addslashes($data) . "','$rotation')";
-	
-			//print $sql;
-	
-			$db->Execute($sql);
+			//imagepng($barcode,"/mnt/iss/tmp/temp$n.png");
 
+			//check for barcode
+			$pid = barcode($barcode);
+			if ($pid)
+			{
+				print "<p>" . T_("BARCODE") . ": $pid</p>";
+	
+				//calc offset
+				$offset = offset($image,0,0);
+	
+				//calc rotation
+				$rotation = calcrotate($offset);
+		
+				//save image to db including offset and rotation
+				$sql = "INSERT INTO pages
+					(pid,qid,pidentifierbgid,pidentifierval,tlx,tly,trx,try,blx,bly,brx,bry,image,rotation)
+					VALUES (NULL,'$qid','1','$pid','{$offset[0]}','{$offset[1]}','{$offset[2]}','{$offset[3]}','{$offset[4]}','{$offset[5]}','{$offset[6]}','{$offset[7]}','" . addslashes($data) . "','$rotation')";
+		
+				//print $sql;
+		
+				$db->Execute($sql);
+	
+			}
+			else
+				print "<p>" . T_("INVALID - IGNORING BLANK PAGE") . "</p>";
+
+			unset($data);
+			unset($image);
+			unset($barcode);
 		}
-		else
-			print "<p>" . T_("INVALID - IGNORING BLANK PAGE") . "</p>";
-
+	
 		//delete temp file
 		unlink($file);
 
 		$n++;
 		$file = $tmp . $n . ".png";
-		unset($data);
-		unset($image);
-		unset($barcode);	
+		unset($images);
 	}
 
 
