@@ -283,16 +283,43 @@ function calcrotate($a)
 {
 	//the angle at the top
 	// remember: sohcahtoa
+	$topangle = 0;
+	$bottomangle = 0;
+	$leftangle = 0;
+	$rightangle = 0;
+	$count = 0;
 
-	$topangle = atan(($a[1] - $a[3]) / ($a[2] - $a[0]));
-	$bottomangle = atan(($a[5] - $a[7]) / ($a[6] - $a[4]));
+	if (($a[2] - $a[0]) != 0)
+	{
+		$topangle = atan(($a[1] - $a[3]) / ($a[2] - $a[0]));
+		$count++;
+	}
 
-	$leftangle = atan(($a[0] - $a[4]) / ($a[1] - $a[5]));
-	$rightangle = atan(($a[2] - $a[6]) / ($a[3] - $a[7]));
+	if (($a[6] - $a[4]) != 0)
+	{
+		$bottomangle = atan(($a[5] - $a[7]) / ($a[6] - $a[4]));
+		$count++;
+	}
 
+	if (($a[1] - $a[5]) != 0)
+	{
+		$leftangle = atan(($a[0] - $a[4]) / ($a[1] - $a[5]));
+		$count++;
+	}
+
+	if (($a[3] - $a[7]) != 0)
+	{
+		$rightangle = atan(($a[2] - $a[6]) / ($a[3] - $a[7]));
+		$count++;
+	}
+
+	if ($count == 0) 
+		return 0;
+
+	$count = (float)$count;
 	//print "<p>ANGLES: $topangle $bottomangle $leftangle $rightangle</p>";
 	//take the average
-	return (($topangle + $bottomangle + $leftangle + $rightangle) / 4.0);
+	return (($topangle + $bottomangle + $leftangle + $rightangle) / $count);
 }
 
 /**

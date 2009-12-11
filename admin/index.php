@@ -48,6 +48,7 @@ xhtml_head(T_("queXF Admin Functions"),true,array("../css/admin.css"),array("../
 <li><a href="javascript:link('mainobj','listfiles.php?status=1');"><? echo T_("Successfully imported files"); ?></a></li>
 <li><a href="javascript:link('mainobj','listfiles.php?status=2');"><? echo T_("Failed imported files"); ?></a></li>
 <li><a href="javascript:link('mainobj','listduplicates.php');"><? echo T_("Duplicate forms"); ?></a></li>
+<li><a href="javascript:link('mainobj','listforms.php');"><? echo T_("Reverify forms"); ?></a></li>
 <li><a href="javascript:link('mainobj','missingpages.php');"><? echo T_("Handle missing pages"); ?></a></li></ul></li>
 <li><h3><? echo T_("Output"); ?></h3>
 <ul><li><a href="javascript:link('mainobj','output.php');"><? echo T_("Output data/ddi"); ?></a></li></ul></li>

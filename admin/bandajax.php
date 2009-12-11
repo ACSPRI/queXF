@@ -39,11 +39,14 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 
 	$sql = "SELECT tlx,tly,brx,bry,bid,btid
 		FROM boxesgroupstypes
-		WHERE pid = $pid";
+		WHERE pid = $pid
+		ORDER BY sortorder ASC";
 
 	$boxes = $db->GetAll($sql);
 
 	if (empty($boxes)) return;
+
+	$showcount = 1;
 
 	foreach($boxes as $box)
 	{
@@ -55,7 +58,8 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 		if ($box['btid'] == 5) $colour = BARCODE_COLOUR; 
 		if ($box['btid'] == 6) $colour = LONGTEXT_COLOUR; 
 	
-		print "<div id=\"modbox{$box['bid']}\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" . BAND_OPACITY . "; -moz-opacity: " . BAND_OPACITY . "; z-index: 50;\" onclick=\"window.open('../modifybox.php?bid={$box['bid']}')\"></div>";
+		print "<div id=\"modbox{$box['bid']}\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" . BAND_OPACITY . "; -moz-opacity: " . BAND_OPACITY . "; z-index: 50;\" onclick=\"window.open('../modifybox.php?bid={$box['bid']}')\">$showcount</div>";
+		$showcount++;
 	}
 
 
@@ -151,7 +155,7 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 
 /* Create a box group in the DB
  */
-function createboxgroup($boxes,$width,$varname,$pid,$btid = 0)
+function createboxgroup($boxes,$width,$varname,$pid,$btid = 1)
 {
 	global $db;
 
@@ -260,8 +264,8 @@ function createboxes($sx,$sy,$x,$y,$pid,$qid)
 
 	if ($barcodenum) //create barcode box group
 		$bgid = createboxgroup($boxes,$barcodewidth,'tmpbarcode',$pid,5);
-	else 	//create temp box group
-	$bgid = createboxgroup($boxes,1,'tmp',$pid,0);
+	else 	//create single choice box group by default
+	$bgid = createboxgroup($boxes,1,'tmp',$pid,1);
 
 }
 

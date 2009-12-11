@@ -56,7 +56,7 @@ function bgidtocss($zoom = 1,$fid,$pid)
 		WHERE pid = '$pid'
 		AND btid > 0
 		AND btid != 5
-		ORDER BY bid ASC";
+		ORDER BY sortorder ASC, bid ASC";
 
 	$boxes = $db->GetAll($sql);
 

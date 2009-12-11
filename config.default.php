@@ -104,7 +104,7 @@ if (!defined('VERT_WIDTH')) define('VERT_WIDTH',6);
 //Locations of page guide lines bounding box (in pixels)
 //Top left horizontal
 if (!defined('TL_HORI_TLX')) define('TL_HORI_TLX',90);
-if (!defined('TL_HORI_TLY')) define('TL_HORI_TLY',90);
+if (!defined('TL_HORI_TLY')) define('TL_HORI_TLY',60);
 if (!defined('TL_HORI_BRX')) define('TL_HORI_BRX',480);
 if (!defined('TL_HORI_BRY')) define('TL_HORI_BRY',280);
 
@@ -116,7 +116,7 @@ if (!defined('TL_VERT_BRY')) define('TL_VERT_BRY',480);
 
 //Top right horizontal
 if (!defined('TR_HORI_TLX')) define('TR_HORI_TLX',1980);
-if (!defined('TR_HORI_TLY')) define('TR_HORI_TLY',90);
+if (!defined('TR_HORI_TLY')) define('TR_HORI_TLY',60);
 if (!defined('TR_HORI_BRX')) define('TR_HORI_BRX',2370);
 if (!defined('TR_HORI_BRY')) define('TR_HORI_BRY',280);
 
@@ -128,7 +128,7 @@ if (!defined('TR_VERT_BRY')) define('TR_VERT_BRY',480);
 
 //Bottom left horizontal
 if (!defined('BL_HORI_TLX')) define('BL_HORI_TLX',90);
-if (!defined('BL_HORI_TLY')) define('BL_HORI_TLY',3250);
+if (!defined('BL_HORI_TLY')) define('BL_HORI_TLY',3190);
 if (!defined('BL_HORI_BRX')) define('BL_HORI_BRX',480);
 if (!defined('BL_HORI_BRY')) define('BL_HORI_BRY',3400);
 
@@ -140,7 +140,7 @@ if (!defined('BL_VERT_BRY')) define('BL_VERT_BRY',3390);
 
 //Bottom right horizontal
 if (!defined('BR_HORI_TLX')) define('BR_HORI_TLX',1980);
-if (!defined('BR_HORI_TLY')) define('BR_HORI_TLY',3250);
+if (!defined('BR_HORI_TLY')) define('BR_HORI_TLY',3190);
 if (!defined('BR_HORI_BRX')) define('BR_HORI_BRX',2370);
 if (!defined('BR_HORI_BRY')) define('BR_HORI_BRY',3400);
 
@@ -152,7 +152,7 @@ if (!defined('BR_VERT_BRY')) define('BR_VERT_BRY',3390);
 
 //Barcode position on page (bounding box)
 if (!defined('BARCODE_TLX')) define('BARCODE_TLX',1500); //Top left X
-if (!defined('BARCODE_TLY')) define('BARCODE_TLY',5); //Top left Y
+if (!defined('BARCODE_TLY')) define('BARCODE_TLY',1); //Top left Y
 if (!defined('BARCODE_BRX')) define('BARCODE_BRX',2327); //Bottom right X
 if (!defined('BARCODE_BRY')) define('BARCODE_BRY',200); //Bottom right Y
 
@@ -168,5 +168,8 @@ if (!defined('PROCESS_SLEEP')) define('PROCESS_SLEEP',3600);
 //Whether to check if a scan is to be split (side by side scanning, i.e. A3 size with two pages side by side, to be split to 2 x A4)
 if (!defined('SPLIT_SCANNING')) define('SPLIT_SCANNING',true);
 if (!defined('SPLIT_SCANNING_THRESHOLD')) define('SPLIT_SCANNING_THRESHOLD',10);
+
+//The length of a barcode for the page id
+if (!defined('BARCODE_LENGTH_PID')) define('BARCODE_LENGTH_PID',8); //Length in chars of a barcode identifying a page
 
 ?>

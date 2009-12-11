@@ -392,7 +392,7 @@ function import($filename,$description = false)
 			$barcode = crop($image,array("tlx" => BARCODE_TLX, "tly" => BARCODE_TLY, "brx" => BARCODE_BRX, "bry" => BARCODE_BRY));
 
 			//check for barcode
-			$pid = barcode($barcode);
+			$pid = barcode($barcode,1,BARCODE_LENGTH_PID);
 			if ($pid)
 			{
 				//print "BARCODE: $pid<br/>";
@@ -458,7 +458,7 @@ function import($filename,$description = false)
 
 				//check for barcode
 				$barcode = crop($image,array("tlx" => BARCODE_TLX, "tly" => BARCODE_TLY, "brx" => BARCODE_BRX, "bry" => BARCODE_BRY));
-				$pid = barcode($barcode);
+				$pid = barcode($barcode,1,BARCODE_LENGTH_PID);
 				if ($pid)
 				{
 					print "<p>" . T_("Processing pid") . ": $pid...</p>";
