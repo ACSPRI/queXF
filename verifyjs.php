@@ -294,7 +294,7 @@ if (isset($_GET['assign']))
 
 if ($fid == false)
 {
-	xhtml_head(T_("Verify: Assign form"));
+	xhtml_head(T_("Verify: Assign form"),true,array("css/table.css"));
 	print "<div id=\"links\">";
 	print "<p>" . T_("There is no form currently assigned to you") . "</p>";
 	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?assign=assign\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">" . T_("Assign next form") . "</a></p>";
@@ -302,6 +302,47 @@ if ($fid == false)
 	print "<div id=\"wait\" style=\"visibility: hidden;\">
 <p>" .  T_("Assigning next form: Please wait...") . "</p>
 </div>";
+
+	
+	//display performance information for each assigned questionnaire
+	$sql = "SELECT vq.qid, q.description 
+		FROM verifierquestionnaire as vq, questionnaires as q
+		WHERE vq.vid = '$vid'
+		AND q.qid = vq.qid";
+
+	$prs = $db->GetAll($sql);
+
+	foreach($prs as $pr)
+	{
+		$pqid = $pr['qid'];
+		$pdes = $pr['description'];
+		$sql = "SELECT q.description as qu, v.description as ve,f.qid,w.vid as vid , count( * ) AS c, count( * ) / ( SUM( TIMESTAMPDIFF(
+			SECOND , w.assigned, w.completed ) ) /3600 ) AS CPH, (
+			(
+			
+			SELECT count( pid )
+			FROM pages
+			WHERE qid = f.qid
+			) * count( * )
+			) / ( SUM( TIMESTAMPDIFF(
+			SECOND , w.assigned, w.completed ) ) /3600 ) AS PPH
+			FROM worklog AS w
+			JOIN forms AS f ON ( f.fid = w.fid )
+			JOIN questionnaires as q on (f.qid = q.qid)
+			JOIN verifiers as v on (v.vid = w.vid)
+			WHERE f.qid = '$pqid'
+			GROUP BY f.qid, w.vid
+			ORDER BY CPH DESC";
+
+		$prss = $db->GetAll($sql);
+
+		print "<h3>$pdes</h3>";
+		xhtml_table($prss,array('ve','c','CPH','PPH'),array(T_("Operator"),T_("Completed Forms"),T_("Completions Per Hour"),T_("Pages Per Hour")),"tclass",array
+("vid" => $vid));
+	}
+	
+
+
 	xhtml_foot();
 	exit();
 }
