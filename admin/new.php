@@ -94,7 +94,7 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 			//imagepng($barcode,"/mnt/iss/tmp/temp$n.png");
 
 			//check for barcode
-			$pid = barcode($barcode);
+			$pid = barcode($barcode,1,BARCODE_LENGTH_PID);
 			if ($pid)
 			{
 				print "<p>" . T_("BARCODE") . ": $pid</p>";
@@ -160,7 +160,7 @@ if ($a)
 		print "<h1>" . T_("Successfully inserted new questionnaire") . "</h1>";
 	}else
 	{
-		print "<h1>" . T("Failed to insert new questionnaire. Could have conflicting page id's") . "</h1>";
+		print "<h1>" . T_("Failed to insert new questionnaire. Could have conflicting page id's") . "</h1>";
 	}
 
 
