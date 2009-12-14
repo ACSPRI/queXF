@@ -1089,6 +1089,16 @@ window.onload = init;
   overflow : auto;
 }
 
+#note {
+  width : 100%;
+  height : 200px;
+}
+.embeddedobject {
+  width:100%;
+  height:100%;
+}
+
+
 </style>
 </head>
 <body>
@@ -1132,7 +1142,8 @@ else
 	print "<p>Q:$qid F:$fid P:$pid</p>";
 	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?pid=$pid&amp;fid=$fid&amp;centre=centre\">" . T_("Centre Page") . "</a></p>";
 
-
+	print "<div id='note'><object class='embeddedobject' id='mainobj' data='pagenote.php?pid=$pid&amp;fid=$fid&amp;vid=$vid' standby='" . T_("Loading panel...") . "' type='application/xhtml+xml'><div>" . T_("Error, try with Firefox") . "</div></object></div>";
+	
 	foreach($_SESSION['boxgroups'] as $key => $val)
 	{
 		if ($val['pid'] == $pid)

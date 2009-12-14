@@ -343,6 +343,24 @@ CREATE TABLE IF NOT EXISTS `formboxverifytext` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `formpagenote`
+--
+
+CREATE TABLE IF NOT EXISTS `formpagenote` (
+  `fpnid` int(11) NOT NULL auto_increment,
+  `fid` bigint(20) NOT NULL,
+  `pid` bigint(20) NOT NULL,
+  `vid` int(11) NOT NULL,
+  `note` text collate utf8_unicode_ci NOT NULL,
+  PRIMARY KEY  (`fpnid`),
+  KEY `fid` (`fid`),
+  KEY `pid` (`pid`),
+  KEY `vid` (`vid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `formpages`
 --
 
