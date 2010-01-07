@@ -41,11 +41,9 @@ if ($p)
 	if (isset($_GET['kill']))
 		kill_process($p);
 
-	xhtml_head(T_("Import a directory of PDF files"),true,false,false,false,10);
+	xhtml_head(T_("Import a directory of PDF files"),true,false,false,false);
 
 	print "<h1>" . T_("Process") . " $p " . T_("running...") . "</h1>";
-
-	print "<h2>" . T_("Note: This page will automatically refresh every 10 seconds") . "</h2>";
 
 	if (is_process_killed($p))
 		print "<h3>" . T_("Kill signal sent: Please wait..." ) . "</h3>";
