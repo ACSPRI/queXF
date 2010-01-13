@@ -59,9 +59,15 @@ function horiBoxDetection($lw)
 
 	arsort($tmp);
 
-	//print_r($e);
-	$asize = key($tmp);
+	//Make sure that we are not using unworkable size boxes
 
+	for ($i = 0; $i <= count($tmp); $i++)
+	{
+		$asize = key($tmp);
+		if ($asize >= MIN_BOX_WIDTH)
+			break;
+		next($tmp);
+	}
 
 	$min = $asize - ($asize / 8);
 	$max = $asize + ($asize / 8);
@@ -92,7 +98,7 @@ function horiBoxDetection($lw)
 
 
 	//print_r($startx);
-	//print "<br/><br/>";
+	//print "<br/>$tly $bry<br/>";
 
 	$aliasArray =& $startx;
 
@@ -131,7 +137,7 @@ function horiBoxDetection($lw)
 	foreach($aliasArray as $key => $value)
 	{
 		//ignore small boxes
-		if ($value >= ($asize / 16))
+		if ($value >= ($asize / 32))
 		{
 			//print "HORI BOX: $key,$tly : " . ($key + $asize) . ",$bry<br/>";
 			$atlx[] = $key;
