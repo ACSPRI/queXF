@@ -137,7 +137,7 @@ function horiBoxDetection($lw)
 	foreach($aliasArray as $key => $value)
 	{
 		//ignore small boxes
-		if ($value >= ($asize / 32))
+		if ($value >= MIN_BOX_WIDTH)
 		{
 			//print "HORI BOX: $key,$tly : " . ($key + $asize) . ",$bry<br/>";
 			$atlx[] = $key;
