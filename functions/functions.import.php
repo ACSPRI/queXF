@@ -360,6 +360,8 @@ function import($filename,$description = false)
 
 	$db->BeginTrans();
 
+	//count of missing pages
+	$missingpagecount = 0;
 
 	//generate temp file
 	$tmp = tempnam(TEMPORARY_DIRECTORY, "FORM");
@@ -480,6 +482,8 @@ function import($filename,$description = false)
 							VALUES (NULL,'$fid','" . addslashes($data) . "')";
 			
 						$db->Execute($sql);
+
+						$missingpagecount++;
 					}
 					else
 					{
@@ -534,6 +538,7 @@ function import($filename,$description = false)
 							VALUES (NULL,'$fid','" . addslashes($data) . "')";
 			
 						$db->Execute($sql);
+						$missingpagecount++;
 					}
 				}
 	
@@ -681,7 +686,34 @@ function import($filename,$description = false)
 
 			$db->Execute($sql);
 		}
+	
+		//if all pages have been entered and dected, and there are missing pages - delete them
+		if ($missingpagecount > 0)
+		{
+			$sql = "SELECT count(*) AS c
+				FROM forms AS f, pages AS p
+				LEFT JOIN formpages AS fp ON ( fp.fid = '$fid' AND fp.pid = p.pid )
+				WHERE f.fid = '$fid'
+				AND p.qid = f.qid
+				AND fp.pid IS NULL";
+
+			$rs = $db->GetRow($sql);
+
+			if (isset($rs['c']) && $rs['c'] == 0)
+			{
+				//there are missing pages in the mp table, but no missing pages in the form table... 
+				$sql = "DELETE 
+					FROM missingpages
+					WHERE fid = '$fid'";
+
+				$db->Execute($sql);
+
+				print "<p>" . T_("Deleting missing pages as all form page slots filled") . "</p>";
+			}
+		}
 	}
+
+
 
 
 	//complete transaction
