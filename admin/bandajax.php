@@ -37,7 +37,7 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 {
 	global $db;
 
-	$sql = "SELECT tlx,tly,brx,bry,bid,btid
+	$sql = "SELECT tlx,tly,brx,bry,bid,btid,bgid,varname
 		FROM boxesgroupstypes
 		WHERE pid = $pid
 		ORDER BY sortorder ASC";
@@ -48,8 +48,18 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 
 	$showcount = 1;
 
+	$bgid = $boxes[0]['bgid'];
+	$varname = $boxes[0]['varname'];
+	$lastx = 0;
+	$lasty = 0;
+
 	foreach($boxes as $box)
 	{
+		if ($bgid != $box['bgid'])
+		{
+			print "<input id=\"boxgroupname$bgid\" style=\"position:absolute; top:" . $lasty ."px; left:".$lastx."px; z-index: 100;\" name=\"boxgroupname$bgid\" type=\"text\" value=\"$varname\" size=\"4\" onblur=\"updateVarname($bgid,this.value);\"/>";
+			$bgid =$box['bgid'];
+		}
 		$colour = TEMPORARY_COLOUR;
 		if ($box['btid'] == 1) $colour = SINGLECHOICE_COLOUR; 
 		if ($box['btid'] == 2) $colour = MULTIPLECHOICE_COLOUR; 
@@ -59,9 +69,15 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 		if ($box['btid'] == 6) $colour = LONGTEXT_COLOUR; 
 	
 		print "<div id=\"modbox{$box['bid']}\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" . BAND_OPACITY . "; -moz-opacity: " . BAND_OPACITY . "; z-index: 50;\" onclick=\"window.open('../modifybox.php?bid={$box['bid']}')\">$showcount</div>";
+
+		$lastx = $box['brx'] / $zoom;
+		$lasty = $box['bry'] / $zoom;
+		$varname = $box['varname'];
+
 		$showcount++;
 	}
-
+	print "<input id=\"boxgroupname$bgid\" style=\"position:absolute; top:" . $lasty ."px; left:".$lastx."px; z-index:100;\" name=\"boxgroupname$bgid\" type=\"text\" value=\"$varname\" size=\"4\" onblur=\"updateVarname($bgid,this.value);\"/>";
+	
 
 	print "<script type=\"text/javascript\">";
 
@@ -272,7 +288,7 @@ function createboxes($sx,$sy,$x,$y,$pid,$qid)
 
 /* Create a box group in the DB
  */
-function updateboxgroup($bid,$width,$varname,$btid)
+function updateboxgroup($bid,$width,$btid)
 {
 	global $db;
 	$db->StartTrans();
@@ -287,12 +303,25 @@ function updateboxgroup($bid,$width,$varname,$btid)
 
 
 	$sql = "UPDATE boxgroupstype
-		SET btid = '$btid', width = '$width', varname = '$varname'
+		SET btid = '$btid', width = '$width'
 		WHERE bgid = '$bgid'";
 
 	$db->Execute($sql);
 
 	$db->CompleteTrans();
+}
+
+function updatevarname($bgid,$varname)
+{
+	global $db;
+
+	$varname = $db->qstr($varname);
+
+	$sql = "UPDATE boxgroupstype
+		SET varname = $varname
+		WHERE bgid = '$bgid'";
+
+	$db->Execute($sql);
 }
 
 /**
@@ -445,11 +474,18 @@ if (isset($_GET['pid']) && isset($_GET['qid']) && isset($_GET['zoom']))
 	
 	if (isset($_GET['bid']) && isset($_GET['btid']))
 	{
-		updateboxgroup(intval($_GET['bid']),1,'',intval($_GET['btid']));
+		updateboxgroup(intval($_GET['bid']),1,intval($_GET['btid']));
 		pidtomap($pid,$zoom);
 		exit();
 	}
-	
+
+
+	if (isset($_GET['varname']) && isset($_GET['bgid']))
+	{
+		updatevarname(intval($_GET['bgid']), $_GET['varname']);
+		pidtomap($pid,$zoom);
+		exit();
+	}	
 	
 	if (isset($_GET['x']) && isset($_GET['y']) && isset($_GET['w']) && isset($_GET['h']))
 	{
