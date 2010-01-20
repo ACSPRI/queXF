@@ -57,12 +57,12 @@ if (isset($_GET['pid'])){
 	}
 
 	print "<form action='?' method='get'>";
-	print "<p><label for='pagenote'>Page note:</label>";
+	print "<p><label for='pagenote'>" . T_("Page note:") . "</label>";
 	print "<input type='text' name='pagenote' id='pagenote'>";
 	print "<input type='hidden' name='vid' value='$vid'/>";
 	print "<input type='hidden' name='pid' value='$pid'/>";
 	print "<input type='hidden' name='fid' value='$fid'/>";
-	print "<input type='submit' value='Add note' name='submit' id='submit'/></p>";
+	print "<input type='submit' value='" . T_("Add note") . "' name='submit' id='submit'/></p>";
 	print "</form>";
 
 }

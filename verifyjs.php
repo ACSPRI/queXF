@@ -665,7 +665,7 @@ function detectEvent(e) {
 		return false;
 	}
 
-	if (evt.keyCode == 91 || evt.keyCode == 92)
+	if (evt.keyCode == 91 || evt.keyCode == 92 || evt.keyCode == 113)
 	{
 		images = document.getElementsByTagName('img');
 		poptastic(images[0].src + '&zoom');
