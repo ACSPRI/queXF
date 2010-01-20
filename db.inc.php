@@ -29,11 +29,11 @@ include_once(dirname(__FILE__) . '/lang.inc.php');
 
 if (!(include_once(ADODB_DIR . 'adodb.inc.php')))
 {
-	print "<p>ERROR: Please modify config.inc.php to point to your ADODb installation</p>";
+	print "<p>" . T_("ERROR: Please modify config.inc.php to point to your ADODb installation") . "</p>";
 }
 if (!(include_once(ADODB_DIR . 'session/adodb-session2.php')))
 {
-	print "<p>ERROR: Please modify config.inc.php to point to your ADODb installation</p>";
+	print "<p>" . T_("ERROR: Please modify config.inc.php to point to your ADODb installation") . "</p>";
 }
 
 

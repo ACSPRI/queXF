@@ -1,6 +1,6 @@
 <?php
 /*
-   Copyright (c) 2003,2004,2005 Danilo Segan <danilo@kvota.net>.
+   Copyright (c) 2003,2004,2005,2009 Danilo Segan <danilo@kvota.net>.
    Copyright (c) 2005,2006 Steven Armstrong <sa@c-area.ch>
 
    This file is part of PHP-gettext.
@@ -21,10 +21,12 @@
 
 */
 
+error_reporting(E_STRICT);
+
 // define constants
-define(PROJECT_DIR, realpath('./'));
-define(LOCALE_DIR, PROJECT_DIR .'/locale');
-define(DEFAULT_LOCALE, 'en_US');
+define('PROJECT_DIR', realpath('./'));
+define('LOCALE_DIR', PROJECT_DIR .'/locale');
+define('DEFAULT_LOCALE', 'en_US');
 
 require_once('../gettext.inc');
 
@@ -37,20 +39,21 @@ $locale = (isset($_GET['lang']))? $_GET['lang'] : DEFAULT_LOCALE;
 T_setlocale(LC_MESSAGES, $locale);
 // Set the text domain as 'messages'
 $domain = 'messages';
-T_bindtextdomain($domain, LOCALE_DIR);
-T_bind_textdomain_codeset($domain, $encoding);
-T_textdomain($domain);
+bindtextdomain($domain, LOCALE_DIR);
+// bind_textdomain_codeset is supported only in PHP 4.2.0+
+if (function_exists('bind_textdomain_codeset')) 
+  bind_textdomain_codeset($domain, $encoding);
+textdomain($domain);
 
 header("Content-type: text/html; charset=$encoding");
 ?>
 <html>
 <head>
-<title>PHP-gettext fallback example</title>
+<title>PHP-gettext dropin example</title>
 </head>
 <body>
-<h1>PHP-gettext as a fallback solution</h1>
-<p>Example showing how to use PHP-gettext as a fallback solution if the native gettext library is not available or the system does not support the requested locale.</p>
-
+<h1>PHP-gettext as a dropin replacement</h1>
+<p>Example showing how to use PHP-gettext as a dropin replacement for the native gettext library.</p>
 <?php
 print "<p>";
 foreach($supported_locales as $l) {
@@ -62,7 +65,7 @@ if (!locale_emulation()) {
 	print "<p>locale '$locale' is supported by your system, using native gettext implementation.</p>\n";
 }
 else {
-	print "<p>locale '$locale' is <strong>not</strong> supported on your system, using custom gettext implementation.</p>\n";
+	print "<p>locale '$locale' is _not_ supported on your system, using the default locale '". DEFAULT_LOCALE ."'.</p>\n";
 }
 ?>
 
@@ -71,9 +74,9 @@ else {
 <?php
 // using PHP-gettext
 print "<pre>";
-print T_("This is how the story goes.\n\n");
+print _("This is how the story goes.\n\n");
 for ($number=6; $number>=0; $number--) {
-  print sprintf( T_ngettext("%d pig went to the market\n", 
+  print sprintf(T_ngettext("%d pig went to the market\n", 
 			  "%d pigs went to the market\n", $number), 
 		 $number );
 }

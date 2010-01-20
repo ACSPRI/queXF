@@ -32,7 +32,7 @@
 /**
  * The phpgettext package
  */
-require_once(dirname(__FILE__).'/include/php-gettext-1.0.7/gettext.inc');
+require_once(dirname(__FILE__).'/include/php-gettext-1.0.9/gettext.inc');
 
 /**
  * Translate the given elements of the array
