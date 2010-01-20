@@ -1,0 +1,852 @@
+# Simplified Chinese translation for quexf
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the quexf package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: quexf\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2009-04-24 11:49+1000\n"
+"PO-Revision-Date: 2009-12-01 04:50+0000\n"
+"Last-Translator: Qianqian Fang <fangqq@gmail.com>\n"
+"Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-01-20 03:24+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#: modifybox.php:228
+msgid "Group type:"
+msgstr "分组类型"
+
+#: modifybox.php:233
+msgid "Variable name:"
+msgstr "变量名："
+
+#: modifybox.php:236
+msgid "Width:"
+msgstr "宽度"
+
+#: modifybox.php:238
+msgid "Submit"
+msgstr "送出變更"
+
+#: modifybox.php:240
+msgid "Delete this group"
+msgstr "删除此组"
+
+#: modifybox.php:241
+msgid "Delete in between boxes"
+msgstr "在输入框间删除"
+
+#: review.php:80
+msgid "Review Form"
+msgstr "审查表单"
+
+#: review.php:139
+msgid "Form:"
+msgstr "表单："
+
+#: review.php:140
+msgid "Variable:"
+msgstr "变量："
+
+#: review.php:141
+msgid "Page:"
+msgstr "页:"
+
+#: index.php:30
+msgid "queXF"
+msgstr "queXF"
+
+#: index.php:31
+msgid "Verify"
+msgstr "核对"
+
+#: index.php:32
+msgid "Review a form"
+msgstr "审查一个表单"
+
+#: verifyjs.php:164
+msgid "Please log in"
+msgstr "请登录"
+
+#: verifyjs.php:281
+#: verifyjs.php:354
+msgid "Verify: No more work"
+msgstr "核对：没有更多工作"
+
+#: verifyjs.php:282
+#: verifyjs.php:355
+msgid "NO MORE WORK"
+msgstr "没有更多工作"
+
+#: verifyjs.php:283
+#: verifyjs.php:356
+msgid "Check for more work"
+msgstr "检查是否有更多工作"
+
+#: verifyjs.php:297
+msgid "Verify: Assign form"
+msgstr "核实：分配表单"
+
+#: verifyjs.php:299
+msgid "There is no form currently assigned to you"
+msgstr "目前没有更多的表单分配给您"
+
+#: verifyjs.php:300
+msgid "Assign next form"
+msgstr "分配下一表单"
+
+#: verifyjs.php:303
+msgid "Assigning next form: Please wait..."
+msgstr "正在分配下一表单：请等待..."
+
+#: verifyjs.php:463
+msgid "Verify: Done"
+msgstr "核实：完成"
+
+#: verifyjs.php:466
+#: verifyjs.php:1070
+msgid "Submit completed form to database"
+msgstr "将完成的表单提交到数据库"
+
+#: verifyjs.php:467
+#: verifyjs.php:1071
+msgid "Review all questions again"
+msgstr "再审查一遍所有问题"
+
+#: verifyjs.php:468
+#: verifyjs.php:1072
+msgid "Clear all entered data and review again"
+msgstr "清空所有输入的数据，再审查一遍"
+
+#: verifyjs.php:470
+#: verifyjs.php:1075
+msgid "Submitting: Please wait..."
+msgstr "正在提交：请稍候..."
+
+#: verifyjs.php:485
+msgid "Verifier"
+msgstr "核对者"
+
+#: verifyjs.php:1068
+msgid "The required fields have been filled"
+msgstr "要求的字段已经填写"
+
+#: verifyjs.php:1083
+msgid "Image of page"
+msgstr "页面的图像"
+
+#: verifyjs.php:1083
+msgid "form"
+msgstr "表单"
+
+#: verifyjs.php:1092
+msgid "Centre Page"
+msgstr "中央页面"
+
+#: admin/performance.php:33
+msgid "Performance"
+msgstr "性能"
+
+#: admin/performance.php:67
+msgid "Operator"
+msgstr "操作员"
+
+#: admin/performance.php:67
+#: admin/performance.php:106
+msgid "Completed Forms"
+msgstr "完成的表单"
+
+#: admin/performance.php:67
+#: admin/performance.php:106
+msgid "Completions Per Hour"
+msgstr "每小时的完成量"
+
+#: admin/performance.php:67
+#: admin/performance.php:106
+msgid "Pages Per Hour"
+msgstr "每小时页数"
+
+#: admin/performance.php:106
+msgid "Questionnaire"
+msgstr "问卷"
+
+#: admin/clientquestionnaire.php:144
+msgid "Assign clients to questionnaires"
+msgstr "向客户分配问卷"
+
+#: admin/process.php:54
+msgid "Processing directory"
+msgstr "正在处理文件夹"
+
+#: admin/process.php:68
+msgid "Watching..."
+msgstr "查看："
+
+#: admin/process.php:90
+msgid ""
+"Cannot process this directory - check that it is valid and permissions are "
+"correct"
+msgstr "无法处理这个文件夹 - 检查它的有效性及权限是否正确"
+
+#: admin/databasestrings.php:33
+msgid "Temporary"
+msgstr "临时"
+
+#: admin/databasestrings.php:34
+#: admin/bandajax.php:74
+msgid "Single choice"
+msgstr "单选"
+
+#: admin/databasestrings.php:35
+#: admin/bandajax.php:82
+msgid "Multiple choice"
+msgstr "多选"
+
+#: admin/databasestrings.php:36
+msgid "Text"
+msgstr "文本"
+
+#: admin/databasestrings.php:37
+msgid "Number"
+msgstr "数字"
+
+#: admin/databasestrings.php:38
+#: admin/bandajax.php:106
+msgid "Barcode"
+msgstr "条形码"
+
+#: admin/databasestrings.php:39
+#: admin/bandajax.php:114
+msgid "Long text"
+msgstr "长文本"
+
+#: admin/pagesetup.php:77
+msgid "Set page layout"
+msgstr "设置页面布局"
+
+#: admin/pagesetup.php:126
+msgid "Configuration settings (copy and paste in to config.inc.php)"
+msgstr "配置设置(复制粘贴到 config.inc.php 中)"
+
+#: admin/pagesetup.php:136
+#: admin/band.php:182
+#: admin/bandajax.php:508
+msgid "Increase zoom"
+msgstr "增加缩放"
+
+#: admin/pagesetup.php:139
+#: admin/band.php:182
+#: admin/bandajax.php:508
+msgid "Decrease zoom"
+msgstr "减少缩放"
+
+#: admin/pagesetup.php:271
+#: admin/index.php:61
+msgid "Page setup"
+msgstr "页面设置"
+
+#: admin/pagesetup.php:272
+#: admin/new.php:154
+msgid "You will get the best results if you:"
+msgstr "如果您这么做会获得最佳效果："
+
+#: admin/pagesetup.php:274
+#: admin/new.php:155
+msgid ""
+"Print out the form using the same method that you will for all the printed "
+"forms"
+msgstr "打印此表单时，使用用与所有要打印表单一致的方法"
+
+#: admin/pagesetup.php:275
+msgid ""
+"Scan the form to a PDF using the same options that you will for the filled "
+"forms"
+msgstr "将此表单扫描成PDF时，使用与所有要填写的表单一致的选项"
+
+#: admin/pagesetup.php:276
+#: admin/new.php:157
+msgid "Best options for scanning in are:"
+msgstr "扫描输入的最佳选项有："
+
+#: admin/pagesetup.php:277
+#: admin/new.php:158
+msgid "Monochrome (1 bit)"
+msgstr "单色(1位)"
+
+#: admin/pagesetup.php:278
+#: admin/new.php:159
+msgid "300DPI Resolution"
+msgstr "分辨率 300DPI"
+
+#: admin/pagesetup.php:284
+msgid "Select PDF file to upload:"
+msgstr "选择要上传的 PDF 文件："
+
+#: admin/pagesetup.php:285
+#: admin/new.php:167
+msgid "Upload form"
+msgstr "上传表单"
+
+#: admin/operators.php:34
+#: admin/operators.php:64
+msgid "Add an operator"
+msgstr "添加操作员"
+
+#: admin/operators.php:49
+#: admin/clients.php:66
+msgid "Added"
+msgstr "已添加"
+
+#: admin/operators.php:52
+#: admin/clients.php:68
+msgid "Could not add"
+msgstr "无法添加"
+
+#: admin/operators.php:52
+msgid "There may already be an operator of this name"
+msgstr "可能已经有一位叫这个名字的操作员"
+
+#: admin/operators.php:65
+msgid ""
+"Adding an operator here will give the user the ability to verify forms once "
+"they have assigned a form using the"
+msgstr "在这里添加一位操作员则该用户将拥有核实表单的能力，一旦他们分配到了一个表单，通过使用"
+
+#: admin/operators.php:65
+msgid "Assign Verifier to Questionnaire"
+msgstr "分配问卷的核对者"
+
+#: admin/operators.php:65
+msgid "tool"
+msgstr "工具"
+
+#: admin/operators.php:66
+msgid ""
+"Use this form to enter the username of a user based on your directory "
+"security system. For example, if you have secured the base directory of "
+"queXF using Apache file based security, enter the usernames of the users "
+"here. When the user accesses the verification page, they will uniquely be "
+"assigned a form."
+msgstr ""
+"使用此表单输入基于您的文件夹安全系统的一位用户的用户名。例如，如果您使用基于 Apache 文件安全 的方法对 queXF "
+"的基文件夹进行了安全加强，输入用户的用户名。当用户访问核实页面时，他们会分配以唯一的一张表单。"
+
+#: admin/operators.php:68
+msgid ""
+"Enter the username (as in the security system, eg: azammit) of an operator "
+"to add:"
+msgstr "输入要添加的操作员的用户名(同安全系统，如：azammit)："
+
+#: admin/operators.php:69
+msgid "Enter the name of the operator (eg Adam):"
+msgstr "输入操作员的用户名(如 Adam)："
+
+#: admin/operators.php:70
+#: admin/clients.php:88
+msgid "Add user"
+msgstr "添加用户"
+
+#: admin/progress.php:33
+#: admin/index.php:54
+msgid "Progress"
+msgstr "进度"
+
+#: admin/progress.php:55
+msgid "Done"
+msgstr "完成"
+
+#: admin/progress.php:55
+msgid "Remain"
+msgstr "剩余"
+
+#: admin/progress.php:55
+msgid "Total forms imported"
+msgstr "已导入的表单总数"
+
+#: admin/progress.php:77
+msgid "Total"
+msgstr "总计"
+
+#: admin/listfiles.php:49
+msgid "Listing of imported files by status"
+msgstr "按状态列出的导入的文件清单"
+
+#: admin/listfiles.php:55
+msgid "Forms successfully imported"
+msgstr "表单导入成功"
+
+#: admin/listfiles.php:57
+msgid "Forms not imported"
+msgstr "表单没有导入"
+
+#: admin/listfiles.php:68
+msgid "File"
+msgstr "文件"
+
+#: admin/listfiles.php:68
+msgid "SHA1"
+msgstr "SHA1"
+
+#: admin/listfiles.php:68
+msgid "Date"
+msgstr "日期"
+
+#: admin/listfiles.php:68
+msgid "Allow import again?"
+msgstr "允许重新导入吗？"
+
+#: admin/listfiles.php:70
+#: admin/reorder.php:130
+msgid "Save changes"
+msgstr "保存"
+
+#: admin/reorder.php:46
+#: admin/reorder.php:83
+msgid "Reorder variables"
+msgstr "重新对变量排序"
+
+#: admin/reorder.php:60
+msgid "Manual reorder"
+msgstr "手动重新排序"
+
+#: admin/reorder.php:60
+msgid "Reorder by position"
+msgstr "按位置重新排序"
+
+#: admin/reorder.php:60
+msgid "Reorder by variable name"
+msgstr "按变量名重新排序"
+
+#: admin/reorder.php:119
+msgid ""
+"Reorder variables by dragging and dropping, then clicking on 'Save Changes' "
+"below"
+msgstr "通过拖放对变量重新排序，然后点击下面的“保存更改”"
+
+#: admin/reorder.php:121
+msgid "Click here"
+msgstr "点击此处"
+
+#: admin/reorder.php:121
+msgid "to return without saving changes"
+msgstr "返回而不保存"
+
+#: admin/band.php:111
+#: admin/band.php:384
+#: admin/bandajax.php:463
+#: admin/bandajax.php:539
+msgid "Band"
+msgstr "窗口"
+
+#: admin/band.php:182
+#: admin/bandajax.php:508
+msgid "Choose another questionnaire"
+msgstr "选择另一问卷"
+
+#: admin/verifierquestionnaire.php:106
+msgid "Assign verifier to questionnaire"
+msgstr "分配问卷的核对者"
+
+#: admin/bandajax.php:66
+msgid "Disable this box group"
+msgstr "禁用这组输入框"
+
+#: admin/bandajax.php:74
+#: admin/bandajax.php:82
+#: admin/bandajax.php:90
+#: admin/bandajax.php:98
+#: admin/bandajax.php:106
+#: admin/bandajax.php:114
+msgid "Set to type:"
+msgstr "设置为输入："
+
+#: admin/bandajax.php:90
+msgid "Text and Numbers"
+msgstr "文字和数字"
+
+#: admin/bandajax.php:98
+msgid "Numbers only"
+msgstr "仅数字"
+
+#: admin/bandajax.php:123
+msgid "Delete this box"
+msgstr "删除此输入框"
+
+#: admin/bandajax.php:131
+msgid "Delete this box group"
+msgstr "删除这组输入框"
+
+#: admin/new.php:32
+msgid "Add new questionnaire"
+msgstr "添加新问卷"
+
+#: admin/new.php:87
+msgid "BARCODE"
+msgstr "条形码"
+
+#: admin/new.php:106
+msgid "INVALID - IGNORING BLANK PAGE"
+msgstr "无效 - 忽略空白页"
+
+#: admin/new.php:144
+msgid "Successfully inserted new questionnaire"
+msgstr "成功插入新问卷"
+
+#: admin/new.php:153
+msgid "New questionnaire"
+msgstr "新问卷"
+
+#: admin/new.php:156
+msgid ""
+"Scan the (blank) form to a PDF using the same options that you will for the "
+"filled forms"
+msgstr "将该(空白)表单扫描成PDF，使用与将用于其他填写的表单的相同的选项"
+
+#: admin/new.php:165
+msgid "Select PDF file to create form from"
+msgstr "选择要创建表单的来源PDF文件"
+
+#: admin/new.php:166
+msgid "Enter description of form"
+msgstr "输入表单描述"
+
+#: admin/listduplicates.php:31
+msgid "Listing of duplicate forms"
+msgstr "重复表单的列表"
+
+#: admin/listduplicates.php:47
+msgid "Duplicate form listing"
+msgstr "重复表单列表"
+
+#: admin/listduplicates.php:47
+msgid "Forms with the same PFID are duplicates"
+msgstr "PFID 相同的表单是重复的"
+
+#: admin/listduplicates.php:49
+msgid "Formid"
+msgstr "表单ID"
+
+#: admin/listduplicates.php:49
+msgid "PFID"
+msgstr "PFID"
+
+#: admin/import.directory.php:44
+#: admin/import.directory.php:59
+#: admin/index.php:47
+msgid "Import a directory of PDF files"
+msgstr "导入一个 PDF 文件夹"
+
+#: admin/import.directory.php:46
+msgid "Process"
+msgstr "进度"
+
+#: admin/import.directory.php:46
+msgid "running..."
+msgstr "运行中......"
+
+#: admin/import.directory.php:48
+msgid "Note: This page will automatically refresh every 10 seconds"
+msgstr "注：此页面每10秒会自动刷新"
+
+#: admin/import.directory.php:51
+msgid "Kill signal sent: Please wait..."
+msgstr "已发送 Kill 信号：请等待..."
+
+#: admin/import.directory.php:53
+msgid "Kill the running process"
+msgstr "杀死(Kill)正在运行的进程"
+
+#: admin/import.directory.php:53
+msgid "may take up to a few minutes to take effect"
+msgstr "可能要几分钟才能生效"
+
+#: admin/import.directory.php:68
+msgid "Directory"
+msgstr "文件夹"
+
+#: admin/import.directory.php:70
+msgid "Enter directory local to the server (eg /mnt/iss/tmp/images)"
+msgstr "输入相对服务器的本地文件夹(如 /mnt/iss/tmp/images)"
+
+#: admin/import.directory.php:71
+msgid "Process directory: browser window must remain open"
+msgstr "处理文件夹：浏览器窗口必须一直打开"
+
+#: admin/import.directory.php:72
+msgid "Watch this directory in the background (recommended)"
+msgstr "在后台监视此文件夹(推荐)"
+
+#: admin/import.directory.php:76
+msgid "Outcome of last process run (if any)"
+msgstr "上次处理的运行结果(如果有)"
+
+#: admin/index.php:30
+#: admin/index.php:35
+msgid "queXF Admin Functions"
+msgstr "queXF 管理功能"
+
+#: admin/index.php:37
+msgid "Form setup"
+msgstr "表单设置"
+
+#: admin/index.php:38
+msgid "Import a new form from a PDF file"
+msgstr "从一个PDF文件导入一张新表单"
+
+#: admin/index.php:39
+msgid "Delete a form (only if no forms yet imported)"
+msgstr "删除一个表单(仅当尚无表单被导入时)"
+
+#: admin/index.php:40
+msgid "Band a form"
+msgstr "为表格定义窗口"
+
+#: admin/index.php:41
+msgid "Band a form using interactive banding"
+msgstr "使用交互方式为表格定义窗口"
+
+#: admin/index.php:42
+msgid "Order variables on the form"
+msgstr "对表单上的变量排序"
+
+#: admin/index.php:43
+msgid "Users"
+msgstr "用户"
+
+#: admin/index.php:44
+msgid "Add operators"
+msgstr "添加操作者"
+
+#: admin/index.php:45
+msgid "Assign forms to operators"
+msgstr "将表单分配给操作者"
+
+#: admin/index.php:46
+msgid "Importing"
+msgstr "正在导入"
+
+#: admin/index.php:48
+msgid "Successfully imported files"
+msgstr "导入文件成功"
+
+#: admin/index.php:49
+msgid "Failed imported files"
+msgstr "导入文件失败"
+
+#: admin/index.php:50
+msgid "Duplicate forms"
+msgstr "重复的表单"
+
+#: admin/index.php:51
+msgid "Handle missing pages"
+msgstr "处理丢失的页面"
+
+#: admin/index.php:52
+msgid "Output"
+msgstr "输出"
+
+#: admin/index.php:53
+msgid "Output data/ddi"
+msgstr "Output 日期/ddi"
+
+#: admin/index.php:55
+msgid "Display progress of form verification"
+msgstr "显示表单核实的进度"
+
+#: admin/index.php:56
+msgid "Display performance of verifiers (Completions per hour)"
+msgstr "显示核对员的工作情况(每小时的完成数)"
+
+#: admin/index.php:57
+msgid "Clients"
+msgstr "客户"
+
+#: admin/index.php:58
+msgid "Add clients"
+msgstr "添加客户"
+
+#: admin/index.php:59
+msgid "Assign clients to forms"
+msgstr "向表单分配客户"
+
+#: admin/index.php:60
+msgid "System setup"
+msgstr "系统设置"
+
+#: admin/index.php:64
+msgid "Loading panel..."
+msgstr "载入面板..."
+
+#: admin/index.php:64
+msgid "Error, try with Firefox"
+msgstr "错误，请用 Firefox 重试"
+
+#: admin/clients.php:68
+msgid "There may already be an client of this name"
+msgstr "可能已经有了叫这个名字的客户"
+
+#: admin/clients.php:73
+#: admin/clients.php:82
+msgid "Add a client"
+msgstr "添加一个客户"
+
+#: admin/clients.php:83
+msgid ""
+"Adding a client here will allow them to access project information in the "
+"client subdirectory. You can assign a client to a particular project using "
+"the"
+msgstr "在这里添加一个客户会允许他们访问客户子文件夹中的项目信息。您可以将客户分配到一个指定的项目，使用"
+
+#: admin/clients.php:83
+msgid "Assign client to Form"
+msgstr "向表单分配客户"
+
+#: admin/clients.php:83
+msgid "tool."
+msgstr "工具。"
+
+#: admin/clients.php:84
+msgid ""
+"Use this form to enter the username of a user based on your directory "
+"security system. For example, if you have secured the base directory of "
+"queXF using Apache file based security, enter the usernames of the users "
+"here."
+msgstr ""
+"使用这个表单来输出基于您的文件夹安全设置的用户的用户名。例如，如果您使用基于 Apache 文件安全的方法对 "
+"queXF的基文件夹进行安全加强，在此输入用户的用户名。"
+
+#: admin/clients.php:86
+msgid "Enter the username of a client to add:"
+msgstr "输入要添加的客户的用户名："
+
+#: admin/clients.php:87
+msgid "Enter the description of the client to add:"
+msgstr "输入对要添加的客户的描述："
+
+#: admin/testconfig.php:3
+msgid "Test Installation"
+msgstr "测试安装"
+
+#: admin/delete.php:51
+msgid "Delete a questionnaire"
+msgstr "删除问卷"
+
+#: admin/delete.php:66
+msgid "Click to delete questionnaire"
+msgstr "点击删除问卷"
+
+#: admin/delete.php:67
+msgid ""
+"The following questionnaires have no forms associated with them so are safe "
+"to delete"
+msgstr "以下问卷没有任何表单与之关联，可以安全地删除"
+
+#: admin/delete.php:71
+#: admin/missingpages.php:271
+msgid "Delete"
+msgstr "删除"
+
+#: admin/output.php:55
+msgid "Output data"
+msgstr "输出数据"
+
+#: admin/output.php:67
+msgid "Data"
+msgstr "数据"
+
+#: admin/missingpages.php:135
+msgid "Missing Pages"
+msgstr "缺少页"
+
+#: admin/missingpages.php:210
+msgid "Missing page"
+msgstr "缺少页"
+
+#: admin/missingpages.php:257
+msgid "Page"
+msgstr "页"
+
+#: admin/missingpages.php:257
+msgid "of Form"
+msgstr "在表单中"
+
+#: admin/missingpages.php:271
+msgid "Accept"
+msgstr "接受"
+
+#: admin/missingpages.php:276
+msgid "No missing pages"
+msgstr "没有缺少页"
+
+#: client/index.php:32
+msgid "Review forms"
+msgstr "审查表单"
+
+#: client/index.php:59
+msgid "Review"
+msgstr "审查"
+
+#: client/index.php:75
+msgid ""
+"This form not available for you to review. Please enter a form id in the box "
+"on the left"
+msgstr "此表单没有您可以审查的内容。请在左侧的框里输入一个表单ID"
+
+#: client/index.php:133
+msgid "You are not authorised to review any forms"
+msgstr "您没有审查任何表单的权限"
+
+#: functions/functions.import.php:381
+msgid "Finding qid"
+msgstr "正在查找 qid"
+
+#: functions/functions.import.php:418
+msgid "Got qid"
+msgstr "得到 qid"
+
+#: functions/functions.import.php:444
+msgid "Processing pid"
+msgstr "正在处理 pid"
+
+#: functions/functions.import.php:455
+msgid "Pid not identified for this page, inserting into missing pages..."
+msgstr "此页面的 pid 无法识别，正在插入到丢失页面..."
+
+#: functions/functions.import.php:504
+msgid "Blank page: ignoring"
+msgstr "空白页：忽略"
+
+#: functions/functions.import.php:509
+msgid "Could not get pid, inserting into missing pages..."
+msgstr "无法获得 pid，正在插入到丢失页面..."
+
+#: functions/functions.import.php:565
+msgid "Could not get qid..."
+msgstr "无法获得 qid..."
+
+#: functions/functions.import.php:625
+msgid ""
+"Automatically processing the 1 missing page for this form - assuming pid:"
+msgstr "自动处理此表单的一个丢失的页面 - 分配 pid："
+
+#: functions/functions.import.php:690
+msgid "File already in database"
+msgstr "文件已经在数据库中"
+
+#: functions/functions.database.php:137
+msgid "ERROR: Multiple forms assigned, please see a technical officer"
+msgstr "错误：分配了多张表单，请找技术人员"
+
+#: include/php-gettext-1.0.7/examples/pigs_fallback.php:74
+#: include/php-gettext-1.0.7/examples/pigs_dropin.php:75
+msgid ""
+"This is how the story goes.\n"
+"\n"
+msgstr ""
+"下面是事情原委。\n"
+"\n"

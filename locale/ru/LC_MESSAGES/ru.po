@@ -1,0 +1,846 @@
+# Russian translation for quexf
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the quexf package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: quexf\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2009-04-24 11:49+1000\n"
+"PO-Revision-Date: 2009-06-24 14:57+0000\n"
+"Last-Translator: Egor Bushmelyov <Unknown>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-01-20 03:40+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#: modifybox.php:228
+msgid "Group type:"
+msgstr "Тип группы:"
+
+#: modifybox.php:233
+msgid "Variable name:"
+msgstr "Имя переменной:"
+
+#: modifybox.php:236
+msgid "Width:"
+msgstr "Ширина:"
+
+#: modifybox.php:238
+msgid "Submit"
+msgstr "Передать"
+
+#: modifybox.php:240
+msgid "Delete this group"
+msgstr "Удалить эту группу"
+
+#: modifybox.php:241
+msgid "Delete in between boxes"
+msgstr ""
+
+#: review.php:80
+msgid "Review Form"
+msgstr ""
+
+#: review.php:139
+msgid "Form:"
+msgstr "Форма:"
+
+#: review.php:140
+msgid "Variable:"
+msgstr "Переменная:"
+
+#: review.php:141
+msgid "Page:"
+msgstr "Страница:"
+
+#: index.php:30
+msgid "queXF"
+msgstr "queXF"
+
+#: index.php:31
+msgid "Verify"
+msgstr "Проверить"
+
+#: index.php:32
+msgid "Review a form"
+msgstr ""
+
+#: verifyjs.php:164
+msgid "Please log in"
+msgstr "Пожалуйста, войдите в систему"
+
+#: verifyjs.php:281
+#: verifyjs.php:354
+msgid "Verify: No more work"
+msgstr ""
+
+#: verifyjs.php:282
+#: verifyjs.php:355
+msgid "NO MORE WORK"
+msgstr ""
+
+#: verifyjs.php:283
+#: verifyjs.php:356
+msgid "Check for more work"
+msgstr ""
+
+#: verifyjs.php:297
+msgid "Verify: Assign form"
+msgstr ""
+
+#: verifyjs.php:299
+msgid "There is no form currently assigned to you"
+msgstr ""
+
+#: verifyjs.php:300
+msgid "Assign next form"
+msgstr ""
+
+#: verifyjs.php:303
+msgid "Assigning next form: Please wait..."
+msgstr ""
+
+#: verifyjs.php:463
+msgid "Verify: Done"
+msgstr ""
+
+#: verifyjs.php:466
+#: verifyjs.php:1070
+msgid "Submit completed form to database"
+msgstr ""
+
+#: verifyjs.php:467
+#: verifyjs.php:1071
+msgid "Review all questions again"
+msgstr ""
+
+#: verifyjs.php:468
+#: verifyjs.php:1072
+msgid "Clear all entered data and review again"
+msgstr ""
+
+#: verifyjs.php:470
+#: verifyjs.php:1075
+msgid "Submitting: Please wait..."
+msgstr ""
+
+#: verifyjs.php:485
+msgid "Verifier"
+msgstr ""
+
+#: verifyjs.php:1068
+msgid "The required fields have been filled"
+msgstr ""
+
+#: verifyjs.php:1083
+msgid "Image of page"
+msgstr ""
+
+#: verifyjs.php:1083
+msgid "form"
+msgstr "форма"
+
+#: verifyjs.php:1092
+msgid "Centre Page"
+msgstr ""
+
+#: admin/performance.php:33
+msgid "Performance"
+msgstr ""
+
+#: admin/performance.php:67
+msgid "Operator"
+msgstr "Оператор"
+
+#: admin/performance.php:67
+#: admin/performance.php:106
+msgid "Completed Forms"
+msgstr ""
+
+#: admin/performance.php:67
+#: admin/performance.php:106
+msgid "Completions Per Hour"
+msgstr ""
+
+#: admin/performance.php:67
+#: admin/performance.php:106
+msgid "Pages Per Hour"
+msgstr ""
+
+#: admin/performance.php:106
+msgid "Questionnaire"
+msgstr "Опросник"
+
+#: admin/clientquestionnaire.php:144
+msgid "Assign clients to questionnaires"
+msgstr ""
+
+#: admin/process.php:54
+msgid "Processing directory"
+msgstr ""
+
+#: admin/process.php:68
+msgid "Watching..."
+msgstr "Просмотр"
+
+#: admin/process.php:90
+msgid ""
+"Cannot process this directory - check that it is valid and permissions are "
+"correct"
+msgstr ""
+
+#: admin/databasestrings.php:33
+msgid "Temporary"
+msgstr "Временный"
+
+#: admin/databasestrings.php:34
+#: admin/bandajax.php:74
+msgid "Single choice"
+msgstr ""
+
+#: admin/databasestrings.php:35
+#: admin/bandajax.php:82
+msgid "Multiple choice"
+msgstr ""
+
+#: admin/databasestrings.php:36
+msgid "Text"
+msgstr "Текст"
+
+#: admin/databasestrings.php:37
+msgid "Number"
+msgstr "Число"
+
+#: admin/databasestrings.php:38
+#: admin/bandajax.php:106
+msgid "Barcode"
+msgstr ""
+
+#: admin/databasestrings.php:39
+#: admin/bandajax.php:114
+msgid "Long text"
+msgstr "Длинный текст"
+
+#: admin/pagesetup.php:77
+msgid "Set page layout"
+msgstr ""
+
+#: admin/pagesetup.php:126
+msgid "Configuration settings (copy and paste in to config.inc.php)"
+msgstr ""
+
+#: admin/pagesetup.php:136
+#: admin/band.php:182
+#: admin/bandajax.php:508
+msgid "Increase zoom"
+msgstr "Приблизить"
+
+#: admin/pagesetup.php:139
+#: admin/band.php:182
+#: admin/bandajax.php:508
+msgid "Decrease zoom"
+msgstr "Отдалить"
+
+#: admin/pagesetup.php:271
+#: admin/index.php:61
+msgid "Page setup"
+msgstr "Настройки страницы"
+
+#: admin/pagesetup.php:272
+#: admin/new.php:154
+msgid "You will get the best results if you:"
+msgstr ""
+
+#: admin/pagesetup.php:274
+#: admin/new.php:155
+msgid ""
+"Print out the form using the same method that you will for all the printed "
+"forms"
+msgstr ""
+
+#: admin/pagesetup.php:275
+msgid ""
+"Scan the form to a PDF using the same options that you will for the filled "
+"forms"
+msgstr ""
+
+#: admin/pagesetup.php:276
+#: admin/new.php:157
+msgid "Best options for scanning in are:"
+msgstr ""
+
+#: admin/pagesetup.php:277
+#: admin/new.php:158
+msgid "Monochrome (1 bit)"
+msgstr ""
+
+#: admin/pagesetup.php:278
+#: admin/new.php:159
+msgid "300DPI Resolution"
+msgstr ""
+
+#: admin/pagesetup.php:284
+msgid "Select PDF file to upload:"
+msgstr ""
+
+#: admin/pagesetup.php:285
+#: admin/new.php:167
+msgid "Upload form"
+msgstr "Загрузить форму"
+
+#: admin/operators.php:34
+#: admin/operators.php:64
+msgid "Add an operator"
+msgstr ""
+
+#: admin/operators.php:49
+#: admin/clients.php:66
+msgid "Added"
+msgstr "Добавлено"
+
+#: admin/operators.php:52
+#: admin/clients.php:68
+msgid "Could not add"
+msgstr ""
+
+#: admin/operators.php:52
+msgid "There may already be an operator of this name"
+msgstr ""
+
+#: admin/operators.php:65
+msgid ""
+"Adding an operator here will give the user the ability to verify forms once "
+"they have assigned a form using the"
+msgstr ""
+
+#: admin/operators.php:65
+msgid "Assign Verifier to Questionnaire"
+msgstr ""
+
+#: admin/operators.php:65
+msgid "tool"
+msgstr "инструмент"
+
+#: admin/operators.php:66
+msgid ""
+"Use this form to enter the username of a user based on your directory "
+"security system. For example, if you have secured the base directory of "
+"queXF using Apache file based security, enter the usernames of the users "
+"here. When the user accesses the verification page, they will uniquely be "
+"assigned a form."
+msgstr ""
+
+#: admin/operators.php:68
+msgid ""
+"Enter the username (as in the security system, eg: azammit) of an operator "
+"to add:"
+msgstr ""
+
+#: admin/operators.php:69
+msgid "Enter the name of the operator (eg Adam):"
+msgstr ""
+
+#: admin/operators.php:70
+#: admin/clients.php:88
+msgid "Add user"
+msgstr "Добавить пользователя"
+
+#: admin/progress.php:33
+#: admin/index.php:54
+msgid "Progress"
+msgstr "Прогресс"
+
+#: admin/progress.php:55
+msgid "Done"
+msgstr "Готово"
+
+#: admin/progress.php:55
+msgid "Remain"
+msgstr "Осталось"
+
+#: admin/progress.php:55
+msgid "Total forms imported"
+msgstr ""
+
+#: admin/progress.php:77
+msgid "Total"
+msgstr "Всего"
+
+#: admin/listfiles.php:49
+msgid "Listing of imported files by status"
+msgstr ""
+
+#: admin/listfiles.php:55
+msgid "Forms successfully imported"
+msgstr ""
+
+#: admin/listfiles.php:57
+msgid "Forms not imported"
+msgstr ""
+
+#: admin/listfiles.php:68
+msgid "File"
+msgstr "Файл"
+
+#: admin/listfiles.php:68
+msgid "SHA1"
+msgstr "SHA1"
+
+#: admin/listfiles.php:68
+msgid "Date"
+msgstr "Дата"
+
+#: admin/listfiles.php:68
+msgid "Allow import again?"
+msgstr ""
+
+#: admin/listfiles.php:70
+#: admin/reorder.php:130
+msgid "Save changes"
+msgstr "Сохранить изменения"
+
+#: admin/reorder.php:46
+#: admin/reorder.php:83
+msgid "Reorder variables"
+msgstr ""
+
+#: admin/reorder.php:60
+msgid "Manual reorder"
+msgstr ""
+
+#: admin/reorder.php:60
+msgid "Reorder by position"
+msgstr ""
+
+#: admin/reorder.php:60
+msgid "Reorder by variable name"
+msgstr ""
+
+#: admin/reorder.php:119
+msgid ""
+"Reorder variables by dragging and dropping, then clicking on 'Save Changes' "
+"below"
+msgstr ""
+
+#: admin/reorder.php:121
+msgid "Click here"
+msgstr "Щелкните здесь"
+
+#: admin/reorder.php:121
+msgid "to return without saving changes"
+msgstr ""
+
+#: admin/band.php:111
+#: admin/band.php:384
+#: admin/bandajax.php:463
+#: admin/bandajax.php:539
+msgid "Band"
+msgstr ""
+
+#: admin/band.php:182
+#: admin/bandajax.php:508
+msgid "Choose another questionnaire"
+msgstr ""
+
+#: admin/verifierquestionnaire.php:106
+msgid "Assign verifier to questionnaire"
+msgstr ""
+
+#: admin/bandajax.php:66
+msgid "Disable this box group"
+msgstr ""
+
+#: admin/bandajax.php:74
+#: admin/bandajax.php:82
+#: admin/bandajax.php:90
+#: admin/bandajax.php:98
+#: admin/bandajax.php:106
+#: admin/bandajax.php:114
+msgid "Set to type:"
+msgstr ""
+
+#: admin/bandajax.php:90
+msgid "Text and Numbers"
+msgstr "Текст и числа"
+
+#: admin/bandajax.php:98
+msgid "Numbers only"
+msgstr ""
+
+#: admin/bandajax.php:123
+msgid "Delete this box"
+msgstr ""
+
+#: admin/bandajax.php:131
+msgid "Delete this box group"
+msgstr ""
+
+#: admin/new.php:32
+msgid "Add new questionnaire"
+msgstr ""
+
+#: admin/new.php:87
+msgid "BARCODE"
+msgstr ""
+
+#: admin/new.php:106
+msgid "INVALID - IGNORING BLANK PAGE"
+msgstr ""
+
+#: admin/new.php:144
+msgid "Successfully inserted new questionnaire"
+msgstr ""
+
+#: admin/new.php:153
+msgid "New questionnaire"
+msgstr ""
+
+#: admin/new.php:156
+msgid ""
+"Scan the (blank) form to a PDF using the same options that you will for the "
+"filled forms"
+msgstr ""
+
+#: admin/new.php:165
+msgid "Select PDF file to create form from"
+msgstr ""
+
+#: admin/new.php:166
+msgid "Enter description of form"
+msgstr ""
+
+#: admin/listduplicates.php:31
+msgid "Listing of duplicate forms"
+msgstr ""
+
+#: admin/listduplicates.php:47
+msgid "Duplicate form listing"
+msgstr ""
+
+#: admin/listduplicates.php:47
+msgid "Forms with the same PFID are duplicates"
+msgstr ""
+
+#: admin/listduplicates.php:49
+msgid "Formid"
+msgstr ""
+
+#: admin/listduplicates.php:49
+msgid "PFID"
+msgstr ""
+
+#: admin/import.directory.php:44
+#: admin/import.directory.php:59
+#: admin/index.php:47
+msgid "Import a directory of PDF files"
+msgstr ""
+
+#: admin/import.directory.php:46
+msgid "Process"
+msgstr ""
+
+#: admin/import.directory.php:46
+msgid "running..."
+msgstr ""
+
+#: admin/import.directory.php:48
+msgid "Note: This page will automatically refresh every 10 seconds"
+msgstr ""
+
+#: admin/import.directory.php:51
+msgid "Kill signal sent: Please wait..."
+msgstr ""
+
+#: admin/import.directory.php:53
+msgid "Kill the running process"
+msgstr ""
+
+#: admin/import.directory.php:53
+msgid "may take up to a few minutes to take effect"
+msgstr ""
+
+#: admin/import.directory.php:68
+msgid "Directory"
+msgstr ""
+
+#: admin/import.directory.php:70
+msgid "Enter directory local to the server (eg /mnt/iss/tmp/images)"
+msgstr ""
+
+#: admin/import.directory.php:71
+msgid "Process directory: browser window must remain open"
+msgstr ""
+
+#: admin/import.directory.php:72
+msgid "Watch this directory in the background (recommended)"
+msgstr ""
+
+#: admin/import.directory.php:76
+msgid "Outcome of last process run (if any)"
+msgstr ""
+
+#: admin/index.php:30
+#: admin/index.php:35
+msgid "queXF Admin Functions"
+msgstr ""
+
+#: admin/index.php:37
+msgid "Form setup"
+msgstr ""
+
+#: admin/index.php:38
+msgid "Import a new form from a PDF file"
+msgstr ""
+
+#: admin/index.php:39
+msgid "Delete a form (only if no forms yet imported)"
+msgstr ""
+
+#: admin/index.php:40
+msgid "Band a form"
+msgstr ""
+
+#: admin/index.php:41
+msgid "Band a form using interactive banding"
+msgstr ""
+
+#: admin/index.php:42
+msgid "Order variables on the form"
+msgstr ""
+
+#: admin/index.php:43
+msgid "Users"
+msgstr ""
+
+#: admin/index.php:44
+msgid "Add operators"
+msgstr ""
+
+#: admin/index.php:45
+msgid "Assign forms to operators"
+msgstr ""
+
+#: admin/index.php:46
+msgid "Importing"
+msgstr ""
+
+#: admin/index.php:48
+msgid "Successfully imported files"
+msgstr ""
+
+#: admin/index.php:49
+msgid "Failed imported files"
+msgstr ""
+
+#: admin/index.php:50
+msgid "Duplicate forms"
+msgstr ""
+
+#: admin/index.php:51
+msgid "Handle missing pages"
+msgstr ""
+
+#: admin/index.php:52
+msgid "Output"
+msgstr ""
+
+#: admin/index.php:53
+msgid "Output data/ddi"
+msgstr ""
+
+#: admin/index.php:55
+msgid "Display progress of form verification"
+msgstr ""
+
+#: admin/index.php:56
+msgid "Display performance of verifiers (Completions per hour)"
+msgstr ""
+
+#: admin/index.php:57
+msgid "Clients"
+msgstr ""
+
+#: admin/index.php:58
+msgid "Add clients"
+msgstr ""
+
+#: admin/index.php:59
+msgid "Assign clients to forms"
+msgstr ""
+
+#: admin/index.php:60
+msgid "System setup"
+msgstr ""
+
+#: admin/index.php:64
+msgid "Loading panel..."
+msgstr ""
+
+#: admin/index.php:64
+msgid "Error, try with Firefox"
+msgstr ""
+
+#: admin/clients.php:68
+msgid "There may already be an client of this name"
+msgstr ""
+
+#: admin/clients.php:73
+#: admin/clients.php:82
+msgid "Add a client"
+msgstr ""
+
+#: admin/clients.php:83
+msgid ""
+"Adding a client here will allow them to access project information in the "
+"client subdirectory. You can assign a client to a particular project using "
+"the"
+msgstr ""
+
+#: admin/clients.php:83
+msgid "Assign client to Form"
+msgstr ""
+
+#: admin/clients.php:83
+msgid "tool."
+msgstr ""
+
+#: admin/clients.php:84
+msgid ""
+"Use this form to enter the username of a user based on your directory "
+"security system. For example, if you have secured the base directory of "
+"queXF using Apache file based security, enter the usernames of the users "
+"here."
+msgstr ""
+
+#: admin/clients.php:86
+msgid "Enter the username of a client to add:"
+msgstr ""
+
+#: admin/clients.php:87
+msgid "Enter the description of the client to add:"
+msgstr ""
+
+#: admin/testconfig.php:3
+msgid "Test Installation"
+msgstr ""
+
+#: admin/delete.php:51
+msgid "Delete a questionnaire"
+msgstr ""
+
+#: admin/delete.php:66
+msgid "Click to delete questionnaire"
+msgstr ""
+
+#: admin/delete.php:67
+msgid ""
+"The following questionnaires have no forms associated with them so are safe "
+"to delete"
+msgstr ""
+
+#: admin/delete.php:71
+#: admin/missingpages.php:271
+msgid "Delete"
+msgstr ""
+
+#: admin/output.php:55
+msgid "Output data"
+msgstr ""
+
+#: admin/output.php:67
+msgid "Data"
+msgstr ""
+
+#: admin/missingpages.php:135
+msgid "Missing Pages"
+msgstr ""
+
+#: admin/missingpages.php:210
+msgid "Missing page"
+msgstr ""
+
+#: admin/missingpages.php:257
+msgid "Page"
+msgstr ""
+
+#: admin/missingpages.php:257
+msgid "of Form"
+msgstr ""
+
+#: admin/missingpages.php:271
+msgid "Accept"
+msgstr ""
+
+#: admin/missingpages.php:276
+msgid "No missing pages"
+msgstr ""
+
+#: client/index.php:32
+msgid "Review forms"
+msgstr ""
+
+#: client/index.php:59
+msgid "Review"
+msgstr ""
+
+#: client/index.php:75
+msgid ""
+"This form not available for you to review. Please enter a form id in the box "
+"on the left"
+msgstr ""
+
+#: client/index.php:133
+msgid "You are not authorised to review any forms"
+msgstr ""
+
+#: functions/functions.import.php:381
+msgid "Finding qid"
+msgstr ""
+
+#: functions/functions.import.php:418
+msgid "Got qid"
+msgstr ""
+
+#: functions/functions.import.php:444
+msgid "Processing pid"
+msgstr ""
+
+#: functions/functions.import.php:455
+msgid "Pid not identified for this page, inserting into missing pages..."
+msgstr ""
+
+#: functions/functions.import.php:504
+msgid "Blank page: ignoring"
+msgstr ""
+
+#: functions/functions.import.php:509
+msgid "Could not get pid, inserting into missing pages..."
+msgstr ""
+
+#: functions/functions.import.php:565
+msgid "Could not get qid..."
+msgstr ""
+
+#: functions/functions.import.php:625
+msgid ""
+"Automatically processing the 1 missing page for this form - assuming pid:"
+msgstr ""
+
+#: functions/functions.import.php:690
+msgid "File already in database"
+msgstr ""
+
+#: functions/functions.database.php:137
+msgid "ERROR: Multiple forms assigned, please see a technical officer"
+msgstr ""
+
+#: include/php-gettext-1.0.7/examples/pigs_fallback.php:74
+#: include/php-gettext-1.0.7/examples/pigs_dropin.php:75
+msgid ""
+"This is how the story goes.\n"
+"\n"
+msgstr ""
