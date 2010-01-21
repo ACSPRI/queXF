@@ -254,7 +254,7 @@ function outputdatacsv($qid,$fid = "")
 /*
  * Fixed width data output */
 
-function outputdata($qid,$fid = "", $header =true)
+function outputdata($qid,$fid = "", $header =true, $appendformid = true)
 {
 	global $db;
 
@@ -372,7 +372,8 @@ function outputdata($qid,$fid = "", $header =true)
 			print str_pad(" ", strlen($desc[$bgid]['count']), " ", STR_PAD_LEFT);
 
 
-		print str_pad($form['fid'], 10, " ", STR_PAD_LEFT);
+		if ($appendformid) 
+			print str_pad($form['fid'], 10, " ", STR_PAD_LEFT);
 		//print str_pad($form['suspense_file'], 30, " ", STR_PAD_RIGHT);
 		print "\r\n";
 
@@ -584,14 +585,39 @@ function export_pspp($qid)
 		if ($col['btid'] == 3 || $col['btid'] == 6) $vartype = "(A) ";
 		if ($col['btid'] == 6 || $col['btid'] == 5) $length = $col['width'];
 
-		$startpos = $startpos + $width;
+		if ($col['btid'] == 2) //multiple choice
+		{
+			$length = 1;
 
-		$width = $length;
+			for ($i = 1; $i <= $col['count']; $i++)
+			{
+				$nam = $varname . "_$i";
+	
+				$startpos = $startpos + $width;
+
+				$width = $length;
 		
-		$endpos = ($startpos + $width) - 1;
+				$endpos = ($startpos + $width) - 1;
 
-		echo "$varname $startpos-$endpos $vartype";
+				echo "$nam $startpos-$endpos $vartype";
+			}
+
+		}
+		else
+		{
+				$startpos = $startpos + $width;
+
+				$width = $length;
+		
+				$endpos = ($startpos + $width) - 1;
+
+				echo "$varname $startpos-$endpos $vartype";
+		}
 	}
+
+	$startpos = $startpos + $width;
+	$endpos = $startpos + 9;
+	echo "formid $startpos-$endpos  ";
 
 	echo " .\nVARIABLE LABELS ";
 
@@ -606,12 +632,24 @@ function export_pspp($qid)
 		else
 			echo "/";
 
-		echo "$varname '$vardescription' ";
+		if ($col['btid'] == 2) //multiple choice
+		{
+			for ($i = 1; $i <= $col['count']; $i++)
+			{
+				$nam = $varname . "_$i";
+				echo "$nam '$vardescription' ";
+			}
+		}
+		else
+		{
+			echo "$varname '$vardescription' ";
+		}
 	}
+	echo "/formid 'queXF Form ID' ";
 
 	echo " .\nBEGIN DATA.\n";
 
-	outputdata($qid,"",false);
+	outputdata($qid,"",false,true);
 
 	echo "END DATA.\n";
 }
