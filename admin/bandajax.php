@@ -57,7 +57,7 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 	{
 		if ($bgid != $box['bgid'])
 		{
-			print "<input id=\"boxgroupname$bgid\" style=\"position:absolute; top:" . $lasty ."px; left:".$lastx."px; z-index: 100;\" name=\"boxgroupname$bgid\" type=\"text\" value=\"$varname\" size=\"4\" onblur=\"updateVarname($bgid,this.value);\"/>";
+			print "<input id=\"boxgroupname$bgid\" style=\"position:absolute; top:" . $lasty ."px; left:".$lastx."px; z-index: 100;\" name=\"boxgroupname$bgid\" type=\"text\" value=\"$varname\" size=\"4\" onchange=\"updateVarname($bgid,this.value);\"/>";
 			$bgid =$box['bgid'];
 		}
 		$colour = TEMPORARY_COLOUR;
@@ -76,7 +76,7 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 
 		$showcount++;
 	}
-	print "<input id=\"boxgroupname$bgid\" style=\"position:absolute; top:" . $lasty ."px; left:".$lastx."px; z-index:100;\" name=\"boxgroupname$bgid\" type=\"text\" value=\"$varname\" size=\"4\" onblur=\"updateVarname($bgid,this.value);\"/>";
+	print "<input id=\"boxgroupname$bgid\" style=\"position:absolute; top:" . $lasty ."px; left:".$lastx."px; z-index:100;\" name=\"boxgroupname$bgid\" type=\"text\" value=\"$varname\" size=\"4\" onchange=\"updateVarname($bgid,this.value);\"/>";
 	
 
 	print "<script type=\"text/javascript\">";
@@ -483,7 +483,7 @@ if (isset($_GET['pid']) && isset($_GET['qid']) && isset($_GET['zoom']))
 	if (isset($_GET['varname']) && isset($_GET['bgid']))
 	{
 		updatevarname(intval($_GET['bgid']), $_GET['varname']);
-		pidtomap($pid,$zoom);
+		//pidtomap($pid,$zoom);
 		exit();
 	}	
 	

@@ -49,7 +49,7 @@ function updateArea(bid,tlx,tly,brx,bry) {
 
 function updateVarname(bgid, varname) {
 	va = getUrlVars();
-	new Ajax.Updater('imageboxes', 'bandajax.php', {parameters: 'bgid=' + bgid + '&varname=' + varname + '&pid=' + va['pid'] + '&zoom=' + va['zoom'] + '&qid=' + va['qid'],  method: 'get', evalScripts: 'true'  });
+	new Ajax.Request('bandajax.php', {parameters: 'bgid=' + bgid + '&varname=' + varname + '&pid=' + va['pid'] + '&zoom=' + va['zoom'] + '&qid=' + va['qid'],  method: 'get' });
 
 }
 
