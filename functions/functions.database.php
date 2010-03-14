@@ -143,12 +143,21 @@ function assign_to($vid)
 	//only get forms that are assigned to this verifier
 
 	$sql = "SELECT f.fid AS fid
-		FROM forms AS f, verifierquestionnaire AS v
-		WHERE f.done =0
-		AND f.assigned_vid IS NULL
-		AND f.qid = v.qid
-		AND v.vid = '$vid'
-		ORDER BY f.fid ASC
+		FROM forms AS f
+		JOIN verifierquestionnaire AS v ON (v.vid = '$vid' AND f.qid = v.qid) ";
+
+	if (!MISSING_PAGES_ASSIGN){
+		$sql .= " LEFT JOIN missingpages AS m ON (f.fid = m.fid) ";
+	}
+
+	$sql .= " WHERE f.done =0
+		AND f.assigned_vid IS NULL ";
+
+	if (!MISSING_PAGES_ASSIGN) {
+		$sql .= " AND m.fid IS NULL ";
+	}
+
+        $sql .= " ORDER BY f.fid ASC
 		LIMIT 1";
 
 

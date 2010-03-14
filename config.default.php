@@ -175,4 +175,7 @@ if (!defined('SPLIT_SCANNING_THRESHOLD')) define('SPLIT_SCANNING_THRESHOLD',10);
 //The length of a barcode for the page id
 if (!defined('BARCODE_LENGTH_PID')) define('BARCODE_LENGTH_PID',8); //Length in chars of a barcode identifying a page
 
+//Whether to assign a form if there are missing pages
+if (!defined('MISSING_PAGE_ASSIGN')) define('MISSING_PAGE_ASSIGN',false); 
+
 ?>
