@@ -37,6 +37,7 @@ xhtml_head(T_("queXF Admin Functions"),true,array("../css/admin.css"),array("../
 <li><h3><? echo T_("Form setup"); ?></h3>
 <ul><li><a href="javascript:link('mainobj','new.php');"><? echo T_("Import a new form from a PDF file"); ?></a></li>
 <li><a href="javascript:link('mainobj','delete.php');"><? echo T_("Delete a form (only if no forms yet imported)"); ?></a></li>
+<li><a href="javascript:link('mainobj','touchup.php');"><? echo T_("Touch-up a form"); ?></a></li>
 <li><a href="javascript:link('mainobj','band.php');"><? echo T_("Band a form"); ?></a></li>
 <li><a href="javascript:link('mainobj','bandajax.php');"><? echo T_("Band a form using interactive banding"); ?></a></li>
 <li><a href="javascript:link('mainobj','reorder.php');"><? echo T_("Order variables on the form"); ?></a></li></ul></li>
