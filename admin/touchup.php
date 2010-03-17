@@ -94,7 +94,7 @@ if (isset($_GET['qid']))
 
 	foreach($rs as $r)
 	{
-		print "<p><a href='?pid={$r['pid']}'>Download {$r['pid']} to edit</a> - Upload here: <input name='pid{$r['pid']}' type='file'/></p>";
+		print "<p><a href='?pid={$r['pid']}'>".T_("Download")." {$r['pid']} ".T_("to edit")."</a> - ".T_("Upload here").": <input name='pid{$r['pid']}' type='file'/></p>";
 	}
 
 	print "<p><input type='submit' value='" . T_("Upload pages") . "' name='submit'/></p></form>";
