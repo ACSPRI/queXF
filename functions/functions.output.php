@@ -372,7 +372,8 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true)
 
 		if ($appendformid) 
 			print str_pad($form['fid'], 10, " ", STR_PAD_LEFT);
-		//print str_pad($form['suspense_file'], 30, " ", STR_PAD_RIGHT);
+
+
 		print "\r\n";
 
 	}
@@ -381,7 +382,7 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true)
 /* Returns a new var dom element given info
 *
 */
-function variable_ddi($doc,$width,$varname,$vardescription,$startpos,$vartype)
+function variable_ddi($doc,$width,$varname,$vardescription,$startpos,$vartype,$cats = false)
 {
 
 	/*
@@ -413,6 +414,29 @@ function variable_ddi($doc,$width,$varname,$vardescription,$startpos,$vartype)
 		$labl->set_content("$vardescription");
 
 	$var->append_child($labl);
+
+	if ($cats !== false)
+	{
+		foreach($cats as $cat)
+		{
+			$value = $cat['value'];
+			$label = $cat['label'];
+
+			$c = $doc->create_element("catgry");
+			$c->set_attribute("missing","N");
+			
+			$v = $doc->create_element("catValu");
+			$v->set_content($value);
+			$c->append_child($v);
+
+			$l = $doc->create_element("labl");
+			$l->set_attribute("level","category");
+			$l->set_content($label);
+			$c->append_child($l);
+
+			$var->append_child($c);
+		}
+	}
 
 	$varformat =  $doc->create_element("varFormat");
 		$varformat->set_attribute("type",$vartype);
@@ -471,7 +495,7 @@ function export_ddi($qid)
 
 		$name = $row['varname'];
 
-		if ($row['btid'] == 2)
+		if ($row['btid'] == 2) //Multiple choice
 		{
 
 			$length = 1;
@@ -479,7 +503,7 @@ function export_ddi($qid)
 			for ($i = 1; $i <= $row['count']; $i++)
 			{
 				$nam = $name . "_$i";
-				$nvar = variable_ddi($dom,$length,$nam,$nam,$startpos,$vartype);
+				$nvar = variable_ddi($dom,$length,$nam,$nam,$startpos,$vartype,array(array("value" => 1, "label" => "Selected")));
 		
 				$d->append_child($nvar);
 		
@@ -493,8 +517,16 @@ function export_ddi($qid)
 
 		}else
 		{
+			$cats = false;
+			
+			if ($row['btid'] == 1)
+			{
+				$cats = array();
+				for ($i = 1; $i <= $row['count']; $i++)
+					$cats[] = array("value" => $i, "label" => "");
+			}
 
-			$nvar = variable_ddi($dom,$length,$name,$name,$startpos,$vartype);
+			$nvar = variable_ddi($dom,$length,$name,$name,$startpos,$vartype,$cats);
 	
 			$d->append_child($nvar);
 	
