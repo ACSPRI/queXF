@@ -65,6 +65,12 @@ function deleteBox(bid) {
 
 }
 
+function deleteInBetween(bid) {
+	va = getUrlVars();
+	new Ajax.Updater('imageboxes', 'bandajax.php', {parameters: 'deleteinbetween=' + bid + '&pid=' + va['pid'] + '&zoom=' + va['zoom'] + '&qid=' + va['qid'],  method: 'get', evalScripts: 'true'  });
+}
+
+
 function deleteBoxGroup(bid) {
 	va = getUrlVars();
 	new Ajax.Updater('imageboxes', 'bandajax.php', {parameters: 'deletegroupbid=' + bid + '&pid=' + va['pid'] + '&zoom=' + va['zoom'] + '&qid=' + va['qid'],  method: 'get', evalScripts: 'true'  });

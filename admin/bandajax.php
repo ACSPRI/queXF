@@ -155,17 +155,20 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 		deleteBoxGroup(tagId);
 	}
 },	
-];
-
-";
+{    
+	name: '" . T_("Delete in between boxes") . "',
+	className: 'edit',
+	callback: function(e) {
+		var tagId = e.element().id.substring(6);
+		deleteInBetween(tagId);
+	}
+},	
+];";
 	print " new Proto.Menu({
 	  selector: '#imageboxes', 
 	  className: 'menu desktop',
 	  menuItems: myMenuItems });";
 	print "</script>";
-
-
-
 
 }
 
@@ -328,14 +331,15 @@ function updatevarname($bgid,$varname)
  * When boxes are evenly spaced, boxes are created inbetween
  * Delete the inbetween boxes
  */
-function deleteinbetween($bgid)
+function deleteinbetween($bid)
 {
 	global $db;
 	$db->StartTrans();
 
-	$sql = "SELECT bid 
-		FROM boxgroups 
-		WHERE bgid = '$bgid'";
+	$sql = "SELECT bg.bid 
+		FROM boxgroups as bg, boxgroups as bg2
+		WHERE bg2.bid = '$bid'
+		AND bg.bgid = bg2.bgid";
 
 	$rows = $db->GetAll($sql);
 
@@ -361,7 +365,7 @@ function deleteinbetween($bgid)
 
 	$db->CompleteTrans();
 
-	return $bgid;
+	return $bid;
 
 }
 
