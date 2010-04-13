@@ -41,12 +41,18 @@ if ($p)
 	if (isset($_GET['kill']))
 		kill_process($p);
 
+	if (isset($_GET['force_kill']))
+		end_process($p);
+
 	xhtml_head(T_("Import a directory of PDF files"),true,false,false,false);
 
 	print "<h1>" . T_("Process") . " $p " . T_("running...") . "</h1>";
 
 	if (is_process_killed($p))
+	{
 		print "<h3>" . T_("Kill signal sent: Please wait..." ) . "</h3>";
+		print "<p><a href='?force_kill'>" . T_("Mark the proces as killed (i.e. when the server is rebooted)"). "</a></p>";
+	}
 	else
 		print "<p><a href='?kill=kill'>" . T_("Kill the running process") . "</a> (" . T_("may take up to a few minutes to take effect") .")</p>";
 
