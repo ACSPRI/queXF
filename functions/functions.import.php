@@ -408,7 +408,7 @@ function import($filename,$description = false)
 				if (isset($page['qid']))
 				{
 					$qid = $page['qid'];
-					break;
+					break 2;
 				}
 			}
 	
