@@ -148,6 +148,7 @@ function outputdatacsv($qid,$fid = "")
 		from boxes as b, boxgroupstype as g, pages as p, formboxverifychar as f
 		where b.bgid = g.bgid
 		and g.btid > 0
+		and g.btid < 5
 		and p.pid = b.pid
 		and p.qid = '$qid'
 		and f.bid = b.bid and f.vid = '{$form['vid']}' and f.fid = '{$form['fid']}')
@@ -303,7 +304,7 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true)
 
 		$sql = "(SELECT b.bid,b.bgid,g.btid,f.val,sortorder
 		FROM boxes AS b
-		JOIN boxgroupstype AS g ON (g.btid > 0 AND b.bgid = g.bgid)
+		JOIN boxgroupstype AS g ON (g.btid > 0 AND g.btid < 5 AND b.bgid = g.bgid)
 		JOIN pages AS p ON (p.qid = '$qid' AND p.pid = b.pid)
 		LEFT JOIN formboxverifychar AS f ON (f.bid = b.bid AND f.vid='{$form['vid']}' AND f.fid = '{$form['fid']}'))
 		UNION
