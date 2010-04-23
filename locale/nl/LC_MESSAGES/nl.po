@@ -1,17 +1,16 @@
-# Catalan translation for quexf
-# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# Dutch translation for quexf
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the quexf package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: quexf\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2010-01-20 14:17+1000\n"
-"PO-Revision-Date: 2009-06-07 18:22+0000\n"
-"Last-Translator: el_libre - http://www.catmidia.cat  "
-"XDDDDDDDDDDDDDDDDDDDDDDDDDDD <el.libre@gmail.com>\n"
-"Language-Team: Catalan <ca@li.org>\n"
+"PO-Revision-Date: 2010-03-23 11:55+0000\n"
+"Last-Translator: Mark Van den Borre <mvdborre@gmail.com>\n"
+"Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,7 +23,7 @@ msgstr "queXF"
 
 #: trunk/index.php:31
 msgid "Verify"
-msgstr "Verifica"
+msgstr "Verifiëren"
 
 #: trunk/index.php:32
 msgid "Review a form"
@@ -32,7 +31,7 @@ msgstr ""
 
 #: trunk/verifyjs.php:164
 msgid "Please log in"
-msgstr ""
+msgstr "Aanmelden aub"
 
 #: trunk/verifyjs.php:281
 #: trunk/verifyjs.php:395
@@ -59,15 +58,15 @@ msgstr ""
 
 #: trunk/verifyjs.php:300
 msgid "Assign next form"
-msgstr ""
+msgstr "Volgend formulier toewijzen"
 
 #: trunk/verifyjs.php:303
 msgid "Assigning next form: Please wait..."
-msgstr ""
+msgstr "Volgend formulier aan het toewijzen: Even geduld..."
 
 #: trunk/verifyjs.php:340
 msgid "Operator"
-msgstr "Operador"
+msgstr ""
 
 #: trunk/verifyjs.php:340
 msgid "Completed Forms"
@@ -79,7 +78,7 @@ msgstr ""
 
 #: trunk/verifyjs.php:340
 msgid "Pages Per Hour"
-msgstr ""
+msgstr "Pagina's per uur"
 
 #: trunk/verifyjs.php:504
 msgid "Verify: Done"
@@ -88,12 +87,12 @@ msgstr ""
 #: trunk/verifyjs.php:505
 #: trunk/verifyjs.php:1119
 msgid "The required fields have been filled"
-msgstr ""
+msgstr "De vereiste velden zijn ingevuld"
 
 #: trunk/verifyjs.php:507
 #: trunk/verifyjs.php:1121
 msgid "Submit completed form to database"
-msgstr ""
+msgstr "Afgewerkt formulier inzenden in databank"
 
 #: trunk/verifyjs.php:508
 #: trunk/verifyjs.php:1122
@@ -108,19 +107,19 @@ msgstr ""
 #: trunk/verifyjs.php:511
 #: trunk/verifyjs.php:1126
 msgid "Submitting: Please wait..."
-msgstr ""
+msgstr "Aan het inzenden: Even geduld..."
 
 #: trunk/verifyjs.php:526
 msgid "Verifier"
-msgstr "Verificador"
-
-#: trunk/verifyjs.php:1134
-msgid "Image of page"
 msgstr ""
 
 #: trunk/verifyjs.php:1134
+msgid "Image of page"
+msgstr "Afbeelding van pagina"
+
+#: trunk/verifyjs.php:1134
 msgid "form"
-msgstr "formulari"
+msgstr "formulier"
 
 #: trunk/verifyjs.php:1143
 msgid "Centre Page"
@@ -128,11 +127,11 @@ msgstr ""
 
 #: trunk/verifyjs.php:1145
 msgid "Loading panel..."
-msgstr ""
+msgstr "Paneel aan het laden..."
 
 #: trunk/verifyjs.php:1145
 msgid "Error, try with Firefox"
-msgstr ""
+msgstr "Fout, probeer met Firefox"
 
 #: trunk/pagenote.php:60
 msgid "Page note:"
@@ -140,7 +139,7 @@ msgstr ""
 
 #: trunk/pagenote.php:65
 msgid "Add note"
-msgstr ""
+msgstr "Opmerking toevoegen"
 
 #: trunk/modifybox.php:228
 msgid "Group type:"
@@ -148,19 +147,19 @@ msgstr ""
 
 #: trunk/modifybox.php:233
 msgid "Variable name:"
-msgstr ""
+msgstr "Variabelenaam:"
 
 #: trunk/modifybox.php:236
 msgid "Width:"
-msgstr "Ample"
+msgstr "Breedte:"
 
 #: trunk/modifybox.php:238
 msgid "Submit"
-msgstr "Envia"
+msgstr "Inzenden"
 
 #: trunk/modifybox.php:240
 msgid "Delete this group"
-msgstr ""
+msgstr "Deze groep verwijderen"
 
 #: trunk/modifybox.php:241
 msgid "Delete in between boxes"
@@ -172,15 +171,15 @@ msgstr ""
 
 #: trunk/review.php:139
 msgid "Form:"
-msgstr "Formulari:"
+msgstr ""
 
 #: trunk/review.php:140
 msgid "Variable:"
-msgstr "Variable:"
+msgstr "Variabele:"
 
 #: trunk/review.php:141
 msgid "Page:"
-msgstr "Pàgina:"
+msgstr "Pagina:"
 
 #: trunk/include/php-gettext-1.0.7/examples/pigs_dropin.php:75
 #: trunk/include/php-gettext-1.0.7/examples/pigs_fallback.php:74
@@ -188,6 +187,8 @@ msgid ""
 "This is how the story goes.\n"
 "\n"
 msgstr ""
+"Zo gaat het verhaal.\n"
+"\n"
 
 #: trunk/functions/functions.database.php:137
 msgid "ERROR: Multiple forms assigned, please see a technical officer"
@@ -203,7 +204,7 @@ msgstr ""
 
 #: trunk/functions/functions.import.php:466
 msgid "Processing pid"
-msgstr ""
+msgstr "PID aan het verwerken"
 
 #: trunk/functions/functions.import.php:477
 msgid "Pid not identified for this page, inserting into missing pages..."
@@ -211,7 +212,7 @@ msgstr ""
 
 #: trunk/functions/functions.import.php:528
 msgid "Blank page: ignoring"
-msgstr ""
+msgstr "Lege pagina: negeren"
 
 #: trunk/functions/functions.import.php:533
 msgid "Could not get pid, inserting into missing pages..."
@@ -232,29 +233,31 @@ msgstr ""
 
 #: trunk/functions/functions.import.php:744
 msgid "File already in database"
-msgstr ""
+msgstr "Bestand al in databank"
 
 #: trunk/admin/delete.php:51
 msgid "Delete a questionnaire"
-msgstr ""
+msgstr "Een vragenlijst verwijderen"
 
 #: trunk/admin/delete.php:66
 msgid "Click to delete questionnaire"
-msgstr ""
+msgstr "Klik om vragenlijst te verwijderen"
 
 #: trunk/admin/delete.php:67
 msgid ""
 "The following questionnaires have no forms associated with them so are safe "
 "to delete"
 msgstr ""
+"Bij de volgende vragenlijsten horen geen formulieren. Het is dus veilig ze "
+"te verwijderen."
 
 #: trunk/admin/delete.php:71
 msgid "Delete"
-msgstr ""
+msgstr "Verwijderen"
 
 #: trunk/admin/databasestrings.php:33
 msgid "Temporary"
-msgstr "Temporal"
+msgstr "Tijdelijk"
 
 #: trunk/admin/databasestrings.php:34
 #: trunk/admin/bandajax.php:94
@@ -264,20 +267,20 @@ msgstr ""
 #: trunk/admin/databasestrings.php:35
 #: trunk/admin/bandajax.php:102
 msgid "Multiple choice"
-msgstr ""
+msgstr "Meerkeuze"
 
 #: trunk/admin/databasestrings.php:36
 msgid "Text"
-msgstr "Text"
+msgstr "Tekst"
 
 #: trunk/admin/databasestrings.php:37
 msgid "Number"
-msgstr "Nombre"
+msgstr "Aantal"
 
 #: trunk/admin/databasestrings.php:38
 #: trunk/admin/bandajax.php:126
 msgid "Barcode"
-msgstr "Codi de Barres"
+msgstr "Streepjescode"
 
 #: trunk/admin/databasestrings.php:39
 #: trunk/admin/bandajax.php:134
@@ -288,11 +291,11 @@ msgstr ""
 #: trunk/admin/import.directory.php:57
 #: trunk/admin/index.php:47
 msgid "Import a directory of PDF files"
-msgstr ""
+msgstr "Een map met PDF-documenten importeren"
 
 #: trunk/admin/import.directory.php:46
 msgid "Process"
-msgstr ""
+msgstr "Verwerken"
 
 #: trunk/admin/import.directory.php:46
 msgid "running..."
@@ -304,7 +307,7 @@ msgstr ""
 
 #: trunk/admin/import.directory.php:51
 msgid "Kill the running process"
-msgstr ""
+msgstr "Het actieve proces stopzetten"
 
 #: trunk/admin/import.directory.php:51
 msgid "may take up to a few minutes to take effect"
@@ -312,7 +315,7 @@ msgstr ""
 
 #: trunk/admin/import.directory.php:66
 msgid "Directory"
-msgstr ""
+msgstr "Map"
 
 #: trunk/admin/import.directory.php:68
 msgid "Enter directory local to the server (eg /mnt/iss/tmp/images)"
@@ -324,11 +327,11 @@ msgstr ""
 
 #: trunk/admin/import.directory.php:70
 msgid "Watch this directory in the background (recommended)"
-msgstr ""
+msgstr "Deze map in de achtergrond in het oog houden (aangeraden)"
 
 #: trunk/admin/import.directory.php:74
 msgid "Outcome of last process run (if any)"
-msgstr ""
+msgstr "Resultaat van het laatst gedraaide proces (als er een was)"
 
 #: trunk/admin/output.php:55
 msgid "Output data"
@@ -336,7 +339,7 @@ msgstr ""
 
 #: trunk/admin/output.php:67
 msgid "Data"
-msgstr ""
+msgstr "Gegevens"
 
 #: trunk/admin/listduplicates.php:31
 msgid "Listing of duplicate forms"
@@ -353,7 +356,7 @@ msgstr ""
 #: trunk/admin/listduplicates.php:49
 #: trunk/admin/listforms.php:70
 msgid "Questionnaire"
-msgstr "Qüestionari"
+msgstr "Vragenlijst"
 
 #: trunk/admin/listduplicates.php:49
 msgid "Formid"
@@ -365,15 +368,15 @@ msgstr ""
 
 #: trunk/admin/clients.php:66
 msgid "Added"
-msgstr "Afegit"
+msgstr "Toegevoegd"
 
 #: trunk/admin/clients.php:68
 msgid "Could not add"
-msgstr ""
+msgstr "Kon niet toevoegen"
 
 #: trunk/admin/clients.php:68
 msgid "There may already be an client of this name"
-msgstr ""
+msgstr "Er is mogelijk al een client met deze naam"
 
 #: trunk/admin/clients.php:73
 #: trunk/admin/clients.php:82
@@ -413,7 +416,7 @@ msgstr ""
 
 #: trunk/admin/clients.php:88
 msgid "Add user"
-msgstr ""
+msgstr "Gebruiker toevoegen"
 
 #: trunk/admin/verifierquestionnaire.php:106
 msgid "Assign verifier to questionnaire"
@@ -448,6 +451,7 @@ msgstr ""
 #: trunk/admin/index.php:39
 msgid "Delete a form (only if no forms yet imported)"
 msgstr ""
+"Formulier verwijderen (enkel als er nog geen formulieren geïmporteerd zijn)"
 
 #: trunk/admin/index.php:40
 msgid "Band a form"
@@ -459,11 +463,11 @@ msgstr ""
 
 #: trunk/admin/index.php:42
 msgid "Order variables on the form"
-msgstr ""
+msgstr "Variabelen op het formulier ordenen"
 
 #: trunk/admin/index.php:43
 msgid "Users"
-msgstr ""
+msgstr "Gebruikers"
 
 #: trunk/admin/index.php:44
 msgid "Add operators"
@@ -475,11 +479,11 @@ msgstr ""
 
 #: trunk/admin/index.php:46
 msgid "Importing"
-msgstr ""
+msgstr "Bezig met importeren"
 
 #: trunk/admin/index.php:48
 msgid "Successfully imported files"
-msgstr ""
+msgstr "Bestanden met succes geïmporteerd"
 
 #: trunk/admin/index.php:49
 msgid "Failed imported files"
@@ -503,7 +507,7 @@ msgstr ""
 
 #: trunk/admin/index.php:54
 msgid "Output"
-msgstr ""
+msgstr "Uitvoer"
 
 #: trunk/admin/index.php:55
 msgid "Output data/ddi"
@@ -511,7 +515,7 @@ msgstr ""
 
 #: trunk/admin/index.php:56
 msgid "Progress"
-msgstr "Progrés"
+msgstr "Vooruitgang"
 
 #: trunk/admin/index.php:57
 msgid "Display progress of form verification"
@@ -539,7 +543,7 @@ msgstr ""
 
 #: trunk/admin/index.php:63
 msgid "Page setup"
-msgstr ""
+msgstr "Pagina-instellingen"
 
 #: trunk/admin/bandajax.php:86
 msgid "Disable this box group"
@@ -556,11 +560,11 @@ msgstr ""
 
 #: trunk/admin/bandajax.php:110
 msgid "Text and Numbers"
-msgstr ""
+msgstr "Tekst en Getallen"
 
 #: trunk/admin/bandajax.php:118
 msgid "Numbers only"
-msgstr ""
+msgstr "Enkel getallen"
 
 #: trunk/admin/bandajax.php:143
 msgid "Delete this box"
@@ -577,15 +581,15 @@ msgstr ""
 
 #: trunk/admin/bandajax.php:548
 msgid "Choose another questionnaire"
-msgstr ""
+msgstr "Een andere vragenlijst kiezen"
 
 #: trunk/admin/bandajax.php:548
 msgid "Increase zoom"
-msgstr ""
+msgstr "Zoom vergroten"
 
 #: trunk/admin/bandajax.php:548
 msgid "Decrease zoom"
-msgstr ""
+msgstr "Zoom verkleinen"
 
 #: trunk/admin/testconfig.php:3
 msgid "Test Installation"
@@ -593,19 +597,19 @@ msgstr ""
 
 #: trunk/admin/performance.php:33
 msgid "Performance"
-msgstr "Actuació"
+msgstr "Prestaties"
 
 #: trunk/admin/missingpages.php:135
 msgid "Missing Pages"
-msgstr ""
+msgstr "Ontbrekende pagina's"
 
 #: trunk/admin/missingpages.php:210
 msgid "Missing page"
-msgstr ""
+msgstr "Ontbrekende pagina"
 
 #: trunk/admin/missingpages.php:257
 msgid "Page"
-msgstr ""
+msgstr "Pagina"
 
 #: trunk/admin/missingpages.php:257
 msgid "of Form"
@@ -613,15 +617,15 @@ msgstr ""
 
 #: trunk/admin/missingpages.php:271
 msgid "Accept"
-msgstr ""
+msgstr "Aanvaarden"
 
 #: trunk/admin/missingpages.php:276
 msgid "No missing pages"
-msgstr ""
+msgstr "Geen ontbrekende pagina's"
 
 #: trunk/admin/pagesetup.php:78
 msgid "Set page layout"
-msgstr ""
+msgstr "Bladspiegel instellen"
 
 #: trunk/admin/pagesetup.php:158
 msgid "Configuration settings (copy and paste in to config.inc.php)"
@@ -630,7 +634,7 @@ msgstr ""
 #: trunk/admin/pagesetup.php:304
 #: trunk/admin/new.php:170
 msgid "You will get the best results if you:"
-msgstr ""
+msgstr "U zal het beste resultaat behalen als u:"
 
 #: trunk/admin/pagesetup.php:306
 #: trunk/admin/new.php:171
@@ -653,7 +657,7 @@ msgstr ""
 #: trunk/admin/pagesetup.php:309
 #: trunk/admin/new.php:174
 msgid "Monochrome (1 bit)"
-msgstr ""
+msgstr "Monochroom (1 bit)"
 
 #: trunk/admin/pagesetup.php:310
 #: trunk/admin/new.php:175
@@ -662,42 +666,42 @@ msgstr ""
 
 #: trunk/admin/pagesetup.php:316
 msgid "Select PDF file to upload:"
-msgstr ""
+msgstr "In te zenden PDF-document selecteren:"
 
 #: trunk/admin/pagesetup.php:317
 #: trunk/admin/new.php:183
 msgid "Upload form"
-msgstr "Puja des de"
+msgstr ""
 
 #: trunk/admin/listpagenotes.php:47
 #: trunk/admin/listpagenotes.php:56
 msgid "Delete note"
-msgstr ""
+msgstr "Aantekening verwijderen"
 
 #: trunk/admin/listpagenotes.php:56
 msgid "Page ID"
-msgstr ""
+msgstr "Pagina-ID"
 
 #: trunk/admin/listpagenotes.php:56
 msgid "Note"
-msgstr ""
+msgstr "Aantekening"
 
 #: trunk/admin/reorder.php:46
 #: trunk/admin/reorder.php:83
 msgid "Reorder variables"
-msgstr ""
+msgstr "Variabelen herschikken"
 
 #: trunk/admin/reorder.php:60
 msgid "Manual reorder"
-msgstr ""
+msgstr "Handmatig herschikken"
 
 #: trunk/admin/reorder.php:60
 msgid "Reorder by position"
-msgstr ""
+msgstr "Herschikken op positie"
 
 #: trunk/admin/reorder.php:60
 msgid "Reorder by variable name"
-msgstr ""
+msgstr "Herschikken op variabelenaam"
 
 #: trunk/admin/reorder.php:119
 msgid ""
@@ -707,7 +711,7 @@ msgstr ""
 
 #: trunk/admin/reorder.php:121
 msgid "Click here"
-msgstr "Clica aquí"
+msgstr "Hier klikken"
 
 #: trunk/admin/reorder.php:121
 msgid "to return without saving changes"
@@ -716,23 +720,23 @@ msgstr ""
 #: trunk/admin/reorder.php:130
 #: trunk/admin/listfiles.php:70
 msgid "Save changes"
-msgstr ""
+msgstr "Wijzigingen opslaan"
 
 #: trunk/admin/new.php:32
 msgid "Add new questionnaire"
-msgstr ""
+msgstr "Nieuwe vragenlijst toevoegen"
 
 #: trunk/admin/new.php:100
 msgid "BARCODE"
-msgstr ""
+msgstr "STREEPJESCODE"
 
 #: trunk/admin/new.php:119
 msgid "INVALID - IGNORING BLANK PAGE"
-msgstr ""
+msgstr "ONGELDIG - LEGE PAGINA NEGEREN"
 
 #: trunk/admin/new.php:160
 msgid "Successfully inserted new questionnaire"
-msgstr ""
+msgstr "Nieuwe vragenlijst met succes ingevoegd"
 
 #: trunk/admin/new.php:163
 msgid "Failed to insert new questionnaire. Could have conflicting page id's"
@@ -740,7 +744,7 @@ msgstr ""
 
 #: trunk/admin/new.php:169
 msgid "New questionnaire"
-msgstr ""
+msgstr "Nieuwe vragenlijst"
 
 #: trunk/admin/new.php:172
 msgid ""
@@ -750,20 +754,20 @@ msgstr ""
 
 #: trunk/admin/new.php:181
 msgid "Select PDF file to create form from"
-msgstr ""
+msgstr "PDF-document om formulier van te maken selecteren"
 
 #: trunk/admin/new.php:182
 msgid "Enter description of form"
-msgstr ""
+msgstr "Beschrijving van formulier invoeren"
 
 #: trunk/admin/operators.php:34
 #: trunk/admin/operators.php:64
 msgid "Add an operator"
-msgstr ""
+msgstr "Operator toevoegen"
 
 #: trunk/admin/operators.php:52
 msgid "There may already be an operator of this name"
-msgstr ""
+msgstr "Er is mogelijk al een operator met deze naam"
 
 #: trunk/admin/operators.php:65
 msgid ""
@@ -777,7 +781,7 @@ msgstr ""
 
 #: trunk/admin/operators.php:65
 msgid "tool"
-msgstr "eina"
+msgstr ""
 
 #: trunk/admin/operators.php:66
 msgid ""
@@ -804,11 +808,11 @@ msgstr ""
 
 #: trunk/admin/progress.php:55
 msgid "Done"
-msgstr "Fet"
+msgstr "Klaar"
 
 #: trunk/admin/progress.php:55
 msgid "Remain"
-msgstr "Queda"
+msgstr ""
 
 #: trunk/admin/progress.php:55
 msgid "Total forms imported"
@@ -816,7 +820,7 @@ msgstr ""
 
 #: trunk/admin/progress.php:77
 msgid "Total"
-msgstr "Total"
+msgstr ""
 
 #: trunk/admin/process.php:54
 msgid "Processing directory"
@@ -824,7 +828,7 @@ msgstr ""
 
 #: trunk/admin/process.php:68
 msgid "Watching..."
-msgstr "Mirant...."
+msgstr ""
 
 #: trunk/admin/process.php:90
 msgid ""
@@ -846,7 +850,7 @@ msgstr ""
 
 #: trunk/admin/listfiles.php:68
 msgid "File"
-msgstr "Arxiu"
+msgstr "Bestand"
 
 #: trunk/admin/listfiles.php:68
 msgid "SHA1"
@@ -854,7 +858,7 @@ msgstr "SHA1"
 
 #: trunk/admin/listfiles.php:68
 msgid "Date"
-msgstr "Data"
+msgstr "Datum"
 
 #: trunk/admin/listfiles.php:68
 msgid "Allow import again?"

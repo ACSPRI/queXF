@@ -1,17 +1,16 @@
-# Catalan translation for quexf
-# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# Brazilian Portuguese translation for quexf
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the quexf package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: quexf\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2010-01-20 14:17+1000\n"
-"PO-Revision-Date: 2009-06-07 18:22+0000\n"
-"Last-Translator: el_libre - http://www.catmidia.cat  "
-"XDDDDDDDDDDDDDDDDDDDDDDDDDDD <el.libre@gmail.com>\n"
-"Language-Team: Catalan <ca@li.org>\n"
+"PO-Revision-Date: 2010-01-20 12:29+0000\n"
+"Last-Translator: Michel Boaventura <michel.boaventura@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,42 +23,42 @@ msgstr "queXF"
 
 #: trunk/index.php:31
 msgid "Verify"
-msgstr "Verifica"
+msgstr "Verificar"
 
 #: trunk/index.php:32
 msgid "Review a form"
-msgstr ""
+msgstr "Revisar um formulário"
 
 #: trunk/verifyjs.php:164
 msgid "Please log in"
-msgstr ""
+msgstr "Por favor autentique-se"
 
 #: trunk/verifyjs.php:281
 #: trunk/verifyjs.php:395
 msgid "Verify: No more work"
-msgstr ""
+msgstr "Sem mais trabalhos"
 
 #: trunk/verifyjs.php:282
 #: trunk/verifyjs.php:396
 msgid "NO MORE WORK"
-msgstr ""
+msgstr "SEM MAIS TRABALHOS"
 
 #: trunk/verifyjs.php:283
 #: trunk/verifyjs.php:397
 msgid "Check for more work"
-msgstr ""
+msgstr "Procurar por mais trabalhos"
 
 #: trunk/verifyjs.php:297
 msgid "Verify: Assign form"
-msgstr ""
+msgstr "Veriicar: Designar formulário"
 
 #: trunk/verifyjs.php:299
 msgid "There is no form currently assigned to you"
-msgstr ""
+msgstr "Atualmente não há nenhum formulário designado para você"
 
 #: trunk/verifyjs.php:300
 msgid "Assign next form"
-msgstr ""
+msgstr "Designar próximo formulário"
 
 #: trunk/verifyjs.php:303
 msgid "Assigning next form: Please wait..."
@@ -67,7 +66,7 @@ msgstr ""
 
 #: trunk/verifyjs.php:340
 msgid "Operator"
-msgstr "Operador"
+msgstr ""
 
 #: trunk/verifyjs.php:340
 msgid "Completed Forms"
@@ -112,7 +111,7 @@ msgstr ""
 
 #: trunk/verifyjs.php:526
 msgid "Verifier"
-msgstr "Verificador"
+msgstr ""
 
 #: trunk/verifyjs.php:1134
 msgid "Image of page"
@@ -120,7 +119,7 @@ msgstr ""
 
 #: trunk/verifyjs.php:1134
 msgid "form"
-msgstr "formulari"
+msgstr ""
 
 #: trunk/verifyjs.php:1143
 msgid "Centre Page"
@@ -152,11 +151,11 @@ msgstr ""
 
 #: trunk/modifybox.php:236
 msgid "Width:"
-msgstr "Ample"
+msgstr ""
 
 #: trunk/modifybox.php:238
 msgid "Submit"
-msgstr "Envia"
+msgstr ""
 
 #: trunk/modifybox.php:240
 msgid "Delete this group"
@@ -172,15 +171,15 @@ msgstr ""
 
 #: trunk/review.php:139
 msgid "Form:"
-msgstr "Formulari:"
+msgstr ""
 
 #: trunk/review.php:140
 msgid "Variable:"
-msgstr "Variable:"
+msgstr ""
 
 #: trunk/review.php:141
 msgid "Page:"
-msgstr "Pàgina:"
+msgstr ""
 
 #: trunk/include/php-gettext-1.0.7/examples/pigs_dropin.php:75
 #: trunk/include/php-gettext-1.0.7/examples/pigs_fallback.php:74
@@ -254,7 +253,7 @@ msgstr ""
 
 #: trunk/admin/databasestrings.php:33
 msgid "Temporary"
-msgstr "Temporal"
+msgstr ""
 
 #: trunk/admin/databasestrings.php:34
 #: trunk/admin/bandajax.php:94
@@ -268,16 +267,16 @@ msgstr ""
 
 #: trunk/admin/databasestrings.php:36
 msgid "Text"
-msgstr "Text"
+msgstr ""
 
 #: trunk/admin/databasestrings.php:37
 msgid "Number"
-msgstr "Nombre"
+msgstr ""
 
 #: trunk/admin/databasestrings.php:38
 #: trunk/admin/bandajax.php:126
 msgid "Barcode"
-msgstr "Codi de Barres"
+msgstr ""
 
 #: trunk/admin/databasestrings.php:39
 #: trunk/admin/bandajax.php:134
@@ -353,7 +352,7 @@ msgstr ""
 #: trunk/admin/listduplicates.php:49
 #: trunk/admin/listforms.php:70
 msgid "Questionnaire"
-msgstr "Qüestionari"
+msgstr ""
 
 #: trunk/admin/listduplicates.php:49
 msgid "Formid"
@@ -365,7 +364,7 @@ msgstr ""
 
 #: trunk/admin/clients.php:66
 msgid "Added"
-msgstr "Afegit"
+msgstr ""
 
 #: trunk/admin/clients.php:68
 msgid "Could not add"
@@ -511,7 +510,7 @@ msgstr ""
 
 #: trunk/admin/index.php:56
 msgid "Progress"
-msgstr "Progrés"
+msgstr ""
 
 #: trunk/admin/index.php:57
 msgid "Display progress of form verification"
@@ -593,7 +592,7 @@ msgstr ""
 
 #: trunk/admin/performance.php:33
 msgid "Performance"
-msgstr "Actuació"
+msgstr ""
 
 #: trunk/admin/missingpages.php:135
 msgid "Missing Pages"
@@ -667,7 +666,7 @@ msgstr ""
 #: trunk/admin/pagesetup.php:317
 #: trunk/admin/new.php:183
 msgid "Upload form"
-msgstr "Puja des de"
+msgstr ""
 
 #: trunk/admin/listpagenotes.php:47
 #: trunk/admin/listpagenotes.php:56
@@ -707,7 +706,7 @@ msgstr ""
 
 #: trunk/admin/reorder.php:121
 msgid "Click here"
-msgstr "Clica aquí"
+msgstr ""
 
 #: trunk/admin/reorder.php:121
 msgid "to return without saving changes"
@@ -777,7 +776,7 @@ msgstr ""
 
 #: trunk/admin/operators.php:65
 msgid "tool"
-msgstr "eina"
+msgstr ""
 
 #: trunk/admin/operators.php:66
 msgid ""
@@ -804,11 +803,11 @@ msgstr ""
 
 #: trunk/admin/progress.php:55
 msgid "Done"
-msgstr "Fet"
+msgstr ""
 
 #: trunk/admin/progress.php:55
 msgid "Remain"
-msgstr "Queda"
+msgstr ""
 
 #: trunk/admin/progress.php:55
 msgid "Total forms imported"
@@ -816,7 +815,7 @@ msgstr ""
 
 #: trunk/admin/progress.php:77
 msgid "Total"
-msgstr "Total"
+msgstr ""
 
 #: trunk/admin/process.php:54
 msgid "Processing directory"
@@ -824,7 +823,7 @@ msgstr ""
 
 #: trunk/admin/process.php:68
 msgid "Watching..."
-msgstr "Mirant...."
+msgstr ""
 
 #: trunk/admin/process.php:90
 msgid ""
@@ -846,15 +845,15 @@ msgstr ""
 
 #: trunk/admin/listfiles.php:68
 msgid "File"
-msgstr "Arxiu"
+msgstr ""
 
 #: trunk/admin/listfiles.php:68
 msgid "SHA1"
-msgstr "SHA1"
+msgstr ""
 
 #: trunk/admin/listfiles.php:68
 msgid "Date"
-msgstr "Data"
+msgstr ""
 
 #: trunk/admin/listfiles.php:68
 msgid "Allow import again?"
