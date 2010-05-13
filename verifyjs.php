@@ -41,7 +41,8 @@ function bgidtocss($zoom = 1,$fid,$pid)
 		WHERE pid = '$pid'
 		AND btid > 0
 		AND btid != 5
-		GROUP BY bgid";
+		GROUP BY bgid
+		ORDER BY sortorder ASC";
 
 	$boxgroups = $db->GetAll($sql);
 
@@ -536,6 +537,30 @@ var pagedone = 0;
 var newwindow;
 
 <?
+
+//print order variable
+$sql = "SELECT bgid
+	FROM boxgroupstype
+	WHERE pid = '$pid'
+	ORDER BY sortorder ASC";
+		
+$b = $db->GetAll($sql);
+			
+print "bgidorder = new Array(";
+		
+$s = "";
+		
+foreach($b as $bb)
+{
+	$s .= "'{$bb['bgid']}',";
+}
+		
+$s = substr($s,0,strlen($s) - 1);
+		
+print "$s);\n";
+
+
+
 //print array of done/not done box groups for this page
 //print all bgid box groups for this page containing a list of boxes in that box group
 foreach($_SESSION['boxgroups'] as $key => $val)
@@ -568,6 +593,10 @@ foreach($_SESSION['boxgroups'] as $key => $val)
 		$s = substr($s,0,strlen($s) - 1);
 	
 		print "$s);\n";
+
+
+
+
 	}
 }
 ?>
@@ -578,8 +607,9 @@ function nextTask()
 	var done = 0;
 	var focusdone = 0;
 
-	for (x in bgiddone)
+	for (var i=0; i < bgidorder.length; i++)
 	{
+		x = bgidorder[i];
 		document.getElementById('boxGroupBox_' + x ).style.visibility = 'hidden';
 
 		if (bgidtype[x] == 3 || bgidtype[x] == 4 || bgidtype[x] == 6)
@@ -643,8 +673,9 @@ function previous() {
 
 	prev = 0;
 
-	for (x in bgiddone)
+	for (var i=0; i < bgidorder.length; i++)
 	{
+		x = bgidorder[i];
 		if (x == curbgid) break;
 		prev = x;
 	}
