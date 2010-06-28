@@ -101,18 +101,28 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 	
 				//calc offset
 				$offset = offset($image,0,0);
-	
-				//calc rotation
-				$rotation = calcrotate($offset);
+
+				//check if any edges were not detected
+				if (!in_array("",$offset))
+				{
+					//calc rotation
+					$rotation = calcrotate($offset);
 		
-				//save image to db including offset and rotation
-				$sql = "INSERT INTO pages
-					(pid,qid,pidentifierbgid,pidentifierval,tlx,tly,trx,try,blx,bly,brx,bry,image,rotation)
-					VALUES (NULL,'$qid','1','$pid','{$offset[0]}','{$offset[1]}','{$offset[2]}','{$offset[3]}','{$offset[4]}','{$offset[5]}','{$offset[6]}','{$offset[7]}','" . addslashes($data) . "','$rotation')";
-		
-				//print $sql;
-		
-				$db->Execute($sql);
+					//save image to db including offset and rotation
+					$sql = "INSERT INTO pages
+						(pid,qid,pidentifierbgid,pidentifierval,tlx,tly,trx,try,blx,bly,brx,bry,image,rotation)
+						VALUES (NULL,'$qid','1','$pid','{$offset[0]}','{$offset[1]}','{$offset[2]}','{$offset[3]}','{$offset[4]}','{$offset[5]}','{$offset[6]}','{$offset[7]}','" . addslashes($data) . "','$rotation')";
+			
+					//print $sql;
+			
+					$db->Execute($sql);
+				}
+				else
+				{
+					$db->FailTrans();
+					print "<p>" . T_("FAILED TO IMPORT AS COULD NOT DETECT ALL PAGE EDGES FOR PAGE") . ":$n</p>";
+					break 2;
+				}
 	
 			}
 			else

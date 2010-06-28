@@ -148,15 +148,15 @@ function offset($image,$a,$compare = 1)
 	$yb = 0;
 	$yc = 0;
 
-	if ($b[0] != 0){ $xa += $a['tlx']; $xb += $b[0]; $xc++; }
-	if ($b[2] != 0){ $xa += $a['trx']; $xb += $b[2]; $xc++; }
-	if ($b[4] != 0){ $xa += $a['blx']; $xb += $b[4]; $xc++; }
-	if ($b[6] != 0){ $xa += $a['brx']; $xb += $b[6]; $xc++; }
+	if ($b[0] != 0){ $xa += $a['tlx']; $xb += $b[0]; $xc++; } else return false;
+	if ($b[2] != 0){ $xa += $a['trx']; $xb += $b[2]; $xc++; } else return false;
+	if ($b[4] != 0){ $xa += $a['blx']; $xb += $b[4]; $xc++; } else return false;
+	if ($b[6] != 0){ $xa += $a['brx']; $xb += $b[6]; $xc++; } else return false;
 
-	if ($b[1] != 0){ $ya += $a['tly']; $yb += $b[1]; $yc++; }
-	if ($b[3] != 0){ $ya += $a['try']; $yb += $b[3]; $yc++; }
-	if ($b[5] != 0){ $ya += $a['bly']; $yb += $b[5]; $yc++; }
-	if ($b[7] != 0){ $ya += $a['bry']; $yb += $b[7]; $yc++; }
+	if ($b[1] != 0){ $ya += $a['tly']; $yb += $b[1]; $yc++; } else return false;
+	if ($b[3] != 0){ $ya += $a['try']; $yb += $b[3]; $yc++; } else return false;
+	if ($b[5] != 0){ $ya += $a['bly']; $yb += $b[5]; $yc++; } else return false;
+	if ($b[7] != 0){ $ya += $a['bry']; $yb += $b[7]; $yc++; } else return false;
 
 	$c[0] = round($xb / $xc) - round($xa / $xc);
 	$c[1] = round($yb / $yc) - round($ya / $yc);
@@ -194,35 +194,41 @@ function calcoffset($a,$ox=0,$oy=0)
 function detecttransforms($image,$page)
 {
 	$offset = offset($image,false,0);
-	$centroid = calccentroid($offset);
-	$rotate = calcrotate($offset);
-	$rotate = $rotate - $page['rotation'];
 
-	//rotate offset
-	for ($i = 0; $i <= 6; $i += 2)	
-		list($offset[$i],$offset[$i+1]) = rotate($rotate,array($offset[$i],$offset[$i+1]),$centroid);
-
-	$scale = calcscale($page,$offset);
-
-	//scale offset
-	for ($i = 0; $i <= 6; $i += 2)	
-		list($offset[$i],$offset[$i+1]) = scale($scale,array($offset[$i],$offset[$i+1]),$centroid);
+	if (!in_array("",$offset)) //all edges detected
+	{
+		$centroid = calccentroid($offset);
+		$rotate = calcrotate($offset);
+		$rotate = $rotate - $page['rotation'];
 	
-	//calc offset
-	$offsetxy = array();
-	$offsetxy[0] = $page['tlx'] - $offset[0];
-	$offsetxy[1] = $page['tly'] - $offset[1];
+		//rotate offset
+		for ($i = 0; $i <= 6; $i += 2)	
+			list($offset[$i],$offset[$i+1]) = rotate($rotate,array($offset[$i],$offset[$i+1]),$centroid);
 	
-	//reverse all values
-	$offsetxy[0] *= -1.0;
-	$offsetxy[1] *= -1.0;
-	$scale[0] = 1.0 / $scale[0];
-	$scale[1] = 1.0 / $scale[1];
-	$rotate *= -1.0;
+		$scale = calcscale($page,$offset);
 	
-	$transforms = array('offx' => $offsetxy[0], 'offy' => $offsetxy[1], 'scalex' => $scale[0], 'scaley' => $scale[1], 'centroidx' => $centroid[0], 'centroidy' => $centroid[1], 'costheta' => cos($rotate), 'sintheta' => sin($rotate));
+		//scale offset
+		for ($i = 0; $i <= 6; $i += 2)	
+			list($offset[$i],$offset[$i+1]) = scale($scale,array($offset[$i],$offset[$i+1]),$centroid);
+		
+		//calc offset
+		$offsetxy = array();
+		$offsetxy[0] = $page['tlx'] - $offset[0];
+		$offsetxy[1] = $page['tly'] - $offset[1];
+		
+		//reverse all values
+		$offsetxy[0] *= -1.0;
+		$offsetxy[1] *= -1.0;
+		$scale[0] = 1.0 / $scale[0];
+		$scale[1] = 1.0 / $scale[1];
+		$rotate *= -1.0;
+		
+		$transforms = array('offx' => $offsetxy[0], 'offy' => $offsetxy[1], 'scalex' => $scale[0], 'scaley' => $scale[1], 'centroidx' => $centroid[0], 'centroidy' => $centroid[1], 'costheta' => cos($rotate), 'sintheta' => sin($rotate));
+	
+		return $transforms;
+	} 
 
-	return $transforms;
+	return array(0,0,1,1,0,0,1,0); //return no transformation if all edges not detected
 }
 
 
