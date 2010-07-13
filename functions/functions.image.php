@@ -228,7 +228,7 @@ function detecttransforms($image,$page)
 		return $transforms;
 	} 
 
-	return array(0,0,1,1,0,0,1,0); //return no transformation if all edges not detected
+	return array('offx' => 0, 'offy' => 0, 'scalex' => 1, 'scaley' =>1, 'centroidx' => 0, 'centroidy' => 0, 'costheta' => 1, 'sintheta' => 0); //return no transformation if all edges not detected
 }
 
 
