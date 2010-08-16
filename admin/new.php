@@ -59,8 +59,8 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 
 	$db->StartTrans();
 
-	$sql = "INSERT INTO questionnaires (qid,description)
-		VALUES (NULL,'$desc')";
+	$sql = "INSERT INTO questionnaires (qid,description,sheets)
+		VALUES (NULL,'$desc',0)";
 
 	$db->Execute($sql);
 

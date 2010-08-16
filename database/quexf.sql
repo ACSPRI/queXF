@@ -521,7 +521,7 @@ CREATE TABLE `processforms` (
 CREATE TABLE IF NOT EXISTS `questionnaires` (
   `qid` bigint(20) NOT NULL auto_increment,
   `description` text NOT NULL,
-  `sheets` int(11) NOT NULL,
+  `sheets` int(11) NOT NULL default '0',
   `page_size` enum('A4','A3') NOT NULL default 'A4',
   PRIMARY KEY  (`qid`)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
