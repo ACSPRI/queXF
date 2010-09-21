@@ -148,7 +148,6 @@ function outputdatacsv($qid,$fid = "")
 		from boxes as b, boxgroupstype as g, pages as p, formboxverifychar as f
 		where b.bgid = g.bgid
 		and g.btid > 0
-		and g.btid < 5
 		and p.pid = b.pid
 		and p.qid = '$qid'
 		and f.bid = b.bid and f.vid = '{$form['vid']}' and f.fid = '{$form['fid']}')
@@ -304,7 +303,7 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true)
 
 		$sql = "(SELECT b.bid,b.bgid,g.btid,f.val,sortorder
 		FROM boxes AS b
-		JOIN boxgroupstype AS g ON (g.btid > 0 AND g.btid < 5 AND b.bgid = g.bgid)
+		JOIN boxgroupstype AS g ON (g.btid > 0 AND g.btid < 5 AND  b.bgid = g.bgid)
 		JOIN pages AS p ON (p.qid = '$qid' AND p.pid = b.pid)
 		LEFT JOIN formboxverifychar AS f ON (f.bid = b.bid AND f.vid='{$form['vid']}' AND f.fid = '{$form['fid']}'))
 		UNION
@@ -323,8 +322,6 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true)
 
 
 		$data =  $db->GetAll($sql);
-
-
 
 		$bgid = "";
 		$btid = "";
@@ -448,6 +445,135 @@ function variable_ddi($doc,$width,$varname,$vardescription,$startpos,$vartype,$c
 	return $var;
 }
 
+
+/**
+ * Export the banding layout as an XML file
+ *
+ * @param int $qid The quesitonnaire id
+ */ 
+function export_banding($qid)
+{
+	global $db;
+
+	$dom = domxml_new_doc("1.0");
+
+	$c = $dom->create_element("queXF");
+	$dom->append_child($c); 
+
+	$q = $dom->create_element("questionnaire");
+	$tmp = $dom->create_element("id");
+	$tmp->set_content($qid);
+	$q->append_child($tmp);
+		
+	$c->append_child($q);
+	
+	//Export sections
+	$sql = "SELECT sid,title,description
+		FROM sections
+		WHERE qid = '$qid'
+		ORDER BY sid ASC";
+
+	$rs = $db->GetAll($sql);
+	
+	foreach($rs as $r)
+	{
+		$s = $dom->create_element("section");
+
+		$tmp = $dom->create_element("title");
+		$tmp->set_content($r['title']);
+		$s->append_child($tmp);
+
+		$tmp = $dom->create_element("label");
+		$tmp->set_content($r['description']);
+		$s->append_child($tmp);
+
+		$s->set_attribute("id",$r['sid']);
+		$q->append_child($s);
+	}
+
+	//Export pages
+	$sql = "SELECT pid,pidentifierval as id,tlx,tly,trx,try,blx,bly,brx,bry,rotation
+		FROM pages 
+		WHERE qid = '$qid'
+		ORDER BY pidentifierval ASC";
+	
+	$rs = $db->GetAll($sql);
+
+	foreach($rs as $r)
+	{
+		$pid = $r['pid'];	
+
+		$p = $dom->create_element("page");
+
+		foreach($r as $pattr => $pval)
+		{
+			$tmp = $dom->create_element($pattr);
+			$tmp->set_content($pval);
+			$p->append_child($tmp);
+		}
+
+		//Box groups
+		$sql = "SELECT bgid as id, btid as type, width, varname, sortorder, label, sid as groupsection
+			FROM boxgroupstype
+			WHERE pid = '$pid'
+			ORDER BY sortorder ASC";
+
+		$rs2 = $db->GetAll($sql);
+
+		foreach($rs2 as $r2)
+		{
+			$bgid = $r2['id'];
+
+			$bg = $dom->create_element("boxgroup");
+
+			foreach($r2 as $battr => $bval)
+			{
+				
+				$tmp = $dom->create_element($battr);
+				if ($battr == 'groupsection' && !empty($bval))
+					$tmp->set_attribute("idref",$bval);
+				else
+					$tmp->set_content($bval);
+				$bg->append_child($tmp);
+			}
+
+			//Boxes
+			$sql = "SELECT bid as id, tlx,tly,brx,bry,value,label
+				FROM boxes
+				WHERE bgid = '$bgid'
+				ORDER BY bid ASC";
+
+			$rs3 = $db->GetAll($sql);
+
+			foreach($rs3 as $r3)
+			{
+				$b = $dom->create_element("box");
+
+				foreach($r3 as $battr => $bval)
+				{
+					$tmp = $dom->create_element($battr);
+					$tmp->set_content($bval);
+					$b->append_child($tmp);
+				}
+
+				$bg->append_child($b);
+			}
+			
+			$p->append_child($bg);
+		}
+		$q->append_child($p);
+	}
+	
+	$ret = $dom->dump_mem(true);	
+	
+	header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+	header ("Content-Type: text/xml");
+	header ("Content-Length: " . strlen($ret));
+	header ("Content-Disposition: attachment; filename=quexf_temp.xml");
+
+	echo $ret;
+
+}
 
 
 /* Export the DDI file for this table with updates based on any new columns added
