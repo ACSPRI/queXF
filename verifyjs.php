@@ -434,7 +434,7 @@ if (isset($_GET['piddone']))
 
 			//destroy existing data in this box group...
 			$sql = "SELECT bid
-				FROM boxgroups
+				FROM boxes
 				WHERE bgid = '$bgid'";
 		
 			$b = $db->GetAll($sql);
@@ -575,7 +575,7 @@ foreach($_SESSION['boxgroups'] as $key => $val)
 		print "bgidtype[$key] = {$val['btid']};\n";
 
 		$sql = "SELECT bid
-			FROM boxgroups
+			FROM boxes
 			WHERE bgid = '$key'";
 
 		$b = $db->GetAll($sql);

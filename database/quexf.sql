@@ -165,18 +165,6 @@ CREATE TABLE IF NOT EXISTS `boxestype` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `boxgroups`
---
-
-CREATE TABLE IF NOT EXISTS `boxgroups` (
-  `bgid` bigint(20) unsigned NOT NULL,
-  `bid` bigint(20) unsigned NOT NULL,
-  PRIMARY KEY  (`bgid`,`bid`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `boxgroupstype`
 --
 

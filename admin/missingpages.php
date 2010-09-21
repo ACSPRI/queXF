@@ -65,6 +65,7 @@ if (isset($_GET['npid']) && isset($_GET['mpid']) && isset($_GET['fid']))
 
 			$im = $db->GetRow($sql);
 
+
 			$image = imagecreatefromstring($im['image']);
 
 			//get the page id from the page table
@@ -72,6 +73,7 @@ if (isset($_GET['npid']) && isset($_GET['mpid']) && isset($_GET['fid']))
 				WHERE pid = '$npid'";
 
 			$page = $db->GetRow($sql);
+
 
 			if ($page['store'] == 1)
 			{

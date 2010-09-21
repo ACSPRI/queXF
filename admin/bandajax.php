@@ -195,14 +195,6 @@ function createboxgroup($boxes,$width,$varname,$pid,$btid = 1)
 			VALUES (NULL,'{$box['tlx']}','{$box['tly']}','{$box['brx']}','{$box['bry']}','$pid','$bgid')";
 
 		$db->Execute($sql);
-
-		$bid = $db->Insert_ID();
-
-		$sql = "INSERT INTO boxgroups (bgid, bid)
-			VALUES ('$bgid','$bid')";
-
-		$db->Execute($sql);
-
 	}
 
 	$db->CompleteTrans();
@@ -297,7 +289,7 @@ function updateboxgroup($bid,$width,$btid)
 	$db->StartTrans();
 
 	$sql = "SELECT bgid
-		FROM boxgroups
+		FROM boxes
 		WHERE bid = '$bid'";
 
 	$rs = $db->GetRow($sql);
@@ -337,7 +329,7 @@ function deleteinbetween($bid)
 	$db->StartTrans();
 
 	$sql = "SELECT bg.bid 
-		FROM boxgroups as bg, boxgroups as bg2
+		FROM boxes as bg, boxes as bg2
 		WHERE bg2.bid = '$bid'
 		AND bg.bgid = bg2.bgid";
 
@@ -350,12 +342,6 @@ function deleteinbetween($bid)
 		{
 			$sql = "DELETE
 				FROM boxes
-				WHERE bid = '{$row['bid']}'";
-	
-			$db->Execute($sql);
-
-			$sql = "DELETE 
-				FROM boxgroups
 				WHERE bid = '{$row['bid']}'";
 	
 			$db->Execute($sql);
@@ -376,21 +362,12 @@ function deleteinbetween($bid)
 function deletebox($bid)
 {
 	global $db;
-	$db->StartTrans();
 
 	$sql = "DELETE
 		FROM boxes
 		WHERE bid = '$bid'";
 	
 	$db->Execute($sql);
-
-	$sql = "DELETE 
-		FROM boxgroups
-		WHERE bid = '$bid'";
-
-	$db->Execute($sql);
-
-	$db->CompleteTrans();
 
 	return $bid;
 
@@ -407,7 +384,7 @@ function deleteboxgroup($bid)
 	$db->StartTrans();
 	
 	$sql = "SELECT bgid
-		FROM boxgroups
+		FROM boxes
 		WHERE bid = '$bid'";
 
 	$rs = $db->GetRow($sql);
@@ -416,7 +393,7 @@ function deleteboxgroup($bid)
 
 
 	$sql = "SELECT bid 
-		FROM boxgroups 
+		FROM boxes
 		WHERE bgid = '$bgid'";
 
 	$rows = $db->GetAll($sql);
@@ -429,12 +406,6 @@ function deleteboxgroup($bid)
 
 		$db->Execute($sql);
 	}
-
-	$sql = "DELETE 
-		FROM boxgroups
-		WHERE bgid = '$bgid'";
-
-	$db->Execute($sql);
 
 	$sql = "DELETE
 		FROM boxgroupstype

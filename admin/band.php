@@ -84,14 +84,6 @@ function createboxgroup($boxes,$width,$varname,$pid,$btid = 0)
 			VALUES (NULL,'{$box['tlx']}','{$box['tly']}','{$box['brx']}','{$box['bry']}','$pid','$bgid')";
 
 		$db->Execute($sql);
-
-		$bid = $db->Insert_ID();
-
-		$sql = "INSERT INTO boxgroups (bgid, bid)
-			VALUES ('$bgid','$bid')";
-
-		$db->Execute($sql);
-
 	}
 
 	$db->CompleteTrans();

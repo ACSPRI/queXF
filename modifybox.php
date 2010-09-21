@@ -54,7 +54,7 @@ function deleteinbetween($bgid)
 	$db->StartTrans();
 
 	$sql = "SELECT bid 
-		FROM boxgroups 
+		FROM boxes 
 		WHERE bgid = '$bgid'";
 
 	$rows = $db->GetAll($sql);
@@ -70,11 +70,6 @@ function deleteinbetween($bgid)
 	
 			$db->Execute($sql);
 
-			$sql = "DELETE 
-				FROM boxgroups
-				WHERE bid = '{$row['bid']}'";
-	
-			$db->Execute($sql);
 		}
 		$rc++;
 	}
@@ -92,7 +87,6 @@ function deleteinbetween($bgid)
 function deletebox($bid)
 {
 	global $db;
-	$db->StartTrans();
 
 	$sql = "DELETE
 		FROM boxes
@@ -100,13 +94,6 @@ function deletebox($bid)
 	
 	$db->Execute($sql);
 
-	$sql = "DELETE 
-		FROM boxgroups
-		WHERE bid = '$bid'";
-
-	$db->Execute($sql);
-
-	$db->CompleteTrans();
 
 	return $bid;
 
@@ -123,7 +110,7 @@ function deleteboxgroup($bgid)
 	$db->StartTrans();
 
 	$sql = "SELECT bid 
-		FROM boxgroups 
+		FROM boxes 
 		WHERE bgid = '$bgid'";
 
 	$rows = $db->GetAll($sql);
@@ -136,12 +123,6 @@ function deleteboxgroup($bgid)
 
 		$db->Execute($sql);
 	}
-
-	$sql = "DELETE 
-		FROM boxgroups
-		WHERE bgid = '$bgid'";
-
-	$db->Execute($sql);
 
 	$sql = "DELETE
 		FROM boxgroupstype
@@ -197,7 +178,7 @@ if (isset($_GET['bgid']) || isset($_GET['bid']))
 	if (isset($_GET['bid'])){
 		$bid = intval($_GET['bid']);
 		$sql = "SELECT bgid 
-			FROM boxgroups
+			FROM boxes
 			WHERE bid = '$bid'";
 		$row = $db->GetRow($sql);
 		$bgid = $row['bgid'];
