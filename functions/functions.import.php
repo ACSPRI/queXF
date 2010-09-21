@@ -25,8 +25,8 @@
 
 include_once(dirname(__FILE__).'/../config.inc.php');
 include_once(dirname(__FILE__).'/../db.inc.php');
-include('functions.barcode.php');
-include('functions.image.php');
+include_once('functions.barcode.php');
+include_once('functions.image.php');
 
 
 
@@ -89,9 +89,9 @@ function charboxes($pid,$image,$fid,$transforms)
 
 	$boxes = $db->GetAll("
 		SELECT b.bid, b.tlx, b.tly, b.brx, b.bry, b.pid, f.filled
-		FROM boxeschar AS b
-		LEFT JOIN formboxes AS f ON f.fid = '$fid'
-		AND f.bid = b.bid
+		FROM boxes AS b
+		JOIN boxgroupstype as bg ON (bg.bgid = b.bgid AND bg.btid = 3)
+		LEFT JOIN formboxes AS f ON (f.fid = '$fid' AND f.bid = b.bid)
 		WHERE b.pid = '$pid'
 		AND f.fid = '$fid'");
 
@@ -118,9 +118,9 @@ function numberboxes($pid,$image,$fid,$transforms)
 
 	$boxes = $db->GetAll("
 		SELECT b.bid, b.tlx, b.tly, b.brx, b.bry, b.pid, f.filled
-		FROM boxesnumber AS b
-		LEFT JOIN formboxes AS f ON f.fid = '$fid'
-		AND f.bid = b.bid
+		FROM boxes AS b
+		JOIN boxgroupstype as bg ON (bg.bgid = b.bgid AND bg.btid = 4)
+		LEFT JOIN formboxes AS f ON (f.fid = '$fid' AND f.bid = b.bid)
 		WHERE b.pid = '$pid'
 		AND f.fid = '$fid'");
 
@@ -148,7 +148,8 @@ function barcodeboxes($pid,$image,$fid,$transforms)
 
 	$boxes = $db->GetAll("
 		SELECT b.bid, b.tlx, b.tly, b.brx, b.bry, b.pid
-		FROM boxesbarcode AS b
+		FROM boxes AS b
+		JOIN boxgroupstype as bg ON (bg.bgid = b.bgid AND bg.btid = 5)
 		WHERE b.pid = '$pid'");
 
 	foreach ($boxes as $i)
@@ -177,7 +178,10 @@ function fillboxes($pid,$image,$fid,$transforms)
 {
 	global $db;
 
-	$boxes = $db->GetAll("SELECT bid,tlx,tly,brx,bry,pid FROM boxesfillable WHERE pid = '$pid'");
+	$boxes = $db->GetAll("	SELECT b.bid,b.tlx,b.tly,b.brx,b.bry,b.pid 
+				FROM boxes as b
+				JOIN boxgroupstype AS bg on (bg.bgid = b.bgid AND (bg.btid = 1 or bg.btid = 2 or bg.btid = 3 or bg.btid = 4))
+				WHERE b.pid = '$pid'");
 
 	foreach ($boxes as $i)
 	{
@@ -722,6 +726,109 @@ function import($filename,$description = false)
 	return true;
 }
 
+
+/**
+ * Import banding information for a form
+ * 
+ * @param string $xml The queXF Banding XML file produced using queXMLPDF
+ * @param int $qid The questionnaire id
+ * 
+ * @return bool True if successful otherwise false (including if already banded)
+ * @author Adam Zammit <adam.zammit@acspri.org.au>
+ * @since  2010-09-21
+ * @link http://quexml.sourceforge.net/
+ */
+function import_bandingxml($xml,$qid)
+{
+	global $db;
+
+	$db->StartTrans();
+
+	$b = new SimpleXMLElement($xml);
+
+	foreach ($b->questionnaire as $q)
+	{
+		$id = current($q->id);
+		$sections = array();
+		foreach ($q->section as $s)
+		{
+			$sid = current($s['id']);
+			$label = $db->qstr(current($s->label));
+			$title = $db->qstr(current($s->title));
+
+			$sql = "INSERT INTO sections (sid,qid,description,title)
+				VALUES (NULL,'$qid',$label,$title)";
+
+			$db->Execute($sql);
+
+			$ssid = $db->Insert_Id();
+
+			//Keep track of queXF's copy of the sid based on the XML sid
+			$sections[$sid] = $ssid;
+		}
+
+		foreach($q->page as $p)
+		{
+			$id = current($p->id);
+			
+			//Get the queXF page id given this qid and pidentifierval
+			$sql = "SELECT pid
+				FROM pages
+				WHERE qid = '$qid'
+				ANd pidentifierval LIKE '$id'";
+
+			$rs = $db->GetRow($sql);
+		
+			$pid = "";
+
+			if (empty($rs))
+			{
+				$db->FailTrans();
+				break 2;
+			}		
+			else
+				$pid = $rs['pid'];
+
+			//Don't update the page location information...
+
+			foreach ($p->boxgroup as $bg)
+			{
+				$width = intval($bg->width);
+				$type = intval($bg->type);
+				$varname = $db->qstr($bg->varname);
+				$sortorder = intval($bg->sortorder);
+				$label = $db->qstr($bg->label);
+				$gs = current($bg->groupsection);
+				$sid = $sections[$gs['idref']];
+
+				$sql = "INSERT INTO boxgroupstype (bgid,btid,width,pid,varname,sortorder,label,sid)
+					VALUES (NULL,$type,$width,$pid,$varname,$sortorder,$label,$sid)";
+
+				$db->Execute($sql);
+
+				$bgid = $db->Insert_Id();
+				
+				foreach ($bg->box as $b)
+				{
+					$tlx = intval($b->tlx);
+					$tly = intval($b->tly);
+					$brx = intval($b->brx);
+					$bry = intval($b->bry);
+					$value = $db->qstr($b->value);
+					$label = $db->qstr($b->label);
+
+					$sql = "INSERT INTO boxes (bid,tlx,tly,brx,bry,pid,bgid,value,label)
+						VALUES (NULL,$tlx,$tly,$brx,$bry,$pid,$bgid,$value,$label)";
+
+					$db->Execute($sql);
+				}
+
+			}
+
+		}
+	}	
+	return $db->CompleteTrans();
+}
 
 /**
  * Import a directory of files and rename them once done

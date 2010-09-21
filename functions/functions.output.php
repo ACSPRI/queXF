@@ -79,12 +79,14 @@ function outputdatacsv($qid,$fid = "")
 
 	//first get data desc
 
-	$sql = "SELECT bgid, btid, count( bid ) as count,width
-		FROM boxesgroupstypes
-		WHERE qid = '$qid'
-		AND btid > 0
-		GROUP BY bgid
-		ORDER BY sortorder";
+	$sql = "SELECT b.bgid, bg.btid, count( b.bid ) as count,bg.width
+		FROM boxes as b
+		JOIN boxgroupstype as bg ON (b.bgid = bg.bgid)
+		JOIN pages as p ON (p.pid = b.pid)
+		WHERE p.qid = '$qid'
+		AND bg.btid > 0
+		GROUP BY b.bgid
+		ORDER BY bg.sortorder";
 
 	$desc = $db->GetAssoc($sql);
 
@@ -106,12 +108,14 @@ function outputdatacsv($qid,$fid = "")
 	header ("Content-Length: ");
 	header ("Content-Disposition: attachment; filename=temp.csv");
 
-	$sql = "SELECT varname,btid, count(bid) as count
-		FROM boxesgroupstypes
-		WHERE qid = '$qid'
-		AND btid > 0
-		GROUP BY bgid
-		ORDER BY sortorder";
+	$sql = "SELECT bg.varname, bg.btid, count(b.bid) as count
+		FROM boxes as b
+		JOIN boxgroupstype as bg ON (bg.bgid = b.bgid)
+		JOIN pages as p ON (p.pid = b.pid)
+		WHERE p.qid = '$qid'
+		AND bg.btid > 0
+		GROUP BY b.bgid
+		ORDER BY bg.sortorder";
 
 	$varnames = $db->GetAll($sql);
 
@@ -134,14 +138,14 @@ function outputdatacsv($qid,$fid = "")
 
 	foreach ($forms as $form)
 	{
-		$sql = "SELECT btid,val
-		FROM `boxesgroupstypes` AS b
-		LEFT JOIN formboxverifychar AS f ON ( f.vid = '{$form['vid']}'
-		AND f.fid = '{$form['fid']}'
-		AND f.bid = b.bid )
-		WHERE b.qid = '$qid'
-		AND b.btid >0
-		ORDER BY b.sortorder, b.bid";
+		$sql = "SELECT bg.btid,f.val
+			FROM boxes AS b
+			JOIN boxgroupstype as bg ON (bg.bgid = b.bgid)
+			JOIN pages as p ON (p.pid = b.pid)
+			LEFT JOIN formboxverifychar AS f ON (f.vid = '{$form['vid']}' AND f.fid = '{$form['fid']}' AND f.bid = b.bid)
+			WHERE p.qid = '$qid'
+			AND bg.btid > 0
+			ORDER BY bg.sortorder, b.bid";
 
 
 		$sql = "(select b.bid,b.bgid,g.btid,f.val,sortorder
@@ -260,12 +264,14 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true)
 
 	//first get data desc
 
-	$sql = "SELECT bgid, btid, count( bid ) as count,width
-		FROM boxesgroupstypes
-		WHERE qid = '$qid'
-		AND btid > 0
-		GROUP BY bgid
-		ORDER BY sortorder";
+	$sql = "SELECT b.bgid, bg.btid, count( b.bid ) as count, bg.width
+		FROM boxes as b
+		JOIN boxgroupstype as bg ON (bg.bgid = b.bgid)
+		JOIN pages as p ON (p.pid = b.pid)
+		WHERE p.qid = '$qid'
+		AND bg.btid > 0
+		GROUP BY b.bgid
+		ORDER BY bg.sortorder";
 
 	$desc = $db->GetAssoc($sql);
 
@@ -291,14 +297,14 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true)
 
 	foreach ($forms as $form)
 	{
-		$sql = "SELECT btid,val
-		FROM `boxesgroupstypes` AS b
-		LEFT JOIN formboxverifychar AS f ON ( f.vid = '{$form['vid']}'
-		AND f.fid = '{$form['fid']}'
-		AND f.bid = b.bid )
-		WHERE b.qid = '$qid'
-		AND b.btid >0
-		ORDER BY b.sortorder, b.bid";
+		$sql = "SELECT bg.btid,f.val
+			FROM boxes AS b
+			JOIN boxgroupstype as bg ON (bg.bgid = b.bgid)
+			JOIN pages as p ON (p.pid = b.pid)
+			LEFT JOIN formboxverifychar AS f ON (f.vid = '{$form['vid']}' AND f.fid = '{$form['fid']}' AND f.bid = b.bid)
+			WHERE p.qid = '$qid'
+			AND bg.btid > 0
+			ORDER BY bg.sortorder, b.bid";
 
 
 		$sql = "(SELECT b.bid,b.bgid,g.btid,f.val,sortorder
@@ -600,12 +606,14 @@ function export_ddi($qid)
 
 	//first get data desc
 
-	$sql = "SELECT bgid, btid, varname, count( bid ) as count,width
-		FROM boxesgroupstypes
-		WHERE qid = '$qid'
-		AND btid > 0
-		GROUP BY bgid
-		ORDER BY sortorder";
+	$sql = "SELECT b.bgid, bg.btid, bg.varname, count( b.bid ) as count,bg.width
+		FROM boxes as b
+		JOIN boxgroupstype as bg on (bg.bgid = b.bgid)
+		JOIN pages as p on (p.pid = b.pid)
+		WHERE p.qid = '$qid'
+		AND bg.btid > 0
+		GROUP BY b.bgid
+		ORDER BY bg.sortorder";
 
 	$desc = $db->GetAssoc($sql);
 
@@ -721,12 +729,14 @@ function export_pspp($qid)
 
 	echo "DATA LIST FIXED /";
 
-	$sql = "SELECT bgid, btid, (CASE WHEN varname = '' THEN CONCAT('Q_',bgid) ELSE varname END) as varname, count( bid ) as count,width
-		FROM boxesgroupstypes
-		WHERE qid = '$qid'
-		AND btid > 0
-		GROUP BY bgid
-		ORDER BY sortorder";
+	$sql = "SELECT b.bgid, bg.btid, (CASE WHEN bg.varname = '' THEN CONCAT('Q_',b.bgid) ELSE bg.varname END) as varname, count( b.bid ) as count,bg.width
+		FROM boxes as b
+		JOIN boxgroupstype as bg ON (bg.bgid = b.bgid)
+		JOIN pages as p ON (p.pid = b.pid)
+		WHERE p.qid = '$qid'
+		AND bg.btid > 0
+		GROUP BY b.bgid
+		ORDER BY bg.sortorder";
 
 	$cols = $db->GetAll($sql);
 
@@ -802,7 +812,26 @@ function export_pspp($qid)
 			echo "$varname '$vardescription' ";
 		}
 	}
-	echo "/formid 'queXF Form ID' ";
+	echo "/formid 'queXF Form ID' .\n";
+
+	echo "VALUE LABELS ";
+
+	foreach ($cols as $col)
+	{
+		$varname = $col['varname'];
+	
+		if ($col['btid'] == 1 || $col['btid'] == 2)
+		{
+			$sql = "SELECT value,label
+				FROM boxes
+				WHERE bgid = '{$col['bgid']}'";
+
+			$rs = $db->GetAll($sql);
+
+			if (!empty($rs) && !empty($rs['value']) && !empty($rs['label']))
+				echo " /$varname {$rs['value']} '{$rs['label']}'";
+		}
+	}
 
 	echo " .\nBEGIN DATA.\n";
 

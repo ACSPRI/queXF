@@ -27,141 +27,12 @@ CREATE TABLE IF NOT EXISTS `boxes` (
   `bry` int(11) NOT NULL,
   `pid` bigint(20) NOT NULL,
   `bgid` bigint(20) NOT NULL,
-  PRIMARY KEY  (`bid`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+  `value` varchar(255) collate utf8_unicode_ci default NULL,
+  `label` text collate utf8_unicode_ci,
+  PRIMARY KEY  (`bid`),
+  KEY `bgid` (`bgid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `boxeschar`
---
-CREATE TABLE IF NOT EXISTS `boxeschar` (
-`bid` bigint(20) unsigned
-,`tlx` int(11)
-,`tly` int(11)
-,`brx` int(11)
-,`bry` int(11)
-,`pid` bigint(20)
-,`btid` int(11)
-,`bgid` bigint(20) unsigned
-,`sortorder` int(11)
-);
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `boxesfillable`
---
-CREATE TABLE IF NOT EXISTS `boxesfillable` (
-`bid` bigint(20) unsigned
-,`tlx` int(11)
-,`tly` int(11)
-,`brx` int(11)
-,`bry` int(11)
-,`pid` bigint(20)
-,`btid` int(11)
-,`bgid` bigint(20) unsigned
-);
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `boxesgroupstypes`
---
-CREATE TABLE IF NOT EXISTS `boxesgroupstypes` (
-`bid` bigint(20) unsigned
-,`tlx` int(11)
-,`tly` int(11)
-,`brx` int(11)
-,`bry` int(11)
-,`pid` bigint(20)
-,`btid` int(11)
-,`bgid` bigint(20) unsigned
-,`qid` bigint(20)
-,`varname` text
-,`sortorder` int(11)
-);
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `boxesnumber`
---
-CREATE TABLE IF NOT EXISTS `boxesnumber` (
-`bid` bigint(20) unsigned
-,`tlx` int(11)
-,`tly` int(11)
-,`brx` int(11)
-,`bry` int(11)
-,`pid` bigint(20)
-,`btid` int(11)
-,`bgid` bigint(20) unsigned
-,`sortorder` int(11)
-);
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `boxesbarcode`
---
-CREATE TABLE IF NOT EXISTS `boxesbarcode` (
-`bid` bigint(20) unsigned
-,`tlx` int(11)
-,`tly` int(11)
-,`brx` int(11)
-,`bry` int(11)
-,`pid` bigint(20)
-,`btid` int(11)
-,`bgid` bigint(20) unsigned
-,`sortorder` int(11)
-);
--- --------------------------------------------------------
-
-
-
---
--- Stand-in structure for view `boxessinglemultiple`
---
-CREATE TABLE IF NOT EXISTS `boxessinglemultiple` (
-`bid` bigint(20) unsigned
-,`tlx` int(11)
-,`tly` int(11)
-,`brx` int(11)
-,`bry` int(11)
-,`pid` bigint(20)
-,`btid` int(11)
-,`bgid` bigint(20) unsigned
-,`sortorder` int(11)
-);
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `boxestofill`
---
-CREATE TABLE IF NOT EXISTS `boxestofill` (
-`bid` bigint(20) unsigned
-,`tlx` int(11)
-,`tly` int(11)
-,`brx` int(11)
-,`bry` int(11)
-,`pid` bigint(20)
-,`btid` int(11)
-,`filename` text
-,`fid` bigint(20)
-,`image` mediumblob
-,`offx` int(11)
-,`offy` int(11)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `boxestype`
---
-CREATE TABLE IF NOT EXISTS `boxestype` (
-`bid` bigint(20) unsigned
-,`tlx` int(11)
-,`tly` int(11)
-,`brx` int(11)
-,`bry` int(11)
-,`pid` bigint(20)
-,`btid` int(11)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 -- --------------------------------------------------------
 
 --
@@ -173,8 +44,10 @@ CREATE TABLE IF NOT EXISTS `boxgroupstype` (
   `btid` int(11) NOT NULL,
   `width` int(11) NOT NULL,
   `pid` bigint(20) NOT NULL,
-  `varname` text NOT NULL,
+  `varname` text collate utf8_unicode_ci NOT NULL,
   `sortorder` int(11) NOT NULL,
+  `label` text collate utf8_unicode_ci,
+  `sid` int(11) default NULL,
   PRIMARY KEY  (`bgid`),
   KEY `btid` (`btid`),
   KEY `pid` (`pid`)
@@ -188,9 +61,35 @@ CREATE TABLE IF NOT EXISTS `boxgroupstype` (
 
 CREATE TABLE IF NOT EXISTS `boxgrouptypes` (
   `btid` int(11) NOT NULL,
-  `description` text NOT NULL,
+  `description` text collate utf8_unicode_ci NOT NULL,
   PRIMARY KEY  (`btid`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clientquestionnaire`
+--
+
+CREATE TABLE IF NOT EXISTS `clientquestionnaire` (
+  `cid` bigint(20) NOT NULL,
+  `qid` bigint(20) NOT NULL,
+  PRIMARY KEY  (`cid`,`qid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clients`
+--
+
+CREATE TABLE IF NOT EXISTS `clients` (
+  `cid` bigint(20) NOT NULL auto_increment,
+  `username` varchar(255) collate utf8_unicode_ci NOT NULL,
+  `description` varchar(255) collate utf8_unicode_ci NOT NULL,
+  PRIMARY KEY  (`cid`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -221,88 +120,6 @@ CREATE TABLE IF NOT EXISTS `formboxes` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `formboxesgroupstype`
---
-CREATE TABLE IF NOT EXISTS `formboxesgroupstype` (
-`bid` bigint(20)
-,`fid` bigint(20)
-,`filled` double
-,`bgid` bigint(20) unsigned
-,`btid` int(11)
-,`width` int(11)
-,`varname` text
-);
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `formboxestoverify`
---
-CREATE TABLE IF NOT EXISTS `formboxestoverify` (
-`bid` bigint(20) unsigned
-,`tlx` int(11)
-,`tly` int(11)
-,`brx` int(11)
-,`bry` int(11)
-,`pid` bigint(20)
-,`btid` int(11)
-,`bgid` bigint(20) unsigned
-,`fid` bigint(20)
-,`filled` double
-);
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `formboxestoverify2`
---
-CREATE TABLE IF NOT EXISTS `formboxestoverify2` (
-`bid` bigint(20) unsigned
-,`tlx` int(11)
-,`tly` int(11)
-,`brx` int(11)
-,`bry` int(11)
-,`pid` bigint(20)
-,`btid` int(11)
-,`bgid` bigint(20) unsigned
-,`fid` bigint(20)
-,`offx` int(11)
-,`offy` int(11)
-,`filled` double
-,`sortorder` int(11)
-,`val` char(1)
-);
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `formboxestoverifychar`
---
-CREATE TABLE IF NOT EXISTS `formboxestoverifychar` (
-`bid` bigint(20) unsigned
-,`tlx` int(11)
-,`tly` int(11)
-,`brx` int(11)
-,`bry` int(11)
-,`pid` bigint(20)
-,`btid` int(11)
-,`bgid` bigint(20) unsigned
-,`fid` bigint(20)
-,`image` mediumblob
-,`offx` int(11)
-,`offy` int(11)
-,`filled` double
-);
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `formboxgroupssinglemin`
---
-CREATE TABLE IF NOT EXISTS `formboxgroupssinglemin` (
-`min( filled )` double
-,`fid` bigint(20)
-,`bgid` bigint(20) unsigned
-,`bid` bigint(20)
-);
-
---
 -- Table structure for table `formboxverifychar`
 --
 
@@ -310,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `formboxverifychar` (
   `vid` int(11) NOT NULL,
   `bid` bigint(20) NOT NULL,
   `fid` bigint(20) NOT NULL,
-  `val` char(1) default NULL,
+  `val` char(1) collate utf8_unicode_ci default NULL,
   PRIMARY KEY  (`vid`,`bid`,`fid`)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
@@ -324,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `formboxverifytext` (
   `vid` int(11) NOT NULL,
   `bid` bigint(20) NOT NULL,
   `fid` bigint(20) NOT NULL,
-  `val` longtext NOT NULL,
+  `val` longtext collate utf8_unicode_ci NOT NULL,
   PRIMARY KEY  (`vid`,`bid`,`fid`)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
@@ -355,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `formpagenote` (
 CREATE TABLE IF NOT EXISTS `formpages` (
   `fid` bigint(20) NOT NULL,
   `pid` bigint(20) NOT NULL,
-  `filename` text NOT NULL,
+  `filename` text collate utf8_unicode_ci NOT NULL,
   `image` mediumblob NOT NULL,
   `offx` int(11) default NULL COMMENT 'Offset X value',
   `offy` int(11) default NULL COMMENT 'Offset Y value',
@@ -377,15 +194,16 @@ CREATE TABLE IF NOT EXISTS `formpages` (
 CREATE TABLE IF NOT EXISTS `forms` (
   `fid` bigint(20) NOT NULL auto_increment,
   `qid` bigint(20) NOT NULL,
-  `description` text NOT NULL,
+  `description` text collate utf8_unicode_ci NOT NULL,
   `pfid` bigint(20) default NULL,
   `assigned_vid` bigint(20) default NULL,
   `done` int(11) NOT NULL default '0',
   PRIMARY KEY  (`fid`),
   KEY `assigned_vid` (`assigned_vid`),
   KEY `done` (`done`),
-  KEY `pfid` (`pfid`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+  KEY `pfid` (`pfid`),
+  KEY `qid` (`qid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -408,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `missingpages` (
 --
 
 CREATE TABLE IF NOT EXISTS `ocrtrain` (
-  `val` char(1) NOT NULL,
+  `val` char(1) collate utf8_unicode_ci NOT NULL,
   `r1` tinyint(1) unsigned NOT NULL,
   `r2` tinyint(1) unsigned NOT NULL,
   `r3` tinyint(1) unsigned NOT NULL,
@@ -450,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `pid` bigint(20) NOT NULL auto_increment,
   `qid` bigint(20) NOT NULL,
   `pidentifierbgid` bigint(20) NOT NULL,
-  `pidentifierval` varchar(16) NOT NULL,
+  `pidentifierval` varchar(16) collate utf8_unicode_ci NOT NULL,
   `tlx` int(11) NOT NULL,
   `tly` int(11) NOT NULL,
   `trx` int(11) NOT NULL,
@@ -508,11 +326,26 @@ CREATE TABLE `processforms` (
 
 CREATE TABLE IF NOT EXISTS `questionnaires` (
   `qid` bigint(20) NOT NULL auto_increment,
-  `description` text NOT NULL,
-  `sheets` int(11) NOT NULL default '0',
-  `page_size` enum('A4','A3') NOT NULL default 'A4',
+  `description` text collate utf8_unicode_ci NOT NULL,
+  `sheets` int(11) NOT NULL,
+  `page_size` enum('A4','A3') collate utf8_unicode_ci NOT NULL default 'A4',
   PRIMARY KEY  (`qid`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sections`
+--
+
+CREATE TABLE IF NOT EXISTS `sections` (
+  `sid` int(11) NOT NULL auto_increment,
+  `qid` int(11) NOT NULL,
+  `description` text NOT NULL,
+  `title` text NOT NULL,
+  PRIMARY KEY  (`sid`),
+  KEY `qid` (`qid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -599,123 +432,6 @@ CREATE TABLE IF NOT EXISTS `clients` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-
---
--- Structure for view `boxeschar`
---
-DROP TABLE IF EXISTS `boxeschar`;
-
-CREATE ALGORITHM=UNDEFINED  VIEW `boxeschar` AS select `b`.`bid` AS `bid`,`b`.`tlx` AS `tlx`,`b`.`tly` AS `tly`,`b`.`brx` AS `brx`,`b`.`bry` AS `bry`,`b`.`pid` AS `pid`,`t`.`btid` AS `btid`,`g`.`bgid` AS `bgid`,`t`.`sortorder` AS `sortorder` from ((`boxes` `b` join `boxgroups` `g`) join `boxgroupstype` `t`) where ((`b`.`bid` = `g`.`bid`) and (`g`.`bgid` = `t`.`bgid`) and (`t`.`btid` = 3));
-
--- --------------------------------------------------------
-
---
--- Structure for view `boxesfillable`
---
-DROP TABLE IF EXISTS `boxesfillable`;
-
-CREATE ALGORITHM=UNDEFINED  VIEW `boxesfillable` AS select `b`.`bid` AS `bid`,`b`.`tlx` AS `tlx`,`b`.`tly` AS `tly`,`b`.`brx` AS `brx`,`b`.`bry` AS `bry`,`b`.`pid` AS `pid`,`t`.`btid` AS `btid`,`g`.`bgid` AS `bgid` from ((`boxes` `b` join `boxgroups` `g`) join `boxgroupstype` `t`) where ((`b`.`bid` = `g`.`bid`) and (`g`.`bgid` = `t`.`bgid`) and ((`t`.`btid` = 1) or (`t`.`btid` = 2) or (`t`.`btid` = 3) or (`t`.`btid` = 4)));
-
--- --------------------------------------------------------
-
---
--- Structure for view `boxesgroupstypes`
---
-DROP TABLE IF EXISTS `boxesgroupstypes`;
-
-CREATE ALGORITHM=UNDEFINED  VIEW `boxesgroupstypes` AS select `b`.`bid` AS `bid`,`b`.`tlx` AS `tlx`,`b`.`tly` AS `tly`,`b`.`brx` AS `brx`,`b`.`bry` AS `bry`,`b`.`pid` AS `pid`,`t`.`btid` AS `btid`,`g`.`bgid` AS `bgid`,`p`.`qid` AS `qid`,`t`.`width` AS `width`,`t`.`varname` AS `varname`,`t`.`sortorder` AS `sortorder` from (((`boxes` `b` join `boxgroups` `g`) join `boxgroupstype` `t`) join `pages` `p`) where ((`b`.`bid` = `g`.`bid`) and (`g`.`bgid` = `t`.`bgid`) and (`p`.`pid` = `b`.`pid`));
-
--- --------------------------------------------------------
-
---
--- Structure for view `boxesnumber`
---
-DROP TABLE IF EXISTS `boxesnumber`;
-
-CREATE ALGORITHM=UNDEFINED  VIEW `boxesnumber` AS select `b`.`bid` AS `bid`,`b`.`tlx` AS `tlx`,`b`.`tly` AS `tly`,`b`.`brx` AS `brx`,`b`.`bry` AS `bry`,`b`.`pid` AS `pid`,`t`.`btid` AS `btid`,`g`.`bgid` AS `bgid`,`t`.`sortorder` AS `sortorder` from ((`boxes` `b` join `boxgroups` `g`) join `boxgroupstype` `t`) where ((`b`.`bid` = `g`.`bid`) and (`g`.`bgid` = `t`.`bgid`) and (`t`.`btid` = 4));
-
--- --------------------------------------------------------
-
---
--- Structure for view `boxesbarcode`
---
-DROP TABLE IF EXISTS `boxesbarcode`;
-
-CREATE ALGORITHM=UNDEFINED  VIEW `boxesbarcode` AS select `b`.`bid` AS `bid`,`b`.`tlx` AS `tlx`,`b`.`tly` AS `tly`,`b`.`brx` AS `brx`,`b`.`bry` AS `bry`,`b`.`pid` AS `pid`,`t`.`btid` AS `btid`,`g`.`bgid` AS `bgid`,`t`.`sortorder` AS `sortorder` from ((`boxes` `b` join `boxgroups` `g`) join `boxgroupstype` `t`) where ((`b`.`bid` = `g`.`bid`) and (`g`.`bgid` = `t`.`bgid`) and (`t`.`btid` = 5));
-
--- --------------------------------------------------------
-
-
-
---
--- Structure for view `boxessinglemultiple`
---
-DROP TABLE IF EXISTS `boxessinglemultiple`;
-
-CREATE ALGORITHM=UNDEFINED  VIEW `boxessinglemultiple` AS select `b`.`bid` AS `bid`,`b`.`tlx` AS `tlx`,`b`.`tly` AS `tly`,`b`.`brx` AS `brx`,`b`.`bry` AS `bry`,`b`.`pid` AS `pid`,`t`.`btid` AS `btid`,`g`.`bgid` AS `bgid`,`t`.`sortorder` AS `sortorder` from ((`boxes` `b` join `boxgroups` `g`) join `boxgroupstype` `t`) where ((`b`.`bid` = `g`.`bid`) and (`g`.`bgid` = `t`.`bgid`) and ((`t`.`btid` = 1) or (`t`.`btid` = 2)));
-
--- --------------------------------------------------------
-
---
--- Structure for view `boxestofill`
---
-DROP TABLE IF EXISTS `boxestofill`;
-
-CREATE ALGORITHM=UNDEFINED  VIEW `boxestofill` AS select `b`.`bid` AS `bid`,`b`.`tlx` AS `tlx`,`b`.`tly` AS `tly`,`b`.`brx` AS `brx`,`b`.`bry` AS `bry`,`b`.`pid` AS `pid`,`b`.`btid` AS `btid`,`f`.`filename` AS `filename`,`f`.`fid` AS `fid`,`f`.`image` AS `image`,`f`.`offx` AS `offx`,`f`.`offy` AS `offy` from ((`boxesfillable` `b` left join `formpages` `f` on((`f`.`pid` = `b`.`pid`))) left join `formboxes` `fb` on(((`fb`.`bid` = `b`.`bid`) and (`fb`.`fid` = `f`.`fid`)))) where isnull(`fb`.`filled`) order by `b`.`pid`,`f`.`fid`;
-
--- --------------------------------------------------------
-
---
--- Structure for view `boxestype`
---
-DROP TABLE IF EXISTS `boxestype`;
-
-CREATE ALGORITHM=UNDEFINED  VIEW `boxestype` AS select `b`.`bid` AS `bid`,`b`.`tlx` AS `tlx`,`b`.`tly` AS `tly`,`b`.`brx` AS `brx`,`b`.`bry` AS `bry`,`b`.`pid` AS `pid`,`t`.`btid` AS `btid` from ((`boxes` `b` join `boxgroups` `g`) join `boxgroupstype` `t`) where ((`b`.`bid` = `g`.`bid`) and (`g`.`bgid` = `t`.`bgid`));
-
--- --------------------------------------------------------
-
---
--- Structure for view `formboxesgroupstype`
---
-DROP TABLE IF EXISTS `formboxesgroupstype`;
-
-CREATE ALGORITHM=UNDEFINED  VIEW `formboxesgroupstype` AS select `fb`.`bid` AS `bid`,`fb`.`fid` AS `fid`,`fb`.`filled` AS `filled`,`bg`.`bgid` AS `bgid`,`bt`.`btid` AS `btid`,`bt`.`width` AS `width`,`bt`.`varname` AS `varname` from ((`formboxes` `fb` join `boxgroups` `bg`) join `boxgroupstype` `bt`) where ((`fb`.`bid` = `bg`.`bid`) and (`bg`.`bgid` = `bt`.`bgid`));
-
--- --------------------------------------------------------
-
---
--- Structure for view `formboxestoverify`
---
-DROP TABLE IF EXISTS `formboxestoverify`;
-
-CREATE ALGORITHM=UNDEFINED  VIEW `formboxestoverify` AS select `bc`.`bid` AS `bid`,`bc`.`tlx` AS `tlx`,`bc`.`tly` AS `tly`,`bc`.`brx` AS `brx`,`bc`.`bry` AS `bry`,`bc`.`pid` AS `pid`,`bc`.`btid` AS `btid`,`bc`.`bgid` AS `bgid`,`fp`.`fid` AS `fid`,`fbox`.`filled` AS `filled` from (((`boxesgroupstypes` `bc` left join `formpages` `fp` on((`fp`.`pid` = `bc`.`pid`))) left join `formboxverifychar` `fb` on(((`fb`.`vid` = 0) and (`fb`.`bid` = `bc`.`bid`) and (`fb`.`fid` = `fp`.`fid`)))) left join `formboxes` `fbox` on(((`fbox`.`bid` = `bc`.`bid`) and (`fbox`.`fid` = `fp`.`fid`)))) where (isnull(`fb`.`val`) and (`bc`.`btid` > 0)) order by `fp`.`fid`,`bc`.`pid`;
-
--- --------------------------------------------------------
-
---
--- Structure for view `formboxestoverify2`
---
-DROP TABLE IF EXISTS `formboxestoverify2`;
-
-CREATE ALGORITHM=UNDEFINED  VIEW `formboxestoverify2` AS (select `bc`.`bid` AS `bid`,`bc`.`tlx` AS `tlx`,`bc`.`tly` AS `tly`,`bc`.`brx` AS `brx`,`bc`.`bry` AS `bry`,`bc`.`pid` AS `pid`,`bc`.`btid` AS `btid`,`bc`.`bgid` AS `bgid`,`fp`.`fid` AS `fid`,`fp`.`offx` AS `offx`,`fp`.`offy` AS `offy`,`fbox`.`filled` AS `filled`,`bc`.`sortorder` AS `sortorder`,`fb2`.`val` AS `val` from ((((`boxesgroupstypes` `bc` left join `formpages` `fp` on((`fp`.`pid` = `bc`.`pid`))) left join `formboxverifychar` `fb` on(((`fb`.`vid` > 0) and (`fb`.`bid` = `bc`.`bid`) and (`fb`.`fid` = `fp`.`fid`)))) left join `formboxverifychar` `fb2` on(((`fb2`.`vid` = 0) and (`fb2`.`bid` = `bc`.`bid`) and (`fb2`.`fid` = `fp`.`fid`)))) left join `formboxes` `fbox` on(((`fbox`.`bid` = `bc`.`bid`) and (`fbox`.`fid` = `fp`.`fid`)))) where ((`bc`.`btid` > 0) and isnull(`fb`.`val`)));
-
--- --------------------------------------------------------
-
---
--- Structure for view `formboxestoverifychar`
---
-DROP TABLE IF EXISTS `formboxestoverifychar`;
-
-CREATE ALGORITHM=UNDEFINED  VIEW `formboxestoverifychar` AS select `bc`.`bid` AS `bid`,`bc`.`tlx` AS `tlx`,`bc`.`tly` AS `tly`,`bc`.`brx` AS `brx`,`bc`.`bry` AS `bry`,`bc`.`pid` AS `pid`,`bc`.`btid` AS `btid`,`bc`.`bgid` AS `bgid`,`fp`.`fid` AS `fid`,`fp`.`image` AS `image`,`fp`.`offx` AS `offx`,`fp`.`offy` AS `offy`,`fbox`.`filled` AS `filled` from (((`boxeschar` `bc` left join `formpages` `fp` on((`fp`.`pid` = `bc`.`pid`))) left join `formboxverifychar` `fb` on(((`fb`.`vid` = 0) and (`fb`.`bid` = `bc`.`bid`) and (`fb`.`fid` = `fp`.`fid`)))) left join `formboxes` `fbox` on(((`fbox`.`bid` = `bc`.`bid`) and (`fbox`.`fid` = `fp`.`fid`)))) where isnull(`fb`.`val`) order by `fp`.`fid`,`bc`.`pid`;
-
--- --------------------------------------------------------
-
---
--- Structure for view `formboxgroupssinglemin`
---
-DROP TABLE IF EXISTS `formboxgroupssinglemin`;
-
-CREATE ALGORITHM=UNDEFINED  VIEW `formboxgroupssinglemin` AS select min(`formboxesgroupstype`.`filled`) AS `min( filled )`,`formboxesgroupstype`.`fid` AS `fid`,`formboxesgroupstype`.`bgid` AS `bgid`,`formboxesgroupstype`.`bid` AS `bid` from `formboxesgroupstype` where (`formboxesgroupstype`.`btid` = 1) group by `formboxesgroupstype`.`fid`,`formboxesgroupstype`.`bgid`;
 
 -- --------------------------------------------------------
 --

@@ -34,9 +34,11 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM,$mapname = "boxes")
 {
 	global $db;
 
-	$sql = "SELECT tlx,tly,brx,bry,bid,btid
-		FROM boxesgroupstypes
-		WHERE pid = $pid";
+        $sql = "SELECT b.tlx,b.tly,b.brx,b.bry,b.bid,bg.btid,b.bgid,bg.varname
+                FROM boxes as b, boxgroupstype as bg
+                WHERE b.pid = $pid
+                AND bg.bgid = b.bgid
+                ORDER BY bg.sortorder ASC";
 
 	$boxes = $db->GetAll($sql);
 

@@ -140,17 +140,19 @@ if (isset($_GET['fid']) && isset($_GET['qid']) && isset($_GET['vid']))
 	$qid = intval($_GET['qid']);
 	$vid = intval($_GET['vid']);
 
-	$sql = "SELECT b.bid as bid, (b.tlx + f.offx) as tlx, (b.tly + f.offy)  as tly, (b.brx + f.offx) as brx, (b.bry + f.offy) as bry, c.val as val, b.pid as pid, b.btid as btid, b.bgid as bgid
-			FROM boxesgroupstypes AS b
+	$sql = "SELECT b.bid as bid, (b.tlx + f.offx) as tlx, (b.tly + f.offy)  as tly, (b.brx + f.offx) as brx, (b.bry + f.offy) as bry, c.val as val, b.pid as pid, bg.btid as btid, b.bgid as bgid
+			FROM boxes AS b
+			JOIN boxgroupstype as bg ON (bg.bgid = b.bgid)
+			JOIN pages as p ON (p.pid = b.pid)
 			LEFT JOIN formboxverifychar AS c ON c.fid = '$fid'
 			JOIN formpages as f on (f.fid = '$fid' and f.pid = b.pid)
 			AND c.vid = '$vid'
 			AND c.bid = b.bid
-			WHERE (b.btid = 3 or b.btid = 4)
-			AND b.qid = '$qid'
+			WHERE (bg.btid = 3 or bg.btid = 4)
+			AND p.qid = '$qid'
 			AND c.val IS NOT NULL
 			AND c.val != ' '
-			ORDER BY b.pid ASC, sortorder ASC";
+			ORDER BY p.pid ASC, bg.sortorder ASC";
 
 	$rs = $db->GetAll($sql);
 

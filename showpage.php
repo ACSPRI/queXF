@@ -33,7 +33,7 @@ if (isset($_GET['bgid'])){
 	$bgid = intval($_GET['bgid']);
 
 	$sql=  "SELECT *
-		FROM boxesgroupstypes
+		FROM boxes
 		WHERE bgid = '$bgid'";
 
 	$rows = $db->GetAll($sql);
@@ -51,7 +51,7 @@ if (isset($_GET['bgid'])){
 	if (empty($row)) exit;
 
 	$sql = "SELECT MIN(`tlx`) as tlx,MIN(`tly`) as tly,MAX(`brx`) as brx,MAX(`bry`) as bry
-		FROM `boxesgroupstypes`
+		FROM boxes
 		WHERE bgid = '$bgid'";
 
 	$crop = $db->GetRow($sql);

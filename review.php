@@ -57,10 +57,11 @@ if (isset($_GET['var']))
 	$var = $_GET['var'];
 	$vars = $db->qstr($_GET['var']);
 
-	$sql = "SELECT pid
-		FROM boxesgroupstypes
-		WHERE varname LIKE $vars
-		AND qid = '$qid'";
+	$sql = "SELECT b.pid
+		FROM boxes as b, pages as p
+		WHERE b.varname LIKE $vars
+		AND p.pid = b.pid
+		AND p.qid = '$qid'";
 
 	$v = $db->GetRow($sql);
 	

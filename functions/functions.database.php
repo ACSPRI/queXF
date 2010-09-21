@@ -300,16 +300,18 @@ function detect_differences()
 		$qid = $q['qid'];
 
 		$sql = "SELECT b.bid AS bid
-		FROM boxesgroupstypes AS b
-		LEFT JOIN formboxverifychar AS c2 ON c2.fid = '$fid'
-		AND c2.vid = '$vid1'
-		AND c2.bid = b.bid
-		LEFT JOIN formboxverifychar AS c ON c.fid = '$fid'
-		AND c.vid = '$vid2'
-		AND c.bid = b.bid
-		WHERE (b.btid  =1  or b.btid = 2)
-		AND b.qid = '$qid'
-		AND c.val != c2.val";
+			FROM boxes AS b
+			JOIN boxgroupstype as bg ON (bg.bgid = b.bgid)
+			JOIN pages as p ON (p.pid = b.pid)
+			LEFT JOIN formboxverifychar AS c2 ON c2.fid = '$fid'
+			AND c2.vid = '$vid1'
+			AND c2.bid = b.bid
+			LEFT JOIN formboxverifychar AS c ON c.fid = '$fid'
+			AND c.vid = '$vid2'
+			AND c.bid = b.bid
+			WHERE (bg.btid  =1  or bg.btid = 2)
+			AND p.qid = '$qid'
+			AND c.val != c2.val";
 
 		$diffs = $db->GetAll($sql);
 

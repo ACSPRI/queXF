@@ -36,13 +36,14 @@ function bgidtocss($zoom = 1,$fid,$pid)
 {
 	global $db;
 
-	$sql = "SELECT MIN(`tlx`) as tlx,MIN(`tly`) as tly,MAX(`brx`) as brx,MAX(`bry`) as bry, pid as pid, btid as btid, bgid as bgid
-		FROM `boxesgroupstypes`
-		WHERE pid = '$pid'
-		AND btid > 0
-		AND btid != 5
-		GROUP BY bgid
-		ORDER BY sortorder ASC";
+	$sql = "SELECT MIN(b.tlx) as tlx,MIN(b.tly) as tly,MAX(b.brx) as brx,MAX(b.bry) as bry, b.pid as pid, bg.btid as btid, b.bgid as bgid
+		FROM boxes as b, boxgroupstype as bg
+		WHERE b.pid = '$pid'
+		AND bg.bgid = b.bgid
+		AND bg.btid > 0
+		AND bg.btid != 5
+		GROUP BY bg.bgid
+		ORDER BY bg.sortorder ASC";
 
 	$boxgroups = $db->GetAll($sql);
 
@@ -52,12 +53,13 @@ function bgidtocss($zoom = 1,$fid,$pid)
 	
 	$row = $db->GetRow($sql);
 
-	$sql = "SELECT bid
-		FROM boxesgroupstypes
-		WHERE pid = '$pid'
-		AND btid > 0
-		AND btid != 5
-		ORDER BY sortorder ASC, bid ASC";
+	$sql = "SELECT b.bid
+		FROM boxes as b, boxgroupstype as bg
+		WHERE b.pid = '$pid'
+		AND bg.bgid = b.bgid
+		AND bg.btid > 0
+		AND bg.btid != 5
+		ORDER BY bg.sortorder ASC, b.bid ASC";
 
 	$boxes = $db->GetAll($sql);
 
@@ -357,38 +359,32 @@ $description = $qid_desc['description'];
 if (!isset($_SESSION['boxes'])) {
 	//nothing yet known about this form
 
-	/*
-	$sql = "SELECT *
-		FROM formboxestoverify2
-		WHERE fid = '$fid'
-		AND btid > 0";
-	*/
 
-
-	$sql = "SELECT b.bid as bid, b.tlx as tlx, b.tly as tly, b.brx as brx, b.bry as bry, b.pid as pid, b.btid as btid, b.bgid as bgid, $fid as fid, b.sortorder as sortorder, c.val as val
-		FROM boxesgroupstypes AS b
-		LEFT JOIN formboxverifychar AS c ON c.fid = '$fid'
-		AND c.vid =0
-		AND c.bid = b.bid
-		WHERE b.btid > 0
-		AND b.btid != 5
-		AND b.qid = '$qid'
-		ORDER BY sortorder ASC";
+	$sql = "SELECT b.bid as bid, b.tlx as tlx, b.tly as tly, b.brx as brx, b.bry as bry, b.pid as pid, bg.btid as btid, b.bgid as bgid, $fid as fid, bg.sortorder as sortorder, c.val as val
+		FROM boxes AS b
+		JOIN boxgroupstype as bg ON (bg.bgid = b.bgid AND bg.btid > 0 AND bg.btid != 5)
+		JOIN pages as p ON (p.pid = b.pid AND p.qid = '$qid')
+		LEFT JOIN formboxverifychar AS c ON (c.fid = '$fid' AND c.vid = 0 AND c.bid = b.bid)
+		ORDER BY bg.sortorder ASC";
 
 	
-	$sql2 = "SELECT bgid,0 as done,pid,varname,btid
-		FROM boxesgroupstypes
-		WHERE qid = '$qid' 
-		AND btid > 0
-		AND btid != 5
-		GROUP BY bgid
-		ORDER BY sortorder ASC";
+	$sql2 = "SELECT b.bgid,0 as done,b.pid,bg.varname,bg.btid
+		FROM boxes as b, boxgroupstype as bg, pages as p
+		WHERE p.pid = b.pid
+		AND bg.bgid = b.bgid
+		AND p.qid = '$qid' 
+		AND bg.btid > 0
+		AND bg.btid != 5
+		GROUP BY bg.bgid
+		ORDER BY bg.sortorder ASC";
 
-	$sql3 = "SELECT pid,bgid,0 as done
-		FROM boxesgroupstypes
-		WHERE qid = '$qid'
-		GROUP BY pid
-		ORDER BY sortorder ASC ";
+	$sql3 = "SELECT b.pid,b.bgid,0 as done
+		FROM boxes as b, pages as p, boxgroupstype as bg
+		WHERE p.qid = '$qid'
+		AND b.pid = p.pid
+		AND bg.bgid = b.bgid
+		GROUP BY b.pid
+		ORDER BY bg.sortorder ASC";
 
 	$a = $db->GetAssoc($sql);
 	if (empty($a)) 
