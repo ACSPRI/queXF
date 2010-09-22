@@ -28,7 +28,7 @@
       <boxgroup>
         <type>1</type>
         <width>1</width>
-        <varname>A1</varname>
+        <varname>A1_A</varname>
         <sortorder>1</sortorder>
         <label>What do you think about... : The first part of a matrix question</label>
         <groupsection idref="1"/>
@@ -60,7 +60,7 @@
       <boxgroup>
         <type>1</type>
         <width>1</width>
-        <varname>A1_A</varname>
+        <varname>A1_B</varname>
         <sortorder>2</sortorder>
         <label>What do you think about... : The second question in a matrix question</label>
         <groupsection idref="1"/>
@@ -212,7 +212,7 @@
       <boxgroup>
         <type>3</type>
         <width>24</width>
-        <varname>B2_B</varname>
+        <varname>B2_A</varname>
         <sortorder>6</sortorder>
         <label>Please provide you details : First Name</label>
         <groupsection idref="2"/>
