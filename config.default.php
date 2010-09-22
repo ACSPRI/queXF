@@ -35,13 +35,13 @@
  *
  */
 
-if (!defined('DB_USER')) define('DB_USER', 'phpteleform');
-if (!defined('DB_PASS')) define('DB_PASS', 'phpteleform');
-if (!defined('DB_HOST')) define('DB_HOST', 'database.dcarf');
-if (!defined('DB_NAME')) define('DB_NAME', 'phpteleform');
+if (!defined('DB_USER')) define('DB_USER', 'quexf');
+if (!defined('DB_PASS')) define('DB_PASS', 'quexf');
+if (!defined('DB_HOST')) define('DB_HOST', 'localhost');
+if (!defined('DB_NAME')) define('DB_NAME', 'quexf');
 if (!defined('DB_TYPE')) define('DB_TYPE', 'mysqlt');
 
-if (!defined('ADODB_DIR')) define('ADODB_DIR', dirname(__FILE__).'/../adodb/');
+if (!defined('ADODB_DIR')) define('ADODB_DIR', '/usr/share/php/adodb/');
 
 //Fill ratios of boxes (1 is empty, 0 is filled completely)
 if (!defined('MULTIPLE_CHOICE_MIN_FILLED')) define('MULTIPLE_CHOICE_MIN_FILLED', 0.85);
@@ -82,7 +82,7 @@ if (!defined('DISPLAY_GAP')) define('DISPLAY_GAP',40); //number of pixels higher
 if (!defined('BOX_GROUP_BACKGROUND_COLOUR')) define('BOX_GROUP_BACKGROUND_COLOUR','orange'); //colour for the box group background (HTML colours)
 if (!defined('BOX_GROUP_BACKGROUND_OPACITY')) define('BOX_GROUP_BACKGROUND_OPACITY',0.40);
 if (!defined('BOX_OPACITY')) define('BOX_OPACITY',0.25); //opacity of a box
-if (!defined('BOX_SELECT_COLOUR')) define('BOX_SELECT_COLOUR','green');
+if (!defined('BOX_SELECT_COLOUR')) define('BOX_SELECT_COLOUR','blue');
 if (!defined('BOX_FOCUS_COLOUR')) define('BOX_FOCUS_COLOUR','yellow');
 if (!defined('BOX_BACKGROUND_COLOUR')) define('BOX_BACKGROUND_COLOUR','white');
 
@@ -105,26 +105,26 @@ if (!defined('VERT_WIDTH')) define('VERT_WIDTH',6);
 //Top left horizontal
 if (!defined('TL_HORI_TLX')) define('TL_HORI_TLX',90);
 if (!defined('TL_HORI_TLY')) define('TL_HORI_TLY',60);
-if (!defined('TL_HORI_BRX')) define('TL_HORI_BRX',480);
-if (!defined('TL_HORI_BRY')) define('TL_HORI_BRY',280);
+if (!defined('TL_HORI_BRX')) define('TL_HORI_BRX',490);
+if (!defined('TL_HORI_BRY')) define('TL_HORI_BRY',380);
 
 //Top left vertical
 if (!defined('TL_VERT_TLX')) define('TL_VERT_TLX',90);
 if (!defined('TL_VERT_TLY')) define('TL_VERT_TLY',90);
-if (!defined('TL_VERT_BRX')) define('TL_VERT_BRX',280);
-if (!defined('TL_VERT_BRY')) define('TL_VERT_BRY',480);
+if (!defined('TL_VERT_BRX')) define('TL_VERT_BRX',290);
+if (!defined('TL_VERT_BRY')) define('TL_VERT_BRY',600);
 
 //Top right horizontal
 if (!defined('TR_HORI_TLX')) define('TR_HORI_TLX',1980);
 if (!defined('TR_HORI_TLY')) define('TR_HORI_TLY',60);
-if (!defined('TR_HORI_BRX')) define('TR_HORI_BRX',2370);
-if (!defined('TR_HORI_BRY')) define('TR_HORI_BRY',280);
+if (!defined('TR_HORI_BRX')) define('TR_HORI_BRX',2380);
+if (!defined('TR_HORI_BRY')) define('TR_HORI_BRY',370);
 
 //Top right vertical
-if (!defined('TR_VERT_TLX')) define('TR_VERT_TLX',2210);
+if (!defined('TR_VERT_TLX')) define('TR_VERT_TLX',2180);
 if (!defined('TR_VERT_TLY')) define('TR_VERT_TLY',90);
-if (!defined('TR_VERT_BRX')) define('TR_VERT_BRX',2400);
-if (!defined('TR_VERT_BRY')) define('TR_VERT_BRY',480);
+if (!defined('TR_VERT_BRX')) define('TR_VERT_BRX',2420);
+if (!defined('TR_VERT_BRY')) define('TR_VERT_BRY',590);
 
 //Bottom left horizontal
 if (!defined('BL_HORI_TLX')) define('BL_HORI_TLX',90);
@@ -145,16 +145,16 @@ if (!defined('BR_HORI_BRX')) define('BR_HORI_BRX',2370);
 if (!defined('BR_HORI_BRY')) define('BR_HORI_BRY',3400);
 
 //Bottom right vertical
-if (!defined('BR_VERT_TLX')) define('BR_VERT_TLX',2210);
+if (!defined('BR_VERT_TLX')) define('BR_VERT_TLX',2150);
 if (!defined('BR_VERT_TLY')) define('BR_VERT_TLY',3000);
 if (!defined('BR_VERT_BRX')) define('BR_VERT_BRX',2400);
-if (!defined('BR_VERT_BRY')) define('BR_VERT_BRY',3390);
+if (!defined('BR_VERT_BRY')) define('BR_VERT_BRY',3400);
 
 //Barcode position on page (bounding box)
 if (!defined('BARCODE_TLX')) define('BARCODE_TLX',1500); //Top left X
 if (!defined('BARCODE_TLY')) define('BARCODE_TLY',1); //Top left Y
-if (!defined('BARCODE_BRX')) define('BARCODE_BRX',2327); //Bottom right X
-if (!defined('BARCODE_BRY')) define('BARCODE_BRY',200); //Bottom right Y
+if (!defined('BARCODE_BRX')) define('BARCODE_BRX',2335); //Bottom right X
+if (!defined('BARCODE_BRY')) define('BARCODE_BRY',330); //Bottom right Y
 
 //Line widths
 if (!defined('VAS_LENGTH_MIN')) define('VAS_LENGTH_MIN',1200); //Length in pixels of a VAS line
