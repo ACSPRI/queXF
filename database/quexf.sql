@@ -1,13 +1,19 @@
 -- phpMyAdmin SQL Dump
--- version 2.11.3
+-- version 2.11.8.1deb5+lenny6
 -- http://www.phpmyadmin.net
 --
--- Host: database.dcarf
--- Generation Time: Jan 14, 2008 at 02:43 PM
--- Server version: 5.0.32
--- PHP Version: 5.2.0-8+etch9
+-- Host: localhost
+-- Generation Time: Sep 22, 2010 at 11:40 AM
+-- Server version: 5.0.51
+-- PHP Version: 5.2.6-1+lenny9
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `quexf`
@@ -30,7 +36,8 @@ CREATE TABLE IF NOT EXISTS `boxes` (
   `value` varchar(255) collate utf8_unicode_ci default NULL,
   `label` text collate utf8_unicode_ci,
   PRIMARY KEY  (`bid`),
-  KEY `bgid` (`bgid`)
+  KEY `bgid` (`bgid`),
+  KEY `pid` (`pid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -51,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `boxgroupstype` (
   PRIMARY KEY  (`bgid`),
   KEY `btid` (`btid`),
   KEY `pid` (`pid`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -66,6 +73,20 @@ CREATE TABLE IF NOT EXISTS `boxgrouptypes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
+
+-- --------------------------------------------------------
+--
+-- Dumping data for table `boxgrouptypes`
+--
+
+INSERT INTO `boxgrouptypes` VALUES(0, 'Temporary');
+INSERT INTO `boxgrouptypes` VALUES(1, 'Single choice');
+INSERT INTO `boxgrouptypes` VALUES(2, 'Multiple choice');
+INSERT INTO `boxgrouptypes` VALUES(3, 'Text');
+INSERT INTO `boxgrouptypes` VALUES(4, 'Number');
+INSERT INTO `boxgrouptypes` VALUES(5, 'Barcode');
+INSERT INTO `boxgrouptypes` VALUES(6, 'Long text');
+
 
 --
 -- Table structure for table `clientquestionnaire`
@@ -102,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `differences` (
   `bid` bigint(20) NOT NULL,
   `fid` bigint(20) NOT NULL,
   PRIMARY KEY  (`did`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -115,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `formboxes` (
   `fid` bigint(20) NOT NULL,
   `filled` double NOT NULL,
   PRIMARY KEY  (`bid`,`fid`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -129,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `formboxverifychar` (
   `fid` bigint(20) NOT NULL,
   `val` char(1) collate utf8_unicode_ci default NULL,
   PRIMARY KEY  (`vid`,`bid`,`fid`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -143,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `formboxverifytext` (
   `fid` bigint(20) NOT NULL,
   `val` longtext collate utf8_unicode_ci NOT NULL,
   PRIMARY KEY  (`vid`,`bid`,`fid`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -183,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `formpages` (
   `centroidx` double default NULL,
   `centroidy` double default NULL,
   PRIMARY KEY  (`fid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -216,8 +237,7 @@ CREATE TABLE IF NOT EXISTS `missingpages` (
   `fid` bigint(20) NOT NULL,
   `image` mediumblob NOT NULL,
   PRIMARY KEY  (`mpid`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -256,9 +276,9 @@ CREATE TABLE IF NOT EXISTS `ocrtrain` (
   `fid` bigint(20) NOT NULL,
   KEY `character` (`val`),
   KEY `formid` (`fid`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `pages`
@@ -282,8 +302,9 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `store` binary(1) NOT NULL default '1',
   `process` binary(1) NOT NULL default '1',
   PRIMARY KEY  (`pid`),
-  UNIQUE KEY `pidentifierval` (`pidentifierval`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+  UNIQUE KEY `pidentifierval` (`pidentifierval`),
+  KEY `qid` (`qid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -291,14 +312,14 @@ CREATE TABLE IF NOT EXISTS `pages` (
 -- Table structure for table `process`
 --
 
-CREATE TABLE `process` (
+CREATE TABLE IF NOT EXISTS `process` (
   `process_id` bigint(20) NOT NULL auto_increment,
   `start` datetime NOT NULL,
   `stop` datetime default NULL,
   `kill` tinyint(1) NOT NULL default '0',
   `data` longtext collate utf8_unicode_ci NOT NULL,
   PRIMARY KEY  (`process_id`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -306,7 +327,7 @@ CREATE TABLE `process` (
 -- Table structure for table `processforms`
 --
 
-CREATE TABLE `processforms` (
+CREATE TABLE IF NOT EXISTS `processforms` (
   `pfid` bigint(20) NOT NULL auto_increment,
   `filepath` varchar(1024) collate utf8_unicode_ci NOT NULL,
   `filehash` char(40) collate utf8_unicode_ci NOT NULL,
@@ -341,8 +362,8 @@ CREATE TABLE IF NOT EXISTS `questionnaires` (
 CREATE TABLE IF NOT EXISTS `sections` (
   `sid` int(11) NOT NULL auto_increment,
   `qid` int(11) NOT NULL,
-  `description` text NOT NULL,
-  `title` text NOT NULL,
+  `description` text collate utf8_unicode_ci NOT NULL,
+  `title` text collate utf8_unicode_ci NOT NULL,
   PRIMARY KEY  (`sid`),
   KEY `qid` (`qid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -354,16 +375,16 @@ CREATE TABLE IF NOT EXISTS `sections` (
 --
 
 CREATE TABLE IF NOT EXISTS `sessions2` (
-  `sesskey` varchar(64) NOT NULL default '',
+  `sesskey` varchar(64) collate utf8_unicode_ci NOT NULL default '',
   `expiry` datetime NOT NULL,
-  `expireref` varchar(250) default '',
+  `expireref` varchar(250) collate utf8_unicode_ci default '',
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
-  `sessdata` longtext,
+  `sessdata` longtext collate utf8_unicode_ci,
   PRIMARY KEY  (`sesskey`),
   KEY `sess2_expiry` (`expiry`),
   KEY `sess2_expireref` (`expireref`)
-) ENGINE=MyISAM DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -375,7 +396,7 @@ CREATE TABLE IF NOT EXISTS `verifierquestionnaire` (
   `vid` bigint(20) NOT NULL,
   `qid` bigint(20) NOT NULL,
   PRIMARY KEY  (`vid`,`qid`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -385,12 +406,12 @@ CREATE TABLE IF NOT EXISTS `verifierquestionnaire` (
 
 CREATE TABLE IF NOT EXISTS `verifiers` (
   `vid` int(11) NOT NULL auto_increment,
-  `description` text NOT NULL,
+  `description` text collate utf8_unicode_ci NOT NULL,
   `currentfid` bigint(20) default NULL,
-  `http_username` varchar(255) NOT NULL,
+  `http_username` varchar(255) collate utf8_unicode_ci NOT NULL,
   PRIMARY KEY  (`vid`),
   UNIQUE KEY `http_username` (`http_username`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -404,46 +425,4 @@ CREATE TABLE IF NOT EXISTS `worklog` (
   `assigned` datetime NOT NULL,
   `completed` datetime NOT NULL,
   PRIMARY KEY  (`vid`,`fid`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `clientquestionnaire`
---
-
-CREATE TABLE IF NOT EXISTS `clientquestionnaire` (
-  `cid` bigint(20) NOT NULL,
-  `qid` bigint(20) NOT NULL,
-  PRIMARY KEY  (`cid`,`qid`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `clients`
---
-
-CREATE TABLE IF NOT EXISTS `clients` (
-  `cid` bigint(20) NOT NULL auto_increment,
-  `username` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  PRIMARY KEY  (`cid`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-
-
--- --------------------------------------------------------
---
--- Dumping data for table `boxgrouptypes`
---
-
-INSERT INTO `boxgrouptypes` VALUES(0, 'Temporary');
-INSERT INTO `boxgrouptypes` VALUES(1, 'Single choice');
-INSERT INTO `boxgrouptypes` VALUES(2, 'Multiple choice');
-INSERT INTO `boxgrouptypes` VALUES(3, 'Text');
-INSERT INTO `boxgrouptypes` VALUES(4, 'Number');
-INSERT INTO `boxgrouptypes` VALUES(5, 'Barcode');
-INSERT INTO `boxgrouptypes` VALUES(6, 'Long text');
-
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
