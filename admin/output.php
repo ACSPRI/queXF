@@ -40,6 +40,12 @@ if (isset($_GET['data']))
 	exit();
 }
 
+if (isset($_GET['csvlabel']))
+{
+	outputdatacsv(intval($_GET['csvlabel']),"",true);
+	exit();
+}
+
 if (isset($_GET['csv']))
 {
 	outputdatacsv(intval($_GET['csv']));
@@ -58,20 +64,22 @@ if (isset($_GET['pspp']))
 	exit();
 }
 
-xhtml_head(T_("Output data"));
+xhtml_head(T_("Output data"),true,array("../css/table.css"));
 
-$sql = "SELECT qid,description
+$sql = "SELECT description,
+		CONCAT('<a href=\"?data=', qid, '\">" . T_("Data") . "</a>') as data,
+		CONCAT('<a href=\"?ddi=', qid, '\">" . T_("DDI") . "</a>') as ddi,
+		CONCAT('<a href=\"?csv=', qid, '\">" . T_("CSV") . "</a>') as csv,
+		CONCAT('<a href=\"?csvlabel=', qid, '\">" . T_("CSV Labelled") . "</a>') as csvlabel,
+		CONCAT('<a href=\"?pspp=', qid, '\">" . T_("PSPP (SPSS)") . "</a>') as pspp,
+		CONCAT('<a href=\"?banding=', qid, '\">" . T_("Banding XML") . "</a>') as banding
 	FROM questionnaires
 	ORDER BY qid ASC";
 
 
 $qs = $db->GetAll($sql);
 
-
-foreach ($qs as $q)
-{
-	print "<p>{$q['description']}: <a href=\"{$_SERVER['PHP_SELF']}?data={$q['qid']}\">" . T_("Data") . "</a> <a href=\"{$_SERVER['PHP_SELF']}?ddi={$q['qid']}\">DDI</a> <a href=\"{$_SERVER['PHP_SELF']}?csv={$q['qid']}\">CSV</a> <a href=\"{$_SERVER['PHP_SELF']}?pspp={$q['qid']}\">PSPP (SPSS)</a> <a href='?banding={$q['qid']}'>Banding XML</a></p>";
-}
+xhtml_table($qs, array('description','data','ddi','csv','csvlabel','pspp','banding'),array(T_("Questionnaire"),T_("Data"),T_("DDI"),T_("CSV"),T_("CSV Labelled"), T_("PSPP (SPSS)"), T_("Banding XML")));
 
 xhtml_foot();
 

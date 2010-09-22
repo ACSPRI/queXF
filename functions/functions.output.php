@@ -73,7 +73,7 @@ function csv($fields = array(), $delimiter = ',', $enclosure = '"')
 
 /*
  * CSV data output */
-function outputdatacsv($qid,$fid = "")
+function outputdatacsv($qid,$fid = "",$labels = false)
 {
 	global $db;
 
@@ -106,7 +106,7 @@ function outputdatacsv($qid,$fid = "")
 	header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 	header ("Content-Type: text/ascii");
 	header ("Content-Length: ");
-	header ("Content-Disposition: attachment; filename=temp.csv");
+	header ("Content-Disposition: attachment; filename=data_$qid.csv");
 
 	$sql = "SELECT bg.varname, bg.btid, count(b.bid) as count
 		FROM boxes as b
@@ -148,21 +148,22 @@ function outputdatacsv($qid,$fid = "")
 			ORDER BY bg.sortorder, b.bid";
 
 
-		$sql = "(select b.bid,b.bgid,g.btid,f.val,sortorder
+		$sql = "(select b.bid,b.bgid,g.btid,f.val,sortorder,b.value,b.label
 		from boxes as b, boxgroupstype as g, pages as p, formboxverifychar as f
 		where b.bgid = g.bgid
 		and g.btid > 0
+		and g.btid < 5
 		and p.pid = b.pid
 		and p.qid = '$qid'
 		and f.bid = b.bid and f.vid = '{$form['vid']}' and f.fid = '{$form['fid']}')
 		UNION
-		(select b.bid,b.bgid,g.btid,f.val,sortorder
+		(select b.bid,b.bgid,g.btid,f.val,sortorder,b.value,b.label
 		from boxes as b
 		JOIN  boxgroupstype as g on (b.bgid = g.bgid and g.btid = 6)
 		JOIN pages as p on  (p.pid = b.pid and p.qid = '$qid')
 		LEFT JOIN formboxverifytext as f on (f.bid = b.bid and f.vid = '{$form['vid']}' and f.fid = '{$form['fid']}'))
 		UNION
-		(select b.bid,b.bgid,g.btid,f.val,sortorder
+		(select b.bid,b.bgid,g.btid,f.val,sortorder,b.value,b.label
 		from boxes as b
 		JOIN  boxgroupstype as g on (b.bgid = g.bgid and g.btid = 5)
 		JOIN pages as p on  (p.pid = b.pid and p.qid = '$qid')
@@ -172,8 +173,6 @@ function outputdatacsv($qid,$fid = "")
 
 		$data =  $db->GetAll($sql);
 
-		//print $sql;
-
 		$bgid = $data[0]['bgid'];
 		$btid = "";
 		$count = 1;
@@ -182,6 +181,8 @@ function outputdatacsv($qid,$fid = "")
 		$rr = array();
 
 		$tmpstr = "";
+		$labelval = "";
+		$valueval = "";
 
 		$data[] = array('btid' => 0,  'bgid' => 0, 'val' => "");
 
@@ -198,13 +199,23 @@ function outputdatacsv($qid,$fid = "")
 					//multiple boxes -> down to one variable
 					if ($prebtid == 1)
 						if ($done == 1)
-							$rr[] = $count; //if single choice, val is the number of the box selected
+							if ($labels)
+								$rr[] = $labelval;
+							else
+							{
+								if (empty($valueval))
+									$rr[] = $count; //if single choice, val is the number of the box selected
+								else
+									$rr[] = $valueval;
+							}
 						else
 							$rr[] = ""; //blank if no val entered
 					else
 						$rr[] = $tmpstr;
 	
 					$tmpstr = "";
+					$labelval = "";
+					$valueval = "";
 				}
 
 				if ($val['btid'] == 6 || $val['btid'] == 5) 
@@ -221,29 +232,31 @@ function outputdatacsv($qid,$fid = "")
 			if ($val['btid'] == 1)
 			{
 				if ($val['val'] == 1)
+				{
 					$done = 1;
+					$labelval = $val['label'];
+					$valueval = $val['value'];
+				}
 				if ($done != 1)
 					$count++;
 			}
 			else if ($val['btid'] == 3 || $val['btid'] == 4)
 				$tmpstr .= $val['val'];
 			else if ($val['btid'] == 2)
-				$rr[] = $val['val'];
+			{
+				if ($labels)
+					$rr[] = $val['label'];
+				else
+				{
+					if (empty($val['value']))
+						$rr[] = $val['val'];
+					else
+						$rr[] = $val['value'];
+				}
+			}
 
 			$prebtid = $val['btid'];
 		}
-
-		/*
-		if ($prebtid == 1)
-			if ($done == 1)
-				$rr[] = $count; //if single choice, val is the number of the box selected
-			else
-				$rr[] = ""; //blank if no val entered
-		else if ($prebtid == 3 || $prebtid == 4)
-			$rr[] = $tmpstr;
-		else if ($prebtid == 6 || $prebtid == 5) 
-			$rr[] = $val['val'];
-		 */
 
 		$rr[] = $form['fid']; //print str_pad($form['fid'], 10, " ", STR_PAD_LEFT);
 
@@ -292,7 +305,7 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true)
 		header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 		header ("Content-Type: text/ascii");
 		header ("Content-Length: ");
-		header ("Content-Disposition: attachment; filename=temp.dat");
+		header ("Content-Disposition: attachment; filename=data_$qid.dat");
 	}
 
 	foreach ($forms as $form)
@@ -575,7 +588,7 @@ function export_banding($qid)
 	header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 	header ("Content-Type: text/xml");
 	header ("Content-Length: " . strlen($ret));
-	header ("Content-Disposition: attachment; filename=quexf_temp.xml");
+	header ("Content-Disposition: attachment; filename=quexf_$qid.xml");
 
 	echo $ret;
 
@@ -601,12 +614,47 @@ function export_ddi($qid)
 	$d = $dom->create_element("dataDscr");
 	$c->append_child($d);		//create dataDscr element
 
+
+	//add section information
+	$sql = "SELECT description, sid
+		FROM sections
+		WHERE qid = '$qid'";
+
+	$sections = $db->GetAll($sql);
+
+	foreach ($sections as $section)
+	{
+		$sid = $section['sid'];
+
+		$sql = "SELECT varname
+			FROM boxgroupstype
+			WHERE sid = '$sid'
+			ORDER BY sortorder ASC";
+
+		$varnames = $db->GetAll($sql);
+
+		$varstring = "";
+		
+		foreach ($varnames as $varname)
+			$varstring .= $varname['varname'] . " ";
+
+		$v = $dom->create_element("varGrp");
+		$v->set_attribute("var", $varstring);
+		
+		$l = $dom->create_element("labl");
+		$l->set_attribute("level", "VAR GROUP");
+		$l->set_content($section['description']);
+
+		$v->append_child($l);
+		$d->append_child($v);		
+	}
+
 	$startpos = 1;
 
 
 	//first get data desc
 
-	$sql = "SELECT b.bgid, bg.btid, bg.varname, count( b.bid ) as count,bg.width
+	$sql = "SELECT b.bgid, bg.btid, bg.varname, bg.label, count( b.bid ) as count,bg.width
 		FROM boxes as b
 		JOIN boxgroupstype as bg on (bg.bgid = b.bgid)
 		JOIN pages as p on (p.pid = b.pid)
@@ -629,6 +677,8 @@ function export_ddi($qid)
 
 
 		$name = $row['varname'];
+		$varlabel = $row['label'];
+		if (empty($varlabel)) $varlabel = $name;
 
 		if ($row['btid'] == 2) //Multiple choice
 		{
@@ -656,12 +706,20 @@ function export_ddi($qid)
 			
 			if ($row['btid'] == 1)
 			{
+				$sql = "SELECT value,label
+					FROM boxes
+					WHERE bgid = '$bgid'";
+				
+				$cats = $db->GetAll($sql);
+
+				/*
 				$cats = array();
 				for ($i = 1; $i <= $row['count']; $i++)
 					$cats[] = array("value" => $i, "label" => "");
+				*/
 			}
 
-			$nvar = variable_ddi($dom,$length,$name,$name,$startpos,$vartype,$cats);
+			$nvar = variable_ddi($dom,$length,$name,$varlabel,$startpos,$vartype,$cats);
 	
 			$d->append_child($nvar);
 	
@@ -690,7 +748,7 @@ function export_ddi($qid)
 	header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 	header ("Content-Type: text/xml");
 	header ("Content-Length: " . strlen($ret));
-	header ("Content-Disposition: attachment; filename=ddi_temp.xml");
+	header ("Content-Disposition: attachment; filename=ddi_$qid.xml");
 
 	echo $ret;
 
@@ -729,7 +787,7 @@ function export_pspp($qid)
 
 	echo "DATA LIST FIXED /";
 
-	$sql = "SELECT b.bgid, bg.btid, (CASE WHEN bg.varname = '' THEN CONCAT('Q_',b.bgid) ELSE bg.varname END) as varname, count( b.bid ) as count,bg.width
+	$sql = "SELECT b.bgid, bg.btid, (CASE WHEN bg.varname = '' THEN CONCAT('Q_',b.bgid) ELSE bg.varname END) as varname, count( b.bid ) as count,bg.width,bg.label
 		FROM boxes as b
 		JOIN boxgroupstype as bg ON (bg.bgid = b.bgid)
 		JOIN pages as p ON (p.pid = b.pid)
@@ -791,7 +849,7 @@ function export_pspp($qid)
 	$first = true;
 	foreach ($cols as $col)
 	{
-		$vardescription = pspp_escape($col['varname']);
+		$vardescription = pspp_escape($col['label']);
 		$varname = $col['varname'];
 		
 		if ($first)			
@@ -828,8 +886,13 @@ function export_pspp($qid)
 
 			$rs = $db->GetAll($sql);
 
-			if (!empty($rs) && !empty($rs['value']) && !empty($rs['label']))
-				echo " /$varname {$rs['value']} '{$rs['label']}'";
+			if (!empty($rs))
+			{
+				echo " /$varname";
+				foreach ($rs as $r)
+					if (!empty($r['value']))
+						echo " {$r['value']} '" . pspp_escape($r['label']) . "'";
+			}
 		}
 	}
 

@@ -29,6 +29,128 @@ include_once('functions.barcode.php');
 include_once('functions.image.php');
 
 
+/* Add a questionnaire to the database
+ *
+ */
+
+function newquestionnaire($filename,$desc = "",$type="pngmono"){
+
+	global $db;
+
+	if ($desc == "") $desc = $filename;
+
+	//generate temp file
+	$tmp = tempnam(TEMPORARY_DIRECTORY, "FORM");
+
+	//print "Creating PNG files<br/>";
+
+	//use ghostscript to convert to PNG
+	exec(GS_BIN . " -sDEVICE=$type -r300 -sOutputFile=$tmp%d.png -dNOPAUSE -dBATCH $filename");
+	//print("gs -sDEVICE=pngmono -r300 -sOutputFile=$tmp%d.png -dNOPAUSE -dBATCH $filename");
+	
+	//print "Creating PNG files<br/>";
+
+	//add to questionnaire table
+	//
+	//create form entry in DB
+	//
+
+	$db->StartTrans();
+
+	$sql = "INSERT INTO questionnaires (qid,description,sheets)
+		VALUES (NULL,'$desc',0)";
+
+	$db->Execute($sql);
+
+	$qid = $db->Insert_Id();
+
+
+	//read pages from 1 to n - stop when n does not exist
+	$n = 1;
+	$file = $tmp . $n . ".png";
+	while (file_exists($file))
+	{
+		//print "PAGE $n: ";
+		//open file
+		$data = file_get_contents($file);
+		$image = imagecreatefromstring($data);
+		
+		$images = split_scanning($image);
+		unset($image);
+		unset($data);
+
+		foreach($images as $image)
+		{
+			//get the data from the image
+			ob_start();
+			imagepng($image);
+			$data = ob_get_contents();
+			ob_end_clean();
+
+			$barcode = crop($image,array("tlx" => BARCODE_TLX, "tly" => BARCODE_TLY, "brx" => BARCODE_BRX, "bry" => BARCODE_BRY));
+
+			//imagepng($barcode,"/mnt/iss/tmp/temp$n.png");
+
+			//check for barcode
+			$pid = barcode($barcode,1,BARCODE_LENGTH_PID);
+			if ($pid)
+			{
+				print "<p>" . T_("BARCODE") . ": $pid</p>";
+	
+				//calc offset
+				$offset = offset($image,0,0);
+
+				//check if any edges were not detected
+				if (!in_array("",$offset))
+				{
+					//calc rotation
+					$rotation = calcrotate($offset);
+		
+					//save image to db including offset and rotation
+					$sql = "INSERT INTO pages
+						(pid,qid,pidentifierbgid,pidentifierval,tlx,tly,trx,try,blx,bly,brx,bry,image,rotation)
+						VALUES (NULL,'$qid','1','$pid','{$offset[0]}','{$offset[1]}','{$offset[2]}','{$offset[3]}','{$offset[4]}','{$offset[5]}','{$offset[6]}','{$offset[7]}','" . addslashes($data) . "','$rotation')";
+			
+					//print $sql;
+			
+					$db->Execute($sql);
+
+					if ($db->HasFailedTrans()) die($sql);
+				}
+				else
+				{
+					$db->FailTrans();
+					print "<p>" . T_("FAILED TO IMPORT AS COULD NOT DETECT ALL PAGE EDGES FOR PAGE") . ":$n</p>";
+					break 2;
+				}
+	
+			}
+			else
+				print "<p>" . T_("INVALID - IGNORING BLANK PAGE") . "</p>";
+
+			unset($data);
+			unset($image);
+			unset($barcode);
+		}
+	
+		//delete temp file
+		unlink($file);
+
+		$n++;
+		$file = $tmp . $n . ".png";
+		unset($images);
+	}
+
+
+	//check if we have created conflicting
+
+	if ($db->CompleteTrans())
+		return $qid;
+	else
+		return false;
+
+}
+
 
 /* Process the given page
  *
@@ -349,7 +471,7 @@ function import($filename,$description = false)
 	
 
 	//Import the file
-	print "<p>Importing: $filename</p>";
+	print "<p>" . T_("Importing") . ": $filename</p>";
 
 
 
@@ -732,17 +854,44 @@ function import($filename,$description = false)
  * 
  * @param string $xml The queXF Banding XML file produced using queXMLPDF
  * @param int $qid The questionnaire id
+ * @param bool $erase Whether to erase previous banding on this form
  * 
  * @return bool True if successful otherwise false (including if already banded)
  * @author Adam Zammit <adam.zammit@acspri.org.au>
  * @since  2010-09-21
  * @link http://quexml.sourceforge.net/
  */
-function import_bandingxml($xml,$qid)
+function import_bandingxml($xml,$qid,$erase = false)
 {
 	global $db;
 
 	$db->StartTrans();
+
+	if ($erase)
+	{
+		$sql = "SELECT pid 
+			FROM pages 
+			WHERE qid = '$qid'";
+
+		$pages = $db->GetAll($sql);	
+	
+		foreach($pages as $p)
+		{
+			$pid = $p['pid'];
+
+			$sql = "DELETE FROM boxes 
+				WHERE pid = '$pid'";
+
+			$db->Execute($sql);
+
+
+			$sql = "DELETE FROM boxgroupstype
+				WHERE pid = '$pid'";
+		
+			$db->Execute($sql);
+		}
+	}
+
 
 	$b = new SimpleXMLElement($xml);
 

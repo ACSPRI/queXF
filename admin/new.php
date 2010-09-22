@@ -24,129 +24,10 @@
 
 include_once("../config.inc.php");
 include_once("../db.inc.php");
-include('../functions/functions.barcode.php');
-include('../functions/functions.image.php');
 include('../functions/functions.xhtml.php');
-
+include('../functions/functions.import.php');
 
 xhtml_head(T_("Add new questionnaire"));
-
-/* Add a questionnaire to the database
- *
- */
-
-function newquestionnaire($filename,$desc = "",$type="pngmono"){
-
-	global $db;
-
-	if ($desc == "") $desc = $filename;
-
-	//generate temp file
-	$tmp = tempnam(TEMPORARY_DIRECTORY, "FORM");
-
-	//print "Creating PNG files<br/>";
-
-	//use ghostscript to convert to PNG
-	exec(GS_BIN . " -sDEVICE=$type -r300 -sOutputFile=$tmp%d.png -dNOPAUSE -dBATCH $filename");
-	//print("gs -sDEVICE=pngmono -r300 -sOutputFile=$tmp%d.png -dNOPAUSE -dBATCH $filename");
-	
-	//print "Creating PNG files<br/>";
-
-	//add to questionnaire table
-	//
-	//create form entry in DB
-	//
-
-	$db->StartTrans();
-
-	$sql = "INSERT INTO questionnaires (qid,description,sheets)
-		VALUES (NULL,'$desc',0)";
-
-	$db->Execute($sql);
-
-	$qid = $db->Insert_Id();
-
-
-	//read pages from 1 to n - stop when n does not exist
-	$n = 1;
-	$file = $tmp . $n . ".png";
-	while (file_exists($file))
-	{
-		//print "PAGE $n: ";
-		//open file
-		$data = file_get_contents($file);
-		$image = imagecreatefromstring($data);
-		
-		$images = split_scanning($image);
-		unset($image);
-		unset($data);
-
-		foreach($images as $image)
-		{
-			//get the data from the image
-			ob_start();
-			imagepng($image);
-			$data = ob_get_contents();
-			ob_end_clean();
-
-			$barcode = crop($image,array("tlx" => BARCODE_TLX, "tly" => BARCODE_TLY, "brx" => BARCODE_BRX, "bry" => BARCODE_BRY));
-
-			//imagepng($barcode,"/mnt/iss/tmp/temp$n.png");
-
-			//check for barcode
-			$pid = barcode($barcode,1,BARCODE_LENGTH_PID);
-			if ($pid)
-			{
-				print "<p>" . T_("BARCODE") . ": $pid</p>";
-	
-				//calc offset
-				$offset = offset($image,0,0);
-
-				//check if any edges were not detected
-				if (!in_array("",$offset))
-				{
-					//calc rotation
-					$rotation = calcrotate($offset);
-		
-					//save image to db including offset and rotation
-					$sql = "INSERT INTO pages
-						(pid,qid,pidentifierbgid,pidentifierval,tlx,tly,trx,try,blx,bly,brx,bry,image,rotation)
-						VALUES (NULL,'$qid','1','$pid','{$offset[0]}','{$offset[1]}','{$offset[2]}','{$offset[3]}','{$offset[4]}','{$offset[5]}','{$offset[6]}','{$offset[7]}','" . addslashes($data) . "','$rotation')";
-			
-					//print $sql;
-			
-					$db->Execute($sql);
-				}
-				else
-				{
-					$db->FailTrans();
-					print "<p>" . T_("FAILED TO IMPORT AS COULD NOT DETECT ALL PAGE EDGES FOR PAGE") . ":$n</p>";
-					break 2;
-				}
-	
-			}
-			else
-				print "<p>" . T_("INVALID - IGNORING BLANK PAGE") . "</p>";
-
-			unset($data);
-			unset($image);
-			unset($barcode);
-		}
-	
-		//delete temp file
-		unlink($file);
-
-		$n++;
-		$file = $tmp . $n . ".png";
-		unset($images);
-	}
-
-
-	//check if we have created conflicting
-
-	return $db->CompleteTrans();
-
-}
 
 $a = false;
 
@@ -157,9 +38,12 @@ if (isset($_FILES['form']))
 	$desc = $_POST['desc'];
 
 	$r = newquestionnaire($filename,$desc);
-
-
-
+	
+	if ($r !== false && isset($_FILES['bandingxml']))
+	{
+		$xmlname = $_FILES['bandingxml']['tmp_name'];
+		$r2 =  import_bandingxml(file_get_contents($xmlname),$r);
+	}
 }
 
 
@@ -168,7 +52,17 @@ if ($a)
 	if ($r)
 	{
 		print "<h1>" . T_("Successfully inserted new questionnaire") . "</h1>";
-	}else
+		if ($r2)
+		{
+			print "<h2>" . T_("Successfully loaded banding XML file") . "</h2>";
+		}
+		else
+		{
+			print "<h2>" . T_("Failed to load banding XML file") . "</h2>";
+		}
+
+	}
+	else
 	{
 		print "<h1>" . T_("Failed to insert new questionnaire. Could have conflicting page id's") . "</h1>";
 	}
@@ -189,6 +83,7 @@ print "<li>" . T_("300DPI Resolution") . "</li></ul></li></ul>";
 <form enctype="multipart/form-data" action="" method="post">
 	<p><input type="hidden" name="MAX_FILE_SIZE" value="1000000000" /></p>
 	<p><? echo T_("Select PDF file to create form from"); ?>: <input name="form" type="file" /></p>
+	<p><? echo T_("(Optional): Select banding XML file"); ?>: <input name="bandingxml" type="file" /></p>
 	<p><? echo T_("Enter description of form"); ?>: <input name="desc" type="text"/><br/></p>
 	<p><input type="submit" value="<? echo T_("Upload form"); ?>" /></p>
 </form>
@@ -196,5 +91,4 @@ print "<li>" . T_("300DPI Resolution") . "</li></ul></li></ul>";
 <?
 
 xhtml_foot();
-
 ?>
