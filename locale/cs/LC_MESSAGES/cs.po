@@ -7,394 +7,404 @@ msgid ""
 msgstr ""
 "Project-Id-Version: quexf\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2010-01-20 14:17+1000\n"
+"POT-Creation-Date: 2010-04-23 12:11+1000\n"
 "PO-Revision-Date: 2009-11-05 17:26+0000\n"
 "Last-Translator: Kuvaly [LCT] <kuvaly@seznam.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-04-23 02:20+0000\n"
+"X-Launchpad-Export-Date: 2010-09-22 01:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#: trunk/index.php:30
+#: index.php:30
 msgid "queXF"
 msgstr "queXF"
 
-#: trunk/index.php:31
+#: index.php:31
 msgid "Verify"
 msgstr ""
 
-#: trunk/index.php:32
+#: index.php:32
 msgid "Review a form"
 msgstr ""
 
-#: trunk/verifyjs.php:164
+#: verifyjs.php:164
 msgid "Please log in"
 msgstr ""
 
-#: trunk/verifyjs.php:281
-#: trunk/verifyjs.php:395
+#: verifyjs.php:281
+#: verifyjs.php:395
 msgid "Verify: No more work"
 msgstr ""
 
-#: trunk/verifyjs.php:282
-#: trunk/verifyjs.php:396
+#: verifyjs.php:282
+#: verifyjs.php:396
 msgid "NO MORE WORK"
 msgstr ""
 
-#: trunk/verifyjs.php:283
-#: trunk/verifyjs.php:397
+#: verifyjs.php:283
+#: verifyjs.php:397
 msgid "Check for more work"
 msgstr ""
 
-#: trunk/verifyjs.php:297
+#: verifyjs.php:297
 msgid "Verify: Assign form"
 msgstr ""
 
-#: trunk/verifyjs.php:299
+#: verifyjs.php:299
 msgid "There is no form currently assigned to you"
 msgstr ""
 
-#: trunk/verifyjs.php:300
+#: verifyjs.php:300
 msgid "Assign next form"
 msgstr ""
 
-#: trunk/verifyjs.php:303
+#: verifyjs.php:303
 msgid "Assigning next form: Please wait..."
 msgstr ""
 
-#: trunk/verifyjs.php:340
+#: verifyjs.php:340
 msgid "Operator"
 msgstr ""
 
-#: trunk/verifyjs.php:340
+#: verifyjs.php:340
 msgid "Completed Forms"
 msgstr ""
 
-#: trunk/verifyjs.php:340
+#: verifyjs.php:340
 msgid "Completions Per Hour"
 msgstr ""
 
-#: trunk/verifyjs.php:340
+#: verifyjs.php:340
 msgid "Pages Per Hour"
 msgstr ""
 
-#: trunk/verifyjs.php:504
+#: verifyjs.php:504
 msgid "Verify: Done"
 msgstr ""
 
-#: trunk/verifyjs.php:505
-#: trunk/verifyjs.php:1119
+#: verifyjs.php:505
+#: verifyjs.php:1119
 msgid "The required fields have been filled"
 msgstr ""
 
-#: trunk/verifyjs.php:507
-#: trunk/verifyjs.php:1121
+#: verifyjs.php:507
+#: verifyjs.php:1121
 msgid "Submit completed form to database"
 msgstr ""
 
-#: trunk/verifyjs.php:508
-#: trunk/verifyjs.php:1122
+#: verifyjs.php:508
+#: verifyjs.php:1122
 msgid "Review all questions again"
 msgstr ""
 
-#: trunk/verifyjs.php:509
-#: trunk/verifyjs.php:1123
+#: verifyjs.php:509
+#: verifyjs.php:1123
 msgid "Clear all entered data and review again"
 msgstr ""
 
-#: trunk/verifyjs.php:511
-#: trunk/verifyjs.php:1126
+#: verifyjs.php:511
+#: verifyjs.php:1126
 msgid "Submitting: Please wait..."
 msgstr ""
 
-#: trunk/verifyjs.php:526
+#: verifyjs.php:526
 msgid "Verifier"
 msgstr ""
 
-#: trunk/verifyjs.php:1134
+#: verifyjs.php:1134
 msgid "Image of page"
 msgstr ""
 
-#: trunk/verifyjs.php:1134
+#: verifyjs.php:1134
 msgid "form"
 msgstr ""
 
-#: trunk/verifyjs.php:1143
+#: verifyjs.php:1143
 msgid "Centre Page"
 msgstr ""
 
-#: trunk/verifyjs.php:1145
+#: verifyjs.php:1145
 msgid "Loading panel..."
 msgstr ""
 
-#: trunk/verifyjs.php:1145
+#: verifyjs.php:1145
 msgid "Error, try with Firefox"
 msgstr ""
 
-#: trunk/pagenote.php:60
+#: db.inc.php:32
+#: db.inc.php:36
+msgid ""
+"ERROR: Please modify config.inc.php to point to your ADODb installation"
+msgstr ""
+
+#: pagenote.php:60
 msgid "Page note:"
 msgstr ""
 
-#: trunk/pagenote.php:65
+#: pagenote.php:65
 msgid "Add note"
 msgstr ""
 
-#: trunk/modifybox.php:228
+#: modifybox.php:228
 msgid "Group type:"
 msgstr "Typ skupiny:"
 
-#: trunk/modifybox.php:233
+#: modifybox.php:233
 msgid "Variable name:"
 msgstr ""
 
-#: trunk/modifybox.php:236
+#: modifybox.php:236
 msgid "Width:"
 msgstr "Šířka:"
 
-#: trunk/modifybox.php:238
+#: modifybox.php:238
 msgid "Submit"
 msgstr ""
 
-#: trunk/modifybox.php:240
+#: modifybox.php:240
 msgid "Delete this group"
 msgstr "Odstranit uto skupinu"
 
-#: trunk/modifybox.php:241
+#: modifybox.php:241
 msgid "Delete in between boxes"
 msgstr ""
 
-#: trunk/review.php:80
+#: review.php:80
 msgid "Review Form"
 msgstr ""
 
-#: trunk/review.php:139
+#: review.php:139
 msgid "Form:"
 msgstr ""
 
-#: trunk/review.php:140
+#: review.php:140
 msgid "Variable:"
 msgstr ""
 
-#: trunk/review.php:141
+#: review.php:141
 msgid "Page:"
 msgstr "Stránka:"
 
-#: trunk/include/php-gettext-1.0.7/examples/pigs_dropin.php:75
-#: trunk/include/php-gettext-1.0.7/examples/pigs_fallback.php:74
+#: include/php-gettext-1.0.9/examples/pigs_dropin.php:77
+#: include/php-gettext-1.0.9/examples/pigs_fallback.php:76
 msgid ""
 "This is how the story goes.\n"
 "\n"
 msgstr ""
 
-#: trunk/functions/functions.database.php:137
+#: functions/functions.database.php:137
 msgid "ERROR: Multiple forms assigned, please see a technical officer"
 msgstr ""
 
-#: trunk/functions/functions.import.php:383
+#: functions/functions.import.php:383
 msgid "Finding qid"
 msgstr ""
 
-#: trunk/functions/functions.import.php:428
+#: functions/functions.import.php:428
 msgid "Got qid"
 msgstr ""
 
-#: trunk/functions/functions.import.php:466
+#: functions/functions.import.php:466
 msgid "Processing pid"
 msgstr ""
 
-#: trunk/functions/functions.import.php:477
+#: functions/functions.import.php:477
 msgid "Pid not identified for this page, inserting into missing pages..."
 msgstr ""
 
-#: trunk/functions/functions.import.php:528
+#: functions/functions.import.php:528
 msgid "Blank page: ignoring"
 msgstr ""
 
-#: trunk/functions/functions.import.php:533
+#: functions/functions.import.php:533
 msgid "Could not get pid, inserting into missing pages..."
 msgstr ""
 
-#: trunk/functions/functions.import.php:592
+#: functions/functions.import.php:592
 msgid "Could not get qid..."
 msgstr ""
 
-#: trunk/functions/functions.import.php:652
+#: functions/functions.import.php:652
 msgid ""
 "Automatically processing the 1 missing page for this form - assuming pid:"
 msgstr ""
 
-#: trunk/functions/functions.import.php:711
+#: functions/functions.import.php:711
 msgid "Deleting missing pages as all form page slots filled"
 msgstr ""
 
-#: trunk/functions/functions.import.php:744
+#: functions/functions.import.php:744
 msgid "File already in database"
 msgstr ""
 
-#: trunk/admin/delete.php:51
+#: admin/delete.php:51
 msgid "Delete a questionnaire"
 msgstr ""
 
-#: trunk/admin/delete.php:66
+#: admin/delete.php:66
 msgid "Click to delete questionnaire"
 msgstr ""
 
-#: trunk/admin/delete.php:67
+#: admin/delete.php:67
 msgid ""
 "The following questionnaires have no forms associated with them so are safe "
 "to delete"
 msgstr ""
 
-#: trunk/admin/delete.php:71
+#: admin/delete.php:71
 msgid "Delete"
 msgstr ""
 
-#: trunk/admin/databasestrings.php:33
+#: admin/databasestrings.php:33
 msgid "Temporary"
 msgstr ""
 
-#: trunk/admin/databasestrings.php:34
-#: trunk/admin/bandajax.php:94
+#: admin/databasestrings.php:34
 msgid "Single choice"
 msgstr ""
 
-#: trunk/admin/databasestrings.php:35
-#: trunk/admin/bandajax.php:102
+#: admin/databasestrings.php:35
 msgid "Multiple choice"
 msgstr ""
 
-#: trunk/admin/databasestrings.php:36
+#: admin/databasestrings.php:36
 msgid "Text"
 msgstr ""
 
-#: trunk/admin/databasestrings.php:37
+#: admin/databasestrings.php:37
 msgid "Number"
 msgstr ""
 
-#: trunk/admin/databasestrings.php:38
-#: trunk/admin/bandajax.php:126
+#: admin/databasestrings.php:38
 msgid "Barcode"
 msgstr ""
 
-#: trunk/admin/databasestrings.php:39
-#: trunk/admin/bandajax.php:134
+#: admin/databasestrings.php:39
 msgid "Long text"
 msgstr ""
 
-#: trunk/admin/import.directory.php:44
-#: trunk/admin/import.directory.php:57
-#: trunk/admin/index.php:47
+#: admin/import.directory.php:47
+#: admin/import.directory.php:63
 msgid "Import a directory of PDF files"
 msgstr ""
 
-#: trunk/admin/import.directory.php:46
+#: admin/import.directory.php:49
 msgid "Process"
 msgstr ""
 
-#: trunk/admin/import.directory.php:46
+#: admin/import.directory.php:49
 msgid "running..."
 msgstr ""
 
-#: trunk/admin/import.directory.php:49
+#: admin/import.directory.php:53
 msgid "Kill signal sent: Please wait..."
 msgstr ""
 
-#: trunk/admin/import.directory.php:51
+#: admin/import.directory.php:54
+msgid "Mark the proces as killed (i.e. when the server is rebooted)"
+msgstr ""
+
+#: admin/import.directory.php:57
 msgid "Kill the running process"
 msgstr ""
 
-#: trunk/admin/import.directory.php:51
+#: admin/import.directory.php:57
 msgid "may take up to a few minutes to take effect"
 msgstr ""
 
-#: trunk/admin/import.directory.php:66
+#: admin/import.directory.php:72
 msgid "Directory"
 msgstr ""
 
-#: trunk/admin/import.directory.php:68
+#: admin/import.directory.php:74
 msgid "Enter directory local to the server (eg /mnt/iss/tmp/images)"
 msgstr ""
 
-#: trunk/admin/import.directory.php:69
+#: admin/import.directory.php:75
 msgid "Process directory: browser window must remain open"
 msgstr ""
 
-#: trunk/admin/import.directory.php:70
+#: admin/import.directory.php:76
 msgid "Watch this directory in the background (recommended)"
 msgstr ""
 
-#: trunk/admin/import.directory.php:74
+#: admin/import.directory.php:80
 msgid "Outcome of last process run (if any)"
 msgstr ""
 
-#: trunk/admin/output.php:55
+#: admin/output.php:55
 msgid "Output data"
 msgstr ""
 
-#: trunk/admin/output.php:67
+#: admin/output.php:67
 msgid "Data"
 msgstr ""
 
-#: trunk/admin/listduplicates.php:31
+#: admin/listduplicates.php:31
 msgid "Listing of duplicate forms"
 msgstr ""
 
-#: trunk/admin/listduplicates.php:47
+#: admin/listduplicates.php:47
 msgid "Duplicate form listing"
 msgstr ""
 
-#: trunk/admin/listduplicates.php:47
+#: admin/listduplicates.php:47
 msgid "Forms with the same PFID are duplicates"
 msgstr ""
 
-#: trunk/admin/listduplicates.php:49
-#: trunk/admin/listforms.php:70
+#: admin/listduplicates.php:49
+#: admin/listforms.php:70
+#: admin/performance.php:106
+#: admin/listpagenotes.php:56
+#: admin/reorder.php:48
 msgid "Questionnaire"
 msgstr ""
 
-#: trunk/admin/listduplicates.php:49
+#: admin/listduplicates.php:49
 msgid "Formid"
 msgstr ""
 
-#: trunk/admin/listduplicates.php:49
+#: admin/listduplicates.php:49
 msgid "PFID"
 msgstr ""
 
-#: trunk/admin/clients.php:66
+#: admin/clients.php:66
+#: admin/operators.php:49
 msgid "Added"
 msgstr ""
 
-#: trunk/admin/clients.php:68
+#: admin/clients.php:68
+#: admin/operators.php:52
 msgid "Could not add"
 msgstr ""
 
-#: trunk/admin/clients.php:68
+#: admin/clients.php:68
 msgid "There may already be an client of this name"
 msgstr ""
 
-#: trunk/admin/clients.php:73
-#: trunk/admin/clients.php:82
+#: admin/clients.php:73
+#: admin/clients.php:82
 msgid "Add a client"
 msgstr ""
 
-#: trunk/admin/clients.php:83
+#: admin/clients.php:83
 msgid ""
 "Adding a client here will allow them to access project information in the "
 "client subdirectory. You can assign a client to a particular project using "
 "the"
 msgstr ""
 
-#: trunk/admin/clients.php:83
+#: admin/clients.php:83
 msgid "Assign client to Form"
 msgstr ""
 
-#: trunk/admin/clients.php:83
+#: admin/clients.php:83
 msgid "tool."
 msgstr ""
 
-#: trunk/admin/clients.php:84
+#: admin/clients.php:84
 msgid ""
 "Use this form to enter the username of a user based on your directory "
 "security system. For example, if you have secured the base directory of "
@@ -402,383 +412,416 @@ msgid ""
 "here."
 msgstr ""
 
-#: trunk/admin/clients.php:86
+#: admin/clients.php:86
 msgid "Enter the username of a client to add:"
 msgstr ""
 
-#: trunk/admin/clients.php:87
+#: admin/clients.php:87
 msgid "Enter the description of the client to add:"
 msgstr ""
 
-#: trunk/admin/clients.php:88
+#: admin/clients.php:88
+#: admin/operators.php:70
 msgid "Add user"
 msgstr ""
 
-#: trunk/admin/verifierquestionnaire.php:106
+#: admin/verifierquestionnaire.php:106
 msgid "Assign verifier to questionnaire"
 msgstr ""
 
-#: trunk/admin/listforms.php:59
+#: admin/listforms.php:59
+#: admin/listpagenotes.php:45
 msgid "Listing of forms"
 msgstr ""
 
-#: trunk/admin/listforms.php:61
-#: trunk/admin/listforms.php:70
+#: admin/listforms.php:61
+#: admin/listforms.php:70
 msgid "Re verify"
 msgstr ""
 
-#: trunk/admin/listforms.php:70
+#: admin/listforms.php:70
+#: admin/listpagenotes.php:56
 msgid "Form ID"
 msgstr ""
 
-#: trunk/admin/index.php:30
-#: trunk/admin/index.php:35
+#: admin/index.php:30
+#: admin/index.php:35
 msgid "queXF Admin Functions"
 msgstr ""
 
-#: trunk/admin/index.php:37
+#: admin/index.php:37
 msgid "Form setup"
 msgstr ""
 
-#: trunk/admin/index.php:38
+#: admin/index.php:38
 msgid "Import a new form from a PDF file"
 msgstr ""
 
-#: trunk/admin/index.php:39
+#: admin/index.php:39
 msgid "Delete a form (only if no forms yet imported)"
 msgstr ""
 
-#: trunk/admin/index.php:40
+#: admin/index.php:40
+msgid "Touch-up a form"
+msgstr ""
+
+#: admin/index.php:41
 msgid "Band a form"
 msgstr ""
 
-#: trunk/admin/index.php:41
+#: admin/index.php:42
 msgid "Band a form using interactive banding"
 msgstr ""
 
-#: trunk/admin/index.php:42
+#: admin/index.php:43
 msgid "Order variables on the form"
 msgstr ""
 
-#: trunk/admin/index.php:43
+#: admin/index.php:44
 msgid "Users"
 msgstr ""
 
-#: trunk/admin/index.php:44
+#: admin/index.php:45
 msgid "Add operators"
 msgstr ""
 
-#: trunk/admin/index.php:45
+#: admin/index.php:46
 msgid "Assign forms to operators"
 msgstr ""
 
-#: trunk/admin/index.php:46
+#: admin/index.php:47
 msgid "Importing"
 msgstr ""
 
-#: trunk/admin/index.php:48
+#: admin/index.php:49
 msgid "Successfully imported files"
 msgstr ""
 
-#: trunk/admin/index.php:49
+#: admin/index.php:50
 msgid "Failed imported files"
 msgstr ""
 
-#: trunk/admin/index.php:50
+#: admin/index.php:51
 msgid "Duplicate forms"
 msgstr ""
 
-#: trunk/admin/index.php:51
+#: admin/index.php:52
 msgid "Reverify forms"
 msgstr ""
 
-#: trunk/admin/index.php:52
+#: admin/index.php:53
 msgid "List page notes"
 msgstr ""
 
-#: trunk/admin/index.php:53
+#: admin/index.php:54
 msgid "Handle missing pages"
 msgstr ""
 
-#: trunk/admin/index.php:54
+#: admin/index.php:55
 msgid "Output"
 msgstr ""
 
-#: trunk/admin/index.php:55
+#: admin/index.php:56
 msgid "Output data/ddi"
 msgstr ""
 
-#: trunk/admin/index.php:56
+#: admin/index.php:57
 msgid "Progress"
 msgstr ""
 
-#: trunk/admin/index.php:57
+#: admin/index.php:58
 msgid "Display progress of form verification"
 msgstr ""
 
-#: trunk/admin/index.php:58
+#: admin/index.php:59
 msgid "Display performance of verifiers (Completions per hour)"
 msgstr ""
 
-#: trunk/admin/index.php:59
+#: admin/index.php:60
 msgid "Clients"
 msgstr ""
 
-#: trunk/admin/index.php:60
+#: admin/index.php:61
 msgid "Add clients"
 msgstr ""
 
-#: trunk/admin/index.php:61
+#: admin/index.php:62
 msgid "Assign clients to forms"
 msgstr ""
 
-#: trunk/admin/index.php:62
+#: admin/index.php:63
 msgid "System setup"
 msgstr ""
 
-#: trunk/admin/index.php:63
+#: admin/index.php:64
+#: admin/pagesetup.php:303
 msgid "Page setup"
 msgstr ""
 
-#: trunk/admin/bandajax.php:86
+#: admin/touchup.php:84
+msgid "Go back"
+msgstr ""
+
+#: admin/touchup.php:97
+msgid "Download"
+msgstr ""
+
+#: admin/touchup.php:97
+msgid "to edit"
+msgstr ""
+
+#: admin/touchup.php:97
+msgid "Upload here"
+msgstr ""
+
+#: admin/touchup.php:100
+msgid "Upload pages"
+msgstr ""
+
+#: admin/touchup.php:112
+msgid "Touch up"
+msgstr ""
+
+#: admin/bandajax.php:86
 msgid "Disable this box group"
 msgstr ""
 
-#: trunk/admin/bandajax.php:94
-#: trunk/admin/bandajax.php:102
-#: trunk/admin/bandajax.php:110
-#: trunk/admin/bandajax.php:118
-#: trunk/admin/bandajax.php:126
-#: trunk/admin/bandajax.php:134
+#: admin/bandajax.php:94
+#: admin/bandajax.php:102
+#: admin/bandajax.php:110
+#: admin/bandajax.php:118
+#: admin/bandajax.php:126
+#: admin/bandajax.php:134
 msgid "Set to type:"
 msgstr ""
 
-#: trunk/admin/bandajax.php:110
+#: admin/bandajax.php:110
 msgid "Text and Numbers"
 msgstr ""
 
-#: trunk/admin/bandajax.php:118
+#: admin/bandajax.php:118
 msgid "Numbers only"
 msgstr ""
 
-#: trunk/admin/bandajax.php:143
+#: admin/bandajax.php:143
 msgid "Delete this box"
 msgstr ""
 
-#: trunk/admin/bandajax.php:151
+#: admin/bandajax.php:151
 msgid "Delete this box group"
 msgstr ""
 
-#: trunk/admin/bandajax.php:503
-#: trunk/admin/bandajax.php:579
+#: admin/bandajax.php:507
+#: admin/bandajax.php:583
 msgid "Band"
 msgstr ""
 
-#: trunk/admin/bandajax.php:548
+#: admin/bandajax.php:552
 msgid "Choose another questionnaire"
 msgstr ""
 
-#: trunk/admin/bandajax.php:548
+#: admin/bandajax.php:552
+#: admin/pagesetup.php:168
 msgid "Increase zoom"
 msgstr ""
 
-#: trunk/admin/bandajax.php:548
+#: admin/bandajax.php:552
+#: admin/pagesetup.php:171
 msgid "Decrease zoom"
 msgstr ""
 
-#: trunk/admin/testconfig.php:3
+#: admin/testconfig.php:3
 msgid "Test Installation"
 msgstr ""
 
-#: trunk/admin/performance.php:33
+#: admin/performance.php:33
 msgid "Performance"
 msgstr ""
 
-#: trunk/admin/missingpages.php:135
+#: admin/missingpages.php:135
 msgid "Missing Pages"
 msgstr ""
 
-#: trunk/admin/missingpages.php:210
+#: admin/missingpages.php:210
 msgid "Missing page"
 msgstr ""
 
-#: trunk/admin/missingpages.php:257
+#: admin/missingpages.php:257
 msgid "Page"
 msgstr ""
 
-#: trunk/admin/missingpages.php:257
+#: admin/missingpages.php:257
 msgid "of Form"
 msgstr ""
 
-#: trunk/admin/missingpages.php:271
+#: admin/missingpages.php:271
 msgid "Accept"
 msgstr ""
 
-#: trunk/admin/missingpages.php:276
+#: admin/missingpages.php:276
 msgid "No missing pages"
 msgstr ""
 
-#: trunk/admin/pagesetup.php:78
+#: admin/pagesetup.php:78
 msgid "Set page layout"
 msgstr ""
 
-#: trunk/admin/pagesetup.php:158
+#: admin/pagesetup.php:158
 msgid "Configuration settings (copy and paste in to config.inc.php)"
 msgstr ""
 
-#: trunk/admin/pagesetup.php:304
-#: trunk/admin/new.php:170
+#: admin/pagesetup.php:304
+#: admin/new.php:170
 msgid "You will get the best results if you:"
 msgstr ""
 
-#: trunk/admin/pagesetup.php:306
-#: trunk/admin/new.php:171
+#: admin/pagesetup.php:306
+#: admin/new.php:171
 msgid ""
 "Print out the form using the same method that you will for all the printed "
 "forms"
 msgstr ""
 
-#: trunk/admin/pagesetup.php:307
+#: admin/pagesetup.php:307
 msgid ""
 "Scan the form to a PDF using the same options that you will for the filled "
 "forms"
 msgstr ""
 
-#: trunk/admin/pagesetup.php:308
-#: trunk/admin/new.php:173
+#: admin/pagesetup.php:308
+#: admin/new.php:173
 msgid "Best options for scanning in are:"
 msgstr ""
 
-#: trunk/admin/pagesetup.php:309
-#: trunk/admin/new.php:174
+#: admin/pagesetup.php:309
+#: admin/new.php:174
 msgid "Monochrome (1 bit)"
 msgstr ""
 
-#: trunk/admin/pagesetup.php:310
-#: trunk/admin/new.php:175
+#: admin/pagesetup.php:310
+#: admin/new.php:175
 msgid "300DPI Resolution"
 msgstr ""
 
-#: trunk/admin/pagesetup.php:316
+#: admin/pagesetup.php:316
 msgid "Select PDF file to upload:"
 msgstr ""
 
-#: trunk/admin/pagesetup.php:317
-#: trunk/admin/new.php:183
+#: admin/pagesetup.php:317
+#: admin/new.php:183
 msgid "Upload form"
 msgstr ""
 
-#: trunk/admin/listpagenotes.php:47
-#: trunk/admin/listpagenotes.php:56
+#: admin/listpagenotes.php:47
+#: admin/listpagenotes.php:56
 msgid "Delete note"
 msgstr ""
 
-#: trunk/admin/listpagenotes.php:56
+#: admin/listpagenotes.php:56
 msgid "Page ID"
 msgstr ""
 
-#: trunk/admin/listpagenotes.php:56
+#: admin/listpagenotes.php:56
 msgid "Note"
 msgstr ""
 
-#: trunk/admin/reorder.php:46
-#: trunk/admin/reorder.php:83
+#: admin/reorder.php:46
+#: admin/reorder.php:83
 msgid "Reorder variables"
 msgstr ""
 
-#: trunk/admin/reorder.php:60
+#: admin/reorder.php:60
 msgid "Manual reorder"
 msgstr ""
 
-#: trunk/admin/reorder.php:60
+#: admin/reorder.php:60
 msgid "Reorder by position"
 msgstr ""
 
-#: trunk/admin/reorder.php:60
+#: admin/reorder.php:60
 msgid "Reorder by variable name"
 msgstr ""
 
-#: trunk/admin/reorder.php:119
+#: admin/reorder.php:119
 msgid ""
 "Reorder variables by dragging and dropping, then clicking on 'Save Changes' "
 "below"
 msgstr ""
 
-#: trunk/admin/reorder.php:121
+#: admin/reorder.php:121
 msgid "Click here"
 msgstr ""
 
-#: trunk/admin/reorder.php:121
+#: admin/reorder.php:121
 msgid "to return without saving changes"
 msgstr ""
 
-#: trunk/admin/reorder.php:130
-#: trunk/admin/listfiles.php:70
+#: admin/reorder.php:130
 msgid "Save changes"
 msgstr ""
 
-#: trunk/admin/new.php:32
+#: admin/new.php:32
 msgid "Add new questionnaire"
 msgstr ""
 
-#: trunk/admin/new.php:100
+#: admin/new.php:100
 msgid "BARCODE"
 msgstr ""
 
-#: trunk/admin/new.php:119
+#: admin/new.php:119
 msgid "INVALID - IGNORING BLANK PAGE"
 msgstr ""
 
-#: trunk/admin/new.php:160
+#: admin/new.php:160
 msgid "Successfully inserted new questionnaire"
 msgstr ""
 
-#: trunk/admin/new.php:163
+#: admin/new.php:163
 msgid "Failed to insert new questionnaire. Could have conflicting page id's"
 msgstr ""
 
-#: trunk/admin/new.php:169
+#: admin/new.php:169
 msgid "New questionnaire"
 msgstr ""
 
-#: trunk/admin/new.php:172
+#: admin/new.php:172
 msgid ""
 "Scan the (blank) form to a PDF using the same options that you will for the "
 "filled forms"
 msgstr ""
 
-#: trunk/admin/new.php:181
+#: admin/new.php:181
 msgid "Select PDF file to create form from"
 msgstr ""
 
-#: trunk/admin/new.php:182
+#: admin/new.php:182
 msgid "Enter description of form"
 msgstr ""
 
-#: trunk/admin/operators.php:34
-#: trunk/admin/operators.php:64
+#: admin/operators.php:34
+#: admin/operators.php:64
 msgid "Add an operator"
 msgstr ""
 
-#: trunk/admin/operators.php:52
+#: admin/operators.php:52
 msgid "There may already be an operator of this name"
 msgstr ""
 
-#: trunk/admin/operators.php:65
+#: admin/operators.php:65
 msgid ""
 "Adding an operator here will give the user the ability to verify forms once "
 "they have assigned a form using the"
 msgstr ""
 
-#: trunk/admin/operators.php:65
+#: admin/operators.php:65
 msgid "Assign Verifier to Questionnaire"
 msgstr ""
 
-#: trunk/admin/operators.php:65
+#: admin/operators.php:65
 msgid "tool"
 msgstr ""
 
-#: trunk/admin/operators.php:66
+#: admin/operators.php:66
 msgid ""
 "Use this form to enter the username of a user based on your directory "
 "security system. For example, if you have secured the base directory of "
@@ -787,92 +830,92 @@ msgid ""
 "assigned a form."
 msgstr ""
 
-#: trunk/admin/operators.php:68
+#: admin/operators.php:68
 msgid ""
 "Enter the username (as in the security system, eg: azammit) of an operator "
 "to add:"
 msgstr ""
 
-#: trunk/admin/operators.php:69
+#: admin/operators.php:69
 msgid "Enter the name of the operator (eg Adam):"
 msgstr ""
 
-#: trunk/admin/clientquestionnaire.php:144
+#: admin/clientquestionnaire.php:144
 msgid "Assign clients to questionnaires"
 msgstr ""
 
-#: trunk/admin/progress.php:55
+#: admin/progress.php:55
 msgid "Done"
 msgstr ""
 
-#: trunk/admin/progress.php:55
+#: admin/progress.php:55
 msgid "Remain"
 msgstr ""
 
-#: trunk/admin/progress.php:55
+#: admin/progress.php:55
 msgid "Total forms imported"
 msgstr ""
 
-#: trunk/admin/progress.php:77
+#: admin/progress.php:77
 msgid "Total"
 msgstr ""
 
-#: trunk/admin/process.php:54
+#: admin/process.php:54
 msgid "Processing directory"
 msgstr ""
 
-#: trunk/admin/process.php:68
+#: admin/process.php:65
 msgid "Watching..."
 msgstr ""
 
-#: trunk/admin/process.php:90
+#: admin/process.php:83
 msgid ""
 "Cannot process this directory - check that it is valid and permissions are "
 "correct"
 msgstr ""
 
-#: trunk/admin/listfiles.php:49
+#: admin/listfiles.php:49
 msgid "Listing of imported files by status"
 msgstr ""
 
-#: trunk/admin/listfiles.php:55
+#: admin/listfiles.php:55
 msgid "Forms successfully imported"
 msgstr ""
 
-#: trunk/admin/listfiles.php:57
+#: admin/listfiles.php:57
 msgid "Forms not imported"
 msgstr ""
 
-#: trunk/admin/listfiles.php:68
+#: admin/listfiles.php:68
 msgid "File"
 msgstr ""
 
-#: trunk/admin/listfiles.php:68
+#: admin/listfiles.php:68
 msgid "SHA1"
 msgstr ""
 
-#: trunk/admin/listfiles.php:68
+#: admin/listfiles.php:68
 msgid "Date"
 msgstr ""
 
-#: trunk/admin/listfiles.php:68
+#: admin/listfiles.php:68
 msgid "Allow import again?"
 msgstr ""
 
-#: trunk/client/index.php:32
+#: client/index.php:32
 msgid "Review forms"
 msgstr ""
 
-#: trunk/client/index.php:59
+#: client/index.php:59
 msgid "Review"
 msgstr ""
 
-#: trunk/client/index.php:75
+#: client/index.php:75
 msgid ""
 "This form not available for you to review. Please enter a form id in the box "
 "on the left"
 msgstr ""
 
-#: trunk/client/index.php:133
+#: client/index.php:133
 msgid "You are not authorised to review any forms"
 msgstr ""
