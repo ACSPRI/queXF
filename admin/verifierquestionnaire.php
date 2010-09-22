@@ -224,7 +224,7 @@ foreach($verifiers as $v)
 }
 
 
-print "</table><p><input type=\"submit\" name=\"submit\"/></p></form>";
+print "</table><p><input type=\"submit\" name=\"submit\" value=\"" .T_("Assign verifier to questionnaire") . "\"/></p></form>";
 
 
 

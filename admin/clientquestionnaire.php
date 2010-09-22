@@ -262,7 +262,7 @@ foreach($clients as $v)
 }
 
 
-print "</table><p><input type=\"submit\" name=\"submit\"/></p></form>";
+print "</table><p><input type=\"submit\" name=\"submit\" value=\"" . T_("Assign clients to questionnaires") . "\"/></p></form>";
 
 
 xhtml_foot();

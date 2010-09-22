@@ -265,7 +265,7 @@ if (isset($r['fid']))
 	
 
 	print "<div id=\"topper\">";
-	print "Form: $fid";
+	print T_("Form") . ": $fid";
 	print "</div>";
 
 
