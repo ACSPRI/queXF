@@ -890,6 +890,11 @@ function import_bandingxml($xml,$qid,$erase = false)
 		
 			$db->Execute($sql);
 		}
+
+		$sql = "DELETE FROM sections
+			WHERE qid = '$qid'";
+
+		$db->Execute($sql);
 	}
 
 

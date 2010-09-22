@@ -320,19 +320,19 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true)
 			ORDER BY bg.sortorder, b.bid";
 
 
-		$sql = "(SELECT b.bid,b.bgid,g.btid,f.val,sortorder
+		$sql = "(SELECT b.bid,b.bgid,g.btid,f.val,g.sortorder,b.value
 		FROM boxes AS b
 		JOIN boxgroupstype AS g ON (g.btid > 0 AND g.btid < 5 AND  b.bgid = g.bgid)
 		JOIN pages AS p ON (p.qid = '$qid' AND p.pid = b.pid)
 		LEFT JOIN formboxverifychar AS f ON (f.bid = b.bid AND f.vid='{$form['vid']}' AND f.fid = '{$form['fid']}'))
 		UNION
-		(select b.bid,b.bgid,g.btid,f.val,sortorder
+		(select b.bid,b.bgid,g.btid,f.val,g.sortorder,b.value
 		from boxes as b
 		JOIN  boxgroupstype as g on (b.bgid = g.bgid and g.btid = 6)
 		JOIN pages as p on  (p.pid = b.pid and p.qid = '$qid')
 		LEFT JOIN formboxverifytext as f on (f.bid = b.bid and f.vid = '{$form['vid']}' and f.fid = '{$form['fid']}'))
 		UNION
-		(select b.bid,b.bgid,g.btid,f.val,sortorder
+		(select b.bid,b.bgid,g.btid,f.val,g.sortorder,b.value
 		from boxes as b
 		JOIN  boxgroupstype as g on (b.bgid = g.bgid and g.btid = 5)
 		JOIN pages as p on  (p.pid = b.pid and p.qid = '$qid')
@@ -346,8 +346,7 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true)
 		$btid = "";
 		$count = 1;
 		$done = "";
-
-
+		
 		foreach($data as $val)
 		{
 			if ($bgid != $val['bgid'])
@@ -367,7 +366,11 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true)
 			{
 				if ($val['val'] == 1)
 				{
-					print str_pad($count, strlen($desc[$bgid]['count']), " ", STR_PAD_LEFT); //pad to width
+					if (empty($val['value']))
+						print str_pad($count, strlen($desc[$bgid]['count']), " ", STR_PAD_LEFT); //pad to width
+					else
+						print str_pad($val['value'], strlen($desc[$bgid]['count']), " ", STR_PAD_LEFT); //pad to width
+
 					$done = 1;
 				}
 			}
