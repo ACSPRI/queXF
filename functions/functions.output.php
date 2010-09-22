@@ -73,7 +73,7 @@ function csv($fields = array(), $delimiter = ',', $enclosure = '"')
 
 /*
  * CSV data output */
-function outputdatacsv($qid,$fid = "",$labels = false)
+function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false)
 {
 	global $db;
 
@@ -92,21 +92,28 @@ function outputdatacsv($qid,$fid = "",$labels = false)
 
 	//get completed forms for this qid
 
-	$sql = "SELECT w.vid AS vid, w.fid AS fid, w.assigned AS assigned, w.completed AS completed, f.qid AS qid, f.description AS description
-		FROM `worklog` AS w
-		LEFT JOIN forms AS f ON w.fid = f.fid
-		WHERE f.qid = '$qid'";
+	if ($unverified)
+		$sql = "SELECT 0 AS vid, f.fid as fid, f.qid as qid, f.description as description
+			FROM forms as f
+			WHERE f.qid = '$qid'"; 
+	else
+		$sql = "SELECT w.vid AS vid, w.fid AS fid, w.assigned AS assigned, w.completed AS completed, f.qid AS qid, f.description AS description
+			FROM `worklog` AS w
+			LEFT JOIN forms AS f ON w.fid = f.fid
+			WHERE f.qid = '$qid'";
 
 	if ($fid != "")
 		$sql .= " AND f.fid = '$fid'";
 
 	$forms = $db->GetAll($sql);
 
+	$unv = "";
+	if ($unverified) $unv = T_("unverified") . "_";
 
 	header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 	header ("Content-Type: text/ascii");
 	header ("Content-Length: ");
-	header ("Content-Disposition: attachment; filename=data_$qid.csv");
+	header ("Content-Disposition: attachment; filename={$unv}data_$qid.csv");
 
 	$sql = "SELECT bg.varname, bg.btid, count(b.bid) as count
 		FROM boxes as b
@@ -271,7 +278,7 @@ function outputdatacsv($qid,$fid = "",$labels = false)
 /*
  * Fixed width data output */
 
-function outputdata($qid,$fid = "", $header =true, $appendformid = true)
+function outputdata($qid,$fid = "", $header =true, $appendformid = true,$unverified = false)
 {
 	global $db;
 
@@ -290,10 +297,15 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true)
 
 	//get completed forms for this qid
 
-	$sql = "SELECT w.vid AS vid, w.fid AS fid, w.assigned AS assigned, w.completed AS completed, f.qid AS qid, f.description AS description
-		FROM `worklog` AS w
-		LEFT JOIN forms AS f ON w.fid = f.fid
-		WHERE f.qid = '$qid'";
+	if ($unverified)
+		$sql = "SELECT 0 AS vid, f.fid as fid, f.qid as qid, f.description as description
+			FROM forms as f
+			WHERE f.qid = '$qid'"; 
+	else
+		$sql = "SELECT w.vid AS vid, w.fid AS fid, w.assigned AS assigned, w.completed AS completed, f.qid AS qid, f.description AS description
+			FROM `worklog` AS w
+			LEFT JOIN forms AS f ON w.fid = f.fid
+			WHERE f.qid = '$qid'";
 
 	if ($fid != "")
 		$sql .= " AND f.fid = '$fid'";
@@ -302,10 +314,13 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true)
 
 	if ($header)
 	{
+		$unv = "";
+		if ($unverified) $unv = T_("unverified") . "_";
+
 		header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 		header ("Content-Type: text/ascii");
 		header ("Content-Length: ");
-		header ("Content-Disposition: attachment; filename=data_$qid.dat");
+		header ("Content-Disposition: attachment; filename={$unv}data_$qid.dat");
 	}
 
 	foreach ($forms as $form)
@@ -779,13 +794,16 @@ function pspp_escape($string,$length = 250)
  * @param int qid The qid to export
  *
  */
-function export_pspp($qid)
+function export_pspp($qid,$unverified = false)
 {
 	global $db;
 
+	$unv = "";
+	if ($unverified) $unv = T_("unverified") . "_";
+
 	header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 	header ("Content-Type: text");
-	header ("Content-Disposition: attachment; filename=data_$qid.sps");
+	header ("Content-Disposition: attachment; filename={$unv}data_$qid.sps");
 
 
 	echo "DATA LIST FIXED /";
@@ -901,7 +919,7 @@ function export_pspp($qid)
 
 	echo " .\nBEGIN DATA.\n";
 
-	outputdata($qid,"",false,true);
+	outputdata($qid,"",false,true,$unverified);
 
 	echo "END DATA.\n";
 }

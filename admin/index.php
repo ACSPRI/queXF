@@ -54,7 +54,8 @@ xhtml_head(T_("queXF Admin Functions"),true,array("../css/admin.css"),array("../
 <li><a href="javascript:link('mainobj','listpagenotes.php');"><? echo T_("List page notes"); ?></a></li>
 <li><a href="javascript:link('mainobj','missingpages.php');"><? echo T_("Handle missing pages"); ?></a></li></ul></li>
 <li><h3><? echo T_("Output"); ?></h3>
-<ul><li><a href="javascript:link('mainobj','output.php');"><? echo T_("Output data/ddi"); ?></a></li></ul></li>
+<ul><li><a href="javascript:link('mainobj','outputunverified.php');"><? echo T_("Output unverified data"); ?></a></li>
+<li><a href="javascript:link('mainobj','output.php');"><? echo T_("Output data/ddi"); ?></a></li></ul></li>
 <li><h3><? echo T_("Progress"); ?></h3>
 <ul><li><a href="javascript:link('mainobj','progress.php');"><? echo T_("Display progress of form verification"); ?></a></li>
 <li><a href="javascript:link('mainobj','performance.php');"><? echo T_("Display performance of verifiers (Completions per hour)"); ?></a></li></ul></li>
