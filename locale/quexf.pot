@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: queXF\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-22 11:46+1000\n"
+"POT-Creation-Date: 2010-09-23 10:28+1000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Adam Zammit <adam.zammit@acspri.org.au>\n"
 "Language-Team: \n"
@@ -387,38 +387,43 @@ msgid "Output"
 msgstr ""
 
 #: admin/index.php:57
-msgid "Output data/ddi"
+#: admin/outputunverified.php:67
+msgid "Output unverified data"
 msgstr ""
 
 #: admin/index.php:58
-msgid "Progress"
+msgid "Output data/ddi"
 msgstr ""
 
 #: admin/index.php:59
-msgid "Display progress of form verification"
+msgid "Progress"
 msgstr ""
 
 #: admin/index.php:60
-msgid "Display performance of verifiers (Completions per hour)"
+msgid "Display progress of form verification"
 msgstr ""
 
 #: admin/index.php:61
-msgid "Clients"
+msgid "Display performance of verifiers (Completions per hour)"
 msgstr ""
 
 #: admin/index.php:62
-msgid "Add clients"
+msgid "Clients"
 msgstr ""
 
 #: admin/index.php:63
-msgid "Assign clients to forms"
+msgid "Add clients"
 msgstr ""
 
 #: admin/index.php:64
-msgid "System setup"
+msgid "Assign clients to forms"
 msgstr ""
 
 #: admin/index.php:65
+msgid "System setup"
+msgstr ""
+
+#: admin/index.php:66
 #: admin/pagesetup.php:303
 msgid "Page setup"
 msgstr ""
@@ -445,6 +450,61 @@ msgstr ""
 
 #: admin/touchup.php:112
 msgid "Touch up"
+msgstr ""
+
+#: admin/outputunverified.php:70
+#: admin/outputunverified.php:84
+#: admin/output.php:70
+#: admin/output.php:82
+msgid "Data"
+msgstr ""
+
+#: admin/outputunverified.php:71
+#: admin/outputunverified.php:84
+#: admin/output.php:71
+#: admin/output.php:82
+msgid "DDI"
+msgstr ""
+
+#: admin/outputunverified.php:72
+#: admin/outputunverified.php:84
+#: admin/output.php:72
+#: admin/output.php:82
+msgid "CSV"
+msgstr ""
+
+#: admin/outputunverified.php:73
+#: admin/outputunverified.php:84
+#: admin/output.php:73
+#: admin/output.php:82
+msgid "CSV Labelled"
+msgstr ""
+
+#: admin/outputunverified.php:74
+#: admin/outputunverified.php:84
+#: admin/output.php:74
+#: admin/output.php:82
+msgid "PSPP (SPSS)"
+msgstr ""
+
+#: admin/outputunverified.php:75
+#: admin/outputunverified.php:84
+#: admin/output.php:75
+#: admin/output.php:82
+msgid "Banding XML"
+msgstr ""
+
+#: admin/outputunverified.php:82
+msgid "Warning: the data downloaded from here is unverified"
+msgstr ""
+
+#: admin/outputunverified.php:84
+#: admin/listforms.php:70
+#: admin/listduplicates.php:49
+#: admin/reorder.php:48
+#: admin/output.php:82
+#: admin/performance.php:106
+msgid "Questionnaire"
 msgstr ""
 
 #: admin/missingpages.php:137
@@ -584,14 +644,6 @@ msgstr ""
 
 #: admin/listforms.php:70
 msgid "Form ID"
-msgstr ""
-
-#: admin/listforms.php:70
-#: admin/listduplicates.php:49
-#: admin/reorder.php:48
-#: admin/output.php:82
-#: admin/performance.php:106
-msgid "Questionnaire"
 msgstr ""
 
 #: admin/new.php:30
@@ -777,36 +829,6 @@ msgstr ""
 msgid "Output data"
 msgstr ""
 
-#: admin/output.php:70
-#: admin/output.php:82
-msgid "Data"
-msgstr ""
-
-#: admin/output.php:71
-#: admin/output.php:82
-msgid "DDI"
-msgstr ""
-
-#: admin/output.php:72
-#: admin/output.php:82
-msgid "CSV"
-msgstr ""
-
-#: admin/output.php:73
-#: admin/output.php:82
-msgid "CSV Labelled"
-msgstr ""
-
-#: admin/output.php:74
-#: admin/output.php:82
-msgid "PSPP (SPSS)"
-msgstr ""
-
-#: admin/output.php:75
-#: admin/output.php:82
-msgid "Banding XML"
-msgstr ""
-
 #: admin/performance.php:33
 msgid "Performance"
 msgstr ""
@@ -882,6 +904,12 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
+#: functions/functions.output.php:111
+#: functions/functions.output.php:318
+#: functions/functions.output.php:802
+msgid "unverified"
+msgstr ""
+
 #: functions/functions.database.php:137
 msgid "ERROR: Multiple forms assigned, please see a technical officer"
 msgstr ""
@@ -934,7 +962,7 @@ msgstr ""
 msgid "Deleting missing pages as all form page slots filled"
 msgstr ""
 
-#: functions/functions.import.php:1000
+#: functions/functions.import.php:1005
 msgid "File already in database"
 msgstr ""
 
