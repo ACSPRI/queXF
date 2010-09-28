@@ -39,7 +39,7 @@ if (isset($_FILES['form']))
 
 	$r = newquestionnaire($filename,$desc);
 	
-	if ($r !== false && isset($_FILES['bandingxml']))
+	if ($r !== false && isset($_FILES['bandingxml']) && !empty($_FILES['bandingxml']['tmp_name']))
 	{
 		$xmlname = $_FILES['bandingxml']['tmp_name'];
 		$r2 =  import_bandingxml(file_get_contents($xmlname),$r);
@@ -52,15 +52,17 @@ if ($a)
 	if ($r)
 	{
 		print "<h1>" . T_("Successfully inserted new questionnaire") . "</h1>";
-		if ($r2)
+		if (isset($r2))
 		{
-			print "<h2>" . T_("Successfully loaded banding XML file") . "</h2>";
+			if ($r2)
+			{
+				print "<h2>" . T_("Successfully loaded banding XML file") . "</h2>";
+			}
+			else
+			{
+				print "<h2>" . T_("Failed to load banding XML file") . "</h2>";
+			}
 		}
-		else
-		{
-			print "<h2>" . T_("Failed to load banding XML file") . "</h2>";
-		}
-
 	}
 	else
 	{

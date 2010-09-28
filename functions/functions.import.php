@@ -115,7 +115,7 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 			
 					$db->Execute($sql);
 
-					if ($db->HasFailedTrans()) die($sql);
+					//if ($db->HasFailedTrans()) die($sql);
 				}
 				else
 				{
