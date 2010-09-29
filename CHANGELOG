@@ -1,3 +1,7 @@
+queXF 1.10.1 - Changes since 1.10.0
+
+Fixed bug: Error when creating new questionnaire without banding XML
+
 queXF 1.10.0 - Changes since 1.9.1:
 
 queXF 1.10.0 and the simultaneous release of queXML 1.3.0 streamlines the paper questionnaire creation process by being able to produce a fully banded questionnaire from queXML. Once the PDF and associated banding XML file is imported to queXF, it is possible to begin scanning completed forms immediately, and export data with full question and value labelling from the original queXML file.
