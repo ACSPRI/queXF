@@ -450,7 +450,9 @@ if (isset($_GET['pid']) && isset($_GET['qid']) && isset($_GET['zoom']))
 	
 	if (isset($_GET['bid']) && isset($_GET['btid']))
 	{
-		updateboxgroup(intval($_GET['bid']),1,intval($_GET['btid']));
+		$width = 1;
+		if (intval($_GET['btid']) == 6) $width = 1024;
+		updateboxgroup(intval($_GET['bid']),$width,intval($_GET['btid']));
 		pidtomap($pid,$zoom);
 		exit();
 	}
