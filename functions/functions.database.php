@@ -38,10 +38,9 @@ function sort_order_pageid_box($qid)
 	$db->StartTrans();
 
 	$sql = "SELECT b.bgid as bgid , p.pidentifierval, bx.tlx, bx.tly
-		FROM `boxgroupstype` AS b, pages AS p, boxgroups AS bg, boxes bx
+		FROM `boxgroupstype` AS b, pages AS p, boxes as bx
 		WHERE p.qid = '$qid'
-		AND b.bgid = bg.bgid
-		AND bg.bid = bx.bid
+		AND b.bgid = bx.bgid
 		AND bx.pid = p.pid
 		GROUP BY b.bgid
 		ORDER BY p.pidentifierval ASC , bx.tly ASC , bx.tlx ASC";
