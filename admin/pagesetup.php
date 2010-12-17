@@ -27,6 +27,7 @@ include_once("../config.inc.php");
 include_once("../db.inc.php");
 include("../functions/functions.xhtml.php");
 include("../functions/functions.image.php");
+include("../functions/functions.barcode.php");
 
 
 if (isset($_FILES['form']))
@@ -43,12 +44,42 @@ if (isset($_FILES['form']))
 }
 
 
-function definetomap($zoom)
+function definetomap($zoom,$pid,$filename)
 {
 	$tb = array('t','b');
 	$lr = array('l','r');
 	$vh = array('vert','hori');
 	$el = array('tlx','tly','brx','bry');
+
+	$image = imagecreatefrompng($filename . $pid . ".png");	
+        $offset = offset($image,0,0);
+
+	//draw lines of corner edges
+	$vert = true;
+	$linewidth = 5;
+	$lc = 0;
+	foreach($offset as $coord)
+	{
+		if ($vert == true)
+		{
+			$top = 0;
+			if ($lc > 3) $top = (PAGE_HEIGHT / $zoom) - ((PAGE_HEIGHT / 4) / $zoom);
+			//drawing a vertical line so use $coord as $x
+			print "<div style='position: absolute; top:". $top ."px; left:". ($coord / $zoom) ."px; width:". ($linewidth / $zoom) ."px; height:". ((PAGE_HEIGHT / 4) / $zoom) . "px; background-color: blue; opacity: 0.8;'></div>";
+			$vert = false;	
+		}
+		else
+		{
+			//drawing a horizontal line so use $coord as $y
+			$left = 0;
+			if ($lc == 3 || $lc == 7) $left = (PAGE_WIDTH / $zoom) - ((PAGE_WIDTH / 4) / $zoom);
+			print "<div style='position: absolute; top:". ($coord/$zoom) ."px; left:". ($left) ."px; width:". ((PAGE_WIDTH / 4) / $zoom) ."px; height:". ($linewidth / $zoom) . "px; background-color: blue; opacity: 0.8;'></div>";
+
+
+			$vert = true;
+		}	
+		$lc++;
+	}
 
 	foreach($tb as $a)
 		foreach($lr as $b)
@@ -70,8 +101,12 @@ function definetomap($zoom)
 	$tly = constant(strtoupper($vname . "tly"));
 	$brx = constant(strtoupper($vname . "brx"));
 	$bry = constant(strtoupper($vname . "bry"));					
-					
-	print "<div id='$vname'  style='position: absolute; top:" . $tly / $zoom. "px; left: " . $tlx / $zoom. "px; width:" . ($brx-$tlx)/ $zoom. "px; height:" . ($bry-$tly)/ $zoom. "px; background-color: brown; opacity: 0.6;' class='drsElement'><div class='drsMoveHandle'>" . $vname . "</div></div>";
+			
+        $barcodeimage = crop($image,array("tlx" => BARCODE_TLX, "tly" => BARCODE_TLY, "brx" => BARCODE_BRX, "bry" => BARCODE_BRY));
+	$barcode = barcode($barcodeimage);
+
+	
+	print "<div id='$vname'  style='position: absolute; top:" . $tly / $zoom. "px; left: " . $tlx / $zoom. "px; width:" . ($brx-$tlx)/ $zoom. "px; height:" . ($bry-$tly)/ $zoom. "px; background-color: brown; opacity: 0.6;' class='drsElement'><div class='drsMoveHandle'>" . $vname . "</div>$barcode</div>";
 
 }
 
@@ -175,7 +210,7 @@ if (isset($_GET['filename']))
 		print "<div id=\"imagearea\" style=\"position:relative;\">";
 		print "<div id=\"imageboxes\">";
 
-		definetomap($zoom);
+		definetomap($zoom,$pid,$_GET['filename']);
 
 		print "</div>";
 
