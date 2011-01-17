@@ -1,5 +1,5 @@
 PACKAGE = php-gettext-$(VERSION)
-VERSION = 1.0.9
+VERSION = 1.0.11
 
 DIST_FILES = \
 	gettext.php \
@@ -16,9 +16,14 @@ DIST_FILES = \
 	examples/locale/sr_CS/LC_MESSAGES/messages.mo \
 	examples/locale/de_CH/LC_MESSAGES/messages.po \
 	examples/locale/de_CH/LC_MESSAGES/messages.mo \
-	examples/update
+	examples/update \
+	tests/LocalesTest.php \
+	tests/ParsingTest.php
 
-dist:
+check:
+	phpunit --verbose tests
+
+dist: check
 	if [ -d $(PACKAGE) ]; then \
 	    rm -rf $(PACKAGE); \
 	fi; \
