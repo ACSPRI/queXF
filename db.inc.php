@@ -31,10 +31,10 @@ if (!(include_once(ADODB_DIR . 'adodb.inc.php')))
 {
 	print "<p>" . T_("ERROR: Please modify config.inc.php to point to your ADODb installation") . "</p>";
 }
-if (!(include_once(ADODB_DIR . 'session/adodb-session2.php')))
-{
-	print "<p>" . T_("ERROR: Please modify config.inc.php to point to your ADODb installation") . "</p>";
-}
+//if (!(include_once(ADODB_DIR . 'session/adodb-session2.php')))
+//{
+//	print "<p>" . T_("ERROR: Please modify config.inc.php to point to your ADODb installation") . "</p>";
+//}
 
 
 //global database variable
