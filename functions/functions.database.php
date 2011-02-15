@@ -145,14 +145,14 @@ function assign_to($vid)
 		FROM forms AS f
 		JOIN verifierquestionnaire AS v ON (v.vid = '$vid' AND f.qid = v.qid) ";
 
-	if (!MISSING_PAGES_ASSIGN){
+	if (!MISSING_PAGE_ASSIGN){
 		$sql .= " LEFT JOIN missingpages AS m ON (f.fid = m.fid) ";
 	}
 
 	$sql .= " WHERE f.done =0
 		AND f.assigned_vid IS NULL ";
 
-	if (!MISSING_PAGES_ASSIGN) {
+	if (!MISSING_PAGE_ASSIGN) {
 		$sql .= " AND m.fid IS NULL ";
 	}
 
