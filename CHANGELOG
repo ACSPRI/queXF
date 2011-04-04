@@ -1,3 +1,14 @@
+queXF 1.10.2 - changes since 1.10.1
+
+*Updated translations from Launchpad. Thank you for your translations!
+*Fixed Bug: MISSING_PAGE_ASSIGN directive was being ignored
+*Fixed Bug: Storing large sessions in the database caused performance issues so disabled
+*Fixed bug: Remove unnecessary reference to boxgroups
+*Fixed bug: Set default width for longtext to 1024
+*Compatibility fix: Removed javascript links from admin index
+*Updated to php-gettext 1.0.11
+*Page setup feature: Added drawing of detected cornerlines in blue and barcode number in barcode box for validation
+
 queXF 1.10.1 - Changes since 1.10.0
 
 Fixed bug: Error when creating new questionnaire without banding XML
