@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: quexf\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2010-04-23 12:11+1000\n"
+"POT-Creation-Date: 2010-09-23 10:28+1000\n"
 "PO-Revision-Date: 2009-06-07 18:22+0000\n"
 "Last-Translator: el_libre - http://www.catmidia.cat  "
 "XDDDDDDDDDDDDDDDDDDDDDDDDDDD <el.libre@gmail.com>\n"
@@ -15,8 +15,112 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-09-22 01:52+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Launchpad-Export-Date: 2011-04-04 06:12+0000\n"
+"X-Generator: Launchpad (build 12710)\n"
+
+#: verifyjs.php:167
+msgid "Please log in"
+msgstr ""
+
+#: verifyjs.php:284
+#: verifyjs.php:392
+msgid "Verify: No more work"
+msgstr ""
+
+#: verifyjs.php:285
+#: verifyjs.php:393
+msgid "NO MORE WORK"
+msgstr ""
+
+#: verifyjs.php:286
+#: verifyjs.php:394
+msgid "Check for more work"
+msgstr ""
+
+#: verifyjs.php:300
+msgid "Verify: Assign form"
+msgstr ""
+
+#: verifyjs.php:302
+msgid "There is no form currently assigned to you"
+msgstr ""
+
+#: verifyjs.php:303
+msgid "Assign next form"
+msgstr ""
+
+#: verifyjs.php:306
+msgid "Assigning next form: Please wait..."
+msgstr ""
+
+#: verifyjs.php:343
+msgid "Operator"
+msgstr "Operador"
+
+#: verifyjs.php:343
+msgid "Completed Forms"
+msgstr ""
+
+#: verifyjs.php:343
+msgid "Completions Per Hour"
+msgstr ""
+
+#: verifyjs.php:343
+msgid "Pages Per Hour"
+msgstr ""
+
+#: verifyjs.php:501
+msgid "Verify: Done"
+msgstr ""
+
+#: verifyjs.php:502
+#: verifyjs.php:1146
+msgid "The required fields have been filled"
+msgstr ""
+
+#: verifyjs.php:504
+#: verifyjs.php:1148
+msgid "Submit completed form to database"
+msgstr ""
+
+#: verifyjs.php:505
+#: verifyjs.php:1149
+msgid "Review all questions again"
+msgstr ""
+
+#: verifyjs.php:506
+#: verifyjs.php:1150
+msgid "Clear all entered data and review again"
+msgstr ""
+
+#: verifyjs.php:508
+#: verifyjs.php:1153
+msgid "Submitting: Please wait..."
+msgstr ""
+
+#: verifyjs.php:523
+msgid "Verifier"
+msgstr "Verificador"
+
+#: verifyjs.php:1161
+msgid "Image of page"
+msgstr ""
+
+#: verifyjs.php:1161
+msgid "form"
+msgstr "formulari"
+
+#: verifyjs.php:1170
+msgid "Centre Page"
+msgstr ""
+
+#: verifyjs.php:1172
+msgid "Loading panel..."
+msgstr ""
+
+#: verifyjs.php:1172
+msgid "Error, try with Firefox"
+msgstr ""
 
 #: index.php:30
 msgid "queXF"
@@ -30,115 +134,46 @@ msgstr "Verifica"
 msgid "Review a form"
 msgstr ""
 
-#: verifyjs.php:164
-msgid "Please log in"
+#: modifybox.php:209
+msgid "Group type:"
 msgstr ""
 
-#: verifyjs.php:281
-#: verifyjs.php:395
-msgid "Verify: No more work"
+#: modifybox.php:214
+msgid "Variable name:"
 msgstr ""
 
-#: verifyjs.php:282
-#: verifyjs.php:396
-msgid "NO MORE WORK"
+#: modifybox.php:217
+msgid "Width:"
+msgstr "Ample"
+
+#: modifybox.php:219
+msgid "Submit"
+msgstr "Envia"
+
+#: modifybox.php:221
+msgid "Delete this group"
 msgstr ""
 
-#: verifyjs.php:283
-#: verifyjs.php:397
-msgid "Check for more work"
+#: modifybox.php:222
+#: admin/bandajax.php:160
+msgid "Delete in between boxes"
 msgstr ""
 
-#: verifyjs.php:297
-msgid "Verify: Assign form"
+#: review.php:81
+msgid "Review Form"
 msgstr ""
 
-#: verifyjs.php:299
-msgid "There is no form currently assigned to you"
-msgstr ""
+#: review.php:140
+msgid "Form:"
+msgstr "Formulari:"
 
-#: verifyjs.php:300
-msgid "Assign next form"
-msgstr ""
+#: review.php:141
+msgid "Variable:"
+msgstr "Variable:"
 
-#: verifyjs.php:303
-msgid "Assigning next form: Please wait..."
-msgstr ""
-
-#: verifyjs.php:340
-msgid "Operator"
-msgstr "Operador"
-
-#: verifyjs.php:340
-msgid "Completed Forms"
-msgstr ""
-
-#: verifyjs.php:340
-msgid "Completions Per Hour"
-msgstr ""
-
-#: verifyjs.php:340
-msgid "Pages Per Hour"
-msgstr ""
-
-#: verifyjs.php:504
-msgid "Verify: Done"
-msgstr ""
-
-#: verifyjs.php:505
-#: verifyjs.php:1119
-msgid "The required fields have been filled"
-msgstr ""
-
-#: verifyjs.php:507
-#: verifyjs.php:1121
-msgid "Submit completed form to database"
-msgstr ""
-
-#: verifyjs.php:508
-#: verifyjs.php:1122
-msgid "Review all questions again"
-msgstr ""
-
-#: verifyjs.php:509
-#: verifyjs.php:1123
-msgid "Clear all entered data and review again"
-msgstr ""
-
-#: verifyjs.php:511
-#: verifyjs.php:1126
-msgid "Submitting: Please wait..."
-msgstr ""
-
-#: verifyjs.php:526
-msgid "Verifier"
-msgstr "Verificador"
-
-#: verifyjs.php:1134
-msgid "Image of page"
-msgstr ""
-
-#: verifyjs.php:1134
-msgid "form"
-msgstr "formulari"
-
-#: verifyjs.php:1143
-msgid "Centre Page"
-msgstr ""
-
-#: verifyjs.php:1145
-msgid "Loading panel..."
-msgstr ""
-
-#: verifyjs.php:1145
-msgid "Error, try with Firefox"
-msgstr ""
-
-#: db.inc.php:32
-#: db.inc.php:36
-msgid ""
-"ERROR: Please modify config.inc.php to point to your ADODb installation"
-msgstr ""
+#: review.php:142
+msgid "Page:"
+msgstr "Pàgina:"
 
 #: pagenote.php:60
 msgid "Page note:"
@@ -148,142 +183,82 @@ msgstr ""
 msgid "Add note"
 msgstr ""
 
-#: modifybox.php:228
-msgid "Group type:"
-msgstr ""
-
-#: modifybox.php:233
-msgid "Variable name:"
-msgstr ""
-
-#: modifybox.php:236
-msgid "Width:"
-msgstr "Ample"
-
-#: modifybox.php:238
-msgid "Submit"
-msgstr "Envia"
-
-#: modifybox.php:240
-msgid "Delete this group"
-msgstr ""
-
-#: modifybox.php:241
-msgid "Delete in between boxes"
-msgstr ""
-
-#: review.php:80
-msgid "Review Form"
-msgstr ""
-
-#: review.php:139
-msgid "Form:"
-msgstr "Formulari:"
-
-#: review.php:140
-msgid "Variable:"
-msgstr "Variable:"
-
-#: review.php:141
-msgid "Page:"
-msgstr "Pàgina:"
-
-#: include/php-gettext-1.0.9/examples/pigs_dropin.php:77
-#: include/php-gettext-1.0.9/examples/pigs_fallback.php:76
+#: db.inc.php:32
+#: db.inc.php:36
 msgid ""
-"This is how the story goes.\n"
-"\n"
+"ERROR: Please modify config.inc.php to point to your ADODb installation"
 msgstr ""
 
-#: functions/functions.database.php:137
-msgid "ERROR: Multiple forms assigned, please see a technical officer"
+#: admin/band.php:105
+#: admin/band.php:378
+#: admin/bandajax.php:479
+#: admin/bandajax.php:555
+msgid "Band"
 msgstr ""
 
-#: functions/functions.import.php:383
-msgid "Finding qid"
+#: admin/band.php:176
+#: admin/bandajax.php:524
+msgid "Choose another questionnaire"
 msgstr ""
 
-#: functions/functions.import.php:428
-msgid "Got qid"
+#: admin/band.php:176
+#: admin/bandajax.php:524
+msgid "Increase zoom"
 msgstr ""
 
-#: functions/functions.import.php:466
-msgid "Processing pid"
+#: admin/band.php:176
+#: admin/bandajax.php:524
+msgid "Decrease zoom"
 msgstr ""
 
-#: functions/functions.import.php:477
-msgid "Pid not identified for this page, inserting into missing pages..."
+#: admin/clientquestionnaire.php:144
+#: admin/clientquestionnaire.php:265
+msgid "Assign clients to questionnaires"
 msgstr ""
 
-#: functions/functions.import.php:528
-msgid "Blank page: ignoring"
+#: admin/bandajax.php:87
+msgid "Disable this box group"
 msgstr ""
 
-#: functions/functions.import.php:533
-msgid "Could not get pid, inserting into missing pages..."
+#: admin/bandajax.php:95
+#: admin/bandajax.php:103
+#: admin/bandajax.php:111
+#: admin/bandajax.php:119
+#: admin/bandajax.php:127
+#: admin/bandajax.php:135
+msgid "Set to type:"
 msgstr ""
 
-#: functions/functions.import.php:592
-msgid "Could not get qid..."
-msgstr ""
-
-#: functions/functions.import.php:652
-msgid ""
-"Automatically processing the 1 missing page for this form - assuming pid:"
-msgstr ""
-
-#: functions/functions.import.php:711
-msgid "Deleting missing pages as all form page slots filled"
-msgstr ""
-
-#: functions/functions.import.php:744
-msgid "File already in database"
-msgstr ""
-
-#: admin/delete.php:51
-msgid "Delete a questionnaire"
-msgstr ""
-
-#: admin/delete.php:66
-msgid "Click to delete questionnaire"
-msgstr ""
-
-#: admin/delete.php:67
-msgid ""
-"The following questionnaires have no forms associated with them so are safe "
-"to delete"
-msgstr ""
-
-#: admin/delete.php:71
-msgid "Delete"
-msgstr ""
-
-#: admin/databasestrings.php:33
-msgid "Temporary"
-msgstr "Temporal"
-
-#: admin/databasestrings.php:34
+#: admin/bandajax.php:95
 msgid "Single choice"
 msgstr ""
 
-#: admin/databasestrings.php:35
+#: admin/bandajax.php:103
 msgid "Multiple choice"
 msgstr ""
 
-#: admin/databasestrings.php:36
-msgid "Text"
-msgstr "Text"
+#: admin/bandajax.php:111
+msgid "Text and Numbers"
+msgstr ""
 
-#: admin/databasestrings.php:37
-msgid "Number"
-msgstr "Nombre"
+#: admin/bandajax.php:119
+msgid "Numbers only"
+msgstr ""
 
-#: admin/databasestrings.php:38
+#: admin/bandajax.php:127
 msgid "Barcode"
 msgstr "Codi de Barres"
 
-#: admin/databasestrings.php:39
+#: admin/bandajax.php:135
 msgid "Long text"
+msgstr ""
+
+#: admin/bandajax.php:144
+msgid "Delete this box"
+msgstr ""
+
+#: admin/bandajax.php:152
+msgid "Delete this box group"
 msgstr ""
 
 #: admin/import.directory.php:47
@@ -335,13 +310,446 @@ msgstr ""
 msgid "Outcome of last process run (if any)"
 msgstr ""
 
-#: admin/output.php:55
-msgid "Output data"
+#: admin/index.php:30
+#: admin/index.php:35
+msgid "queXF Admin Functions"
 msgstr ""
 
-#: admin/output.php:67
+#: admin/index.php:37
+msgid "Form setup"
+msgstr ""
+
+#: admin/index.php:38
+msgid "Import a new form from a PDF file"
+msgstr ""
+
+#: admin/index.php:39
+msgid "Import/Update banding from XML"
+msgstr ""
+
+#: admin/index.php:40
+msgid "Delete a form (only if no forms yet imported)"
+msgstr ""
+
+#: admin/index.php:41
+msgid "Touch-up a form"
+msgstr ""
+
+#: admin/index.php:42
+msgid "Band a form"
+msgstr ""
+
+#: admin/index.php:43
+msgid "Band a form using interactive banding"
+msgstr ""
+
+#: admin/index.php:44
+msgid "Order variables on the form"
+msgstr ""
+
+#: admin/index.php:45
+msgid "Users"
+msgstr ""
+
+#: admin/index.php:46
+msgid "Add operators"
+msgstr ""
+
+#: admin/index.php:47
+msgid "Assign forms to operators"
+msgstr ""
+
+#: admin/index.php:48
+msgid "Importing"
+msgstr ""
+
+#: admin/index.php:50
+msgid "Successfully imported files"
+msgstr ""
+
+#: admin/index.php:51
+msgid "Failed imported files"
+msgstr ""
+
+#: admin/index.php:52
+msgid "Duplicate forms"
+msgstr ""
+
+#: admin/index.php:53
+msgid "Reverify forms"
+msgstr ""
+
+#: admin/index.php:54
+msgid "List page notes"
+msgstr ""
+
+#: admin/index.php:55
+msgid "Handle missing pages"
+msgstr ""
+
+#: admin/index.php:56
+msgid "Output"
+msgstr ""
+
+#: admin/index.php:57
+#: admin/outputunverified.php:67
+msgid "Output unverified data"
+msgstr ""
+
+#: admin/index.php:58
+msgid "Output data/ddi"
+msgstr ""
+
+#: admin/index.php:59
+msgid "Progress"
+msgstr "Progrés"
+
+#: admin/index.php:60
+msgid "Display progress of form verification"
+msgstr ""
+
+#: admin/index.php:61
+msgid "Display performance of verifiers (Completions per hour)"
+msgstr ""
+
+#: admin/index.php:62
+msgid "Clients"
+msgstr ""
+
+#: admin/index.php:63
+msgid "Add clients"
+msgstr ""
+
+#: admin/index.php:64
+msgid "Assign clients to forms"
+msgstr ""
+
+#: admin/index.php:65
+msgid "System setup"
+msgstr ""
+
+#: admin/index.php:66
+#: admin/pagesetup.php:303
+msgid "Page setup"
+msgstr ""
+
+#: admin/touchup.php:84
+msgid "Go back"
+msgstr ""
+
+#: admin/touchup.php:97
+msgid "Download"
+msgstr ""
+
+#: admin/touchup.php:97
+msgid "to edit"
+msgstr ""
+
+#: admin/touchup.php:97
+msgid "Upload here"
+msgstr ""
+
+#: admin/touchup.php:100
+msgid "Upload pages"
+msgstr ""
+
+#: admin/touchup.php:112
+msgid "Touch up"
+msgstr ""
+
+#: admin/outputunverified.php:70
+#: admin/outputunverified.php:84
+#: admin/output.php:70
+#: admin/output.php:82
 msgid "Data"
 msgstr ""
+
+#: admin/outputunverified.php:71
+#: admin/outputunverified.php:84
+#: admin/output.php:71
+#: admin/output.php:82
+msgid "DDI"
+msgstr ""
+
+#: admin/outputunverified.php:72
+#: admin/outputunverified.php:84
+#: admin/output.php:72
+#: admin/output.php:82
+msgid "CSV"
+msgstr ""
+
+#: admin/outputunverified.php:73
+#: admin/outputunverified.php:84
+#: admin/output.php:73
+#: admin/output.php:82
+msgid "CSV Labelled"
+msgstr ""
+
+#: admin/outputunverified.php:74
+#: admin/outputunverified.php:84
+#: admin/output.php:74
+#: admin/output.php:82
+msgid "PSPP (SPSS)"
+msgstr ""
+
+#: admin/outputunverified.php:75
+#: admin/outputunverified.php:84
+#: admin/output.php:75
+#: admin/output.php:82
+msgid "Banding XML"
+msgstr ""
+
+#: admin/outputunverified.php:82
+msgid "Warning: the data downloaded from here is unverified"
+msgstr ""
+
+#: admin/outputunverified.php:84
+#: admin/listforms.php:70
+#: admin/listduplicates.php:49
+#: admin/reorder.php:48
+#: admin/output.php:82
+#: admin/performance.php:106
+msgid "Questionnaire"
+msgstr "Qüestionari"
+
+#: admin/missingpages.php:137
+msgid "Missing Pages"
+msgstr ""
+
+#: admin/missingpages.php:212
+msgid "Missing page"
+msgstr ""
+
+#: admin/missingpages.php:259
+msgid "Page"
+msgstr ""
+
+#: admin/missingpages.php:259
+msgid "of Form"
+msgstr ""
+
+#: admin/missingpages.php:268
+msgid "Form"
+msgstr ""
+
+#: admin/missingpages.php:273
+msgid "Accept"
+msgstr ""
+
+#: admin/missingpages.php:273
+msgid "Delete"
+msgstr ""
+
+#: admin/missingpages.php:278
+msgid "No missing pages"
+msgstr ""
+
+#: admin/pagesetup.php:78
+msgid "Set page layout"
+msgstr ""
+
+#: admin/pagesetup.php:158
+msgid "Configuration settings (copy and paste in to config.inc.php)"
+msgstr ""
+
+#: admin/pagesetup.php:304
+#: admin/new.php:74
+msgid "You will get the best results if you:"
+msgstr ""
+
+#: admin/pagesetup.php:306
+#: admin/new.php:75
+msgid ""
+"Print out the form using the same method that you will for all the printed "
+"forms"
+msgstr ""
+
+#: admin/pagesetup.php:307
+msgid ""
+"Scan the form to a PDF using the same options that you will for the filled "
+"forms"
+msgstr ""
+
+#: admin/pagesetup.php:308
+#: admin/new.php:77
+msgid "Best options for scanning in are:"
+msgstr ""
+
+#: admin/pagesetup.php:309
+#: admin/new.php:78
+msgid "Monochrome (1 bit)"
+msgstr ""
+
+#: admin/pagesetup.php:310
+#: admin/new.php:79
+msgid "300DPI Resolution"
+msgstr ""
+
+#: admin/pagesetup.php:316
+msgid "Select PDF file to upload:"
+msgstr ""
+
+#: admin/pagesetup.php:317
+#: admin/new.php:88
+msgid "Upload form"
+msgstr "Puja des de"
+
+#: admin/operators.php:34
+#: admin/operators.php:64
+msgid "Add an operator"
+msgstr ""
+
+#: admin/operators.php:49
+#: admin/clients.php:66
+msgid "Added"
+msgstr "Afegit"
+
+#: admin/operators.php:52
+#: admin/clients.php:68
+msgid "Could not add"
+msgstr ""
+
+#: admin/operators.php:52
+msgid "There may already be an operator of this name"
+msgstr ""
+
+#: admin/operators.php:65
+msgid ""
+"Adding an operator here will give the user the ability to verify forms once "
+"they have assigned a form using the"
+msgstr ""
+
+#: admin/operators.php:65
+msgid "Assign Verifier to Questionnaire"
+msgstr ""
+
+#: admin/operators.php:65
+msgid "tool"
+msgstr "eina"
+
+#: admin/operators.php:66
+msgid ""
+"Use this form to enter the username of a user based on your directory "
+"security system. For example, if you have secured the base directory of "
+"queXF using Apache file based security, enter the usernames of the users "
+"here. When the user accesses the verification page, they will uniquely be "
+"assigned a form."
+msgstr ""
+
+#: admin/operators.php:68
+msgid ""
+"Enter the username (as in the security system, eg: azammit) of an operator "
+"to add:"
+msgstr ""
+
+#: admin/operators.php:69
+msgid "Enter the name of the operator (eg Adam):"
+msgstr ""
+
+#: admin/operators.php:70
+#: admin/clients.php:88
+msgid "Add user"
+msgstr ""
+
+#: admin/listforms.php:59
+msgid "Listing of forms"
+msgstr ""
+
+#: admin/listforms.php:61
+#: admin/listforms.php:70
+msgid "Re verify"
+msgstr ""
+
+#: admin/listforms.php:70
+msgid "Form ID"
+msgstr ""
+
+#: admin/new.php:30
+msgid "Add new questionnaire"
+msgstr ""
+
+#: admin/new.php:54
+msgid "Successfully inserted new questionnaire"
+msgstr ""
+
+#: admin/new.php:57
+msgid "Successfully loaded banding XML file"
+msgstr ""
+
+#: admin/new.php:61
+msgid "Failed to load banding XML file"
+msgstr ""
+
+#: admin/new.php:67
+msgid "Failed to insert new questionnaire. Could have conflicting page id's"
+msgstr ""
+
+#: admin/new.php:73
+msgid "New questionnaire"
+msgstr ""
+
+#: admin/new.php:76
+msgid ""
+"Scan the (blank) form to a PDF using the same options that you will for the "
+"filled forms"
+msgstr ""
+
+#: admin/new.php:85
+msgid "Select PDF file to create form from"
+msgstr ""
+
+#: admin/new.php:86
+msgid "(Optional): Select banding XML file"
+msgstr ""
+
+#: admin/new.php:87
+msgid "Enter description of form"
+msgstr ""
+
+#: admin/listfiles.php:49
+msgid "Listing of imported files by status"
+msgstr ""
+
+#: admin/listfiles.php:55
+msgid "Forms successfully imported"
+msgstr ""
+
+#: admin/listfiles.php:57
+msgid "Forms not imported"
+msgstr ""
+
+#: admin/listfiles.php:68
+msgid "File"
+msgstr "Arxiu"
+
+#: admin/listfiles.php:68
+msgid "SHA1"
+msgstr "SHA1"
+
+#: admin/listfiles.php:68
+msgid "Date"
+msgstr "Data"
+
+#: admin/listfiles.php:68
+msgid "Allow import again?"
+msgstr ""
+
+#: admin/listfiles.php:70
+#: admin/reorder.php:130
+msgid "Save changes"
+msgstr ""
+
+#: admin/databasestrings.php:33
+msgid "Temporary"
+msgstr "Temporal"
+
+#: admin/databasestrings.php:36
+msgid "Text"
+msgstr "Text"
+
+#: admin/databasestrings.php:37
+msgid "Number"
+msgstr "Nombre"
 
 #: admin/listduplicates.php:31
 msgid "Listing of duplicate forms"
@@ -356,14 +764,6 @@ msgid "Forms with the same PFID are duplicates"
 msgstr ""
 
 #: admin/listduplicates.php:49
-#: admin/listforms.php:70
-#: admin/performance.php:106
-#: admin/listpagenotes.php:56
-#: admin/reorder.php:48
-msgid "Questionnaire"
-msgstr "Qüestionari"
-
-#: admin/listduplicates.php:49
 msgid "Formid"
 msgstr ""
 
@@ -371,14 +771,49 @@ msgstr ""
 msgid "PFID"
 msgstr ""
 
-#: admin/clients.php:66
-#: admin/operators.php:49
-msgid "Added"
-msgstr "Afegit"
+#: admin/process.php:54
+msgid "Processing directory"
+msgstr ""
 
-#: admin/clients.php:68
-#: admin/operators.php:52
-msgid "Could not add"
+#: admin/process.php:65
+msgid "Watching..."
+msgstr "Mirant...."
+
+#: admin/process.php:83
+msgid ""
+"Cannot process this directory - check that it is valid and permissions are "
+"correct"
+msgstr ""
+
+#: admin/reorder.php:46
+#: admin/reorder.php:83
+msgid "Reorder variables"
+msgstr ""
+
+#: admin/reorder.php:60
+msgid "Manual reorder"
+msgstr ""
+
+#: admin/reorder.php:60
+msgid "Reorder by position"
+msgstr ""
+
+#: admin/reorder.php:60
+msgid "Reorder by variable name"
+msgstr ""
+
+#: admin/reorder.php:119
+msgid ""
+"Reorder variables by dragging and dropping, then clicking on 'Save Changes' "
+"below"
+msgstr ""
+
+#: admin/reorder.php:121
+msgid "Click here"
+msgstr "Clica aquí"
+
+#: admin/reorder.php:121
+msgid "to return without saving changes"
 msgstr ""
 
 #: admin/clients.php:68
@@ -421,297 +856,43 @@ msgstr ""
 msgid "Enter the description of the client to add:"
 msgstr ""
 
-#: admin/clients.php:88
-#: admin/operators.php:70
-msgid "Add user"
-msgstr ""
-
-#: admin/verifierquestionnaire.php:106
-msgid "Assign verifier to questionnaire"
-msgstr ""
-
-#: admin/listforms.php:59
-#: admin/listpagenotes.php:45
-msgid "Listing of forms"
-msgstr ""
-
-#: admin/listforms.php:61
-#: admin/listforms.php:70
-msgid "Re verify"
-msgstr ""
-
-#: admin/listforms.php:70
-#: admin/listpagenotes.php:56
-msgid "Form ID"
-msgstr ""
-
-#: admin/index.php:30
-#: admin/index.php:35
-msgid "queXF Admin Functions"
-msgstr ""
-
-#: admin/index.php:37
-msgid "Form setup"
-msgstr ""
-
-#: admin/index.php:38
-msgid "Import a new form from a PDF file"
-msgstr ""
-
-#: admin/index.php:39
-msgid "Delete a form (only if no forms yet imported)"
-msgstr ""
-
-#: admin/index.php:40
-msgid "Touch-up a form"
-msgstr ""
-
-#: admin/index.php:41
-msgid "Band a form"
-msgstr ""
-
-#: admin/index.php:42
-msgid "Band a form using interactive banding"
-msgstr ""
-
-#: admin/index.php:43
-msgid "Order variables on the form"
-msgstr ""
-
-#: admin/index.php:44
-msgid "Users"
-msgstr ""
-
-#: admin/index.php:45
-msgid "Add operators"
-msgstr ""
-
-#: admin/index.php:46
-msgid "Assign forms to operators"
-msgstr ""
-
-#: admin/index.php:47
-msgid "Importing"
-msgstr ""
-
-#: admin/index.php:49
-msgid "Successfully imported files"
-msgstr ""
-
-#: admin/index.php:50
-msgid "Failed imported files"
-msgstr ""
-
-#: admin/index.php:51
-msgid "Duplicate forms"
-msgstr ""
-
-#: admin/index.php:52
-msgid "Reverify forms"
-msgstr ""
-
-#: admin/index.php:53
-msgid "List page notes"
-msgstr ""
-
-#: admin/index.php:54
-msgid "Handle missing pages"
-msgstr ""
-
-#: admin/index.php:55
-msgid "Output"
-msgstr ""
-
-#: admin/index.php:56
-msgid "Output data/ddi"
-msgstr ""
-
-#: admin/index.php:57
-msgid "Progress"
-msgstr "Progrés"
-
-#: admin/index.php:58
-msgid "Display progress of form verification"
-msgstr ""
-
-#: admin/index.php:59
-msgid "Display performance of verifiers (Completions per hour)"
-msgstr ""
-
-#: admin/index.php:60
-msgid "Clients"
-msgstr ""
-
-#: admin/index.php:61
-msgid "Add clients"
-msgstr ""
-
-#: admin/index.php:62
-msgid "Assign clients to forms"
-msgstr ""
-
-#: admin/index.php:63
-msgid "System setup"
-msgstr ""
-
-#: admin/index.php:64
-#: admin/pagesetup.php:303
-msgid "Page setup"
-msgstr ""
-
-#: admin/touchup.php:84
-msgid "Go back"
-msgstr ""
-
-#: admin/touchup.php:97
-msgid "Download"
-msgstr ""
-
-#: admin/touchup.php:97
-msgid "to edit"
-msgstr ""
-
-#: admin/touchup.php:97
-msgid "Upload here"
-msgstr ""
-
-#: admin/touchup.php:100
-msgid "Upload pages"
-msgstr ""
-
-#: admin/touchup.php:112
-msgid "Touch up"
-msgstr ""
-
-#: admin/bandajax.php:86
-msgid "Disable this box group"
-msgstr ""
-
-#: admin/bandajax.php:94
-#: admin/bandajax.php:102
-#: admin/bandajax.php:110
-#: admin/bandajax.php:118
-#: admin/bandajax.php:126
-#: admin/bandajax.php:134
-msgid "Set to type:"
-msgstr ""
-
-#: admin/bandajax.php:110
-msgid "Text and Numbers"
-msgstr ""
-
-#: admin/bandajax.php:118
-msgid "Numbers only"
-msgstr ""
-
-#: admin/bandajax.php:143
-msgid "Delete this box"
-msgstr ""
-
-#: admin/bandajax.php:151
-msgid "Delete this box group"
-msgstr ""
-
-#: admin/bandajax.php:507
-#: admin/bandajax.php:583
-msgid "Band"
-msgstr ""
-
-#: admin/bandajax.php:552
-msgid "Choose another questionnaire"
-msgstr ""
-
-#: admin/bandajax.php:552
-#: admin/pagesetup.php:168
-msgid "Increase zoom"
-msgstr ""
-
-#: admin/bandajax.php:552
-#: admin/pagesetup.php:171
-msgid "Decrease zoom"
-msgstr ""
-
-#: admin/testconfig.php:3
-msgid "Test Installation"
+#: admin/output.php:67
+msgid "Output data"
 msgstr ""
 
 #: admin/performance.php:33
 msgid "Performance"
 msgstr "Actuació"
 
-#: admin/missingpages.php:135
-msgid "Missing Pages"
+#: admin/verifierquestionnaire.php:106
+#: admin/verifierquestionnaire.php:227
+msgid "Assign verifier to questionnaire"
 msgstr ""
 
-#: admin/missingpages.php:210
-msgid "Missing page"
+#: admin/importbandingxml.php:30
+#: admin/importbandingxml.php:49
+msgid "Update banding from XML"
 msgstr ""
 
-#: admin/missingpages.php:257
-msgid "Page"
+#: admin/importbandingxml.php:50
+msgid "WARNING: All previous banding will be erased"
 msgstr ""
 
-#: admin/missingpages.php:257
-msgid "of Form"
+#: admin/importbandingxml.php:61
+msgid "Select banding XML file"
 msgstr ""
 
-#: admin/missingpages.php:271
-msgid "Accept"
+#: admin/importbandingxml.php:62
+msgid "Select questionnaire"
 msgstr ""
 
-#: admin/missingpages.php:276
-msgid "No missing pages"
+#: admin/importbandingxml.php:63
+msgid "Upload XML"
 msgstr ""
 
-#: admin/pagesetup.php:78
-msgid "Set page layout"
+#: admin/testconfig.php:3
+msgid "Test Installation"
 msgstr ""
-
-#: admin/pagesetup.php:158
-msgid "Configuration settings (copy and paste in to config.inc.php)"
-msgstr ""
-
-#: admin/pagesetup.php:304
-#: admin/new.php:170
-msgid "You will get the best results if you:"
-msgstr ""
-
-#: admin/pagesetup.php:306
-#: admin/new.php:171
-msgid ""
-"Print out the form using the same method that you will for all the printed "
-"forms"
-msgstr ""
-
-#: admin/pagesetup.php:307
-msgid ""
-"Scan the form to a PDF using the same options that you will for the filled "
-"forms"
-msgstr ""
-
-#: admin/pagesetup.php:308
-#: admin/new.php:173
-msgid "Best options for scanning in are:"
-msgstr ""
-
-#: admin/pagesetup.php:309
-#: admin/new.php:174
-msgid "Monochrome (1 bit)"
-msgstr ""
-
-#: admin/pagesetup.php:310
-#: admin/new.php:175
-msgid "300DPI Resolution"
-msgstr ""
-
-#: admin/pagesetup.php:316
-msgid "Select PDF file to upload:"
-msgstr ""
-
-#: admin/pagesetup.php:317
-#: admin/new.php:183
-msgid "Upload form"
-msgstr "Puja des de"
 
 #: admin/listpagenotes.php:47
 #: admin/listpagenotes.php:56
@@ -726,123 +907,18 @@ msgstr ""
 msgid "Note"
 msgstr ""
 
-#: admin/reorder.php:46
-#: admin/reorder.php:83
-msgid "Reorder variables"
+#: admin/delete.php:51
+msgid "Delete a questionnaire"
 msgstr ""
 
-#: admin/reorder.php:60
-msgid "Manual reorder"
+#: admin/delete.php:66
+msgid "Click to delete questionnaire"
 msgstr ""
 
-#: admin/reorder.php:60
-msgid "Reorder by position"
-msgstr ""
-
-#: admin/reorder.php:60
-msgid "Reorder by variable name"
-msgstr ""
-
-#: admin/reorder.php:119
+#: admin/delete.php:67
 msgid ""
-"Reorder variables by dragging and dropping, then clicking on 'Save Changes' "
-"below"
-msgstr ""
-
-#: admin/reorder.php:121
-msgid "Click here"
-msgstr "Clica aquí"
-
-#: admin/reorder.php:121
-msgid "to return without saving changes"
-msgstr ""
-
-#: admin/reorder.php:130
-msgid "Save changes"
-msgstr ""
-
-#: admin/new.php:32
-msgid "Add new questionnaire"
-msgstr ""
-
-#: admin/new.php:100
-msgid "BARCODE"
-msgstr ""
-
-#: admin/new.php:119
-msgid "INVALID - IGNORING BLANK PAGE"
-msgstr ""
-
-#: admin/new.php:160
-msgid "Successfully inserted new questionnaire"
-msgstr ""
-
-#: admin/new.php:163
-msgid "Failed to insert new questionnaire. Could have conflicting page id's"
-msgstr ""
-
-#: admin/new.php:169
-msgid "New questionnaire"
-msgstr ""
-
-#: admin/new.php:172
-msgid ""
-"Scan the (blank) form to a PDF using the same options that you will for the "
-"filled forms"
-msgstr ""
-
-#: admin/new.php:181
-msgid "Select PDF file to create form from"
-msgstr ""
-
-#: admin/new.php:182
-msgid "Enter description of form"
-msgstr ""
-
-#: admin/operators.php:34
-#: admin/operators.php:64
-msgid "Add an operator"
-msgstr ""
-
-#: admin/operators.php:52
-msgid "There may already be an operator of this name"
-msgstr ""
-
-#: admin/operators.php:65
-msgid ""
-"Adding an operator here will give the user the ability to verify forms once "
-"they have assigned a form using the"
-msgstr ""
-
-#: admin/operators.php:65
-msgid "Assign Verifier to Questionnaire"
-msgstr ""
-
-#: admin/operators.php:65
-msgid "tool"
-msgstr "eina"
-
-#: admin/operators.php:66
-msgid ""
-"Use this form to enter the username of a user based on your directory "
-"security system. For example, if you have secured the base directory of "
-"queXF using Apache file based security, enter the usernames of the users "
-"here. When the user accesses the verification page, they will uniquely be "
-"assigned a form."
-msgstr ""
-
-#: admin/operators.php:68
-msgid ""
-"Enter the username (as in the security system, eg: azammit) of an operator "
-"to add:"
-msgstr ""
-
-#: admin/operators.php:69
-msgid "Enter the name of the operator (eg Adam):"
-msgstr ""
-
-#: admin/clientquestionnaire.php:144
-msgid "Assign clients to questionnaires"
+"The following questionnaires have no forms associated with them so are safe "
+"to delete"
 msgstr ""
 
 #: admin/progress.php:55
@@ -861,46 +937,67 @@ msgstr ""
 msgid "Total"
 msgstr "Total"
 
-#: admin/process.php:54
-msgid "Processing directory"
+#: functions/functions.output.php:111
+#: functions/functions.output.php:318
+#: functions/functions.output.php:802
+msgid "unverified"
 msgstr ""
 
-#: admin/process.php:65
-msgid "Watching..."
-msgstr "Mirant...."
+#: functions/functions.database.php:137
+msgid "ERROR: Multiple forms assigned, please see a technical officer"
+msgstr ""
 
-#: admin/process.php:83
+#: functions/functions.import.php:98
+msgid "BARCODE"
+msgstr ""
+
+#: functions/functions.import.php:123
+msgid "FAILED TO IMPORT AS COULD NOT DETECT ALL PAGE EDGES FOR PAGE"
+msgstr ""
+
+#: functions/functions.import.php:129
+msgid "INVALID - IGNORING BLANK PAGE"
+msgstr ""
+
+#: functions/functions.import.php:509
+msgid "Finding qid"
+msgstr ""
+
+#: functions/functions.import.php:554
+msgid "Got qid"
+msgstr ""
+
+#: functions/functions.import.php:592
+msgid "Processing pid"
+msgstr ""
+
+#: functions/functions.import.php:603
+msgid "Pid not identified for this page, inserting into missing pages..."
+msgstr ""
+
+#: functions/functions.import.php:654
+msgid "Blank page: ignoring"
+msgstr ""
+
+#: functions/functions.import.php:659
+msgid "Could not get pid, inserting into missing pages..."
+msgstr ""
+
+#: functions/functions.import.php:718
+msgid "Could not get qid..."
+msgstr ""
+
+#: functions/functions.import.php:778
 msgid ""
-"Cannot process this directory - check that it is valid and permissions are "
-"correct"
+"Automatically processing the 1 missing page for this form - assuming pid:"
 msgstr ""
 
-#: admin/listfiles.php:49
-msgid "Listing of imported files by status"
+#: functions/functions.import.php:837
+msgid "Deleting missing pages as all form page slots filled"
 msgstr ""
 
-#: admin/listfiles.php:55
-msgid "Forms successfully imported"
-msgstr ""
-
-#: admin/listfiles.php:57
-msgid "Forms not imported"
-msgstr ""
-
-#: admin/listfiles.php:68
-msgid "File"
-msgstr "Arxiu"
-
-#: admin/listfiles.php:68
-msgid "SHA1"
-msgstr "SHA1"
-
-#: admin/listfiles.php:68
-msgid "Date"
-msgstr "Data"
-
-#: admin/listfiles.php:68
-msgid "Allow import again?"
+#: functions/functions.import.php:1005
+msgid "File already in database"
 msgstr ""
 
 #: client/index.php:32
@@ -917,6 +1014,13 @@ msgid ""
 "on the left"
 msgstr ""
 
-#: client/index.php:133
+#: client/index.php:134
 msgid "You are not authorised to review any forms"
+msgstr ""
+
+#: include/php-gettext-1.0.9/examples/pigs_dropin.php:77
+#: include/php-gettext-1.0.9/examples/pigs_fallback.php:76
+msgid ""
+"This is how the story goes.\n"
+"\n"
 msgstr ""
