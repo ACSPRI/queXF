@@ -242,41 +242,91 @@ CREATE TABLE IF NOT EXISTS `missingpages` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ocrkb`
+--
+
+CREATE TABLE IF NOT EXISTS `ocrkb` (
+  `kb` int(11) NOT NULL auto_increment,
+  `description` text collate utf8_unicode_ci NOT NULL,
+  PRIMARY KEY  (`kb`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ocrkbdata`
+--
+
+CREATE TABLE IF NOT EXISTS `ocrkbdata` (
+  `val` char(1) character set utf8 collate utf8_bin NOT NULL,
+  `m1` double NOT NULL,
+  `m2` double NOT NULL,
+  `m3` double NOT NULL,
+  `m4` double NOT NULL,
+  `m5` double NOT NULL,
+  `m6` double NOT NULL,
+  `m7` double NOT NULL,
+  `m8` double NOT NULL,
+  `m9` double NOT NULL,
+  `m10` double NOT NULL,
+  `m11` double NOT NULL,
+  `m12` double NOT NULL,
+  `m13` double NOT NULL,
+  `m14` double NOT NULL,
+  `m15` double NOT NULL,
+  `m16` double NOT NULL,
+  `v1` double NOT NULL,
+  `v2` double NOT NULL,
+  `v3` double NOT NULL,
+  `v4` double NOT NULL,
+  `v5` double NOT NULL,
+  `v6` double NOT NULL,
+  `v7` double NOT NULL,
+  `v8` double NOT NULL,
+  `v9` double NOT NULL,
+  `v10` double NOT NULL,
+  `v11` double NOT NULL,
+  `v12` double NOT NULL,
+  `v13` double NOT NULL,
+  `v14` double NOT NULL,
+  `v15` double NOT NULL,
+  `v16` double NOT NULL,
+  `kb` int(11) NOT NULL,
+  PRIMARY KEY  (`val`,`kb`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ocrtrain`
 --
 
 CREATE TABLE IF NOT EXISTS `ocrtrain` (
-  `val` char(1) collate utf8_unicode_ci NOT NULL,
-  `r1` tinyint(1) unsigned NOT NULL,
-  `r2` tinyint(1) unsigned NOT NULL,
-  `r3` tinyint(1) unsigned NOT NULL,
-  `r4` tinyint(1) unsigned NOT NULL,
-  `r5` tinyint(1) unsigned NOT NULL,
-  `r6` tinyint(1) unsigned NOT NULL,
-  `r7` tinyint(1) unsigned NOT NULL,
-  `r8` tinyint(1) unsigned NOT NULL,
-  `r9` tinyint(1) unsigned NOT NULL,
-  `r10` tinyint(1) unsigned NOT NULL,
-  `r11` tinyint(1) unsigned NOT NULL,
-  `r12` tinyint(1) unsigned NOT NULL,
-  `r13` tinyint(1) unsigned NOT NULL,
-  `r14` tinyint(1) unsigned NOT NULL,
-  `r15` tinyint(1) unsigned NOT NULL,
-  `r16` tinyint(1) unsigned NOT NULL,
-  `r17` tinyint(1) unsigned NOT NULL,
-  `r18` tinyint(1) unsigned NOT NULL,
-  `r19` tinyint(1) unsigned NOT NULL,
-  `r20` tinyint(1) unsigned NOT NULL,
-  `r21` tinyint(1) unsigned NOT NULL,
-  `r22` tinyint(1) unsigned NOT NULL,
-  `r23` tinyint(1) unsigned NOT NULL,
-  `r24` tinyint(1) unsigned NOT NULL,
-  `r25` tinyint(1) unsigned NOT NULL,
-  `ratio` tinyint(1) unsigned NOT NULL,
+  `ocrtid` bigint(20) NOT NULL auto_increment,
+  `val` char(1) character set utf8 collate utf8_bin NOT NULL,
+  `f1` double NOT NULL,
+  `f2` double NOT NULL,
+  `f3` double NOT NULL,
+  `f4` double NOT NULL,
+  `f5` double NOT NULL,
+  `f6` double NOT NULL,
+  `f7` double NOT NULL,
+  `f8` double NOT NULL,
+  `f9` double NOT NULL,
+  `f10` double NOT NULL,
+  `f11` double NOT NULL,
+  `f12` double NOT NULL,
+  `f13` double NOT NULL,
+  `f14` double NOT NULL,
+  `f15` double NOT NULL,
+  `f16` double NOT NULL,
   `fid` bigint(20) NOT NULL,
+  `vid` bigint(20) NOT NULL,
+  `bid` bigint(20) NOT NULL,
+  PRIMARY KEY  (`ocrtid`),
   KEY `character` (`val`),
-  KEY `formid` (`fid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `fid` (`fid`,`vid`,`bid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
