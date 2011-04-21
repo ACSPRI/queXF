@@ -86,7 +86,7 @@ function widthsToNW($widths,$narrow,$wide)
 {
 	//give a large tolerance
 
-	$tolerance = (($wide - $narrow) - 2) / 2;
+	$tolerance = (($wide - $narrow) - 1) / 2;
 	$string = "";
 
 	$nmin = ($narrow - $tolerance);
