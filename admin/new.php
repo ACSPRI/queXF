@@ -73,6 +73,9 @@ if ($a)
 }
 
 print "<h1>" . T_("New questionnaire") . "</h1>";
+print "<h2>" . T_("When using banding XML:") . "</h2>";
+print "<p>" . T_("You must import the original PDF and banding XML file (not a scanned version)") . "</p>";
+print "<h2>" . T_("When manually banding:") . "</h2>";
 print "<p>" . T_("You will get the best results if you:") . "</p>";
 print "<ul><li>" . T_("Print out the form using the same method that you will for all the printed forms") . "</li>";
 print "<li>" . T_("Scan the (blank) form to a PDF using the same options that you will for the filled forms") . "</li>";
