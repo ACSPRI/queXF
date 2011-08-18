@@ -538,6 +538,7 @@ var newwindow;
 $sql = "SELECT bgid
 	FROM boxgroupstype
 	WHERE pid = '$pid'
+	AND btid != 5
 	ORDER BY sortorder ASC";
 		
 $b = $db->GetAll($sql);
