@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: quexf\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2010-09-23 10:28+1000\n"
-"PO-Revision-Date: 2010-12-19 12:32+0000\n"
-"Last-Translator: Nicola Praderio <Unknown>\n"
+"PO-Revision-Date: 2011-05-06 17:51+0000\n"
+"Last-Translator: simone.sandri <lexluxsox@hotmail.it>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-04-04 06:12+0000\n"
-"X-Generator: Launchpad (build 12710)\n"
+"X-Launchpad-Export-Date: 2011-08-26 02:56+0000\n"
+"X-Generator: Launchpad (build 13779)\n"
 
 #: verifyjs.php:167
 msgid "Please log in"
@@ -24,7 +24,7 @@ msgstr "Prego effettuare il login"
 #: verifyjs.php:284
 #: verifyjs.php:392
 msgid "Verify: No more work"
-msgstr ""
+msgstr "Verifica: Nessun nuovo lavoro"
 
 #: verifyjs.php:285
 #: verifyjs.php:393
@@ -54,7 +54,7 @@ msgstr "Sto assegnando il prossimo forumulario: attendi un momento..."
 
 #: verifyjs.php:343
 msgid "Operator"
-msgstr ""
+msgstr "Operatore"
 
 #: verifyjs.php:343
 msgid "Completed Forms"
@@ -103,7 +103,7 @@ msgstr ""
 
 #: verifyjs.php:1161
 msgid "Image of page"
-msgstr ""
+msgstr "Immagine della pagina"
 
 #: verifyjs.php:1161
 msgid "form"
@@ -111,7 +111,7 @@ msgstr "Formulario"
 
 #: verifyjs.php:1170
 msgid "Centre Page"
-msgstr ""
+msgstr "Centra Pagina"
 
 #: verifyjs.php:1172
 msgid "Loading panel..."
@@ -135,7 +135,7 @@ msgstr "Controllare un formulario"
 
 #: modifybox.php:209
 msgid "Group type:"
-msgstr ""
+msgstr "Tipo di gruppo:"
 
 #: modifybox.php:214
 msgid "Variable name:"
@@ -168,11 +168,11 @@ msgstr ""
 
 #: review.php:141
 msgid "Variable:"
-msgstr ""
+msgstr "Variabile:"
 
 #: review.php:142
 msgid "Page:"
-msgstr ""
+msgstr "Pagina:"
 
 #: pagenote.php:60
 msgid "Page note:"
@@ -180,7 +180,7 @@ msgstr ""
 
 #: pagenote.php:65
 msgid "Add note"
-msgstr ""
+msgstr "Aggiungi nota"
 
 #: db.inc.php:32
 #: db.inc.php:36
@@ -193,7 +193,7 @@ msgstr ""
 #: admin/bandajax.php:479
 #: admin/bandajax.php:555
 msgid "Band"
-msgstr ""
+msgstr "Banda"
 
 #: admin/band.php:176
 #: admin/bandajax.php:524
@@ -203,12 +203,12 @@ msgstr ""
 #: admin/band.php:176
 #: admin/bandajax.php:524
 msgid "Increase zoom"
-msgstr ""
+msgstr "Aumenta l'ingrandimento"
 
 #: admin/band.php:176
 #: admin/bandajax.php:524
 msgid "Decrease zoom"
-msgstr ""
+msgstr "Diminuisci l'ingrandimento"
 
 #: admin/clientquestionnaire.php:144
 #: admin/clientquestionnaire.php:265
@@ -230,23 +230,23 @@ msgstr ""
 
 #: admin/bandajax.php:95
 msgid "Single choice"
-msgstr ""
+msgstr "Scelta singola"
 
 #: admin/bandajax.php:103
 msgid "Multiple choice"
-msgstr ""
+msgstr "Scelta multipla"
 
 #: admin/bandajax.php:111
 msgid "Text and Numbers"
-msgstr ""
+msgstr "Testo e Numeri"
 
 #: admin/bandajax.php:119
 msgid "Numbers only"
-msgstr ""
+msgstr "Solo numeri"
 
 #: admin/bandajax.php:127
 msgid "Barcode"
-msgstr ""
+msgstr "Codice a barre"
 
 #: admin/bandajax.php:135
 msgid "Long text"
@@ -267,11 +267,11 @@ msgstr ""
 
 #: admin/import.directory.php:49
 msgid "Process"
-msgstr ""
+msgstr "Processo"
 
 #: admin/import.directory.php:49
 msgid "running..."
-msgstr ""
+msgstr "in esecuzione..."
 
 #: admin/import.directory.php:53
 msgid "Kill signal sent: Please wait..."
