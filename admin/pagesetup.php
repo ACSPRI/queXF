@@ -223,7 +223,7 @@ if (isset($_GET['done']))
 		//no errors
 		xhtml_head(T_("Set page layout"));
 		print "<div>" . T_("Page layout has been updated") . "</div>";
-		print "<div><a href='bandjs.php?qid=$qid'>" . T_("Continue with banding") . "</a></div>";
+		print "<div><a href='bandajax.php?qid=$qid'>" . T_("Continue with banding") . "</a></div>";
 		xhtml_foot();
 		die();
 	}	
