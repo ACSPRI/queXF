@@ -1,11 +1,19 @@
-Added new feature: Page setup now on a form by form basis - only requirement
-is that the area of a page where a barcode belongs is specified, and that the
-barcode length (number of characters) is specified.
+queXF 1.11.0 - Changes since queXF 1.10.2
+
+*Fixed Bug: Cannot verify when barcode selected on page
+*Fixed Bug: Barcode tolerance is set to as close as possible
+
+*Added new feature: Page setup now on a form by form basis - only requirement
+is that the area of a page where a barcode belongs is specified 
+(see BARCODE_TLX_PORTION, BARCODE_TLY_PORTION..etc), and that the
+barcode length (see BARCODE_LENGTH_PID) is specified.
 
 Once queXF detects the barcode it uses the stored page location details to
-determine the page edges
+determine the page edges.
 
-Page setup will now become part of the form importation process
+Page setup is now part of the form importation process.
+
+Here are the changes required to the database from the previous version:
 
 ALTER TABLE `formpages` ADD `width` INT( 11 ) NOT NULL DEFAULT '0',
 ADD `height` INT( 11 ) NOT NULL DEFAULT '0';
@@ -47,7 +55,6 @@ ADD `BR_HORI_BRY` INT( 11 ) NOT NULL DEFAULT '3384',
 ADD `VERT_WIDTH` INT( 11 ) NOT NULL DEFAULT '6',
 ADD `HORI_WIDTH` INT( 11 ) NOT NULL DEFAULT '6';
 
-*Fixed Bug: Cannot verify when barcode selected on page
 
 queXF 1.10.2 - changes since 1.10.1
 
