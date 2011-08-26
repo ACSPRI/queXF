@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: queXF\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-23 10:28+1000\n"
+"POT-Creation-Date: 2011-08-26 12:49+1000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Adam Zammit <adam.zammit@acspri.org.au>\n"
 "Language-Team: \n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Poedit-Basepath: /misc/htdocsactive/quexf/\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: verifyjs.php:167
+#: verifyjs.php:171
 msgid "Please log in"
 msgstr ""
 
@@ -70,27 +70,27 @@ msgid "Verify: Done"
 msgstr ""
 
 #: verifyjs.php:502
-#: verifyjs.php:1146
+#: verifyjs.php:1147
 msgid "The required fields have been filled"
 msgstr ""
 
 #: verifyjs.php:504
-#: verifyjs.php:1148
+#: verifyjs.php:1149
 msgid "Submit completed form to database"
 msgstr ""
 
 #: verifyjs.php:505
-#: verifyjs.php:1149
+#: verifyjs.php:1150
 msgid "Review all questions again"
 msgstr ""
 
 #: verifyjs.php:506
-#: verifyjs.php:1150
+#: verifyjs.php:1151
 msgid "Clear all entered data and review again"
 msgstr ""
 
 #: verifyjs.php:508
-#: verifyjs.php:1153
+#: verifyjs.php:1154
 msgid "Submitting: Please wait..."
 msgstr ""
 
@@ -98,23 +98,23 @@ msgstr ""
 msgid "Verifier"
 msgstr ""
 
-#: verifyjs.php:1161
+#: verifyjs.php:1162
 msgid "Image of page"
 msgstr ""
 
-#: verifyjs.php:1161
+#: verifyjs.php:1162
 msgid "form"
 msgstr ""
 
-#: verifyjs.php:1170
+#: verifyjs.php:1171
 msgid "Centre Page"
 msgstr ""
 
-#: verifyjs.php:1172
+#: verifyjs.php:1173
 msgid "Loading panel..."
 msgstr ""
 
-#: verifyjs.php:1172
+#: verifyjs.php:1173
 msgid "Error, try with Firefox"
 msgstr ""
 
@@ -180,29 +180,28 @@ msgid "Add note"
 msgstr ""
 
 #: db.inc.php:32
-#: db.inc.php:36
 msgid "ERROR: Please modify config.inc.php to point to your ADODb installation"
 msgstr ""
 
 #: admin/band.php:105
 #: admin/band.php:378
-#: admin/bandajax.php:479
-#: admin/bandajax.php:555
+#: admin/bandajax.php:481
+#: admin/bandajax.php:557
 msgid "Band"
 msgstr ""
 
 #: admin/band.php:176
-#: admin/bandajax.php:524
+#: admin/bandajax.php:526
 msgid "Choose another questionnaire"
 msgstr ""
 
 #: admin/band.php:176
-#: admin/bandajax.php:524
+#: admin/bandajax.php:526
 msgid "Increase zoom"
 msgstr ""
 
 #: admin/band.php:176
-#: admin/bandajax.php:524
+#: admin/bandajax.php:526
 msgid "Decrease zoom"
 msgstr ""
 
@@ -424,7 +423,7 @@ msgid "System setup"
 msgstr ""
 
 #: admin/index.php:66
-#: admin/pagesetup.php:303
+#: admin/pagesetup.php:433
 msgid "Page setup"
 msgstr ""
 
@@ -539,50 +538,29 @@ msgstr ""
 msgid "No missing pages"
 msgstr ""
 
-#: admin/pagesetup.php:78
+#: admin/pagesetup.php:206
+msgid "Cannot detect page edge on page"
+msgstr ""
+
+#: admin/pagesetup.php:224
+#: admin/pagesetup.php:234
 msgid "Set page layout"
 msgstr ""
 
-#: admin/pagesetup.php:158
-msgid "Configuration settings (copy and paste in to config.inc.php)"
+#: admin/pagesetup.php:225
+msgid "Page layout has been updated"
 msgstr ""
 
-#: admin/pagesetup.php:304
-#: admin/new.php:74
-msgid "You will get the best results if you:"
+#: admin/pagesetup.php:226
+msgid "Continue with banding"
 msgstr ""
 
-#: admin/pagesetup.php:306
-#: admin/new.php:75
-msgid "Print out the form using the same method that you will for all the printed forms"
+#: admin/pagesetup.php:287
+msgid "Copy settings from this page to all other pages"
 msgstr ""
 
-#: admin/pagesetup.php:307
-msgid "Scan the form to a PDF using the same options that you will for the filled forms"
-msgstr ""
-
-#: admin/pagesetup.php:308
-#: admin/new.php:77
-msgid "Best options for scanning in are:"
-msgstr ""
-
-#: admin/pagesetup.php:309
-#: admin/new.php:78
-msgid "Monochrome (1 bit)"
-msgstr ""
-
-#: admin/pagesetup.php:310
-#: admin/new.php:79
-msgid "300DPI Resolution"
-msgstr ""
-
-#: admin/pagesetup.php:316
-msgid "Select PDF file to upload:"
-msgstr ""
-
-#: admin/pagesetup.php:317
-#: admin/new.php:88
-msgid "Upload form"
+#: admin/pagesetup.php:289
+msgid "Finished page setup"
 msgstr ""
 
 #: admin/operators.php:34
@@ -650,40 +628,80 @@ msgstr ""
 msgid "Add new questionnaire"
 msgstr ""
 
-#: admin/new.php:54
+#: admin/new.php:55
 msgid "Successfully inserted new questionnaire"
 msgstr ""
 
-#: admin/new.php:57
+#: admin/new.php:61
 msgid "Successfully loaded banding XML file"
 msgstr ""
 
-#: admin/new.php:61
+#: admin/new.php:65
 msgid "Failed to load banding XML file"
 msgstr ""
 
-#: admin/new.php:67
+#: admin/new.php:71
+msgid "Continue by setting up page edge detection (page setup)"
+msgstr ""
+
+#: admin/new.php:78
 msgid "Failed to insert new questionnaire. Could have conflicting page id's"
 msgstr ""
 
-#: admin/new.php:73
+#: admin/new.php:84
 msgid "New questionnaire"
 msgstr ""
 
-#: admin/new.php:76
-msgid "Scan the (blank) form to a PDF using the same options that you will for the filled forms"
-msgstr ""
-
 #: admin/new.php:85
-msgid "Select PDF file to create form from"
+msgid "When using banding XML:"
 msgstr ""
 
 #: admin/new.php:86
-msgid "(Optional): Select banding XML file"
+msgid "You must import the original PDF and banding XML file (not a scanned version)"
 msgstr ""
 
 #: admin/new.php:87
+msgid "When manually banding:"
+msgstr ""
+
+#: admin/new.php:88
+msgid "You will get the best results if you:"
+msgstr ""
+
+#: admin/new.php:89
+msgid "Print out the form using the same method that you will for all the printed forms"
+msgstr ""
+
+#: admin/new.php:90
+msgid "Scan the (blank) form to a PDF using the same options that you will for the filled forms"
+msgstr ""
+
+#: admin/new.php:91
+msgid "Best options for scanning in are:"
+msgstr ""
+
+#: admin/new.php:92
+msgid "Monochrome (1 bit)"
+msgstr ""
+
+#: admin/new.php:93
+msgid "300DPI Resolution"
+msgstr ""
+
+#: admin/new.php:99
+msgid "Select PDF file to create form from"
+msgstr ""
+
+#: admin/new.php:100
+msgid "(Optional): Select banding XML file"
+msgstr ""
+
+#: admin/new.php:101
 msgid "Enter description of form"
+msgstr ""
+
+#: admin/new.php:102
+msgid "Upload form"
 msgstr ""
 
 #: admin/listfiles.php:49
@@ -839,23 +857,23 @@ msgid "Assign verifier to questionnaire"
 msgstr ""
 
 #: admin/importbandingxml.php:30
-#: admin/importbandingxml.php:49
+#: admin/importbandingxml.php:48
 msgid "Update banding from XML"
 msgstr ""
 
-#: admin/importbandingxml.php:50
+#: admin/importbandingxml.php:49
 msgid "WARNING: All previous banding will be erased"
 msgstr ""
 
-#: admin/importbandingxml.php:61
+#: admin/importbandingxml.php:60
 msgid "Select banding XML file"
 msgstr ""
 
-#: admin/importbandingxml.php:62
+#: admin/importbandingxml.php:61
 msgid "Select questionnaire"
 msgstr ""
 
-#: admin/importbandingxml.php:63
+#: admin/importbandingxml.php:62
 msgid "Upload XML"
 msgstr ""
 
@@ -910,59 +928,59 @@ msgstr ""
 msgid "unverified"
 msgstr ""
 
-#: functions/functions.database.php:137
+#: functions/functions.database.php:136
 msgid "ERROR: Multiple forms assigned, please see a technical officer"
 msgstr ""
 
-#: functions/functions.import.php:98
+#: functions/functions.import.php:117
 msgid "BARCODE"
 msgstr ""
 
-#: functions/functions.import.php:123
-msgid "FAILED TO IMPORT AS COULD NOT DETECT ALL PAGE EDGES FOR PAGE"
-msgstr ""
-
-#: functions/functions.import.php:129
+#: functions/functions.import.php:205
 msgid "INVALID - IGNORING BLANK PAGE"
 msgstr ""
 
-#: functions/functions.import.php:509
+#: functions/functions.import.php:225
+msgid "Failed to import as no pages were detected"
+msgstr ""
+
+#: functions/functions.import.php:593
 msgid "Finding qid"
 msgstr ""
 
-#: functions/functions.import.php:554
+#: functions/functions.import.php:655
 msgid "Got qid"
 msgstr ""
 
-#: functions/functions.import.php:592
+#: functions/functions.import.php:711
 msgid "Processing pid"
 msgstr ""
 
-#: functions/functions.import.php:603
+#: functions/functions.import.php:722
 msgid "Pid not identified for this page, inserting into missing pages..."
 msgstr ""
 
-#: functions/functions.import.php:654
+#: functions/functions.import.php:773
 msgid "Blank page: ignoring"
 msgstr ""
 
-#: functions/functions.import.php:659
+#: functions/functions.import.php:778
 msgid "Could not get pid, inserting into missing pages..."
 msgstr ""
 
-#: functions/functions.import.php:718
+#: functions/functions.import.php:837
 msgid "Could not get qid..."
 msgstr ""
 
-#: functions/functions.import.php:778
+#: functions/functions.import.php:897
 msgid "Automatically processing the 1 missing page for this form - assuming pid:"
 msgstr ""
 
-#: functions/functions.import.php:837
+#: functions/functions.import.php:956
 msgid "Deleting missing pages as all form page slots filled"
 msgstr ""
 
-#: functions/functions.import.php:1005
+#: functions/functions.import.php:1138
 msgid "File already in database"
 msgstr ""
 
@@ -982,8 +1000,8 @@ msgstr ""
 msgid "You are not authorised to review any forms"
 msgstr ""
 
-#: include/php-gettext-1.0.9/examples/pigs_dropin.php:77
-#: include/php-gettext-1.0.9/examples/pigs_fallback.php:76
+#: include/php-gettext-1.0.11/examples/pigs_dropin.php:77
+#: include/php-gettext-1.0.11/examples/pigs_fallback.php:76
 msgid ""
 "This is how the story goes.\n"
 "\n"
