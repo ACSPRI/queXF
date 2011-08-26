@@ -49,9 +49,11 @@ if (isset($_FILES['form']))
 
 if ($a)
 {
+	$suc = false;
 	if ($r)
 	{
 		print "<h1>" . T_("Successfully inserted new questionnaire") . "</h1>";
+		$suc = true;
 		if (isset($r2))
 		{
 			if ($r2)
@@ -61,7 +63,14 @@ if ($a)
 			else
 			{
 				print "<h2>" . T_("Failed to load banding XML file") . "</h2>";
+				$suc = false;
 			}
+		}
+		if ($suc == true)
+		{
+			print "<div><a href='pagesetup.php?qid=$r'>" . T_("Continue by setting up page edge detection (page setup)") . "</a></div>";
+			xhtml_foot();
+			die();
 		}
 	}
 	else
