@@ -156,6 +156,13 @@ if (!defined('BARCODE_TLY')) define('BARCODE_TLY',1); //Top left Y
 if (!defined('BARCODE_BRX')) define('BARCODE_BRX',2335); //Bottom right X
 if (!defined('BARCODE_BRY')) define('BARCODE_BRY',330); //Bottom right Y
 
+//Barcode positions on page defined as portions of the page
+//Defaults to the top right hand side of the page, from half the page width down to 20% of the height of the page
+if (!defined('BARCODE_TLX_PORTION')) define('BARCODE_TLX_PORTION',0.5); //Top left X
+if (!defined('BARCODE_TLY_PORTION')) define('BARCODE_TLY_PORTION',0); //Top left Y
+if (!defined('BARCODE_BRX_PORTION')) define('BARCODE_BRX_PORTION',1); //Bottom right X
+if (!defined('BARCODE_BRY_PORTION')) define('BARCODE_BRY_PORTION',0.2); //Bottom right Y
+
 //Line widths
 if (!defined('VAS_LENGTH_MIN')) define('VAS_LENGTH_MIN',1200); //Length in pixels of a VAS line
 if (!defined('VAS_LENGTH_MAX')) define('VAS_LENGTH_MAX',1236); //Length in pixels of a VAS line
