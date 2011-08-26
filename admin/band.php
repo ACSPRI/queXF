@@ -176,21 +176,21 @@ if (isset($_GET['qid']))
 		print " <a href=\"band.php?zoom=$zoom\">" . T_("Choose another questionnaire") . "</a> <a href=\"band.php?zoom=$zoomup&amp;qid=$qid&amp;pid=$pid\">" . T_("Increase zoom") . "</a> <a href=\"band.php?zoom=$zoomdown&amp;qid=$qid&amp;pid=$pid\">" . T_("Decrease zoom") . "</a><br/> ";
 
 		//print all available pages as a link google style
-		$sql = "SELECT pid
+		$sql = "SELECT pid,width,height
 			FROM pages
 			WHERE qid = $qid";
 
-		$pages = $db->GetAll($sql);
+		$pages = $db->GetAssoc($sql);
 
 		$p = 1;
-		foreach($pages as $page)
+		foreach($pages as $key => $page)
 		{
-			if ($page['pid'] == $pid)
+			if ($key == $pid)
 			{	
 				print " <span style=\"font-size:150%;\">$p</span> ";
 			}else
 			{
-				print " <a href=\"band.php?pid={$page['pid']}&amp;qid=$qid&amp;zoom=$zoom\">$p</a> ";
+				print " <a href=\"band.php?pid={$key}&amp;qid=$qid&amp;zoom=$zoom\">$p</a> ";
 			}
 			$p++;
 		}
@@ -301,8 +301,8 @@ if (isset($_GET['qid']))
 				print "<div id=\"boxGroup\" style=\"position:absolute; top:{$scoords[0]}px; width:1px; height:1px; background-color: white;opacity:.0;\"></div>";
 
 				print "<a href=\"band.php?pid=$pid&amp;qid=$qid&amp;zoom=$zoom&amp;start=\">";
-				$w = floor(PAGE_WIDTH / $zoom);
-				$h = floor(PAGE_HEIGHT / $zoom);
+				$w = floor($pages[$pid]['width'] / $zoom);
+				$h = floor($pages[$pid]['height'] / $zoom);
 				print "<img id=\"sampleid\" src=\"../showpage.php?pid=$pid\" style=\"border:0\" width=\"$w\" height=\"$h\" ismap=\"ismap\"  alt=\"page image\"/>";
 				print "</a>";
 				print "</div>";
@@ -316,8 +316,8 @@ if (isset($_GET['qid']))
 				pidtomap($pid,$zoom);
 				print "<div id=\"boxGroup\" style=\"position:absolute; top:{$scoords[0]}px; width:1px; height:1px; background-color: white;opacity:.0;\"></div>";
 				print "<a href=\"band.php?pid=$pid&amp;qid=$qid&amp;zoom=$zoom&amp;start=?{$scoords[0]},{$scoords[1]}&amp;map=\">";
-				$w = floor(PAGE_WIDTH / $zoom);
-				$h = floor(PAGE_HEIGHT / $zoom);
+				$w = floor($pages[$pid]['width'] / $zoom);
+				$h = floor($pages[$pid]['height'] / $zoom);
 				print "<img id=\"sampleid\"  src=\"../showpage.php?pid=$pid\" style=\"border:0\" width=\"$w\" height=\"$h\" ismap=\"ismap\"  alt=\"page image\" />";
 				print "</a>";
 				print "</div>";
@@ -331,8 +331,8 @@ if (isset($_GET['qid']))
 			print "<div id=\"tmp\" style=\"position:relative;\">";
 			pidtomap($pid,$zoom);
 			print "<a href=\"band.php?pid=$pid&amp;qid=$qid&amp;zoom=$zoom&amp;start=\">";
-			$w = floor(PAGE_WIDTH / $zoom);
-			$h = floor(PAGE_HEIGHT / $zoom);
+			$w = floor($pages[$pid]['width'] / $zoom);
+			$h = floor($pages[$pid]['height'] / $zoom);
 			print "<img id=\"sampleid\"  src=\"../showpage.php?pid=$pid\" style=\"border:0\" width=\"$w\" height=\"$h\" ismap=\"ismap\" alt=\"page image\"/>";
 			print "</a>";
 			

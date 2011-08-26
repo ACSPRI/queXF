@@ -47,11 +47,15 @@ function bgidtocss($zoom = 1,$fid,$pid)
 
 	$boxgroups = $db->GetAll($sql);
 
-	$sql = "SELECT offx,offy,centroidx,centroidy,costheta,sintheta,scalex,scaley
+	$sql = "SELECT offx,offy,centroidx,centroidy,costheta,sintheta,scalex,scaley,width,height
 		FROM formpages as f
 		WHERE f.pid = $pid and f.fid = $fid";
 	
 	$row = $db->GetRow($sql);
+
+	//fix for upgrades
+	if ($row['width'] == 0) $row['width'] = PAGE_WIDTH;
+	if ($row['height'] == 0) $row['height'] = PAGE_HEIGHT;
 
 	$sql = "SELECT b.bid
 		FROM boxes as b, boxgroupstype as bg
@@ -172,15 +176,11 @@ $fid = get_fid($vid);
 if (isset($_GET['centre']) && isset($_GET['fid']) && isset($_GET['pid']) )
 {
 	$pid = $_GET['pid'];
-	$cx = round(PAGE_WIDTH / 2);
-	$cy = round(PAGE_HEIGHT / 2);
 
 	$sql = "UPDATE formpages
-		SET offx = 0, offy = 0, costheta = 1, sintheta = 0, scalex = 1, scaley = 1, `centroidy` = '$cy', `centroidx` = '$cx'
+		SET offx = 0, offy = 0, costheta = 1, sintheta = 0, scalex = 1, scaley = 1, `centroidy` = (SELECT height / 2 FROM pages WHERE pid = '$pid'), `centroidx` = (SELECT width / 2 FROM pages WHERE pid = '$pid') 
 		WHERE fid = '$fid'
 		AND pid = '$pid'";
-
-	
 
 	$db->Execute($sql);
 }
@@ -378,7 +378,7 @@ if (!isset($_SESSION['boxes'])) {
 		GROUP BY bg.bgid
 		ORDER BY bg.sortorder ASC";
 
-	$sql3 = "SELECT b.pid,b.bgid,0 as done
+	$sql3 = "SELECT b.pid,b.bgid,0 as done, p.width, p.height
 		FROM boxes as b, pages as p, boxgroupstype as bg
 		WHERE p.qid = '$qid'
 		AND b.pid = p.pid
@@ -1160,7 +1160,7 @@ else
 	
 	//show content
 	print "<div style=\"position:relative;\"><img src=\"showpage.php?pid=$pid&amp;fid=$fid\" style=\"width:" . DISPLAY_PAGE_WIDTH . "px;\" alt=\"" . T_("Image of page") . " $pid, " . T_("form") . " $fid\" />";
-	bgidtocss((PAGE_WIDTH/DISPLAY_PAGE_WIDTH),$fid,$pid);
+	bgidtocss(($_SESSION['pages'][$pid]['width']/DISPLAY_PAGE_WIDTH),$fid,$pid);
 	print "</div>";
 	print "</div>";
 

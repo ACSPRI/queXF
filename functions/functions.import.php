@@ -64,6 +64,8 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 
 	$qid = $db->Insert_Id();
 
+	//Number of imported pages
+	$pages = 0;
 
 	//read pages from 1 to n - stop when n does not exist
 	$n = 1;
@@ -87,7 +89,23 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 			$data = ob_get_contents();
 			ob_end_clean();
 
-			$barcode = crop($image,array("tlx" => BARCODE_TLX, "tly" => BARCODE_TLY, "brx" => BARCODE_BRX, "bry" => BARCODE_BRY));
+			$width = imagesx($image);
+			$height = imagesy($image);
+
+			$btlx = floor(BARCODE_TLX_PORTION * $width);
+			if ($btlx <= 0) $btlx = 1;
+			
+			$btly = floor(BARCODE_TLY_PORTION * $height);
+			if ($btly <= 0) $btly = 1;
+
+			$bbrx = floor(BARCODE_BRX_PORTION * $width);
+			if ($bbrx <= 0) $bbrx = 1;
+
+			$bbry = floor(BARCODE_BRY_PORTION * $height);
+			if ($bbry <= 0) $bbry = 1;
+
+
+			$barcode = crop($image,array("tlx" => $btlx, "tly" => $btly, "brx" => $bbrx, "bry" => $bbry));
 
 			//imagepng($barcode,"/mnt/iss/tmp/temp$n.png");
 
@@ -95,34 +113,92 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 			$pid = barcode($barcode,1,BARCODE_LENGTH_PID);
 			if ($pid)
 			{
+				$pages++;
 				print "<p>" . T_("BARCODE") . ": $pid</p>";
+
+				//Don't do these calculations when importing as they need to be set up after the fact
 	
 				//calc offset
-				$offset = offset($image,0,0);
+				//$offset = offset($image,0,0);
 
 				//check if any edges were not detected
-				if (!in_array("",$offset))
-				{
+				//if (!in_array("",$offset))
+				//{
 					//calc rotation
-					$rotation = calcrotate($offset);
+					//$rotation = calcrotate($offset);
+
+					$width = imagesx($image);
+					$height = imagesy($image);
 		
 					//save image to db including offset and rotation
+					//$sql = "INSERT INTO pages
+					//	(pid,qid,pidentifierbgid,pidentifierval,tlx,tly,trx,try,blx,bly,brx,bry,image,rotation,width,height)
+					//	VALUES (NULL,'$qid','1','$pid','{$offset[0]}','{$offset[1]}','{$offset[2]}','{$offset[3]}','{$offset[4]}','{$offset[5]}','{$offset[6]}','{$offset[7]}','" . addslashes($data) . "','$rotation','$width','$height')";
+
 					$sql = "INSERT INTO pages
-						(pid,qid,pidentifierbgid,pidentifierval,tlx,tly,trx,try,blx,bly,brx,bry,image,rotation)
-						VALUES (NULL,'$qid','1','$pid','{$offset[0]}','{$offset[1]}','{$offset[2]}','{$offset[3]}','{$offset[4]}','{$offset[5]}','{$offset[6]}','{$offset[7]}','" . addslashes($data) . "','$rotation')";
+						(pid,qid,pidentifierbgid,pidentifierval,tlx,tly,trx,try,blx,bly,brx,bry,image,rotation,width,height)
+						VALUES (NULL,'$qid','1','$pid','1','1','1','1','1','1','1','1','" . addslashes($data) . "','0','$width','$height')";
+					
+					$db->Execute($sql);
+			
+					$tb = array('t','b');
+					$lr = array('l','r');
+					$vh = array('vert','hori');
+					$ex = array('tlx','brx');
+					$ey = array('tly','bry');
+					foreach($tb as $a)
+						foreach($lr as $b)
+							foreach($vh as $c)					
+							{
+								$vname = "$a$b" . "_" . $c ."_";
+								$tlx = constant(strtoupper($vname . "tlx"));
+								$tly = constant(strtoupper($vname . "tly"));
+								$brx = constant(strtoupper($vname . "brx"));
+								$bry = constant(strtoupper($vname . "bry"));					
+								
+								foreach($ex as $d)
+								{
+									$vn = strtoupper($vname . $d);
+									$val = constant($vn);
+									if ($val <= 0) $val = 1;
+									if ($val >= $width) $val = $width - 1;
+									
+									$sql = "UPDATE pages
+										SET `$vn` = '$val'
+										WHERE qid = '$qid' and pidentifierval LIKE '$pid'";
+								
+									$db->Execute($sql);
+								}
+
+								foreach($ey as $d)
+								{
+									$vn = strtoupper($vname . $d);
+									$val = constant($vn);
+									if ($val <= 0) $val = 1;
+									if ($val >= $height) $val = $height - 1;
+									
+									$sql = "UPDATE pages
+										SET `$vn` = '$val'
+										WHERE qid = '$qid' and pidentifierval LIKE '$pid'";
+								
+									$db->Execute($sql);
+								}
+
+							}
+
+
 			
 					//print $sql;
 			
-					$db->Execute($sql);
 
 					//if ($db->HasFailedTrans()) die($sql);
-				}
-				else
-				{
-					$db->FailTrans();
-					print "<p>" . T_("FAILED TO IMPORT AS COULD NOT DETECT ALL PAGE EDGES FOR PAGE") . ":$n</p>";
-					break 2;
-				}
+				//}
+				//else
+				//{
+				//	$db->FailTrans();
+				//	print "<p>" . T_("FAILED TO IMPORT AS COULD NOT DETECT ALL PAGE EDGES FOR PAGE") . ":$n</p>";
+				//	break 2;
+				//}
 	
 			}
 			else
@@ -141,6 +217,14 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 		unset($images);
 	}
 
+
+	//no pages were imported - fail
+	if ($pages <= 0)
+	{
+		$db->FailTrans();
+		print "<p>" . T_("Failed to import as no pages were detected") . "</p>";
+	}
+	
 
 	//check if we have created conflicting
 
@@ -517,7 +601,24 @@ function import($filename,$description = false)
 
 		foreach($images as $image)
 		{
-			$barcode = crop($image,array("tlx" => BARCODE_TLX, "tly" => BARCODE_TLY, "brx" => BARCODE_BRX, "bry" => BARCODE_BRY));
+
+			$width = imagesx($image);
+			$height = imagesy($image);
+
+			$btlx = floor(BARCODE_TLX_PORTION * $width);
+			if ($btlx <= 0) $btlx = 1;
+			
+			$btly = floor(BARCODE_TLY_PORTION * $height);
+			if ($btly <= 0) $btly = 1;
+
+			$bbrx = floor(BARCODE_BRX_PORTION * $width);
+			if ($bbrx <= 0) $bbrx = 1;
+
+			$bbry = floor(BARCODE_BRY_PORTION * $height);
+			if ($bbry <= 0) $bbry = 1;
+
+
+			$barcode = crop($image,array("tlx" => $btlx, "tly" => $btly, "brx" => $bbrx, "bry" => $bbry));
 
 			//check for barcode
 			$pid = barcode($barcode,1,BARCODE_LENGTH_PID);
@@ -584,9 +685,27 @@ function import($filename,$description = false)
 				$data = ob_get_contents();
 				ob_end_clean();
 
+				$width = imagesx($image);
+				$height = imagesy($image);
+	
+				$btlx = floor(BARCODE_TLX_PORTION * $width);
+				if ($btlx <= 0) $btlx = 1;
+				
+				$btly = floor(BARCODE_TLY_PORTION * $height);
+				if ($btly <= 0) $btly = 1;
+	
+				$bbrx = floor(BARCODE_BRX_PORTION * $width);
+				if ($bbrx <= 0) $bbrx = 1;
+	
+				$bbry = floor(BARCODE_BRY_PORTION * $height);
+				if ($bbry <= 0) $bbry = 1;
+	
+
 				//check for barcode
-				$barcode = crop($image,array("tlx" => BARCODE_TLX, "tly" => BARCODE_TLY, "brx" => BARCODE_BRX, "bry" => BARCODE_BRY));
+				$barcode = crop($image,array("tlx" => $btlx, "tly" => $btly, "brx" => $bbrx, "bry" => $bbry));
+				
 				$pid = barcode($barcode,1,BARCODE_LENGTH_PID);
+
 				if ($pid)
 				{
 					print "<p>" . T_("Processing pid") . ": $pid...</p>";
@@ -929,7 +1048,7 @@ function import_bandingxml($xml,$qid,$erase = false)
 			$sql = "SELECT pid
 				FROM pages
 				WHERE qid = '$qid'
-				ANd pidentifierval LIKE '$id'";
+				AND pidentifierval LIKE '$id'";
 
 			$rs = $db->GetRow($sql);
 		
@@ -943,7 +1062,21 @@ function import_bandingxml($xml,$qid,$erase = false)
 			else
 				$pid = $rs['pid'];
 
-			//Don't update the page location information...
+			//Update the page location information if set
+			$elements = array('tlx','tly','trx','try','brx','bry','blx','bly','rotation','TL_VERT_TLX','TL_VERT_TLY','TL_VERT_BRX','TL_VERT_BRY','TL_HORI_TLX','TL_HORI_TLY','TL_HORI_BRX','TL_HORI_BRY','TR_VERT_TLX','TR_VERT_TLY','TR_VERT_BRX','TR_VERT_BRY','TR_HORI_TLX','TR_HORI_TLY','TR_HORI_BRX','TR_HORI_BRY','BL_VERT_TLX','BL_VERT_TLY','BL_VERT_BRX','BL_VERT_BRY','BL_HORI_TLX','BL_HORI_TLY','BL_HORI_BRX','BL_HORI_BRY','BR_VERT_TLX','BR_VERT_TLY','BR_VERT_BRX','BR_VERT_BRY','BR_HORI_TLX','BR_HORI_TLY','BR_HORI_BRX','BR_HORI_BRY','VERT_WIDTH','HORI_WIDTH');
+
+			foreach($elements as $e)
+			{
+				if (isset($p->$e))
+				{
+					$val = $db->qstr(current($p->$e));
+					$sql = "UPDATE pages
+						SET `$e` = $val
+						WHERE qid = '$qid'
+						AND pidentifierval LIKE '$id'";
+					$db->Execute($sql);
+				}
+			}
 
 			foreach ($p->boxgroup as $bg)
 			{

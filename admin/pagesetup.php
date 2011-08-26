@@ -29,30 +29,20 @@ include("../functions/functions.xhtml.php");
 include("../functions/functions.image.php");
 include("../functions/functions.barcode.php");
 
+$tb = array('t','b');
+$lr = array('l','r');
+$vh = array('vert','hori');
+$el = array('tlx','tly','brx','bry');
 
-if (isset($_FILES['form']))
+function definetomap($zoom,$pid,$page)
 {
-	$a = true;
-	$filename = $_FILES['form']['tmp_name'];
-	$type = "pngmono";
+	global $tb,$lr,$vh;
 
-	//generate temp file
-	$tmp = tempnam(TEMPORARY_DIRECTORY, "FORM");
+	$image = imagecreatefromstring($page['image']);
 
-	//use ghostscript to convert to PNG
-	exec(GS_BIN . " -sDEVICE=$type -r300 -sOutputFile=$tmp%d.png -dNOPAUSE -dBATCH $filename");
-}
-
-
-function definetomap($zoom,$pid,$filename)
-{
-	$tb = array('t','b');
-	$lr = array('l','r');
-	$vh = array('vert','hori');
-	$el = array('tlx','tly','brx','bry');
-
-	$image = imagecreatefrompng($filename . $pid . ".png");	
-        $offset = offset($image,0,0);
+        $offset = offset($image,0,0,$page);
+	$width = $page['width'];
+	$height = $page['height'];
 
 	//draw lines of corner edges
 	$vert = true;
@@ -63,17 +53,17 @@ function definetomap($zoom,$pid,$filename)
 		if ($vert == true)
 		{
 			$top = 0;
-			if ($lc > 3) $top = (PAGE_HEIGHT / $zoom) - ((PAGE_HEIGHT / 4) / $zoom);
+			if ($lc > 3) $top = ($height / $zoom) - (($height / 4) / $zoom);
 			//drawing a vertical line so use $coord as $x
-			print "<div style='position: absolute; top:". $top ."px; left:". ($coord / $zoom) ."px; width:". ($linewidth / $zoom) ."px; height:". ((PAGE_HEIGHT / 4) / $zoom) . "px; background-color: blue; opacity: 0.8;'></div>";
+			print "<div style='position: absolute; top:". $top ."px; left:". ($coord / $zoom) ."px; width:". ($linewidth / $zoom) ."px; height:". (($height / 4) / $zoom) . "px; background-color: blue; opacity: 0.8;'></div>";
 			$vert = false;	
 		}
 		else
 		{
 			//drawing a horizontal line so use $coord as $y
 			$left = 0;
-			if ($lc == 3 || $lc == 7) $left = (PAGE_WIDTH / $zoom) - ((PAGE_WIDTH / 4) / $zoom);
-			print "<div style='position: absolute; top:". ($coord/$zoom) ."px; left:". ($left) ."px; width:". ((PAGE_WIDTH / 4) / $zoom) ."px; height:". ($linewidth / $zoom) . "px; background-color: blue; opacity: 0.8;'></div>";
+			if ($lc == 3 || $lc == 7) $left = ($width / $zoom) - (($width / 4) / $zoom);
+			print "<div style='position: absolute; top:". ($coord/$zoom) ."px; left:". ($left) ."px; width:". (($width / 4) / $zoom) ."px; height:". ($linewidth / $zoom) . "px; background-color: blue; opacity: 0.8;'></div>";
 
 
 			$vert = true;
@@ -86,15 +76,17 @@ function definetomap($zoom,$pid,$filename)
 			foreach($vh as $c)					
 			{
 				$vname = "$a$b" . "_" . $c ."_";
-				$tlx = constant(strtoupper($vname . "tlx"));
-				$tly = constant(strtoupper($vname . "tly"));
-				$brx = constant(strtoupper($vname . "brx"));
-				$bry = constant(strtoupper($vname . "bry"));					
+				$tlx = $page[strtoupper($vname . "tlx")];
+				$tly = $page[strtoupper($vname . "tly")];
+				$brx = $page[strtoupper($vname . "brx")];
+				$bry = $page[strtoupper($vname . "bry")];					
 
 				print "<div id='$vname' style='position: absolute; top:" . $tly / $zoom . "px; left: " . $tlx / $zoom . "px; width:" . ($brx-$tlx) / $zoom . "px; height:" . ($bry-$tly) / $zoom . "px; background-color: green; opacity: 0.6;' class='drsElement'><div class='drsMoveHandle'>" . $vname . "</div></div>";
 			}
 					
 
+	//Don't display barcode anymore as it is detected on a system level
+	/*
 	$vname = "barcode_";
 
 	$tlx = constant(strtoupper($vname . "tlx"));
@@ -107,90 +99,178 @@ function definetomap($zoom,$pid,$filename)
 
 	
 	print "<div id='$vname'  style='position: absolute; top:" . $tly / $zoom. "px; left: " . $tlx / $zoom. "px; width:" . ($brx-$tlx)/ $zoom. "px; height:" . ($bry-$tly)/ $zoom. "px; background-color: brown; opacity: 0.6;' class='drsElement'><div class='drsMoveHandle'>" . $vname . "</div>$barcode</div>";
+	*/
+}
+
+//Update the page border elements in the db
+if (isset($_GET['update']))
+{
+	$qid = intval($_GET['qid']);
+	$pid = intval($_GET['pid']);
+	
+	//Update the page elements given the GET requests
+	foreach($tb as $a)
+		foreach($lr as $b)
+			foreach($vh as $c)					
+				foreach ($el as $d)
+				{
+					$vname = strtoupper("$a$b" . "_" . $c ."_" . $d);
+					$val = intval($_GET[$vname]);
+				
+					$sql = "UPDATE pages
+						SET `$vname` = $val
+						WHERE qid = '$qid' AND pid = '$pid'";
+
+					$db->Execute($sql);
+				}
+
+	//return updated imageboxes
+	$sql = "SELECT *
+		FROM pages 
+		WHERE pid = $pid";
+
+	$page = $db->GetRow($sql);
+
+	$zoom = intval($_GET['zoom']);
+
+	definetomap($zoom,$pid,$page);
+
+	print "<script type='text/javascript'>dragresize.apply(document);</script>";
+
+	die();
 
 }
+
+
+if (isset($_GET['copy']))
+{
+	$qid = intval($_GET['qid']);
+	$pid = intval($_GET['pid']);
+
+	$sql = "SELECT *
+		FROM pages
+		WHERE pid = '$pid'";
+
+	$copy = $db->GetRow($sql);
+
+	foreach($tb as $a)
+		foreach($lr as $b)
+			foreach($vh as $c)					
+				foreach ($el as $d)
+				{
+					$vname = strtoupper("$a$b" . "_" . $c ."_" . $d);
+					$val = intval($copy[$vname]);
+				
+					//update for all pages
+					$sql = "UPDATE pages
+						SET `$vname` = $val
+						WHERE qid = '$qid'
+						AND pid != '$pid'";
+
+					$db->Execute($sql);
+				}
+
+}
+
+
+$error = "";
+
+if (isset($_GET['done']))
+{
+	//Recalculate page edges for all pages
+
+	$qid = intval($_GET['qid']);
+
+	$sql = "SELECT *
+		FROM pages
+		WHERE qid = '$qid'";
+
+	$pages = $db->GetAll($sql);
+
+	$off = array("tlx","tly","trx","try","blx","bly","brx","bry");
+
+	foreach($pages as $page)
+	{
+		$image = imagecreatefromstring($page['image']);
+	        $offset = offset($image,0,0,$page);
+
+		$pid = $page['pid'];
+
+		$c = 0;
+
+		foreach($offset as $o)
+		{
+			if (is_null($o))
+			{
+				//error
+				$error += "<div><a href='?pid=$pid&amp;qid=$qid>" . T_("Cannot detect page edge on page") . " $pid</a></div>";
+			}
+			else
+			{
+				$sql = "UPDATE pages
+					SET `" . $off[$c] . "` = '$o'
+					WHERE pid = '$pid'";
+
+				$db->Execute($sql);
+			}
+			$c++;
+		}
+		unset($image);
+	}
+
+	if ($error == "")
+	{
+		//no errors
+		xhtml_head(T_("Set page layout"));
+		print "<div>" . T_("Page layout has been updated") . "</div>";
+		xhtml_foot();
+		die();
+	}	
+}
+
+
 
 xhtml_head(T_("Set page layout"),true,array("../css/dragresize.css","../css/pagesetup.css"),array("../js/prototype-1.6.0.2.js","../js/dragresize.js","../js/pagelayout.js"));
 
 print "<div id='content'>";
 
-if (isset($tmp)) $_GET['filename'] = $tmp;
+print $error;
 
-if (isset($_GET['filename']))
+if (isset($_GET['qid']))
 {
+	$qid = intval($_GET['qid']);
 	$zoom = BAND_DEFAULT_ZOOM;
 	if (isset($_GET['zoom'])) $zoom = intval($_GET['zoom']);
 
 	$zoomup = $zoom - 1; if ($zoomup < 1) $zoomup = 1;
 	$zoomdown = $zoom + 1;
 
-	$n = 1;
-	$file = $_GET['filename'] . $n . ".png";
+	$sql = "SELECT *
+		FROM pages
+		WHERE qid = $qid";
 
-	if (SPLIT_SCANNING)
-	{
-		while(file_exists($file))
-		{
-			$n++;
-			$file = $_GET['filename'] . $n . ".png";
-		}
-
-		$filecount =  $n - 1;
-
-		$n = 1;
-		
-		while($n <= $filecount)
-		{
-			$file = $_GET['filename'] . $n . ".png";
-			//split all the files
-			$data = file_get_contents($file);
-			$image = imagecreatefromstring($data);
-			$images = split_scanning($image);
-			if (count($images) == 2)
-			{		
-				imagepng($images[0],$_GET['filename'] . $n . ".png");
-				imagepng($images[1],$_GET['filename'] . ($n + $filecount) . ".png");
-			}
-			$n++;
-		}
-	}
-
-	$n = 1;
-	$file = $_GET['filename'] . $n . ".png";
-	$pages = array();
-	while (file_exists($file))
-	{
-		$page = array();
-		$page['pid'] = $n;
-		$page['filename'] = $_GET['filename'];
-		$pages[] = $page;
-		if ($n == 1) //get the page size
-		{
-			list($fwidth, $fheight, $ftype, $fattr) = getimagesize($file);
-		}
-		$n++;
-		$file = $_GET['filename'] . $n . ".png";
-	}
+	$pages = $db->GetAssoc($sql);
 
 	$p = 1;
-	foreach($pages as $page)
+	foreach($pages as $ppid => $val)
 	{
 		$pid = 0;
 		if (isset($_GET['pid'])) $pid = intval($_GET['pid']);
-		if ($page['pid'] == $pid)
+		if ($ppid == $pid)
 		{	
 			print " <span style=\"font-size:150%;\">$p</span> ";
-		}else
+		}
+		else
 		{
-			print " <a href=\"?pid={$page['pid']}&amp;zoom=$zoom";
-			if (isset($_GET['filename'])) print "&amp;filename=" . $page['filename'];
+			print " <a href=\"?pid={$ppid}&amp;zoom=$zoom";
+			print "&amp;qid=" . $qid;
 			print "\">$p</a> ";
 		}
 		$p++;
 	}
 	print "<br/>";
 
-	print "<div id='configarea'><p>" . T_("Configuration settings (copy and paste in to config.inc.php)") . "</p><div id='pagesize'><div>define('PAGE_WIDTH',$fwidth);</div><div>define('PAGE_HEIGHT',$fheight);</div></div><div id='config'></div></div>";
+	//print "<div id='configarea'><p>" . T_("Configuration settings (copy and paste in to config.inc.php)") . "</p><div id='pagesize'><div>define('PAGE_WIDTH',$fwidth);</div><div>define('PAGE_HEIGHT',$fheight);</div></div><div id='config'></div></div>";
 
 
 	if (isset($_GET['pid']))
@@ -198,35 +278,38 @@ if (isset($_GET['filename']))
 		$pid = intval($_GET['pid']);
 
 		print " <a href=\"?zoom=$zoomup&amp;pid=$pid";
-		if(isset($_GET['filename'])) 
-			print "&amp;filename=" . $_GET['filename'];
+		print "&amp;qid=" . $qid;
 		print "\">" . T_("Increase zoom") . "</a> <a href=\"?zoom=$zoomdown&amp;pid=$pid";
-		if(isset($_GET['filename'])) 
-			print "&amp;filename=" . $_GET['filename'];
+		print "&amp;qid=" . $qid;
 		print "\">" . T_("Decrease zoom") . "</a><br/> ";
+
+		print "<div><a href='?zoom=$zoom&amp;pid=$pid&amp;qid=$qid&amp;copy=copy'>" . T_("Copy settings from this page to all other pages") . "</a><br/></div>";
+		
+		print "<div><a href='?zoom=$zoom&amp;pid=$pid&amp;qid=$qid&amp;done=done'>" . T_("Finished page setup") . "</a><br/></div>";
 
 
 		//show image with no coords selected
 		print "<div id=\"imagearea\" style=\"position:relative;\">";
 		print "<div id=\"imageboxes\">";
 
-		definetomap($zoom,$pid,$_GET['filename']);
+		definetomap($zoom,$pid,$pages[$pid]);
 
 		print "</div>";
+	
+		$fwidth = $pages[$pid]['width'];
+		$fheight = $pages[$pid]['height'];
 
-			
 
 		print "<div id=\"imageimage\">";
-		$w = floor($fwidth / $zoom);
-		$h = floor($fheight / $zoom);
+		$w = floor(($fwidth - 1) / $zoom);
+		$h = floor(($fheight - 1) / $zoom);
 		print "<img id=\"sampleid\" src=\"../showpage.php?";
-		if(isset($_GET['filename'])) 
-			print "filename=" . $_GET['filename'] . "$pid.png";
-		else
-			print "pid=$pid";
+		print "pid=$pid";
 		print "\" style=\"border:0; z-index:0;\" width=\"$w\" height=\"$h\" alt=\"page $pid image\"/>";
 		print "</div>";
 		print "</div>";
+
+		print "<div><p>&nbsp;</p></div>";
 
 		print "<script type='text/javascript'>
 //<![CDATA[
@@ -235,7 +318,7 @@ if (isset($_GET['filename']))
 // whose keys constitute optional parameters/settings:
 
 var dragresize = new DragResize('dragresize',
- { minWidth: 20, minHeight: 20, minLeft: 0, minTop: 0, maxLeft: $w, maxTop: $h });
+ { minWidth: 20, minHeight: 20, minLeft: 1, minTop: 1, maxLeft: $w, maxTop: $h });
 
 // Optional settings/properties of the DragResize object are:
 //  enabled: Toggle whether the object is active.
@@ -286,38 +369,43 @@ dragresize.ondragstart = function(isResize) { };
 dragresize.ondragmove = function(isResize) {  };
 dragresize.ondragend = function(isResize) {
 	var l = $$('div .drsElement');
-	var s = '';
+	var s = 'update=update&';
 	v = getUrlVars();
 	var z = v['zoom'];
+	s += 'zoom=';
+	s += z;
+	s += '&';
+	var pid = v['pid'];
+	var qid = v['qid'];
 	for (var i=0; i < l.length; i++)
 	{
-		s += '<div>define(\''
 		s += l[i].id.toUpperCase();
-		s += 'TLX\','
+		s += 'TLX='
 		s += parseInt(l[i].style.left.replace('px','')) * z;
-		s += ');</div>'
+		s += '&'
 
-		s += '<div>define(\''
 		s += l[i].id.toUpperCase();
-		s += 'TLY\','
+		s += 'TLY='
 		s += parseInt(l[i].style.top.replace('px','')) * z;
-		s += ');</div>'
+		s += '&'
 
-		s += '<div>define(\''
 		s += l[i].id.toUpperCase();
-		s += 'BRX\','
+		s += 'BRX='
 		s += (parseInt(l[i].style.width.replace('px','')) + parseInt(l[i].style.left.replace('px',''))) * z;
-		s += ');</div>'
+		s += '&'
 
-		s += '<div>define(\''
 		s += l[i].id.toUpperCase();
-		s += 'BRY\','
+		s += 'BRY='
 		s += (parseInt(l[i].style.height.replace('px','')) + parseInt(l[i].style.top.replace('px',''))) * z;
-		s += ');</div>'			
+		s += '&'			
 
 	}
 
-	$('config').update(s);
+	s += 'pid=' + pid + '&qid=' + qid;
+
+	s = 'pagesetup.php?' + s;
+
+	new Ajax.Updater('imageboxes', s, {method: 'get'});
 
 };
 dragresize.ondragblur = function() { };
@@ -333,26 +421,17 @@ dragresize.apply(document);
 }
 else
 {
-	//form to upload a document
-?>
-<h1><? echo T_("Page setup"); ?></h1>
-<p><? echo T_("You will get the best results if you:"); ?></p>
-<ul>
-<li><? echo T_("Print out the form using the same method that you will for all the printed forms"); ?></li>
-<li><? echo T_("Scan the form to a PDF using the same options that you will for the filled forms"); ?></li>
-<li><? echo T_("Best options for scanning in are:"); ?>
-<ul><li><? echo T_("Monochrome (1 bit)"); ?></li>
-<li><? echo T_("300DPI Resolution"); ?></li></ul>
-</li>
-</ul>
+	//form to choose a questionnaire/form
+	$sql = "SELECT qid,description
+		FROM questionnaires";
+	
+	$qs = $db->GetAll($sql);
 
-<form enctype="multipart/form-data" action="" method="post">
-	<p><input type="hidden" name="MAX_FILE_SIZE" value="1000000000" /></p>
-	<p><? echo T_("Select PDF file to upload:"); ?><input name="form" type="file" /></p>
-	<p><input type="submit" value="<? echo T_("Upload form"); ?>"/></p>
-</form>
-
-<?
+	foreach($qs as $q)
+	{
+		print "<a href=\"?qid={$q['qid']}\">". T_("Page setup") . ": {$q['description']}</a>";
+		print "<br/>";
+	}
 
 }
 

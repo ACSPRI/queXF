@@ -35,15 +35,14 @@ if (isset($_FILES['bandingxml']) && isset($_POST['qid']) && !empty($_POST['qid']
 	$a = true;
 	$xmlname = $_FILES['bandingxml']['tmp_name'];
 	$r =  import_bandingxml(file_get_contents($xmlname),$qid,true);
-}
 
-
-if ($a)
-{
-	if ($r)
-		print "<h2>" . T_("Successfully loaded banding XML file") . "</h2>";
-	else
-		print "<h2>" . T_("Failed to load banding XML file") . "</h2>";
+	if ($a)
+	{
+		if ($r)
+			print "<h2>" . T_("Successfully loaded banding XML file") . "</h2>";
+		else
+			print "<h2>" . T_("Failed to load banding XML file") . "</h2>";
+	}
 }
 
 print "<h1>" . T_("Update banding from XML") . "</h1>";

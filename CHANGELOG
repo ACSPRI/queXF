@@ -1,3 +1,54 @@
+Added new feature: Page setup now on a form by form basis - only requirement
+is that the area of a page where a barcode belongs is specified, and that the
+barcode length (number of characters) is specified.
+
+Once queXF detects the barcode it uses the stored page location details to
+determine the page edges
+
+Page setup will now become part of the form importation process
+
+ALTER TABLE `formpages` ADD `width` INT( 11 ) NOT NULL DEFAULT '0',
+ADD `height` INT( 11 ) NOT NULL DEFAULT '0';
+
+ALTER TABLE `pages` ADD `width` INT( 11 ) NOT NULL DEFAULT '2480',
+ADD `height` INT( 11 ) NOT NULL DEFAULT '3508',
+ADD `TL_VERT_TLX` INT( 11 ) NOT NULL DEFAULT '54',
+ADD `TL_VERT_TLY` INT( 11 ) NOT NULL DEFAULT '90',
+ADD `TL_VERT_BRX` INT( 11 ) NOT NULL DEFAULT '390',
+ADD `TL_VERT_BRY` INT( 11 ) NOT NULL DEFAULT '603',
+ADD `TL_HORI_TLX` INT( 11 ) NOT NULL DEFAULT '54',
+ADD `TL_HORI_TLY` INT( 11 ) NOT NULL DEFAULT '60',
+ADD `TL_HORI_BRX` INT( 11 ) NOT NULL DEFAULT '669',
+ADD `TL_HORI_BRY` INT( 11 ) NOT NULL DEFAULT '384',
+ADD `TR_VERT_TLX` INT( 11 ) NOT NULL DEFAULT '2010',
+ADD `TR_VERT_TLY` INT( 11 ) NOT NULL DEFAULT '81',
+ADD `TR_VERT_BRX` INT( 11 ) NOT NULL DEFAULT '2433',
+ADD `TR_VERT_BRY` INT( 11 ) NOT NULL DEFAULT '639',
+ADD `TR_HORI_TLX` INT( 11 ) NOT NULL DEFAULT '1770',
+ADD `TR_HORI_TLY` INT( 11 ) NOT NULL DEFAULT '66',
+ADD `TR_HORI_BRX` INT( 11 ) NOT NULL DEFAULT '2433',
+ADD `TR_HORI_BRY` INT( 11 ) NOT NULL DEFAULT '387',
+ADD `BL_VERT_TLX` INT( 11 ) NOT NULL DEFAULT '54',
+ADD `BL_VERT_TLY` INT( 11 ) NOT NULL DEFAULT '2922',
+ADD `BL_VERT_BRX` INT( 11 ) NOT NULL DEFAULT '432',
+ADD `BL_VERT_BRY` INT( 11 ) NOT NULL DEFAULT '3402',
+ADD `BL_HORI_TLX` INT( 11 ) NOT NULL DEFAULT '54',
+ADD `BL_HORI_TLY` INT( 11 ) NOT NULL DEFAULT '3105',
+ADD `BL_HORI_BRX` INT( 11 ) NOT NULL DEFAULT '672',
+ADD `BL_HORI_BRY` INT( 11 ) NOT NULL DEFAULT '3405',
+ADD `BR_VERT_TLX` INT( 11 ) NOT NULL DEFAULT '2028',
+ADD `BR_VERT_TLY` INT( 11 ) NOT NULL DEFAULT '2901',
+ADD `BR_VERT_BRX` INT( 11 ) NOT NULL DEFAULT '2433',
+ADD `BR_VERT_BRY` INT( 11 ) NOT NULL DEFAULT '3381',
+ADD `BR_HORI_TLX` INT( 11 ) NOT NULL DEFAULT '1752',
+ADD `BR_HORI_TLY` INT( 11 ) NOT NULL DEFAULT '3084',
+ADD `BR_HORI_BRX` INT( 11 ) NOT NULL DEFAULT '2433',
+ADD `BR_HORI_BRY` INT( 11 ) NOT NULL DEFAULT '3384',
+ADD `VERT_WIDTH` INT( 11 ) NOT NULL DEFAULT '6',
+ADD `HORI_WIDTH` INT( 11 ) NOT NULL DEFAULT '6';
+
+*Fixed Bug: Cannot verify when barcode selected on page
+
 queXF 1.10.2 - changes since 1.10.1
 
 *Updated translations from Launchpad. Thank you for your translations!

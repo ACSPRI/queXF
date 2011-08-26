@@ -496,23 +496,23 @@ if (isset($_GET['qid']))
 
 
 	//print all available pages as a link google style
-	$sql = "SELECT pid
+	$sql = "SELECT pid,width,height
 		FROM pages
 		WHERE qid = $qid";
 
-	$pages = $db->GetAll($sql);
+	$pages = $db->GetAssoc($sql);
 
 	$p = 1;
-	foreach($pages as $page)
+	foreach($pages as $key => $page)
 	{
 		$pid = 0;
 		if (isset($_GET['pid'])) $pid = intval($_GET['pid']);
-		if ($page['pid'] == $pid)
+		if ($key == $pid)
 		{	
 			print " <span style=\"font-size:150%;\">$p</span> ";
 		}else
 		{
-			print " <a href=\"?pid={$page['pid']}&amp;qid=$qid&amp;zoom=$zoom\">$p</a> ";
+			print " <a href=\"?pid={$key}&amp;qid=$qid&amp;zoom=$zoom\">$p</a> ";
 		}
 		$p++;
 	}
@@ -532,8 +532,8 @@ if (isset($_GET['qid']))
 		pidtomap($pid,$zoom);
 		print "</div>";
 		print "<div id=\"imageimage\">";
-		$w = floor(PAGE_WIDTH / $zoom);
-		$h = floor(PAGE_HEIGHT / $zoom);
+		$w = floor($pages[$pid]['width'] / $zoom);
+		$h = floor($pages[$pid]['height'] / $zoom);
 		print "<img id=\"sampleid\" src=\"../showpage.php?pid=$pid\" style=\"border:0\" width=\"$w\" height=\"$h\" alt=\"page $pid image\"/>";
 		print "</div>";
 		print "</div>";

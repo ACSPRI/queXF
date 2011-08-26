@@ -71,33 +71,33 @@ function indextokey($a)
 /**
 * Validate a pixel location
 */
-function validatepixel($a)
+function validatepixel($a,$width,$height)
 {
 	if ($a[0] < 0) $a[0] = 0;
 	if ($a[1] < 0) $a[1] = 0;
-	if ($a[0] > PAGE_WIDTH) $a[0] = PAGE_WIDTH;
-	if ($a[1] > PAGE_HEIGHT) $a[1] = PAGE_HEIGHT;
+	if ($a[0] > $width) $a[0] = $width;
+	if ($a[1] > $height) $a[1] = $height;
 	return $a;
 }
 
 /* Use the presence of corner lines to see if the page is blank or not
  *
  */
-function is_blank_page($image)
+function is_blank_page($image,$page)
 {
 	$b = array();
 
-	$b[] = vertlinex(TL_VERT_TLX,TL_VERT_TLY,TL_VERT_BRX,TL_VERT_BRY,$image,VERT_WIDTH);
-	$b[] = horiliney(TL_HORI_TLX,TL_HORI_TLY,TL_HORI_BRX,TL_HORI_BRY,$image,HORI_WIDTH);
+	$b[] = vertlinex($page['TL_VERT_TLX'],$page['TL_VERT_TLY'],$page['TL_VERT_BRX'],$page['TL_VERT_BRY'],$image,$page['VERT_WIDTH']);
+	$b[] = horiliney($page['TL_HORI_TLX'],$page['TL_HORI_TLY'],$page['TL_HORI_BRX'],$page['TL_HORI_BRY'],$image,$page['HORI_WIDTH']);
 
-	$b[] = vertlinex(TR_VERT_TLX,TR_VERT_TLY,TR_VERT_BRX,TR_VERT_BRY,$image,VERT_WIDTH);
-	$b[] = horiliney(TR_HORI_TLX,TR_HORI_TLY,TR_HORI_BRX,TR_HORI_BRY,$image,HORI_WIDTH);
+	$b[] = vertlinex($page['TR_VERT_TLX'],$page['TR_VERT_TLY'],$page['TR_VERT_BRX'],$page['TR_VERT_BRY'],$image,$page['VERT_WIDTH']);
+	$b[] = horiliney($page['TR_HORI_TLX'],$page['TR_HORI_TLY'],$page['TR_HORI_BRX'],$page['TR_HORI_BRY'],$image,$page['HORI_WIDTH']);
 
-	$b[] = vertlinex(BL_VERT_TLX,BL_VERT_TLY,BL_VERT_BRX,BL_VERT_BRY,$image,VERT_WIDTH);
-	$b[] = horiliney(BL_HORI_TLX,BL_HORI_TLY,BL_HORI_BRX,BL_HORI_BRY,$image,HORI_WIDTH);
+	$b[] = vertlinex($page['BL_VERT_TLX'],$page['BL_VERT_TLY'],$page['BL_VERT_BRX'],$page['BL_VERT_BRY'],$image,$page['VERT_WIDTH']);
+	$b[] = horiliney($page['BL_HORI_TLX'],$page['BL_HORI_TLY'],$page['BL_HORI_BRX'],$page['BL_HORI_BRY'],$image,$page['HORI_WIDTH']);
 
-	$b[] = vertlinex(BR_VERT_TLX,BR_VERT_TLY,BR_VERT_BRX,BR_VERT_BRY,$image,VERT_WIDTH);
-	$b[] = horiliney(BR_HORI_TLX,BR_HORI_TLY,BR_HORI_BRX,BR_HORI_BRY,$image,HORI_WIDTH);
+	$b[] = vertlinex($page['BR_VERT_TLX'],$page['BR_VERT_TLY'],$page['BR_VERT_BRX'],$page['BR_VERT_BRY'],$image,$page['VERT_WIDTH']);
+	$b[] = horiliney($page['BR_HORI_TLX'],$page['BR_HORI_TLY'],$page['BR_HORI_BRX'],$page['BR_HORI_BRY'],$image,$page['HORI_WIDTH']);
 
 	$total = 0;
 	foreach ($b as $key => $value)
@@ -113,7 +113,7 @@ function is_blank_page($image)
 //and original page id
 //given an image and the tlx,tly,trx,try,blx,bly,brx,bry as an array
 //
-function offset($image,$a,$compare = 1)
+function offset($image,$a,$compare = 1,$page)
 {
 	$b = array();
 	$c = array();
@@ -126,17 +126,17 @@ function offset($image,$a,$compare = 1)
 		return $c;
 	}
 
-	$b[] = vertlinex(TL_VERT_TLX,TL_VERT_TLY,TL_VERT_BRX,TL_VERT_BRY,$image,VERT_WIDTH);
-	$b[] = horiliney(TL_HORI_TLX,TL_HORI_TLY,TL_HORI_BRX,TL_HORI_BRY,$image,HORI_WIDTH);
+	$b[] = vertlinex($page['TL_VERT_TLX'],$page['TL_VERT_TLY'],$page['TL_VERT_BRX'],$page['TL_VERT_BRY'],$image,$page['VERT_WIDTH']);
+	$b[] = horiliney($page['TL_HORI_TLX'],$page['TL_HORI_TLY'],$page['TL_HORI_BRX'],$page['TL_HORI_BRY'],$image,$page['HORI_WIDTH']);
 
-	$b[] = vertlinex(TR_VERT_TLX,TR_VERT_TLY,TR_VERT_BRX,TR_VERT_BRY,$image,VERT_WIDTH);
-	$b[] = horiliney(TR_HORI_TLX,TR_HORI_TLY,TR_HORI_BRX,TR_HORI_BRY,$image,HORI_WIDTH);
+	$b[] = vertlinex($page['TR_VERT_TLX'],$page['TR_VERT_TLY'],$page['TR_VERT_BRX'],$page['TR_VERT_BRY'],$image,$page['VERT_WIDTH']);
+	$b[] = horiliney($page['TR_HORI_TLX'],$page['TR_HORI_TLY'],$page['TR_HORI_BRX'],$page['TR_HORI_BRY'],$image,$page['HORI_WIDTH']);
 
-	$b[] = vertlinex(BL_VERT_TLX,BL_VERT_TLY,BL_VERT_BRX,BL_VERT_BRY,$image,VERT_WIDTH);
-	$b[] = horiliney(BL_HORI_TLX,BL_HORI_TLY,BL_HORI_BRX,BL_HORI_BRY,$image,HORI_WIDTH);
+	$b[] = vertlinex($page['BL_VERT_TLX'],$page['BL_VERT_TLY'],$page['BL_VERT_BRX'],$page['BL_VERT_BRY'],$image,$page['VERT_WIDTH']);
+	$b[] = horiliney($page['BL_HORI_TLX'],$page['BL_HORI_TLY'],$page['BL_HORI_BRX'],$page['BL_HORI_BRY'],$image,$page['HORI_WIDTH']);
 
-	$b[] = vertlinex(BR_VERT_TLX,BR_VERT_TLY,BR_VERT_BRX,BR_VERT_BRY,$image,VERT_WIDTH);
-	$b[] = horiliney(BR_HORI_TLX,BR_HORI_TLY,BR_HORI_BRX,BR_HORI_BRY,$image,HORI_WIDTH);
+	$b[] = vertlinex($page['BR_VERT_TLX'],$page['BR_VERT_TLY'],$page['BR_VERT_BRX'],$page['BR_VERT_BRY'],$image,$page['VERT_WIDTH']);
+	$b[] = horiliney($page['BR_HORI_TLX'],$page['BR_HORI_TLY'],$page['BR_HORI_BRX'],$page['BR_HORI_BRY'],$image,$page['HORI_WIDTH']);
 
 
 	if ($compare == 0) return $b;
@@ -187,13 +187,61 @@ function calcoffset($a,$ox=0,$oy=0)
 
 
 /**
+ * Sanitize the page border variables based on width and height of image
+ * 
+ * @param mixed $page 
+ * @param int $width The width of the current page
+ * @param int $height The height of the current page
+ * 
+ * @return $page sanitized
+ * @author Adam Zammit <adam.zammit@acspri.org.au>
+ * @since  2011-08-26
+ */
+function sanitizepage($page,$width,$height)
+{
+	$tb = array('t','b');
+	$lr = array('l','r');
+	$vh = array('vert','hori');
+	$ex = array('tlx','brx');
+	$ey = array('tly','bry');
+	foreach($tb as $a)
+		foreach($lr as $b)
+			foreach($vh as $c)					
+			{
+				$vname = "$a$b" . "_" . $c ."_";
+			
+				foreach($ex as $d)
+				{
+					$vn = strtoupper($vname . $d);
+					if ($page[$vn] <= 0) $val = 1;
+					if ($page[$vn] >= $width) $page[$vn] = $width - 1;
+				}
+
+				foreach($ey as $d)
+				{
+					$vn = strtoupper($vname . $d);
+					if ($page[$vn] <= 0) $page[$vn] = 1;
+					if ($page[$vn] >= $height) $page[$vn] = $height - 1;
+				}
+
+			}
+	return $page;
+}
+
+
+/**
 * Detect the rotation, scale and offset of the given image 
 * Use the template page offsets for calculations of scale and offset
 *
 */
 function detecttransforms($image,$page)
 {
-	$offset = offset($image,false,0);
+	$width = imagesx($image);
+	$height = imagesy($image);
+
+	$page = sanitizepage($page,$width,$height);
+
+	$offset = offset($image,false,0,$page);
 
 	if (!in_array("",$offset)) //all edges detected
 	{
@@ -223,12 +271,12 @@ function detecttransforms($image,$page)
 		$scale[1] = 1.0 / $scale[1];
 		$rotate *= -1.0;
 		
-		$transforms = array('offx' => $offsetxy[0], 'offy' => $offsetxy[1], 'scalex' => $scale[0], 'scaley' => $scale[1], 'centroidx' => $centroid[0], 'centroidy' => $centroid[1], 'costheta' => cos($rotate), 'sintheta' => sin($rotate));
+		$transforms = array('offx' => $offsetxy[0], 'offy' => $offsetxy[1], 'scalex' => $scale[0], 'scaley' => $scale[1], 'centroidx' => $centroid[0], 'centroidy' => $centroid[1], 'costheta' => cos($rotate), 'sintheta' => sin($rotate), 'width' => $width, 'height' => $height);
 	
 		return $transforms;
 	} 
 
-	return array('offx' => 0, 'offy' => 0, 'scalex' => 1, 'scaley' =>1, 'centroidx' => 0, 'centroidy' => 0, 'costheta' => 1, 'sintheta' => 0); //return no transformation if all edges not detected
+	return array('offx' => 0, 'offy' => 0, 'scalex' => 1, 'scaley' =>1, 'centroidx' => 0, 'centroidy' => 0, 'costheta' => 1, 'sintheta' => 0, 'width' => $width, 'height' => $height); //return no transformation if all edges not detected
 }
 
 
@@ -244,8 +292,8 @@ function applytransforms($a,$transforms)
 	$offsetxy = array($transforms['offx'],$transforms['offy']);
 	$centroid = array($transforms['centroidx'],$transforms['centroidy']);
 
-	list($b['tlx'],$b['tly']) = validatepixel(rotate(false,scale($scale,offsetxy(array($a['tlx'],$a['tly']),$offsetxy),$centroid),$centroid,$transforms['costheta'],$transforms['sintheta']));
-	list($b['brx'],$b['bry']) = validatepixel(rotate(false,scale($scale,offsetxy(array($a['brx'],$a['bry']),$offsetxy),$centroid),$centroid,$transforms['costheta'],$transforms['sintheta']));
+	list($b['tlx'],$b['tly']) = validatepixel(rotate(false,scale($scale,offsetxy(array($a['tlx'],$a['tly']),$offsetxy),$centroid),$centroid,$transforms['costheta'],$transforms['sintheta']),$transforms['width'],$transforms['height']);
+	list($b['brx'],$b['bry']) = validatepixel(rotate(false,scale($scale,offsetxy(array($a['brx'],$a['bry']),$offsetxy),$centroid),$centroid,$transforms['costheta'],$transforms['sintheta']),$transforms['width'],$transforms['height']);
 
 	return $b;
 }
