@@ -423,13 +423,16 @@ function calcscale($a,$b)
 function scale($scale,$point,$centroid)
 {
 	//calculate distance from centroid, multiply by scale and add to centroid
-	$dx = ($point[0] - $centroid[0]);
-	$dy = ($point[1] - $centroid[1]);
+//	$dx = ($point[0] - $centroid[0]);
+//	$dy = ($point[1] - $centroid[1]);
 
 	$c = array();
 
-	$c[0] = round(($dx*$scale[0]) + $centroid[0]);
-	$c[1] = round(($dy*$scale[1]) + $centroid[1]);
+//	$c[0] = round(($dx*$scale[0]) + $centroid[0]);
+//	$c[1] = round(($dy*$scale[1]) + $centroid[1]);
+
+	$c[0] = round($point[0]*$scale[0]);
+	$c[1] = round($point[1]*$scale[1]);
 
 	return $c;
 }
@@ -573,6 +576,10 @@ function vertlinex($tlx,$tly,$brx,$bry,$image,$approxw)
 		}
 		//print "<br/>\n";
 	}
+
+	//add ability to search for the line closest to a certain length - not just the longest which
+	//may be a page artifact. need to define CORNER_LINE_LENGTH in pixels and enablels
+
 
 	$line = 0;
 	$longest = key($s);

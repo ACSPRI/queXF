@@ -378,11 +378,13 @@ if (!isset($_SESSION['boxes'])) {
 		GROUP BY bg.bgid
 		ORDER BY bg.sortorder ASC";
 
-	$sql3 = "SELECT b.pid,b.bgid,0 as done, p.width, p.height
-		FROM boxes as b, pages as p, boxgroupstype as bg
+	$sql3 = "SELECT b.pid,b.bgid,0 as done, fp.width, fp.height
+		FROM boxes as b, pages as p, boxgroupstype as bg, formpages as fp
 		WHERE p.qid = '$qid'
 		AND b.pid = p.pid
 		AND bg.bgid = b.bgid
+		AND fp.fid = '$fid'
+		AND fp.pid = p.pid
 		GROUP BY b.pid
 		ORDER BY bg.sortorder ASC";
 
