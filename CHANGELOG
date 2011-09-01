@@ -1,3 +1,7 @@
+queXF 1.11.1 - Changes since queXF 1.11.0
+
+*Fixed Bug: Verification boxes appear in wrong spot when original page form size differs to scan
+
 queXF 1.11.0 - Changes since queXF 1.10.2
 
 *Fixed Bug: Cannot verify when barcode selected on page
