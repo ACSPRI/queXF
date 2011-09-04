@@ -39,6 +39,27 @@ else
 	print "<p>" . T_("Could not detect user authentication. Please set up web server based authentication. If using apache, see here:") . "<a href='http://httpd.apache.org/docs/2.0/howto/auth.html'>" . T_("Apache authentication") . "</a></p>";
 }
 
+$post_max_size = ini_get('post_max_size');
+if (substr($post_max_size,0,-1) < 10)
+	$pms = T_("Recommended minimum") . ": 10M";
+else
+	$pms = T_("Passed");
+$upload_max_filesize = ini_get('upload_max_filesize');
+if (substr($upload_max_filesize,0,-1) < 10)
+	$umf = T_("Recommended minimum") . ": 10M";
+else
+	$umf = T_("Passed");
+$memory_limit = ini_get('memory_limit');
+if (substr($memory_limit,0,-1) < 128)
+	$ml = T_("Recommended minimum") . ": 128M";
+else
+	$ml = T_("Passed");
+
+print "<p>" . T_("Configuration options from php.ini:") . "</p>";
+print "<ul><li>post_max_size = $post_max_size   <b>$pms</b></li>
+	<li>upload_max_filesize = $upload_max_filesize  <b>$umf</b></li>
+	<li>memory_limit = $memory_limit  <b>$ml</b></li></ul>";
+
 if (is_file(GS_BIN)) {
 	$ver = exec(GS_BIN . " --version");
 	if ($ver)
