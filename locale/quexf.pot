@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: queXF\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-26 12:49+1000\n"
+"POT-Creation-Date: 2011-09-05 09:16+1000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Adam Zammit <adam.zammit@acspri.org.au>\n"
 "Language-Team: \n"
@@ -19,17 +19,17 @@ msgid "Please log in"
 msgstr ""
 
 #: verifyjs.php:284
-#: verifyjs.php:392
+#: verifyjs.php:394
 msgid "Verify: No more work"
 msgstr ""
 
 #: verifyjs.php:285
-#: verifyjs.php:393
+#: verifyjs.php:395
 msgid "NO MORE WORK"
 msgstr ""
 
 #: verifyjs.php:286
-#: verifyjs.php:394
+#: verifyjs.php:396
 msgid "Check for more work"
 msgstr ""
 
@@ -65,56 +65,56 @@ msgstr ""
 msgid "Pages Per Hour"
 msgstr ""
 
-#: verifyjs.php:501
+#: verifyjs.php:503
 msgid "Verify: Done"
-msgstr ""
-
-#: verifyjs.php:502
-#: verifyjs.php:1147
-msgid "The required fields have been filled"
 msgstr ""
 
 #: verifyjs.php:504
 #: verifyjs.php:1149
-msgid "Submit completed form to database"
-msgstr ""
-
-#: verifyjs.php:505
-#: verifyjs.php:1150
-msgid "Review all questions again"
+msgid "The required fields have been filled"
 msgstr ""
 
 #: verifyjs.php:506
 #: verifyjs.php:1151
-msgid "Clear all entered data and review again"
+msgid "Submit completed form to database"
+msgstr ""
+
+#: verifyjs.php:507
+#: verifyjs.php:1152
+msgid "Review all questions again"
 msgstr ""
 
 #: verifyjs.php:508
-#: verifyjs.php:1154
+#: verifyjs.php:1153
+msgid "Clear all entered data and review again"
+msgstr ""
+
+#: verifyjs.php:510
+#: verifyjs.php:1156
 msgid "Submitting: Please wait..."
 msgstr ""
 
-#: verifyjs.php:523
+#: verifyjs.php:525
 msgid "Verifier"
 msgstr ""
 
-#: verifyjs.php:1162
+#: verifyjs.php:1164
 msgid "Image of page"
 msgstr ""
 
-#: verifyjs.php:1162
+#: verifyjs.php:1164
 msgid "form"
 msgstr ""
 
-#: verifyjs.php:1171
+#: verifyjs.php:1173
 msgid "Centre Page"
 msgstr ""
 
-#: verifyjs.php:1173
+#: verifyjs.php:1175
 msgid "Loading panel..."
 msgstr ""
 
-#: verifyjs.php:1173
+#: verifyjs.php:1175
 msgid "Error, try with Firefox"
 msgstr ""
 
@@ -425,6 +425,10 @@ msgstr ""
 #: admin/index.php:66
 #: admin/pagesetup.php:433
 msgid "Page setup"
+msgstr ""
+
+#: admin/index.php:67
+msgid "Test configuration"
 msgstr ""
 
 #: admin/touchup.php:84
@@ -877,8 +881,100 @@ msgstr ""
 msgid "Upload XML"
 msgstr ""
 
-#: admin/testconfig.php:3
-msgid "Test Installation"
+#: admin/testconfig.php:26
+msgid "Could not connect to database. Make sure the database: "
+msgstr ""
+
+#: admin/testconfig.php:26
+msgid " exists on "
+msgstr ""
+
+#: admin/testconfig.php:26
+msgid " and that "
+msgstr ""
+
+#: admin/testconfig.php:26
+msgid " has privileges to it, otherwise modify config.inc.php to point to the correct database. Also make sure you have loaded the database structure from"
+msgstr ""
+
+#: admin/testconfig.php:29
+msgid "Database connection succeeded"
+msgstr ""
+
+#: admin/testconfig.php:34
+msgid "User authentication has been set up. You are user: "
+msgstr ""
+
+#: admin/testconfig.php:39
+msgid "Could not detect user authentication. Please set up web server based authentication. If using apache, see here: "
+msgstr ""
+
+#: admin/testconfig.php:39
+msgid "Apache authentication"
+msgstr ""
+
+#: admin/testconfig.php:44
+#: admin/testconfig.php:49
+#: admin/testconfig.php:54
+msgid "Recommended minimum"
+msgstr ""
+
+#: admin/testconfig.php:46
+#: admin/testconfig.php:51
+#: admin/testconfig.php:56
+msgid "Passed"
+msgstr ""
+
+#: admin/testconfig.php:58
+msgid "Configuration options from php.ini:"
+msgstr ""
+
+#: admin/testconfig.php:67
+msgid "Found GhostScript version"
+msgstr ""
+
+#: admin/testconfig.php:71
+msgid " exists but can not execute it. Please make sure you are pointing to the executable file, not just the directory of Ghostscript"
+msgstr ""
+
+#: admin/testconfig.php:75
+msgid "Could not find GhostScript in path: "
+msgstr ""
+
+#: admin/testconfig.php:75
+msgid "Please modify config.inc.php, GS_BIN to point to the gs executable. Also please make sure you are pointing to the executable file, not just the directory of Ghostscript"
+msgstr ""
+
+#: admin/testconfig.php:83
+msgid "Found Tesseract"
+msgstr ""
+
+#: admin/testconfig.php:85
+msgid "Could not find Tesseract in path: "
+msgstr ""
+
+#: admin/testconfig.php:85
+msgid "Please modify config.inc.php, TESSERACT_BIN to point to the tesseract executable or disable OCR by changing OCR_ENABLED to false"
+msgstr ""
+
+#: admin/testconfig.php:90
+msgid "Found ImageMagick"
+msgstr ""
+
+#: admin/testconfig.php:93
+msgid "Could not find ImageMagick in path: "
+msgstr ""
+
+#: admin/testconfig.php:93
+msgid "Please modify config.inc.php, CONVERT_BIN to point to the convert executable or disable OCR by changing OCR_ENABLED to false"
+msgstr ""
+
+#: admin/testconfig.php:100
+msgid "FAILED"
+msgstr ""
+
+#: admin/testconfig.php:104
+msgid "Passed Configuration Test"
 msgstr ""
 
 #: admin/listpagenotes.php:47
