@@ -63,7 +63,8 @@ xhtml_head(T_("queXF Admin Functions"),true,array("../css/admin.css"));
 <ul><li><a href="?page=clients.php"><? echo T_("Add clients"); ?></a></li>
 <li><a href="?page=clientquestionnaire.php"><? echo T_("Assign clients to forms"); ?></a></li></ul></li>
 <li><h3><? echo T_("System setup"); ?></h3>
-<ul><li><a href="?page=pagesetup.php"><? echo T_("Page setup"); ?></a></li></ul></li>
+<ul><li><a href="?page=pagesetup.php"><? echo T_("Page setup"); ?></a></li>
+<li><a href="?page=testconfig.php"><? echo T_("Test configuration"); ?></a></li></ul></li>
 </ul>
 </div>
 <?

@@ -7,7 +7,7 @@ include_once("../lang.inc.php");
 ?>
 <html>
 <head>
-<title><? echo T_("Test Installation"); ?></title>
+<title><? echo T_("Test Configuration"); ?></title>
 </head>
 <body>
 <?
