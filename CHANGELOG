@@ -1,3 +1,7 @@
+queXF 1.11.2 - Changes since queXF 1.11.1
+
+*Fixed Bug: testconfig script did not appear in index and failed as not referencing lang.inc.php
+
 queXF 1.11.1 - Changes since queXF 1.11.0
 
 *Fixed Bug: Verification boxes appear in wrong spot when original page form size differs to scan
