@@ -36,7 +36,7 @@ if (isset($_SERVER['PHP_AUTH_USER']))
 else
 {
 	$fail = true;
-	print "<p>" . T_("Could not detect user authentication. Please set up web server based authentication. If using apache, see here:") . "<a href='http://httpd.apache.org/docs/2.0/howto/auth.html'>" . T_("Apache authentication") . "</a></p>";
+	print "<p>" . T_("Could not detect user authentication. Please set up web server based authentication. If using apache, see here: ") . "<a href='http://httpd.apache.org/docs/2.0/howto/auth.html'>" . T_("Apache authentication") . "</a></p>";
 }
 
 $post_max_size = ini_get('post_max_size');
