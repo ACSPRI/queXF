@@ -69,7 +69,7 @@ xhtml_head(T_("queXF Admin Functions"),true,array("../css/admin.css"));
 </div>
 <?
 
-$page = "new.php";
+$page = "testconfig.php";
 
 if (isset($_GET['page']))
 	$page = $_GET['page'];
