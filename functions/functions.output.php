@@ -177,7 +177,6 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false)
 		LEFT JOIN formboxverifytext as f on (f.bid = b.bid and f.vid = 0 and f.fid = '{$form['fid']}'))
 		order by sortorder asc,bid asc";
 
-
 		$data =  $db->GetAll($sql);
 
 		$bgid = $data[0]['bgid'];
@@ -192,6 +191,8 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false)
 		$valueval = "";
 
 		$data[] = array('btid' => 0,  'bgid' => 0, 'val' => "");
+
+		$prebtid = 0;
 
 		//print_r($data);
 
@@ -261,6 +262,12 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false)
 						$rr[] = $val['value'];
 				}
 			}
+			else if ($val['btid'] == 6 || $val['btid'] == 5) 
+			{
+				//one box per variable - just export
+				$rr[] = $val['val'];
+			}
+
 
 			$prebtid = $val['btid'];
 		}
