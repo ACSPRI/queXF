@@ -1,6 +1,8 @@
 queXF 1.11.2 - Changes since queXF 1.11.1
 
+*Fixed Bug: CSV output where barcode/longtext not outputting if first element in data
 *Fixed Bug: testconfig script did not appear in index and failed as not referencing lang.inc.php
+*New feature: testconfig now default default page and tests for directory based authentication and common settings
 
 queXF 1.11.1 - Changes since queXF 1.11.0
 
