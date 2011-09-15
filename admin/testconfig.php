@@ -60,7 +60,9 @@ print "<ul><li>post_max_size = $post_max_size   <b>$pms</b></li>
 	<li>upload_max_filesize = $upload_max_filesize  <b>$umf</b></li>
 	<li>memory_limit = $memory_limit  <b>$ml</b></li></ul>";
 
-if (is_file(GS_BIN)) {
+$gsbin = GS_BIN;
+if($pos=stripos($gsbin," ")) $gsbin=substr($gsbin,0,$pos);
+if (is_file($gsbin)) {
 	$ver = exec(GS_BIN . " --version");
 	if ($ver)
 	{
