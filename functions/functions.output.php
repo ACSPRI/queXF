@@ -236,6 +236,12 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false)
 				$count = 1;
 				$done = 0;
 			}
+			else if ($val['btid'] == 6 || $val['btid'] == 5) 
+			{
+				//one box per variable - just export
+				$rr[] = $val['val'];
+			}
+
 
 			if ($val['btid'] == 1)
 			{
@@ -262,12 +268,6 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false)
 						$rr[] = $val['value'];
 				}
 			}
-			else if ($val['btid'] == 6 || $val['btid'] == 5) 
-			{
-				//one box per variable - just export
-				$rr[] = $val['val'];
-			}
-
 
 			$prebtid = $val['btid'];
 		}
