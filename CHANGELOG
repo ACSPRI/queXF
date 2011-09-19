@@ -1,3 +1,8 @@
+queXF 1.11.3 - Changes since queXF 1.11.2
+
+*Fixed Bug: testconfig failing where options are given to GS
+*Fixed Bug: duplicate barcode data output if not first element
+
 queXF 1.11.2 - Changes since queXF 1.11.1
 
 *Fixed Bug: CSV output where barcode/longtext not outputting if first element in data
