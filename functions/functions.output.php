@@ -536,7 +536,7 @@ function export_banding($qid)
 	}
 
 	//Export pages
-	$sql = "SELECT pid,pidentifierval as id,tlx,tly,trx,try,blx,bly,brx,bry,rotation
+	$sql = "SELECT pid,pidentifierval as id,tlx,tly,trx,try,blx,bly,brx,bry,rotation,width,height,TL_VERT_TLX,TL_VERT_TLY,TL_VERT_BRX,TL_VERT_BRY,TL_HORI_TLX,TL_HORI_TLY,TL_HORI_BRX,TL_HORI_BRY,TR_VERT_TLX,TR_VERT_TLY,TR_VERT_BRX,TR_VERT_BRY,TR_HORI_TLX,TR_HORI_TLY,TR_HORI_BRX,TR_HORI_BRY,BL_VERT_TLX,BL_VERT_TLY,BL_VERT_BRX,BL_VERT_BRY,BL_HORI_TLX,BL_HORI_TLY,BL_HORI_BRX,BL_HORI_BRY,BR_VERT_TLX,BR_VERT_TLY,BR_VERT_BRX,BR_VERT_BRY,BR_HORI_TLX,BR_HORI_TLY,BR_HORI_BRX,BR_HORI_BRY,VERT_WIDTH,HORI_WIDTH
 		FROM pages 
 		WHERE qid = '$qid'
 		ORDER BY pidentifierval ASC";
