@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: queXF\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-05 09:16+1000\n"
+"POT-Creation-Date: 2011-10-04 09:23+1000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Adam Zammit <adam.zammit@acspri.org.au>\n"
 "Language-Team: \n"
@@ -256,7 +256,7 @@ msgid "Delete this box group"
 msgstr ""
 
 #: admin/import.directory.php:47
-#: admin/import.directory.php:63
+#: admin/import.directory.php:68
 msgid "Import a directory of PDF files"
 msgstr ""
 
@@ -284,150 +284,185 @@ msgstr ""
 msgid "may take up to a few minutes to take effect"
 msgstr ""
 
-#: admin/import.directory.php:72
+#: admin/import.directory.php:62
+#: admin/import.directory.php:90
+msgid "Log id"
+msgstr ""
+
+#: admin/import.directory.php:62
+#: admin/import.directory.php:90
+msgid "Date"
+msgstr ""
+
+#: admin/import.directory.php:62
+#: admin/import.directory.php:90
+msgid "Log entry"
+msgstr ""
+
+#: admin/import.directory.php:77
 msgid "Directory"
 msgstr ""
 
-#: admin/import.directory.php:74
+#: admin/import.directory.php:79
 msgid "Enter directory local to the server (eg /mnt/iss/tmp/images)"
 msgstr ""
 
-#: admin/import.directory.php:75
+#: admin/import.directory.php:80
 msgid "Process directory: browser window must remain open"
 msgstr ""
 
-#: admin/import.directory.php:76
+#: admin/import.directory.php:81
 msgid "Watch this directory in the background (recommended)"
 msgstr ""
 
-#: admin/import.directory.php:80
+#: admin/import.directory.php:85
 msgid "Outcome of last process run (if any)"
 msgstr ""
 
-#: admin/index.php:30
-#: admin/index.php:35
+#: admin/index.php:31
+#: admin/index.php:36
 msgid "queXF Admin Functions"
 msgstr ""
 
-#: admin/index.php:37
+#: admin/index.php:38
 msgid "Form setup"
 msgstr ""
 
-#: admin/index.php:38
+#: admin/index.php:39
 msgid "Import a new form from a PDF file"
 msgstr ""
 
-#: admin/index.php:39
+#: admin/index.php:40
 msgid "Import/Update banding from XML"
 msgstr ""
 
-#: admin/index.php:40
+#: admin/index.php:41
 msgid "Delete a form (only if no forms yet imported)"
 msgstr ""
 
-#: admin/index.php:41
+#: admin/index.php:42
 msgid "Touch-up a form"
 msgstr ""
 
-#: admin/index.php:42
+#: admin/index.php:43
 msgid "Band a form"
 msgstr ""
 
-#: admin/index.php:43
+#: admin/index.php:44
 msgid "Band a form using interactive banding"
 msgstr ""
 
-#: admin/index.php:44
+#: admin/index.php:45
 msgid "Order variables on the form"
 msgstr ""
 
-#: admin/index.php:45
+#: admin/index.php:46
 msgid "Users"
 msgstr ""
 
-#: admin/index.php:46
+#: admin/index.php:47
 msgid "Add operators"
 msgstr ""
 
-#: admin/index.php:47
+#: admin/index.php:48
 msgid "Assign forms to operators"
 msgstr ""
 
-#: admin/index.php:48
-msgid "Importing"
-msgstr ""
-
 #: admin/index.php:50
-msgid "Successfully imported files"
+msgid "ICR"
 msgstr ""
 
 #: admin/index.php:51
-msgid "Failed imported files"
+msgid "Train ICR"
 msgstr ""
 
 #: admin/index.php:52
-msgid "Duplicate forms"
+msgid "Monitor ICR training process"
 msgstr ""
 
 #: admin/index.php:53
-msgid "Reverify forms"
+msgid "Import and Export ICR KB"
 msgstr ""
 
 #: admin/index.php:54
-msgid "List page notes"
-msgstr ""
-
-#: admin/index.php:55
-msgid "Handle missing pages"
+msgid "Assign ICR KB to questionnaire"
 msgstr ""
 
 #: admin/index.php:56
+msgid "Importing"
+msgstr ""
+
+#: admin/index.php:58
+msgid "Successfully imported files"
+msgstr ""
+
+#: admin/index.php:59
+msgid "Failed imported files"
+msgstr ""
+
+#: admin/index.php:60
+msgid "Duplicate forms"
+msgstr ""
+
+#: admin/index.php:61
+msgid "Reverify forms"
+msgstr ""
+
+#: admin/index.php:62
+msgid "List page notes"
+msgstr ""
+
+#: admin/index.php:63
+msgid "Handle missing pages"
+msgstr ""
+
+#: admin/index.php:64
 msgid "Output"
 msgstr ""
 
-#: admin/index.php:57
+#: admin/index.php:65
 #: admin/outputunverified.php:67
 msgid "Output unverified data"
 msgstr ""
 
-#: admin/index.php:58
+#: admin/index.php:66
 msgid "Output data/ddi"
 msgstr ""
 
-#: admin/index.php:59
+#: admin/index.php:67
 msgid "Progress"
 msgstr ""
 
-#: admin/index.php:60
+#: admin/index.php:68
 msgid "Display progress of form verification"
 msgstr ""
 
-#: admin/index.php:61
+#: admin/index.php:69
 msgid "Display performance of verifiers (Completions per hour)"
 msgstr ""
 
-#: admin/index.php:62
+#: admin/index.php:70
 msgid "Clients"
 msgstr ""
 
-#: admin/index.php:63
+#: admin/index.php:71
 msgid "Add clients"
 msgstr ""
 
-#: admin/index.php:64
+#: admin/index.php:72
 msgid "Assign clients to forms"
 msgstr ""
 
-#: admin/index.php:65
+#: admin/index.php:73
 msgid "System setup"
 msgstr ""
 
-#: admin/index.php:66
+#: admin/index.php:74
 #: admin/pagesetup.php:433
 msgid "Page setup"
 msgstr ""
 
-#: admin/index.php:67
+#: admin/index.php:75
 msgid "Test configuration"
 msgstr ""
 
@@ -457,43 +492,31 @@ msgstr ""
 
 #: admin/outputunverified.php:70
 #: admin/outputunverified.php:84
-#: admin/output.php:70
-#: admin/output.php:82
 msgid "Data"
 msgstr ""
 
 #: admin/outputunverified.php:71
 #: admin/outputunverified.php:84
-#: admin/output.php:71
-#: admin/output.php:82
 msgid "DDI"
 msgstr ""
 
 #: admin/outputunverified.php:72
 #: admin/outputunverified.php:84
-#: admin/output.php:72
-#: admin/output.php:82
 msgid "CSV"
 msgstr ""
 
 #: admin/outputunverified.php:73
 #: admin/outputunverified.php:84
-#: admin/output.php:73
-#: admin/output.php:82
 msgid "CSV Labelled"
 msgstr ""
 
 #: admin/outputunverified.php:74
 #: admin/outputunverified.php:84
-#: admin/output.php:74
-#: admin/output.php:82
 msgid "PSPP (SPSS)"
 msgstr ""
 
 #: admin/outputunverified.php:75
 #: admin/outputunverified.php:84
-#: admin/output.php:75
-#: admin/output.php:82
 msgid "Banding XML"
 msgstr ""
 
@@ -505,8 +528,6 @@ msgstr ""
 #: admin/listforms.php:70
 #: admin/listduplicates.php:49
 #: admin/reorder.php:48
-#: admin/output.php:82
-#: admin/performance.php:106
 msgid "Questionnaire"
 msgstr ""
 
@@ -567,18 +588,114 @@ msgstr ""
 msgid "Finished page setup"
 msgstr ""
 
+#: admin/icrtrain.php:37
+msgid "ICR Training"
+msgstr ""
+
+#: admin/icrtrain.php:125
+msgid "Found duplicate"
+msgstr ""
+
+#: admin/icrtrain.php:150
+#: admin/processicr.php:127
+msgid "Trained"
+msgstr ""
+
+#: admin/icrtrain.php:150
+msgid "characters"
+msgstr ""
+
+#: admin/icrtrain.php:155
+#: admin/processicr.php:144
+msgid "Generated KB"
+msgstr ""
+
+#: admin/icrtrain.php:200
+msgid "Chars"
+msgstr ""
+
+#: admin/icrtrain.php:200
+#: admin/icrtrain.php:269
+msgid "from"
+msgstr ""
+
+#: admin/icrtrain.php:241
+msgid "Started training process"
+msgstr ""
+
+#: admin/icrtrain.php:269
+#: admin/icrtrain.php:357
+msgid "Character"
+msgstr ""
+
+#: admin/icrtrain.php:289
+msgid "Make sure the letter in the box matches the image. If you do not want to import a box, click on it to disable it (click again to enable)."
+msgstr ""
+
+#: admin/icrtrain.php:306
+msgid "Description for knowledge base:"
+msgstr ""
+
+#: admin/icrtrain.php:306
+msgid "Train"
+msgstr ""
+
+#: admin/icrtrain.php:339
+#: admin/icrtrain.php:357
+msgid "Manually train"
+msgstr ""
+
+#: admin/icrtrain.php:354
+msgid "Please choose which characters to include in training"
+msgstr ""
+
+#: admin/icrtrain.php:357
+msgid "Number of instances"
+msgstr ""
+
+#: admin/icrtrain.php:357
+#: admin/icrtrain.php:388
+msgid "Include in training?"
+msgstr ""
+
+#: admin/icrtrain.php:367
+msgid "Start training process in background"
+msgstr ""
+
+#: admin/icrtrain.php:385
+msgid "Please choose which verifiers to include in training"
+msgstr ""
+
+#: admin/icrtrain.php:388
+msgid "Number of forms"
+msgstr ""
+
+#: admin/icrtrain.php:391
+msgid "Continue training"
+msgstr ""
+
+#: admin/icrtrain.php:405
+msgid "ICR Train"
+msgstr ""
+
+#: admin/icrmonitor.php:30
+msgid "Monitor ICR process"
+msgstr ""
+
+#: admin/icrmonitor.php:80
+msgid "No process running"
+msgstr ""
+
 #: admin/operators.php:34
 #: admin/operators.php:64
 msgid "Add an operator"
 msgstr ""
 
 #: admin/operators.php:49
-#: admin/clients.php:66
 msgid "Added"
 msgstr ""
 
 #: admin/operators.php:52
-#: admin/clients.php:68
 msgid "Could not add"
 msgstr ""
 
@@ -611,7 +728,6 @@ msgid "Enter the name of the operator (eg Adam):"
 msgstr ""
 
 #: admin/operators.php:70
-#: admin/clients.php:88
 msgid "Add user"
 msgstr ""
 
@@ -708,6 +824,19 @@ msgstr ""
 msgid "Upload form"
 msgstr ""
 
+#: admin/processicr.php:56
+msgid "Processing KB"
+msgstr ""
+
+#: admin/processicr.php:127
+msgid "to knowledge base"
+msgstr ""
+
+#: admin/processicr.php:147
+#: admin/processicr.php:150
+msgid "Did not generate KB as not all records trained"
+msgstr ""
+
 #: admin/listfiles.php:49
 msgid "Listing of imported files by status"
 msgstr ""
@@ -726,10 +855,6 @@ msgstr ""
 
 #: admin/listfiles.php:68
 msgid "SHA1"
-msgstr ""
-
-#: admin/listfiles.php:68
-msgid "Date"
 msgstr ""
 
 #: admin/listfiles.php:68
@@ -781,7 +906,7 @@ msgstr ""
 msgid "Watching..."
 msgstr ""
 
-#: admin/process.php:83
+#: admin/process.php:84
 msgid "Cannot process this directory - check that it is valid and permissions are correct"
 msgstr ""
 
@@ -878,6 +1003,7 @@ msgid "Select questionnaire"
 msgstr ""
 
 #: admin/importbandingxml.php:62
+#: admin/icrkb.php:67
 msgid "Upload XML"
 msgstr ""
 
@@ -929,51 +1055,27 @@ msgstr ""
 msgid "Configuration options from php.ini:"
 msgstr ""
 
-#: admin/testconfig.php:67
+#: admin/testconfig.php:69
 msgid "Found GhostScript version"
 msgstr ""
 
-#: admin/testconfig.php:71
+#: admin/testconfig.php:73
 msgid " exists but can not execute it. Please make sure you are pointing to the executable file, not just the directory of Ghostscript"
 msgstr ""
 
-#: admin/testconfig.php:75
+#: admin/testconfig.php:77
 msgid "Could not find GhostScript in path: "
 msgstr ""
 
-#: admin/testconfig.php:75
+#: admin/testconfig.php:77
 msgid "Please modify config.inc.php, GS_BIN to point to the gs executable. Also please make sure you are pointing to the executable file, not just the directory of Ghostscript"
 msgstr ""
 
-#: admin/testconfig.php:83
-msgid "Found Tesseract"
-msgstr ""
-
-#: admin/testconfig.php:85
-msgid "Could not find Tesseract in path: "
-msgstr ""
-
-#: admin/testconfig.php:85
-msgid "Please modify config.inc.php, TESSERACT_BIN to point to the tesseract executable or disable OCR by changing OCR_ENABLED to false"
-msgstr ""
-
-#: admin/testconfig.php:90
-msgid "Found ImageMagick"
-msgstr ""
-
-#: admin/testconfig.php:93
-msgid "Could not find ImageMagick in path: "
-msgstr ""
-
-#: admin/testconfig.php:93
-msgid "Please modify config.inc.php, CONVERT_BIN to point to the convert executable or disable OCR by changing OCR_ENABLED to false"
-msgstr ""
-
-#: admin/testconfig.php:100
+#: admin/testconfig.php:104
 msgid "FAILED"
 msgstr ""
 
-#: admin/testconfig.php:104
+#: admin/testconfig.php:108
 msgid "Passed Configuration Test"
 msgstr ""
 
@@ -1018,9 +1120,34 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
+#: admin/icrkb.php:38
+#: admin/icrkb.php:55
+msgid "Import ICR KB from XML"
+msgstr ""
+
+#: admin/icrkb.php:49
+msgid "Successfully loaded ICR XML file"
+msgstr ""
+
+#: admin/icrkb.php:51
+msgid "Failed to load ICR XML file"
+msgstr ""
+
+#: admin/icrkb.php:66
+msgid "Select ICR KB XML file"
+msgstr ""
+
+#: admin/icrkb.php:72
+msgid "Export ICR KB to XML"
+msgstr ""
+
+#: admin/icrkb.php:73
+msgid "ICR KB"
+msgstr ""
+
 #: functions/functions.output.php:111
-#: functions/functions.output.php:318
-#: functions/functions.output.php:802
+#: functions/functions.output.php:325
+#: functions/functions.output.php:875
 msgid "unverified"
 msgstr ""
 
@@ -1040,43 +1167,43 @@ msgstr ""
 msgid "Failed to import as no pages were detected"
 msgstr ""
 
-#: functions/functions.import.php:593
+#: functions/functions.import.php:634
 msgid "Finding qid"
 msgstr ""
 
-#: functions/functions.import.php:655
+#: functions/functions.import.php:696
 msgid "Got qid"
 msgstr ""
 
-#: functions/functions.import.php:711
+#: functions/functions.import.php:752
 msgid "Processing pid"
 msgstr ""
 
-#: functions/functions.import.php:722
+#: functions/functions.import.php:763
 msgid "Pid not identified for this page, inserting into missing pages..."
 msgstr ""
 
-#: functions/functions.import.php:773
+#: functions/functions.import.php:814
 msgid "Blank page: ignoring"
 msgstr ""
 
-#: functions/functions.import.php:778
+#: functions/functions.import.php:819
 msgid "Could not get pid, inserting into missing pages..."
 msgstr ""
 
-#: functions/functions.import.php:837
+#: functions/functions.import.php:878
 msgid "Could not get qid..."
 msgstr ""
 
-#: functions/functions.import.php:897
+#: functions/functions.import.php:938
 msgid "Automatically processing the 1 missing page for this form - assuming pid:"
 msgstr ""
 
-#: functions/functions.import.php:956
+#: functions/functions.import.php:997
 msgid "Deleting missing pages as all form page slots filled"
 msgstr ""
 
-#: functions/functions.import.php:1138
+#: functions/functions.import.php:1219
 msgid "File already in database"
 msgstr ""
 
