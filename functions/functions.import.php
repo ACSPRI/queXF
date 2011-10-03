@@ -1010,6 +1010,46 @@ function import($filename,$description = false)
 
 
 /**
+ * Import ICR information
+ * 
+ * @param string $xml The queXF ICR file
+ * 
+ * @return bool True if successful otherwise false (including if already banded)
+ * @author Adam Zammit <adam.zammit@acspri.org.au>
+ * @since  2010-09-21
+ * @link http://quexml.sourceforge.net/
+ */
+function import_icr($xml)
+{
+	global $db;
+
+	$db->StartTrans();
+
+	$b = new SimpleXMLElement($xml);
+
+	foreach ($b->kb as $q)
+	{
+		$id = current($q->id);
+		$desc = $db->qstr(current($q->description));
+
+		$sql = "INSERT INTO ocrkb (kb,description)
+			VALUES (NULL,$desc)";
+
+		$db->Execute($sql);
+		
+		$kb = $db->Insert_Id();
+
+		foreach ($q->ocrkbdata as $s)
+		{
+			$vars = get_object_vars($s);
+			$vars['kb'] = $kb;
+			$db->AutoExecute("ocrkbdata",$vars,'INSERT');
+		}
+	}	
+	return $db->CompleteTrans();
+}
+
+/**
  * Import banding information for a form
  * 
  * @param string $xml The queXF Banding XML file produced using queXMLPDF

@@ -50,6 +50,7 @@ xhtml_head(T_("queXF Admin Functions"),true,array("../css/admin.css"));
 <li><h3><? echo T_("ICR"); ?></h3>
 <ul><li><a href="?page=icrtrain.php"><? echo T_("Train ICR"); ?></a></li>
 <li><a href="?page=icrmonitor.php"><? echo T_("Monitor ICR training process"); ?></a></li>
+<li><a href="?page=icrkb.php"><? echo T_("Import and Export ICR KB"); ?></a></li>
 <li><a href="?page=icrassign.php"><? echo T_("Assign ICR KB to questionnaire"); ?></a></li></ul></li>
 <? } ?>
 <li><h3><? echo T_("Importing"); ?></h3>

@@ -491,6 +491,72 @@ function variable_ddi($doc,$width,$varname,$vardescription,$startpos,$vartype,$c
 
 
 /**
+ * Export the ICR knowledge base as an XML file
+ *
+ * @param int $kb The knowledge base id
+ */ 
+function export_icr($kb)
+{
+	global $db;
+
+	$dom = domxml_new_doc("1.0");
+
+	$c = $dom->create_element("queXF");
+	$dom->append_child($c); 
+
+	$q = $dom->create_element("kb");
+
+	$tmp = $dom->create_element("id");
+	$tmp->set_content($kb);
+	$q->append_child($tmp);
+		
+	$c->append_child($q);
+	
+	//Export description
+	$sql = "SELECT description
+		FROM ocrkb
+		WHERE kb = '$kb'";
+
+	$rs = $db->GetRow($sql);
+	
+	$tmp = $dom->create_element("description");
+	$tmp->set_content($rs['description']);
+	$q->append_child($tmp);
+
+	//Export kb data
+	$sql = "SELECT *
+		FROM ocrkbdata
+		WHERE kb = '$kb'";
+	
+	$rs = $db->GetAll($sql);
+
+	foreach($rs as $r)
+	{
+		$o = $dom->create_element("ocrkbdata");
+
+		foreach($r as $battr => $bval)
+		{
+			if ($battr != "kb")
+			{
+				$tmp = $dom->create_element($battr);
+				$tmp->set_content($bval);
+				$o->append_child($tmp);
+			}
+		}
+		$q->append_child($o);
+	}
+
+	$ret = $dom->dump_mem(true);	
+	
+	header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+	header ("Content-Type: text/xml");
+	header ("Content-Length: " . strlen($ret));
+	header ("Content-Disposition: attachment; filename=quexf_icr_$kb.xml");
+
+	echo $ret;
+}
+
+/**
  * Export the banding layout as an XML file
  *
  * @param int $qid The quesitonnaire id

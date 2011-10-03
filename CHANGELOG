@@ -1,6 +1,7 @@
 queXF 1.12.0 - Changes since queXF 1.11.3
 
 *New feature: Enabled ICR (Intelligent Character Recognition) and added training features (config directive: ICR_ENABLED)
+*New feature: Allow the import and export of ICR Knowledge Bases (KB) for sharing
 *New feature: Process log is done on line by line datestamped basis instead of text update
 *New feature: Added output of corner edge detection area elements to queXF banding XML
 *Deprecated: Removed old OCR stuff with Tesseract
