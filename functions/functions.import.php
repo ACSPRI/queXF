@@ -330,7 +330,7 @@ function charboxes($pid,$image,$fid,$transforms,$ocrqid)
 
 	foreach ($boxes as $i)
 	{
-		print "filled: " . $i['filled'] . "<br/>";
+		//print "filled: " . $i['filled'] . "<br/>";
 		if ($ocrqid > 0 && $i['filled'] < ICR_FILL_MIN && ICR_ENABLED)
 		{		
 			$i['tlx']+= BOX_EDGE;
@@ -366,7 +366,7 @@ function numberboxes($pid,$image,$fid,$transforms,$ocrqid)
 
 	foreach ($boxes as $i)
 	{
-		print "filled: " . $i['filled'] . "<br/>";
+		//print "filled: " . $i['filled'] . "<br/>";
 		if ($ocrqid > 0 && $i['filled'] < ICR_FILL_MIN && ICR_ENABLED)
 		{		
 			$i['tlx']+= BOX_EDGE;
