@@ -63,12 +63,15 @@ if (!defined('PHP_EXEC')) define('PHP_EXEC', "php");
 //Temporary directory
 if (!defined('TEMPORARY_DIRECTORY')) define('TEMPORARY_DIRECTORY', "/tmp");
 
-//OCR requires CONVERT_BIN (imagemagick convert binary) and TESSERACT_BIN (tessearct binary) to be enabled
-if (!defined('OCR_ENABLED')) define('OCR_ENABLED', false);
-if (!defined('OCR_FILL_MIN')) define('OCR_FILL_MIN', 0.95);
-if (!defined('BOX_EDGE')) define('BOX_EDGE',5); //take this many pixels of the side due to form box drawing
+//ICR
+if (!defined('ICR_ENABLED')) define('ICR_ENABLED', true);
+if (!defined('ICR_FILL_MIN')) define('ICR_FILL_MIN', 0.935);
+if (!defined('ICR_TRAIN_LIMIT')) define('ICR_TRAIN_LIMIT', 2000);
+if (!defined('BOX_EDGE')) define('BOX_EDGE',8); //take this many pixels of the side due to form box drawing
+
+//Old OCR Stuff
 if (!defined('CONVERT_BIN')) define('CONVERT_BIN', "/usr/bin/convert");
-if (!defined('TESSERACT_BIN')) define('TESSERACT_BIN', "/usr/bin/tesseract");
+if (!defined('TESSERACT_BIN')) define('TESSERACT_BIN', "/usr/local/bin/tesseract");
 
 //Page size
 if (!defined('PAGE_WIDTH')) define('PAGE_WIDTH',2480);
@@ -184,5 +187,20 @@ if (!defined('BARCODE_LENGTH_PID')) define('BARCODE_LENGTH_PID',8); //Length in 
 
 //Whether to assign a form if there are missing pages
 if (!defined('MISSING_PAGE_ASSIGN')) define('MISSING_PAGE_ASSIGN',false); 
+
+/**
+ * Date time format for displaying 
+ * 
+ * see http://dev.mysql.com/doc/refman/5.0/en/date-and-time-functions.html#function_date-format 
+ * for configuration details for DATE_TIME_FORMAT and TIME_FORMAT
+ */
+if (!defined('DATE_TIME_FORMAT')) define('DATE_TIME_FORMAT','%a %d %b %I:%i%p'); 
+
+/**
+ * Number of log records to display
+ */
+if (!defined('PROCESS_LOG_LIMIT')) define('PROCESS_LOG_LIMIT', 500);
+
+
 
 ?>

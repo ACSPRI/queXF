@@ -1,3 +1,44 @@
+queXF 1.12.0 - Changes since queXF 1.11.3
+
+*New feature: Enabled ICR (Intelligent Character Recognition) and added training features (config directive: ICR_ENABLED)
+*New feature: Process log is done on line by line datestamped basis instead of text update
+*Deprecated: Removed old OCR stuff with Tesseract
+
+Database changes:
+
+ALTER TABLE `formboxverifychar` CHANGE `val` `val` CHAR( 1 ) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL 
+ALTER TABLE `formboxverifychar` ADD INDEX ( `val` ) 
+ALTER TABLE `ocrtrain` ADD `kb` INT( 11 ) NOT NULL DEFAULT '1' AFTER `ocrtid` ;
+ALTER TABLE `process` ADD `type` INT( 11 ) NOT NULL DEFAULT '1' AFTER `process_id`;
+
+CREATE TABLE IF NOT EXISTS `ocrkbboxgroup` (
+  `btid` int(11) NOT NULL,
+  `kb` int(11) NOT NULL,
+  `qid` int(11) NOT NULL,
+  PRIMARY KEY  (`btid`,`kb`,`qid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `ocrprocess` (
+  `ocrprocessid` int(11) NOT NULL auto_increment,
+  `fid` int(11) NOT NULL,
+  `bid` int(11) NOT NULL,
+  `vid` int(11) NOT NULL,
+  `val` char(1) character set utf8 collate utf8_bin NOT NULL,
+  `kb` int(11) NOT NULL,
+  PRIMARY KEY  (`ocrprocessid`),
+  KEY `kb` (`kb`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `process_log` (
+  `process_log_id` bigint(20) NOT NULL auto_increment,
+  `process_id` bigint(20) NOT NULL,
+  `datetime` datetime NOT NULL,
+  `data` text collate utf8_unicode_ci NOT NULL,
+  PRIMARY KEY  (`process_log_id`),
+  KEY `process_id` (`process_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
 queXF 1.11.3 - Changes since queXF 1.11.2
 
 *Fixed Bug: testconfig failing where options are given to GS

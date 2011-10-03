@@ -26,6 +26,7 @@
  */
 include ("../functions/functions.xhtml.php");
 include ("../lang.inc.php");
+include ("../config.inc.php");
 
 xhtml_head(T_("queXF Admin Functions"),true,array("../css/admin.css"));
 
@@ -45,6 +46,12 @@ xhtml_head(T_("queXF Admin Functions"),true,array("../css/admin.css"));
 <li><h3><? echo T_("Users"); ?></h3>
 <ul><li><a href="?page=operators.php"><? echo T_("Add operators"); ?></a></li>
 <li><a href="?page=verifierquestionnaire.php"><? echo T_("Assign forms to operators"); ?></a></li></ul></li>
+<? if (ICR_ENABLED) { ?>
+<li><h3><? echo T_("ICR"); ?></h3>
+<ul><li><a href="?page=icrtrain.php"><? echo T_("Train ICR"); ?></a></li>
+<li><a href="?page=icrmonitor.php"><? echo T_("Monitor ICR training process"); ?></a></li>
+<li><a href="?page=icrassign.php"><? echo T_("Assign ICR KB to questionnaire"); ?></a></li></ul></li>
+<? } ?>
 <li><h3><? echo T_("Importing"); ?></h3>
 <ul><li><a href="?page=import.directory.php"><? echo T_("Import a directory of PDF files"); ?></a></li>
 <li><a href="?page=listfiles.php?status=1"><? echo T_("Successfully imported files"); ?></a></li>

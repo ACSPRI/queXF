@@ -241,16 +241,44 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
  *
  *
  */
-function processpage($pid,$fid,$image,$transforms)
+function processpage($pid,$fid,$image,$transforms,$qid)
 {
 	//fill boxes for this page
 	fillboxes($pid,$image,$fid,$transforms);
 
+	global $db;
+
+	$ocrqidc = 0;
+	$ocrqidn = 0;
+	if (ICR_ENABLED)
+	{
+		$sql = "SELECT qid
+			FROM ocrkbboxgroup
+			WHERE qid = '$qid' 
+			AND btid = 3";
+
+		$rs = $db->GetRow($sql);
+
+		if (isset($rs['qid'])) 
+			$ocrqidc = $qid; 
+
+		$sql = "SELECT qid
+			FROM ocrkbboxgroup
+			WHERE qid = '$qid' 
+			AND btid = 4";
+
+		$rs = $db->GetRow($sql);
+
+		if (isset($rs['qid'])) 
+			$ocrqidn = $qid; 
+	}
+	
+
 	//char boxes
-	charboxes($pid,$image,$fid,$transforms);
+	charboxes($pid,$image,$fid,$transforms,$ocrqidc);
 
 	//number boxes
-	numberboxes($pid,$image,$fid,$transforms);
+	numberboxes($pid,$image,$fid,$transforms,$ocrqidn);
 
 	//barcode boxes
 	barcodeboxes($pid,$image,$fid,$transforms);
@@ -288,10 +316,9 @@ function textbox($bid,$fid,$val)
 
 
 
-function charboxes($pid,$image,$fid,$transforms)
+function charboxes($pid,$image,$fid,$transforms,$ocrqid)
 {
 	global $db;
-
 
 	$boxes = $db->GetAll("
 		SELECT b.bid, b.tlx, b.tly, b.brx, b.bry, b.pid, f.filled
@@ -303,11 +330,18 @@ function charboxes($pid,$image,$fid,$transforms)
 
 	foreach ($boxes as $i)
 	{
-		if ($i['filled'] < OCR_FILL_MIN && OCR_ENABLED)
+		print "filled: " . $i['filled'] . "<br/>";
+		if ($ocrqid > 0 && $i['filled'] < ICR_FILL_MIN && ICR_ENABLED)
 		{		
+			$i['tlx']+= BOX_EDGE;
+                        $i['tly']+= BOX_EDGE;
+                        $i['brx']-= BOX_EDGE;
+                        $i['bry']-= BOX_EDGE;
+
 			include_once("functions.ocr.php");
-			$ocr = ocr(crop($image,applytransforms($i,$transforms)));
-			if (empty($ocr)) $ocr = " ";
+			$ocr = ocr(crop($image,applytransforms($i,$transforms)),3,$ocrqid);
+			print "bid: {$i['bid']} ocr: " . $ocr. "<br/>";
+			if (strlen($ocr) != 1) $ocr = " ";
 		}else
 		{
 			$ocr = " ";
@@ -318,7 +352,7 @@ function charboxes($pid,$image,$fid,$transforms)
 
 }
 
-function numberboxes($pid,$image,$fid,$transforms)
+function numberboxes($pid,$image,$fid,$transforms,$ocrqid)
 {
 	global $db;
 
@@ -332,11 +366,18 @@ function numberboxes($pid,$image,$fid,$transforms)
 
 	foreach ($boxes as $i)
 	{
-		if ($i['filled'] < OCR_FILL_MIN && OCR_ENABLED)
+		print "filled: " . $i['filled'] . "<br/>";
+		if ($ocrqid > 0 && $i['filled'] < ICR_FILL_MIN && ICR_ENABLED)
 		{		
+			$i['tlx']+= BOX_EDGE;
+                        $i['tly']+= BOX_EDGE;
+                        $i['brx']-= BOX_EDGE;
+                        $i['bry']-= BOX_EDGE;
+
 			include_once("functions.ocr.php");
-			$ocr = ocr(crop($image,applytransforms($i,$transforms)));
-			if (empty($ocr)) $ocr = " ";
+			$ocr = ocr(crop($image,applytransforms($i,$transforms)),4,$ocrqid);
+			print "bid: {$i['bid']} ocr: " . $ocr. "<br/>";
+			if (strlen($ocr) != 1) $ocr = " ";
 		}else
 		{
 			$ocr = " ";
@@ -762,7 +803,7 @@ function import($filename,$description = false)
 						if ($page['process'] == 1)
 						{		
 							//process variables on this page
-							processpage($page["pid"],$fid,$image,$transforms);
+							processpage($page["pid"],$fid,$image,$transforms,$qid);
 						}
 					}
 				}
@@ -922,7 +963,7 @@ function import($filename,$description = false)
 			if ($row['process'] == 1)
 			{		
 				//process variables on this page
-				processpage($row["pid"],$fid,$image,$transforms);
+				processpage($row["pid"],$fid,$image,$transforms,$qid);
 			}
 
 			$sql = "DELETE 

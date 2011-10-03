@@ -190,13 +190,14 @@ function thinzs_np($image)
  * Return what character based on the guess and the given kb
  * 
  * @param image $image The image of the character
- * @param int $kb The knowledge base to work from 
+ * @param int $btid The box type this came from
+ * @param int $qid The questionniare this box came from
  * 
  * @return char The character detected
  * @author Adam Zammit <adam.zammit@acspri.org.au>
  * @since  2010-10-18
  */
-function ocr_guess($image,$kb)
+function ocr_guess($image,$btid,$qid)
 {
  	include_once(dirname(__FILE__).'/../config.inc.php');
 	include_once(dirname(__FILE__).'/../db.inc.php');
@@ -237,13 +238,16 @@ function ocr_guess($image,$kb)
 			(pow((". M_E ." - IFNULL((pow((m16-'{$f[1][4]}'),2)/(2*v16)),0)),2)*pow((m16-'{$f[1][4]}'),2))
 			) as calc
 		FROM ocrkbdata
-		WHERE kb = '$kb'
+		JOIN ocrkbboxgroup ON (ocrkbdata.kb = ocrkbboxgroup.kb AND ocrkbboxgroup.btid = '$btid' AND ocrkbboxgroup.qid = '$qid')
 		ORDER BY calc ASC";
 
 
-	$guess = $db->GetAll($sql);
+	$guess = $db->GetRow($sql);
 
-	return $guess;
+	//DEBUG
+	//print $sql . "<br/>";
+
+	return $guess['val'];
 }
 
 
@@ -257,7 +261,7 @@ function ocr_guess($image,$kb)
  * @author Adam Zammit <adam.zammit@acspri.org.au>
  * @since  2010-10-18
  */
-function generate_kb($description,$numbers = false, $smallletters = false, $capitalletters = false)
+function generate_kb($kb)
 {
 	include_once(dirname(__FILE__).'/../config.inc.php');
 	include_once(dirname(__FILE__).'/../db.inc.php');
@@ -265,33 +269,12 @@ function generate_kb($description,$numbers = false, $smallletters = false, $capi
 
 	$db->StartTrans();
 
-	$kb = false;
-
 	$sql = "SELECT val
 		FROM ocrtrain
-		WHERE";
-
-	if ($numbers)
-		$sql .= " val regexp '[0-9]' OR  ";
-
-	if ($smallletters)
-		$sql .= " val regexp '[a-z]' OR  ";
-
-	if ($capitalletters)
-		$sql .= " val regexp '[A-Z]' OR  ";
-
-	$sql = substr($sql,0,-5);
-
-	$sql .=	" GROUP BY val";	
+		WHERE kb = '$kb'
+		GROUP BY val";	
 
 	$chars = $db->GetAll($sql);
-
-	$sql = "INSERT INTO ocrkb (kb,description)
-		VALUES (NULL,'$description')";
-
-	$db->Execute($sql);
-	
-	$kb = $db->Insert_ID();
 
 	foreach($chars as $c)
 	{
@@ -299,7 +282,7 @@ function generate_kb($description,$numbers = false, $smallletters = false, $capi
 		$sql = "INSERT INTO ocrkbdata(kb,`val`,m1,v1,m2,v2,m3,v3,m4,v4,m5,v5,m6,v6,m7,v7,m8,v8,m9,v9,m10,v10,m11,v11,m12,v12,m13,v13,m14,v14,m15,v15,m16,v16)
 			SELECT '$kb','$ch',avg(f1),var_pop(f1),avg(f2),var_pop(f2),avg(f3),var_pop(f3),avg(f4),var_pop(f4),avg(f5),var_pop(f5),avg(f6),var_pop(f6),avg(f7),var_pop(f7),avg(f8),var_pop(f8),avg(f9),var_pop(f9),avg(f10),var_pop(f10),avg(f11),var_pop(f11),avg(f12),var_pop(f12),avg(f13),var_pop(f13),avg(f14),var_pop(f14),avg(f15),var_pop(f15),avg(f16),var_pop(f16)
 			FROM ocrtrain
-			WHERE val = '$ch'";
+			WHERE val = '$ch' AND kb = '$kb'";
 
 		$db->Execute($sql);
 	}
@@ -467,7 +450,7 @@ function resize_bounding(&$image, $x = 44, $y = 34)
  * Algorithm from page 138.
  *
  * Basically looks at each boundary and works out what is noise by looking at 1/8th of the image width
- * and finding filled columns and empty columns. If there is a filled column followed by an "empty" colums (defined as one
+ * and finding filled columns and empty columns. If there is a filled column followed by an "empty" columns (defined as one
  * with 3 or less pixels in it) then destroy it, otherwise leave it. 
  *
  *
@@ -951,18 +934,10 @@ function bounding_box(&$image)
 /* Recognise ONE character from the given image
  *
  */
-function ocr($image)
+function ocr($image,$btid,$qid)
 {
-	//remove the border from the image
-/*
-	$w = imagesx($image);	
-	$h = imagesy($image);
-	$ni = imagecreate($w,$h);
-	$bgc = imagecolorallocate($ni,255,255,255);
-	imagecopy ($ni,$image,0,0,5,5,($w - 10),($h - 10));
-	return tesseractocr($ni);
- */
-	return tesseractocr($image);
+	set_time_limit(60);
+	return ocr_guess($image,$btid,$qid);
 }
 
 

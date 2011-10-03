@@ -22,6 +22,7 @@
  *
  */
 
+
 if (isset($_GET['bgid'])){
 
 	include_once("config.inc.php");
@@ -89,7 +90,7 @@ else if (isset($_GET['pid']))
 	{
 		$fid = intval($_GET['fid']);
 
-		$sql = "SELECT image,offx,offy 
+		$sql = "SELECT * 
 			FROM formpages
 			WHERE pid = $pid and fid = $fid";
 	
@@ -107,21 +108,60 @@ else if (isset($_GET['pid']))
 				WHERE bid = '$bid'";
 			$box = $db->GetRow($sql);
 
-			/*
-			include("functions/functions.ocr.php");
-			$im = st_ocr($im,calcoffset($box,$row['offx'],$row['offy']));
-			header("Content-type: image/png");
-			imagepng($im);
-			exit;
-			 */
+			$row['width'] = imagesx($im);
+			$row['height'] = imagesy($im);
 			
+			//$im = st_ocr($im,calcoffset($box,$row['offx'],$row['offy']));
+			//header("Content-type: image/png");
+			//imagepng($im);
+			//exit;
 			$box['tlx']+= BOX_EDGE;
 			$box['tly']+= BOX_EDGE;
 			$box['brx']-= BOX_EDGE;
 			$box['bry']-= BOX_EDGE;
 
 			header("Content-type: image/png");
-			imagepng(crop($im,calcoffset($box,$row['offx'],$row['offy'])));
+
+			$timage = crop($im,applytransforms($box,$row));
+
+			if(!isset($_GET['a'])){ imagepng($timage); die();}
+//			image_to_text($timage);
+		
+			include("functions/functions.ocr.php");
+
+			$ktimage = kfill_modified($timage,5);
+			//invert_image($timage);
+
+//			if(isset($_GET['b'])){ imagepng($ktimage); die();}
+//			 imagepng($ktimage); die();
+//			image_to_text($ktimage);
+
+			$ttimage = remove_boundary_noise($ktimage,2);
+
+//			if(isset($_GET['c'])){ imagepng($ttimage); die();}
+//			 imagepng($ttimage); die();
+//			image_to_text($ttimage);
+
+			$kttimage = resize_bounding($ttimage);	
+
+//			if(isset($_GET['d'])){ imagepng($kttimage); die();}
+//			 imagepng($kttimage); die();
+
+
+			$i = thinzs_np($kttimage);
+
+
+			imagepng($i);
+			//imagepng(thin_b($timage));
+			die();
+		
+			$box['tlx']+= BOX_EDGE;
+			$box['tly']+= BOX_EDGE;
+			$box['brx']-= BOX_EDGE;
+			$box['bry']-= BOX_EDGE;
+
+			header("Content-type: image/png");
+			imagepng(crop($im,applytransforms($box,$row)));
 		}
 		else
 		{
