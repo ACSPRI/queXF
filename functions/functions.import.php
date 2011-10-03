@@ -340,7 +340,7 @@ function charboxes($pid,$image,$fid,$transforms,$ocrqid)
 
 			include_once("functions.ocr.php");
 			$ocr = ocr(crop($image,applytransforms($i,$transforms)),3,$ocrqid);
-			print "bid: {$i['bid']} ocr: " . $ocr. "<br/>";
+			//print "bid: {$i['bid']} ocr: " . $ocr. "<br/>";
 			if (strlen($ocr) != 1) $ocr = " ";
 		}else
 		{
@@ -376,7 +376,7 @@ function numberboxes($pid,$image,$fid,$transforms,$ocrqid)
 
 			include_once("functions.ocr.php");
 			$ocr = ocr(crop($image,applytransforms($i,$transforms)),4,$ocrqid);
-			print "bid: {$i['bid']} ocr: " . $ocr. "<br/>";
+			//print "bid: {$i['bid']} ocr: " . $ocr. "<br/>";
 			if (strlen($ocr) != 1) $ocr = " ";
 		}else
 		{
