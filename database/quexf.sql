@@ -402,11 +402,27 @@ CREATE TABLE IF NOT EXISTS `pages` (
 
 CREATE TABLE IF NOT EXISTS `process` (
   `process_id` bigint(20) NOT NULL auto_increment,
+  `type` int(11) NOT NULL default '1',
   `start` datetime NOT NULL,
   `stop` datetime default NULL,
   `kill` tinyint(1) NOT NULL default '0',
   `data` longtext collate utf8_unicode_ci NOT NULL,
   PRIMARY KEY  (`process_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `process_log`
+--
+
+CREATE TABLE IF NOT EXISTS `process_log` (
+  `process_log_id` bigint(20) NOT NULL auto_increment,
+  `process_id` bigint(20) NOT NULL,
+  `datetime` datetime NOT NULL,
+  `data` text collate utf8_unicode_ci NOT NULL,
+  PRIMARY KEY  (`process_log_id`),
+  KEY `process_id` (`process_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
