@@ -73,7 +73,6 @@ while (!is_process_killed($process_id)) //check if process killed every $sleepin
 			                $r = import("$dir/$file");
 					//unlink($file);
 					//rename("$dir/$file","$dir/$file.done");
-					ob_flush();
 				}
 			}
 		}
