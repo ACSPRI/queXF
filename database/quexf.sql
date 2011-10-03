@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 2.11.8.1deb5+lenny6
+-- version 2.11.8.1deb5+lenny9
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 22, 2010 at 11:40 AM
+-- Generation Time: Oct 03, 2011 at 12:17 PM
 -- Server version: 5.0.51
--- PHP Version: 5.2.6-1+lenny9
+-- PHP Version: 5.2.6-1+lenny13
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -148,8 +148,9 @@ CREATE TABLE IF NOT EXISTS `formboxverifychar` (
   `vid` int(11) NOT NULL,
   `bid` bigint(20) NOT NULL,
   `fid` bigint(20) NOT NULL,
-  `val` char(1) collate utf8_unicode_ci default NULL,
-  PRIMARY KEY  (`vid`,`bid`,`fid`)
+  `val` char(1) character set utf8 collate utf8_bin default NULL,
+  PRIMARY KEY  (`vid`,`bid`,`fid`),
+  KEY `val` (`val`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -256,6 +257,19 @@ CREATE TABLE IF NOT EXISTS `ocrkb` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ocrkbboxgroup`
+--
+
+CREATE TABLE IF NOT EXISTS `ocrkbboxgroup` (
+  `btid` int(11) NOT NULL,
+  `kb` int(11) NOT NULL,
+  `qid` int(11) NOT NULL,
+  PRIMARY KEY  (`btid`,`kb`,`qid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ocrkbdata`
 --
 
@@ -300,11 +314,29 @@ CREATE TABLE IF NOT EXISTS `ocrkbdata` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ocrprocess`
+--
+
+CREATE TABLE IF NOT EXISTS `ocrprocess` (
+  `ocrprocessid` int(11) NOT NULL auto_increment,
+  `fid` int(11) NOT NULL,
+  `bid` int(11) NOT NULL,
+  `vid` int(11) NOT NULL,
+  `val` char(1) character set utf8 collate utf8_bin NOT NULL,
+  `kb` int(11) NOT NULL,
+  PRIMARY KEY  (`ocrprocessid`),
+  KEY `kb` (`kb`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ocrtrain`
 --
 
 CREATE TABLE IF NOT EXISTS `ocrtrain` (
   `ocrtid` bigint(20) NOT NULL auto_increment,
+  `kb` int(11) NOT NULL default '1',
   `val` char(1) character set utf8 collate utf8_bin NOT NULL,
   `f1` double NOT NULL,
   `f2` double NOT NULL,
