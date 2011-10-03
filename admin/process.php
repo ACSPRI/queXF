@@ -31,7 +31,7 @@ function update_callback($buffer)
 {
 	global $process_id;
 
-	process_append_data($process_id,"<div>".$buffer."</div>");
+	process_append_data($process_id,$buffer);
 
 	return ""; //empty buffer
 }
@@ -73,6 +73,7 @@ while (!is_process_killed($process_id)) //check if process killed every $sleepin
 			                $r = import("$dir/$file");
 					//unlink($file);
 					//rename("$dir/$file","$dir/$file.done");
+					ob_flush();
 				}
 			}
 		}

@@ -44,7 +44,7 @@ if ($p)
 	if (isset($_GET['force_kill']))
 		end_process($p);
 
-	xhtml_head(T_("Import a directory of PDF files"),true,false,false,false);
+	xhtml_head(T_("Import a directory of PDF files"),true,array("../css/table.css"),false,false);
 
 	print "<h1>" . T_("Process") . " $p " . T_("running...") . "</h1>";
 
@@ -56,11 +56,16 @@ if ($p)
 	else
 		print "<p><a href='?kill=kill'>" . T_("Kill the running process") . "</a> (" . T_("may take up to a few minutes to take effect") .")</p>";
 
-	print process_get_data($p);
+        $d = process_get_data($p);
+        if ($d !== false)
+        {
+                xhtml_table($d,array('process_log_id','datetime','data'),array(T_("Log id"), T_("Date"), T_("Log entry")));
+        }
+
 }
 else
 {
-	xhtml_head(T_("Import a directory of PDF files"));
+	xhtml_head(T_("Import a directory of PDF files"),true,array("../css/table.css"));
 
 	if (isset($_POST['dir']) && isset($_POST['process']))
 	{
@@ -78,7 +83,13 @@ else
 	<?
 
 	print "<h2>" . T_("Outcome of last process run (if any)") . "</h2>";
-	print process_get_last_data();
+	
+	$d = process_get_last_data(1);
+	if ($d !== false)
+        {
+                xhtml_table($d,array('process_log_id','datetime','data'),array(T_("Log id"), T_("Date"), T_("Log entry")));
+        }
+
 }
 xhtml_foot();
 ?>

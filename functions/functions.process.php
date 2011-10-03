@@ -29,23 +29,31 @@
  * 
  */
 
-
+/**
+ * Configuration file
+ */
 include_once(dirname(__FILE__).'/../config.inc.php');
+
+/**
+ * Database file
+ */
 include_once(dirname(__FILE__).'/../db.inc.php');
 
 
 /**
  * Determine if a process is already running
  *
+ * @param int $type Defaults to 1 - specify the process type (class) to search for
  * @return bool|int Return false if no process already running, else return the process_id
  */
-function is_process_running()
+function is_process_running($type = 1)
 {
 	global $db;
 
 	$sql = "SELECT `process_id`
 		FROM `process`
-		WHERE `stop` IS NULL";
+		WHERE `stop` IS NULL
+		AND type = '$type'";
 
 	$rs = $db->GetRow($sql);
 
@@ -58,6 +66,7 @@ function is_process_running()
 /**
  * Determine if this process should be killed
  *
+ * @param int $process_id The process id 
  * @return bool Return false if not to be killed, else return true
  */
 function is_process_killed($process_id)
@@ -83,26 +92,30 @@ function is_process_killed($process_id)
  * Start a process
  *
  * @param string $filename The PHP file of the process to run
+ * @param int $type The type (class) of process (so we can run multiple processes at the same time) defaults to 1
  * @return bool|int False if we couldnt start a process, else the process id from the process table
  * 
  * @link http://www.djkaty.com/php/fork Cross platform process tutorial (this code adapted from here)
  */
-function start_process($filename)
+function start_process($filename,$type = 1)
 {
 	//create a record only if no process already running
 	global $db;
 
 	$db->StartTrans();
 
-	$process = is_process_running();
+	$process = is_process_running($type);
+
+	$args = 0;
 
 	if ($process == false)
 	{
-		$sql = "INSERT INTO `process` (`process_id`,`start`,`stop`,`kill`,`data`)
-			VALUES (NULL,NOW(),NULL,0,'')";
+		$sql = "INSERT INTO `process` (`process_id`,`type`,`start`,`stop`,`kill`,`data`)
+			VALUES (NULL,'$type',NOW(),NULL,0,'')";
 
 		$rs = $db->Execute($sql);
 		$args = $db->Insert_ID();
+
 
 		//execute the process in the background - pass the process_id as the first argument
 		if (substr(PHP_OS, 0, 3) == 'WIN')
@@ -119,7 +132,7 @@ function start_process($filename)
 	$db->CompleteTrans();
 
 
-	if (isset($args))
+	if ($args != 0)
 		return $args;
 
 	return false;	
@@ -177,9 +190,8 @@ function process_append_data($process_id,$data)
 
 	$data = $db->qstr($data,get_magic_quotes_gpc());
 
-	$sql = "UPDATE `process`
-		SET `data` = CONCAT(`data`, $data)
-		WHERE `process_id` = '$process_id'";
+	$sql = "INSERT INTO `process_log` (process_log_id,process_id,datetime,data)
+		VALUES (NULL,'$process_id',NOW(),$data)";
 
 	$db->Execute($sql);
 
@@ -190,46 +202,50 @@ function process_append_data($process_id,$data)
  * Get data from a process
  *
  * @param int $process_id The process id
- * @return string Data from this process
+ * @return string Data from this process or an empty string if none available
  *
  */
 function process_get_data($process_id)
 {
 	global $db;
 
-	$sql = "SELECT `data`
-		FROM `process`
-		WHERE `process_id` = '$process_id'";
+	$sql = "SELECT process_log_id,DATE_FORMAT(datetime,'" . DATE_TIME_FORMAT ."') as datetime,data
+		FROM `process_log`
+		WHERE `process_id` = '$process_id'
+		ORDER BY process_log_id DESC
+		LIMIT " . PROCESS_LOG_LIMIT;
 
-	$rs = $db->GetRow($sql);
+	$rs = $db->GetAll($sql);
 
 	if (!empty($rs))
-		return $rs['data'];
+		return $rs;	
 
-	return "";
+	return false;
 }
 
 /**
  * Get data from the last process run
  *
+ * @param int $type The last processes class (type) defaults to 1
  * @return string Data from the last process, or an empty string if not available
  *
  */
-function process_get_last_data()
+function process_get_last_data($type = 1)
 {
 	global $db;
 
-	$sql = "SELECT `data`
+	$sql = "SELECT process_id
 		FROM `process`
+		WHERE type = '$type'
 		ORDER BY `process_id` DESC
 		LIMIT 1";
 
 	$rs = $db->GetRow($sql);
 
 	if (!empty($rs))
-		return $rs['data'];
+		return process_get_data($rs['process_id']);
 
-	return "";
+	return false;
 }
 
 ?>
