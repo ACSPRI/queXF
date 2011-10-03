@@ -2,12 +2,13 @@ queXF 1.12.0 - Changes since queXF 1.11.3
 
 *New feature: Enabled ICR (Intelligent Character Recognition) and added training features (config directive: ICR_ENABLED)
 *New feature: Process log is done on line by line datestamped basis instead of text update
+*New feature: Added output of corner edge detection area elements to queXF banding XML
 *Deprecated: Removed old OCR stuff with Tesseract
 
 Database changes:
 
-ALTER TABLE `formboxverifychar` CHANGE `val` `val` CHAR( 1 ) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL 
-ALTER TABLE `formboxverifychar` ADD INDEX ( `val` ) 
+ALTER TABLE `formboxverifychar` CHANGE `val` `val` CHAR( 1 ) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL;
+ALTER TABLE `formboxverifychar` ADD INDEX ( `val` );
 ALTER TABLE `ocrtrain` ADD `kb` INT( 11 ) NOT NULL DEFAULT '1' AFTER `ocrtid` ;
 ALTER TABLE `process` ADD `type` INT( 11 ) NOT NULL DEFAULT '1' AFTER `process_id`;
 
