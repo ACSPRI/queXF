@@ -50,10 +50,6 @@ define('GS_BIN', "/usr/bin/gs");
 //Temporary directory
 define('TEMPORARY_DIRECTORY', "/tmp");
 
-//OCR requires CONVERT_BIN (imagemagick convert binary) and TESSERACT_BIN (tessearct binary) to be enabled
-define('OCR_ENABLED', false);
-
-
 //Do not remove the following line:
 include(dirname(__FILE__) . '/config.default.php');
 ?>
