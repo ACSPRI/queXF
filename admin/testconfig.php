@@ -78,6 +78,7 @@ if (is_file($gsbin)) {
 	$fail = true;
 }
 
+/*
 if (OCR_ENABLED)
 {
 	
@@ -96,6 +97,7 @@ if (is_file(CONVERT_BIN)) {
 		$fail = true;
 }
 }
+*/
 
 if ($fail)
 {
