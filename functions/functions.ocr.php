@@ -22,15 +22,6 @@
  *
  */
 
-$n8 = array(array(0,1),
-	 array(-1,1),
-	 array(-1,0),
-	 array(-1,-1),
-	 array(0,-1),
-	 array(1,-1),
-	 array(1,0),
-	 array(1,1));
-
 /**
  * Set an image pixel color specifically to either black or white
  * 
@@ -74,7 +65,16 @@ function crossing_index_np(&$im, $r, $c)
 {
    $n=0;
    $next8 = array(1,2,3,4,5,6,7,0);
-   global $n8;   
+   $n8 = array(array(0,1),
+	 array(-1,1),
+	 array(-1,0),
+	 array(-1,-1),
+	 array(0,-1),
+	 array(1,-1),
+	 array(1,0),
+	 array(1,1));
+
+
 
    $curr=imagecolorat($im, $r+$n8[0][1], $c+$n8[0][0]);
    for ($i=0,$idx=0;  $i<=8;  $i++,$idx=$next8[$idx]) {
@@ -104,7 +104,14 @@ function nh8count_np(&$im, $r, $c, $val)
 {
    $n=0;
 
-   global $n8;
+   $n8 = array(array(0,1),
+	 array(-1,1),
+	 array(-1,0),
+	 array(-1,-1),
+	 array(0,-1),
+	 array(1,-1),
+	 array(1,0),
+	 array(1,1));
 
    for ($i=0; $i < 8; $i++){
 
