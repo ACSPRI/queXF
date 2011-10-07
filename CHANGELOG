@@ -1,3 +1,7 @@
+queXF 1.12.1 - Changes since queXF 1.12.0
+
+*Fixed Bug: Global $n8 causing ICR thinzs_np function to fail when guessing characters
+
 queXF 1.12.0 - Changes since queXF 1.11.3
 
 *New feature: Enabled ICR (Intelligent Character Recognition) and added training features (config directive: ICR_ENABLED)
