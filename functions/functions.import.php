@@ -114,7 +114,7 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 			if ($pid)
 			{
 				$pages++;
-				print "<p>" . T_("BARCODE") . ": $pid</p>";
+				print T_("BARCODE") . ": $pid";
 
 				//Don't do these calculations when importing as they need to be set up after the fact
 	
@@ -202,7 +202,7 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 	
 			}
 			else
-				print "<p>" . T_("INVALID - IGNORING BLANK PAGE") . "</p>";
+				print T_("INVALID - IGNORING BLANK PAGE");
 
 			unset($data);
 			unset($image);
@@ -222,7 +222,7 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 	if ($pages <= 0)
 	{
 		$db->FailTrans();
-		print "<p>" . T_("Failed to import as no pages were detected") . "</p>";
+		print T_("Failed to import as no pages were detected");
 	}
 	
 
@@ -596,7 +596,7 @@ function import($filename,$description = false)
 	
 
 	//Import the file
-	print "<p>" . T_("Importing") . ": $filename</p>";
+	print T_("Importing") . ": $filename";
 
 
 
@@ -631,7 +631,7 @@ function import($filename,$description = false)
 	$file = $tmp . $n . ".png";
 	while (file_exists($file))
 	{
-		print "<p>" . T_("Finding qid") . "...</p>";
+		print T_("Finding qid") . "...";
 
 		//open file
 		$data = file_get_contents($file);
@@ -693,7 +693,7 @@ function import($filename,$description = false)
 
 	if ($qid != "")
 	{
-		print "<p>" . T_("Got qid") . ": $qid...</p>";
+		print T_("Got qid") . ": $qid...";
 
 		//create form entry in DB
 		$sql = "INSERT INTO forms (fid,qid,description)
@@ -749,7 +749,7 @@ function import($filename,$description = false)
 
 				if ($pid)
 				{
-					print "<p>" . T_("Processing pid") . ": $pid...</p>";
+					print T_("Processing pid") . ": $pid...";
 	
 					//get the page id from the page table
 					$sql = "SELECT * FROM pages
@@ -760,7 +760,7 @@ function import($filename,$description = false)
 	
 					if (empty($page))
 					{
-						print "<p>" . T_("Pid not identified for this page, inserting into missing pages...") . "</p>";
+						print T_("Pid not identified for this page, inserting into missing pages...");
 	
 						//store in missing pages table
 						$sql = "INSERT INTO missingpages
@@ -811,12 +811,12 @@ function import($filename,$description = false)
 				{
 					if(BLANK_PAGE_DETECTION && is_blank_page($image))
 					{
-						print "<p>". T_("Blank page: ignoring") . "</p>";
+						print T_("Blank page: ignoring");
 						//let this page dissolve into the ether
 					}
 					else
 					{
-						print "<p>". T_("Could not get pid, inserting into missing pages...") . "</p>";
+						print T_("Could not get pid, inserting into missing pages...");
 	
 						//store in missing pages table
 						$sql = "INSERT INTO missingpages
@@ -875,7 +875,7 @@ function import($filename,$description = false)
 	{
 		//form could not be identified...
 		//do nothing?
-		print "<p>" . T_("Could not get qid...") . "</p>";
+		print T_("Could not get qid...");
 	
 		//Update or insert record in to processforms log database
 		if ($pfid == false)
@@ -935,7 +935,7 @@ function import($filename,$description = false)
 			//There is one page in the missing database and one page missing from the form
 			$row = $rs[0];
 		
-			print "<p>" . T_("Automatically processing the 1 missing page for this form - assuming pid:"). " {$row['pid']} - {$row['pidentifierval']}</p>";
+			print T_("Automatically processing the 1 missing page for this form - assuming pid:"). " {$row['pid']} - {$row['pidentifierval']}";
 			
 			$mpid = $row['mpid'];
 			$image = imagecreatefromstring($row['mpimage']);
@@ -994,7 +994,7 @@ function import($filename,$description = false)
 
 				$db->Execute($sql);
 
-				print "<p>" . T_("Deleting missing pages as all form page slots filled") . "</p>";
+				print T_("Deleting missing pages as all form page slots filled");
 			}
 		}
 	}
@@ -1216,7 +1216,7 @@ function import_directory($dir)
 					//print "<p>$file</p>";
 			                $r = import("$dir/$file");
 					if ($r == false)
-						print "<p>" . T_("File already in database") . "</p>";
+						print T_("File already in database");
 					 //unlink($file);
 					 //rename("$dir/$file","$dir/$file.done");
 				}
