@@ -537,11 +537,13 @@ var newwindow;
 <?
 
 //print order variable
-$sql = "SELECT bgid
+$sql = "SELECT boxgroupstype.bgid
 	FROM boxgroupstype
-	WHERE pid = '$pid'
-	AND btid != 5
-	ORDER BY sortorder ASC";
+	JOIN boxes ON boxes.bgid = boxgroupstype.bgid
+	WHERE boxgroupstype.pid = '$pid'
+	AND boxgroupstype.btid != 5
+	GROUP BY boxgroupstype.bgid
+	ORDER BY boxgroupstype.sortorder ASC";
 		
 $b = $db->GetAll($sql);
 			
