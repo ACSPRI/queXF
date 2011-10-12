@@ -206,7 +206,8 @@ if (isset($_GET['complete']))
 				$sql = "INSERT INTO formboxverifychar (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid',NULL)";
 			}else
 			{
-				$sql = "INSERT INTO formboxverifychar (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid','{$box['val']}')";
+				$bval = $db->qstr($box['val']);
+				$sql = "INSERT INTO formboxverifychar (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid',$bval)";
 			}
 		}
 		if ($box['btid'] == 6)
@@ -216,7 +217,8 @@ if (isset($_GET['complete']))
 				$sql = "INSERT INTO formboxverifytext (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid',NULL)";
 			}else
 			{
-				$sql = "INSERT INTO formboxverifytext (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid','{$box['val']}')";
+				$bval = $db->qstr($box['val']);
+				$sql = "INSERT INTO formboxverifytext (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid',$bval)";
 			}
 
 		}
@@ -1164,7 +1166,9 @@ else
 	
 	//show content
 	print "<div style=\"position:relative;\"><img src=\"showpage.php?pid=$pid&amp;fid=$fid\" style=\"width:" . DISPLAY_PAGE_WIDTH . "px;\" alt=\"" . T_("Image of page") . " $pid, " . T_("form") . " $fid\" />";
-	bgidtocss(($_SESSION['pages'][$pid]['width']/DISPLAY_PAGE_WIDTH),$fid,$pid);
+	$pw = $_SESSION['pages'][$pid]['width'];
+	if (empty($pw)) $pw = PAGE_WIDTH;
+	bgidtocss(($pw/DISPLAY_PAGE_WIDTH),$fid,$pid);
 	print "</div>";
 	print "</div>";
 
