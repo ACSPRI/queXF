@@ -1,3 +1,10 @@
+queXF 1.12.2 - Changes since queXF 1.12.1
+
+*Fixed Bug: Don't list box groups that have no boxes attached to them when verifying as it breaks it
+*Fixed Bug: Removed <p> tag from messages as making log look too big
+*Fixed Bug: divide by zero warning caused when formpages doesn't have a width set
+*Fixed Bug: verification of text fields with apostrophe would not insert in to database
+
 queXF 1.12.1 - Changes since queXF 1.12.0
 
 *Fixed Bug: Global $n8 causing ICR thinzs_np function to fail when guessing characters
