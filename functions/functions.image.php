@@ -248,7 +248,7 @@ function detecttransforms($image,$page)
 		$centroid = calccentroid($offset);
 		$rotate = calcrotate($offset);
 		$rotate = $rotate - $page['rotation'];
-	
+
 		//rotate offset
 		for ($i = 0; $i <= 6; $i += 2)	
 			list($offset[$i],$offset[$i+1]) = rotate($rotate,array($offset[$i],$offset[$i+1]),$centroid);
@@ -383,7 +383,7 @@ function calcrotate($a)
 */
 function rotate($angle=false,$point,$centroid,$costheta=false,$sintheta=false)
 {
-	if ($angle != false)
+	if ($angle !== false)
 	{
 		$sintheta = sin($angle);
 		$costheta = cos($angle);
@@ -405,12 +405,15 @@ function rotate($angle=false,$point,$centroid,$costheta=false,$sintheta=false)
 */
 function calcscale($a,$b)
 {
-	$c = array();
+	//default scale is 1
+	$c = array(1,1);
 	
 	//Top and bottom horizontal - x - average
-	$c[0] = (((($a['trx'] - $a['tlx']) + ($a['brx'] - $a['blx'])) / 2.0) / ((($b[2] - $b[0]) + ($b[6] - $b[4])) / 2.0));
+	$xa = (($b[2] - $b[0]) + ($b[6] - $b[4]));
+	if ($xa != 0) $c[0] = (((($a['trx'] - $a['tlx']) + ($a['brx'] - $a['blx'])) / 2.0) / ($xa / 2.0));
 	//Left vertical and Right vertical - y - average
-	$c[1] = (((($a['bly'] - $a['tly']) + ($a['bry'] - $a['try'])) / 2.0) / ((($b[5] - $b[1]) + ($b[7] - $b[3])) / 2.0));
+	$ya = (($b[5] - $b[1]) + ($b[7] - $b[3]));
+	if ($ya != 0) $c[1] = (((($a['bly'] - $a['tly']) + ($a['bry'] - $a['try'])) / 2.0) / ($ya / 2.0));
 
 	return $c;
 }
