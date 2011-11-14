@@ -41,6 +41,12 @@ if (isset($_GET['fid']))
 		
 	$db->Execute($sql);
 
+	$sql = "DELETE FROM formboxverifytext
+		WHERE fid = '$fid'
+		AND vid = '$vid'";
+
+	$db->Execute($sql);
+
 	$sql = "UPDATE forms
 		SET assigned_vid = NULL, done = 0
 		WHERE fid = '$fid'";
