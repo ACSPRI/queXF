@@ -1103,6 +1103,13 @@ function import_bandingxml($xml,$qid,$erase = false)
 	foreach ($b->questionnaire as $q)
 	{
 		$id = current($q->id);
+
+		$sql = "UPDATE questionnaires
+			SET limesurvey_sid = '$id'
+			WHERE qid = '$qid'";
+
+		$db->Execute($sql);
+
 		$sections = array();
 		foreach ($q->section as $s)
 		{
