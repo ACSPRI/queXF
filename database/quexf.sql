@@ -115,19 +115,6 @@ CREATE TABLE IF NOT EXISTS `clients` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `differences`
---
-
-CREATE TABLE IF NOT EXISTS `differences` (
-  `did` bigint(20) NOT NULL auto_increment,
-  `bid` bigint(20) NOT NULL,
-  `fid` bigint(20) NOT NULL,
-  PRIMARY KEY  (`did`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `formboxes`
 --
 
@@ -222,6 +209,7 @@ CREATE TABLE IF NOT EXISTS `forms` (
   `pfid` bigint(20) default NULL,
   `assigned_vid` bigint(20) default NULL,
   `done` int(11) NOT NULL default '0',
+  `rpc_id` int(11) default NULL,
   PRIMARY KEY  (`fid`),
   KEY `assigned_vid` (`assigned_vid`),
   KEY `done` (`done`),
@@ -486,6 +474,10 @@ CREATE TABLE IF NOT EXISTS `questionnaires` (
   `description` text collate utf8_unicode_ci NOT NULL,
   `sheets` int(11) NOT NULL,
   `page_size` enum('A4','A3') collate utf8_unicode_ci NOT NULL default 'A4',
+  `rpc_server_url` text collate utf8_unicode_ci COMMENT 'XML RPC server to send verified data to',
+  `rpc_username` text collate utf8_unicode_ci,
+  `rpc_password` text collate utf8_unicode_ci,
+  `limesurvey_sid` int(11) default NULL,
   PRIMARY KEY  (`qid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
