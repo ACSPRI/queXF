@@ -1,3 +1,18 @@
+queXF 1.13.0 - Changes since queXF 1.12.2
+
+*New feature: Automatically update queXS Limesurvey database with queXF form when verified (allow for a single dataset of data collected via paper, the web and CATI)
+*Fixed Bug: Scale and rotation did not correctly handle case where the scale was exactly 0 and rotation exactly 0
+*Fixed bug: CSV output from text/numeric (not long text) elements were ignoring internal spacing
+*Fixed bug: full text elements were not being removed when reverifying a form
+
+Database changes:
+
+ALTER TABLE `questionnaires` ADD `rpc_server_url` TEXT NULL COMMENT 'XML RPC server to send verified data to';
+ALTER TABLE `questionnaires` ADD `rpc_username` TEXT NULL , ADD `rpc_password` TEXT NULL ;
+ALTER TABLE `forms` ADD `rpc_id` INT NULL ;
+ALTER TABLE `questionnaires` ADD `limesurvey_sid` INT( 11 ) NULL ;
+DROP TABLE `differences` ;
+
 queXF 1.12.2 - Changes since queXF 1.12.1
 
 *Fixed Bug: Don't list box groups that have no boxes attached to them when verifying as it breaks it
