@@ -127,7 +127,7 @@ function uploadrpc($fid)
 		$resp = $client->send($message);
 		if ($resp->faultCode()) 
 		{
-			echo T("XML RPC Error: ").$resp->faultString(); 
+			echo T_("XML RPC Error: ").$resp->faultString(); 
 		}
 		else 
 		{
