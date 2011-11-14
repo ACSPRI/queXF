@@ -98,7 +98,7 @@ function uploadrpc($fid)
 		$qid = $rs['qid'];
 		$surveyid = $rs['limesurvey_sid'];
 
-		include_once(dirname(__FILE__)."/../include/xmlrpc-2.2.2/lib/xmlrpc.inc");
+		include_once(dirname(__FILE__)."/../include/xmlrpc-3.0.0.beta/lib/xmlrpc.inc");
 
 		list($head,$data) = outputdatacsv($qid,$fid,false,false,true);
 		$assoc = array();
