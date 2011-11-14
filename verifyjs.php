@@ -185,6 +185,9 @@ if (isset($_GET['centre']) && isset($_GET['fid']) && isset($_GET['pid']) )
 	$db->Execute($sql);
 }
 
+$qid_desc = get_qid_description($fid);
+$qid = $qid_desc['qid'];
+$description = $qid_desc['description'];
 
 if (isset($_GET['complete']))
 {
@@ -247,8 +250,6 @@ if (isset($_GET['complete']))
 
 	$db->Execute($sql);
 
-	$fid = false;
-
 	$sql = "UPDATE verifiers
 		SET currentfid = NULL
 		WHERE vid = '$vid'";
@@ -258,6 +259,21 @@ if (isset($_GET['complete']))
 
 	$db->CompleteTrans();
 
+	//if XMLRPC is set - upload this form via XMLRPC
+	$sql = "SELECT rpc_server_url 
+		FROM questionnaires
+		WHERE qid = '$qid'";
+
+	$rpc = $db->GetRow($sql);
+
+	if (isset($rpc['rpc_server_url']) && !empty($rpc['rpc_server_url']))
+	{
+		//upload form via RPC
+		include_once("functions/functions.output.php");
+		uploadrpc($fid);
+	}
+	
+	$fid = false;
 }
 
 
@@ -356,12 +372,9 @@ $qid_desc = get_qid_description($fid);
 $qid = $qid_desc['qid'];
 $description = $qid_desc['description'];
 
-
-
 if (!isset($_SESSION['boxes'])) {
 	//nothing yet known about this form
-
-
+	
 	$sql = "SELECT b.bid as bid, b.tlx as tlx, b.tly as tly, b.brx as brx, b.bry as bry, b.pid as pid, bg.btid as btid, b.bgid as bgid, $fid as fid, bg.sortorder as sortorder, c.val as val
 		FROM boxes AS b
 		JOIN boxgroupstype as bg ON (bg.bgid = b.bgid AND bg.btid > 0 AND bg.btid != 5)

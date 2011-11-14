@@ -42,7 +42,8 @@ xhtml_head(T_("queXF Admin Functions"),true,array("../css/admin.css"));
 <li><a href="?page=touchup.php"><? echo T_("Touch-up a form"); ?></a></li>
 <li><a href="?page=band.php"><? echo T_("Band a form"); ?></a></li>
 <li><a href="?page=bandajax.php"><? echo T_("Band a form using interactive banding"); ?></a></li>
-<li><a href="?page=reorder.php"><? echo T_("Order variables on the form"); ?></a></li></ul></li>
+<li><a href="?page=reorder.php"><? echo T_("Order variables on the form"); ?></a></li>
+<li><a href="?page=limesurvey.php"><? echo T_("queXS and Limesurvey integration"); ?></a></li></ul></li>
 <li><h3><? echo T_("Users"); ?></h3>
 <ul><li><a href="?page=operators.php"><? echo T_("Add operators"); ?></a></li>
 <li><a href="?page=verifierquestionnaire.php"><? echo T_("Assign forms to operators"); ?></a></li></ul></li>
