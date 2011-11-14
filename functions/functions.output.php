@@ -27,7 +27,7 @@ include_once(dirname(__FILE__).'/../config.inc.php');
 include_once(dirname(__FILE__).'/../db.inc.php');
 
 if (version_compare(PHP_VERSION,'5','>='))
- include_once('domxml-php4-to-php5.php');
+ include_once(dirname(__FILE__).'/domxml-php4-to-php5.php');
 
 set_time_limit(600);
 
@@ -70,10 +70,96 @@ function csv($fields = array(), $delimiter = ',', $enclosure = '"')
 }
 
 
+/**
+ * Upload a data record from the given fid to the RPC server
+ * Currently will work with queXS 1.5.2
+ * 
+ * @param int $fid The formid to upload
+ * 
+ * @return
+ * @author Adam Zammit <adam.zammit@acspri.org.au>
+ * @since  2011-11-04
+ */
+function uploadrpc($fid)
+{
+	global $db;
+	
+	//get url, qid
+	$sql = "SELECT q.rpc_server_url,q.rpc_username,q.rpc_password,f.qid,q.limesurvey_sid
+		FROM forms as f, questionnaires as q
+		WHERE f.fid = '$fid'
+		AND f.qid = q.qid";
+
+	$rs = $db->GetRow($sql);
+
+	if (!empty($rs['rpc_server_url']))
+	{
+		$url = $rs['rpc_server_url'];
+		$qid = $rs['qid'];
+		$surveyid = $rs['limesurvey_sid'];
+
+		include_once(dirname(__FILE__)."/../include/xmlrpc-2.2.2/lib/xmlrpc.inc");
+
+		list($head,$data) = outputdatacsv($qid,$fid,false,false,true);
+		$assoc = array();
+		for ($i = 0; $i < count($head); $i++)
+		{
+			$assoc[$head[$i]] = $data[$i];
+		}
+
+		print_r($assoc);
+
+		//formid not recognised by limesurvey
+		unset($assoc['formid']);
+		unset($assoc['rpc_id']);
+
+		//make sure token won't interfere with normal operation of questionnaire
+		$assoc['token'] = "queXF-" . $fid;
+
+		$xmlrpc_val=php_xmlrpc_encode($assoc);
+
+		print_r($xmlrpc_val);
+
+		$client = new xmlrpc_client($url);
+		$client->setSSLVerifyHost(0);
+		$client->setDebug(2);
+		
+		$cred = array(new xmlrpcval($rs['rpc_username']),new xmlrpcval($rs['rpc_password']));
+
+		//First need to connect and get session key
+		$message = new xmlrpcmsg("get_session_key",$cred);
+		$resp = $client->send($message);
+		if ($resp->faultCode()) 
+		{
+			echo T("XML RPC  Error: ").$resp->faultString(); 
+		}
+		else 
+		{
+			$sessionkey = $resp->value();
+		
+			$message = new xmlrpcmsg("add_response", array($sessionkey,new xmlrpcval($surveyid),$xmlrpc_val));
+			$resp = $client->send($message);
+			if ($resp->faultCode()) 
+			{
+				echo T_("XML RPC Error: ").$resp->faultString(); 
+			}
+			else 
+			{
+				//echo 'OK: got '.php_xmlrpc_decode($resp->value());
+				//update forms table with rpc_id
+				$sql = "UPDATE forms
+					SET rpc_id = '" . php_xmlrpc_decode($resp->value()) . "'
+					WHERE fid = '$fid'";
+
+				$db->Execute($sql);
+			}
+		}
+	}
+}
 
 /*
  * CSV data output */
-function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false)
+function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $return = false)
 {
 	global $db;
 
@@ -93,11 +179,11 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false)
 	//get completed forms for this qid
 
 	if ($unverified)
-		$sql = "SELECT 0 AS vid, f.fid as fid, f.qid as qid, f.description as description
+		$sql = "SELECT 0 AS vid, f.fid as fid, f.qid as qid, f.description as description, f.rpc_id
 			FROM forms as f
 			WHERE f.qid = '$qid'"; 
 	else
-		$sql = "SELECT w.vid AS vid, w.fid AS fid, w.assigned AS assigned, w.completed AS completed, f.qid AS qid, f.description AS description
+		$sql = "SELECT w.vid AS vid, w.fid AS fid, w.assigned AS assigned, w.completed AS completed, f.qid AS qid, f.description AS description, f.rpc_id
 			FROM `worklog` AS w
 			LEFT JOIN forms AS f ON w.fid = f.fid
 			WHERE f.qid = '$qid'";
@@ -110,10 +196,13 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false)
 	$unv = "";
 	if ($unverified) $unv = T_("unverified") . "_";
 
-	header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-	header ("Content-Type: text/ascii");
-	header ("Content-Length: ");
-	header ("Content-Disposition: attachment; filename={$unv}data_$qid.csv");
+	if (!$return)
+	{
+		header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+		header ("Content-Type: text/ascii");
+		header ("Content-Length: ");
+		header ("Content-Disposition: attachment; filename={$unv}data_$qid.csv");
+	}
 
 	$sql = "SELECT bg.varname, bg.btid, count(b.bid) as count
 		FROM boxes as b
@@ -139,9 +228,13 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false)
 	}
 
 	$rv[] = "formid";
+	$rv[] = "rpc_id";
 
 	//print the header row
-	print csv($rv);
+	if (!$return)
+	{
+		print csv($rv);
+	}
 
 	foreach ($forms as $form)
 	{
@@ -219,7 +312,7 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false)
 						else
 							$rr[] = ""; //blank if no val entered
 					else
-						$rr[] = $tmpstr;
+						$rr[] = trim($tmpstr);
 	
 					$tmpstr = "";
 					$labelval = "";
@@ -255,7 +348,12 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false)
 					$count++;
 			}
 			else if ($val['btid'] == 3 || $val['btid'] == 4)
-				$tmpstr .= $val['val'];
+			{
+				if ($val['val'] == "")
+					$tmpstr .= " ";
+				else
+					$tmpstr .= $val['val'];
+			}
 			else if ($val['btid'] == 2)
 			{
 				if ($labels)
@@ -273,9 +371,17 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false)
 		}
 
 		$rr[] = $form['fid']; //print str_pad($form['fid'], 10, " ", STR_PAD_LEFT);
+		$rr[] = $form['rpc_id'];
 
 		//print_r($rr);
-		print csv($rr);
+		if (!$return)
+		{
+			print csv($rr);
+		}
+	}
+	if ($return)
+	{
+		return array($rv,$rr);
 	}
 }
 
@@ -305,11 +411,11 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true,$unverif
 	//get completed forms for this qid
 
 	if ($unverified)
-		$sql = "SELECT 0 AS vid, f.fid as fid, f.qid as qid, f.description as description
+		$sql = "SELECT 0 AS vid, f.fid as fid, f.qid as qid, f.description as description, f.rpc_id
 			FROM forms as f
 			WHERE f.qid = '$qid'"; 
 	else
-		$sql = "SELECT w.vid AS vid, w.fid AS fid, w.assigned AS assigned, w.completed AS completed, f.qid AS qid, f.description AS description
+		$sql = "SELECT w.vid AS vid, w.fid AS fid, w.assigned AS assigned, w.completed AS completed, f.qid AS qid, f.description AS description, f.rpc_id
 			FROM `worklog` AS w
 			LEFT JOIN forms AS f ON w.fid = f.fid
 			WHERE f.qid = '$qid'";
@@ -412,8 +518,11 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true,$unverif
 			print str_pad(" ", strlen($desc[$bgid]['count']), " ", STR_PAD_LEFT);
 
 
-		if ($appendformid) 
+		if ($appendformid)
+		{
 			print str_pad($form['fid'], 10, " ", STR_PAD_LEFT);
+			print str_pad($form['rpc_id'], 10, " ", STR_PAD_LEFT);
+		}
 
 
 		print "\r\n";
@@ -824,9 +933,15 @@ function export_ddi($qid)
 
 
 	$nvar = variable_ddi($dom,10,"formid","formid",$startpos,"number");
-
 	$d->append_child($nvar);
+	$startpos += 10;
+	$nvlocations = $nvar->get_elements_by_tagname("location");     
+	foreach ($nvlocations as $nvlocation)
+		$nvlocation->set_attribute("width", "10");
 
+
+	$nvar = variable_ddi($dom,10,"rpc_id","rpc_id",$startpos,"number");
+	$d->append_child($nvar);
 	$nvlocations = $nvar->get_elements_by_tagname("location");     
 	foreach ($nvlocations as $nvlocation)
 		$nvlocation->set_attribute("width", "10");
@@ -938,6 +1053,11 @@ function export_pspp($qid,$unverified = false)
 	$endpos = $startpos + 9;
 	echo "formid $startpos-$endpos  ";
 
+	$startpos = $startpos + $width;
+	$endpos = $startpos + 9;
+	echo "rpc_id $startpos-$endpos  ";
+
+
 	echo " .\nVARIABLE LABELS ";
 
 	$first = true;
@@ -964,7 +1084,7 @@ function export_pspp($qid,$unverified = false)
 			echo "$varname '$vardescription' ";
 		}
 	}
-	echo "/formid 'queXF Form ID' .\n";
+	echo "/formid 'queXF Form ID /rpc_id 'queXF RPC ID' .\n";
 
 	echo "VALUE LABELS ";
 
