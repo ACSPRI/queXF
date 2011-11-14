@@ -107,8 +107,6 @@ function uploadrpc($fid)
 			$assoc[$head[$i]] = $data[$i];
 		}
 
-		print_r($assoc);
-
 		//formid not recognised by limesurvey
 		unset($assoc['formid']);
 		unset($assoc['rpc_id']);
@@ -118,11 +116,9 @@ function uploadrpc($fid)
 
 		$xmlrpc_val=php_xmlrpc_encode($assoc);
 
-		print_r($xmlrpc_val);
-
 		$client = new xmlrpc_client($url);
 		$client->setSSLVerifyHost(0);
-		$client->setDebug(2);
+		//$client->setDebug(2);
 		
 		$cred = array(new xmlrpcval($rs['rpc_username']),new xmlrpcval($rs['rpc_password']));
 
@@ -131,7 +127,7 @@ function uploadrpc($fid)
 		$resp = $client->send($message);
 		if ($resp->faultCode()) 
 		{
-			echo T("XML RPC  Error: ").$resp->faultString(); 
+			echo T("XML RPC Error: ").$resp->faultString(); 
 		}
 		else 
 		{
