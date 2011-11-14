@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: queXF\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-04 09:23+1000\n"
+"POT-Creation-Date: 2011-11-14 15:00+1000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Adam Zammit <adam.zammit@acspri.org.au>\n"
 "Language-Team: \n"
@@ -18,103 +18,103 @@ msgstr ""
 msgid "Please log in"
 msgstr ""
 
-#: verifyjs.php:284
-#: verifyjs.php:394
+#: verifyjs.php:302
+#: verifyjs.php:409
 msgid "Verify: No more work"
 msgstr ""
 
-#: verifyjs.php:285
-#: verifyjs.php:395
+#: verifyjs.php:303
+#: verifyjs.php:410
 msgid "NO MORE WORK"
 msgstr ""
 
-#: verifyjs.php:286
-#: verifyjs.php:396
+#: verifyjs.php:304
+#: verifyjs.php:411
 msgid "Check for more work"
 msgstr ""
 
-#: verifyjs.php:300
+#: verifyjs.php:318
 msgid "Verify: Assign form"
 msgstr ""
 
-#: verifyjs.php:302
+#: verifyjs.php:320
 msgid "There is no form currently assigned to you"
 msgstr ""
 
-#: verifyjs.php:303
+#: verifyjs.php:321
 msgid "Assign next form"
 msgstr ""
 
-#: verifyjs.php:306
+#: verifyjs.php:324
 msgid "Assigning next form: Please wait..."
 msgstr ""
 
-#: verifyjs.php:343
+#: verifyjs.php:361
 msgid "Operator"
 msgstr ""
 
-#: verifyjs.php:343
+#: verifyjs.php:361
 msgid "Completed Forms"
 msgstr ""
 
-#: verifyjs.php:343
+#: verifyjs.php:361
 msgid "Completions Per Hour"
 msgstr ""
 
-#: verifyjs.php:343
+#: verifyjs.php:361
 msgid "Pages Per Hour"
 msgstr ""
 
-#: verifyjs.php:503
+#: verifyjs.php:518
 msgid "Verify: Done"
 msgstr ""
 
-#: verifyjs.php:504
-#: verifyjs.php:1149
+#: verifyjs.php:519
+#: verifyjs.php:1166
 msgid "The required fields have been filled"
 msgstr ""
 
-#: verifyjs.php:506
-#: verifyjs.php:1151
+#: verifyjs.php:521
+#: verifyjs.php:1168
 msgid "Submit completed form to database"
 msgstr ""
 
-#: verifyjs.php:507
-#: verifyjs.php:1152
+#: verifyjs.php:522
+#: verifyjs.php:1169
 msgid "Review all questions again"
 msgstr ""
 
-#: verifyjs.php:508
-#: verifyjs.php:1153
+#: verifyjs.php:523
+#: verifyjs.php:1170
 msgid "Clear all entered data and review again"
 msgstr ""
 
-#: verifyjs.php:510
-#: verifyjs.php:1156
+#: verifyjs.php:525
+#: verifyjs.php:1173
 msgid "Submitting: Please wait..."
 msgstr ""
 
-#: verifyjs.php:525
+#: verifyjs.php:540
 msgid "Verifier"
 msgstr ""
 
-#: verifyjs.php:1164
+#: verifyjs.php:1181
 msgid "Image of page"
 msgstr ""
 
-#: verifyjs.php:1164
+#: verifyjs.php:1181
 msgid "form"
 msgstr ""
 
-#: verifyjs.php:1173
+#: verifyjs.php:1192
 msgid "Centre Page"
 msgstr ""
 
-#: verifyjs.php:1175
+#: verifyjs.php:1194
 msgid "Loading panel..."
 msgstr ""
 
-#: verifyjs.php:1175
+#: verifyjs.php:1194
 msgid "Error, try with Firefox"
 msgstr ""
 
@@ -357,112 +357,116 @@ msgid "Order variables on the form"
 msgstr ""
 
 #: admin/index.php:46
-msgid "Users"
+msgid "queXS and Limesurvey integration"
 msgstr ""
 
 #: admin/index.php:47
-msgid "Add operators"
+msgid "Users"
 msgstr ""
 
 #: admin/index.php:48
+msgid "Add operators"
+msgstr ""
+
+#: admin/index.php:49
 msgid "Assign forms to operators"
 msgstr ""
 
-#: admin/index.php:50
+#: admin/index.php:51
 msgid "ICR"
 msgstr ""
 
-#: admin/index.php:51
+#: admin/index.php:52
 msgid "Train ICR"
 msgstr ""
 
-#: admin/index.php:52
+#: admin/index.php:53
 msgid "Monitor ICR training process"
 msgstr ""
 
-#: admin/index.php:53
+#: admin/index.php:54
 msgid "Import and Export ICR KB"
 msgstr ""
 
-#: admin/index.php:54
+#: admin/index.php:55
 msgid "Assign ICR KB to questionnaire"
 msgstr ""
 
-#: admin/index.php:56
+#: admin/index.php:57
 msgid "Importing"
 msgstr ""
 
-#: admin/index.php:58
+#: admin/index.php:59
 msgid "Successfully imported files"
 msgstr ""
 
-#: admin/index.php:59
+#: admin/index.php:60
 msgid "Failed imported files"
 msgstr ""
 
-#: admin/index.php:60
+#: admin/index.php:61
 msgid "Duplicate forms"
 msgstr ""
 
-#: admin/index.php:61
+#: admin/index.php:62
 msgid "Reverify forms"
 msgstr ""
 
-#: admin/index.php:62
+#: admin/index.php:63
 msgid "List page notes"
 msgstr ""
 
-#: admin/index.php:63
+#: admin/index.php:64
 msgid "Handle missing pages"
 msgstr ""
 
-#: admin/index.php:64
+#: admin/index.php:65
 msgid "Output"
 msgstr ""
 
-#: admin/index.php:65
+#: admin/index.php:66
 #: admin/outputunverified.php:67
 msgid "Output unverified data"
 msgstr ""
 
-#: admin/index.php:66
+#: admin/index.php:67
 msgid "Output data/ddi"
 msgstr ""
 
-#: admin/index.php:67
+#: admin/index.php:68
 msgid "Progress"
 msgstr ""
 
-#: admin/index.php:68
+#: admin/index.php:69
 msgid "Display progress of form verification"
 msgstr ""
 
-#: admin/index.php:69
+#: admin/index.php:70
 msgid "Display performance of verifiers (Completions per hour)"
 msgstr ""
 
-#: admin/index.php:70
+#: admin/index.php:71
 msgid "Clients"
 msgstr ""
 
-#: admin/index.php:71
+#: admin/index.php:72
 msgid "Add clients"
 msgstr ""
 
-#: admin/index.php:72
+#: admin/index.php:73
 msgid "Assign clients to forms"
 msgstr ""
 
-#: admin/index.php:73
+#: admin/index.php:74
 msgid "System setup"
 msgstr ""
 
-#: admin/index.php:74
+#: admin/index.php:75
 #: admin/pagesetup.php:433
 msgid "Page setup"
 msgstr ""
 
-#: admin/index.php:75
+#: admin/index.php:76
 msgid "Test configuration"
 msgstr ""
 
@@ -525,7 +529,7 @@ msgid "Warning: the data downloaded from here is unverified"
 msgstr ""
 
 #: admin/outputunverified.php:84
-#: admin/listforms.php:70
+#: admin/listforms.php:76
 #: admin/listduplicates.php:49
 #: admin/reorder.php:48
 msgid "Questionnaire"
@@ -731,16 +735,16 @@ msgstr ""
 msgid "Add user"
 msgstr ""
 
-#: admin/listforms.php:59
+#: admin/listforms.php:65
 msgid "Listing of forms"
 msgstr ""
 
-#: admin/listforms.php:61
-#: admin/listforms.php:70
+#: admin/listforms.php:67
+#: admin/listforms.php:76
 msgid "Re verify"
 msgstr ""
 
-#: admin/listforms.php:70
+#: admin/listforms.php:76
 msgid "Form ID"
 msgstr ""
 
@@ -906,7 +910,7 @@ msgstr ""
 msgid "Watching..."
 msgstr ""
 
-#: admin/process.php:84
+#: admin/process.php:83
 msgid "Cannot process this directory - check that it is valid and permissions are correct"
 msgstr ""
 
@@ -983,6 +987,35 @@ msgstr ""
 #: admin/verifierquestionnaire.php:106
 #: admin/verifierquestionnaire.php:227
 msgid "Assign verifier to questionnaire"
+msgstr ""
+
+#: admin/limesurvey.php:67
+msgid "RPC Server URL (example: http://user:password@localhost/quexs/include/limesurvey/admin/remotecontrol.php)"
+msgstr ""
+
+#: admin/limesurvey.php:68
+msgid "RPC Username"
+msgstr ""
+
+#: admin/limesurvey.php:69
+msgid "RPC Password"
+msgstr ""
+
+#: admin/limesurvey.php:70
+msgid "Limesurvey Survey ID"
+msgstr ""
+
+#: admin/limesurvey.php:71
+msgid "Update settings"
+msgstr ""
+
+#: admin/limesurvey.php:76
+#: admin/limesurvey.php:88
+msgid "Upload"
+msgstr ""
+
+#: admin/limesurvey.php:86
+msgid "No forms to upload"
 msgstr ""
 
 #: admin/importbandingxml.php:30
@@ -1145,9 +1178,14 @@ msgstr ""
 msgid "ICR KB"
 msgstr ""
 
-#: functions/functions.output.php:111
-#: functions/functions.output.php:325
-#: functions/functions.output.php:875
+#: functions/functions.output.php:130
+#: functions/functions.output.php:140
+msgid "XML RPC Error: "
+msgstr ""
+
+#: functions/functions.output.php:193
+#: functions/functions.output.php:427
+#: functions/functions.output.php:986
 msgid "unverified"
 msgstr ""
 
@@ -1203,7 +1241,7 @@ msgstr ""
 msgid "Deleting missing pages as all form page slots filled"
 msgstr ""
 
-#: functions/functions.import.php:1219
+#: functions/functions.import.php:1226
 msgid "File already in database"
 msgstr ""
 
@@ -1224,7 +1262,6 @@ msgid "You are not authorised to review any forms"
 msgstr ""
 
 #: include/php-gettext-1.0.11/examples/pigs_dropin.php:77
-#: include/php-gettext-1.0.11/examples/pigs_fallback.php:76
 msgid ""
 "This is how the story goes.\n"
 "\n"

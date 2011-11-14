@@ -28,7 +28,7 @@ include_once("../db.inc.php");
 include("../functions/functions.database.php");
 include("../functions/functions.xhtml.php");
 
-xhtml_head(T_("queXS and Limesurvey Integration"),true,array("../css/table.css"));
+xhtml_head(T_("queXS and Limesurvey integration"),true,array("../css/table.css"));
 
 if (isset($_GET['fid']))
 {
@@ -39,7 +39,7 @@ if (isset($_GET['fid']))
 			
 if (isset($_GET['qid']))
 {
-	print "<p><a href='?'>" . T_("Back") . "</a></p>";
+	print "<p><a href='?'>" . T_("Go back") . "</a></p>";
 	$qid = intval($_GET['qid']);
 	
 	if (isset($_POST['submit']))
