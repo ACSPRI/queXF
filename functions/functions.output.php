@@ -477,7 +477,7 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true,$unverif
 			{
 				//print a blank space if none printed for single choice
 				if ($btid == 1 && $done == 0)
-					print str_pad(" ", strlen($desc[$bgid]['count']), " ", STR_PAD_LEFT);
+					print str_pad(" ", max(strlen($desc[$bgid]['count']),$desc[$bgid]['width']), " ", STR_PAD_LEFT);
 
 				$bgid = $val['bgid'];
 				$count = 1;
@@ -491,9 +491,9 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true,$unverif
 				if ($val['val'] == 1)
 				{
 					if (empty($val['value']))
-						print str_pad($count, strlen($desc[$bgid]['count']), " ", STR_PAD_LEFT); //pad to width
+						print str_pad($count, max(strlen($desc[$bgid]['count']),$desc[$bgid]['width']), " ", STR_PAD_LEFT); //pad to width
 					else
-						print str_pad($val['value'], strlen($desc[$bgid]['count']), " ", STR_PAD_LEFT); //pad to width
+						print str_pad($val['value'], max(strlen($desc[$bgid]['count']),$desc[$bgid]['width']), " ", STR_PAD_LEFT); //pad to width
 
 					$done = 1;
 				}
@@ -511,7 +511,7 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true,$unverif
 		}
 
 		if ($btid == 1 && $done == 0)
-			print str_pad(" ", strlen($desc[$bgid]['count']), " ", STR_PAD_LEFT);
+			print str_pad(" ", max(strlen($desc[$bgid]['count']),$desc[$bgid]['width']), " ", STR_PAD_LEFT);
 
 
 		if ($appendformid)
@@ -867,7 +867,7 @@ function export_ddi($qid)
 		//length of var
 		$length = $row['count'];
 		$vartype = "number";
-		if ($row['btid'] == 1) $length = strlen($row['count']);
+		if ($row['btid'] == 1) $length = max(strlen($row['count']),$row['width']);
 		if ($row['btid'] == 3 || $row['btid'] == 6) $vartype = "character";
 		if ($row['btid'] == 6 || $row['btid'] == 5) $length = $row['width'];
 
@@ -1003,15 +1003,42 @@ function export_pspp($qid,$unverified = false)
 
 	$cols = $db->GetAll($sql);
 
+	$cc = count($cols);
+	//PSPP variable name cannot start with a number - check
+	for ($i = 0; $i < $cc; $i++)
+	{
+		if (is_numeric(substr($cols[$i]['varname'],0,1)))
+			$cols[$i]['varname'] = "V" . $cols[$i]['varname'];
+	}
+
 	$startpos = 1;
 	$width = 0;
 
+	$colsc = 0;
 	foreach ($cols as $col)
 	{
 		$varname = $col['varname'];
 		$length = $col['count'];
 		$vartype = " ";
-		if ($col['btid'] == 1) $length = strlen($col['count']);
+		if ($col['btid'] == 1)
+		{
+			$length = max(strlen($col['count']),$col['width']);
+
+			//check if any values are non-numeric
+			$sql = "SELECT count(*) as c
+				FROM `boxes` 
+				WHERE `bgid` = '{$col['bgid']}'
+				AND `value` NOT REGEXP '[0-9]+' 
+				AND `value` != ''";
+
+			$vt = $db->Getrow($sql);
+		
+			if (isset($vt['c']) && !empty($vt['c']))
+			{
+				$vartype = " (A) ";
+				$cols[$colsc]['is_string'] = true;
+			}
+		}
 		if ($col['btid'] == 3 || $col['btid'] == 6) $vartype = "(A) ";
 		if ($col['btid'] == 6 || $col['btid'] == 5) $length = $col['width'];
 
@@ -1043,13 +1070,14 @@ function export_pspp($qid,$unverified = false)
 
 				echo "$varname $startpos-$endpos $vartype";
 		}
+		$colsc++;
 	}
 
 	$startpos = $startpos + $width;
 	$endpos = $startpos + 9;
 	echo "formid $startpos-$endpos  ";
 
-	$startpos = $startpos + $width;
+	$startpos = $startpos + 10;
 	$endpos = $startpos + 9;
 	echo "rpc_id $startpos-$endpos  ";
 
@@ -1080,7 +1108,7 @@ function export_pspp($qid,$unverified = false)
 			echo "$varname '$vardescription' ";
 		}
 	}
-	echo "/formid 'queXF Form ID /rpc_id 'queXF RPC ID' .\n";
+	echo "/formid 'queXF Form ID' /rpc_id 'queXF RPC ID' .\n";
 
 	echo "VALUE LABELS ";
 
@@ -1101,7 +1129,13 @@ function export_pspp($qid,$unverified = false)
 				echo " /$varname";
 				foreach ($rs as $r)
 					if (!empty($r['value']))
-						echo " {$r['value']} '" . pspp_escape($r['label']) . "'";
+					{
+						if (!isset($col['is_string']))
+							echo " {$r['value']} '";
+						else
+							echo " '{$r['value']}' '"; 
+						echo pspp_escape($r['label']) . "'";
+					}
 			}
 		}
 	}
