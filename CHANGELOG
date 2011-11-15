@@ -4,13 +4,15 @@ queXF 1.13.0 - Changes since queXF 1.12.2
 *Fixed Bug: Scale and rotation did not correctly handle case where the scale was exactly 0 and rotation exactly 0
 *Fixed bug: CSV output from text/numeric (not long text) elements were ignoring internal spacing
 *Fixed bug: full text elements were not being removed when reverifying a form
+*Fixed bug: Fixed width output updated to handle where code width is greater than the string length of the number of categories
+*Fixed bug: PSPP output updated to fix where variables start with a number (append a V) and to handle where category variables are strings instead of numeric
 
 Database changes:
 
 ALTER TABLE `questionnaires` ADD `rpc_server_url` TEXT NULL COMMENT 'XML RPC server to send verified data to';
 ALTER TABLE `questionnaires` ADD `rpc_username` TEXT NULL , ADD `rpc_password` TEXT NULL ;
-ALTER TABLE `forms` ADD `rpc_id` INT NULL ;
 ALTER TABLE `questionnaires` ADD `limesurvey_sid` INT( 11 ) NULL ;
+ALTER TABLE `forms` ADD `rpc_id` INT NULL ;
 DROP TABLE `differences` ;
 
 queXF 1.12.2 - Changes since queXF 1.12.1
