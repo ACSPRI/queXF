@@ -53,10 +53,6 @@ function bgidtocss($zoom = 1,$fid,$pid)
 	
 	$row = $db->GetRow($sql);
 
-	//fix for upgrades
-	if ($row['width'] == 0) $row['width'] = PAGE_WIDTH;
-	if ($row['height'] == 0) $row['height'] = PAGE_HEIGHT;
-
 	$sql = "SELECT b.bid
 		FROM boxes as b, boxgroupstype as bg
 		WHERE b.pid = '$pid'
@@ -74,7 +70,17 @@ function bgidtocss($zoom = 1,$fid,$pid)
 		$row = array();
 		$row['offx'] = 0;
 		$row['offy'] = 0;
+		$row['centroidx'] = PAGE_WIDTH / 2;
+		$row['centroidy'] = PAGE_HEIGHT / 2;
+		$row['costheta'] = 1;
+		$row['sintheta'] = 0;
+		$row['scalex'] = 1;
+		$row['scaley'] = 1;
 	}
+
+	//fix for upgrades
+	if ($row['width'] == 0) $row['width'] = PAGE_WIDTH;
+	if ($row['height'] == 0) $row['height'] = PAGE_HEIGHT;
 
 	print "<form method=\"get\" action=\"{$_SERVER['PHP_SELF']}\">";
 
@@ -393,13 +399,11 @@ if (!isset($_SESSION['boxes'])) {
 		GROUP BY bg.bgid
 		ORDER BY bg.sortorder ASC";
 
-	$sql3 = "SELECT b.pid,b.bgid,0 as done, fp.width, fp.height
-		FROM boxes as b, pages as p, boxgroupstype as bg, formpages as fp
-		WHERE p.qid = '$qid'
-		AND b.pid = p.pid
-		AND bg.bgid = b.bgid
-		AND fp.fid = '$fid'
-		AND fp.pid = p.pid
+	$sql3 = "SELECT b.pid,b.bgid,0 as done, fp.width, fp.height, fp.fid
+		FROM boxes as b
+		JOIN pages as p ON (p.qid = '$qid' AND b.pid = p.pid)
+		JOIN boxgroupstype as bg ON (bg.bgid = b.bgid)
+		LEFT JOIN formpages as fp ON (fp.fid = '$fid' AND fp.pid = p.pid)
 		GROUP BY b.pid
 		ORDER BY bg.sortorder ASC";
 
@@ -1178,9 +1182,17 @@ else
 {
 	
 	//show content
-	print "<div style=\"position:relative;\"><img src=\"showpage.php?pid=$pid&amp;fid=$fid\" style=\"width:" . DISPLAY_PAGE_WIDTH . "px;\" alt=\"" . T_("Image of page") . " $pid, " . T_("form") . " $fid\" />";
-	$pw = $_SESSION['pages'][$pid]['width'];
-	if (empty($pw)) $pw = PAGE_WIDTH;
+	if (empty($_SESSION['pages'][$pid]['fid'])) //if page missing
+	{
+		print "<div style=\"position:relative;\"><div style=\"width:" . PAGE_WIDTH / (PAGE_WIDTH/DISPLAY_PAGE_WIDTH) . "px; height:" . PAGE_HEIGHT / (PAGE_WIDTH/DISPLAY_PAGE_WIDTH) . "px;\">" . T_("Page is missing from scan") . "</div>";
+		$pw =PAGE_WIDTH;
+	}
+	else
+	{
+		print "<div style=\"position:relative;\"><img src=\"showpage.php?pid=$pid&amp;fid=$fid\" style=\"width:" . DISPLAY_PAGE_WIDTH . "px;\" alt=\"" . T_("Image of page") . " $pid, " . T_("form") . " $fid\" />";
+		$pw = $_SESSION['pages'][$pid]['width'];
+		if (empty($pw)) $pw = PAGE_WIDTH;
+	}
 	bgidtocss(($pw/DISPLAY_PAGE_WIDTH),$fid,$pid);
 	print "</div>";
 	print "</div>";
