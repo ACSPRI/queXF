@@ -185,8 +185,11 @@ if (!defined('SPLIT_SCANNING_THRESHOLD')) define('SPLIT_SCANNING_THRESHOLD',10);
 //The length of a barcode for the page id
 if (!defined('BARCODE_LENGTH_PID')) define('BARCODE_LENGTH_PID',8); //Length in chars of a barcode identifying a page
 
-//Whether to assign a form if there are missing pages
+//Whether to assign a form if there are undetected pages for this form
 if (!defined('MISSING_PAGE_ASSIGN')) define('MISSING_PAGE_ASSIGN',false); 
+
+//Whether to assign a form if pages are missing from the scan
+if (!defined('VERIFY_WITH_MISSING_PAGES')) define('VERIFY_WITH_MISSING_PAGES',false); 
 
 /**
  * Date time format for displaying 

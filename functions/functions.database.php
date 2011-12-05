@@ -156,6 +156,19 @@ function assign_to($vid)
 		$sql .= " AND m.fid IS NULL ";
 	}
 
+	if (!VERIFY_WITH_MISSING_PAGES)
+	{
+		$sql .= "AND NOT EXISTS(
+				SELECT p.pid
+				FROM pages AS p
+				WHERE  p.qid = f.qid
+				AND NOT EXISTS 
+				(SELECT fp.fid 
+					FROM formpages AS fp 
+					WHERE fp.fid = f.fid 
+					AND fp.pid = p.pid))";
+	}
+
         $sql .= " ORDER BY f.fid ASC
 		LIMIT 1";
 

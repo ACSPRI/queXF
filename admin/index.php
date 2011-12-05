@@ -61,7 +61,8 @@ xhtml_head(T_("queXF Admin Functions"),true,array("../css/admin.css"));
 <li><a href="?page=listduplicates.php"><? echo T_("Duplicate forms"); ?></a></li>
 <li><a href="?page=listforms.php"><? echo T_("Reverify forms"); ?></a></li>
 <li><a href="?page=listpagenotes.php"><? echo T_("List page notes"); ?></a></li>
-<li><a href="?page=missingpages.php"><? echo T_("Handle missing pages"); ?></a></li></ul></li>
+<li><a href="?page=pagesmissing.php"><? echo T_("Pages missing from scan"); ?></a></li>
+<li><a href="?page=missingpages.php"><? echo T_("Handle undetected pages"); ?></a></li></ul></li>
 <li><h3><? echo T_("Output"); ?></h3>
 <ul><li><a href="?page=outputunverified.php"><? echo T_("Output unverified data"); ?></a></li>
 <li><a href="?page=output.php"><? echo T_("Output data/ddi"); ?></a></li></ul></li>

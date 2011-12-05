@@ -134,7 +134,7 @@ if (isset($_GET['npid']) && isset($_GET['mpid']) && isset($_GET['fid']))
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title><? echo T_("Missing Pages"); ?></title>
+<title><? echo T_("Undetected Pages"); ?></title>
 <style type="text/css">
 #topper {
   position : fixed;
@@ -197,6 +197,9 @@ if (isset($_GET['npid']) && isset($_GET['mpid']) && isset($_GET['fid']))
 $sql = "SELECT fid,mpid
 	FROM missingpages";
 
+if (isset($_GET['missingfid']))
+	$sql .= " WHERE fid = " . intval($_GET['missingfid']);
+
 $r = $db->GetRow($sql);
 
 if (isset($r['fid']))
@@ -209,7 +212,7 @@ if (isset($r['fid']))
 
 	
 	print "<div id=\"left\">";
-	print "<img src=\"../showmissingpage.php?mpid=$mpid\" style=\"width: 100%;\" alt=\"". T_("Missing page") . " $mpid\"/> ";
+	print "<img src=\"../showmissingpage.php?mpid=$mpid\" style=\"width: 100%;\" alt=\"". T_("Undetected page") . " $mpid\"/> ";
 	print "</div>";
 
 	//display possible pages within set to assign to
@@ -275,7 +278,7 @@ if (isset($r['fid']))
 }
 else
 {
-	 print "<div id=\"topper\">" . T_("No missing pages") . "</div>";
+	 print "<div id=\"topper\">" . T_("No undetected pages") . "</div>";
 }
 
 
