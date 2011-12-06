@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: queXF\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-14 15:00+1000\n"
+"POT-Creation-Date: 2011-12-06 12:09+1000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Adam Zammit <adam.zammit@acspri.org.au>\n"
 "Language-Team: \n"
@@ -14,107 +14,111 @@ msgstr ""
 "X-Poedit-Basepath: /misc/htdocsactive/quexf/\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: verifyjs.php:171
+#: verifyjs.php:177
 msgid "Please log in"
 msgstr ""
 
-#: verifyjs.php:302
-#: verifyjs.php:409
+#: verifyjs.php:308
+#: verifyjs.php:413
 msgid "Verify: No more work"
 msgstr ""
 
-#: verifyjs.php:303
-#: verifyjs.php:410
+#: verifyjs.php:309
+#: verifyjs.php:414
 msgid "NO MORE WORK"
 msgstr ""
 
-#: verifyjs.php:304
-#: verifyjs.php:411
+#: verifyjs.php:310
+#: verifyjs.php:415
 msgid "Check for more work"
 msgstr ""
 
-#: verifyjs.php:318
+#: verifyjs.php:324
 msgid "Verify: Assign form"
 msgstr ""
 
-#: verifyjs.php:320
+#: verifyjs.php:326
 msgid "There is no form currently assigned to you"
 msgstr ""
 
-#: verifyjs.php:321
+#: verifyjs.php:327
 msgid "Assign next form"
 msgstr ""
 
-#: verifyjs.php:324
+#: verifyjs.php:330
 msgid "Assigning next form: Please wait..."
 msgstr ""
 
-#: verifyjs.php:361
+#: verifyjs.php:367
 msgid "Operator"
 msgstr ""
 
-#: verifyjs.php:361
+#: verifyjs.php:367
 msgid "Completed Forms"
 msgstr ""
 
-#: verifyjs.php:361
+#: verifyjs.php:367
 msgid "Completions Per Hour"
 msgstr ""
 
-#: verifyjs.php:361
+#: verifyjs.php:367
 msgid "Pages Per Hour"
 msgstr ""
 
-#: verifyjs.php:518
-msgid "Verify: Done"
-msgstr ""
-
-#: verifyjs.php:519
-#: verifyjs.php:1166
-msgid "The required fields have been filled"
-msgstr ""
-
-#: verifyjs.php:521
-#: verifyjs.php:1168
-msgid "Submit completed form to database"
-msgstr ""
-
 #: verifyjs.php:522
-#: verifyjs.php:1169
-msgid "Review all questions again"
+msgid "Verify: Done"
 msgstr ""
 
 #: verifyjs.php:523
 #: verifyjs.php:1170
-msgid "Clear all entered data and review again"
+msgid "The required fields have been filled"
 msgstr ""
 
 #: verifyjs.php:525
+#: verifyjs.php:1172
+msgid "Submit completed form to database"
+msgstr ""
+
+#: verifyjs.php:526
 #: verifyjs.php:1173
+msgid "Review all questions again"
+msgstr ""
+
+#: verifyjs.php:527
+#: verifyjs.php:1174
+msgid "Clear all entered data and review again"
+msgstr ""
+
+#: verifyjs.php:529
+#: verifyjs.php:1177
 msgid "Submitting: Please wait..."
 msgstr ""
 
-#: verifyjs.php:540
+#: verifyjs.php:544
 msgid "Verifier"
 msgstr ""
 
-#: verifyjs.php:1181
-msgid "Image of page"
-msgstr ""
-
-#: verifyjs.php:1181
-msgid "form"
+#: verifyjs.php:1187
+msgid "Page is missing from scan"
 msgstr ""
 
 #: verifyjs.php:1192
+msgid "Image of page"
+msgstr ""
+
+#: verifyjs.php:1192
+msgid "form"
+msgstr ""
+
+#: verifyjs.php:1204
 msgid "Centre Page"
 msgstr ""
 
-#: verifyjs.php:1194
+#: verifyjs.php:1206
 msgid "Loading panel..."
 msgstr ""
 
-#: verifyjs.php:1194
+#: verifyjs.php:1206
 msgid "Error, try with Firefox"
 msgstr ""
 
@@ -417,56 +421,62 @@ msgid "List page notes"
 msgstr ""
 
 #: admin/index.php:64
-msgid "Handle missing pages"
+#: admin/pagesmissing.php:64
+msgid "Pages missing from scan"
 msgstr ""
 
 #: admin/index.php:65
-msgid "Output"
+#: admin/pagesmissing.php:67
+msgid "Handle undetected pages"
 msgstr ""
 
 #: admin/index.php:66
+msgid "Output"
+msgstr ""
+
+#: admin/index.php:67
 #: admin/outputunverified.php:67
 msgid "Output unverified data"
 msgstr ""
 
-#: admin/index.php:67
+#: admin/index.php:68
 msgid "Output data/ddi"
 msgstr ""
 
-#: admin/index.php:68
+#: admin/index.php:69
 msgid "Progress"
 msgstr ""
 
-#: admin/index.php:69
+#: admin/index.php:70
 msgid "Display progress of form verification"
 msgstr ""
 
-#: admin/index.php:70
+#: admin/index.php:71
 msgid "Display performance of verifiers (Completions per hour)"
 msgstr ""
 
-#: admin/index.php:71
+#: admin/index.php:72
 msgid "Clients"
 msgstr ""
 
-#: admin/index.php:72
+#: admin/index.php:73
 msgid "Add clients"
 msgstr ""
 
-#: admin/index.php:73
+#: admin/index.php:74
 msgid "Assign clients to forms"
 msgstr ""
 
-#: admin/index.php:74
+#: admin/index.php:75
 msgid "System setup"
 msgstr ""
 
-#: admin/index.php:75
+#: admin/index.php:76
 #: admin/pagesetup.php:433
 msgid "Page setup"
 msgstr ""
 
-#: admin/index.php:76
+#: admin/index.php:77
 msgid "Test configuration"
 msgstr ""
 
@@ -530,41 +540,42 @@ msgstr ""
 
 #: admin/outputunverified.php:84
 #: admin/listforms.php:76
+#: admin/pagesmissing.php:85
 #: admin/listduplicates.php:49
-#: admin/reorder.php:48
 msgid "Questionnaire"
 msgstr ""
 
 #: admin/missingpages.php:137
-msgid "Missing Pages"
+msgid "Undetected Pages"
 msgstr ""
 
-#: admin/missingpages.php:212
-msgid "Missing page"
+#: admin/missingpages.php:215
+msgid "Undetected page"
 msgstr ""
 
-#: admin/missingpages.php:259
+#: admin/missingpages.php:262
 msgid "Page"
 msgstr ""
 
-#: admin/missingpages.php:259
+#: admin/missingpages.php:262
 msgid "of Form"
 msgstr ""
 
-#: admin/missingpages.php:268
+#: admin/missingpages.php:271
+#: admin/pagesmissing.php:85
 msgid "Form"
 msgstr ""
 
-#: admin/missingpages.php:273
+#: admin/missingpages.php:276
 msgid "Accept"
 msgstr ""
 
-#: admin/missingpages.php:273
+#: admin/missingpages.php:276
 msgid "Delete"
 msgstr ""
 
-#: admin/missingpages.php:278
-msgid "No missing pages"
+#: admin/missingpages.php:281
+msgid "No undetected pages"
 msgstr ""
 
 #: admin/pagesetup.php:206
@@ -745,6 +756,7 @@ msgid "Re verify"
 msgstr ""
 
 #: admin/listforms.php:76
+#: admin/pagesmissing.php:85
 msgid "Form ID"
 msgstr ""
 
@@ -828,6 +840,11 @@ msgstr ""
 msgid "Upload form"
 msgstr ""
 
+#: admin/pagesmissing.php:67
+#: admin/pagesmissing.php:85
+msgid "Delete form and allow importing again"
+msgstr ""
+
 #: admin/processicr.php:56
 msgid "Processing KB"
 msgstr ""
@@ -866,7 +883,6 @@ msgid "Allow import again?"
 msgstr ""
 
 #: admin/listfiles.php:70
-#: admin/reorder.php:130
 msgid "Save changes"
 msgstr ""
 
@@ -1262,6 +1278,7 @@ msgid "You are not authorised to review any forms"
 msgstr ""
 
 #: include/php-gettext-1.0.11/examples/pigs_dropin.php:77
+#: include/php-gettext-1.0.11/examples/pigs_fallback.php:76
 msgid ""
 "This is how the story goes.\n"
 "\n"
