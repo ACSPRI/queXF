@@ -1,3 +1,11 @@
+queXF 1.13.1 - Changes since queXF 1.13.0
+
+*New feature: Added "Pages missing from scan" functions to allow for forms with pages missing to be rescanned
+*New feature: Added config directive VERIFY_WITH_MISSING_PAGES (default: false) so forms with missing pages won't be assigned to be verified by default
+*New feature: Added example ICR databases
+*Fixed Bug: Renamed missing pages to "undetected pages" 
+*Fixed Bug: Displays page properly when page is missing from scan
+
 queXF 1.13.0 - Changes since queXF 1.12.2
 
 *New feature: Automatically update queXS Limesurvey database with queXF form when verified (allow for a single dataset of data collected via paper, the web and CATI)
