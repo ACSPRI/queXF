@@ -104,60 +104,9 @@ if (!defined('BAND_DEFAULT_ZOOM')) define('BAND_DEFAULT_ZOOM',3);
 if (!defined('HORI_WIDTH')) define('HORI_WIDTH',6);
 if (!defined('VERT_WIDTH')) define('VERT_WIDTH',6);
 
-//Locations of page guide lines bounding box (in pixels)
-//Top left horizontal
-if (!defined('TL_HORI_TLX')) define('TL_HORI_TLX',90);
-if (!defined('TL_HORI_TLY')) define('TL_HORI_TLY',60);
-if (!defined('TL_HORI_BRX')) define('TL_HORI_BRX',490);
-if (!defined('TL_HORI_BRY')) define('TL_HORI_BRY',380);
-
-//Top left vertical
-if (!defined('TL_VERT_TLX')) define('TL_VERT_TLX',90);
-if (!defined('TL_VERT_TLY')) define('TL_VERT_TLY',90);
-if (!defined('TL_VERT_BRX')) define('TL_VERT_BRX',290);
-if (!defined('TL_VERT_BRY')) define('TL_VERT_BRY',600);
-
-//Top right horizontal
-if (!defined('TR_HORI_TLX')) define('TR_HORI_TLX',1980);
-if (!defined('TR_HORI_TLY')) define('TR_HORI_TLY',60);
-if (!defined('TR_HORI_BRX')) define('TR_HORI_BRX',2380);
-if (!defined('TR_HORI_BRY')) define('TR_HORI_BRY',370);
-
-//Top right vertical
-if (!defined('TR_VERT_TLX')) define('TR_VERT_TLX',2180);
-if (!defined('TR_VERT_TLY')) define('TR_VERT_TLY',90);
-if (!defined('TR_VERT_BRX')) define('TR_VERT_BRX',2420);
-if (!defined('TR_VERT_BRY')) define('TR_VERT_BRY',590);
-
-//Bottom left horizontal
-if (!defined('BL_HORI_TLX')) define('BL_HORI_TLX',90);
-if (!defined('BL_HORI_TLY')) define('BL_HORI_TLY',3190);
-if (!defined('BL_HORI_BRX')) define('BL_HORI_BRX',480);
-if (!defined('BL_HORI_BRY')) define('BL_HORI_BRY',3400);
-
-//Bottom left vertical
-if (!defined('BL_VERT_TLX')) define('BL_VERT_TLX',90);
-if (!defined('BL_VERT_TLY')) define('BL_VERT_TLY',3000);
-if (!defined('BL_VERT_BRX')) define('BL_VERT_BRX',280);
-if (!defined('BL_VERT_BRY')) define('BL_VERT_BRY',3390);
-
-//Bottom right horizontal
-if (!defined('BR_HORI_TLX')) define('BR_HORI_TLX',1980);
-if (!defined('BR_HORI_TLY')) define('BR_HORI_TLY',3190);
-if (!defined('BR_HORI_BRX')) define('BR_HORI_BRX',2370);
-if (!defined('BR_HORI_BRY')) define('BR_HORI_BRY',3400);
-
-//Bottom right vertical
-if (!defined('BR_VERT_TLX')) define('BR_VERT_TLX',2150);
-if (!defined('BR_VERT_TLY')) define('BR_VERT_TLY',3000);
-if (!defined('BR_VERT_BRX')) define('BR_VERT_BRX',2400);
-if (!defined('BR_VERT_BRY')) define('BR_VERT_BRY',3400);
-
-//Barcode position on page (bounding box)
-if (!defined('BARCODE_TLX')) define('BARCODE_TLX',1500); //Top left X
-if (!defined('BARCODE_TLY')) define('BARCODE_TLY',1); //Top left Y
-if (!defined('BARCODE_BRX')) define('BARCODE_BRX',2335); //Bottom right X
-if (!defined('BARCODE_BRY')) define('BARCODE_BRY',330); //Bottom right Y
+//Page guide lines bounding boxes as portions instead of specified manually
+if (!defined('PAGE_GUIDE_X_PORTION')) define('PAGE_GUIDE_X_PORTION',0.25); //portion of width of page for edge detection
+if (!defined('PAGE_GUIDE_Y_PORTION')) define('PAGE_GUIDE_Y_PORTION',0.17); //portion of height of page for edge detection
 
 //Barcode positions on page defined as portions of the page
 //Defaults to the top right hand side of the page, from half the page width down to 20% of the height of the page

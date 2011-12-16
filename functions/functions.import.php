@@ -129,65 +129,82 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 
 					$width = imagesx($image);
 					$height = imagesy($image);
-		
+				
+					$xwidth = floor(PAGE_GUIDE_X_PORTION * $width);
+					$yheight =  floor(PAGE_GUIDE_Y_PORTION * $height);
+	
+					$record = array('pid' => "NULL",
+							'qid' => $qid,
+							'pidentifierbgid' => 1,
+							'pidentifierval' => $pid,
+							'tlx' => 1,
+							'tly' => 1,
+							'trx' => 1,
+							'try' => 1,
+							'blx' => 1,
+							'bly' => 1,
+							'brx' => 1,
+							'bry' => 1,
+							'image' => $data,
+							'rotation' => 0,
+							'width' => $width,
+							'height'=> $height,
+							
+							//Top left horizontal
+							'TL_HORI_TLX' => 1,
+							'TL_HORI_TLY' => 1,
+							'TL_HORI_BRX' => $xwidth,
+							'TL_HORI_BRY' => $yheight,
+
+							//Top left vertical
+							'TL_VERT_TLX' => 1,
+							'TL_VERT_TLY' => 1,
+							'TL_VERT_BRX' => $xwidth,
+							'TL_VERT_BRY' => $yheight,
+
+							//Top right horizontal
+							'TR_HORI_TLX' => $width - $xwidth,
+							'TR_HORI_TLY' => 1,
+							'TR_HORI_BRX' => $width,
+							'TR_HORI_BRY' => $yheight,
+
+							//Top right vertical
+							'TR_VERT_TLX' => $width - $xwidth,
+							'TR_VERT_TLY' => 1,
+							'TR_VERT_BRX' => $width,
+							'TR_VERT_BRY' => $yheight,
+
+							//Bottom left horizontal
+							'BL_HORI_TLX' => 1,
+							'BL_HORI_TLY' => $height - $yheight,
+							'BL_HORI_BRX' => $xwidth,
+							'BL_HORI_BRY' => $height,
+
+							//Bottom left vertical
+							'BL_VERT_TLX' => 1,
+							'BL_VERT_TLY' => $height - $yheight,
+							'BL_VERT_BRX' => $xwidth,
+							'BL_VERT_BRY' => $height,
+
+							//Bottom right horizontal
+							'BR_HORI_TLX' => $width - $xwidth,
+							'BR_HORI_TLY' => $height - $yheight,
+							'BR_HORI_BRX' => $width, 
+							'BR_HORI_BRY' => $height,
+
+							//Bottom right vertical
+							'BR_VERT_TLX' => $width - $xwidth,
+							'BR_VERT_TLY' => $height - $yheight,
+							'BR_VERT_BRX' => $width,
+							'BR_VERT_BRY' => $height);
+
+
+					$db->AutoExecute('pages',$record,'INSERT');	
 					//save image to db including offset and rotation
 					//$sql = "INSERT INTO pages
 					//	(pid,qid,pidentifierbgid,pidentifierval,tlx,tly,trx,try,blx,bly,brx,bry,image,rotation,width,height)
 					//	VALUES (NULL,'$qid','1','$pid','{$offset[0]}','{$offset[1]}','{$offset[2]}','{$offset[3]}','{$offset[4]}','{$offset[5]}','{$offset[6]}','{$offset[7]}','" . addslashes($data) . "','$rotation','$width','$height')";
 
-					$sql = "INSERT INTO pages
-						(pid,qid,pidentifierbgid,pidentifierval,tlx,tly,trx,try,blx,bly,brx,bry,image,rotation,width,height)
-						VALUES (NULL,'$qid','1','$pid','1','1','1','1','1','1','1','1','" . addslashes($data) . "','0','$width','$height')";
-					
-					$db->Execute($sql);
-			
-					$tb = array('t','b');
-					$lr = array('l','r');
-					$vh = array('vert','hori');
-					$ex = array('tlx','brx');
-					$ey = array('tly','bry');
-					foreach($tb as $a)
-						foreach($lr as $b)
-							foreach($vh as $c)					
-							{
-								$vname = "$a$b" . "_" . $c ."_";
-								$tlx = constant(strtoupper($vname . "tlx"));
-								$tly = constant(strtoupper($vname . "tly"));
-								$brx = constant(strtoupper($vname . "brx"));
-								$bry = constant(strtoupper($vname . "bry"));					
-								
-								foreach($ex as $d)
-								{
-									$vn = strtoupper($vname . $d);
-									$val = constant($vn);
-									if ($val <= 0) $val = 1;
-									if ($val >= $width) $val = $width - 1;
-									
-									$sql = "UPDATE pages
-										SET `$vn` = '$val'
-										WHERE qid = '$qid' and pidentifierval LIKE '$pid'";
-								
-									$db->Execute($sql);
-								}
-
-								foreach($ey as $d)
-								{
-									$vn = strtoupper($vname . $d);
-									$val = constant($vn);
-									if ($val <= 0) $val = 1;
-									if ($val >= $height) $val = $height - 1;
-									
-									$sql = "UPDATE pages
-										SET `$vn` = '$val'
-										WHERE qid = '$qid' and pidentifierval LIKE '$pid'";
-								
-									$db->Execute($sql);
-								}
-
-							}
-
-
-			
 					//print $sql;
 			
 
