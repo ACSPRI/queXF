@@ -196,7 +196,6 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $retu
 	{
 		header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 		header ("Content-Type: text/ascii");
-		header ("Content-Length: ");
 		header ("Content-Disposition: attachment; filename={$unv}data_$qid.csv");
 	}
 
@@ -428,7 +427,6 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true,$unverif
 
 		header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 		header ("Content-Type: text/ascii");
-		header ("Content-Length: ");
 		header ("Content-Disposition: attachment; filename={$unv}data_$qid.dat");
 	}
 
@@ -655,7 +653,6 @@ function export_icr($kb)
 	
 	header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 	header ("Content-Type: text/xml");
-	header ("Content-Length: " . strlen($ret));
 	header ("Content-Disposition: attachment; filename=quexf_icr_$kb.xml");
 
 	echo $ret;
@@ -783,7 +780,6 @@ function export_banding($qid)
 	
 	header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 	header ("Content-Type: text/xml");
-	header ("Content-Length: " . strlen($ret));
 	header ("Content-Disposition: attachment; filename=quexf_$qid.xml");
 
 	echo $ret;
@@ -949,7 +945,6 @@ function export_ddi($qid)
 	
 	header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 	header ("Content-Type: text/xml");
-	header ("Content-Length: " . strlen($ret));
 	header ("Content-Disposition: attachment; filename=ddi_$qid.xml");
 
 	echo $ret;
