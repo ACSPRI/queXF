@@ -1,3 +1,8 @@
+queXF 1.13.2 - Changes since queXF 1.13.1
+
+*New feature: Use PAGE_GUIDE_X_PORTION and PAGE_GUIDE_Y_PORTION instead of defining bounding boxes for each corner line
+*Fixed Bug: Data not downloading properly on some browsers - Removed content length from header
+
 queXF 1.13.1 - Changes since queXF 1.13.0
 
 *New feature: Added "Pages missing from scan" functions to allow for forms with pages missing to be rescanned
