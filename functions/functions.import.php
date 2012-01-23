@@ -28,6 +28,94 @@ include_once(dirname(__FILE__).'/../db.inc.php');
 include_once('functions.barcode.php');
 include_once('functions.image.php');
 
+/**
+ * Return an array with the default page layout
+ * 
+ * @param mixed  $width  
+ * @param mixed  $height 
+ * @param mixed  $qid    Optional, defaults to 0. 
+ * @param mixed  $pid    Optional, defaults to 0. 
+ * @param double $data   Optional, defaults to "". 
+ * 
+ * @return TODO
+ * @author Adam Zammit <adam.zammit@acspri.org.au>
+ * @since  2012-01-23
+ */
+function defaultpage($width,$height,$qid=0,$pid=0,$data="")
+{
+
+	$xwidth = floor(PAGE_GUIDE_X_PORTION * $width);
+	$yheight =  floor(PAGE_GUIDE_Y_PORTION * $height);
+
+	$record = array('pid' => "NULL",
+			'qid' => $qid,
+			'pidentifierbgid' => 1,
+			'pidentifierval' => $pid,
+			'tlx' => 1,
+			'tly' => 1,
+			'trx' => 1,
+			'try' => 1,
+			'blx' => 1,
+			'bly' => 1,
+			'brx' => 1,
+			'bry' => 1,
+			'image' => $data,
+			'rotation' => 0,
+			'width' => $width,
+			'height'=> $height,
+			
+			//Top left horizontal
+			'TL_HORI_TLX' => 1,
+			'TL_HORI_TLY' => 1,
+			'TL_HORI_BRX' => $xwidth,
+			'TL_HORI_BRY' => $yheight,
+
+			//Top left vertical
+			'TL_VERT_TLX' => 1,
+			'TL_VERT_TLY' => 1,
+			'TL_VERT_BRX' => $xwidth,
+			'TL_VERT_BRY' => $yheight,
+
+			//Top right horizontal
+			'TR_HORI_TLX' => $width - $xwidth,
+			'TR_HORI_TLY' => 1,
+			'TR_HORI_BRX' => $width,
+			'TR_HORI_BRY' => $yheight,
+
+			//Top right vertical
+			'TR_VERT_TLX' => $width - $xwidth,
+			'TR_VERT_TLY' => 1,
+			'TR_VERT_BRX' => $width,
+			'TR_VERT_BRY' => $yheight,
+
+			//Bottom left horizontal
+			'BL_HORI_TLX' => 1,
+			'BL_HORI_TLY' => $height - $yheight,
+			'BL_HORI_BRX' => $xwidth,
+			'BL_HORI_BRY' => $height,
+
+			//Bottom left vertical
+			'BL_VERT_TLX' => 1,
+			'BL_VERT_TLY' => $height - $yheight,
+			'BL_VERT_BRX' => $xwidth,
+			'BL_VERT_BRY' => $height,
+
+			//Bottom right horizontal
+			'BR_HORI_TLX' => $width - $xwidth,
+			'BR_HORI_TLY' => $height - $yheight,
+			'BR_HORI_BRX' => $width, 
+			'BR_HORI_BRY' => $height,
+
+			//Bottom right vertical
+			'BR_VERT_TLX' => $width - $xwidth,
+			'BR_VERT_TLY' => $height - $yheight,
+			'BR_VERT_BRX' => $width,
+			'BR_VERT_BRY' => $height);
+
+	return $record;
+}
+
+
 
 /* Add a questionnaire to the database
  *
@@ -130,74 +218,7 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 					$width = imagesx($image);
 					$height = imagesy($image);
 				
-					$xwidth = floor(PAGE_GUIDE_X_PORTION * $width);
-					$yheight =  floor(PAGE_GUIDE_Y_PORTION * $height);
-	
-					$record = array('pid' => "NULL",
-							'qid' => $qid,
-							'pidentifierbgid' => 1,
-							'pidentifierval' => $pid,
-							'tlx' => 1,
-							'tly' => 1,
-							'trx' => 1,
-							'try' => 1,
-							'blx' => 1,
-							'bly' => 1,
-							'brx' => 1,
-							'bry' => 1,
-							'image' => $data,
-							'rotation' => 0,
-							'width' => $width,
-							'height'=> $height,
-							
-							//Top left horizontal
-							'TL_HORI_TLX' => 1,
-							'TL_HORI_TLY' => 1,
-							'TL_HORI_BRX' => $xwidth,
-							'TL_HORI_BRY' => $yheight,
-
-							//Top left vertical
-							'TL_VERT_TLX' => 1,
-							'TL_VERT_TLY' => 1,
-							'TL_VERT_BRX' => $xwidth,
-							'TL_VERT_BRY' => $yheight,
-
-							//Top right horizontal
-							'TR_HORI_TLX' => $width - $xwidth,
-							'TR_HORI_TLY' => 1,
-							'TR_HORI_BRX' => $width,
-							'TR_HORI_BRY' => $yheight,
-
-							//Top right vertical
-							'TR_VERT_TLX' => $width - $xwidth,
-							'TR_VERT_TLY' => 1,
-							'TR_VERT_BRX' => $width,
-							'TR_VERT_BRY' => $yheight,
-
-							//Bottom left horizontal
-							'BL_HORI_TLX' => 1,
-							'BL_HORI_TLY' => $height - $yheight,
-							'BL_HORI_BRX' => $xwidth,
-							'BL_HORI_BRY' => $height,
-
-							//Bottom left vertical
-							'BL_VERT_TLX' => 1,
-							'BL_VERT_TLY' => $height - $yheight,
-							'BL_VERT_BRX' => $xwidth,
-							'BL_VERT_BRY' => $height,
-
-							//Bottom right horizontal
-							'BR_HORI_TLX' => $width - $xwidth,
-							'BR_HORI_TLY' => $height - $yheight,
-							'BR_HORI_BRX' => $width, 
-							'BR_HORI_BRY' => $height,
-
-							//Bottom right vertical
-							'BR_VERT_TLX' => $width - $xwidth,
-							'BR_VERT_TLY' => $height - $yheight,
-							'BR_VERT_BRX' => $width,
-							'BR_VERT_BRY' => $height);
-
+					$record = defaultpage($width,$height,$qid,$pid,$data);
 
 					$db->AutoExecute('pages',$record,'INSERT');	
 					//save image to db including offset and rotation
@@ -826,7 +847,10 @@ function import($filename,$description = false)
 				}
 				else
 				{
-					if(BLANK_PAGE_DETECTION && is_blank_page($image))
+					$width = imagesx($image);
+					$height = imagesy($image);
+	
+					if(BLANK_PAGE_DETECTION && is_blank_page($image,defaultpage($width,$height)))
 					{
 						print T_("Blank page: ignoring");
 						//let this page dissolve into the ether
