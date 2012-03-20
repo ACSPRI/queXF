@@ -39,6 +39,25 @@ if (isset($_GET['qid']))
 
 	$db->Execute($sql);
 
+	$sql = "SELECT pid 
+		FROM pages
+		WHERE qid = '$qid'";
+
+	$rs = $db->GetAll($sql);
+
+	foreach($rs as $r)
+	{
+		$sql = "DELETE FROM boxes
+			WHERE pid = '{$r['pid']}'";
+
+		$db->Execute($sql);
+
+		$sql = "DELETE FROM boxgroupstype
+			WHERE pid = '{$r['pid']}'";
+
+		$db->Execute($sql);
+	}
+
 	$sql = "DELETE 
 		FROM pages
 		WHERE qid = '$qid'";
