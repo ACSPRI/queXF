@@ -1,0 +1,20 @@
+#configarea {
+  position : fixed;
+  width : 30%;
+  height : 100%;
+  top : 0;
+  bottom : auto;
+  left : 70%;
+  overflow: auto;
+  /*border-bottom: 1px solid #aaa;*/
+}
+#content {
+  position : fixed;
+  top : 0;
+  left : 0;
+  bottom : auto;
+  width : 70%;
+  height : 100%;
+  overflow: auto;
+}
+

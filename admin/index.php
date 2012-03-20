@@ -36,7 +36,8 @@ xhtml_head(T_("queXF Admin Functions"),true,array("../css/admin.css"));
 <h1><? echo T_("queXF Admin Functions"); ?></h1>
 <ul>
 <li><h3><? echo T_("Form setup"); ?></h3>
-<ul><li><a href="?page=new.php"><? echo T_("Import a new form from a PDF file"); ?></a></li>
+<ul><li><a href="?page=pagetest.php"><? echo T_("Test form compatibility with queXF"); ?></a></li>
+<li><a href="?page=new.php"><? echo T_("Import a new form from a PDF file"); ?></a></li>
 <li><a href="?page=importbandingxml.php"><? echo T_("Import/Update banding from XML"); ?></a></li>
 <li><a href="?page=delete.php"><? echo T_("Delete a form (only if no forms yet imported)"); ?></a></li>
 <li><a href="?page=touchup.php"><? echo T_("Touch-up a form"); ?></a></li>

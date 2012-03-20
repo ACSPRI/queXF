@@ -39,7 +39,7 @@ if (isset($_FILES['form']))
 
 	$r = newquestionnaire($filename,$desc);
 	
-	if ($r !== false && isset($_FILES['bandingxml']) && !empty($_FILES['bandingxml']['tmp_name']))
+	if (!is_array($r) && isset($_FILES['bandingxml']) && !empty($_FILES['bandingxml']['tmp_name']))
 	{
 		$xmlname = $_FILES['bandingxml']['tmp_name'];
 		$r2 =  import_bandingxml(file_get_contents($xmlname),$r);
@@ -50,7 +50,7 @@ if (isset($_FILES['form']))
 if ($a)
 {
 	$suc = false;
-	if ($r)
+	if (!is_array($r))
 	{
 		print "<h1>" . T_("Successfully inserted new questionnaire") . "</h1>";
 		$suc = true;
@@ -76,6 +76,7 @@ if ($a)
 	else
 	{
 		print "<h1>" . T_("Failed to insert new questionnaire. Could have conflicting page id's") . "</h1>";
+		print "<p><a href='pagetest.php?filename=" . $r[1] . "'>" . T_("Test form to check for problems") . "</a></p>";
 	}
 
 

@@ -63,7 +63,11 @@ function defaultpage($width,$height,$qid=0,$pid=0,$data="")
 			'rotation' => 0,
 			'width' => $width,
 			'height'=> $height,
-			
+	
+			//Line widths default	
+			'VERT_WIDTH' => VERT_WIDTH,
+			'HORI_WIDTH' => HORI_WIDTH,
+	
 			//Top left horizontal
 			'TL_HORI_TLX' => 1,
 			'TL_HORI_TLY' => 1,
@@ -247,9 +251,6 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 			unset($barcode);
 		}
 	
-		//delete temp file
-		unlink($file);
-
 		$n++;
 		$file = $tmp . $n . ".png";
 		unset($images);
@@ -267,9 +268,21 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 	//check if we have created conflicting
 
 	if ($db->CompleteTrans())
+	{
+		$n = 1;
+		$file = $tmp . $n . ".png";
+		while (file_exists($file))
+		{
+			//delete temp file
+			unlink($file);
+
+			$n++;
+			$file = $tmp . $n . ".png";
+		}
 		return $qid;
+	}
 	else
-		return false;
+		return array(false,$tmp);
 
 }
 
