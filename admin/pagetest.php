@@ -251,7 +251,7 @@ if (isset($_GET['filename']))
 		print "<div id='configarea'><h3>" . T_("Page test") . "</h3>";
 		print "<ul><li>" . T_("Confirm that there is a detected unique barcode for each page and that the barcode fits inside the pink box. If not, edit the BARCODE_PORTION variables in the configuration file") . "</li>";
 		print "<li>" . T_("Confirm that the barcode is of length") . " " . BARCODE_LENGTH_PID . ". " . T_("Otherwise edit the BARCODE_LENGTH_PID variable in the configuration file") . "</li>";
-		print "<li>" . T_("Confirm the corner edges fit within the green/brown boxes and that the blue lines appear to be drawn over the corner edges (for each 4 corners, both horizonal and vertical lines. If not, edit the PAGE_GUIDE_X_PORTION variables in the configuration file") . "</li></ul></div>";
+		print "<li>" . T_("Confirm the corner edges fit within the green/brown boxes and that the blue lines appear to be drawn over the corner edges (for each 4 corners, both horizonal and vertical lines. If not, edit the PAGE_GUIDE_X_PORTION, HORI_WIDTH and VERT_WIDTH variables in the configuration file") . "</li>";
 	
 
 
