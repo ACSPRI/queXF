@@ -299,7 +299,7 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $retu
 								$rr[] = $labelval;
 							else
 							{
-								if (empty($valueval))
+								if (strlen(trim($valueval)) == 0)
 									$rr[] = $count; //if single choice, val is the number of the box selected
 								else
 									$rr[] = $valueval;
@@ -355,7 +355,7 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $retu
 					$rr[] = $val['label'];
 				else
 				{
-					if (empty($val['value']))
+					if ($val['value'] == "")
 						$rr[] = $val['val'];
 					else
 						$rr[] = $val['value'];
@@ -488,7 +488,7 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true,$unverif
 			{
 				if ($val['val'] == 1)
 				{
-					if (empty($val['value']))
+					if (strlen(trim($val['value'])) == 0)
 						print str_pad($count, max(strlen($desc[$bgid]['count']),$desc[$bgid]['width']), " ", STR_PAD_LEFT); //pad to width
 					else
 						print str_pad($val['value'], max(strlen($desc[$bgid]['count']),$desc[$bgid]['width']), " ", STR_PAD_LEFT); //pad to width
@@ -870,7 +870,7 @@ function export_ddi($qid)
 
 		$name = $row['varname'];
 		$varlabel = $row['label'];
-		if (empty($varlabel)) $varlabel = $name;
+		if (strlen(trim($varlabel)) == 0) $varlabel = $name;
 
 		if ($row['btid'] == 2) //Multiple choice
 		{
