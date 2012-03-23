@@ -7,117 +7,121 @@ msgid ""
 msgstr ""
 "Project-Id-Version: quexf\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2010-09-23 10:28+1000\n"
+"POT-Creation-Date: 2011-12-06 12:09+1000\n"
 "PO-Revision-Date: 2009-12-01 04:50+0000\n"
 "Last-Translator: Qianqian Fang <fangqq@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-08-26 02:56+0000\n"
-"X-Generator: Launchpad (build 13779)\n"
+"X-Launchpad-Export-Date: 2012-03-23 03:36+0000\n"
+"X-Generator: Launchpad (build 14996)\n"
 
-#: verifyjs.php:167
+#: verifyjs.php:177
 msgid "Please log in"
 msgstr "请登录"
 
-#: verifyjs.php:284
-#: verifyjs.php:392
+#: verifyjs.php:308
+#: verifyjs.php:413
 msgid "Verify: No more work"
 msgstr "核对：没有更多工作"
 
-#: verifyjs.php:285
-#: verifyjs.php:393
+#: verifyjs.php:309
+#: verifyjs.php:414
 msgid "NO MORE WORK"
 msgstr "没有更多工作"
 
-#: verifyjs.php:286
-#: verifyjs.php:394
+#: verifyjs.php:310
+#: verifyjs.php:415
 msgid "Check for more work"
 msgstr "检查是否有更多工作"
 
-#: verifyjs.php:300
+#: verifyjs.php:324
 msgid "Verify: Assign form"
 msgstr "核实：分配表单"
 
-#: verifyjs.php:302
+#: verifyjs.php:326
 msgid "There is no form currently assigned to you"
 msgstr "目前没有更多的表单分配给您"
 
-#: verifyjs.php:303
+#: verifyjs.php:327
 msgid "Assign next form"
 msgstr "分配下一表单"
 
-#: verifyjs.php:306
+#: verifyjs.php:330
 msgid "Assigning next form: Please wait..."
 msgstr "正在分配下一表单：请等待..."
 
-#: verifyjs.php:343
+#: verifyjs.php:367
 msgid "Operator"
 msgstr "操作员"
 
-#: verifyjs.php:343
+#: verifyjs.php:367
 msgid "Completed Forms"
 msgstr "完成的表单"
 
-#: verifyjs.php:343
+#: verifyjs.php:367
 msgid "Completions Per Hour"
 msgstr "每小时的完成量"
 
-#: verifyjs.php:343
+#: verifyjs.php:367
 msgid "Pages Per Hour"
 msgstr "每小时页数"
 
-#: verifyjs.php:501
+#: verifyjs.php:522
 msgid "Verify: Done"
 msgstr "核实：完成"
 
-#: verifyjs.php:502
-#: verifyjs.php:1146
+#: verifyjs.php:523
+#: verifyjs.php:1170
 msgid "The required fields have been filled"
 msgstr "要求的字段已经填写"
 
-#: verifyjs.php:504
-#: verifyjs.php:1148
+#: verifyjs.php:525
+#: verifyjs.php:1172
 msgid "Submit completed form to database"
 msgstr "将完成的表单提交到数据库"
 
-#: verifyjs.php:505
-#: verifyjs.php:1149
+#: verifyjs.php:526
+#: verifyjs.php:1173
 msgid "Review all questions again"
 msgstr "再审查一遍所有问题"
 
-#: verifyjs.php:506
-#: verifyjs.php:1150
+#: verifyjs.php:527
+#: verifyjs.php:1174
 msgid "Clear all entered data and review again"
 msgstr "清空所有输入的数据，再审查一遍"
 
-#: verifyjs.php:508
-#: verifyjs.php:1153
+#: verifyjs.php:529
+#: verifyjs.php:1177
 msgid "Submitting: Please wait..."
 msgstr "正在提交：请稍候..."
 
-#: verifyjs.php:523
+#: verifyjs.php:544
 msgid "Verifier"
 msgstr "核对者"
 
-#: verifyjs.php:1161
+#: verifyjs.php:1187
+msgid "Page is missing from scan"
+msgstr ""
+
+#: verifyjs.php:1192
 msgid "Image of page"
 msgstr "页面的图像"
 
-#: verifyjs.php:1161
+#: verifyjs.php:1192
 msgid "form"
 msgstr "表单"
 
-#: verifyjs.php:1170
+#: verifyjs.php:1204
 msgid "Centre Page"
 msgstr "中央页面"
 
-#: verifyjs.php:1172
+#: verifyjs.php:1206
 msgid "Loading panel..."
 msgstr "载入面板..."
 
-#: verifyjs.php:1172
+#: verifyjs.php:1206
 msgid "Error, try with Firefox"
 msgstr "错误，请用 Firefox 重试"
 
@@ -183,30 +187,29 @@ msgid "Add note"
 msgstr ""
 
 #: db.inc.php:32
-#: db.inc.php:36
 msgid ""
 "ERROR: Please modify config.inc.php to point to your ADODb installation"
 msgstr ""
 
 #: admin/band.php:105
 #: admin/band.php:378
-#: admin/bandajax.php:479
-#: admin/bandajax.php:555
+#: admin/bandajax.php:481
+#: admin/bandajax.php:557
 msgid "Band"
 msgstr "窗口"
 
 #: admin/band.php:176
-#: admin/bandajax.php:524
+#: admin/bandajax.php:526
 msgid "Choose another questionnaire"
 msgstr "选择另一问卷"
 
 #: admin/band.php:176
-#: admin/bandajax.php:524
+#: admin/bandajax.php:526
 msgid "Increase zoom"
 msgstr "增加缩放"
 
 #: admin/band.php:176
-#: admin/bandajax.php:524
+#: admin/bandajax.php:526
 msgid "Decrease zoom"
 msgstr "减少缩放"
 
@@ -261,7 +264,7 @@ msgid "Delete this box group"
 msgstr "删除这组输入框"
 
 #: admin/import.directory.php:47
-#: admin/import.directory.php:63
+#: admin/import.directory.php:68
 msgid "Import a directory of PDF files"
 msgstr "导入一个 PDF 文件夹"
 
@@ -289,148 +292,197 @@ msgstr "杀死(Kill)正在运行的进程"
 msgid "may take up to a few minutes to take effect"
 msgstr "可能要几分钟才能生效"
 
-#: admin/import.directory.php:72
+#: admin/import.directory.php:62
+#: admin/import.directory.php:90
+msgid "Log id"
+msgstr ""
+
+#: admin/import.directory.php:62
+#: admin/import.directory.php:90
+msgid "Date"
+msgstr "日期"
+
+#: admin/import.directory.php:62
+#: admin/import.directory.php:90
+msgid "Log entry"
+msgstr ""
+
+#: admin/import.directory.php:77
 msgid "Directory"
 msgstr "文件夹"
 
-#: admin/import.directory.php:74
+#: admin/import.directory.php:79
 msgid "Enter directory local to the server (eg /mnt/iss/tmp/images)"
 msgstr "输入相对服务器的本地文件夹(如 /mnt/iss/tmp/images)"
 
-#: admin/import.directory.php:75
+#: admin/import.directory.php:80
 msgid "Process directory: browser window must remain open"
 msgstr "处理文件夹：浏览器窗口必须一直打开"
 
-#: admin/import.directory.php:76
+#: admin/import.directory.php:81
 msgid "Watch this directory in the background (recommended)"
 msgstr "在后台监视此文件夹(推荐)"
 
-#: admin/import.directory.php:80
+#: admin/import.directory.php:85
 msgid "Outcome of last process run (if any)"
 msgstr "上次处理的运行结果(如果有)"
 
-#: admin/index.php:30
-#: admin/index.php:35
+#: admin/index.php:31
+#: admin/index.php:36
 msgid "queXF Admin Functions"
 msgstr "queXF 管理功能"
 
-#: admin/index.php:37
+#: admin/index.php:38
 msgid "Form setup"
 msgstr "表单设置"
 
-#: admin/index.php:38
+#: admin/index.php:39
 msgid "Import a new form from a PDF file"
 msgstr "从一个PDF文件导入一张新表单"
 
-#: admin/index.php:39
+#: admin/index.php:40
 msgid "Import/Update banding from XML"
 msgstr ""
 
-#: admin/index.php:40
+#: admin/index.php:41
 msgid "Delete a form (only if no forms yet imported)"
 msgstr "删除一个表单(仅当尚无表单被导入时)"
 
-#: admin/index.php:41
+#: admin/index.php:42
 msgid "Touch-up a form"
 msgstr ""
 
-#: admin/index.php:42
+#: admin/index.php:43
 msgid "Band a form"
 msgstr "为表格定义窗口"
 
-#: admin/index.php:43
+#: admin/index.php:44
 msgid "Band a form using interactive banding"
 msgstr "使用交互方式为表格定义窗口"
 
-#: admin/index.php:44
+#: admin/index.php:45
 msgid "Order variables on the form"
 msgstr "对表单上的变量排序"
 
-#: admin/index.php:45
+#: admin/index.php:46
+msgid "queXS and Limesurvey integration"
+msgstr ""
+
+#: admin/index.php:47
 msgid "Users"
 msgstr "用户"
 
-#: admin/index.php:46
+#: admin/index.php:48
 msgid "Add operators"
 msgstr "添加操作者"
 
-#: admin/index.php:47
+#: admin/index.php:49
 msgid "Assign forms to operators"
 msgstr "将表单分配给操作者"
 
-#: admin/index.php:48
-msgid "Importing"
-msgstr "正在导入"
-
-#: admin/index.php:50
-msgid "Successfully imported files"
-msgstr "导入文件成功"
-
 #: admin/index.php:51
-msgid "Failed imported files"
-msgstr "导入文件失败"
+msgid "ICR"
+msgstr ""
 
 #: admin/index.php:52
-msgid "Duplicate forms"
-msgstr "重复的表单"
+msgid "Train ICR"
+msgstr ""
 
 #: admin/index.php:53
-msgid "Reverify forms"
+msgid "Monitor ICR training process"
 msgstr ""
 
 #: admin/index.php:54
-msgid "List page notes"
+msgid "Import and Export ICR KB"
 msgstr ""
 
 #: admin/index.php:55
-msgid "Handle missing pages"
-msgstr "处理丢失的页面"
+msgid "Assign ICR KB to questionnaire"
+msgstr ""
 
-#: admin/index.php:56
+#: admin/index.php:57
+msgid "Importing"
+msgstr "正在导入"
+
+#: admin/index.php:59
+msgid "Successfully imported files"
+msgstr "导入文件成功"
+
+#: admin/index.php:60
+msgid "Failed imported files"
+msgstr "导入文件失败"
+
+#: admin/index.php:61
+msgid "Duplicate forms"
+msgstr "重复的表单"
+
+#: admin/index.php:62
+msgid "Reverify forms"
+msgstr ""
+
+#: admin/index.php:63
+msgid "List page notes"
+msgstr ""
+
+#: admin/index.php:64
+#: admin/pagesmissing.php:64
+msgid "Pages missing from scan"
+msgstr ""
+
+#: admin/index.php:65
+#: admin/pagesmissing.php:67
+msgid "Handle undetected pages"
+msgstr ""
+
+#: admin/index.php:66
 msgid "Output"
 msgstr "输出"
 
-#: admin/index.php:57
+#: admin/index.php:67
 #: admin/outputunverified.php:67
 msgid "Output unverified data"
 msgstr ""
 
-#: admin/index.php:58
+#: admin/index.php:68
 msgid "Output data/ddi"
 msgstr "Output 日期/ddi"
 
-#: admin/index.php:59
+#: admin/index.php:69
 msgid "Progress"
 msgstr "进度"
 
-#: admin/index.php:60
+#: admin/index.php:70
 msgid "Display progress of form verification"
 msgstr "显示表单核实的进度"
 
-#: admin/index.php:61
+#: admin/index.php:71
 msgid "Display performance of verifiers (Completions per hour)"
 msgstr "显示核对员的工作情况(每小时的完成数)"
 
-#: admin/index.php:62
+#: admin/index.php:72
 msgid "Clients"
 msgstr "客户"
 
-#: admin/index.php:63
+#: admin/index.php:73
 msgid "Add clients"
 msgstr "添加客户"
 
-#: admin/index.php:64
+#: admin/index.php:74
 msgid "Assign clients to forms"
 msgstr "向表单分配客户"
 
-#: admin/index.php:65
+#: admin/index.php:75
 msgid "System setup"
 msgstr "系统设置"
 
-#: admin/index.php:66
-#: admin/pagesetup.php:303
+#: admin/index.php:76
+#: admin/pagesetup.php:433
 msgid "Page setup"
 msgstr "页面设置"
+
+#: admin/index.php:77
+msgid "Test configuration"
+msgstr ""
 
 #: admin/touchup.php:84
 msgid "Go back"
@@ -458,43 +510,31 @@ msgstr ""
 
 #: admin/outputunverified.php:70
 #: admin/outputunverified.php:84
-#: admin/output.php:70
-#: admin/output.php:82
 msgid "Data"
 msgstr "数据"
 
 #: admin/outputunverified.php:71
 #: admin/outputunverified.php:84
-#: admin/output.php:71
-#: admin/output.php:82
 msgid "DDI"
 msgstr ""
 
 #: admin/outputunverified.php:72
 #: admin/outputunverified.php:84
-#: admin/output.php:72
-#: admin/output.php:82
 msgid "CSV"
 msgstr ""
 
 #: admin/outputunverified.php:73
 #: admin/outputunverified.php:84
-#: admin/output.php:73
-#: admin/output.php:82
 msgid "CSV Labelled"
 msgstr ""
 
 #: admin/outputunverified.php:74
 #: admin/outputunverified.php:84
-#: admin/output.php:74
-#: admin/output.php:82
 msgid "PSPP (SPSS)"
 msgstr ""
 
 #: admin/outputunverified.php:75
 #: admin/outputunverified.php:84
-#: admin/output.php:75
-#: admin/output.php:82
 msgid "Banding XML"
 msgstr ""
 
@@ -503,95 +543,169 @@ msgid "Warning: the data downloaded from here is unverified"
 msgstr ""
 
 #: admin/outputunverified.php:84
-#: admin/listforms.php:70
+#: admin/listforms.php:76
+#: admin/pagesmissing.php:85
 #: admin/listduplicates.php:49
-#: admin/reorder.php:48
-#: admin/output.php:82
-#: admin/performance.php:106
 msgid "Questionnaire"
 msgstr "问卷"
 
 #: admin/missingpages.php:137
-msgid "Missing Pages"
-msgstr "缺少页"
+msgid "Undetected Pages"
+msgstr ""
 
-#: admin/missingpages.php:212
-msgid "Missing page"
-msgstr "缺少页"
+#: admin/missingpages.php:215
+msgid "Undetected page"
+msgstr ""
 
-#: admin/missingpages.php:259
+#: admin/missingpages.php:262
 msgid "Page"
 msgstr "页"
 
-#: admin/missingpages.php:259
+#: admin/missingpages.php:262
 msgid "of Form"
 msgstr "在表单中"
 
-#: admin/missingpages.php:268
+#: admin/missingpages.php:271
+#: admin/pagesmissing.php:85
 msgid "Form"
 msgstr ""
 
-#: admin/missingpages.php:273
+#: admin/missingpages.php:276
 msgid "Accept"
 msgstr "接受"
 
-#: admin/missingpages.php:273
+#: admin/missingpages.php:276
 msgid "Delete"
 msgstr "删除"
 
-#: admin/missingpages.php:278
-msgid "No missing pages"
-msgstr "没有缺少页"
+#: admin/missingpages.php:281
+msgid "No undetected pages"
+msgstr ""
 
-#: admin/pagesetup.php:78
+#: admin/pagesetup.php:206
+msgid "Cannot detect page edge on page"
+msgstr ""
+
+#: admin/pagesetup.php:224
+#: admin/pagesetup.php:234
 msgid "Set page layout"
 msgstr "设置页面布局"
 
-#: admin/pagesetup.php:158
-msgid "Configuration settings (copy and paste in to config.inc.php)"
-msgstr "配置设置(复制粘贴到 config.inc.php 中)"
+#: admin/pagesetup.php:225
+msgid "Page layout has been updated"
+msgstr ""
 
-#: admin/pagesetup.php:304
-#: admin/new.php:74
-msgid "You will get the best results if you:"
-msgstr "如果您这么做会获得最佳效果："
+#: admin/pagesetup.php:226
+msgid "Continue with banding"
+msgstr ""
 
-#: admin/pagesetup.php:306
-#: admin/new.php:75
+#: admin/pagesetup.php:287
+msgid "Copy settings from this page to all other pages"
+msgstr ""
+
+#: admin/pagesetup.php:289
+msgid "Finished page setup"
+msgstr ""
+
+#: admin/icrtrain.php:37
+msgid "ICR Training"
+msgstr ""
+
+#: admin/icrtrain.php:125
+msgid "Found duplicate"
+msgstr ""
+
+#: admin/icrtrain.php:150
+#: admin/processicr.php:127
+msgid "Trained"
+msgstr ""
+
+#: admin/icrtrain.php:150
+msgid "characters"
+msgstr ""
+
+#: admin/icrtrain.php:155
+#: admin/processicr.php:144
+msgid "Generated KB"
+msgstr ""
+
+#: admin/icrtrain.php:200
+msgid "Chars"
+msgstr ""
+
+#: admin/icrtrain.php:200
+#: admin/icrtrain.php:269
+msgid "from"
+msgstr ""
+
+#: admin/icrtrain.php:241
+msgid "Started training process"
+msgstr ""
+
+#: admin/icrtrain.php:269
+#: admin/icrtrain.php:357
+msgid "Character"
+msgstr ""
+
+#: admin/icrtrain.php:289
 msgid ""
-"Print out the form using the same method that you will for all the printed "
-"forms"
-msgstr "打印此表单时，使用用与所有要打印表单一致的方法"
+"Make sure the letter in the box matches the image. If you do not want to "
+"import a box, click on it to disable it (click again to enable)."
+msgstr ""
 
-#: admin/pagesetup.php:307
-msgid ""
-"Scan the form to a PDF using the same options that you will for the filled "
-"forms"
-msgstr "将此表单扫描成PDF时，使用与所有要填写的表单一致的选项"
+#: admin/icrtrain.php:306
+msgid "Description for knowledge base:"
+msgstr ""
 
-#: admin/pagesetup.php:308
-#: admin/new.php:77
-msgid "Best options for scanning in are:"
-msgstr "扫描输入的最佳选项有："
+#: admin/icrtrain.php:306
+msgid "Train"
+msgstr ""
 
-#: admin/pagesetup.php:309
-#: admin/new.php:78
-msgid "Monochrome (1 bit)"
-msgstr "单色(1位)"
+#: admin/icrtrain.php:339
+#: admin/icrtrain.php:357
+msgid "Manually train"
+msgstr ""
 
-#: admin/pagesetup.php:310
-#: admin/new.php:79
-msgid "300DPI Resolution"
-msgstr "分辨率 300DPI"
+#: admin/icrtrain.php:354
+msgid "Please choose which characters to include in training"
+msgstr ""
 
-#: admin/pagesetup.php:316
-msgid "Select PDF file to upload:"
-msgstr "选择要上传的 PDF 文件："
+#: admin/icrtrain.php:357
+msgid "Number of instances"
+msgstr ""
 
-#: admin/pagesetup.php:317
-#: admin/new.php:88
-msgid "Upload form"
-msgstr "上传表单"
+#: admin/icrtrain.php:357
+#: admin/icrtrain.php:388
+msgid "Include in training?"
+msgstr ""
+
+#: admin/icrtrain.php:367
+msgid "Start training process in background"
+msgstr ""
+
+#: admin/icrtrain.php:385
+msgid "Please choose which verifiers to include in training"
+msgstr ""
+
+#: admin/icrtrain.php:388
+msgid "Number of forms"
+msgstr ""
+
+#: admin/icrtrain.php:391
+msgid "Continue training"
+msgstr ""
+
+#: admin/icrtrain.php:405
+msgid "ICR Train"
+msgstr ""
+
+#: admin/icrmonitor.php:30
+msgid "Monitor ICR process"
+msgstr ""
+
+#: admin/icrmonitor.php:80
+msgid "No process running"
+msgstr ""
 
 #: admin/operators.php:34
 #: admin/operators.php:64
@@ -599,12 +713,10 @@ msgid "Add an operator"
 msgstr "添加操作员"
 
 #: admin/operators.php:49
-#: admin/clients.php:66
 msgid "Added"
 msgstr "已添加"
 
 #: admin/operators.php:52
-#: admin/clients.php:68
 msgid "Could not add"
 msgstr "无法添加"
 
@@ -648,20 +760,20 @@ msgid "Enter the name of the operator (eg Adam):"
 msgstr "输入操作员的用户名(如 Adam)："
 
 #: admin/operators.php:70
-#: admin/clients.php:88
 msgid "Add user"
 msgstr "添加用户"
 
-#: admin/listforms.php:59
+#: admin/listforms.php:65
 msgid "Listing of forms"
 msgstr ""
 
-#: admin/listforms.php:61
-#: admin/listforms.php:70
+#: admin/listforms.php:67
+#: admin/listforms.php:76
 msgid "Re verify"
 msgstr ""
 
-#: admin/listforms.php:70
+#: admin/listforms.php:76
+#: admin/pagesmissing.php:85
 msgid "Form ID"
 msgstr ""
 
@@ -669,43 +781,104 @@ msgstr ""
 msgid "Add new questionnaire"
 msgstr "添加新问卷"
 
-#: admin/new.php:54
+#: admin/new.php:55
 msgid "Successfully inserted new questionnaire"
 msgstr "成功插入新问卷"
 
-#: admin/new.php:57
+#: admin/new.php:61
 msgid "Successfully loaded banding XML file"
 msgstr ""
 
-#: admin/new.php:61
+#: admin/new.php:65
 msgid "Failed to load banding XML file"
 msgstr ""
 
-#: admin/new.php:67
+#: admin/new.php:71
+msgid "Continue by setting up page edge detection (page setup)"
+msgstr ""
+
+#: admin/new.php:78
 msgid "Failed to insert new questionnaire. Could have conflicting page id's"
 msgstr ""
 
-#: admin/new.php:73
+#: admin/new.php:84
 msgid "New questionnaire"
 msgstr "新问卷"
 
-#: admin/new.php:76
+#: admin/new.php:85
+msgid "When using banding XML:"
+msgstr ""
+
+#: admin/new.php:86
+msgid ""
+"You must import the original PDF and banding XML file (not a scanned version)"
+msgstr ""
+
+#: admin/new.php:87
+msgid "When manually banding:"
+msgstr ""
+
+#: admin/new.php:88
+msgid "You will get the best results if you:"
+msgstr "如果您这么做会获得最佳效果："
+
+#: admin/new.php:89
+msgid ""
+"Print out the form using the same method that you will for all the printed "
+"forms"
+msgstr "打印此表单时，使用用与所有要打印表单一致的方法"
+
+#: admin/new.php:90
 msgid ""
 "Scan the (blank) form to a PDF using the same options that you will for the "
 "filled forms"
 msgstr "将该(空白)表单扫描成PDF，使用与将用于其他填写的表单的相同的选项"
 
-#: admin/new.php:85
+#: admin/new.php:91
+msgid "Best options for scanning in are:"
+msgstr "扫描输入的最佳选项有："
+
+#: admin/new.php:92
+msgid "Monochrome (1 bit)"
+msgstr "单色(1位)"
+
+#: admin/new.php:93
+msgid "300DPI Resolution"
+msgstr "分辨率 300DPI"
+
+#: admin/new.php:99
 msgid "Select PDF file to create form from"
 msgstr "选择要创建表单的来源PDF文件"
 
-#: admin/new.php:86
+#: admin/new.php:100
 msgid "(Optional): Select banding XML file"
 msgstr ""
 
-#: admin/new.php:87
+#: admin/new.php:101
 msgid "Enter description of form"
 msgstr "输入表单描述"
+
+#: admin/new.php:102
+msgid "Upload form"
+msgstr "上传表单"
+
+#: admin/pagesmissing.php:67
+#: admin/pagesmissing.php:85
+msgid "Delete form and allow importing again"
+msgstr ""
+
+#: admin/processicr.php:56
+msgid "Processing KB"
+msgstr ""
+
+#: admin/processicr.php:127
+msgid "to knowledge base"
+msgstr ""
+
+#: admin/processicr.php:147
+#: admin/processicr.php:150
+msgid "Did not generate KB as not all records trained"
+msgstr ""
 
 #: admin/listfiles.php:49
 msgid "Listing of imported files by status"
@@ -728,15 +901,10 @@ msgid "SHA1"
 msgstr "SHA1"
 
 #: admin/listfiles.php:68
-msgid "Date"
-msgstr "日期"
-
-#: admin/listfiles.php:68
 msgid "Allow import again?"
 msgstr "允许重新导入吗？"
 
 #: admin/listfiles.php:70
-#: admin/reorder.php:130
 msgid "Save changes"
 msgstr "保存"
 
@@ -872,30 +1040,140 @@ msgstr "性能"
 msgid "Assign verifier to questionnaire"
 msgstr "分配问卷的核对者"
 
+#: admin/limesurvey.php:67
+msgid ""
+"RPC Server URL (example: "
+"http://user:password@localhost/quexs/include/limesurvey/admin/remotecontrol.p"
+"hp)"
+msgstr ""
+
+#: admin/limesurvey.php:68
+msgid "RPC Username"
+msgstr ""
+
+#: admin/limesurvey.php:69
+msgid "RPC Password"
+msgstr ""
+
+#: admin/limesurvey.php:70
+msgid "Limesurvey Survey ID"
+msgstr ""
+
+#: admin/limesurvey.php:71
+msgid "Update settings"
+msgstr ""
+
+#: admin/limesurvey.php:76
+#: admin/limesurvey.php:88
+msgid "Upload"
+msgstr ""
+
+#: admin/limesurvey.php:86
+msgid "No forms to upload"
+msgstr ""
+
 #: admin/importbandingxml.php:30
-#: admin/importbandingxml.php:49
+#: admin/importbandingxml.php:48
 msgid "Update banding from XML"
 msgstr ""
 
-#: admin/importbandingxml.php:50
+#: admin/importbandingxml.php:49
 msgid "WARNING: All previous banding will be erased"
 msgstr ""
 
-#: admin/importbandingxml.php:61
+#: admin/importbandingxml.php:60
 msgid "Select banding XML file"
 msgstr ""
 
-#: admin/importbandingxml.php:62
+#: admin/importbandingxml.php:61
 msgid "Select questionnaire"
 msgstr ""
 
-#: admin/importbandingxml.php:63
+#: admin/importbandingxml.php:62
+#: admin/icrkb.php:67
 msgid "Upload XML"
 msgstr ""
 
-#: admin/testconfig.php:3
-msgid "Test Installation"
-msgstr "测试安装"
+#: admin/testconfig.php:26
+msgid "Could not connect to database. Make sure the database: "
+msgstr ""
+
+#: admin/testconfig.php:26
+msgid " exists on "
+msgstr ""
+
+#: admin/testconfig.php:26
+msgid " and that "
+msgstr ""
+
+#: admin/testconfig.php:26
+msgid ""
+" has privileges to it, otherwise modify config.inc.php to point to the "
+"correct database. Also make sure you have loaded the database structure from"
+msgstr ""
+
+#: admin/testconfig.php:29
+msgid "Database connection succeeded"
+msgstr ""
+
+#: admin/testconfig.php:34
+msgid "User authentication has been set up. You are user: "
+msgstr ""
+
+#: admin/testconfig.php:39
+msgid ""
+"Could not detect user authentication. Please set up web server based "
+"authentication. If using apache, see here: "
+msgstr ""
+
+#: admin/testconfig.php:39
+msgid "Apache authentication"
+msgstr ""
+
+#: admin/testconfig.php:44
+#: admin/testconfig.php:49
+#: admin/testconfig.php:54
+msgid "Recommended minimum"
+msgstr ""
+
+#: admin/testconfig.php:46
+#: admin/testconfig.php:51
+#: admin/testconfig.php:56
+msgid "Passed"
+msgstr ""
+
+#: admin/testconfig.php:58
+msgid "Configuration options from php.ini:"
+msgstr ""
+
+#: admin/testconfig.php:69
+msgid "Found GhostScript version"
+msgstr ""
+
+#: admin/testconfig.php:73
+msgid ""
+" exists but can not execute it. Please make sure you are pointing to the "
+"executable file, not just the directory of Ghostscript"
+msgstr ""
+
+#: admin/testconfig.php:77
+msgid "Could not find GhostScript in path: "
+msgstr ""
+
+#: admin/testconfig.php:77
+msgid ""
+"Please modify config.inc.php, GS_BIN to point to the gs executable. Also "
+"please make sure you are pointing to the executable file, not just the "
+"directory of Ghostscript"
+msgstr ""
+
+#: admin/testconfig.php:104
+msgid "FAILED"
+msgstr ""
+
+#: admin/testconfig.php:108
+msgid "Passed Configuration Test"
+msgstr ""
 
 #: admin/listpagenotes.php:47
 #: admin/listpagenotes.php:56
@@ -940,66 +1218,96 @@ msgstr "已导入的表单总数"
 msgid "Total"
 msgstr "总计"
 
-#: functions/functions.output.php:111
-#: functions/functions.output.php:318
-#: functions/functions.output.php:802
+#: admin/icrkb.php:38
+#: admin/icrkb.php:55
+msgid "Import ICR KB from XML"
+msgstr ""
+
+#: admin/icrkb.php:49
+msgid "Successfully loaded ICR XML file"
+msgstr ""
+
+#: admin/icrkb.php:51
+msgid "Failed to load ICR XML file"
+msgstr ""
+
+#: admin/icrkb.php:66
+msgid "Select ICR KB XML file"
+msgstr ""
+
+#: admin/icrkb.php:72
+msgid "Export ICR KB to XML"
+msgstr ""
+
+#: admin/icrkb.php:73
+msgid "ICR KB"
+msgstr ""
+
+#: functions/functions.output.php:130
+#: functions/functions.output.php:140
+msgid "XML RPC Error: "
+msgstr ""
+
+#: functions/functions.output.php:193
+#: functions/functions.output.php:427
+#: functions/functions.output.php:986
 msgid "unverified"
 msgstr ""
 
-#: functions/functions.database.php:137
+#: functions/functions.database.php:136
 msgid "ERROR: Multiple forms assigned, please see a technical officer"
 msgstr "错误：分配了多张表单，请找技术人员"
 
-#: functions/functions.import.php:98
+#: functions/functions.import.php:117
 msgid "BARCODE"
 msgstr "条形码"
 
-#: functions/functions.import.php:123
-msgid "FAILED TO IMPORT AS COULD NOT DETECT ALL PAGE EDGES FOR PAGE"
-msgstr ""
-
-#: functions/functions.import.php:129
+#: functions/functions.import.php:205
 msgid "INVALID - IGNORING BLANK PAGE"
 msgstr "无效 - 忽略空白页"
 
-#: functions/functions.import.php:509
+#: functions/functions.import.php:225
+msgid "Failed to import as no pages were detected"
+msgstr ""
+
+#: functions/functions.import.php:634
 msgid "Finding qid"
 msgstr "正在查找 qid"
 
-#: functions/functions.import.php:554
+#: functions/functions.import.php:696
 msgid "Got qid"
 msgstr "得到 qid"
 
-#: functions/functions.import.php:592
+#: functions/functions.import.php:752
 msgid "Processing pid"
 msgstr "正在处理 pid"
 
-#: functions/functions.import.php:603
+#: functions/functions.import.php:763
 msgid "Pid not identified for this page, inserting into missing pages..."
 msgstr "此页面的 pid 无法识别，正在插入到丢失页面..."
 
-#: functions/functions.import.php:654
+#: functions/functions.import.php:814
 msgid "Blank page: ignoring"
 msgstr "空白页：忽略"
 
-#: functions/functions.import.php:659
+#: functions/functions.import.php:819
 msgid "Could not get pid, inserting into missing pages..."
 msgstr "无法获得 pid，正在插入到丢失页面..."
 
-#: functions/functions.import.php:718
+#: functions/functions.import.php:878
 msgid "Could not get qid..."
 msgstr "无法获得 qid..."
 
-#: functions/functions.import.php:778
+#: functions/functions.import.php:938
 msgid ""
 "Automatically processing the 1 missing page for this form - assuming pid:"
 msgstr "自动处理此表单的一个丢失的页面 - 分配 pid："
 
-#: functions/functions.import.php:837
+#: functions/functions.import.php:997
 msgid "Deleting missing pages as all form page slots filled"
 msgstr ""
 
-#: functions/functions.import.php:1005
+#: functions/functions.import.php:1226
 msgid "File already in database"
 msgstr "文件已经在数据库中"
 
@@ -1021,8 +1329,8 @@ msgstr "此表单没有您可以审查的内容。请在左侧的框里输入一
 msgid "You are not authorised to review any forms"
 msgstr "您没有审查任何表单的权限"
 
-#: include/php-gettext-1.0.9/examples/pigs_dropin.php:77
-#: include/php-gettext-1.0.9/examples/pigs_fallback.php:76
+#: include/php-gettext-1.0.11/examples/pigs_dropin.php:77
+#: include/php-gettext-1.0.11/examples/pigs_fallback.php:76
 msgid ""
 "This is how the story goes.\n"
 "\n"
