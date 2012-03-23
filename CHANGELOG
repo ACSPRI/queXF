@@ -1,3 +1,10 @@
+queXF 1.13.3 - Changes since queXF 1.13.2
+
+*New feature: Page compatability test to see if your form is compatible with queXF (also shows up if importing a new form fails)
+*Fixed Bug: Banding information remained in database when form deleted
+*Fixed Bug: Labels/values of 0 ignored/incorrecty replaced in output
+*Translations: Updated translations from Launchpad and added build/move script
+
 queXF 1.13.2 - Changes since queXF 1.13.1
 
 *New feature: Use PAGE_GUIDE_X_PORTION and PAGE_GUIDE_Y_PORTION instead of defining bounding boxes for each corner line
