@@ -98,7 +98,7 @@ if (isset($_GET['npid']) && isset($_GET['mpid']) && isset($_GET['fid']))
 			if ($page['process'] == 1)
 			{		
 				//process variables on this page
-				processpage($page["pid"],$fid,$image,$transforms);
+				processpage($page["pid"],$fid,$image,$transforms,$page["qid"]);
 			}
 
 		}
