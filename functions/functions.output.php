@@ -104,7 +104,11 @@ function uploadrpc($fid)
 		$assoc = array();
 		for ($i = 0; $i < count($head); $i++)
 		{
-			$assoc[$head[$i]] = $data[$i];
+			//concat if same variable name
+			if (isset($assoc[$head[$i]]))
+				$assoc[$head[$i]] .= $data[$i];
+			else
+				$assoc[$head[$i]] = $data[$i];
 		}
 
 		//formid not recognised by limesurvey
