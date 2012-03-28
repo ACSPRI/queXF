@@ -1229,6 +1229,7 @@ function import_bandingxml($xml,$qid,$erase = false)
 				$label = $db->qstr($bg->label);
 				$gs = current($bg->groupsection);
 				$sid = $sections[$gs['idref']];
+				if (empty($sid)) $sid = "NULL";
 
 				$sql = "INSERT INTO boxgroupstype (bgid,btid,width,pid,varname,sortorder,label,sid)
 					VALUES (NULL,$type,$width,$pid,$varname,$sortorder,$label,$sid)";
