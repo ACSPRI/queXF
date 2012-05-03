@@ -965,6 +965,7 @@ function export_ddi($qid)
  */
 function pspp_escape($string,$length = 250)
 {
+	$string = strip_tags($string);
 	$from = array("'", "\r\n", "\n");
 	$to   = array("", "", "");
 	return substr(str_replace($from, $to, $string),0,$length);
@@ -1003,11 +1004,39 @@ function export_pspp($qid,$unverified = false)
 	$cols = $db->GetAll($sql);
 
 	$cc = count($cols);
-	//PSPP variable name cannot start with a number - check
+	//PSPP variable name cannot start with a number and must be unique - check
+	$vars = array();
 	for ($i = 0; $i < $cc; $i++)
 	{
+		//start numeric
 		if (is_numeric(substr($cols[$i]['varname'],0,1)))
 			$cols[$i]['varname'] = "V" . $cols[$i]['varname'];
+
+		//make unique
+		$letter = "A";
+		$checked = false;
+		$added = false;
+		while (!$checked)
+		{
+			if (isset($vars[$cols[$i]['varname']]))
+			{
+				if ($added)
+				{
+					$letter = chr(ord($letter) + 1);
+					$cols[$i]['varname'] = substr($cols[$i]['varname'],0,-1) . $letter;
+				}
+				else
+				{
+					$cols[$i]['varname'] = $cols[$i]['varname'] . $letter;
+					$added = true;
+				}
+			}
+			else	
+			{
+				$checked = true;
+				$vars[$cols[$i]['varname']] = $cols[$i]['varname'];
+			}
+		}
 	}
 
 	$startpos = 1;
@@ -1127,12 +1156,17 @@ function export_pspp($qid,$unverified = false)
 			{
 				echo " /$varname";
 				foreach ($rs as $r)
-					if (!empty($r['value']))
+					if ($r['value'] != "")
 					{
 						if (!isset($col['is_string']))
 							echo " {$r['value']} '";
 						else
-							echo " '{$r['value']}' '"; 
+						{
+							echo " '";
+							//make label same width
+							echo str_pad($r['value'], $col['width']," ", STR_PAD_LEFT);
+							echo "' '"; 
+						}
 						echo pspp_escape($r['label']) . "'";
 					}
 			}
