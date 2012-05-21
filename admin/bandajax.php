@@ -37,7 +37,7 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 {
 	global $db;
 
-	$sql = "SELECT b.tlx,b.tly,b.brx,b.bry,b.bid,bg.btid,b.bgid,bg.varname
+	$sql = "SELECT b.tlx,b.tly,b.brx,b.bry,b.bid,bg.btid,b.bgid,bg.varname,b.value,b.label
 		FROM boxes as b, boxgroupstype as bg
 		WHERE b.pid = $pid
 		AND bg.bgid = b.bgid
@@ -69,7 +69,23 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 		if ($box['btid'] == 5) $colour = BARCODE_COLOUR; 
 		if ($box['btid'] == 6) $colour = LONGTEXT_COLOUR; 
 	
-		print "<div id=\"modbox{$box['bid']}\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" . BAND_OPACITY . "; -moz-opacity: " . BAND_OPACITY . "; z-index: 50;\" onclick=\"window.open('../modifybox.php?bid={$box['bid']}')\">$showcount</div>";
+		print "<div id=\"modbox{$box['bid']}\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" . BAND_OPACITY . "; -moz-opacity: " . BAND_OPACITY . "; z-index: 50;\" onclick=\"window.open('../modifybox.php?bid={$box['bid']}')\" onmouseover=\"hideValueLabels(); boxvalue{$box['bid']}.style.visibility = 'visible'; boxlabel{$box['bid']}.style.visibility = 'visible';\">$showcount</div>";
+
+		//display value and label (invisible by default)
+		if ($box['btid'] == 1 || $box['btid'] == 2)
+		{
+			$value_width = VALUE_WIDTH;
+			$value_height = VALUE_HEIGHT;
+			$top = ($box['tly'] / $zoom) - $value_height;
+			$left = ($box['tlx'] / $zoom) - $value_width;
+			print "<input id=\"boxvalue{$box['bid']}\" style=\"position:absolute; top:" . $top ."px; left:".$left."px; width:" . $value_width ."px; height:" . $value_height . "px; z-index: 100; visibility:hidden;\" name=\"boxvalue{$box['bid']}\" type=\"text\" value=\"{$box['value']}\" onchange=\"updateValue({$box['bid']},this.value);\"/>";
+
+			$label_width = LABEL_WIDTH;
+			$label_height = LABEL_HEIGHT;
+			$top = ($box['tly'] / $zoom) - $label_height;
+			$left = ($box['brx'] / $zoom);
+			print "<input id=\"boxlabel{$box['bid']}\" style=\"position:absolute; top:" . $top ."px; left:".$left."px; width:" . $label_width ."px; height:" . $label_height . "px; z-index: 100; visibility:hidden;\" name=\"boxlabel{$box['bid']}\" type=\"text\" value=\"{$box['label']}\" onchange=\"updateLabel({$box['bid']},this.value);\"/>";
+		}
 
 		$lastx = $box['brx'] / $zoom;
 		$lasty = $box['bry'] / $zoom;
@@ -320,6 +336,32 @@ function updatevarname($bgid,$varname)
 	$db->Execute($sql);
 }
 
+function updatevalue($bid,$value)
+{
+	global $db;
+
+	$value = $db->qstr($value);
+
+	$sql = "UPDATE boxes
+		SET value = $value
+		WHERE bid = '$bid'";
+
+	$db->Execute($sql);
+}
+
+function updatelabel($bid,$label)
+{
+	global $db;
+
+	$label = $db->qstr($label);
+
+	$sql = "UPDATE boxes
+		SET label = $label
+		WHERE bid = '$bid'";
+
+	$db->Execute($sql);
+}
+
 /**
  * When boxes are evenly spaced, boxes are created inbetween
  * Delete the inbetween boxes
@@ -462,6 +504,18 @@ if (isset($_GET['pid']) && isset($_GET['qid']) && isset($_GET['zoom']))
 	{
 		updatevarname(intval($_GET['bgid']), $_GET['varname']);
 		//pidtomap($pid,$zoom);
+		exit();
+	}	
+
+	if (isset($_GET['value']) && isset($_GET['bid']))
+	{
+		updatevalue(intval($_GET['bid']), $_GET['value']);
+		exit();
+	}	
+
+	if (isset($_GET['label']) && isset($_GET['bid']))
+	{
+		updatelabel(intval($_GET['bid']), $_GET['label']);
 		exit();
 	}	
 	

@@ -47,9 +47,29 @@ function updateArea(bid,tlx,tly,brx,bry) {
 
 }
 
+function hideValueLabels() {
+	inputs = document.getElementsByTagName('input');
+	for (index = 0; index < inputs.length; ++index) {
+		if (inputs[index].name.substr(0,8) == 'boxvalue' || inputs[index].name.substr(0,8) == 'boxlabel')
+			inputs[index].style.visibility = 'hidden';
+	}
+}
+
 function updateVarname(bgid, varname) {
 	va = getUrlVars();
 	new Ajax.Request('bandajax.php', {parameters: 'bgid=' + bgid + '&varname=' + varname + '&pid=' + va['pid'] + '&zoom=' + va['zoom'] + '&qid=' + va['qid'],  method: 'get' });
+
+}
+
+function updateValue(bid, value) {
+	va = getUrlVars();
+	new Ajax.Request('bandajax.php', {parameters: 'bid=' + bid + '&value=' + value + '&pid=' + va['pid'] + '&zoom=' + va['zoom'] + '&qid=' + va['qid'],  method: 'get' });
+
+}
+
+function updateLabel(bid, label) {
+	va = getUrlVars();
+	new Ajax.Request('bandajax.php', {parameters: 'bid=' + bid + '&label=' + label + '&pid=' + va['pid'] + '&zoom=' + va['zoom'] + '&qid=' + va['qid'],  method: 'get' });
 
 }
 

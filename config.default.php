@@ -154,5 +154,15 @@ if (!defined('DATE_TIME_FORMAT')) define('DATE_TIME_FORMAT','%a %d %b %I:%i%p');
 if (!defined('PROCESS_LOG_LIMIT')) define('PROCESS_LOG_LIMIT', 500);
 
 
+/*
+ * The width and height in pixels of the popup boxes when banding for editing the values and labels of a box
+ */
+if (!defined('LABEL_HEIGHT')) define('LABEL_HEIGHT', 15);
+if (!defined('LABEL_WIDTH')) define('LABEL_WIDTH', 85);
+if (!defined('VALUE_HEIGHT')) define('VALUE_HEIGHT', 15);
+if (!defined('VALUE_WIDTH')) define('VALUE_WIDTH', 15);
+
+
+
 
 ?>
