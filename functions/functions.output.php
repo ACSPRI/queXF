@@ -968,7 +968,7 @@ function pspp_escape($string,$length = 250)
 	$string = strip_tags($string);
 	$from = array("'", "\r\n", "\n");
 	$to   = array("", "", "");
-	return substr(str_replace($from, $to, $string),0,$length);
+	return trim(substr(str_replace($from, $to, $string),0,$length));
 }
 
 
