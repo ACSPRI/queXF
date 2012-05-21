@@ -222,7 +222,7 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 					$width = imagesx($image);
 					$height = imagesy($image);
 				
-					$record = defaultpage($width,$height,$qid,$pid,$data);
+					$record = defaultpage($width - 1,$height - 1,$qid,$pid,$data);
 
 					$db->AutoExecute('pages',$record,'INSERT');	
 					//save image to db including offset and rotation
@@ -860,8 +860,8 @@ function import($filename,$description = false)
 				}
 				else
 				{
-					$width = imagesx($image);
-					$height = imagesy($image);
+					$width = imagesx($image) - 1;
+					$height = imagesy($image) - 1;
 	
 					if(BLANK_PAGE_DETECTION && is_blank_page($image,defaultpage($width,$height)))
 					{
@@ -1228,9 +1228,10 @@ function import_bandingxml($xml,$qid,$erase = false)
 				$sortorder = intval($bg->sortorder);
 				$label = $db->qstr($bg->label);
 				$gs = current($bg->groupsection);
-				$sid = $sections[$gs['idref']];
-				if (empty($sid)) $sid = "NULL";
-
+				$sid = "NULL";
+				if (isset($sections[$gs['idref']))
+					$sid = $sections[$gs['idref']];
+				
 				$sql = "INSERT INTO boxgroupstype (bgid,btid,width,pid,varname,sortorder,label,sid)
 					VALUES (NULL,$type,$width,$pid,$varname,$sortorder,$label,$sid)";
 
