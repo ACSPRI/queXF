@@ -69,7 +69,7 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 		if ($box['btid'] == 5) $colour = BARCODE_COLOUR; 
 		if ($box['btid'] == 6) $colour = LONGTEXT_COLOUR; 
 	
-		print "<div id=\"modbox{$box['bid']}\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" . BAND_OPACITY . "; -moz-opacity: " . BAND_OPACITY . "; z-index: 50;\" onclick=\"window.open('../modifybox.php?bid={$box['bid']}')\" onmouseover=\"hideValueLabels(); boxvalue{$box['bid']}.style.visibility = 'visible'; boxlabel{$box['bid']}.style.visibility = 'visible';\">$showcount</div>";
+		print "<div id=\"modbox{$box['bid']}\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" . BAND_OPACITY . "; -moz-opacity: " . BAND_OPACITY . "; z-index: 50;\" onclick=\"window.open('../modifybox.php?bid={$box['bid']}')\" onmouseover=\"hideValueLabels(); document.getElementById('boxvalue{$box['bid']}').style.visibility = 'visible'; document.getElementById('boxlabel{$box['bid']}').style.visibility = 'visible';\">$showcount</div>";
 
 		//display value and label (invisible by default)
 		if ($box['btid'] == 1 || $box['btid'] == 2)
