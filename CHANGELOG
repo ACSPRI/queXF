@@ -1,3 +1,12 @@
+queXF 1.13.4 - Changes since queXF 1.13.3
+
+*New feature: Can edit/add values and labels to boxes by mousing over them when banding
+*Fixed Bug: Missing pages not completely processed
+*Fixed Bug: Banding file not importing where no sections defined
+*Fixed Bug: Output to PSPP messy and variable names can be non unique
+*Fixed Bug: Page width selection can go over edge of page by 1 pixel causing notices/errors
+*Translations: Updated from Launchpad - Thank you (especially to the Spanish translators)
+
 queXF 1.13.3 - Changes since queXF 1.13.2
 
 *New feature: Page compatability test to see if your form is compatible with queXF (also shows up if importing a new form fails)
