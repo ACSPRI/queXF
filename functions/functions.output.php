@@ -355,15 +355,20 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $retu
 			}
 			else if ($val['btid'] == 2)
 			{
-				if ($labels)
-					$rr[] = $val['label'];
-				else
+				if ($val['val'] == 1)
 				{
-					if ($val['value'] == "")
-						$rr[] = $val['val'];
+					if ($labels)
+						$rr[] = $val['label'];
 					else
-						$rr[] = $val['value'];
+					{
+						if ($val['value'] == "")
+							$rr[] = 1;
+						else
+							$rr[] = $val['value'];
+					}
 				}
+				else
+					$rr[] = "";
 			}
 
 			$prebtid = $val['btid'];
