@@ -173,6 +173,8 @@ if (isset($_POST['submit']))
 
 if (isset($_GET['bgid']) || isset($_GET['bid']))
 {
+	xhtml_head(T_("Modify box"));
+
 	global $db;
 
 	if (isset($_GET['bid'])){
@@ -221,6 +223,8 @@ if (isset($_GET['bgid']) || isset($_GET['bid']))
 	?><p><a href="<?php echo $_SERVER['PHP_SELF'] . "?deletebgid=$bgid";?>"><? echo T_("Delete this group"); ?></a></p>
 		<p><a href="<?php echo $_SERVER['PHP_SELF'] . "?deleteinbetween=$bgid&amp;bgid=$bgid";?>"><? echo T_("Delete in between boxes"); ?></a></p>
 	<?
+
+	xhtml_foot();
 }
 
 
