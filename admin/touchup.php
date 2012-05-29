@@ -36,7 +36,6 @@ if (isset($_GET['pid']))
 
 	header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 	header ("Content-Type: image/png");
-	header ("Content-Length: ");
 	header ("Content-Disposition: attachment; filename=pid$pid.png");
 
 	$sql = "SELECT image 
