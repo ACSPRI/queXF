@@ -96,9 +96,19 @@ function widthsToNW($widths,$narrow,$wide)
 	foreach($widths as $width)
 	{
 		if (($width >= ($nmin)) && ($width <= ($narrow + $tolerance))) $string .= "N";
-		if (($width >= ($wide - $tolerance)) && ($width <= ($wide + $tolerance))) $string .= "W";
+		else if (($width >= ($wide - $tolerance)) && ($width <= ($wide + $tolerance))) $string .= "W";
+		else $string .= "J"; //J for junk
 	}
-	
+
+	//remove junk bits from start and end of string
+	$firstJ = strpos($string,'J');
+	if ($firstJ <= ((strlen($string) /4)))
+		$string = substr($string,$firstJ + 1);
+
+	$lastJ = strpos($string,'J', ((strlen($string) / 4) * 3));
+	if ($lastJ >= ((strlen($string)/4)*3))
+		$string = substr($string,0,$lastJ);
+
 	return $string;
 }
 
