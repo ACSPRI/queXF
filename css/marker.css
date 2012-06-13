@@ -19,7 +19,6 @@
 	font-size: 1px;
 	line-height: 0%;
 	-moz-user-select: none;
-	background: url(/images/spacer.gif) no-repeat center;
 }
 
 .marquee-edge, .marquee-opacity, .marquee-listener { overflow: hidden; }
