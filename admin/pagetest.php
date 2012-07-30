@@ -55,7 +55,7 @@ function definetomap($zoom,$pid,$filename)
 	$image = imagecreatefrompng($filename . $pid . ".png");	
 	$width = imagesx($image);
 	$height = imagesy($image);
-	$page = defaultpage($width,$height);
+	$page = defaultpage($width - 1,$height - 1);
         $offset = offset($image,false,0,$page);
 
 	//draw lines of corner edges
