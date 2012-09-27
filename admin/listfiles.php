@@ -28,10 +28,10 @@ include_once("../db.inc.php");
 include("../functions/functions.database.php");
 include("../functions/functions.xhtml.php");
 
-if (isset($_GET['submit']))
+if (isset($_POST['submit']))
 {
 	//submitted, now update database
-	foreach($_GET as $key => $val)
+	foreach($_POST as $key => $val)
 	{
 		if (substr($key,0,4) == 'pfid')
 		{
@@ -50,6 +50,7 @@ xhtml_head(T_("Listing of imported files by status"),true,array("../css/table.cs
 
 $status = 1;
 if (isset($_GET['status'])) $status = intval($_GET['status']);
+if (isset($_POST['status'])) $status = intval($_POST['status']);
 
 if ($status == 1)
 	print "<h1>" . T_("Forms successfully imported") . "</h1>";
@@ -63,11 +64,11 @@ $sql = "SELECT pfid,filepath,filehash,date,status, CONCAT('<input type=\'radio\'
 
 $fs = $db->GetAll($sql);
 
-print "<form method='get' action=''>";
+print "<form method='post' action=''>";
 
 xhtml_table($fs,array('filepath','filehash','date','allowanother'),array(T_('File'),T_('SHA1'),T_('Date'),T_('Allow import again?')));
 
-print "<p><input name='submit' type='submit' value='" . T_("Save changes") . "'/></p></form>";
+print "<p><input name='status' type='hidden' id='status' value='$status'/><input name='submit' type='submit' value='" . T_("Save changes") . "'/></p></form>";
 
 xhtml_foot();
 
