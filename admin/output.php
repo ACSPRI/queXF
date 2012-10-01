@@ -52,6 +52,12 @@ if (isset($_GET['csv']))
 	exit();
 }
 
+if (isset($_GET['csvmerged']))
+{
+	outputdatacsv(intval($_GET['csvmerged']),"",false,false,false,true);
+	exit();
+}
+
 if (isset($_GET['banding']))
 {
 	export_banding(intval($_GET['banding']));
@@ -70,6 +76,7 @@ $sql = "SELECT description,
 		CONCAT('<a href=\"?data=', qid, '\">" . T_("Data") . "</a>') as data,
 		CONCAT('<a href=\"?ddi=', qid, '\">" . T_("DDI") . "</a>') as ddi,
 		CONCAT('<a href=\"?csv=', qid, '\">" . T_("CSV") . "</a>') as csv,
+		CONCAT('<a href=\"?csvmerged=', qid, '\">" . T_("CSV Merged") . "</a>') as csvmerged,
 		CONCAT('<a href=\"?csvlabel=', qid, '\">" . T_("CSV Labelled") . "</a>') as csvlabel,
 		CONCAT('<a href=\"?pspp=', qid, '\">" . T_("PSPP (SPSS)") . "</a>') as pspp,
 		CONCAT('<a href=\"?banding=', qid, '\">" . T_("Banding XML") . "</a>') as banding
@@ -79,7 +86,7 @@ $sql = "SELECT description,
 
 $qs = $db->GetAll($sql);
 
-xhtml_table($qs, array('description','data','ddi','csv','csvlabel','pspp','banding'),array(T_("Questionnaire"),T_("Data"),T_("DDI"),T_("CSV"),T_("CSV Labelled"), T_("PSPP (SPSS)"), T_("Banding XML")));
+xhtml_table($qs, array('description','data','ddi','csv','csvmerged','csvlabel','pspp','banding'),array(T_("Questionnaire"),T_("Data"),T_("DDI"),T_("CSV"),T_("CSV Merged"),T_("CSV Labelled"), T_("PSPP (SPSS)"), T_("Banding XML")));
 
 xhtml_foot();
 

@@ -159,7 +159,7 @@ function uploadrpc($fid)
 
 /*
  * CSV data output */
-function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $return = false)
+function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $return = false,$mergenamedfields = false)
 {
 	global $db;
 
@@ -215,6 +215,9 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $retu
 	$varnames = $db->GetAll($sql);
 
 	$rv = array();
+
+	$prevarname = "@";
+	
 	foreach($varnames as $vn)
 	{
 		if ($vn['btid'] == 2)
@@ -223,7 +226,15 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $retu
 				$rv[] = $vn['varname'] . "_$i";
 		}
 		else
-			$rv[] = $vn['varname'];
+		{
+			//don't add the variable name if we are merging and it matches the last varname
+			if (!($mergenamedfields == true && $prevarname == $vn['varname']))
+				$rv[] = $vn['varname'];
+
+			$prevarname = $vn['varname'];
+		}
+
+		
 	}
 
 	$rv[] = "formid";
@@ -234,6 +245,8 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $retu
 	{
 		print csv($rv);
 	}
+
+	$prevarname = "@";
 
 	foreach ($forms as $form)
 	{
@@ -247,7 +260,7 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $retu
 			ORDER BY bg.sortorder, b.bid";
 
 
-		$sql = "(select b.bid,b.bgid,g.btid,f.val,sortorder,b.value,b.label
+		$sql = "(select b.bid,b.bgid,g.btid,f.val,sortorder,b.value,b.label,g.varname
 		from boxes as b, boxgroupstype as g, pages as p, formboxverifychar as f
 		where b.bgid = g.bgid
 		and g.btid > 0
@@ -256,13 +269,13 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $retu
 		and p.qid = '$qid'
 		and f.bid = b.bid and f.vid = '{$form['vid']}' and f.fid = '{$form['fid']}')
 		UNION
-		(select b.bid,b.bgid,g.btid,f.val,sortorder,b.value,b.label
+		(select b.bid,b.bgid,g.btid,f.val,sortorder,b.value,b.label,g.varname
 		from boxes as b
 		JOIN  boxgroupstype as g on (b.bgid = g.bgid and g.btid = 6)
 		JOIN pages as p on  (p.pid = b.pid and p.qid = '$qid')
 		LEFT JOIN formboxverifytext as f on (f.bid = b.bid and f.vid = '{$form['vid']}' and f.fid = '{$form['fid']}'))
 		UNION
-		(select b.bid,b.bgid,g.btid,f.val,sortorder,b.value,b.label
+		(select b.bid,b.bgid,g.btid,f.val,sortorder,b.value,b.label,g.varname
 		from boxes as b
 		JOIN  boxgroupstype as g on (b.bgid = g.bgid and g.btid = 5)
 		JOIN pages as p on  (p.pid = b.pid and p.qid = '$qid')
@@ -282,10 +295,12 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $retu
 		$labelval = "";
 		$valueval = "";
 
-		$data[] = array('btid' => 0,  'bgid' => 0, 'val' => "");
+		$data[] = array('btid' => 0,  'bgid' => 0, 'val' => "", 'varname' => "");
 
 		$prebtid = 0;
 
+		$varlist = array();
+		$varlistc = 0;
 		//print_r($data);
 
 		foreach($data as $val)
@@ -294,10 +309,14 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $retu
 
 			if ($bgid != $val['bgid']) //we have changed box groups
 			{
+				$varlist[] = $val['varname'];
+				$varlistc++;
+
 				if ($prebtid ==	1 || $prebtid == 3 || $prebtid == 4)
 				{
 					//multiple boxes -> down to one variable
 					if ($prebtid == 1)
+					{
 						if ($done == 1)
 							if ($labels)
 								$rr[] = $labelval;
@@ -310,10 +329,28 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $retu
 							}
 						else
 							$rr[] = ""; //blank if no val entered
+					}
 					else
-						$rr[] = trim($tmpstr);
+					{
+
+						if ($mergenamedfields == true)
+						{
+							if ($varlistc > 1 && $varlist[$varlistc - 2] == $varlist[$varlistc - 1])
+							{}
+							else
+							{
+								$rr[] = trim($tmpstr);
+								$tmpstr = "";
+							}
+						}
+						else
+						{
+							$rr[] = trim($tmpstr);
+							$tmpstr = "";
+						}
+
+					}
 	
-					$tmpstr = "";
 					$labelval = "";
 					$valueval = "";
 				}
