@@ -43,7 +43,7 @@ div.float {
  background-color: #00cc00;
  padding: 10px;
  border: 1px solid #666;
-
+ height: 120px;
 }
 </style>
 
