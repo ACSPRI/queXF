@@ -226,6 +226,20 @@ function validateCodaBar($s)
  */
 function barcode($image, $step = 1, $length = false)
 {
+	if (function_exists('imagefilter') &&
+		function_exists('imagetruecolortopalette') &&
+		function_exists('imagecolorset') &&
+		function_exists('imagecolorclosest'))
+	{
+		//Gaussian blur to fill in holes from dithering
+		imagefilter($image, IMG_FILTER_GAUSSIAN_BLUR);
+		//force two colors; dithering = FALSE
+		imagetruecolortopalette($image, FALSE, 2);
+		//find the closest color to black and replace it with actual black
+		imagecolorset($image, imagecolorclosest($image, 0, 0, 0), 0, 0, 0);
+		//find the closest color to white and replace it with actual white
+		imagecolorset($image, imagecolorclosest($image, 255, 255, 255), 255, 255, 255);
+	}
 	//search
 
 	$height = imagesy($image);
