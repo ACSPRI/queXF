@@ -343,6 +343,14 @@ if ($fid == false)
 	{
 		$pqid = $pr['qid'];
 		$pdes = $pr['description'];
+
+		$sql = "SELECT count(*) as rem
+			FROM forms
+			WHERE qid = '$pqid'
+			AND done = 0";
+
+		$remain = $db->GetOne($sql);
+
 		$sql = "SELECT q.description as qu, v.description as ve,f.qid,w.vid as vid , count( * ) AS c, count( * ) / ( SUM( TIMESTAMPDIFF(
 			SECOND , w.assigned, w.completed ) ) /3600 ) AS CPH, (
 			(
@@ -366,6 +374,7 @@ if ($fid == false)
 		print "<h3>$pdes</h3>";
 		xhtml_table($prss,array('ve','c','CPH','PPH'),array(T_("Operator"),T_("Completed Forms"),T_("Completions Per Hour"),T_("Pages Per Hour")),"tclass",array
 ("vid" => $vid));
+		print "<p>" . T_("Remain to verify") . ": $remain</p>";
 	}
 	
 
