@@ -8,61 +8,61 @@ msgstr ""
 "Project-Id-Version: quexf\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-12-06 12:09+1000\n"
-"PO-Revision-Date: 2010-03-23 11:55+0000\n"
-"Last-Translator: Mark Van den Borre <mvdborre@gmail.com>\n"
+"PO-Revision-Date: 2012-07-11 18:43+0000\n"
+"Last-Translator: Frankema <frankema@gmail.com>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-22 06:12+0000\n"
-"X-Generator: Launchpad (build 15275)\n"
+"X-Launchpad-Export-Date: 2012-11-12 01:40+0000\n"
+"X-Generator: Launchpad (build 16251)\n"
 
 #: verifyjs.php:177
 msgid "Please log in"
-msgstr "Aanmelden aub"
+msgstr "Aanmelden a.u.b."
 
 #: verifyjs.php:308
 #: verifyjs.php:413
 msgid "Verify: No more work"
-msgstr ""
+msgstr "Controlleer: Geen taken meer"
 
 #: verifyjs.php:309
 #: verifyjs.php:414
 msgid "NO MORE WORK"
-msgstr ""
+msgstr "Geen taken meer"
 
 #: verifyjs.php:310
 #: verifyjs.php:415
 msgid "Check for more work"
-msgstr ""
+msgstr "Controlleer voor meer taken"
 
 #: verifyjs.php:324
 msgid "Verify: Assign form"
-msgstr ""
+msgstr "Controlleer: Wijs formulier toe"
 
 #: verifyjs.php:326
 msgid "There is no form currently assigned to you"
-msgstr ""
+msgstr "Er zijn momenteel geen formulieren aan u toegewezen"
 
 #: verifyjs.php:327
 msgid "Assign next form"
-msgstr "Volgend formulier toewijzen"
+msgstr "Wijs volgend formulier toe"
 
 #: verifyjs.php:330
 msgid "Assigning next form: Please wait..."
-msgstr "Volgend formulier aan het toewijzen: Even geduld..."
+msgstr "Volgend formulier wordt toegewezen: Even geduld..."
 
 #: verifyjs.php:367
 msgid "Operator"
-msgstr ""
+msgstr "Operator"
 
 #: verifyjs.php:367
 msgid "Completed Forms"
-msgstr ""
+msgstr "Voltooide formulieren"
 
 #: verifyjs.php:367
 msgid "Completions Per Hour"
-msgstr ""
+msgstr "Voltooiingen per uur"
 
 #: verifyjs.php:367
 msgid "Pages Per Hour"
@@ -70,7 +70,7 @@ msgstr "Pagina's per uur"
 
 #: verifyjs.php:522
 msgid "Verify: Done"
-msgstr ""
+msgstr "Verificatie: Klaar"
 
 #: verifyjs.php:523
 #: verifyjs.php:1170
@@ -85,12 +85,12 @@ msgstr "Afgewerkt formulier inzenden in databank"
 #: verifyjs.php:526
 #: verifyjs.php:1173
 msgid "Review all questions again"
-msgstr ""
+msgstr "Beoordeel alle vragen opnieuw"
 
 #: verifyjs.php:527
 #: verifyjs.php:1174
 msgid "Clear all entered data and review again"
-msgstr ""
+msgstr "Wis alle ingevulde gegevens en beoordeel opnieuw"
 
 #: verifyjs.php:529
 #: verifyjs.php:1177
@@ -99,11 +99,11 @@ msgstr "Aan het inzenden: Even geduld..."
 
 #: verifyjs.php:544
 msgid "Verifier"
-msgstr ""
+msgstr "Beoordeel"
 
 #: verifyjs.php:1187
 msgid "Page is missing from scan"
-msgstr ""
+msgstr "Pagina ontbreekt in scan"
 
 #: verifyjs.php:1192
 msgid "Image of page"
@@ -115,7 +115,7 @@ msgstr "formulier"
 
 #: verifyjs.php:1204
 msgid "Centre Page"
-msgstr ""
+msgstr "Centreer pagina"
 
 #: verifyjs.php:1206
 msgid "Loading panel..."
@@ -135,7 +135,7 @@ msgstr "Verifiëren"
 
 #: index.php:32
 msgid "Review a form"
-msgstr ""
+msgstr "Beoordeel een formulier"
 
 #: modifybox.php:209
 msgid "Group type:"
@@ -160,15 +160,15 @@ msgstr "Deze groep verwijderen"
 #: modifybox.php:222
 #: admin/bandajax.php:160
 msgid "Delete in between boxes"
-msgstr ""
+msgstr "Wis tussen de hokjes in"
 
 #: review.php:81
 msgid "Review Form"
-msgstr ""
+msgstr "Beoordeel formulier"
 
 #: review.php:140
 msgid "Form:"
-msgstr ""
+msgstr "Formulier"
 
 #: review.php:141
 msgid "Variable:"
@@ -180,7 +180,7 @@ msgstr "Pagina:"
 
 #: pagenote.php:60
 msgid "Page note:"
-msgstr ""
+msgstr "Pagina notitie"
 
 #: pagenote.php:65
 msgid "Add note"
@@ -189,14 +189,14 @@ msgstr "Opmerking toevoegen"
 #: db.inc.php:32
 msgid ""
 "ERROR: Please modify config.inc.php to point to your ADODb installation"
-msgstr ""
+msgstr "FOUT: Pas config.inc.php aan om naar uw ADODb installatie te wijzen"
 
 #: admin/band.php:105
 #: admin/band.php:378
 #: admin/bandajax.php:481
 #: admin/bandajax.php:557
 msgid "Band"
-msgstr ""
+msgstr "Band"
 
 #: admin/band.php:176
 #: admin/bandajax.php:526
@@ -206,21 +206,21 @@ msgstr "Een andere vragenlijst kiezen"
 #: admin/band.php:176
 #: admin/bandajax.php:526
 msgid "Increase zoom"
-msgstr "Zoom vergroten"
+msgstr "Inzoomen"
 
 #: admin/band.php:176
 #: admin/bandajax.php:526
 msgid "Decrease zoom"
-msgstr "Zoom verkleinen"
+msgstr "Uitzoomen"
 
 #: admin/clientquestionnaire.php:144
 #: admin/clientquestionnaire.php:265
 msgid "Assign clients to questionnaires"
-msgstr ""
+msgstr "Wijs beoordelaar aan vragenlijst toe"
 
 #: admin/bandajax.php:87
 msgid "Disable this box group"
-msgstr ""
+msgstr "Schakel deze hokjesgroep uit"
 
 #: admin/bandajax.php:95
 #: admin/bandajax.php:103
@@ -229,11 +229,11 @@ msgstr ""
 #: admin/bandajax.php:127
 #: admin/bandajax.php:135
 msgid "Set to type:"
-msgstr ""
+msgstr "Wijzig type"
 
 #: admin/bandajax.php:95
 msgid "Single choice"
-msgstr ""
+msgstr "Enkele keuze"
 
 #: admin/bandajax.php:103
 msgid "Multiple choice"
@@ -253,15 +253,15 @@ msgstr "Streepjescode"
 
 #: admin/bandajax.php:135
 msgid "Long text"
-msgstr ""
+msgstr "Lange tekst"
 
 #: admin/bandajax.php:144
 msgid "Delete this box"
-msgstr ""
+msgstr "Wis dit hokje"
 
 #: admin/bandajax.php:152
 msgid "Delete this box group"
-msgstr ""
+msgstr "Wis deze hokjesgroep"
 
 #: admin/import.directory.php:47
 #: admin/import.directory.php:68
@@ -274,11 +274,11 @@ msgstr "Verwerken"
 
 #: admin/import.directory.php:49
 msgid "running..."
-msgstr ""
+msgstr "programma draait"
 
 #: admin/import.directory.php:53
 msgid "Kill signal sent: Please wait..."
-msgstr ""
+msgstr "Afbreeksignaal verzonden: Wachten a.u.b."
 
 #: admin/import.directory.php:54
 msgid "Mark the proces as killed (i.e. when the server is rebooted)"

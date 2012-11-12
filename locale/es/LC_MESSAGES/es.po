@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: quexf\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-12-06 12:09+1000\n"
-"PO-Revision-Date: 2012-05-08 03:09+0000\n"
+"PO-Revision-Date: 2012-06-02 05:23+0000\n"
 "Last-Translator: Wakielo <wakielo@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-22 06:12+0000\n"
-"X-Generator: Launchpad (build 15275)\n"
+"X-Launchpad-Export-Date: 2012-11-12 01:40+0000\n"
+"X-Generator: Launchpad (build 16251)\n"
 
 #: verifyjs.php:177
 msgid "Please log in"
@@ -24,7 +24,7 @@ msgstr "Indentifíquese, por favor"
 #: verifyjs.php:308
 #: verifyjs.php:413
 msgid "Verify: No more work"
-msgstr "Verifique: no más trabajo"
+msgstr "Comprobar: No hay más trabajo"
 
 #: verifyjs.php:309
 #: verifyjs.php:414
@@ -38,7 +38,7 @@ msgstr "Compruebe si hay más trabajo"
 
 #: verifyjs.php:324
 msgid "Verify: Assign form"
-msgstr "Verifique: Asignar formulario"
+msgstr "Comprobar: Asignar formulario"
 
 #: verifyjs.php:326
 msgid "There is no form currently assigned to you"
@@ -70,17 +70,17 @@ msgstr "Páginas por hora"
 
 #: verifyjs.php:522
 msgid "Verify: Done"
-msgstr "Verifique: Hecho"
+msgstr "Comprobar: Hecho"
 
 #: verifyjs.php:523
 #: verifyjs.php:1170
 msgid "The required fields have been filled"
-msgstr "Los campos requeridos han sido llenados"
+msgstr "Los campos requeridos han sido rellenados"
 
 #: verifyjs.php:525
 #: verifyjs.php:1172
 msgid "Submit completed form to database"
-msgstr "Enviar formularios completos a la base de datos"
+msgstr "Enviar formulario completado a la base de datos"
 
 #: verifyjs.php:526
 #: verifyjs.php:1173
@@ -131,11 +131,11 @@ msgstr "queXF"
 
 #: index.php:31
 msgid "Verify"
-msgstr "Verificar"
+msgstr "Comprobar"
 
 #: index.php:32
 msgid "Review a form"
-msgstr "Revise un formulario"
+msgstr "Revisar un formulario"
 
 #: modifybox.php:209
 msgid "Group type:"
@@ -160,11 +160,11 @@ msgstr "Eliminar este grupo"
 #: modifybox.php:222
 #: admin/bandajax.php:160
 msgid "Delete in between boxes"
-msgstr "Bórrelo entre cajas"
+msgstr "Eliminar el espacio entre cajas"
 
 #: review.php:81
 msgid "Review Form"
-msgstr "Formulario de revisión"
+msgstr "Revisar formulario"
 
 #: review.php:140
 msgid "Form:"
@@ -190,15 +190,15 @@ msgstr "Añadir nota"
 msgid ""
 "ERROR: Please modify config.inc.php to point to your ADODb installation"
 msgstr ""
-"ERROR: Por favor modifique config.inc.php para que apunte a la instalación "
-"ADODb"
+"ERROR: Por favor modifique el archivo config.inc.php para que apunte a la "
+"instalación ADODb"
 
 #: admin/band.php:105
 #: admin/band.php:378
 #: admin/bandajax.php:481
 #: admin/bandajax.php:557
 msgid "Band"
-msgstr ""
+msgstr "Campo para marcar"
 
 #: admin/band.php:176
 #: admin/bandajax.php:526
@@ -218,11 +218,11 @@ msgstr "Reducir zoom"
 #: admin/clientquestionnaire.php:144
 #: admin/clientquestionnaire.php:265
 msgid "Assign clients to questionnaires"
-msgstr "Asignar clientes al cuestionario"
+msgstr "Asignar clientes a los cuestionarios"
 
 #: admin/bandajax.php:87
 msgid "Disable this box group"
-msgstr "Deshabilitar esta caja de grupo"
+msgstr "Deshabilitar este grupo de cajas"
 
 #: admin/bandajax.php:95
 #: admin/bandajax.php:103
@@ -231,7 +231,7 @@ msgstr "Deshabilitar esta caja de grupo"
 #: admin/bandajax.php:127
 #: admin/bandajax.php:135
 msgid "Set to type:"
-msgstr "Ajustar al tipo:"
+msgstr "Cambiar el  tipo:"
 
 #: admin/bandajax.php:95
 msgid "Single choice"
@@ -263,7 +263,7 @@ msgstr "Borrar esta casilla"
 
 #: admin/bandajax.php:152
 msgid "Delete this box group"
-msgstr "Borrar esta caja de grupo"
+msgstr "Borrar este grupo de cajas"
 
 #: admin/import.directory.php:47
 #: admin/import.directory.php:68
@@ -280,7 +280,7 @@ msgstr "ejecutando..."
 
 #: admin/import.directory.php:53
 msgid "Kill signal sent: Please wait..."
-msgstr "Señal de apagado enviada: Espere..."
+msgstr "Señal de apagado enviada: Por favor espere..."
 
 #: admin/import.directory.php:54
 msgid "Mark the proces as killed (i.e. when the server is rebooted)"
@@ -345,7 +345,7 @@ msgstr "Importe un nuevo formulario desde un archivo PDF"
 
 #: admin/index.php:40
 msgid "Import/Update banding from XML"
-msgstr ""
+msgstr "Importar/Actualizar los campos para marcar desde XML"
 
 #: admin/index.php:41
 msgid "Delete a form (only if no forms yet imported)"
@@ -358,11 +358,12 @@ msgstr "Retocar un formulario"
 
 #: admin/index.php:43
 msgid "Band a form"
-msgstr "Ajustar variables de un formulario"
+msgstr "Seleccionar los campos para marcar de un formulario"
 
 #: admin/index.php:44
 msgid "Band a form using interactive banding"
-msgstr "Ajustar variables de un formulario de forma interactiva"
+msgstr ""
+"Seleccionar los campos para marcar de un formulario de forma interactiva"
 
 #: admin/index.php:45
 msgid "Order variables on the form"
@@ -422,7 +423,7 @@ msgstr "Formularios duplicados"
 
 #: admin/index.php:62
 msgid "Reverify forms"
-msgstr "Reverificar formularios"
+msgstr "Volver a comprobar formularios"
 
 #: admin/index.php:63
 msgid "List page notes"
@@ -440,7 +441,7 @@ msgstr "Dominio de paginas no detectadas"
 
 #: admin/index.php:66
 msgid "Output"
-msgstr ""
+msgstr "Salida"
 
 #: admin/index.php:67
 #: admin/outputunverified.php:67
@@ -449,7 +450,7 @@ msgstr "Extraer datos no verificados"
 
 #: admin/index.php:68
 msgid "Output data/ddi"
-msgstr ""
+msgstr "Extraer datos verificados"
 
 #: admin/index.php:69
 msgid "Progress"
@@ -540,7 +541,7 @@ msgstr ""
 #: admin/outputunverified.php:75
 #: admin/outputunverified.php:84
 msgid "Banding XML"
-msgstr ""
+msgstr "Campos para marcar del XML"
 
 #: admin/outputunverified.php:82
 msgid "Warning: the data downloaded from here is unverified"
@@ -601,7 +602,7 @@ msgstr "Formato de la página actualizado"
 
 #: admin/pagesetup.php:226
 msgid "Continue with banding"
-msgstr ""
+msgstr "Continuar seleccionando los campos para las marcas"
 
 #: admin/pagesetup.php:287
 msgid "Copy settings from this page to all other pages"
@@ -635,7 +636,7 @@ msgstr "Generado KB"
 
 #: admin/icrtrain.php:200
 msgid "Chars"
-msgstr ""
+msgstr "Caracteres"
 
 #: admin/icrtrain.php:200
 #: admin/icrtrain.php:269
@@ -662,7 +663,7 @@ msgstr ""
 
 #: admin/icrtrain.php:306
 msgid "Description for knowledge base:"
-msgstr ""
+msgstr "Descripción de la base del conocimiento"
 
 #: admin/icrtrain.php:306
 msgid "Train"
@@ -700,11 +701,11 @@ msgstr "Número de formularios."
 
 #: admin/icrtrain.php:391
 msgid "Continue training"
-msgstr ""
+msgstr "Continuar entrenando"
 
 #: admin/icrtrain.php:405
 msgid "ICR Train"
-msgstr ""
+msgstr "Entrenamiento ICR"
 
 #: admin/icrmonitor.php:30
 msgid "Monitor ICR process"
@@ -755,6 +756,12 @@ msgid ""
 "here. When the user accesses the verification page, they will uniquely be "
 "assigned a form."
 msgstr ""
+"Utiliza este formulario para introducir el nombre de usuario basado en el "
+"sístema de seguridad de la carpeta del sístema. Por ejemplo, si has "
+"protegido la carpeta principal de queXf utilizando el sístema de seguridad "
+"de archivos de Apache, introduce el nombre de los usuarios aquí. Cuando el "
+"usuario accede a la página de verificación, a ellos unicamente se les "
+"asignará un formulario."
 
 #: admin/operators.php:68
 msgid ""
@@ -796,11 +803,11 @@ msgstr "Nuevo cuestionario insertado con éxito"
 
 #: admin/new.php:61
 msgid "Successfully loaded banding XML file"
-msgstr ""
+msgstr "Cargado con exito el archivo de los campos para las marcas XML"
 
 #: admin/new.php:65
 msgid "Failed to load banding XML file"
-msgstr ""
+msgstr "Falló al cargar el fichero de los campos para las marcas XML"
 
 #: admin/new.php:71
 msgid "Continue by setting up page edge detection (page setup)"
@@ -820,18 +827,18 @@ msgstr "Nuevo cuestionario"
 
 #: admin/new.php:85
 msgid "When using banding XML:"
-msgstr ""
+msgstr "Utilizando las marcas del XML"
 
 #: admin/new.php:86
 msgid ""
 "You must import the original PDF and banding XML file (not a scanned version)"
 msgstr ""
-"Debe importar el archivo PDF original  y el archivo de registro XML (no la "
-"versión escaneada)"
+"Debe importar el archivo PDF original y el archivo XML con los campos para "
+"las marcas (no la versión escaneada)"
 
 #: admin/new.php:87
 msgid "When manually banding:"
-msgstr ""
+msgstr "Marcando de manera manual"
 
 #: admin/new.php:88
 msgid "You will get the best results if you:"
@@ -848,6 +855,8 @@ msgid ""
 "Scan the (blank) form to a PDF using the same options that you will for the "
 "filled forms"
 msgstr ""
+"Escanear el formulario (en blanco) utilizando las mismas opciones que "
+"utilizará para los formularios rellenados."
 
 #: admin/new.php:91
 msgid "Best options for scanning in are:"
@@ -868,6 +877,7 @@ msgstr "Seleccionar el archivo PDF des del que crear el formulario"
 #: admin/new.php:100
 msgid "(Optional): Select banding XML file"
 msgstr ""
+"(Opcional): Seleccionar el fichero XML con los campos para las marcas"
 
 #: admin/new.php:101
 msgid "Enter description of form"
@@ -875,7 +885,7 @@ msgstr "Escriba la descripción del formulario"
 
 #: admin/new.php:102
 msgid "Upload form"
-msgstr "Formulario de subida"
+msgstr "Subir formulario"
 
 #: admin/pagesmissing.php:67
 #: admin/pagesmissing.php:85
@@ -888,12 +898,12 @@ msgstr "Procesando KB"
 
 #: admin/processicr.php:127
 msgid "to knowledge base"
-msgstr ""
+msgstr "A la base de conocimiento"
 
 #: admin/processicr.php:147
 #: admin/processicr.php:150
 msgid "Did not generate KB as not all records trained"
-msgstr ""
+msgstr "No se ha generado KB ya que no todos los registros fueron entrenados"
 
 #: admin/listfiles.php:49
 msgid "Listing of imported files by status"
@@ -949,7 +959,7 @@ msgstr "Los formularios con el mismo PFID seran duplicados"
 
 #: admin/listduplicates.php:49
 msgid "Formid"
-msgstr ""
+msgstr "ID del Formulario"
 
 #: admin/listduplicates.php:49
 msgid "PFID"
@@ -1070,22 +1080,25 @@ msgid ""
 "http://user:password@localhost/quexs/include/limesurvey/admin/remotecontrol.p"
 "hp)"
 msgstr ""
+"URL del servidor RPC (ejemplo: "
+"http://user:password@localhost/quexs/include/limesurvey/admin/remotecontrol.p"
+"hp)"
 
 #: admin/limesurvey.php:68
 msgid "RPC Username"
-msgstr ""
+msgstr "Usuario RPC"
 
 #: admin/limesurvey.php:69
 msgid "RPC Password"
-msgstr ""
+msgstr "Completo RPC"
 
 #: admin/limesurvey.php:70
 msgid "Limesurvey Survey ID"
-msgstr ""
+msgstr "ID de la encuesta Limesurvey"
 
 #: admin/limesurvey.php:71
 msgid "Update settings"
-msgstr ""
+msgstr "Actualizar configuración"
 
 #: admin/limesurvey.php:76
 #: admin/limesurvey.php:88
@@ -1099,15 +1112,15 @@ msgstr "No hay formularios para subir"
 #: admin/importbandingxml.php:30
 #: admin/importbandingxml.php:48
 msgid "Update banding from XML"
-msgstr ""
+msgstr "Actualizar los campos para marcar desde el XML"
 
 #: admin/importbandingxml.php:49
 msgid "WARNING: All previous banding will be erased"
-msgstr ""
+msgstr "ATENCIÓN: Todas las campos para las marcas previas serán borradas"
 
 #: admin/importbandingxml.php:60
 msgid "Select banding XML file"
-msgstr ""
+msgstr "Seleccionar el archivo XML con los campos para las marcas"
 
 #: admin/importbandingxml.php:61
 msgid "Select questionnaire"
@@ -1116,7 +1129,7 @@ msgstr "Seleccionar cuestionario"
 #: admin/importbandingxml.php:62
 #: admin/icrkb.php:67
 msgid "Upload XML"
-msgstr ""
+msgstr "Subir XML"
 
 #: admin/testconfig.php:26
 msgid "Could not connect to database. Make sure the database: "
@@ -1129,21 +1142,25 @@ msgstr " Ya existe. "
 
 #: admin/testconfig.php:26
 msgid " and that "
-msgstr ""
+msgstr " y ese "
 
 #: admin/testconfig.php:26
 msgid ""
 " has privileges to it, otherwise modify config.inc.php to point to the "
 "correct database. Also make sure you have loaded the database structure from"
 msgstr ""
+" tiene privilegios para ello, de lo contrario modifique config.inc.php para "
+"que apunte a la base de datos correcta. Asimismo, asegúrese de que haya "
+"cargado la estructura de base de datos de"
 
 #: admin/testconfig.php:29
 msgid "Database connection succeeded"
-msgstr ""
+msgstr "Conexión con la base de datos realizada con exito."
 
 #: admin/testconfig.php:34
 msgid "User authentication has been set up. You are user: "
 msgstr ""
+"Autentificación de usuario ha sido configurada. Usted es el usuario: "
 
 #: admin/testconfig.php:39
 msgid ""
@@ -1155,23 +1172,23 @@ msgstr ""
 
 #: admin/testconfig.php:39
 msgid "Apache authentication"
-msgstr ""
+msgstr "Autentificación de Apache"
 
 #: admin/testconfig.php:44
 #: admin/testconfig.php:49
 #: admin/testconfig.php:54
 msgid "Recommended minimum"
-msgstr ""
+msgstr "Mínimo recomendado"
 
 #: admin/testconfig.php:46
 #: admin/testconfig.php:51
 #: admin/testconfig.php:56
 msgid "Passed"
-msgstr ""
+msgstr "Aprobado"
 
 #: admin/testconfig.php:58
 msgid "Configuration options from php.ini:"
-msgstr ""
+msgstr "Opciones de configuración de php.ini"
 
 #: admin/testconfig.php:69
 msgid "Found GhostScript version"
@@ -1254,23 +1271,23 @@ msgstr "Total"
 #: admin/icrkb.php:38
 #: admin/icrkb.php:55
 msgid "Import ICR KB from XML"
-msgstr ""
+msgstr "Importar ICR KB desde XML"
 
 #: admin/icrkb.php:49
 msgid "Successfully loaded ICR XML file"
-msgstr ""
+msgstr "Cargado con exito el fichero ICR XML"
 
 #: admin/icrkb.php:51
 msgid "Failed to load ICR XML file"
-msgstr ""
+msgstr "Falló al cargar el fichero ICR XML"
 
 #: admin/icrkb.php:66
 msgid "Select ICR KB XML file"
-msgstr ""
+msgstr "Seleccionar archivo ICR KB XML"
 
 #: admin/icrkb.php:72
 msgid "Export ICR KB to XML"
-msgstr ""
+msgstr "Exportar ICR KB a XML"
 
 #: admin/icrkb.php:73
 msgid "ICR KB"
@@ -1279,13 +1296,13 @@ msgstr ""
 #: functions/functions.output.php:130
 #: functions/functions.output.php:140
 msgid "XML RPC Error: "
-msgstr ""
+msgstr "Error XML rpc "
 
 #: functions/functions.output.php:193
 #: functions/functions.output.php:427
 #: functions/functions.output.php:986
 msgid "unverified"
-msgstr ""
+msgstr "No verificado"
 
 #: functions/functions.database.php:136
 msgid "ERROR: Multiple forms assigned, please see a technical officer"
@@ -1299,27 +1316,28 @@ msgstr "CODIGO DE BARRAS"
 
 #: functions/functions.import.php:205
 msgid "INVALID - IGNORING BLANK PAGE"
-msgstr ""
+msgstr "INVALIDO - IGNORANDO PAGINA EN BLANCO"
 
 #: functions/functions.import.php:225
 msgid "Failed to import as no pages were detected"
-msgstr ""
+msgstr "No se pudo importar, ya que no se han detectado páginas"
 
 #: functions/functions.import.php:634
 msgid "Finding qid"
-msgstr ""
+msgstr "Encontrando qid"
 
 #: functions/functions.import.php:696
 msgid "Got qid"
-msgstr ""
+msgstr "Obtenido qid"
 
 #: functions/functions.import.php:752
 msgid "Processing pid"
-msgstr ""
+msgstr "Procesando pid"
 
 #: functions/functions.import.php:763
 msgid "Pid not identified for this page, inserting into missing pages..."
 msgstr ""
+"Pid no identificado para esta página, insertando en las páginas que faltan"
 
 #: functions/functions.import.php:814
 msgid "Blank page: ignoring"
@@ -1331,12 +1349,14 @@ msgstr ""
 
 #: functions/functions.import.php:878
 msgid "Could not get qid..."
-msgstr ""
+msgstr "No se pudo obtener qid"
 
 #: functions/functions.import.php:938
 msgid ""
 "Automatically processing the 1 missing page for this form - assuming pid:"
 msgstr ""
+"Procesamiento automático de 1 página que falta para este formulario - "
+"asumiento el pid:"
 
 #: functions/functions.import.php:997
 msgid "Deleting missing pages as all form page slots filled"

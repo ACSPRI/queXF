@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: quexf\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-12-06 12:09+1000\n"
-"PO-Revision-Date: 2012-02-29 21:55+0000\n"
-"Last-Translator: Eva Cerninakova <Unknown>\n"
+"PO-Revision-Date: 2012-08-25 21:25+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-22 06:12+0000\n"
-"X-Generator: Launchpad (build 15275)\n"
+"X-Launchpad-Export-Date: 2012-11-12 01:40+0000\n"
+"X-Generator: Launchpad (build 16251)\n"
 
 #: verifyjs.php:177
 msgid "Please log in"
@@ -24,53 +24,53 @@ msgstr "Prosím přihlašte se"
 #: verifyjs.php:308
 #: verifyjs.php:413
 msgid "Verify: No more work"
-msgstr ""
+msgstr "Ověření: Žádné další úkony"
 
 #: verifyjs.php:309
 #: verifyjs.php:414
 msgid "NO MORE WORK"
-msgstr ""
+msgstr "ŽÁDNÉ DALŠÍ ÚKONY"
 
 #: verifyjs.php:310
 #: verifyjs.php:415
 msgid "Check for more work"
-msgstr ""
+msgstr "Zkontrolovat další úkony"
 
 #: verifyjs.php:324
 msgid "Verify: Assign form"
-msgstr ""
+msgstr "Ověření: Přidělení formuláře"
 
 #: verifyjs.php:326
 msgid "There is no form currently assigned to you"
-msgstr ""
+msgstr "Zatím nemáte přidělen žádný formulář"
 
 #: verifyjs.php:327
 msgid "Assign next form"
-msgstr ""
+msgstr "Přidělit další formulář"
 
 #: verifyjs.php:330
 msgid "Assigning next form: Please wait..."
-msgstr ""
+msgstr "Přidělování dalšího formuláře: Prosím čekejte..."
 
 #: verifyjs.php:367
 msgid "Operator"
-msgstr ""
+msgstr "Operátor"
 
 #: verifyjs.php:367
 msgid "Completed Forms"
-msgstr ""
+msgstr "Dokončené formuláře"
 
 #: verifyjs.php:367
 msgid "Completions Per Hour"
-msgstr ""
+msgstr "Dokončení za hodinu"
 
 #: verifyjs.php:367
 msgid "Pages Per Hour"
-msgstr ""
+msgstr "Stránka za hodinu"
 
 #: verifyjs.php:522
 msgid "Verify: Done"
-msgstr ""
+msgstr "Ověření: Hotovo"
 
 #: verifyjs.php:523
 #: verifyjs.php:1170
@@ -80,50 +80,50 @@ msgstr "Povinná pole byla vyplněna"
 #: verifyjs.php:525
 #: verifyjs.php:1172
 msgid "Submit completed form to database"
-msgstr ""
+msgstr "Odeslat vyplněný formulář do databáze"
 
 #: verifyjs.php:526
 #: verifyjs.php:1173
 msgid "Review all questions again"
-msgstr ""
+msgstr "Znovu zkontrolovat všechny otázky"
 
 #: verifyjs.php:527
 #: verifyjs.php:1174
 msgid "Clear all entered data and review again"
-msgstr ""
+msgstr "Vyčistit všechna zadaná data a znovu zkontrolovat"
 
 #: verifyjs.php:529
 #: verifyjs.php:1177
 msgid "Submitting: Please wait..."
-msgstr ""
+msgstr "Odesílání: Prosím čekejte..."
 
 #: verifyjs.php:544
 msgid "Verifier"
-msgstr ""
+msgstr "Ověřovatel"
 
 #: verifyjs.php:1187
 msgid "Page is missing from scan"
-msgstr ""
+msgstr "Stránka chybí ve skenování"
 
 #: verifyjs.php:1192
 msgid "Image of page"
-msgstr ""
+msgstr "Obrázek stránky"
 
 #: verifyjs.php:1192
 msgid "form"
-msgstr ""
+msgstr "formulář"
 
 #: verifyjs.php:1204
 msgid "Centre Page"
-msgstr ""
+msgstr "Vystředit stránku"
 
 #: verifyjs.php:1206
 msgid "Loading panel..."
-msgstr ""
+msgstr "Načítání panelu..."
 
 #: verifyjs.php:1206
 msgid "Error, try with Firefox"
-msgstr ""
+msgstr "Chyba, zkuste s Firefox"
 
 #: index.php:30
 msgid "queXF"
@@ -131,11 +131,11 @@ msgstr "queXF"
 
 #: index.php:31
 msgid "Verify"
-msgstr ""
+msgstr "Ověřit"
 
 #: index.php:32
 msgid "Review a form"
-msgstr ""
+msgstr "Ověřit formulář"
 
 #: modifybox.php:209
 msgid "Group type:"
@@ -143,7 +143,7 @@ msgstr "Typ skupiny:"
 
 #: modifybox.php:214
 msgid "Variable name:"
-msgstr ""
+msgstr "Název proměnné:"
 
 #: modifybox.php:217
 msgid "Width:"
@@ -151,28 +151,28 @@ msgstr "Šířka:"
 
 #: modifybox.php:219
 msgid "Submit"
-msgstr ""
+msgstr "Odeslat"
 
 #: modifybox.php:221
 msgid "Delete this group"
-msgstr "Odstranit uto skupinu"
+msgstr "Odstranit tuto skupinu"
 
 #: modifybox.php:222
 #: admin/bandajax.php:160
 msgid "Delete in between boxes"
-msgstr ""
+msgstr "Smazat mezi rámečky"
 
 #: review.php:81
 msgid "Review Form"
-msgstr ""
+msgstr "Kontrola formuláře"
 
 #: review.php:140
 msgid "Form:"
-msgstr ""
+msgstr "Formulář:"
 
 #: review.php:141
 msgid "Variable:"
-msgstr ""
+msgstr "Proměnná:"
 
 #: review.php:142
 msgid "Page:"
@@ -180,47 +180,48 @@ msgstr "Stránka:"
 
 #: pagenote.php:60
 msgid "Page note:"
-msgstr ""
+msgstr "Poznámka stránky:"
 
 #: pagenote.php:65
 msgid "Add note"
-msgstr ""
+msgstr "Přidat poznámku"
 
 #: db.inc.php:32
 msgid ""
 "ERROR: Please modify config.inc.php to point to your ADODb installation"
 msgstr ""
+"CHYBA: Prosím změňte config.inc.php aby odkazoval na vaši instalaci ADODb"
 
 #: admin/band.php:105
 #: admin/band.php:378
 #: admin/bandajax.php:481
 #: admin/bandajax.php:557
 msgid "Band"
-msgstr ""
+msgstr "Pásmo"
 
 #: admin/band.php:176
 #: admin/bandajax.php:526
 msgid "Choose another questionnaire"
-msgstr ""
+msgstr "Zvolte další dotazník"
 
 #: admin/band.php:176
 #: admin/bandajax.php:526
 msgid "Increase zoom"
-msgstr ""
+msgstr "Zvětšit přiblížení"
 
 #: admin/band.php:176
 #: admin/bandajax.php:526
 msgid "Decrease zoom"
-msgstr ""
+msgstr "Zmenšit přiblížení"
 
 #: admin/clientquestionnaire.php:144
 #: admin/clientquestionnaire.php:265
 msgid "Assign clients to questionnaires"
-msgstr ""
+msgstr "Přidělit klienty k dotazníkům"
 
 #: admin/bandajax.php:87
 msgid "Disable this box group"
-msgstr ""
+msgstr "Zakázat tuto skupinu rámečku"
 
 #: admin/bandajax.php:95
 #: admin/bandajax.php:103
@@ -229,514 +230,520 @@ msgstr ""
 #: admin/bandajax.php:127
 #: admin/bandajax.php:135
 msgid "Set to type:"
-msgstr ""
+msgstr "Nastavit na typ:"
 
 #: admin/bandajax.php:95
 msgid "Single choice"
-msgstr ""
+msgstr "Výběr jedné možnosti"
 
 #: admin/bandajax.php:103
 msgid "Multiple choice"
-msgstr ""
+msgstr "Výběr více možností"
 
 #: admin/bandajax.php:111
 msgid "Text and Numbers"
-msgstr ""
+msgstr "Text a čísla"
 
 #: admin/bandajax.php:119
 msgid "Numbers only"
-msgstr ""
+msgstr "Pouze čísla"
 
 #: admin/bandajax.php:127
 msgid "Barcode"
-msgstr ""
+msgstr "Čárový kód"
 
 #: admin/bandajax.php:135
 msgid "Long text"
-msgstr ""
+msgstr "Dlouhý text"
 
 #: admin/bandajax.php:144
 msgid "Delete this box"
-msgstr ""
+msgstr "Smazat tento rámeček"
 
 #: admin/bandajax.php:152
 msgid "Delete this box group"
-msgstr ""
+msgstr "Smazat tuto skupinu rámečku"
 
 #: admin/import.directory.php:47
 #: admin/import.directory.php:68
 msgid "Import a directory of PDF files"
-msgstr ""
+msgstr "Importovat adresář souborů PDF"
 
 #: admin/import.directory.php:49
 msgid "Process"
-msgstr ""
+msgstr "Proces"
 
 #: admin/import.directory.php:49
 msgid "running..."
-msgstr ""
+msgstr "běží..."
 
 #: admin/import.directory.php:53
 msgid "Kill signal sent: Please wait..."
-msgstr ""
+msgstr "Ukončovací signál odeslán: Prosím čekejte..."
 
 #: admin/import.directory.php:54
 msgid "Mark the proces as killed (i.e. when the server is rebooted)"
-msgstr ""
+msgstr "Označit proces jako ukončený (tj. když je server restartován)"
 
 #: admin/import.directory.php:57
 msgid "Kill the running process"
-msgstr ""
+msgstr "Ukončit běžící proces"
 
 #: admin/import.directory.php:57
 msgid "may take up to a few minutes to take effect"
-msgstr ""
+msgstr "může to chvilku trvat než se projeví"
 
 #: admin/import.directory.php:62
 #: admin/import.directory.php:90
 msgid "Log id"
-msgstr ""
+msgstr "ID záznamu"
 
 #: admin/import.directory.php:62
 #: admin/import.directory.php:90
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: admin/import.directory.php:62
 #: admin/import.directory.php:90
 msgid "Log entry"
-msgstr ""
+msgstr "Položka záznamu"
 
 #: admin/import.directory.php:77
 msgid "Directory"
-msgstr ""
+msgstr "Adresář"
 
 #: admin/import.directory.php:79
 msgid "Enter directory local to the server (eg /mnt/iss/tmp/images)"
 msgstr ""
+"Zadejte adresář, který je umístěn na serveru (např. /mnt/iss/tmp/images)"
 
 #: admin/import.directory.php:80
 msgid "Process directory: browser window must remain open"
-msgstr ""
+msgstr "Zpracovat adresář: okno prohlížeče musí zůstat otevřené"
 
 #: admin/import.directory.php:81
 msgid "Watch this directory in the background (recommended)"
-msgstr ""
+msgstr "Sledovat tento adresář v pozadí (doporučeno)"
 
 #: admin/import.directory.php:85
 msgid "Outcome of last process run (if any)"
-msgstr ""
+msgstr "Výsledek posledního spuštěného procesu (pokud je)"
 
 #: admin/index.php:31
 #: admin/index.php:36
 msgid "queXF Admin Functions"
-msgstr ""
+msgstr "Správcovské funkce queXF"
 
 #: admin/index.php:38
 msgid "Form setup"
-msgstr ""
+msgstr "Rozvržení formuláře"
 
 #: admin/index.php:39
 msgid "Import a new form from a PDF file"
-msgstr ""
+msgstr "Importovat nový formulář ze souboru PDF"
 
 #: admin/index.php:40
 msgid "Import/Update banding from XML"
-msgstr ""
+msgstr "Importovat/Aktualizovat pruhování z XML"
 
 #: admin/index.php:41
 msgid "Delete a form (only if no forms yet imported)"
 msgstr ""
+"Smazat formulář (pouze pokud zatím nebyly importovány žádné formuláře)"
 
 #: admin/index.php:42
 msgid "Touch-up a form"
-msgstr ""
+msgstr "Upravit formulář"
 
 #: admin/index.php:43
 msgid "Band a form"
-msgstr ""
+msgstr "Formulář opatřit pruhem"
 
 #: admin/index.php:44
 msgid "Band a form using interactive banding"
-msgstr ""
+msgstr "Formulář opatřit pruhem pomocí interaktivního pruhování"
 
 #: admin/index.php:45
 msgid "Order variables on the form"
-msgstr ""
+msgstr "Uspořádat proměnné v tomto formuláři"
 
 #: admin/index.php:46
 msgid "queXS and Limesurvey integration"
-msgstr ""
+msgstr "Integrace queXS a Limesurvey"
 
 #: admin/index.php:47
 msgid "Users"
-msgstr ""
+msgstr "Uživatelé"
 
 #: admin/index.php:48
 msgid "Add operators"
-msgstr ""
+msgstr "Přidat operátory"
 
 #: admin/index.php:49
 msgid "Assign forms to operators"
-msgstr ""
+msgstr "Přidělit formuláře k operátorům"
 
 #: admin/index.php:51
 msgid "ICR"
-msgstr ""
+msgstr "ICR"
 
 #: admin/index.php:52
 msgid "Train ICR"
-msgstr ""
+msgstr "Vycvičit ICR"
 
 #: admin/index.php:53
 msgid "Monitor ICR training process"
-msgstr ""
+msgstr "Sledovat proces výcviku ICR"
 
 #: admin/index.php:54
 msgid "Import and Export ICR KB"
-msgstr ""
+msgstr "Importovat a exportovat ICR KB"
 
 #: admin/index.php:55
 msgid "Assign ICR KB to questionnaire"
-msgstr ""
+msgstr "Přidělit ICR KB k dotazníku"
 
 #: admin/index.php:57
 msgid "Importing"
-msgstr ""
+msgstr "Importování"
 
 #: admin/index.php:59
 msgid "Successfully imported files"
-msgstr ""
+msgstr "Soubory úspěšně importovány"
 
 #: admin/index.php:60
 msgid "Failed imported files"
-msgstr ""
+msgstr "Import souborů selhal"
 
 #: admin/index.php:61
 msgid "Duplicate forms"
-msgstr ""
+msgstr "Duplicitní formuláře"
 
 #: admin/index.php:62
 msgid "Reverify forms"
-msgstr ""
+msgstr "Znovu ověřit formuláře"
 
 #: admin/index.php:63
 msgid "List page notes"
-msgstr ""
+msgstr "Vypsat poznámky formuláře"
 
 #: admin/index.php:64
 #: admin/pagesmissing.php:64
 msgid "Pages missing from scan"
-msgstr ""
+msgstr "Stránky chybějící ze skenování"
 
 #: admin/index.php:65
 #: admin/pagesmissing.php:67
 msgid "Handle undetected pages"
-msgstr ""
+msgstr "Zpracovávat nezjištěné stránky"
 
 #: admin/index.php:66
 msgid "Output"
-msgstr ""
+msgstr "Výstup"
 
 #: admin/index.php:67
 #: admin/outputunverified.php:67
 msgid "Output unverified data"
-msgstr ""
+msgstr "Vypisovat neověřená data"
 
 #: admin/index.php:68
 msgid "Output data/ddi"
-msgstr ""
+msgstr "Vypisovat data/ddi"
 
 #: admin/index.php:69
 msgid "Progress"
-msgstr ""
+msgstr "Postup"
 
 #: admin/index.php:70
 msgid "Display progress of form verification"
-msgstr ""
+msgstr "Zobrazit postup při ověřování formuláře"
 
 #: admin/index.php:71
 msgid "Display performance of verifiers (Completions per hour)"
-msgstr ""
+msgstr "Zobrazit výkon ověřovatelů (Dokončení za hodinu)"
 
 #: admin/index.php:72
 msgid "Clients"
-msgstr ""
+msgstr "Klienti"
 
 #: admin/index.php:73
 msgid "Add clients"
-msgstr ""
+msgstr "Přidat klienty"
 
 #: admin/index.php:74
 msgid "Assign clients to forms"
-msgstr ""
+msgstr "Přidělit klienty k formulářům"
 
 #: admin/index.php:75
 msgid "System setup"
-msgstr ""
+msgstr "Nastavení systému"
 
 #: admin/index.php:76
 #: admin/pagesetup.php:433
 msgid "Page setup"
-msgstr ""
+msgstr "Rozvržení stránky"
 
 #: admin/index.php:77
 msgid "Test configuration"
-msgstr ""
+msgstr "Vyzkoušet nastavení"
 
 #: admin/touchup.php:84
 msgid "Go back"
-msgstr ""
+msgstr "Jít zpět"
 
 #: admin/touchup.php:97
 msgid "Download"
-msgstr ""
+msgstr "Stáhnout"
 
 #: admin/touchup.php:97
 msgid "to edit"
-msgstr ""
+msgstr "k úpravě"
 
 #: admin/touchup.php:97
 msgid "Upload here"
-msgstr ""
+msgstr "Nahrajte zde"
 
 #: admin/touchup.php:100
 msgid "Upload pages"
-msgstr ""
+msgstr "Nahrát stránky"
 
 #: admin/touchup.php:112
 msgid "Touch up"
-msgstr ""
+msgstr "Upravit"
 
 #: admin/outputunverified.php:70
 #: admin/outputunverified.php:84
 msgid "Data"
-msgstr ""
+msgstr "Data"
 
 #: admin/outputunverified.php:71
 #: admin/outputunverified.php:84
 msgid "DDI"
-msgstr ""
+msgstr "DDI"
 
 #: admin/outputunverified.php:72
 #: admin/outputunverified.php:84
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: admin/outputunverified.php:73
 #: admin/outputunverified.php:84
 msgid "CSV Labelled"
-msgstr ""
+msgstr "Označené CSV"
 
 #: admin/outputunverified.php:74
 #: admin/outputunverified.php:84
 msgid "PSPP (SPSS)"
-msgstr ""
+msgstr "PSPP (SPSS)"
 
 #: admin/outputunverified.php:75
 #: admin/outputunverified.php:84
 msgid "Banding XML"
-msgstr ""
+msgstr "Pruhování XML"
 
 #: admin/outputunverified.php:82
 msgid "Warning: the data downloaded from here is unverified"
-msgstr ""
+msgstr "Varování: data stažená odsud jsou neověřená"
 
 #: admin/outputunverified.php:84
 #: admin/listforms.php:76
 #: admin/pagesmissing.php:85
 #: admin/listduplicates.php:49
 msgid "Questionnaire"
-msgstr ""
+msgstr "Dotazník"
 
 #: admin/missingpages.php:137
 msgid "Undetected Pages"
-msgstr ""
+msgstr "Nezjištěné stránky"
 
 #: admin/missingpages.php:215
 msgid "Undetected page"
-msgstr ""
+msgstr "Nezjištěná stránka"
 
 #: admin/missingpages.php:262
 msgid "Page"
-msgstr ""
+msgstr "Stránka"
 
 #: admin/missingpages.php:262
 msgid "of Form"
-msgstr ""
+msgstr "z formuláře"
 
 #: admin/missingpages.php:271
 #: admin/pagesmissing.php:85
 msgid "Form"
-msgstr ""
+msgstr "Formulář"
 
 #: admin/missingpages.php:276
 msgid "Accept"
-msgstr ""
+msgstr "Potvrdit"
 
 #: admin/missingpages.php:276
 msgid "Delete"
-msgstr ""
+msgstr "Smazat"
 
 #: admin/missingpages.php:281
 msgid "No undetected pages"
-msgstr ""
+msgstr "Žádné nezjištěné stránky"
 
 #: admin/pagesetup.php:206
 msgid "Cannot detect page edge on page"
-msgstr ""
+msgstr "Nelze zjistit okraj stránky na stránce"
 
 #: admin/pagesetup.php:224
 #: admin/pagesetup.php:234
 msgid "Set page layout"
-msgstr ""
+msgstr "Nastavit rozvržení stránky"
 
 #: admin/pagesetup.php:225
 msgid "Page layout has been updated"
-msgstr ""
+msgstr "Rozvržení stránky bylo aktualizováno"
 
 #: admin/pagesetup.php:226
 msgid "Continue with banding"
-msgstr ""
+msgstr "Pokračovat s pruhováním"
 
 #: admin/pagesetup.php:287
 msgid "Copy settings from this page to all other pages"
-msgstr ""
+msgstr "Kopírovat nastavení z této stránky na ostatní"
 
 #: admin/pagesetup.php:289
 msgid "Finished page setup"
-msgstr ""
+msgstr "Dokončeno nastavení stránky"
 
 #: admin/icrtrain.php:37
 msgid "ICR Training"
-msgstr ""
+msgstr "Výuka ICR"
 
 #: admin/icrtrain.php:125
 msgid "Found duplicate"
-msgstr ""
+msgstr "Nalezen duplikát"
 
 #: admin/icrtrain.php:150
 #: admin/processicr.php:127
 msgid "Trained"
-msgstr ""
+msgstr "Vyučeno"
 
 #: admin/icrtrain.php:150
 msgid "characters"
-msgstr ""
+msgstr "znaků"
 
 #: admin/icrtrain.php:155
 #: admin/processicr.php:144
 msgid "Generated KB"
-msgstr ""
+msgstr "Vytovřeno KB"
 
 #: admin/icrtrain.php:200
 msgid "Chars"
-msgstr ""
+msgstr "Znaků"
 
 #: admin/icrtrain.php:200
 #: admin/icrtrain.php:269
 msgid "from"
-msgstr ""
+msgstr "z"
 
 #: admin/icrtrain.php:241
 msgid "Started training process"
-msgstr ""
+msgstr "Zahájen proces výuky"
 
 #: admin/icrtrain.php:269
 #: admin/icrtrain.php:357
 msgid "Character"
-msgstr ""
+msgstr "Znak"
 
 #: admin/icrtrain.php:289
 msgid ""
 "Make sure the letter in the box matches the image. If you do not want to "
 "import a box, click on it to disable it (click again to enable)."
 msgstr ""
+"Ujistěte se, že znak v rámečku odpovídá obrázku. Pokud rámeček nechcete "
+"importovat, klikněte na něj pro jeho zakázání (klikněte znovu pro povolení)."
 
 #: admin/icrtrain.php:306
 msgid "Description for knowledge base:"
-msgstr ""
+msgstr "Popis pro bázi znalostí:"
 
 #: admin/icrtrain.php:306
 msgid "Train"
-msgstr ""
+msgstr "Výuka"
 
 #: admin/icrtrain.php:339
 #: admin/icrtrain.php:357
 msgid "Manually train"
-msgstr ""
+msgstr "Učit ručně"
 
 #: admin/icrtrain.php:354
 msgid "Please choose which characters to include in training"
-msgstr ""
+msgstr "Prosím zvolte, které znaky budou ve výuce zahrnuty"
 
 #: admin/icrtrain.php:357
 msgid "Number of instances"
-msgstr ""
+msgstr "Počet instancí"
 
 #: admin/icrtrain.php:357
 #: admin/icrtrain.php:388
 msgid "Include in training?"
-msgstr ""
+msgstr "Zahrnout ve výuce?"
 
 #: admin/icrtrain.php:367
 msgid "Start training process in background"
-msgstr ""
+msgstr "Spustit proces výuky v pozadí"
 
 #: admin/icrtrain.php:385
 msgid "Please choose which verifiers to include in training"
-msgstr ""
+msgstr "Prosím zvolte které ověřovatele zahrnout ve výuce"
 
 #: admin/icrtrain.php:388
 msgid "Number of forms"
-msgstr ""
+msgstr "Počet formulářů"
 
 #: admin/icrtrain.php:391
 msgid "Continue training"
-msgstr ""
+msgstr "Pokračovat ve výuce"
 
 #: admin/icrtrain.php:405
 msgid "ICR Train"
-msgstr ""
+msgstr "Výuka ICR"
 
 #: admin/icrmonitor.php:30
 msgid "Monitor ICR process"
-msgstr ""
+msgstr "Sledovat proces ICR"
 
 #: admin/icrmonitor.php:80
 msgid "No process running"
-msgstr ""
+msgstr "Žádný proces neběží"
 
 #: admin/operators.php:34
 #: admin/operators.php:64
 msgid "Add an operator"
-msgstr ""
+msgstr "Přidat operátor"
 
 #: admin/operators.php:49
 msgid "Added"
-msgstr ""
+msgstr "Přidáno"
 
 #: admin/operators.php:52
 msgid "Could not add"
-msgstr ""
+msgstr "Nelze přidat"
 
 #: admin/operators.php:52
 msgid "There may already be an operator of this name"
-msgstr ""
+msgstr "Je možno, že operátor se stejným názvem již existuje"
 
 #: admin/operators.php:65
 msgid ""
 "Adding an operator here will give the user the ability to verify forms once "
 "they have assigned a form using the"
 msgstr ""
+"Přidáním operátoru na toto místo dá uživatelům možnost ověřit formuláře, "
+"jakmile je přidělí pomocí"
 
 #: admin/operators.php:65
 msgid "Assign Verifier to Questionnaire"
-msgstr ""
+msgstr "Přidělit ověřovatele k dotazníku"
 
 #: admin/operators.php:65
 msgid "tool"
-msgstr ""
+msgstr "nástroj"
 
 #: admin/operators.php:66
 msgid ""
@@ -746,251 +753,265 @@ msgid ""
 "here. When the user accesses the verification page, they will uniquely be "
 "assigned a form."
 msgstr ""
+"Tento formulář použijte k zadání uživatelského jména na základě vašeho "
+"zabezpečení adresáře. Například, pokud jste zabezpečili základní adresář "
+"queXF pomocí zabezpečení souborem z Apache, zadejte jména zde. Když uživatel "
+"vstoupí na stránku ověření, bude jim každému přidělen formulář."
 
 #: admin/operators.php:68
 msgid ""
 "Enter the username (as in the security system, eg: azammit) of an operator "
 "to add:"
 msgstr ""
+"Zadejte jméno uživatele (tak jako v bezpečnostním systému; např: azammit) "
+"operátora, který bude přidán:"
 
 #: admin/operators.php:69
 msgid "Enter the name of the operator (eg Adam):"
-msgstr ""
+msgstr "Zadejte jméno operátora (např. Adam):"
 
 #: admin/operators.php:70
 msgid "Add user"
-msgstr ""
+msgstr "Přidat uživatele"
 
 #: admin/listforms.php:65
 msgid "Listing of forms"
-msgstr ""
+msgstr "Seznam formulářů"
 
 #: admin/listforms.php:67
 #: admin/listforms.php:76
 msgid "Re verify"
-msgstr ""
+msgstr "Znovu ověřit"
 
 #: admin/listforms.php:76
 #: admin/pagesmissing.php:85
 msgid "Form ID"
-msgstr ""
+msgstr "ID formuláře"
 
 #: admin/new.php:30
 msgid "Add new questionnaire"
-msgstr ""
+msgstr "Přidat dotazník"
 
 #: admin/new.php:55
 msgid "Successfully inserted new questionnaire"
-msgstr ""
+msgstr "Úspěšně přidán nový dotazník"
 
 #: admin/new.php:61
 msgid "Successfully loaded banding XML file"
-msgstr ""
+msgstr "Úspěšně načten soubor pruhování XML"
 
 #: admin/new.php:65
 msgid "Failed to load banding XML file"
-msgstr ""
+msgstr "Nelze načíst soubor pruhování XML"
 
 #: admin/new.php:71
 msgid "Continue by setting up page edge detection (page setup)"
-msgstr ""
+msgstr "Pokračovat nastavením zjištění okraje stránky (rozvržení stránky)"
 
 #: admin/new.php:78
 msgid "Failed to insert new questionnaire. Could have conflicting page id's"
-msgstr ""
+msgstr "Nelze vložit nový dotazník. Mohl by mít konfliktní id stránek"
 
 #: admin/new.php:84
 msgid "New questionnaire"
-msgstr ""
+msgstr "Nový dotazník"
 
 #: admin/new.php:85
 msgid "When using banding XML:"
-msgstr ""
+msgstr "Při použití XML pruhování:"
 
 #: admin/new.php:86
 msgid ""
 "You must import the original PDF and banding XML file (not a scanned version)"
 msgstr ""
+"Musíte importovat původní PDF a souboru pruhování XML (nenaskenovaná verze)"
 
 #: admin/new.php:87
 msgid "When manually banding:"
-msgstr ""
+msgstr "Při ručním pruhování:"
 
 #: admin/new.php:88
 msgid "You will get the best results if you:"
-msgstr ""
+msgstr "Nejlepší výsledky získáte, když:"
 
 #: admin/new.php:89
 msgid ""
 "Print out the form using the same method that you will for all the printed "
 "forms"
 msgstr ""
+"Formulář vytisknete pomocí stejné metody, kterou použijete na všechny "
+"vytištěné formuláře"
 
 #: admin/new.php:90
 msgid ""
 "Scan the (blank) form to a PDF using the same options that you will for the "
 "filled forms"
 msgstr ""
+"Skenovat (prázdný) formulář do PDF pomocí stejných možností, které použijete "
+"pro všechny vyplněné formuláře"
 
 #: admin/new.php:91
 msgid "Best options for scanning in are:"
-msgstr ""
+msgstr "Nejlepší možnosti pro skenování jsou:"
 
 #: admin/new.php:92
 msgid "Monochrome (1 bit)"
-msgstr ""
+msgstr "Černobílé (1bit)"
 
 #: admin/new.php:93
 msgid "300DPI Resolution"
-msgstr ""
+msgstr "Rozměr 300DPI"
 
 #: admin/new.php:99
 msgid "Select PDF file to create form from"
-msgstr ""
+msgstr "Vyberte soubor PDF z kterého formulář vytvořit"
 
 #: admin/new.php:100
 msgid "(Optional): Select banding XML file"
-msgstr ""
+msgstr "(Nepovinné): Vyberte soubor pruhování XML"
 
 #: admin/new.php:101
 msgid "Enter description of form"
-msgstr ""
+msgstr "Zadejte popis formuláře"
 
 #: admin/new.php:102
 msgid "Upload form"
-msgstr ""
+msgstr "Nahrání formuláře"
 
 #: admin/pagesmissing.php:67
 #: admin/pagesmissing.php:85
 msgid "Delete form and allow importing again"
-msgstr ""
+msgstr "Smazat formulář a znovu povolit importování"
 
 #: admin/processicr.php:56
 msgid "Processing KB"
-msgstr ""
+msgstr "Zpracovávání KB"
 
 #: admin/processicr.php:127
 msgid "to knowledge base"
-msgstr ""
+msgstr "do báze znalostí"
 
 #: admin/processicr.php:147
 #: admin/processicr.php:150
 msgid "Did not generate KB as not all records trained"
-msgstr ""
+msgstr "KB nebyla vytvořena protože ne všechny záznamy byly vycvičeny"
 
 #: admin/listfiles.php:49
 msgid "Listing of imported files by status"
-msgstr ""
+msgstr "Výpis importovaných souborů podle stavu"
 
 #: admin/listfiles.php:55
 msgid "Forms successfully imported"
-msgstr ""
+msgstr "Formuláře úspěšně importovány"
 
 #: admin/listfiles.php:57
 msgid "Forms not imported"
-msgstr ""
+msgstr "Formuláře neimportovány"
 
 #: admin/listfiles.php:68
 msgid "File"
-msgstr ""
+msgstr "Soubor"
 
 #: admin/listfiles.php:68
 msgid "SHA1"
-msgstr ""
+msgstr "SHA1"
 
 #: admin/listfiles.php:68
 msgid "Allow import again?"
-msgstr ""
+msgstr "Znovu umožnit importovat?"
 
 #: admin/listfiles.php:70
 msgid "Save changes"
-msgstr ""
+msgstr "Uložit změny"
 
 #: admin/databasestrings.php:33
 msgid "Temporary"
-msgstr ""
+msgstr "Dočasné"
 
 #: admin/databasestrings.php:36
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: admin/databasestrings.php:37
 msgid "Number"
-msgstr ""
+msgstr "Číslo"
 
 #: admin/listduplicates.php:31
 msgid "Listing of duplicate forms"
-msgstr ""
+msgstr "Výpis duplikátních formulářů"
 
 #: admin/listduplicates.php:47
 msgid "Duplicate form listing"
-msgstr ""
+msgstr "Výpis duplikátních formulářů"
 
 #: admin/listduplicates.php:47
 msgid "Forms with the same PFID are duplicates"
-msgstr ""
+msgstr "Formuláře se stejným PFID jsou douplikáty"
 
 #: admin/listduplicates.php:49
 msgid "Formid"
-msgstr ""
+msgstr "IDformuláře"
 
 #: admin/listduplicates.php:49
 msgid "PFID"
-msgstr ""
+msgstr "PFID"
 
 #: admin/process.php:54
 msgid "Processing directory"
-msgstr ""
+msgstr "Zpracovávání adresáře"
 
 #: admin/process.php:65
 msgid "Watching..."
-msgstr ""
+msgstr "Sledování..."
 
 #: admin/process.php:83
 msgid ""
 "Cannot process this directory - check that it is valid and permissions are "
 "correct"
 msgstr ""
+"Nelze zpracovat adresář - zkontrolujte, zdali je platný a zda jsou oprávnění "
+"v pořádku"
 
 #: admin/reorder.php:46
 #: admin/reorder.php:83
 msgid "Reorder variables"
-msgstr ""
+msgstr "Uspořádat proměnné"
 
 #: admin/reorder.php:60
 msgid "Manual reorder"
-msgstr ""
+msgstr "Ruční uspořádání"
 
 #: admin/reorder.php:60
 msgid "Reorder by position"
-msgstr ""
+msgstr "Seřadit podle pozice"
 
 #: admin/reorder.php:60
 msgid "Reorder by variable name"
-msgstr ""
+msgstr "Seřadit podle názvu proměnné"
 
 #: admin/reorder.php:119
 msgid ""
 "Reorder variables by dragging and dropping, then clicking on 'Save Changes' "
 "below"
 msgstr ""
+"Proměnné můžete seřadit přetažením, pak níže klikněte na 'Uložit změny'"
 
 #: admin/reorder.php:121
 msgid "Click here"
-msgstr ""
+msgstr "Klikněte sem"
 
 #: admin/reorder.php:121
 msgid "to return without saving changes"
-msgstr ""
+msgstr "pro návrat bez uložení změn"
 
 #: admin/clients.php:68
 msgid "There may already be an client of this name"
-msgstr ""
+msgstr "Již může existovat klient s tímto jménem"
 
 #: admin/clients.php:73
 #: admin/clients.php:82
 msgid "Add a client"
-msgstr ""
+msgstr "Přidat klienta"
 
 #: admin/clients.php:83
 msgid ""
@@ -998,14 +1019,16 @@ msgid ""
 "client subdirectory. You can assign a client to a particular project using "
 "the"
 msgstr ""
+"Když tady přidáte klienta, umožníte jim přístup k informacím o projektu v "
+"podadresáři klienta. Klienta můžete přidělit ke konkrétnímu projektu pomocí"
 
 #: admin/clients.php:83
 msgid "Assign client to Form"
-msgstr ""
+msgstr "Přidělit klienta k formuláři"
 
 #: admin/clients.php:83
 msgid "tool."
-msgstr ""
+msgstr "nástroje."
 
 #: admin/clients.php:84
 msgid ""
@@ -1014,27 +1037,30 @@ msgid ""
 "queXF using Apache file based security, enter the usernames of the users "
 "here."
 msgstr ""
+"Tento formulář použijte k zadání uživatelského jména na základě vašeho "
+"zabezpečení adresáře. Například, pokud jste zabezpečili základní adresář "
+"queXF pomocí zabezpečení souborem z Apache, zadejte jména zde."
 
 #: admin/clients.php:86
 msgid "Enter the username of a client to add:"
-msgstr ""
+msgstr "Zadejte uživatelské jméno klienta klienta, který bude přidán:"
 
 #: admin/clients.php:87
 msgid "Enter the description of the client to add:"
-msgstr ""
+msgstr "Zadejte popis klienta k přidání:"
 
 #: admin/output.php:67
 msgid "Output data"
-msgstr ""
+msgstr "Výstupní data"
 
 #: admin/performance.php:33
 msgid "Performance"
-msgstr ""
+msgstr "Výkon"
 
 #: admin/verifierquestionnaire.php:106
 #: admin/verifierquestionnaire.php:227
 msgid "Assign verifier to questionnaire"
-msgstr ""
+msgstr "Přidělit ověřovatele k dotazníku"
 
 #: admin/limesurvey.php:67
 msgid ""
@@ -1042,119 +1068,128 @@ msgid ""
 "http://user:password@localhost/quexs/include/limesurvey/admin/remotecontrol.p"
 "hp)"
 msgstr ""
+"URL serveru RPC (příklad: "
+"http://uživatel:heslo@localhost/quexs/include/limesurvey/admin/remotecontrol."
+"php)"
 
 #: admin/limesurvey.php:68
 msgid "RPC Username"
-msgstr ""
+msgstr "Uživatelské jméno RPC"
 
 #: admin/limesurvey.php:69
 msgid "RPC Password"
-msgstr ""
+msgstr "Heslo RPC"
 
 #: admin/limesurvey.php:70
 msgid "Limesurvey Survey ID"
-msgstr ""
+msgstr "ID ankety Limesurvey"
 
 #: admin/limesurvey.php:71
 msgid "Update settings"
-msgstr ""
+msgstr "Aktualizovat nastavení"
 
 #: admin/limesurvey.php:76
 #: admin/limesurvey.php:88
 msgid "Upload"
-msgstr ""
+msgstr "Nahrát"
 
 #: admin/limesurvey.php:86
 msgid "No forms to upload"
-msgstr ""
+msgstr "Žádné formuláře k narhání"
 
 #: admin/importbandingxml.php:30
 #: admin/importbandingxml.php:48
 msgid "Update banding from XML"
-msgstr ""
+msgstr "Aktualizovat pruhování z XML"
 
 #: admin/importbandingxml.php:49
 msgid "WARNING: All previous banding will be erased"
-msgstr ""
+msgstr "VAROVÁNÍ: Všechna předchozí pruhování budou smazána"
 
 #: admin/importbandingxml.php:60
 msgid "Select banding XML file"
-msgstr ""
+msgstr "Vybrat XML soubor pruhování"
 
 #: admin/importbandingxml.php:61
 msgid "Select questionnaire"
-msgstr ""
+msgstr "Vybrat dotazník"
 
 #: admin/importbandingxml.php:62
 #: admin/icrkb.php:67
 msgid "Upload XML"
-msgstr ""
+msgstr "Nahrát XML"
 
 #: admin/testconfig.php:26
 msgid "Could not connect to database. Make sure the database: "
-msgstr ""
+msgstr "Nelze se připojit k databázi. Ujistěte se, že databáze: "
 
 #: admin/testconfig.php:26
 msgid " exists on "
-msgstr ""
+msgstr " existuje na "
 
 #: admin/testconfig.php:26
 msgid " and that "
-msgstr ""
+msgstr " a že "
 
 #: admin/testconfig.php:26
 msgid ""
 " has privileges to it, otherwise modify config.inc.php to point to the "
 "correct database. Also make sure you have loaded the database structure from"
 msgstr ""
+" má pro ni dostatečná oprávnění, jinak změňte config.inc.php aby odkazoval "
+"na správnou databázi. Také se ujistěte, že jste strukturu databáze nahráli z"
 
 #: admin/testconfig.php:29
 msgid "Database connection succeeded"
-msgstr ""
+msgstr "Připojení k databázi bylo úspěšné"
 
 #: admin/testconfig.php:34
 msgid "User authentication has been set up. You are user: "
-msgstr ""
+msgstr "Bylo nastaveno ověřování uživatelů. Jste uživatel: "
 
 #: admin/testconfig.php:39
 msgid ""
 "Could not detect user authentication. Please set up web server based "
 "authentication. If using apache, see here: "
 msgstr ""
+"Nelze zjistit ověření uživatelů. Prosí nastavte ověření související s "
+"internetovým serverem. Pokud používáte Apache, prohlédněte si: "
 
 #: admin/testconfig.php:39
 msgid "Apache authentication"
-msgstr ""
+msgstr "Ověřování přes Apache"
 
 #: admin/testconfig.php:44
 #: admin/testconfig.php:49
 #: admin/testconfig.php:54
 msgid "Recommended minimum"
-msgstr ""
+msgstr "Doporučené minimum"
 
 #: admin/testconfig.php:46
 #: admin/testconfig.php:51
 #: admin/testconfig.php:56
 msgid "Passed"
-msgstr ""
+msgstr "V pořádku"
 
 #: admin/testconfig.php:58
 msgid "Configuration options from php.ini:"
-msgstr ""
+msgstr "Možností nastavení z php.ini:"
 
 #: admin/testconfig.php:69
 msgid "Found GhostScript version"
-msgstr ""
+msgstr "Nalezena verze GhostScript"
 
 #: admin/testconfig.php:73
 msgid ""
 " exists but can not execute it. Please make sure you are pointing to the "
 "executable file, not just the directory of Ghostscript"
 msgstr ""
+" existuje ale nelze spustit. Ujistěte se, že odkazujete na spustitelný "
+"soubor a ne jenom na adresář Ghostscript"
 
 #: admin/testconfig.php:77
 msgid "Could not find GhostScript in path: "
-msgstr ""
+msgstr "Nelze najít Ghostscript v cestě: "
 
 #: admin/testconfig.php:77
 msgid ""
@@ -1162,168 +1197,177 @@ msgid ""
 "please make sure you are pointing to the executable file, not just the "
 "directory of Ghostscript"
 msgstr ""
+"Prosím změňte config.inc.php, GS_BIN aby odkazoval na spustitelný soubor gs. "
+"Dále se ujistěte, že neodkazujete na adresář Ghostscript"
 
 #: admin/testconfig.php:104
 msgid "FAILED"
-msgstr ""
+msgstr "SELHALO"
 
 #: admin/testconfig.php:108
 msgid "Passed Configuration Test"
-msgstr ""
+msgstr "Zkouška nastavení splněna"
 
 #: admin/listpagenotes.php:47
 #: admin/listpagenotes.php:56
 msgid "Delete note"
-msgstr ""
+msgstr "Smazat poznámku"
 
 #: admin/listpagenotes.php:56
 msgid "Page ID"
-msgstr ""
+msgstr "ID stránky"
 
 #: admin/listpagenotes.php:56
 msgid "Note"
-msgstr ""
+msgstr "Poznámka"
 
 #: admin/delete.php:51
 msgid "Delete a questionnaire"
-msgstr ""
+msgstr "Smazat dotazník"
 
 #: admin/delete.php:66
 msgid "Click to delete questionnaire"
-msgstr ""
+msgstr "Klikněte pro smazání dotazníku"
 
 #: admin/delete.php:67
 msgid ""
 "The following questionnaires have no forms associated with them so are safe "
 "to delete"
 msgstr ""
+"Následující dotazníky nemají žádné přidělené formuláře a můžou být smazány"
 
 #: admin/progress.php:55
 msgid "Done"
-msgstr ""
+msgstr "Hotovo!"
 
 #: admin/progress.php:55
 msgid "Remain"
-msgstr ""
+msgstr "Zbývá"
 
 #: admin/progress.php:55
 msgid "Total forms imported"
-msgstr ""
+msgstr "Importovaných formulářů celkem"
 
 #: admin/progress.php:77
 msgid "Total"
-msgstr ""
+msgstr "Celkem"
 
 #: admin/icrkb.php:38
 #: admin/icrkb.php:55
 msgid "Import ICR KB from XML"
-msgstr ""
+msgstr "Importovat ICR KB z XML"
 
 #: admin/icrkb.php:49
 msgid "Successfully loaded ICR XML file"
-msgstr ""
+msgstr "Úspěšně načten XML soubor ICR KB"
 
 #: admin/icrkb.php:51
 msgid "Failed to load ICR XML file"
-msgstr ""
+msgstr "Nelze načíst XML soubor ICR KB"
 
 #: admin/icrkb.php:66
 msgid "Select ICR KB XML file"
-msgstr ""
+msgstr "Vybrat XML soubor ICR KB"
 
 #: admin/icrkb.php:72
 msgid "Export ICR KB to XML"
-msgstr ""
+msgstr "Exportovat ICR KB do XML"
 
 #: admin/icrkb.php:73
 msgid "ICR KB"
-msgstr ""
+msgstr "ICR KB"
 
 #: functions/functions.output.php:130
 #: functions/functions.output.php:140
 msgid "XML RPC Error: "
-msgstr ""
+msgstr "Chyba XML RPC: "
 
 #: functions/functions.output.php:193
 #: functions/functions.output.php:427
 #: functions/functions.output.php:986
 msgid "unverified"
-msgstr ""
+msgstr "neověřeno"
 
 #: functions/functions.database.php:136
 msgid "ERROR: Multiple forms assigned, please see a technical officer"
 msgstr ""
+"CHYBA: Přiděleno více formulářů, prosím kontaktujte technické oddělení"
 
 #: functions/functions.import.php:117
 msgid "BARCODE"
-msgstr ""
+msgstr "ČÁRKOVÝ KÓD"
 
 #: functions/functions.import.php:205
 msgid "INVALID - IGNORING BLANK PAGE"
-msgstr ""
+msgstr "NEPLATNÉ - IGNOROVÁNÍ PRÁZDNÉ STRÁNKY"
 
 #: functions/functions.import.php:225
 msgid "Failed to import as no pages were detected"
-msgstr ""
+msgstr "Nelze importovat protože nebyly zjištěny žádné stránky"
 
 #: functions/functions.import.php:634
 msgid "Finding qid"
-msgstr ""
+msgstr "Hledání qid"
 
 #: functions/functions.import.php:696
 msgid "Got qid"
-msgstr ""
+msgstr "qid nalezeno"
 
 #: functions/functions.import.php:752
 msgid "Processing pid"
-msgstr ""
+msgstr "Zpracovávání pid"
 
 #: functions/functions.import.php:763
 msgid "Pid not identified for this page, inserting into missing pages..."
-msgstr ""
+msgstr "Pid nenalezeno pro tuto stránku, vkládání do chybějících stránek..."
 
 #: functions/functions.import.php:814
 msgid "Blank page: ignoring"
-msgstr ""
+msgstr "Prázdná stránka: ignorování"
 
 #: functions/functions.import.php:819
 msgid "Could not get pid, inserting into missing pages..."
-msgstr ""
+msgstr "Nelze získat pid, vkládání do chybějících stránek..."
 
 #: functions/functions.import.php:878
 msgid "Could not get qid..."
-msgstr ""
+msgstr "Nelze získat qid..."
 
 #: functions/functions.import.php:938
 msgid ""
 "Automatically processing the 1 missing page for this form - assuming pid:"
 msgstr ""
+"Automatické zpracování 1 chybějící stránky v tomto formuláři - pid "
+"předpokládáno:"
 
 #: functions/functions.import.php:997
 msgid "Deleting missing pages as all form page slots filled"
 msgstr ""
+"Mazání chybějících stránek protože všechny pozice formuláře jsou naplněny"
 
 #: functions/functions.import.php:1226
 msgid "File already in database"
-msgstr ""
+msgstr "Soubor již je v databázi"
 
 #: client/index.php:32
 msgid "Review forms"
-msgstr ""
+msgstr "Zkontrolovat formuláře"
 
 #: client/index.php:59
 msgid "Review"
-msgstr ""
+msgstr "Zkontrolovat"
 
 #: client/index.php:75
 msgid ""
 "This form not available for you to review. Please enter a form id in the box "
 "on the left"
 msgstr ""
+"Tento formulář Vám není dostupný ke kontrole. Prosím zadejte ID formuláře do "
+"rámečku vlevo"
 
 #: client/index.php:134
 msgid "You are not authorised to review any forms"
-msgstr ""
+msgstr "Nemáte oprávnění kontrolovat formuláře"
 
 #: include/php-gettext-1.0.11/examples/pigs_dropin.php:77
 #: include/php-gettext-1.0.11/examples/pigs_fallback.php:76
@@ -1331,3 +1375,5 @@ msgid ""
 "This is how the story goes.\n"
 "\n"
 msgstr ""
+"A ten příběh se vypráví takto.\n"
+"\n"

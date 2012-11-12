@@ -1,4 +1,4 @@
-# Norwegian Bokmal translation for quexf
+# Croatian translation for quexf
 # Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
 # This file is distributed under the same license as the quexf package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: quexf\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-12-06 12:09+1000\n"
-"PO-Revision-Date: 2012-04-06 12:54+0000\n"
-"Last-Translator: Ståle Freyer <staale@freyer.no>\n"
-"Language-Team: Norwegian Bokmal <nb@li.org>\n"
+"PO-Revision-Date: 2012-09-25 18:53+0000\n"
+"Last-Translator: Bojan Markovic <Unknown>\n"
+"Language-Team: Croatian <hr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,209 +19,208 @@ msgstr ""
 
 #: verifyjs.php:177
 msgid "Please log in"
-msgstr "Vennligst logg inn"
+msgstr "Molimo prijavite se"
 
 #: verifyjs.php:308
 #: verifyjs.php:413
 msgid "Verify: No more work"
-msgstr "Bekreft: Ikke flere oppgaver"
+msgstr "Potvrda: nema više posla"
 
 #: verifyjs.php:309
 #: verifyjs.php:414
 msgid "NO MORE WORK"
-msgstr "IKKE FLERE OPPGAVER"
+msgstr "NEMA VIŠE POSLA"
 
 #: verifyjs.php:310
 #: verifyjs.php:415
 msgid "Check for more work"
-msgstr "Se etter flere oppgaver"
+msgstr "Potvrditi za još posla"
 
 #: verifyjs.php:324
 msgid "Verify: Assign form"
-msgstr "Bekreft: Tilordne skjema"
+msgstr "Podvrda: Dodjela formulara"
 
 #: verifyjs.php:326
 msgid "There is no form currently assigned to you"
-msgstr "Det er i øyeblikket ingen skjema tilordnet deg"
+msgstr "Trenutno nema formulara dodjeljenih Vama"
 
 #: verifyjs.php:327
 msgid "Assign next form"
-msgstr "Tilordne neste skjema"
+msgstr "Dodjela slijedećeg formulara"
 
 #: verifyjs.php:330
 msgid "Assigning next form: Please wait..."
-msgstr "Tilordner neste skjema: Vennligst vent..."
+msgstr "Dodjeljivanje slijedećeg formulara: Molim sačekajte.."
 
 #: verifyjs.php:367
 msgid "Operator"
-msgstr "Operatør"
+msgstr "Operater"
 
 #: verifyjs.php:367
 msgid "Completed Forms"
-msgstr "Fullførte skjema"
+msgstr "Kompletirani formulari"
 
 #: verifyjs.php:367
 msgid "Completions Per Hour"
-msgstr "Fullført per time"
+msgstr "Kompletiranja po satu"
 
 #: verifyjs.php:367
 msgid "Pages Per Hour"
-msgstr "Sider per time"
+msgstr "Stranica po satu"
 
 #: verifyjs.php:522
 msgid "Verify: Done"
-msgstr "Bekreft: Utført"
+msgstr "Kontrola: Završeno"
 
 #: verifyjs.php:523
 #: verifyjs.php:1170
 msgid "The required fields have been filled"
-msgstr "De nødvendige felt er utfylt"
+msgstr "Obvezna polja su popunjena"
 
 #: verifyjs.php:525
 #: verifyjs.php:1172
 msgid "Submit completed form to database"
-msgstr "Send fullført skjema til database"
+msgstr "Slanje popunjenog formulara u bazu podataka"
 
 #: verifyjs.php:526
 #: verifyjs.php:1173
 msgid "Review all questions again"
-msgstr "Gjennomgå alle spørsmål en gang til"
+msgstr "Ponovni pregled svih pitanja"
 
 #: verifyjs.php:527
 #: verifyjs.php:1174
 msgid "Clear all entered data and review again"
-msgstr "Fjern alle data og gjennomgå en gang til"
+msgstr "Poništavanje svih podataka i ponovni pregled"
 
 #: verifyjs.php:529
 #: verifyjs.php:1177
 msgid "Submitting: Please wait..."
-msgstr "Sender: Vennligst vent..."
+msgstr "Slanje: Molimo sačekajte.."
 
 #: verifyjs.php:544
 msgid "Verifier"
-msgstr "Bekrefter"
+msgstr "Kontolor"
 
 #: verifyjs.php:1187
 msgid "Page is missing from scan"
-msgstr "Siden mangler fra innskanning"
+msgstr "Stranica nedostaje iz skeniranih"
 
 #: verifyjs.php:1192
 msgid "Image of page"
-msgstr "Bilde av side"
+msgstr "Slika stranice"
 
 #: verifyjs.php:1192
 msgid "form"
-msgstr "skjema"
+msgstr "obrazac"
 
 #: verifyjs.php:1204
 msgid "Centre Page"
-msgstr "Senterside"
+msgstr "Centriranje stranice"
 
 #: verifyjs.php:1206
 msgid "Loading panel..."
-msgstr "Laster panel..."
+msgstr "Učitavanje panela..."
 
 #: verifyjs.php:1206
 msgid "Error, try with Firefox"
-msgstr "Feil, prøv med Firefox"
+msgstr "Greška, pokušajte sa Firefox-om"
 
 #: index.php:30
 msgid "queXF"
-msgstr "queFX"
+msgstr ""
 
 #: index.php:31
 msgid "Verify"
-msgstr "Bekreft"
+msgstr "Kontrola"
 
 #: index.php:32
 msgid "Review a form"
-msgstr "Se gjennom skjema"
+msgstr "Pregled obrasca"
 
 #: modifybox.php:209
 msgid "Group type:"
-msgstr "Gruppe:"
+msgstr "Tip grupe"
 
 #: modifybox.php:214
 msgid "Variable name:"
-msgstr "Variabelnavn:"
+msgstr "Naziv varijable"
 
 #: modifybox.php:217
 msgid "Width:"
-msgstr "Bredde:"
+msgstr "Širina:"
 
 #: modifybox.php:219
 msgid "Submit"
-msgstr "Send"
+msgstr "Slanje"
 
 #: modifybox.php:221
 msgid "Delete this group"
-msgstr "Slett denne gruppen"
+msgstr "Brisanje grupe"
 
 #: modifybox.php:222
 #: admin/bandajax.php:160
 msgid "Delete in between boxes"
-msgstr "Slett mellom rubrikkene"
+msgstr "Brisanje između kutijica"
 
 #: review.php:81
 msgid "Review Form"
-msgstr "Se gjennom skjema"
+msgstr "Pregled obrasca"
 
 #: review.php:140
 msgid "Form:"
-msgstr "Skjema:"
+msgstr "Obrazac:"
 
 #: review.php:141
 msgid "Variable:"
-msgstr "Variabel:"
+msgstr "Varijabla:"
 
 #: review.php:142
 msgid "Page:"
-msgstr "Side:"
+msgstr "Stranica:"
 
 #: pagenote.php:60
 msgid "Page note:"
-msgstr "Merknad til side:"
+msgstr "Zabilješkaa stranice:"
 
 #: pagenote.php:65
 msgid "Add note"
-msgstr "Legg til merknad"
+msgstr "Dodavanje bilješke"
 
 #: db.inc.php:32
 msgid ""
 "ERROR: Please modify config.inc.php to point to your ADODb installation"
 msgstr ""
-"FEIL: Vennligst endre config.inc.php til å peke til din ADODb installasjon"
 
 #: admin/band.php:105
 #: admin/band.php:378
 #: admin/bandajax.php:481
 #: admin/bandajax.php:557
 msgid "Band"
-msgstr "Bånd"
+msgstr ""
 
 #: admin/band.php:176
 #: admin/bandajax.php:526
 msgid "Choose another questionnaire"
-msgstr "Velg en annen undersøkelse"
+msgstr ""
 
 #: admin/band.php:176
 #: admin/bandajax.php:526
 msgid "Increase zoom"
-msgstr "Zoom inn"
+msgstr ""
 
 #: admin/band.php:176
 #: admin/bandajax.php:526
 msgid "Decrease zoom"
-msgstr "Zoom ut"
+msgstr ""
 
 #: admin/clientquestionnaire.php:144
 #: admin/clientquestionnaire.php:265
 msgid "Assign clients to questionnaires"
-msgstr "Legg til klienter i undersøkelsen"
+msgstr ""
 
 #: admin/bandajax.php:87
 msgid "Disable this box group"
-msgstr "Deaktiver denne rubrikkgruppen"
+msgstr ""
 
 #: admin/bandajax.php:95
 #: admin/bandajax.php:103
@@ -230,140 +229,140 @@ msgstr "Deaktiver denne rubrikkgruppen"
 #: admin/bandajax.php:127
 #: admin/bandajax.php:135
 msgid "Set to type:"
-msgstr "Bestem type:"
+msgstr ""
 
 #: admin/bandajax.php:95
 msgid "Single choice"
-msgstr "Enkeltvalg"
+msgstr ""
 
 #: admin/bandajax.php:103
 msgid "Multiple choice"
-msgstr "Flervalg"
+msgstr ""
 
 #: admin/bandajax.php:111
 msgid "Text and Numbers"
-msgstr "Tekst og tall"
+msgstr ""
 
 #: admin/bandajax.php:119
 msgid "Numbers only"
-msgstr "Kun tall"
+msgstr ""
 
 #: admin/bandajax.php:127
 msgid "Barcode"
-msgstr "Strekkode"
+msgstr ""
 
 #: admin/bandajax.php:135
 msgid "Long text"
-msgstr "Lang tekst"
+msgstr ""
 
 #: admin/bandajax.php:144
 msgid "Delete this box"
-msgstr "Slett denn rubrikken"
+msgstr ""
 
 #: admin/bandajax.php:152
 msgid "Delete this box group"
-msgstr "Slett denne rubrikkgruppen"
+msgstr ""
 
 #: admin/import.directory.php:47
 #: admin/import.directory.php:68
 msgid "Import a directory of PDF files"
-msgstr "Importer en katalog med PDF-filer"
+msgstr ""
 
 #: admin/import.directory.php:49
 msgid "Process"
-msgstr "Behandle"
+msgstr ""
 
 #: admin/import.directory.php:49
 msgid "running..."
-msgstr "kjører..."
+msgstr ""
 
 #: admin/import.directory.php:53
 msgid "Kill signal sent: Please wait..."
-msgstr "Avbryt-signal sent: Vennligst vent..."
+msgstr ""
 
 #: admin/import.directory.php:54
 msgid "Mark the proces as killed (i.e. when the server is rebooted)"
-msgstr "Markér prosessen som avbrutt (når tjeneren blir omstartet)"
+msgstr ""
 
 #: admin/import.directory.php:57
 msgid "Kill the running process"
-msgstr "Avbryt den kjørende prosessen"
+msgstr ""
 
 #: admin/import.directory.php:57
 msgid "may take up to a few minutes to take effect"
-msgstr "kan ta noen minutter å bli aktiv"
+msgstr ""
 
 #: admin/import.directory.php:62
 #: admin/import.directory.php:90
 msgid "Log id"
-msgstr "Logg ID"
+msgstr ""
 
 #: admin/import.directory.php:62
 #: admin/import.directory.php:90
 msgid "Date"
-msgstr "Dato"
+msgstr ""
 
 #: admin/import.directory.php:62
 #: admin/import.directory.php:90
 msgid "Log entry"
-msgstr "Logg oppslag"
+msgstr ""
 
 #: admin/import.directory.php:77
 msgid "Directory"
-msgstr "Katalog"
+msgstr ""
 
 #: admin/import.directory.php:79
 msgid "Enter directory local to the server (eg /mnt/iss/tmp/images)"
-msgstr "Angi katalog lokalt for tjeneren (f.eks. /mnt/iss/tmp/images)"
+msgstr ""
 
 #: admin/import.directory.php:80
 msgid "Process directory: browser window must remain open"
-msgstr "Prosesskatalog: nettleseren må forbli åpen"
+msgstr ""
 
 #: admin/import.directory.php:81
 msgid "Watch this directory in the background (recommended)"
-msgstr "Overvåk denne katalogen i bakgrunnen (anbefalt)"
+msgstr ""
 
 #: admin/import.directory.php:85
 msgid "Outcome of last process run (if any)"
-msgstr "Resultat af siste prosesskjøring (hvis noen)"
+msgstr ""
 
 #: admin/index.php:31
 #: admin/index.php:36
 msgid "queXF Admin Functions"
-msgstr "queFX Administratorfunksjoner"
+msgstr ""
 
 #: admin/index.php:38
 msgid "Form setup"
-msgstr "Skjemaoppsett"
+msgstr ""
 
 #: admin/index.php:39
 msgid "Import a new form from a PDF file"
-msgstr "Importer et nytt skjema fra en PDF-fil"
+msgstr ""
 
 #: admin/index.php:40
 msgid "Import/Update banding from XML"
-msgstr "Importer/oppdater kobling fra XML"
+msgstr ""
 
 #: admin/index.php:41
 msgid "Delete a form (only if no forms yet imported)"
-msgstr "Slett et skjema (kun hvis ingen skjema ennå er importert)"
+msgstr ""
 
 #: admin/index.php:42
 msgid "Touch-up a form"
-msgstr "Fiks et skjema"
+msgstr ""
 
 #: admin/index.php:43
 msgid "Band a form"
-msgstr "Koble til et skjema"
+msgstr ""
 
 #: admin/index.php:44
 msgid "Band a form using interactive banding"
-msgstr "Koble interaktivt til et skjema"
+msgstr ""
 
 #: admin/index.php:45
 msgid "Order variables on the form"
-msgstr "Sett rekkefølgen av variabler på skjemaet"
+msgstr ""
 
 #: admin/index.php:46
 msgid "queXS and Limesurvey integration"
