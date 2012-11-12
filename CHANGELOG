@@ -1,3 +1,21 @@
+queXF 1.13.5 - Changes since queXF 1.13.4
+
+*New feature: Added remain to verify status by questionnaire
+*New feature: Patch from John Milner to better handle dithered barcodes
+*New feature: Added a CSV output where named fields are merged (CSV Merged)
+*New feature: Added junk detection to barcode to improve recognition
+*Fixed Bug: Verifer using GET to submit instead of POST
+*Fixed Bug: Move default corner edges to 10 pixels from edge
+*Fixed Bug: Allow importing of files with a space in the filename
+*Fixed Bug: Manual ICR training displays images randomly on the page
+*Fixed Bug: Listing failed files uses GET instead of POST and goes to successful files on submission
+*Fixed Bug: Pagetest causing error at image boundary
+*Fixed Bug: Reference to non existent image in CSS
+*Fixed Bug: Content length causing download problems on some setups
+*Fixed Bug: Error in CSV output for labelled Multiple choice questions (always returned as selected) 
+*Fixed Bug: Missing XHTML header in modifybox.php
+*Translations: Updated from Launchpad - Thank you again!
+
 queXF 1.13.4 - Changes since queXF 1.13.3
 
 *New feature: Can edit/add values and labels to boxes by mousing over them when banding
