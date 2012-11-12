@@ -82,7 +82,7 @@ function bgidtocss($zoom = 1,$fid,$pid)
 	if ($row['width'] == 0) $row['width'] = PAGE_WIDTH;
 	if ($row['height'] == 0) $row['height'] = PAGE_HEIGHT;
 
-	print "<form method=\"get\" action=\"{$_SERVER['PHP_SELF']}\">";
+	print "<form method=\"post\" action=\"{$_SERVER['PHP_SELF']}\">";
 
 	foreach ($boxgroups as $boxgroup)
 	{
@@ -445,11 +445,11 @@ if (!isset($_SESSION['boxes'])) {
 //form data already here
 
 //if data submitted, store it to local session
-if (isset($_GET['piddone']))
+if (isset($_POST['piddone']))
 {
-	$pid = intval($_GET['piddone']);
+	$pid = intval($_POST['piddone']);
 
-	foreach($_GET as $getkey => $getval)
+	foreach($_POST as $getkey => $getval)
 	{
 		//print "SUBMIT Key: $getkey Val: $getval<br/>";
 		if (strncmp($getkey,'bgid',4) == 0)
@@ -477,7 +477,7 @@ if (isset($_GET['piddone']))
 
 
 	//store retrieved data
-	foreach($_GET as $getkey => $getval)
+	foreach($_POST as $getkey => $getval)
 	{
 		//print "SUBMIT Key: $getkey Val: $getval<br/>";
 		if (strncmp($getkey,'bid',3) == 0)
