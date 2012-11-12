@@ -69,52 +69,52 @@ function defaultpage($width,$height,$qid=0,$pid=0,$data="")
 			'HORI_WIDTH' => HORI_WIDTH,
 	
 			//Top left horizontal
-			'TL_HORI_TLX' => 1,
-			'TL_HORI_TLY' => 1,
+			'TL_HORI_TLX' => 10,
+			'TL_HORI_TLY' => 10,
 			'TL_HORI_BRX' => $xwidth,
 			'TL_HORI_BRY' => $yheight,
 
 			//Top left vertical
-			'TL_VERT_TLX' => 1,
-			'TL_VERT_TLY' => 1,
+			'TL_VERT_TLX' => 10,
+			'TL_VERT_TLY' => 10,
 			'TL_VERT_BRX' => $xwidth,
 			'TL_VERT_BRY' => $yheight,
 
 			//Top right horizontal
-			'TR_HORI_TLX' => $width - $xwidth,
-			'TR_HORI_TLY' => 1,
+			'TR_HORI_TLX' => ($width - $xwidth) + 10,
+			'TR_HORI_TLY' => 10,
 			'TR_HORI_BRX' => $width,
 			'TR_HORI_BRY' => $yheight,
 
 			//Top right vertical
-			'TR_VERT_TLX' => $width - $xwidth,
-			'TR_VERT_TLY' => 1,
+			'TR_VERT_TLX' => ($width - $xwidth) + 10,
+			'TR_VERT_TLY' => 10,
 			'TR_VERT_BRX' => $width,
 			'TR_VERT_BRY' => $yheight,
 
 			//Bottom left horizontal
-			'BL_HORI_TLX' => 1,
+			'BL_HORI_TLX' => 10,
 			'BL_HORI_TLY' => $height - $yheight,
 			'BL_HORI_BRX' => $xwidth,
-			'BL_HORI_BRY' => $height,
+			'BL_HORI_BRY' => $height - 10,
 
 			//Bottom left vertical
-			'BL_VERT_TLX' => 1,
+			'BL_VERT_TLX' => 10,
 			'BL_VERT_TLY' => $height - $yheight,
 			'BL_VERT_BRX' => $xwidth,
-			'BL_VERT_BRY' => $height,
+			'BL_VERT_BRY' => $height - 10,
 
 			//Bottom right horizontal
 			'BR_HORI_TLX' => $width - $xwidth,
 			'BR_HORI_TLY' => $height - $yheight,
-			'BR_HORI_BRX' => $width, 
-			'BR_HORI_BRY' => $height,
+			'BR_HORI_BRX' => $width - 10, 
+			'BR_HORI_BRY' => $height - 10,
 
 			//Bottom right vertical
 			'BR_VERT_TLX' => $width - $xwidth,
 			'BR_VERT_TLY' => $height - $yheight,
-			'BR_VERT_BRX' => $width,
-			'BR_VERT_BRY' => $height);
+			'BR_VERT_BRX' => $width - 10,
+			'BR_VERT_BRY' => $height - 10);
 
 	return $record;
 }
@@ -669,7 +669,7 @@ function import($filename,$description = false)
 	$tmp = tempnam(TEMPORARY_DIRECTORY, "FORM");
 	
 	//use ghostscript to convert to individual PNG pages
-	exec(GS_BIN . " -sDEVICE=pngmono -r300 -sOutputFile=$tmp%d.png -dNOPAUSE -dBATCH $filename");
+	exec(GS_BIN . " -sDEVICE=pngmono -r300 -sOutputFile=$tmp%d.png -dNOPAUSE -dBATCH \"$filename\"");
 
 	//$qid = 1;
 
