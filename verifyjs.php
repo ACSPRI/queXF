@@ -191,9 +191,12 @@ if (isset($_GET['centre']) && isset($_GET['fid']) && isset($_GET['pid']) )
 	$db->Execute($sql);
 }
 
-$qid_desc = get_qid_description($fid);
-$qid = $qid_desc['qid'];
-$description = $qid_desc['description'];
+if (!empty($fid))
+{
+	$qid_desc = get_qid_description($fid);
+	$qid = $qid_desc['qid'];
+	$description = $qid_desc['description'];
+}
 
 if (isset($_GET['complete']))
 {
@@ -629,6 +632,19 @@ foreach($_SESSION['boxgroups'] as $key => $val)
 	}
 }
 ?>
+
+function allDone()
+{
+        for (var i=0; i < bgidorder.length; i++)
+        {
+                x = bgidorder[i];
+                bgiddone[x] = 1;
+                document.getElementById('bgid' + x ).checked = 'checked';
+                document.getElementById('bgid' + x ).val = '1';
+        }
+        document.forms[0].submit();
+}
+
 
 
 function nextTask()
@@ -1211,6 +1227,7 @@ else
 	
 	print "<p>Q:$qid F:$fid P:$pid</p>";
 	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?pid=$pid&amp;fid=$fid&amp;centre=centre\">" . T_("Centre Page") . "</a></p>";
+	print "<p><a href=\"javascript:void(0)\" onclick=\"allDone();\">" . T_("Accept page") . "</a></p>";
 
 	print "<div id='note'><object class='embeddedobject' id='mainobj' data='pagenote.php?pid=$pid&amp;fid=$fid&amp;vid=$vid' standby='" . T_("Loading panel...") . "' type='application/xhtml+xml'><div>" . T_("Error, try with Firefox") . "</div></object></div>";
 	
