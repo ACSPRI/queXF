@@ -41,7 +41,7 @@ if (isset($_FILES['form']))
 	$tmp = tempnam(TEMPORARY_DIRECTORY, "FORM");
 
 	//use ghostscript to convert to PNG
-	exec(GS_BIN . " -sDEVICE=$type -r300 -sOutputFile=$tmp%d.png -dNOPAUSE -dBATCH $filename");
+	exec(GS_BIN . " -sDEVICE=$type -r300 -sOutputFile=\"$tmp\"%d.png -dNOPAUSE -dBATCH \"$filename\"");
 }
 
 

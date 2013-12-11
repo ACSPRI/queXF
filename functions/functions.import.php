@@ -137,7 +137,7 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 	//print "Creating PNG files<br/>";
 
 	//use ghostscript to convert to PNG
-	exec(GS_BIN . " -sDEVICE=$type -r300 -sOutputFile=$tmp%d.png -dNOPAUSE -dBATCH $filename");
+	exec(GS_BIN . " -sDEVICE=$type -r300 -sOutputFile=\"$tmp\"%d.png -dNOPAUSE -dBATCH \"$filename\"");
 	//print("gs -sDEVICE=pngmono -r300 -sOutputFile=$tmp%d.png -dNOPAUSE -dBATCH $filename");
 	
 	//print "Creating PNG files<br/>";
@@ -669,7 +669,7 @@ function import($filename,$description = false)
 	$tmp = tempnam(TEMPORARY_DIRECTORY, "FORM");
 	
 	//use ghostscript to convert to individual PNG pages
-	exec(GS_BIN . " -sDEVICE=pngmono -r300 -sOutputFile=$tmp%d.png -dNOPAUSE -dBATCH \"$filename\"");
+	exec(GS_BIN . " -sDEVICE=pngmono -r300 -sOutputFile=\"$tmp\"%d.png -dNOPAUSE -dBATCH \"$filename\"");
 
 	//$qid = 1;
 
