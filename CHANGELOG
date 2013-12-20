@@ -1,3 +1,9 @@
+queXF 1.13.6 - Changes since queXF 1.13.5
+
+*Fixed Bug: lp:1248647 - problem with temp dir that includes spaces
+*New feature: Added "Accept page" function to accept what is currently on this page without verifiying everything one by one
+*Translations: Updated from Launchpad. Thanks to everyone who contributed!
+
 queXF 1.13.5 - Changes since queXF 1.13.4
 
 *New feature: Added remain to verify status by questionnaire
