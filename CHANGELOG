@@ -1,3 +1,8 @@
+queXF 1.14.0 - Changes since queXF 1.13.6
+
+*New Feature: Page edges detection validated and corrected if in error see: https://blueprints.launchpad.net/quexf/+spec/page-alignment-improvements
+*Added DEBUG definition for additional output
+
 queXF 1.13.6 - Changes since queXF 1.13.5
 
 *Fixed Bug: lp:1248647 - problem with temp dir that includes spaces
