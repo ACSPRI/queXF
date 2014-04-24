@@ -162,6 +162,9 @@ if (!defined('LABEL_WIDTH')) define('LABEL_WIDTH', 85);
 if (!defined('VALUE_HEIGHT')) define('VALUE_HEIGHT', 15);
 if (!defined('VALUE_WIDTH')) define('VALUE_WIDTH', 15);
 
+//Debugging
+if (!defined('DEBUG')) define('DEBUG', false);
+
 
 
 

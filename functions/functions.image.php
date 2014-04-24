@@ -24,6 +24,45 @@
 
 include_once(dirname(__FILE__).'/../config.inc.php');
 
+/**
+ * Calculate the variance and mean of values in an array
+ *
+ * Using the incremental algorithm specified here: https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance
+ *
+ * @param array $array An array of values
+ * @return array The variance and mean of the values
+ */
+function variance_mean($array)
+{
+  $n = $mean = $M2 = 0;
+
+  foreach($array as $x)
+  {
+    $n++;
+    $delta = $x - $mean;
+    $mean = $mean + ($delta / $n);
+    $M2 = $M2 + $delta * ($x - $mean);
+  }
+
+  $variance = $M2/($n-1);
+
+  return array($variance,$mean);
+}
+
+/**
+ * Calculate the distance between two points on a plane
+ * (Pythagorean theorem)
+ *
+ * @param float $x1
+ * @param float $y1
+ * @param float $x2
+ * @param float $y2
+ * @return float The distance
+ */
+function distance_plane($x1,$y1,$x2,$y2)
+{
+    return sqrt(pow(($x2 - $x1),2) + pow(($y2 - $y1),2));
+}
 
 /**
  * Integer division
@@ -108,6 +147,126 @@ function is_blank_page($image,$page)
 }
 
 
+/**
+ * Determine if any of the page edges appear incorrect
+ * by checking each corners rotation against the average
+ *
+ * If one looks abnormal, correct it by comparing it with the
+ * expected edge length from the original page
+ *
+ * Will need to be run more than once if multiple edges are incorrect
+ *
+ * @param array $offset The edges as detected
+ * @param array $page The expected page dimensions
+ * @return array The corrected offset
+ */
+
+function validate_offset($offset,$page)
+{
+  //return all rotation values
+  $rotate = calcrotate($offset,true);
+
+  //calculate the variance and mean of the rotation
+  $vm = variance_mean($rotate);
+
+  if (DEBUG) print "validate_offset - pid:{$page['pid']} variance:{$vm[0]}";
+
+  if ($vm[0] > 0.00003)
+  {
+    //if the variance in the rotation is greater than 0.00003
+    //it is likely one of the corners was misdetected
+
+    //find the rotated edge with the greatest difference from the mean
+    $mean = $vm[1];
+
+    $diff = 0;
+    $rdiff = 0;
+    $index = NULL;
+    foreach($rotate as $key => $val)
+    {
+      if (abs($val - $mean) > $diff)
+      {
+        $diff = abs($val - $mean);
+        $rdiff = $val - $mean;
+        $index = $key;
+      }
+    }
+
+    //index 0=top, 1=bottom, 2=left, 3=right
+
+    //Now find the edge with the biggest length difference from the original
+    //
+    //start with finding the original edge lengths
+    $edgesoriginal = array();
+    $edgesoriginal[0] = distance_plane($page['tlx'],$page['tly'],$page['trx'],$page['try']);
+    $edgesoriginal[1] = distance_plane($page['blx'],$page['bly'],$page['brx'],$page['bry']);
+    $edgesoriginal[2] = distance_plane($page['tlx'],$page['tly'],$page['blx'],$page['bly']);
+    $edgesoriginal[3] = distance_plane($page['trx'],$page['try'],$page['brx'],$page['bry']);
+
+    //Edge lengths based on current offset
+    $edgesnow = array();
+    $edgesnow[0] = distance_plane($offset[0],$offset[1],$offset[2],$offset[3]);
+    $edgesnow[1] = distance_plane($offset[4],$offset[5],$offset[6],$offset[7]);
+    $edgesnow[2] = distance_plane($offset[0],$offset[1],$offset[4],$offset[5]);
+    $edgesnow[3] = distance_plane($offset[2],$offset[3],$offset[6],$offset[7]);
+
+    //calculate differences in edge lengths from original
+    $diff = 0;
+    $ddiff = 0;
+    $dindex= NULL;
+    foreach($edgesnow as $key => $val)
+    {
+      if (abs(($val - $edgesoriginal[$key])) > $diff)
+      {
+        $diff = abs(($val - $edgesoriginal[$key]));
+        $dindex = $key;
+        $ddiff = $val - $edgesoriginal[$key];
+      }
+    }
+
+    //Choose the edge to correct based on the index (the corner with the most abnormal rotation)
+    //and the dindex (the edge with the most abnormal length)
+    //Then correct it by adjusting the length to be the expected length
+    //NOTE: TODO: This assumes the image scale is static (1) - this should be adjusted to take account of image scale
+
+    if (DEBUG) print " index:$index dindex:$dindex ddiff:$ddiff";
+
+    if ($index == 2 && $dindex == 0) //tlx, offset 0
+    {
+      $offset[0] += $ddiff;
+    }
+    else if ($index == 0 && $dindex == 2) //tly, offset 1
+    {
+      $offset[1] += $ddiff;
+    }
+    else if ($index == 3 && $dindex == 0) //trx, offset 2
+    {
+      $offset[2] -= $ddiff;
+    }
+    else if ($index == 0 && $dindex == 3) //try, offset 3
+    {
+      $offset[3] += $ddiff;
+    }
+    else if ($index == 2 && $dindex == 1) //blx, offset 4
+    {
+      $offset[4] += $ddiff;
+    }
+    else if ($index == 1 && $dindex == 2) //bly, offset 5
+    {
+      $offset[5] -= $ddiff;
+    }
+    else if ($index == 3 && $dindex == 1) //brx, offset 6
+    {
+      $offset[6] -= $ddiff;
+    }
+    else if ($index == 1 && $dindex == 3) //bry, offset 7
+    {
+      $offset[7] -= $ddiff;
+    }
+
+  } 
+  return $offset; 
+}
 
 //calculate the offset of an image given DCARF standard corner lines
 //and original page id
@@ -241,7 +400,12 @@ function detecttransforms($image,$page)
 
 	$page = sanitizepage($page,$width,$height);
 
-	$offset = offset($image,false,0,$page);
+  $offset = offset($image,false,0,$page);
+
+  //correct offset if possible (multiple runs to correct for possible multiple errors)
+  $offset = validate_offset($offset,$page);
+  $offset = validate_offset($offset,$page);
+  $offset = validate_offset($offset,$page);
 
 	if (!in_array("",$offset)) //all edges detected
 	{
@@ -330,10 +494,13 @@ function calccentroid($a)
 }
 
 /**
-* Calculate the amount of rotation of an image based on the corner lines
-*
-*/
-function calcrotate($a)
+ * Calculate the amount of rotation of an image based on the corner lines
+ *
+ * @param array $a The array of detected corner lines
+ * @param bool $ret Whether to return the angles as detected (true) or the average (false)
+ * @return array|float The array of angles or the average
+ */
+function calcrotate($a,$ret = false)
 {
 	//the angle at the top
 	// remember: sohcahtoa
@@ -366,6 +533,9 @@ function calcrotate($a)
 		$rightangle = atan(($a[2] - $a[6]) / ($a[3] - $a[7]));
 		$count++;
 	}
+
+  if ($ret)
+    return array($topangle,$bottomangle,$leftangle,$rightangle);
 
 	if ($count == 0) 
 		return 0;
