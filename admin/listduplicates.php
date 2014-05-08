@@ -28,9 +28,45 @@ include_once("../db.inc.php");
 include("../functions/functions.database.php");
 include("../functions/functions.xhtml.php");
 
+if (isset($_POST['submit']))
+{
+  foreach($_POST as $key => $val)
+  {
+    if (substr($key,0,4) == "fid_")
+    {
+      $fid = intval(substr($key,4));
+
+      $sql = "DELETE FROM formboxes
+              WHERE fid = '$fid'";
+
+      $db->Execute($sql);
+
+      $sql = "DELETE FROM formboxverifychar
+              WHERE fid = '$fid' AND vid = 0";
+
+      $db->Execute($sql);
+
+      $sql = "DELETE FROM formboxverifytext
+              WHERE fid = '$fid' AND vid = 0";
+      
+      $db->Execute($sql);
+
+      $sql = "DELETE FROM formpages
+              WHERE fid = '$fid'";
+
+      $db->Execute($sql);
+
+      $sql = "DELETE FROM forms
+              WHERE fid = '$fid'";
+
+      $db->Execute($sql);
+    }
+  }
+}
+
 xhtml_head(T_("Listing of duplicate forms"),true,array("../css/table.css"));
 
-$sql = "SELECT q.description, f.fid, f.pfid
+$sql = "SELECT q.description, f.fid, f.pfid, f.assigned_vid, f.done, CASE WHEN f.assigned_vid IS NULL AND f.done = 0 THEN CONCAT('<input type=\'checkbox\' name=\'fid_',f.fid,'\'/>') ELSE '" . T_("Already verified") . "' END as deleteme
 	FROM forms as f
 	LEFT JOIN questionnaires as q on (f.qid = q.qid)
 	WHERE f.pfid
@@ -46,8 +82,42 @@ $fs = $db->GetAll($sql);
 
 print "<h1>" . T_("Duplicate form listing") . "</h1><p>" . T_("Forms with the same PFID are duplicates") . "</p>";
 
-xhtml_table($fs,array('description','fid','pfid'),array(T_("Questionnaire"),T_("Formid"),T_("PFID")));
+//if form not assigned or done, allow for it's deletion
+//automatically select the first form within a pfid that hasn't been assigned or verified
+//
 
+if (!empty($fs))
+{
+  $pfid = $fs[0]['pfid'];
+  $matchcount = 0;
+  $nvcount = 0;
+  
+  for ($i = 0; $i < count($fs); $i++)
+  {
+    $r = $fs[$i];
+    if ($pfid == $r['pfid'])
+    {
+      if ($r['done'] == 0 && empty($r['assigned_vid']) &&  $nvcount == 0)
+      {
+        $fs[$i]['deleteme'] = "<input type='checkbox' checked='checked' name='fid_{$r['fid']}'/>";
+        $nvcount++;
+      }
+      $matchcount++;
+    }
+    else
+    {
+      $matchcount = 0;
+      $nvcount = 0;
+    }
+    $pfid = $r['pfid'];
+  }
+
+}
+
+print "<form action='' method='post'>";
+xhtml_table($fs,array('description','fid','pfid','deleteme'),array(T_("Questionnaire"),T_("Formid"),T_("PFID"),T_("Delete")));
+print "<input type='submit' id='submit' name='submit' value='" . T_("Delete selected forms") . "'/>";
+print "</form>";
 
 xhtml_foot();
 
