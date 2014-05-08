@@ -89,26 +89,21 @@ print "<h1>" . T_("Duplicate form listing") . "</h1><p>" . T_("Forms with the sa
 if (!empty($fs))
 {
   $pfid = $fs[0]['pfid'];
-  $matchcount = 0;
   $nvcount = 0;
-  
+
   for ($i = 0; $i < count($fs); $i++)
   {
     $r = $fs[$i];
-    if ($pfid == $r['pfid'])
-    {
-      if ($r['done'] == 0 && empty($r['assigned_vid']) &&  $nvcount == 0)
-      {
-        $fs[$i]['deleteme'] = "<input type='checkbox' checked='checked' name='fid_{$r['fid']}'/>";
-        $nvcount++;
-      }
-      $matchcount++;
-    }
-    else
-    {
-      $matchcount = 0;
+    
+    if ($pfid != $r['pfid'])
       $nvcount = 0;
+   
+    if ($r['done'] == 0 && empty($r['assigned_vid']) &&  $nvcount == 0)
+    {
+      $fs[$i]['deleteme'] = "<input type='checkbox' checked='checked' name='fid_{$r['fid']}'/>";
+      $nvcount++;
     }
+    
     $pfid = $r['pfid'];
   }
 

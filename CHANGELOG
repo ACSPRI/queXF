@@ -1,3 +1,8 @@
+queXF 1.15.0 - Changes since 1.14.0
+
+*Fixed Bug: lp:1316861 Duplicate forms can not be easily deleted
+*New feature: Added single choice automatic verification
+
 queXF 1.14.0 - Changes since queXF 1.13.6
 
 *New Feature: Page edges detection validated and corrected if in error see: https://blueprints.launchpad.net/quexf/+spec/page-alignment-improvements
