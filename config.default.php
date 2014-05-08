@@ -165,7 +165,8 @@ if (!defined('VALUE_WIDTH')) define('VALUE_WIDTH', 15);
 //Debugging
 if (!defined('DEBUG')) define('DEBUG', false);
 
-
+//Automatic verification for single choice questions where there is at least 2 choices
+if (!defined('SINGLE_CHOICE_AUTOMATIC_VERIFICATION')) define('SINGLE_CHOICE_AUTOMATIC_VERIFICATION', true);
 
 
 ?>

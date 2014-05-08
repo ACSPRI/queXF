@@ -393,10 +393,11 @@ $description = $qid_desc['description'];
 if (!isset($_SESSION['boxes'])) {
 	//nothing yet known about this form
 	
-	$sql = "SELECT b.bid as bid, b.tlx as tlx, b.tly as tly, b.brx as brx, b.bry as bry, b.pid as pid, bg.btid as btid, b.bgid as bgid, $fid as fid, bg.sortorder as sortorder, c.val as val
+	$sql = "SELECT b.bid as bid, b.tlx as tlx, b.tly as tly, b.brx as brx, b.bry as bry, b.pid as pid, bg.btid as btid, b.bgid as bgid, $fid as fid, bg.sortorder as sortorder, fb.filled, c.val as val
 		FROM boxes AS b
 		JOIN boxgroupstype as bg ON (bg.bgid = b.bgid AND bg.btid > 0 AND bg.btid != 5)
-		JOIN pages as p ON (p.pid = b.pid AND p.qid = '$qid')
+    JOIN pages as p ON (p.pid = b.pid AND p.qid = '$qid')
+    JOIN formboxes as fb ON (fb.bid = b.bid AND fb.fid = '$fid')
 		LEFT JOIN formboxverifychar AS c ON (c.fid = '$fid' AND c.vid = 0 AND c.bid = b.bid)
 		ORDER BY bg.sortorder ASC";
 
@@ -442,6 +443,54 @@ if (!isset($_SESSION['boxes'])) {
 	$_SESSION['pages'] = $c;
 	$_SESSION['assigned'] = time();
 
+
+  if (SINGLE_CHOICE_AUTOMATIC_VERIFICATION)
+  {
+  
+    //see if any boxes should be automatically marked as verified
+  
+    //search for single choice boxes (btid == 1), within box groups where > 1 box is available
+    //if there is one and only one box within the filled range, and val is set as 1, then mark as done
+  
+    $tmpt = current($a);
+    //set to first bgid
+    $tmpbgid = $tmpt['bgid'];
+    $tmpgroup = array();
+    foreach($_SESSION['boxes'] as $key => $val)
+    {
+      if ($val['bgid'] != $tmpbgid)
+      { 
+        //check the number of boxes in this group that fall within the restrictions
+        $within = 0;
+        $withinkey = 0;
+        $withincount = 0;
+        foreach($tmpgroup as $tkey => $tval)
+        {
+          if ($tval['filled'] < SINGLE_CHOICE_MIN_FILLED && $tval['filled'] > SINGLE_CHOICE_MAX_FILLED)
+          {
+            $within++;
+            $withinkey = $tkey;
+          }
+          $withincount++;
+        }
+  
+        //if one box within and also this is the selected box - mark this box group as done
+        if ($withincount > 1 && $within == 1 && $_SESSION['boxes'][$withinkey]['val'] == 1)
+        {
+          $_SESSION['boxgroups'][$_SESSION['boxes'][$withinkey]['bgid']]['done'] = 1;
+        }
+  
+        $tmpbgid = $val['bgid'];
+        $tmpgroup = array();
+      }
+  
+      //only for single choice boxes
+      if ($val['btid'] == 1)
+      {
+        $tmpgroup[$key] = $val;
+      }
+    }
+  }
 }
 
 
