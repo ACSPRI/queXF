@@ -98,7 +98,14 @@ else if (isset($_GET['pid']))
 
 		if (empty($row)) exit;
 
-		$im = imagecreatefromstring($row['image']);
+    if ($row['filename'] == '')
+    {
+      $im = imagecreatefromstring($row['image']);
+    }
+    else
+    {
+      $im = imagecreatefrompng(IMAGES_DIRECTORY . $row['filename']);
+    }
 
 		if (isset($_GET['bid']))
 		{

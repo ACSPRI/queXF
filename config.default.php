@@ -168,5 +168,14 @@ if (!defined('DEBUG')) define('DEBUG', false);
 //Automatic verification for single choice questions where there is at least 2 choices
 if (!defined('SINGLE_CHOICE_AUTOMATIC_VERIFICATION')) define('SINGLE_CHOICE_AUTOMATIC_VERIFICATION', true);
 
+//Store images in database by default (otherwise files in images directory)
+//Note this will only apply to new imports - old imports will remain either as 
+//files or in the database - but queXF will be able to read them regardless
+if (!defined('IMAGES_IN_DATABASE')) define('IMAGES_IN_DATABASE', true);
+if (!defined('IMAGES_DIRECTORY')) define('IMAGES_DIRECTORY', dirname(__FILE__) . '/images/');
+
+
+
+
 
 ?>

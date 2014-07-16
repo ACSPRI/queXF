@@ -99,8 +99,15 @@ if (isset($_POST['submit']))
 					WHERE pid = $pid and fid = $fid";
 		
 				$row = $db->GetRow($sql);
-		
-				$im = imagecreatefromstring($row['image']);
+      
+        if ($row['filename'] == '')
+        {
+          $im = imagecreatefromstring($row['image']);
+        }
+        else
+        {
+          $im = imagecreatefrompng(IMAGES_DIRECTORY . $row['filename']);
+        }
 			}
 
 			$image = st_ocr($im,$box);

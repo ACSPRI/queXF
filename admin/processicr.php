@@ -91,7 +91,14 @@ foreach($rs as $o)
 
         $row = $db->GetRow($sql);
 
-        $im = imagecreatefromstring($row['image']);
+        if ($row['filename'] == '')
+        {
+          $im = imagecreatefromstring($row['image']);
+        }
+        else
+        {
+          $im = imagecreatefrompng(IMAGES_DIRECTORY . $row['filename']);
+        }
 
         $row['width'] = imagesx($im);
         $row['height'] = imagesy($im);

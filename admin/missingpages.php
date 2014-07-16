@@ -80,6 +80,19 @@ if (isset($_GET['npid']) && isset($_GET['mpid']) && isset($_GET['fid']))
 				//calc transforms
 				$transforms = detecttransforms($image,$page);
 
+        $imagefilename = "";
+        $imagedata = "":
+
+        if (IMAGES_IN_DATABASE)
+        {
+          $imagedata = addslashes($im['image']);
+        }
+        else
+        {
+          $imagefilename = $fid . "-" . $page['pid'] . ".png";
+          imagepng($image,IMAGES_DIRECTORY . $imagefilename);
+        }
+
 				//save image to db including offset
 				$sql = "INSERT INTO formpages
 					(fid,pid,filename,image";
@@ -87,7 +100,7 @@ if (isset($_GET['npid']) && isset($_GET['mpid']) && isset($_GET['fid']))
 				foreach($transforms as $key => $val)
 					$sql .= ",$key";
 					$sql .=	")
-					VALUES ('$fid','{$page["pid"]}','','" . addslashes($im['image']) . "'";
+					VALUES ('$fid','{$page["pid"]}','$imagefilename','" . $imagedata . "'";
 
 				foreach($transforms as $key => $val)
 					$sql .= ",'$val'";

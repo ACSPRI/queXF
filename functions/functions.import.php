@@ -832,7 +832,20 @@ function import($filename,$description = false)
 			
 							//calc transforms
 							$transforms = detecttransforms($image,$page);
-	
+
+              $imagedata = '';
+              $imagefilename = '';
+
+              if (IMAGES_IN_DATABASE)
+              {
+                $imagedata = addslashes($data);
+              }
+              else
+              {
+                $imagefilename = $fid . "-" . $page['pid'] . ".png";
+                imagepng($image,IMAGES_DIRECTORY . $imagefilename);
+              }
+
 							//save image to db including offset
 							$sql = "INSERT INTO formpages
 								(fid,pid,filename,image";
@@ -841,7 +854,7 @@ function import($filename,$description = false)
 								$sql .= ",$key";
 	
 							$sql .=	")
-								VALUES ('$fid','{$page["pid"]}','','" . addslashes($data) . "'";
+								VALUES ('$fid','{$page["pid"]}','$imagefilename','" . $imagedata . "'";
 	
 							foreach($transforms as $key => $val)
 								$sql .= ",'$val'";
@@ -884,6 +897,7 @@ function import($filename,$description = false)
 	
 				unset($data);
 				unset($image);
+				unset($imagedata);
 				unset($barcode);
 			}	
 			$n++;
