@@ -208,14 +208,16 @@ if (isset($_POST['complete']) && isset($_SESSION['boxes']))
 		$sql = "";
 		if ($box['btid'] == 1 || $box['btid'] == 2)
 		{
-			if ($box['val'] > 0) $box['val'] = 1; else $box['val'] = 0;
-			$sql = "INSERT INTO formboxverifychar (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid','{$box['val']}')";
+      if ($box['val'] > 0)
+      {
+  			$sql = "INSERT INTO formboxverifychar (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid','1')";
+      }
 		}
 		if ($box['btid'] == 3 || $box['btid'] == 4)
 		{
 			if ($box['val'] == "" || $box['val'] == " ")
 			{
-				$sql = "INSERT INTO formboxverifychar (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid',NULL)";
+				//$sql = "INSERT INTO formboxverifychar (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid',NULL)";
 			}else
 			{
 				$bval = $db->qstr($box['val']);
@@ -226,15 +228,18 @@ if (isset($_POST['complete']) && isset($_SESSION['boxes']))
 		{
 			if ($box['val'] == "" || $box['val'] == " ")
 			{
-				$sql = "INSERT INTO formboxverifytext (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid',NULL)";
+				//$sql = "INSERT INTO formboxverifytext (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid',NULL)";
 			}else
 			{
 				$bval = $db->qstr($box['val']);
 				$sql = "INSERT INTO formboxverifytext (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid',$bval)";
 			}
 
-		}
-		$db->Execute($sql);
+    }
+    if ($sql != "")
+    {
+  		$db->Execute($sql);
+    }
 		//print "$sql</br>";
 	}
 

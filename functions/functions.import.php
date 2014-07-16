@@ -345,23 +345,27 @@ function processpage($pid,$fid,$image,$transforms,$qid)
 function charbox($bid,$fid,$val)
 {
 	global $db;
-	$q = "NULL";
-	if ($val != "")  $q = "'$val'";
-	$db->Query("
-		INSERT INTO
-		formboxverifychar (vid,bid,fid,val) 
-		VALUES ('0','$bid','$fid',$q)");
+  if ($val != "")
+  { 
+    $q = "'$val'";
+  	$db->Query("
+  		INSERT INTO
+  		formboxverifychar (vid,bid,fid,val) 
+  		VALUES ('0','$bid','$fid',$q)");
+  }
 }
 
 function textbox($bid,$fid,$val)
 {
 	global $db;
-	$q = "NULL";
-	if ($val != "")  $q = "'$val'";
-	$db->Query("
-		INSERT INTO
-		formboxverifytext (vid,bid,fid,val) 
-		VALUES ('0','$bid','$fid',$q)");
+  if ($val != "")
+  {
+    $q = "'$val'";
+  	$db->Query("
+  		INSERT INTO
+  		formboxverifytext (vid,bid,fid,val) 
+  		VALUES ('0','$bid','$fid',$q)");
+  }
 }
 
 
@@ -392,13 +396,12 @@ function charboxes($pid,$image,$fid,$transforms,$ocrqid)
 			include_once("functions.ocr.php");
 			$ocr = ocr(crop($image,applytransforms($i,$transforms)),3,$ocrqid);
 			//print "bid: {$i['bid']} ocr: " . $ocr. "<br/>";
-			if (strlen($ocr) != 1) $ocr = " ";
-		}else
-		{
-			$ocr = " ";
-		}
-		//print "{$i['bid']} - :$ocr:<br/>";
-		charbox($i['bid'],$fid,$ocr);
+      if (strlen($ocr) == 1)
+      {
+		    charbox($i['bid'],$fid,$ocr);
+      }
+    }
+    //print "{$i['bid']} - :$ocr:<br/>";
 	}
 
 }
@@ -428,13 +431,12 @@ function numberboxes($pid,$image,$fid,$transforms,$ocrqid)
 			include_once("functions.ocr.php");
 			$ocr = ocr(crop($image,applytransforms($i,$transforms)),4,$ocrqid);
 			//print "bid: {$i['bid']} ocr: " . $ocr. "<br/>";
-			if (strlen($ocr) != 1) $ocr = " ";
-		}else
-		{
-			$ocr = " ";
-		}
-		//print "{$i['bid']} - :$ocr:<br/>";
-		charbox($i['bid'],$fid,$ocr);
+      if (strlen($ocr) == 1) 
+      {
+        charbox($i['bid'],$fid,$ocr);
+      }
+    }
+    //print "{$i['bid']} - :$ocr:<br/>";
 	}
 
 }
@@ -565,11 +567,6 @@ function singlechoiceguess($pid,$fid)
 			//print "$bid - filled<br/>";
 			charbox($bid,$fid,1);
 		}
-		else
-		{
-			//print "$bid - empty<br/>";
-			charbox($bid,$fid,0);
-		}
 	}
 
 }
@@ -602,11 +599,6 @@ function multiplechoiceguess($pid,$fid)
 		{
 			//print "multi: $bid - filled<br/>";
 			charbox($bid,$fid,1);
-		}
-		else
-		{
-			//print "multi: $bid - empty<br/>";
-			charbox($bid,$fid,0);
 		}
 	}
 
