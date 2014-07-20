@@ -403,7 +403,7 @@ if (!isset($_SESSION['boxes'])) {
 		FROM boxes AS b
 		JOIN boxgroupstype as bg ON (bg.bgid = b.bgid AND bg.btid > 0 AND bg.btid != 5)
     JOIN pages as p ON (p.pid = b.pid AND p.qid = '$qid')
-    JOIN formboxes as fb ON (fb.bid = b.bid AND fb.fid = '$fid')
+    LEFT JOIN formboxes as fb ON (fb.bid = b.bid AND fb.fid = '$fid')
 		LEFT JOIN formboxverifychar AS c ON (c.fid = '$fid' AND c.vid = 0 AND c.bid = b.bid)
 		ORDER BY bg.sortorder ASC";
 
