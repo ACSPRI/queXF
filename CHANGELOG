@@ -137,6 +137,10 @@ WHERE f.fid = w.fid;
 
 DROP TABLE `worklog` ;
 
+DELETE FROM `formboxverifychar` WHERE val IS NULL or val = ' ' or val = '';
+
+DELETE FROM `formboxverifytext` WHERE val IS NULL or val = ' ' or val = '';
+
 
 
 

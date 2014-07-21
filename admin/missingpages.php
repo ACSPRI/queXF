@@ -81,7 +81,7 @@ if (isset($_GET['npid']) && isset($_GET['mpid']) && isset($_GET['fid']))
 				$transforms = detecttransforms($image,$page);
 
         $imagefilename = "";
-        $imagedata = "":
+        $imagedata = "";
 
         if (IMAGES_IN_DATABASE)
         {

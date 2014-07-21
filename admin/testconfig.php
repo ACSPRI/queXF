@@ -78,6 +78,16 @@ if (is_file($gsbin)) {
 	$fail = true;
 }
 
+if (is_writable(IMAGES_DIRECTORY))
+{
+  print "<p>" . T_("Images directory writeable") . "</p>";
+}
+else
+{
+  print "<p>" . T_("Images directory NOT writeable") . " - " . IMAGES_DIRECTORY .  "</p>";
+  $fail = true;
+}
+
 /*
 if (OCR_ENABLED)
 {
