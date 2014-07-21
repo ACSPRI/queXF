@@ -33,7 +33,9 @@ ALTER TABLE `formboxverifychar` DROP PRIMARY KEY;
 
 ALTER TABLE `formboxverifychar` ADD `fbvcid` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST ;
 
-ALTER TABLE `formboxverifychar` ADD INDEX ( `bid` , `fid` ) ;
+ALTER TABLE `formboxverifychar` ADD INDEX ( `bid` );
+
+ALTER TABLE `formboxverifychar` ADD INDEX ( `fid` );
 
 ALTER TABLE `formboxverifychar` ADD INDEX ( `vid` ) ;
 
@@ -45,7 +47,9 @@ ALTER TABLE `formboxverifytext` DROP PRIMARY KEY;
 
 ALTER TABLE `formboxverifytext` ADD `fbvtid` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST ;
 
-ALTER TABLE `formboxverifytext` ADD INDEX ( `bid` , `fid` ) ;
+ALTER TABLE `formboxverifytext` ADD INDEX ( `bid` );
+
+ALTER TABLE `formboxverifytext` ADD INDEX ( `fid` )
 
 ALTER TABLE `formboxverifytext` ADD INDEX ( `vid` ) ;
 
@@ -140,7 +144,6 @@ SET f.assigned = w.assigned, f.completed = w.completed
 WHERE f.fid = w.fid;
 
 DROP TABLE `worklog` ;
-
 
 
 
