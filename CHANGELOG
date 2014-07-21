@@ -5,21 +5,25 @@ CHANGE `pid` `pid` INT UNSIGNED NOT NULL ,
 CHANGE `bgid` `bgid` INT UNSIGNED NOT NULL;
 
 ALTER TABLE `boxgroupstype` CHANGE `bgid` `bgid` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
-CHANGE `btid` `btid` TINYINT( 3 ) UNSIGNED NOT NULL ,
-CHANGE `width` `width` INT( 11 ) UNSIGNED NOT NULL ,
+CHANGE `btid` `btid` TINYINT UNSIGNED NOT NULL ,
+CHANGE `width` `width` INT UNSIGNED NOT NULL ,
 CHANGE `pid` `pid` INT UNSIGNED NOT NULL ,
-CHANGE `sid` `sid` INT( 11 ) UNSIGNED NULL DEFAULT NULL ;
+CHANGE `sid` `sid` INT UNSIGNED NULL DEFAULT NULL ;
 
-ALTER TABLE `boxgrouptypes` CHANGE `btid` `btid` TINYINT( 4 ) UNSIGNED NOT NULL ;
+ALTER TABLE `boxgrouptypes` CHANGE `btid` `btid` TINYINT UNSIGNED NOT NULL ;
 
-ALTER TABLE `clientquestionnaire` CHANGE `cid` `cid` INT( 20 ) UNSIGNED NOT NULL ,
-CHANGE `qid` `qid` INT( 20 ) UNSIGNED NOT NULL ;
+ALTER TABLE `clientquestionnaire` CHANGE `cid` `cid` INT UNSIGNED NOT NULL ,
+CHANGE `qid` `qid` INT UNSIGNED NOT NULL ;
 
-ALTER TABLE `clients` CHANGE `cid` `cid` INT( 20 ) UNSIGNED NOT NULL AUTO_INCREMENT ;
+ALTER TABLE `clients` CHANGE `cid` `cid` INT UNSIGNED NOT NULL AUTO_INCREMENT ;
 
 ALTER TABLE `formboxes` CHANGE `bid` `bid` INT UNSIGNED NOT NULL ,
 CHANGE `fid` `fid` INT UNSIGNED NOT NULL ,
 CHANGE `filled` `filled` FLOAT NOT NULL ;
+
+DELETE FROM `formboxverifychar` WHERE val IS NULL or val = ' ' or val = '';
+
+DELETE FROM `formboxverifytext` WHERE val IS NULL or val = ' ' or val = '';
 
 ALTER TABLE `formboxverifychar` CHANGE `vid` `vid` SMALLINT UNSIGNED NOT NULL ,
 CHANGE `bid` `bid` INT UNSIGNED NOT NULL ,
@@ -45,23 +49,23 @@ ALTER TABLE `formboxverifytext` ADD INDEX ( `bid` , `fid` ) ;
 
 ALTER TABLE `formboxverifytext` ADD INDEX ( `vid` ) ;
 
-ALTER TABLE `formpagenote` CHANGE `fpnid` `fpnid` INT( 11 ) UNSIGNED NOT NULL AUTO_INCREMENT ,
+ALTER TABLE `formpagenote` CHANGE `fpnid` `fpnid` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
 CHANGE `fid` `fid` INT UNSIGNED NOT NULL ,
 CHANGE `pid` `pid` INT UNSIGNED NOT NULL ,
 CHANGE `vid` `vid` SMALLINT UNSIGNED NOT NULL ;
 
 ALTER TABLE `formpages` CHANGE `fid` `fid` INT UNSIGNED NOT NULL ,
 CHANGE `pid` `pid` INT UNSIGNED NOT NULL ,
-CHANGE `offx` `offx` SMALLINT( 11 ) NULL DEFAULT NULL COMMENT 'Offset X value',
-CHANGE `offy` `offy` SMALLINT( 11 ) NULL DEFAULT NULL COMMENT 'Offset Y value',
+CHANGE `offx` `offx` SMALLINT NULL DEFAULT NULL COMMENT 'Offset X value',
+CHANGE `offy` `offy` SMALLINT NULL DEFAULT NULL COMMENT 'Offset Y value',
 CHANGE `costheta` `costheta` FLOAT NULL DEFAULT NULL ,
 CHANGE `sintheta` `sintheta` FLOAT NULL DEFAULT NULL ,
 CHANGE `scalex` `scalex` FLOAT NULL DEFAULT NULL ,
 CHANGE `scaley` `scaley` FLOAT NULL DEFAULT NULL ,
 CHANGE `centroidx` `centroidx` FLOAT NULL DEFAULT NULL ,
 CHANGE `centroidy` `centroidy` FLOAT NULL DEFAULT NULL ,
-CHANGE `width` `width` SMALLINT( 11 ) UNSIGNED NOT NULL DEFAULT '0',
-CHANGE `height` `height` SMALLINT( 11 ) UNSIGNED NOT NULL DEFAULT '0';
+CHANGE `width` `width` SMALLINT UNSIGNED NOT NULL DEFAULT '0',
+CHANGE `height` `height` SMALLINT UNSIGNED NOT NULL DEFAULT '0';
 
 ALTER TABLE `formpages` DROP PRIMARY KEY;
 
@@ -77,7 +81,7 @@ CHANGE `qid` `qid` INT UNSIGNED NOT NULL ,
 CHANGE `pfid` `pfid` INT UNSIGNED NULL DEFAULT NULL ,
 CHANGE `assigned_vid` `assigned_vid` SMALLINT UNSIGNED NULL DEFAULT NULL ,
 CHANGE `done` `done` TINYINT( 1 ) UNSIGNED NOT NULL DEFAULT '0',
-CHANGE `rpc_id` `rpc_id` INT( 11 ) UNSIGNED NULL DEFAULT NULL ;
+CHANGE `rpc_id` `rpc_id` INT UNSIGNED NULL DEFAULT NULL ;
 
 ALTER TABLE `forms` ADD `assigned` DATETIME NULL ,
 ADD `completed` DATETIME NULL ;
@@ -85,13 +89,13 @@ ADD `completed` DATETIME NULL ;
 ALTER TABLE `missingpages` CHANGE `mpid` `mpid` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
 CHANGE `fid` `fid` INT UNSIGNED NOT NULL ;
 
-ALTER TABLE `ocrkb` CHANGE `kb` `kb` INT( 11 ) UNSIGNED NOT NULL AUTO_INCREMENT ;
+ALTER TABLE `ocrkb` CHANGE `kb` `kb` INT UNSIGNED NOT NULL AUTO_INCREMENT ;
 
 ALTER TABLE `ocrkbboxgroup` CHANGE `btid` `btid` TINYINT UNSIGNED NOT NULL ,
 CHANGE `kb` `kb` INT UNSIGNED NOT NULL ,
 CHANGE `qid` `qid` INT UNSIGNED NOT NULL ;
 
-ALTER TABLE `ocrkbdata` CHANGE `kb` `kb` INT( 11 ) UNSIGNED NOT NULL ;
+ALTER TABLE `ocrkbdata` CHANGE `kb` `kb` INT UNSIGNED NOT NULL ;
 
 ALTER TABLE `ocrprocess` CHANGE `fid` `fid` INT UNSIGNED NOT NULL ,
 CHANGE `bid` `bid` INT UNSIGNED NOT NULL ,
@@ -122,8 +126,8 @@ CHANGE `process_id` `process_id` INT UNSIGNED NOT NULL ;
 
 ALTER TABLE `questionnaires` CHANGE `qid` `qid` INT UNSIGNED NOT NULL AUTO_INCREMENT ;
 
-ALTER TABLE `sections` CHANGE `sid` `sid` INT( 11 ) UNSIGNED NOT NULL AUTO_INCREMENT ,
-CHANGE `qid` `qid` INT( 11 ) UNSIGNED NOT NULL ;
+ALTER TABLE `sections` CHANGE `sid` `sid` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+CHANGE `qid` `qid` INT UNSIGNED NOT NULL ;
 
 ALTER TABLE `verifierquestionnaire` CHANGE `vid` `vid` SMALLINT UNSIGNED NOT NULL ,
 CHANGE `qid` `qid` INT UNSIGNED NOT NULL ;
@@ -136,10 +140,6 @@ SET f.assigned = w.assigned, f.completed = w.completed
 WHERE f.fid = w.fid;
 
 DROP TABLE `worklog` ;
-
-DELETE FROM `formboxverifychar` WHERE val IS NULL or val = ' ' or val = '';
-
-DELETE FROM `formboxverifytext` WHERE val IS NULL or val = ' ' or val = '';
 
 
 
