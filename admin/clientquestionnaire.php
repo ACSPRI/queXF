@@ -130,7 +130,7 @@ if (isset($_POST['submit']))
 
 $sql = "SELECT qid,description
 	FROM questionnaires
-	ORDER by qid ASC";
+	ORDER by qid DESC";
 
 $questionnaires = $db->GetAll($sql);
 

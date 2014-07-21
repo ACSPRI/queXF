@@ -404,7 +404,8 @@ else
 	//select a questionnaire
         //form to choose a questionnaire/form
         $sql = "SELECT qid,description
-                FROM questionnaires";
+                FROM questionnaires
+                ORDER BY qid DESC";
 
         $qs = $db->GetAll($sql);
 

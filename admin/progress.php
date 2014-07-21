@@ -48,7 +48,7 @@ $sql = "SELECT q.description, f1.c AS done, f2.c AS remain
 	WHERE done =0
 	GROUP BY qid
 	) AS f2 ON ( f2.qid = q.qid )
-	ORDER BY q.qid ASC";
+	ORDER BY q.qid DESC";
 	
 $qs = $db->GetAll($sql);
 

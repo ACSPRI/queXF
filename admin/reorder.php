@@ -39,7 +39,8 @@ function printquestionnaires()
 
 	//print available questionnaires
 	$sql = "SELECT qid,description
-		FROM questionnaires";
+    FROM questionnaires
+    ORDER BY qid DESC";
 	
 	$qs = $db->GetAll($sql);
 

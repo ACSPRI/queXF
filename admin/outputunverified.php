@@ -74,7 +74,7 @@ $sql = "SELECT description,
 		CONCAT('<a href=\"?pspp=', qid, '\">" . T_("PSPP (SPSS)") . "</a>') as pspp,
 		CONCAT('<a href=\"?banding=', qid, '\">" . T_("Banding XML") . "</a>') as banding
 	FROM questionnaires
-	ORDER BY qid ASC";
+	ORDER BY qid DESC";
 
 
 $qs = $db->GetAll($sql);
