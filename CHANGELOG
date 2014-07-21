@@ -1,3 +1,147 @@
+queXF 1.16.0
+
+ALTER TABLE `boxes` CHANGE `bid` `bid` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+CHANGE `pid` `pid` INT UNSIGNED NOT NULL ,
+CHANGE `bgid` `bgid` INT UNSIGNED NOT NULL;
+
+ALTER TABLE `boxgroupstype` CHANGE `bgid` `bgid` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+CHANGE `btid` `btid` TINYINT( 3 ) UNSIGNED NOT NULL ,
+CHANGE `width` `width` INT( 11 ) UNSIGNED NOT NULL ,
+CHANGE `pid` `pid` INT UNSIGNED NOT NULL ,
+CHANGE `sid` `sid` INT( 11 ) UNSIGNED NULL DEFAULT NULL ;
+
+ALTER TABLE `boxgrouptypes` CHANGE `btid` `btid` TINYINT( 4 ) UNSIGNED NOT NULL ;
+
+ALTER TABLE `clientquestionnaire` CHANGE `cid` `cid` INT( 20 ) UNSIGNED NOT NULL ,
+CHANGE `qid` `qid` INT( 20 ) UNSIGNED NOT NULL ;
+
+ALTER TABLE `clients` CHANGE `cid` `cid` INT( 20 ) UNSIGNED NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `formboxes` CHANGE `bid` `bid` INT UNSIGNED NOT NULL ,
+CHANGE `fid` `fid` INT UNSIGNED NOT NULL ,
+CHANGE `filled` `filled` FLOAT NOT NULL ;
+
+ALTER TABLE `formboxverifychar` CHANGE `vid` `vid` SMALLINT UNSIGNED NOT NULL ,
+CHANGE `bid` `bid` INT UNSIGNED NOT NULL ,
+CHANGE `fid` `fid` INT UNSIGNED NOT NULL;
+
+ALTER TABLE `formboxverifychar` DROP PRIMARY KEY;
+
+ALTER TABLE `formboxverifychar` ADD `fbvcid` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST ;
+
+ALTER TABLE `formboxverifychar` ADD INDEX ( `bid` , `fid` ) ;
+
+ALTER TABLE `formboxverifychar` ADD INDEX ( `vid` ) ;
+
+ALTER TABLE `formboxverifytext` CHANGE `vid` `vid` SMALLINT UNSIGNED NOT NULL ,
+CHANGE `bid` `bid` INT UNSIGNED NOT NULL ,
+CHANGE `fid` `fid` INT UNSIGNED NOT NULL ;
+
+ALTER TABLE `formboxverifytext` DROP PRIMARY KEY;
+
+ALTER TABLE `formboxverifytext` ADD `fbvtid` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST ;
+
+ALTER TABLE `formboxverifytext` ADD INDEX ( `bid` , `fid` ) ;
+
+ALTER TABLE `formboxverifytext` ADD INDEX ( `vid` ) ;
+
+ALTER TABLE `formpagenote` CHANGE `fpnid` `fpnid` INT( 11 ) UNSIGNED NOT NULL AUTO_INCREMENT ,
+CHANGE `fid` `fid` INT UNSIGNED NOT NULL ,
+CHANGE `pid` `pid` INT UNSIGNED NOT NULL ,
+CHANGE `vid` `vid` SMALLINT UNSIGNED NOT NULL ;
+
+ALTER TABLE `formpages` CHANGE `fid` `fid` INT UNSIGNED NOT NULL ,
+CHANGE `pid` `pid` INT UNSIGNED NOT NULL ,
+CHANGE `offx` `offx` SMALLINT( 11 ) NULL DEFAULT NULL COMMENT 'Offset X value',
+CHANGE `offy` `offy` SMALLINT( 11 ) NULL DEFAULT NULL COMMENT 'Offset Y value',
+CHANGE `costheta` `costheta` FLOAT NULL DEFAULT NULL ,
+CHANGE `sintheta` `sintheta` FLOAT NULL DEFAULT NULL ,
+CHANGE `scalex` `scalex` FLOAT NULL DEFAULT NULL ,
+CHANGE `scaley` `scaley` FLOAT NULL DEFAULT NULL ,
+CHANGE `centroidx` `centroidx` FLOAT NULL DEFAULT NULL ,
+CHANGE `centroidy` `centroidy` FLOAT NULL DEFAULT NULL ,
+CHANGE `width` `width` SMALLINT( 11 ) UNSIGNED NOT NULL DEFAULT '0',
+CHANGE `height` `height` SMALLINT( 11 ) UNSIGNED NOT NULL DEFAULT '0';
+
+ALTER TABLE `formpages` DROP PRIMARY KEY;
+
+ALTER TABLE `formpages` ADD UNIQUE (
+`fid` ,
+`pid`
+);
+
+ALTER TABLE `formpages` ADD `fpid` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST ;
+
+ALTER TABLE `forms` CHANGE `fid` `fid` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+CHANGE `qid` `qid` INT UNSIGNED NOT NULL ,
+CHANGE `pfid` `pfid` INT UNSIGNED NULL DEFAULT NULL ,
+CHANGE `assigned_vid` `assigned_vid` SMALLINT UNSIGNED NULL DEFAULT NULL ,
+CHANGE `done` `done` TINYINT( 1 ) UNSIGNED NOT NULL DEFAULT '0',
+CHANGE `rpc_id` `rpc_id` INT( 11 ) UNSIGNED NULL DEFAULT NULL ;
+
+ALTER TABLE `forms` ADD `assigned` DATETIME NULL ,
+ADD `completed` DATETIME NULL ;
+
+ALTER TABLE `missingpages` CHANGE `mpid` `mpid` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+CHANGE `fid` `fid` INT UNSIGNED NOT NULL ;
+
+ALTER TABLE `ocrkb` CHANGE `kb` `kb` INT( 11 ) UNSIGNED NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `ocrkbboxgroup` CHANGE `btid` `btid` TINYINT UNSIGNED NOT NULL ,
+CHANGE `kb` `kb` INT UNSIGNED NOT NULL ,
+CHANGE `qid` `qid` INT UNSIGNED NOT NULL ;
+
+ALTER TABLE `ocrkbdata` CHANGE `kb` `kb` INT( 11 ) UNSIGNED NOT NULL ;
+
+ALTER TABLE `ocrprocess` CHANGE `fid` `fid` INT UNSIGNED NOT NULL ,
+CHANGE `bid` `bid` INT UNSIGNED NOT NULL ,
+CHANGE `vid` `vid` SMALLINT UNSIGNED NOT NULL ,
+CHANGE `kb` `kb` INT UNSIGNED NOT NULL ;
+
+ALTER TABLE `ocrtrain` CHANGE `ocrtid` `ocrtid` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+CHANGE `kb` `kb` INT UNSIGNED NOT NULL DEFAULT '1',
+CHANGE `fid` `fid` INT UNSIGNED NOT NULL ,
+CHANGE `vid` `vid` SMALLINT UNSIGNED NOT NULL ,
+CHANGE `bid` `bid` INT UNSIGNED NOT NULL ;
+
+ALTER TABLE `pages` DROP `pidentifierbgid`;
+
+ALTER TABLE `pages` CHANGE `pid` `pid` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+CHANGE `qid` `qid` INT UNSIGNED NOT NULL ,
+CHANGE `rotation` `rotation` FLOAT NOT NULL DEFAULT '0' COMMENT 'rotation of image in radians';
+
+ALTER TABLE `process` CHANGE `process_id` `process_id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+CHANGE `type` `type` TINYINT UNSIGNED NOT NULL DEFAULT '1';
+
+ALTER TABLE `process` DROP `data`;
+
+ALTER TABLE `processforms` CHANGE `pfid` `pfid` INT UNSIGNED NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `process_log` CHANGE `process_log_id` `process_log_id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+CHANGE `process_id` `process_id` INT UNSIGNED NOT NULL ;
+
+ALTER TABLE `questionnaires` CHANGE `qid` `qid` INT UNSIGNED NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `sections` CHANGE `sid` `sid` INT( 11 ) UNSIGNED NOT NULL AUTO_INCREMENT ,
+CHANGE `qid` `qid` INT( 11 ) UNSIGNED NOT NULL ;
+
+ALTER TABLE `verifierquestionnaire` CHANGE `vid` `vid` SMALLINT UNSIGNED NOT NULL ,
+CHANGE `qid` `qid` INT UNSIGNED NOT NULL ;
+
+ALTER TABLE `verifiers` CHANGE `vid` `vid` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT ,
+CHANGE `currentfid` `currentfid` INT UNSIGNED NULL DEFAULT NULL ;
+
+UPDATE `forms` as f, worklog as w
+SET f.assigned = w.assigned, f.completed = w.completed
+WHERE f.fid = w.fid;
+
+DROP TABLE `worklog` ;
+
+
+
+
+
+
 queXF 1.15.0 - Changes since 1.14.0
 
 *Fixed Bug: lp:1316861 Duplicate forms can not be easily deleted

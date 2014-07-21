@@ -18,7 +18,7 @@ global $db;
 $fail = false;
 
 $sql = "SELECT * 
-	FROM worklog";
+	FROM `forms`";
 
 if (!($db->Execute($sql)))
 {

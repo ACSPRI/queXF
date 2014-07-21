@@ -110,8 +110,8 @@ function start_process($filename,$type = 1)
 
 	if ($process == false)
 	{
-		$sql = "INSERT INTO `process` (`process_id`,`type`,`start`,`stop`,`kill`,`data`)
-			VALUES (NULL,'$type',NOW(),NULL,0,'')";
+		$sql = "INSERT INTO `process` (`process_id`,`type`,`start`,`stop`,`kill`)
+			VALUES (NULL,'$type',NOW(),NULL,0)";
 
 		$rs = $db->Execute($sql);
 		$args = $db->Insert_ID();

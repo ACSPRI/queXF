@@ -38,8 +38,8 @@ xhtml_foot();
 //display totals for work done
 
 $sql = "
-SELECT w.vid, v.description, w.fid, TIME_TO_SEC( TIMEDIFF( completed, assigned ) ) AS secondstaken, DATE( assigned ) AS dateassigned, f.qid, q.description
-FROM worklog AS w, verifiers AS v, forms AS f, questionnaires AS q
+SELECT f.assigned_vid as vid, v.description, v.fid, TIME_TO_SEC( TIMEDIFF( completed, assigned ) ) AS secondstaken, DATE( assigned ) AS dateassigned, f.qid, q.description
+FROM verifiers AS v, forms AS f, questionnaires AS q
 WHERE w.vid = v.vid
 AND w.fid = f.fid
 AND f.qid = q.qid

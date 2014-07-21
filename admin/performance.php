@@ -40,8 +40,8 @@ if (isset($_GET['qid']))
 {
 	$qid = intval($_GET['qid']);
 
-$sql = "SELECT q.description as qu, v.description as ve,f.qid,w.vid , count( * ) AS c, count( * ) / ( SUM( TIMESTAMPDIFF(
-	SECOND , w.assigned, w.completed ) ) /3600 ) AS CPH, (
+$sql = "SELECT q.description as qu, v.description as ve,f.qid,f.assigne_vid as vid , count( * ) AS c, count( * ) / ( SUM( TIMESTAMPDIFF(
+	SECOND , f.assigned, f.completed ) ) /3600 ) AS CPH, (
 	(
 	
 	SELECT count( pid )
@@ -49,13 +49,12 @@ $sql = "SELECT q.description as qu, v.description as ve,f.qid,w.vid , count( * )
 	WHERE qid = f.qid
 	) * count( * )
 	) / ( SUM( TIMESTAMPDIFF(
-	SECOND , w.assigned, w.completed ) ) /3600 ) AS PPH
-	FROM worklog AS w
-	JOIN forms AS f ON ( f.fid = w.fid )
+	SECOND , f.assigned, f.completed ) ) /3600 ) AS PPH
+	FROM forms AS f
 	JOIN questionnaires as q on (f.qid = q.qid)
-	JOIN verifiers as v on (v.vid = w.vid)
+	JOIN verifiers as v on (v.vid = f.assigned_vid)
 	WHERE f.qid = '$qid'
-	GROUP BY f.qid, w.vid
+	GROUP BY f.qid, f.assigned_vid
 	ORDER BY CPH DESC";
 
 	$rs = $db->GetAll($sql);
@@ -78,8 +77,8 @@ else if (isset($_GET['vid']))
 {
 	$vid = intval($_GET['vid']);
 
-$sql = "SELECT q.description as qu, v.description as ve,f.qid,w.vid , count( * ) AS c, count( * ) / ( SUM( TIMESTAMPDIFF(
-	SECOND , w.assigned, w.completed ) ) /3600 ) AS CPH, (
+$sql = "SELECT q.description as qu, v.description as ve,f.qid,f.assigned_vid as vid , count( * ) AS c, count( * ) / ( SUM( TIMESTAMPDIFF(
+	SECOND , f.assigned, f.completed ) ) /3600 ) AS CPH, (
 	(
 	
 	SELECT count( pid )
@@ -87,13 +86,12 @@ $sql = "SELECT q.description as qu, v.description as ve,f.qid,w.vid , count( * )
 	WHERE qid = f.qid
 	) * count( * )
 	) / ( SUM( TIMESTAMPDIFF(
-	SECOND , w.assigned, w.completed ) ) /3600 ) AS PPH
-	FROM worklog AS w
-	JOIN forms AS f ON ( f.fid = w.fid )
+	SECOND , f.assigned, f.completed ) ) /3600 ) AS PPH
+	FROM forms AS f
 	JOIN questionnaires as q on (f.qid = q.qid)
-	JOIN verifiers as v on (v.vid = w.vid)
-	WHERE w.vid = '$vid'
-	GROUP BY f.qid, w.vid
+	JOIN verifiers as v on (v.vid = f.assigned_vid)
+	WHERE f.assigned_vid = '$vid'
+	GROUP BY f.qid, f.assigned_vid
 	ORDER BY CPH DESC";
 
 	$rs = $db->GetAll($sql);
@@ -113,8 +111,8 @@ $sql = "SELECT q.description as qu, v.description as ve,f.qid,w.vid , count( * )
 
 else 
 {
-	$sql = "SELECT CONCAT( f.qid, '_', w.vid ) AS qv, count( * ) AS c, count( * ) / ( SUM( TIMESTAMPDIFF(
-	SECOND , w.assigned, w.completed ) ) /3600 ) AS CPH, (
+	$sql = "SELECT CONCAT( f.qid, '_', f.assigned_vid ) AS qv, count( * ) AS c, count( * ) / ( SUM( TIMESTAMPDIFF(
+	SECOND , f.assigned, f.completed ) ) /3600 ) AS CPH, (
 	(
 	
 	SELECT count( pid )
@@ -122,10 +120,9 @@ else
 	WHERE qid = f.qid
 	) * count( * )
 	) / ( SUM( TIMESTAMPDIFF(
-	SECOND , w.assigned, w.completed ) ) /3600 ) AS PPH
-	FROM worklog AS w
-	JOIN forms AS f ON ( f.fid = w.fid )
-	GROUP BY f.qid, w.vid
+	SECOND , f.assigned, f.completed ) ) /3600 ) AS PPH
+	FROM forms AS f
+	GROUP BY f.qid, f.assigned_vid
 	ORDER BY qid ASC , CPH DESC , qid ASC	";
 	
 	$qs = $db->GetAssoc($sql);

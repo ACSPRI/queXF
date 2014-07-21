@@ -49,7 +49,6 @@ function defaultpage($width,$height,$qid=0,$pid=0,$data="")
 
 	$record = array('pid' => "NULL",
 			'qid' => $qid,
-			'pidentifierbgid' => 1,
 			'pidentifierval' => $pid,
 			'tlx' => 1,
 			'tly' => 1,

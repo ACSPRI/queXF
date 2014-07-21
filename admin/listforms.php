@@ -48,14 +48,8 @@ if (isset($_GET['fid']))
 	$db->Execute($sql);
 
 	$sql = "UPDATE forms
-		SET assigned_vid = NULL, done = 0, rpc_id = NULL
+		SET assigned_vid = NULL, done = 0, rpc_id = NULL, assigned = NULL, completed = NULL
 		WHERE fid = '$fid'";
-
-	$db->Execute($sql);
-
-	$sql = "DELETE FROM worklog
-		WHERE fid = '$fid'
-		AND vid = '$vid'";
 
 	$db->Execute($sql);
 

@@ -246,23 +246,18 @@ if (isset($_POST['complete']) && isset($_SESSION['boxes']))
 	//make sure worklog and update occurs at the same time
 	$db->StartTrans();
 
-	$sql = "INSERT INTO
-		worklog (`vid`,`fid`,`assigned`,`completed`) VALUES ('$vid','$fid',FROM_UNIXTIME({$_SESSION['assigned']}),NOW())";
-	//print "$sql</br>";
+  $sql = "UPDATE forms
+		SET done = 1, assigned = FROM_UNIXTIME({$_SESSION['assigned']}), completed = NOW()
+		WHERE assigned_vid = '$vid'
+		AND fid = '$fid'
+		AND done = 0";
+
 	$db->Execute($sql);
 
 	unset($_SESSION['boxgroups']);
 	unset($_SESSION['pages']);
 	unset($_SESSION['boxes']);
 	session_unset();
-
-	$sql = "UPDATE forms
-		SET done = 1
-		WHERE assigned_vid = '$vid'
-		AND fid = '$fid'
-		AND done = 0";
-
-	$db->Execute($sql);
 
 	$sql = "UPDATE verifiers
 		SET currentfid = NULL
@@ -360,8 +355,8 @@ if ($fid == false)
 
 		$remain = $db->GetOne($sql);
 
-		$sql = "SELECT q.description as qu, v.description as ve,f.qid,w.vid as vid , count( * ) AS c, count( * ) / ( SUM( TIMESTAMPDIFF(
-			SECOND , w.assigned, w.completed ) ) /3600 ) AS CPH, (
+		$sql = "SELECT q.description as qu, v.description as ve,f.qid,f.assigned_vid as vid , count( * ) AS c, count( * ) / ( SUM( TIMESTAMPDIFF(
+			SECOND , f.assigned, f.completed ) ) /3600 ) AS CPH, (
 			(
 			
 			SELECT count( pid )
@@ -369,13 +364,12 @@ if ($fid == false)
 			WHERE qid = f.qid
 			) * count( * )
 			) / ( SUM( TIMESTAMPDIFF(
-			SECOND , w.assigned, w.completed ) ) /3600 ) AS PPH
-			FROM worklog AS w
-			JOIN forms AS f ON ( f.fid = w.fid )
+			SECOND , f.assigned, f.completed ) ) /3600 ) AS PPH
+			FROM forms AS f
 			JOIN questionnaires as q on (f.qid = q.qid)
-			JOIN verifiers as v on (v.vid = w.vid)
+			JOIN verifiers as v on (v.vid = f.assigned_vid)
 			WHERE f.qid = '$pqid'
-			GROUP BY f.qid, w.vid
+			GROUP BY f.qid, f.assigned_vid
 			ORDER BY CPH DESC";
 
 		$prss = $db->GetAll($sql);

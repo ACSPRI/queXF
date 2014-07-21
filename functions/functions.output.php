@@ -183,9 +183,8 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $retu
 			FROM forms as f
 			WHERE f.qid = '$qid'"; 
 	else
-		$sql = "SELECT w.vid AS vid, w.fid AS fid, w.assigned AS assigned, w.completed AS completed, f.qid AS qid, f.description AS description, f.rpc_id
-			FROM `worklog` AS w
-			LEFT JOIN forms AS f ON w.fid = f.fid
+		$sql = "SELECT f.assigned_vid AS vid, f.fid AS fid, f.assigned AS assigned, f.completed AS completed, f.qid AS qid, f.description AS description, f.rpc_id
+			FROM forms AS f
 			WHERE f.qid = '$qid'";
 
 	if ($fid != "")
@@ -454,9 +453,8 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true,$unverif
 			FROM forms as f
 			WHERE f.qid = '$qid'"; 
 	else
-		$sql = "SELECT w.vid AS vid, w.fid AS fid, w.assigned AS assigned, w.completed AS completed, f.qid AS qid, f.description AS description, f.rpc_id
-			FROM `worklog` AS w
-			LEFT JOIN forms AS f ON w.fid = f.fid
+		$sql = "SELECT f.assigned_vid AS vid, f.fid AS fid, f.assigned AS assigned, f.completed AS completed, f.qid AS qid, f.description AS description, f.rpc_id
+			FROM forms AS f 
 			WHERE f.qid = '$qid'";
 
 	if ($fid != "")
