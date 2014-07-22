@@ -1,4 +1,18 @@
-queXF 1.16.0
+queXF 1.16.0 - Changes since 1.15.0
+
+*New Feature: Verification - replaced GET to submit with POST and autofocus to assign button for faster form submission
+*New Feature: Allow for images from scanned forms to be stored as files instead of in the database
+*New Feature: Don't save NULL/empty values in database to save space
+
+*Fixed Bug: Form templates listed in ascending order so newer forms harder to access - reversed
+*Fixed Bug: Long text fields not verifying
+*Fixed Bug: Database structure inefficent 
+
+*Filesystem changes required:
+
+Create a new directory called "images" that the web server process has write access to
+
+*Database changes required:
 
 ALTER TABLE `boxes` CHANGE `bid` `bid` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
 CHANGE `pid` `pid` INT UNSIGNED NOT NULL ,
@@ -144,10 +158,6 @@ SET f.assigned = w.assigned, f.completed = w.completed
 WHERE f.fid = w.fid;
 
 DROP TABLE `worklog` ;
-
-
-
-
 
 queXF 1.15.0 - Changes since 1.14.0
 
