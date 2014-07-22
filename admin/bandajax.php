@@ -599,7 +599,7 @@ else
 	//print available questionnaires
 	$sql = "SELECT qid,description
     FROM questionnaires
-    ORDER BY qid DESr";
+    ORDER BY qid DESC";
 	
 	$qs = $db->GetAll($sql);
 

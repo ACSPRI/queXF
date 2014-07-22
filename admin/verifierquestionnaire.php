@@ -69,7 +69,7 @@ function vqd($vid,$qid)
 
 
 
-if (isset($_GET['submit']))
+if (isset($_POST['submit']))
 {
 	$db->StartTrans();
 
@@ -79,7 +79,7 @@ if (isset($_GET['submit']))
 
 	$db->Execute($sql);
 
-	foreach ($_GET as $g => $v)
+	foreach ($_POST as $g => $v)
 	{
 		$a = explode("_",$g);
 		if ($a[0] == "cb")
@@ -192,7 +192,7 @@ function checkVid(v)
 
 
 
-print "<form action=\"\" method=\"get\"><table class='tclass'>";
+print "<form action=\"\" method=\"post\"><table class='tclass'>";
 
 print "<tr><th></th>";
 foreach($questionnaires as $q)

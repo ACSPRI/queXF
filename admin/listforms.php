@@ -58,16 +58,39 @@ if (isset($_GET['fid']))
 
 xhtml_head(T_("Listing of forms"),true,array("../css/table.css"));
 
-$sql = "SELECT f.fid, v.description as name, q.description as quest, CONCAT('<a href=\"?fid=', f.fid ,'&amp;vid=', f.assigned_vid ,'\">" . T_("Re verify") . "</a>') as link
-	FROM forms as f
-	JOIN questionnaires AS q ON (f.qid = q.qid)
-	LEFT JOIN verifiers AS v ON (v.vid = f.assigned_vid)
-	WHERE f.done = 1
-	ORDER BY f.fid ASC";
 
-$fs = $db->GetAll($sql);
+if (isset($_GET['qid']))
+{
+  $qid = intval($_GET['qid']);
 
-xhtml_table($fs,array('fid','name','quest','link'),array(T_('Form ID'),T_('Operator'),T_('Questionnaire'),T_('Re verify')));
+  $sql = "SELECT f.fid, v.description as name, q.description as quest, CONCAT('<a href=\"?qid=$qid&amp;fid=', f.fid ,'&amp;vid=', f.assigned_vid ,'\">" . T_("Re verify") . "</a>') as link
+  	FROM forms as f
+  	JOIN questionnaires AS q ON (f.qid = q.qid AND q.qid = '$qid')
+  	LEFT JOIN verifiers AS v ON (v.vid = f.assigned_vid)
+  	WHERE f.done = 1
+  	ORDER BY f.fid ASC";
+  
+  $fs = $db->GetAll($sql);
+
+  print "<div><a href=\"?\">" . T_("Go back") . "</a>";
+
+  xhtml_table($fs,array('fid','name','quest','link'),array(T_('Form ID'),T_('Operator'),T_('Questionnaire'),T_('Re verify')));
+}
+else
+{
+  //print available questionnaires
+	$sql = "SELECT qid,description
+    FROM questionnaires
+    ORDER BY qid DESC";
+	
+	$qs = $db->GetAll($sql);
+
+	foreach($qs as $q)
+	{
+		print "<div><a href=\"?qid={$q['qid']}\">". T_("List") . ": {$q['description']}</a></div>";
+	}
+}
+
 
 xhtml_foot();
 
