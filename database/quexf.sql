@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 2.11.8.1deb5+lenny9
+-- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 03, 2011 at 12:17 PM
--- Server version: 5.0.51
--- PHP Version: 5.2.6-1+lenny13
+-- Generation Time: Jul 22, 2014 at 01:17 PM
+-- Server version: 5.5.38
+-- PHP Version: 5.3.10-1ubuntu3.13
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -26,16 +27,16 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 CREATE TABLE IF NOT EXISTS `boxes` (
-  `bid` bigint(20) unsigned NOT NULL auto_increment,
+  `bid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `tlx` int(11) NOT NULL,
   `tly` int(11) NOT NULL,
   `brx` int(11) NOT NULL,
   `bry` int(11) NOT NULL,
-  `pid` bigint(20) NOT NULL,
-  `bgid` bigint(20) NOT NULL,
-  `value` varchar(255) collate utf8_unicode_ci default NULL,
-  `label` text collate utf8_unicode_ci,
-  PRIMARY KEY  (`bid`),
+  `pid` int(10) unsigned NOT NULL,
+  `bgid` int(10) unsigned NOT NULL,
+  `value` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `label` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`bid`),
   KEY `bgid` (`bgid`),
   KEY `pid` (`pid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -47,15 +48,15 @@ CREATE TABLE IF NOT EXISTS `boxes` (
 --
 
 CREATE TABLE IF NOT EXISTS `boxgroupstype` (
-  `bgid` bigint(20) unsigned NOT NULL auto_increment,
-  `btid` int(11) NOT NULL,
-  `width` int(11) NOT NULL,
-  `pid` bigint(20) NOT NULL,
-  `varname` text collate utf8_unicode_ci NOT NULL,
+  `bgid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `btid` tinyint(3) unsigned NOT NULL,
+  `width` int(10) unsigned NOT NULL,
+  `pid` int(10) unsigned NOT NULL,
+  `varname` text COLLATE utf8_unicode_ci NOT NULL,
   `sortorder` int(11) NOT NULL,
-  `label` text collate utf8_unicode_ci,
-  `sid` int(11) default NULL,
-  PRIMARY KEY  (`bgid`),
+  `label` text COLLATE utf8_unicode_ci,
+  `sid` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`bgid`),
   KEY `btid` (`btid`),
   KEY `pid` (`pid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -67,9 +68,9 @@ CREATE TABLE IF NOT EXISTS `boxgroupstype` (
 --
 
 CREATE TABLE IF NOT EXISTS `boxgrouptypes` (
-  `btid` int(11) NOT NULL,
-  `description` text collate utf8_unicode_ci NOT NULL,
-  PRIMARY KEY  (`btid`)
+  `btid` tinyint(3) unsigned NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`btid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -93,9 +94,9 @@ INSERT INTO `boxgrouptypes` VALUES(6, 'Long text');
 --
 
 CREATE TABLE IF NOT EXISTS `clientquestionnaire` (
-  `cid` bigint(20) NOT NULL,
-  `qid` bigint(20) NOT NULL,
-  PRIMARY KEY  (`cid`,`qid`)
+  `cid` int(10) unsigned NOT NULL,
+  `qid` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`cid`,`qid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -105,10 +106,10 @@ CREATE TABLE IF NOT EXISTS `clientquestionnaire` (
 --
 
 CREATE TABLE IF NOT EXISTS `clients` (
-  `cid` bigint(20) NOT NULL auto_increment,
-  `username` varchar(255) collate utf8_unicode_ci NOT NULL,
-  `description` varchar(255) collate utf8_unicode_ci NOT NULL,
-  PRIMARY KEY  (`cid`),
+  `cid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`cid`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -119,10 +120,10 @@ CREATE TABLE IF NOT EXISTS `clients` (
 --
 
 CREATE TABLE IF NOT EXISTS `formboxes` (
-  `bid` bigint(20) NOT NULL,
-  `fid` bigint(20) NOT NULL,
-  `filled` double NOT NULL,
-  PRIMARY KEY  (`bid`,`fid`)
+  `bid` int(10) unsigned NOT NULL,
+  `fid` int(10) unsigned NOT NULL,
+  `filled` float NOT NULL,
+  PRIMARY KEY (`bid`,`fid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -132,13 +133,17 @@ CREATE TABLE IF NOT EXISTS `formboxes` (
 --
 
 CREATE TABLE IF NOT EXISTS `formboxverifychar` (
-  `vid` int(11) NOT NULL,
-  `bid` bigint(20) NOT NULL,
-  `fid` bigint(20) NOT NULL,
-  `val` char(1) character set utf8 collate utf8_bin default NULL,
-  PRIMARY KEY  (`vid`,`bid`,`fid`),
-  KEY `val` (`val`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `fbvcid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `bid` int(10) unsigned NOT NULL,
+  `vid` smallint(5) unsigned NOT NULL,
+  `fid` int(10) unsigned NOT NULL,
+  `val` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`fbvcid`),
+  KEY `val` (`val`),
+  KEY `bid` (`bid`),
+  KEY `fid` (`fid`),
+  KEY `vid` (`vid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -147,12 +152,16 @@ CREATE TABLE IF NOT EXISTS `formboxverifychar` (
 --
 
 CREATE TABLE IF NOT EXISTS `formboxverifytext` (
-  `vid` int(11) NOT NULL,
-  `bid` bigint(20) NOT NULL,
-  `fid` bigint(20) NOT NULL,
-  `val` longtext collate utf8_unicode_ci NOT NULL,
-  PRIMARY KEY  (`vid`,`bid`,`fid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `fbvtid` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `vid` smallint(5) unsigned NOT NULL,
+  `bid` int(10) unsigned NOT NULL,
+  `fid` int(10) unsigned NOT NULL,
+  `val` longtext COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`fbvtid`),
+  KEY `bid` (`bid`),
+  KEY `fid` (`fid`),
+  KEY `vid` (`vid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -161,12 +170,12 @@ CREATE TABLE IF NOT EXISTS `formboxverifytext` (
 --
 
 CREATE TABLE IF NOT EXISTS `formpagenote` (
-  `fpnid` int(11) NOT NULL auto_increment,
-  `fid` bigint(20) NOT NULL,
-  `pid` bigint(20) NOT NULL,
-  `vid` int(11) NOT NULL,
-  `note` text collate utf8_unicode_ci NOT NULL,
-  PRIMARY KEY  (`fpnid`),
+  `fpnid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `fid` int(10) unsigned NOT NULL,
+  `pid` int(10) unsigned NOT NULL,
+  `vid` smallint(5) unsigned NOT NULL,
+  `note` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`fpnid`),
   KEY `fid` (`fid`),
   KEY `pid` (`pid`),
   KEY `vid` (`vid`)
@@ -179,22 +188,24 @@ CREATE TABLE IF NOT EXISTS `formpagenote` (
 --
 
 CREATE TABLE IF NOT EXISTS `formpages` (
-  `fid` bigint(20) NOT NULL,
-  `pid` bigint(20) NOT NULL,
-  `filename` text collate utf8_unicode_ci NOT NULL,
+  `fpid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `fid` int(10) unsigned NOT NULL,
+  `pid` int(10) unsigned NOT NULL,
+  `filename` text COLLATE utf8_unicode_ci NOT NULL,
   `image` mediumblob NOT NULL,
-  `offx` int(11) default NULL COMMENT 'Offset X value',
-  `offy` int(11) default NULL COMMENT 'Offset Y value',
-  `costheta` double default NULL,
-  `sintheta` double default NULL,
-  `scalex` double default NULL,
-  `scaley` double default NULL,
-  `centroidx` double default NULL,
-  `centroidy` double default NULL,
-  `width` int(11) NOT NULL default '0',
-  `height` int(11) NOT NULL default '0',
-  PRIMARY KEY  (`fid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `offx` smallint(6) DEFAULT NULL COMMENT 'Offset X value',
+  `offy` smallint(6) DEFAULT NULL COMMENT 'Offset Y value',
+  `costheta` float DEFAULT NULL,
+  `sintheta` float DEFAULT NULL,
+  `scalex` float DEFAULT NULL,
+  `scaley` float DEFAULT NULL,
+  `centroidx` float DEFAULT NULL,
+  `centroidy` float DEFAULT NULL,
+  `width` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `height` smallint(5) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`fpid`),
+  UNIQUE KEY `fid` (`fid`,`pid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -203,14 +214,16 @@ CREATE TABLE IF NOT EXISTS `formpages` (
 --
 
 CREATE TABLE IF NOT EXISTS `forms` (
-  `fid` bigint(20) NOT NULL auto_increment,
-  `qid` bigint(20) NOT NULL,
-  `description` text collate utf8_unicode_ci NOT NULL,
-  `pfid` bigint(20) default NULL,
-  `assigned_vid` bigint(20) default NULL,
-  `done` int(11) NOT NULL default '0',
-  `rpc_id` int(11) default NULL,
-  PRIMARY KEY  (`fid`),
+  `fid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `qid` int(10) unsigned NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `pfid` int(10) unsigned DEFAULT NULL,
+  `assigned_vid` smallint(5) unsigned DEFAULT NULL,
+  `done` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `rpc_id` int(10) unsigned DEFAULT NULL,
+  `assigned` datetime DEFAULT NULL,
+  `completed` datetime DEFAULT NULL,
+  PRIMARY KEY (`fid`),
   KEY `assigned_vid` (`assigned_vid`),
   KEY `done` (`done`),
   KEY `pfid` (`pfid`),
@@ -224,10 +237,10 @@ CREATE TABLE IF NOT EXISTS `forms` (
 --
 
 CREATE TABLE IF NOT EXISTS `missingpages` (
-  `mpid` bigint(20) NOT NULL auto_increment,
-  `fid` bigint(20) NOT NULL,
+  `mpid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `fid` int(10) unsigned NOT NULL,
   `image` mediumblob NOT NULL,
-  PRIMARY KEY  (`mpid`)
+  PRIMARY KEY (`mpid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -237,9 +250,9 @@ CREATE TABLE IF NOT EXISTS `missingpages` (
 --
 
 CREATE TABLE IF NOT EXISTS `ocrkb` (
-  `kb` int(11) NOT NULL auto_increment,
-  `description` text collate utf8_unicode_ci NOT NULL,
-  PRIMARY KEY  (`kb`)
+  `kb` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`kb`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -249,11 +262,11 @@ CREATE TABLE IF NOT EXISTS `ocrkb` (
 --
 
 CREATE TABLE IF NOT EXISTS `ocrkbboxgroup` (
-  `btid` int(11) NOT NULL,
-  `kb` int(11) NOT NULL,
-  `qid` int(11) NOT NULL,
-  PRIMARY KEY  (`btid`,`kb`,`qid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `btid` tinyint(3) unsigned NOT NULL,
+  `kb` int(10) unsigned NOT NULL,
+  `qid` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`btid`,`kb`,`qid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -262,7 +275,7 @@ CREATE TABLE IF NOT EXISTS `ocrkbboxgroup` (
 --
 
 CREATE TABLE IF NOT EXISTS `ocrkbdata` (
-  `val` char(1) character set utf8 collate utf8_bin NOT NULL,
+  `val` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `m1` double NOT NULL,
   `m2` double NOT NULL,
   `m3` double NOT NULL,
@@ -295,8 +308,8 @@ CREATE TABLE IF NOT EXISTS `ocrkbdata` (
   `v14` double NOT NULL,
   `v15` double NOT NULL,
   `v16` double NOT NULL,
-  `kb` int(11) NOT NULL,
-  PRIMARY KEY  (`val`,`kb`)
+  `kb` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`val`,`kb`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -306,15 +319,15 @@ CREATE TABLE IF NOT EXISTS `ocrkbdata` (
 --
 
 CREATE TABLE IF NOT EXISTS `ocrprocess` (
-  `ocrprocessid` int(11) NOT NULL auto_increment,
-  `fid` int(11) NOT NULL,
-  `bid` int(11) NOT NULL,
-  `vid` int(11) NOT NULL,
-  `val` char(1) character set utf8 collate utf8_bin NOT NULL,
-  `kb` int(11) NOT NULL,
-  PRIMARY KEY  (`ocrprocessid`),
+  `ocrprocessid` int(11) NOT NULL AUTO_INCREMENT,
+  `fid` int(10) unsigned NOT NULL,
+  `bid` int(10) unsigned NOT NULL,
+  `vid` smallint(5) unsigned NOT NULL,
+  `val` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `kb` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`ocrprocessid`),
   KEY `kb` (`kb`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -323,9 +336,9 @@ CREATE TABLE IF NOT EXISTS `ocrprocess` (
 --
 
 CREATE TABLE IF NOT EXISTS `ocrtrain` (
-  `ocrtid` bigint(20) NOT NULL auto_increment,
-  `kb` int(11) NOT NULL default '1',
-  `val` char(1) character set utf8 collate utf8_bin NOT NULL,
+  `ocrtid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `kb` int(10) unsigned NOT NULL DEFAULT '1',
+  `val` char(1) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `f1` double NOT NULL,
   `f2` double NOT NULL,
   `f3` double NOT NULL,
@@ -342,10 +355,10 @@ CREATE TABLE IF NOT EXISTS `ocrtrain` (
   `f14` double NOT NULL,
   `f15` double NOT NULL,
   `f16` double NOT NULL,
-  `fid` bigint(20) NOT NULL,
-  `vid` bigint(20) NOT NULL,
-  `bid` bigint(20) NOT NULL,
-  PRIMARY KEY  (`ocrtid`),
+  `fid` int(10) unsigned NOT NULL,
+  `vid` smallint(5) unsigned NOT NULL,
+  `bid` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`ocrtid`),
   KEY `character` (`val`),
   KEY `fid` (`fid`,`vid`,`bid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -357,10 +370,9 @@ CREATE TABLE IF NOT EXISTS `ocrtrain` (
 --
 
 CREATE TABLE IF NOT EXISTS `pages` (
-  `pid` bigint(20) NOT NULL auto_increment,
-  `qid` bigint(20) NOT NULL,
-  `pidentifierbgid` bigint(20) NOT NULL,
-  `pidentifierval` varchar(16) collate utf8_unicode_ci NOT NULL,
+  `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `qid` int(10) unsigned NOT NULL,
+  `pidentifierval` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
   `tlx` int(11) NOT NULL,
   `tly` int(11) NOT NULL,
   `trx` int(11) NOT NULL,
@@ -369,47 +381,47 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `bly` int(11) NOT NULL,
   `brx` int(11) NOT NULL,
   `bry` int(11) NOT NULL,
-  `rotation` double NOT NULL default '0' COMMENT 'rotation of image in radians',
+  `rotation` float NOT NULL DEFAULT '0' COMMENT 'rotation of image in radians',
   `image` mediumblob NOT NULL,
-  `store` binary(1) NOT NULL default '1',
-  `process` binary(1) NOT NULL default '1',
-  `width` int(11) NOT NULL default '2480',
-  `height` int(11) NOT NULL default '3508',
-  `TL_VERT_TLX` int(11) NOT NULL default '54',
-  `TL_VERT_TLY` int(11) NOT NULL default '90',
-  `TL_VERT_BRX` int(11) NOT NULL default '390',
-  `TL_VERT_BRY` int(11) NOT NULL default '603',
-  `TL_HORI_TLX` int(11) NOT NULL default '54',
-  `TL_HORI_TLY` int(11) NOT NULL default '60',
-  `TL_HORI_BRX` int(11) NOT NULL default '669',
-  `TL_HORI_BRY` int(11) NOT NULL default '384',
-  `TR_VERT_TLX` int(11) NOT NULL default '2010',
-  `TR_VERT_TLY` int(11) NOT NULL default '81',
-  `TR_VERT_BRX` int(11) NOT NULL default '2433',
-  `TR_VERT_BRY` int(11) NOT NULL default '639',
-  `TR_HORI_TLX` int(11) NOT NULL default '1770',
-  `TR_HORI_TLY` int(11) NOT NULL default '66',
-  `TR_HORI_BRX` int(11) NOT NULL default '2433',
-  `TR_HORI_BRY` int(11) NOT NULL default '387',
-  `BL_VERT_TLX` int(11) NOT NULL default '54',
-  `BL_VERT_TLY` int(11) NOT NULL default '2922',
-  `BL_VERT_BRX` int(11) NOT NULL default '432',
-  `BL_VERT_BRY` int(11) NOT NULL default '3402',
-  `BL_HORI_TLX` int(11) NOT NULL default '54',
-  `BL_HORI_TLY` int(11) NOT NULL default '3105',
-  `BL_HORI_BRX` int(11) NOT NULL default '672',
-  `BL_HORI_BRY` int(11) NOT NULL default '3405',
-  `BR_VERT_TLX` int(11) NOT NULL default '2028',
-  `BR_VERT_TLY` int(11) NOT NULL default '2901',
-  `BR_VERT_BRX` int(11) NOT NULL default '2433',
-  `BR_VERT_BRY` int(11) NOT NULL default '3381',
-  `BR_HORI_TLX` int(11) NOT NULL default '1752',
-  `BR_HORI_TLY` int(11) NOT NULL default '3084',
-  `BR_HORI_BRX` int(11) NOT NULL default '2433',
-  `BR_HORI_BRY` int(11) NOT NULL default '3384',
-  `VERT_WIDTH` int(11) NOT NULL default '6',
-  `HORI_WIDTH` int(11) NOT NULL default '6',
-  PRIMARY KEY  (`pid`),
+  `store` binary(1) NOT NULL DEFAULT '1',
+  `process` binary(1) NOT NULL DEFAULT '1',
+  `width` int(11) NOT NULL DEFAULT '2480',
+  `height` int(11) NOT NULL DEFAULT '3508',
+  `TL_VERT_TLX` int(11) NOT NULL DEFAULT '54',
+  `TL_VERT_TLY` int(11) NOT NULL DEFAULT '90',
+  `TL_VERT_BRX` int(11) NOT NULL DEFAULT '390',
+  `TL_VERT_BRY` int(11) NOT NULL DEFAULT '603',
+  `TL_HORI_TLX` int(11) NOT NULL DEFAULT '54',
+  `TL_HORI_TLY` int(11) NOT NULL DEFAULT '60',
+  `TL_HORI_BRX` int(11) NOT NULL DEFAULT '669',
+  `TL_HORI_BRY` int(11) NOT NULL DEFAULT '384',
+  `TR_VERT_TLX` int(11) NOT NULL DEFAULT '2010',
+  `TR_VERT_TLY` int(11) NOT NULL DEFAULT '81',
+  `TR_VERT_BRX` int(11) NOT NULL DEFAULT '2433',
+  `TR_VERT_BRY` int(11) NOT NULL DEFAULT '639',
+  `TR_HORI_TLX` int(11) NOT NULL DEFAULT '1770',
+  `TR_HORI_TLY` int(11) NOT NULL DEFAULT '66',
+  `TR_HORI_BRX` int(11) NOT NULL DEFAULT '2433',
+  `TR_HORI_BRY` int(11) NOT NULL DEFAULT '387',
+  `BL_VERT_TLX` int(11) NOT NULL DEFAULT '54',
+  `BL_VERT_TLY` int(11) NOT NULL DEFAULT '2922',
+  `BL_VERT_BRX` int(11) NOT NULL DEFAULT '432',
+  `BL_VERT_BRY` int(11) NOT NULL DEFAULT '3402',
+  `BL_HORI_TLX` int(11) NOT NULL DEFAULT '54',
+  `BL_HORI_TLY` int(11) NOT NULL DEFAULT '3105',
+  `BL_HORI_BRX` int(11) NOT NULL DEFAULT '672',
+  `BL_HORI_BRY` int(11) NOT NULL DEFAULT '3405',
+  `BR_VERT_TLX` int(11) NOT NULL DEFAULT '2028',
+  `BR_VERT_TLY` int(11) NOT NULL DEFAULT '2901',
+  `BR_VERT_BRX` int(11) NOT NULL DEFAULT '2433',
+  `BR_VERT_BRY` int(11) NOT NULL DEFAULT '3381',
+  `BR_HORI_TLX` int(11) NOT NULL DEFAULT '1752',
+  `BR_HORI_TLY` int(11) NOT NULL DEFAULT '3084',
+  `BR_HORI_BRX` int(11) NOT NULL DEFAULT '2433',
+  `BR_HORI_BRY` int(11) NOT NULL DEFAULT '3384',
+  `VERT_WIDTH` int(11) NOT NULL DEFAULT '6',
+  `HORI_WIDTH` int(11) NOT NULL DEFAULT '6',
+  PRIMARY KEY (`pid`),
   UNIQUE KEY `pidentifierval` (`pidentifierval`),
   KEY `qid` (`qid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -421,28 +433,12 @@ CREATE TABLE IF NOT EXISTS `pages` (
 --
 
 CREATE TABLE IF NOT EXISTS `process` (
-  `process_id` bigint(20) NOT NULL auto_increment,
-  `type` int(11) NOT NULL default '1',
+  `process_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `type` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `start` datetime NOT NULL,
-  `stop` datetime default NULL,
-  `kill` tinyint(1) NOT NULL default '0',
-  `data` longtext collate utf8_unicode_ci NOT NULL,
-  PRIMARY KEY  (`process_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `process_log`
---
-
-CREATE TABLE IF NOT EXISTS `process_log` (
-  `process_log_id` bigint(20) NOT NULL auto_increment,
-  `process_id` bigint(20) NOT NULL,
-  `datetime` datetime NOT NULL,
-  `data` text collate utf8_unicode_ci NOT NULL,
-  PRIMARY KEY  (`process_log_id`),
-  KEY `process_id` (`process_id`)
+  `stop` datetime DEFAULT NULL,
+  `kill` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`process_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -452,15 +448,30 @@ CREATE TABLE IF NOT EXISTS `process_log` (
 --
 
 CREATE TABLE IF NOT EXISTS `processforms` (
-  `pfid` bigint(20) NOT NULL auto_increment,
-  `filepath` varchar(1024) collate utf8_unicode_ci NOT NULL,
-  `filehash` char(40) collate utf8_unicode_ci NOT NULL,
+  `pfid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `filepath` varchar(1024) COLLATE utf8_unicode_ci NOT NULL,
+  `filehash` char(40) COLLATE utf8_unicode_ci NOT NULL,
   `date` datetime NOT NULL,
-  `status` tinyint(1) NOT NULL default '0',
-  `allowanother` tinyint(1) NOT NULL default '0',
-  PRIMARY KEY  (`pfid`),
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `allowanother` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`pfid`),
   KEY `filepath` (`filepath`(255)),
   KEY `filehash` (`filehash`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `process_log`
+--
+
+CREATE TABLE IF NOT EXISTS `process_log` (
+  `process_log_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `process_id` int(10) unsigned NOT NULL,
+  `datetime` datetime NOT NULL,
+  `data` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`process_log_id`),
+  KEY `process_id` (`process_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -470,15 +481,15 @@ CREATE TABLE IF NOT EXISTS `processforms` (
 --
 
 CREATE TABLE IF NOT EXISTS `questionnaires` (
-  `qid` bigint(20) NOT NULL auto_increment,
-  `description` text collate utf8_unicode_ci NOT NULL,
+  `qid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
   `sheets` int(11) NOT NULL,
-  `page_size` enum('A4','A3') collate utf8_unicode_ci NOT NULL default 'A4',
-  `rpc_server_url` text collate utf8_unicode_ci COMMENT 'XML RPC server to send verified data to',
-  `rpc_username` text collate utf8_unicode_ci,
-  `rpc_password` text collate utf8_unicode_ci,
-  `limesurvey_sid` int(11) default NULL,
-  PRIMARY KEY  (`qid`)
+  `page_size` enum('A4','A3') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'A4',
+  `rpc_server_url` text COLLATE utf8_unicode_ci COMMENT 'XML RPC server to send verified data to',
+  `rpc_username` text COLLATE utf8_unicode_ci,
+  `rpc_password` text COLLATE utf8_unicode_ci,
+  `limesurvey_sid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`qid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -488,11 +499,11 @@ CREATE TABLE IF NOT EXISTS `questionnaires` (
 --
 
 CREATE TABLE IF NOT EXISTS `sections` (
-  `sid` int(11) NOT NULL auto_increment,
-  `qid` int(11) NOT NULL,
-  `description` text collate utf8_unicode_ci NOT NULL,
-  `title` text collate utf8_unicode_ci NOT NULL,
-  PRIMARY KEY  (`sid`),
+  `sid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `qid` int(10) unsigned NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `title` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`sid`),
   KEY `qid` (`qid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -503,13 +514,13 @@ CREATE TABLE IF NOT EXISTS `sections` (
 --
 
 CREATE TABLE IF NOT EXISTS `sessions2` (
-  `sesskey` varchar(64) collate utf8_unicode_ci NOT NULL default '',
+  `sesskey` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `expiry` datetime NOT NULL,
-  `expireref` varchar(250) collate utf8_unicode_ci default '',
+  `expireref` varchar(250) COLLATE utf8_unicode_ci DEFAULT '',
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
-  `sessdata` longtext collate utf8_unicode_ci,
-  PRIMARY KEY  (`sesskey`),
+  `sessdata` longtext COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`sesskey`),
   KEY `sess2_expiry` (`expiry`),
   KEY `sess2_expireref` (`expireref`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -521,9 +532,9 @@ CREATE TABLE IF NOT EXISTS `sessions2` (
 --
 
 CREATE TABLE IF NOT EXISTS `verifierquestionnaire` (
-  `vid` bigint(20) NOT NULL,
-  `qid` bigint(20) NOT NULL,
-  PRIMARY KEY  (`vid`,`qid`)
+  `vid` smallint(5) unsigned NOT NULL,
+  `qid` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`vid`,`qid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -533,24 +544,14 @@ CREATE TABLE IF NOT EXISTS `verifierquestionnaire` (
 --
 
 CREATE TABLE IF NOT EXISTS `verifiers` (
-  `vid` int(11) NOT NULL auto_increment,
-  `description` text collate utf8_unicode_ci NOT NULL,
-  `currentfid` bigint(20) default NULL,
-  `http_username` varchar(255) collate utf8_unicode_ci NOT NULL,
-  PRIMARY KEY  (`vid`),
+  `vid` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `currentfid` int(10) unsigned DEFAULT NULL,
+  `http_username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`vid`),
   UNIQUE KEY `http_username` (`http_username`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `worklog`
---
-
-CREATE TABLE IF NOT EXISTS `worklog` (
-  `vid` bigint(20) NOT NULL,
-  `fid` bigint(20) NOT NULL,
-  `assigned` datetime NOT NULL,
-  `completed` datetime NOT NULL,
-  PRIMARY KEY  (`vid`,`fid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
