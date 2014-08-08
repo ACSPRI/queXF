@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 
 /*	Copyright Australian Consortium for Social and Political Research Incorporated (ACSPRI) 2014
@@ -59,7 +58,7 @@ Move images from the database to files
     {
       print "Moving images for $d\n";
       
-      $sql = "SELECT fp.fpid, fp.image, fp.fid, fp.pid
+      $sql = "SELECT fp.fpid, fp.fid, fp.pid
               FROM `forms` as f, `formpages` as fp
               WHERE f.qid = $qid
               AND fp.fid = f.fid
@@ -71,9 +70,15 @@ Move images from the database to files
 
       foreach($rs as $r)
       {
+	$sql = "SELECT image
+		FROM formpages
+		WHERE fpid = {$r['fpid']}";
+
+	$im = $db->GetOne($sql);
+
         //move image to file then remove from database and set filename
         $filename = $r['fid'] . "-" . $r['pid'] . ".png";
-        $image = imagecreatefromstring($r['image']);
+        $image = imagecreatefromstring($im);
         if ($image !== FALSE)
         {
           if (imagepng($image,IMAGES_DIRECTORY . $filename))
