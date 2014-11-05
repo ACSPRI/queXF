@@ -65,7 +65,7 @@ if (!defined('TEMPORARY_DIRECTORY')) define('TEMPORARY_DIRECTORY', "/tmp");
 
 //ICR
 if (!defined('ICR_ENABLED')) define('ICR_ENABLED', true);
-if (!defined('ICR_FILL_MIN')) define('ICR_FILL_MIN', 0.935);
+if (!defined('ICR_FILL_MIN')) define('ICR_FILL_MIN', 0.9);
 if (!defined('ICR_TRAIN_LIMIT')) define('ICR_TRAIN_LIMIT', 2000);
 if (!defined('BOX_EDGE')) define('BOX_EDGE',8); //take this many pixels of the side due to form box drawing
 
