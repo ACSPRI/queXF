@@ -55,10 +55,17 @@ if (substr($memory_limit,0,-1) < 128)
 else
 	$ml = T_("Passed");
 
+$max_input_vars = ini_get('max_input_vars');
+if (substr($max_input_vars,0,-1) < 10000)
+	$miv = T_("Recommended minimum") . ": 10000";
+else
+	$miv = T_("Passed");
+
 print "<p>" . T_("Configuration options from php.ini:") . "</p>";
 print "<ul><li>post_max_size = $post_max_size   <b>$pms</b></li>
 	<li>upload_max_filesize = $upload_max_filesize  <b>$umf</b></li>
-	<li>memory_limit = $memory_limit  <b>$ml</b></li></ul>";
+	<li>memory_limit = $memory_limit  <b>$ml</b></li>
+	<li>max_input_vars = $max_input_vars  <b>$miv</b></li></ul>";
 
 $gsbin = GS_BIN;
 if($pos=stripos($gsbin," ")) $gsbin=substr($gsbin,0,$pos);
