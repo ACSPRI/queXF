@@ -443,10 +443,28 @@ function resize_bounding(&$image, $x = 44, $y = 34)
 	if ($width < 1) $width = 1;
 	if ($height < 1) $height = 1;
 
-	// Resize
-	imagecopyresized($new, $image, 0, 0, $tlx, $tly, $x, $y, $width, $height);
+	// Find the centre
+	$xc = $width/2 + $tlx;
+	$yc = $height/2 + $tly;
 
-	
+	// Preserve aspect ratio to an extent
+	if ($width < $height) {
+		$aspect = $width / $height;
+		$aspect2 = pow($aspect, 1/3);
+		$height2 = $height;
+		$width2 = $height * $aspect2;
+		$dx = ($width2 - $width) / 2;
+		// Resize
+		imagecopyresized($new, $image, 0, 0, $tlx - $dx, $tly, $x, $y, $width2, $height2);
+	} else {
+		$aspect = $height / $width;
+		$aspect2 = pow($aspect, 1/3);
+		$width2 = $width;
+		$height2 = $width * $aspect2;
+		$dy = ($height2 - $height) / 2;
+		// Resize
+		imagecopyresized($new, $image, 0, 0, $tlx, $tly - $dy, $x, $y, $width2, $height2);
+	}
 	return $new;
 }
 
