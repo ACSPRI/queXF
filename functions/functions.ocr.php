@@ -368,7 +368,10 @@ function sector_distance(&$image)
 
 	for($i = 1; $i <= 12; $i++)
 	{
-		$scount = count($s[$i]);
+		$scount = 0;
+		if(isset($s[$i])) {
+			$scount = count($s[$i]);
+		}
 
 		//calc occupancy
 		if ($i <= 3) $o[1] += $scount;
