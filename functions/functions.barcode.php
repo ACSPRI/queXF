@@ -200,6 +200,7 @@ function validate($s)
 
 }
 
+
 function validateCodaBar($s)
 {
 	//length + 1 must be a multiple of 8 (each character is 7 bars/spaces and a space)
@@ -224,7 +225,7 @@ function validateCodaBar($s)
  * Currently steps pixel by pixel (step = 1)
  *
  */
-function barcode($image, $step = 1, $length = false)
+function barcode($image, $step = 1, $length = false, $numsonly = false)
 {
 	if (function_exists('imagefilter') &&
 		function_exists('imagetruecolortopalette') &&
@@ -266,7 +267,31 @@ function barcode($image, $step = 1, $length = false)
 				}
 			}
 		}
-	}
+  }
+
+  if (OCR_ENABLED)
+  {
+    //use tesseract to find the "barcode" or any text as OCR
+    $tmp = tempnam(TEMPORARY_DIRECTORY, "BARCODE");
+    imagepng($image,$tmp);
+    exec(TESSERACT_BIN . " $tmp $tmp -psm 7"); //run tessearct in single line mode
+    $result = file_get_contents($tmp . ".txt");
+    unlink($tmp);
+    unlink($tmp . ".txt");
+  
+    if (!empty($result))
+    {
+      $nums = preg_replace('/\D+/', '', $result); // numbers only
+      //check length if set to check
+      if ($length && strlen($nums) == $length)
+        return $nums; //if length is set and matching in length then return
+      else if (!$length && !$numsonly)
+        return $result; //if no length is set just return what is read by OCR
+      else if (!$length && $numsonly)
+        return $nums; //if no length is set just return what is read by OCR
+    }
+  }
+
 	return false;
 }
 

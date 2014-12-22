@@ -71,7 +71,10 @@ if (!defined('BOX_EDGE')) define('BOX_EDGE',8); //take this many pixels of the s
 
 //Old OCR Stuff
 if (!defined('CONVERT_BIN')) define('CONVERT_BIN', "/usr/bin/convert");
-if (!defined('TESSERACT_BIN')) define('TESSERACT_BIN', "/usr/local/bin/tesseract");
+
+//Use Tesseract OCR for form identification / OCR on page
+if (!defined('TESSERACT_BIN')) define('TESSERACT_BIN', "/usr/bin/tesseract");
+if (!defined('OCR_ENABLED')) define('OCR_ENABLED',false);
 
 //Page size
 if (!defined('PAGE_WIDTH')) define('PAGE_WIDTH',2480);
@@ -104,6 +107,10 @@ if (!defined('BAND_DEFAULT_ZOOM')) define('BAND_DEFAULT_ZOOM',3);
 if (!defined('HORI_WIDTH')) define('HORI_WIDTH',6);
 if (!defined('VERT_WIDTH')) define('VERT_WIDTH',6);
 
+//Approximate widths of page guide boxes (in pixels)
+if (!defined('HORI_WIDTH_BOX')) define('HORI_WIDTH_BOX',54);
+if (!defined('VERT_WIDTH_BOX')) define('VERT_WIDTH_BOX',54);
+
 //Page guide lines bounding boxes as portions instead of specified manually
 if (!defined('PAGE_GUIDE_X_PORTION')) define('PAGE_GUIDE_X_PORTION',0.25); //portion of width of page for edge detection
 if (!defined('PAGE_GUIDE_Y_PORTION')) define('PAGE_GUIDE_Y_PORTION',0.17); //portion of height of page for edge detection
@@ -114,6 +121,12 @@ if (!defined('BARCODE_TLX_PORTION')) define('BARCODE_TLX_PORTION',0.5); //Top le
 if (!defined('BARCODE_TLY_PORTION')) define('BARCODE_TLY_PORTION',0); //Top left Y
 if (!defined('BARCODE_BRX_PORTION')) define('BARCODE_BRX_PORTION',1); //Bottom right X
 if (!defined('BARCODE_BRY_PORTION')) define('BARCODE_BRY_PORTION',0.2); //Bottom right Y
+
+//Barcode positions on page defined as portions of the page (second location)
+if (!defined('BARCODE_TLX_PORTION2')) define('BARCODE_TLX_PORTION2',0); //Top left X
+if (!defined('BARCODE_TLY_PORTION2')) define('BARCODE_TLY_PORTION2',0.8); //Top left Y
+if (!defined('BARCODE_BRX_PORTION2')) define('BARCODE_BRX_PORTION2',0.5); //Bottom right X
+if (!defined('BARCODE_BRY_PORTION2')) define('BARCODE_BRY_PORTION2',1); //Bottom right Y
 
 //Line widths
 if (!defined('VAS_LENGTH_MIN')) define('VAS_LENGTH_MIN',1200); //Length in pixels of a VAS line
@@ -133,6 +146,7 @@ if (!defined('SPLIT_SCANNING_THRESHOLD')) define('SPLIT_SCANNING_THRESHOLD',10);
 
 //The length of a barcode for the page id
 if (!defined('BARCODE_LENGTH_PID')) define('BARCODE_LENGTH_PID',8); //Length in chars of a barcode identifying a page
+if (!defined('BARCODE_LENGTH_PID2')) define('BARCODE_LENGTH_PID2',8); //Length in chars of a barcode identifying a page (second location)
 
 //Whether to assign a form if there are undetected pages for this form
 if (!defined('MISSING_PAGE_ASSIGN')) define('MISSING_PAGE_ASSIGN',false); 

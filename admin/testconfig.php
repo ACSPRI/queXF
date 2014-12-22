@@ -88,26 +88,18 @@ else
   $fail = true;
 }
 
-/*
 if (OCR_ENABLED)
 {
 	
-if (is_file(TESSERACT_BIN)) {
-	print "<p>" . T_("Found Tesseract") . "</p>";
+  if (is_file(TESSERACT_BIN)) {
+  $ver = exec(TESSERACT_BIN . " -v 2>&1");
+	print "<p>" . T_("Found Tesseract version") . " $ver</p>";
 } else {
 	echo "<p>"  . T_("Could not find Tesseract in path: ")  . TESSERACT_BIN .  "</p><p>" . T_("Please modify config.inc.php, TESSERACT_BIN to point to the tesseract executable or disable OCR by changing OCR_ENABLED to false") ."</p>";
 		$fail = true;
 }
 
-if (is_file(CONVERT_BIN)) {
-	print "<p>" .T_("Found ImageMagick") . "</p>";
-} else
-{
-	echo "<p>" .T_("Could not find ImageMagick in path: ") . CONVERT_BIN .  "</p><p>" . T_("Please modify config.inc.php, CONVERT_BIN to point to the convert executable or disable OCR by changing OCR_ENABLED to false") . "</p>";
-		$fail = true;
 }
-}
-*/
 
 if ($fail)
 {

@@ -421,6 +421,8 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `BR_HORI_BRY` int(11) NOT NULL DEFAULT '3384',
   `VERT_WIDTH` int(11) NOT NULL DEFAULT '6',
   `HORI_WIDTH` int(11) NOT NULL DEFAULT '6',
+  `VERT_WIDTH_BOX` int(11) NOT NULL DEFAULT '54',
+  `HORI_WIDTH_BOX` int(11) NOT NULL DEFAULT '54',
   PRIMARY KEY (`pid`),
   UNIQUE KEY `pidentifierval` (`pidentifierval`),
   KEY `qid` (`qid`)

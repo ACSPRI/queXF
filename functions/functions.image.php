@@ -276,6 +276,7 @@ function offset($image,$a,$compare = 1,$page)
 {
 	$b = array();
 	$c = array();
+  $d = array();
 
 	//temp only ?
 	if (!isset($a['tlx']) && $compare == 1)
@@ -285,20 +286,54 @@ function offset($image,$a,$compare = 1,$page)
 		return $c;
 	}
 
-	$b[] = vertlinex($page['TL_VERT_TLX'],$page['TL_VERT_TLY'],$page['TL_VERT_BRX'],$page['TL_VERT_BRY'],$image,$page['VERT_WIDTH']);
-	$b[] = horiliney($page['TL_HORI_TLX'],$page['TL_HORI_TLY'],$page['TL_HORI_BRX'],$page['TL_HORI_BRY'],$image,$page['HORI_WIDTH']);
+  //line edge detection
+  $d[] = vertlinex($page['TL_VERT_TLX'],$page['TL_VERT_TLY'],$page['TL_VERT_BRX'],$page['TL_VERT_BRY'],$image,$page['VERT_WIDTH_BOX'],int_divide($page['VERT_WIDTH_BOX'],10),50,false);
+  $d[] = horiliney($page['TL_HORI_TLX'],$page['TL_HORI_TLY'],$page['TL_HORI_BRX'],$page['TL_HORI_BRY'],$image,$page['HORI_WIDTH_BOX'],int_divide($page['HORI_WIDTH_BOX'],10),50,false);
 
-	$b[] = vertlinex($page['TR_VERT_TLX'],$page['TR_VERT_TLY'],$page['TR_VERT_BRX'],$page['TR_VERT_BRY'],$image,$page['VERT_WIDTH']);
-	$b[] = horiliney($page['TR_HORI_TLX'],$page['TR_HORI_TLY'],$page['TR_HORI_BRX'],$page['TR_HORI_BRY'],$image,$page['HORI_WIDTH']);
+  $d[] = vertlinex($page['TR_VERT_TLX'],$page['TR_VERT_TLY'],$page['TR_VERT_BRX'],$page['TR_VERT_BRY'],$image,$page['VERT_WIDTH_BOX'],int_divide($page['VERT_WIDTH_BOX'],10),50,false);
+  $d[] = horiliney($page['TR_HORI_TLX'],$page['TR_HORI_TLY'],$page['TR_HORI_BRX'],$page['TR_HORI_BRY'],$image,$page['HORI_WIDTH_BOX'],int_divide($page['HORI_WIDTH_BOX'],10),50,false);
 
-	$b[] = vertlinex($page['BL_VERT_TLX'],$page['BL_VERT_TLY'],$page['BL_VERT_BRX'],$page['BL_VERT_BRY'],$image,$page['VERT_WIDTH']);
-	$b[] = horiliney($page['BL_HORI_TLX'],$page['BL_HORI_TLY'],$page['BL_HORI_BRX'],$page['BL_HORI_BRY'],$image,$page['HORI_WIDTH']);
+  $d[] = vertlinex($page['BL_VERT_TLX'],$page['BL_VERT_TLY'],$page['BL_VERT_BRX'],$page['BL_VERT_BRY'],$image,$page['VERT_WIDTH_BOX'],int_divide($page['VERT_WIDTH_BOX'],10),50,false);
+  $d[] = horiliney($page['BL_HORI_TLX'],$page['BL_HORI_TLY'],$page['BL_HORI_BRX'],$page['BL_HORI_BRY'],$image,$page['HORI_WIDTH_BOX'],int_divide($page['HORI_WIDTH_BOX'],10),50,false);
 
-	$b[] = vertlinex($page['BR_VERT_TLX'],$page['BR_VERT_TLY'],$page['BR_VERT_BRX'],$page['BR_VERT_BRY'],$image,$page['VERT_WIDTH']);
-	$b[] = horiliney($page['BR_HORI_TLX'],$page['BR_HORI_TLY'],$page['BR_HORI_BRX'],$page['BR_HORI_BRY'],$image,$page['HORI_WIDTH']);
+  $d[] = vertlinex($page['BR_VERT_TLX'],$page['BR_VERT_TLY'],$page['BR_VERT_BRX'],$page['BR_VERT_BRY'],$image,$page['VERT_WIDTH_BOX'],int_divide($page['VERT_WIDTH_BOX'],10),50,false);
+  $d[] = horiliney($page['BR_HORI_TLX'],$page['BR_HORI_TLY'],$page['BR_HORI_BRX'],$page['BR_HORI_BRY'],$image,$page['HORI_WIDTH_BOX'],int_divide($page['HORI_WIDTH_BOX'],10),50,false);
 
 
-	if ($compare == 0) return $b;
+  //check to see how many are 0 - if none are - proceed, otherwise try for box 
+  //edge detection
+  //
+  $boxerrors = 0;
+  foreach($d as $bb)
+    if ($bb == 0) $boxerrors++;
+
+  if ($boxerrors > 0)
+  {
+    //try box edge detection
+    $b[] = vertlinex($page['TL_VERT_TLX'],$page['TL_VERT_TLY'],$page['TL_VERT_BRX'],$page['TL_VERT_BRY'],$image,$page['VERT_WIDTH'],int_divide($page['VERT_WIDTH'],3));
+    $b[] = horiliney($page['TL_HORI_TLX'],$page['TL_HORI_TLY'],$page['TL_HORI_BRX'],$page['TL_HORI_BRY'],$image,$page['HORI_WIDTH'],int_divide($page['HORI_WIDTH'],3));
+
+    $b[] = vertlinex($page['TR_VERT_TLX'],$page['TR_VERT_TLY'],$page['TR_VERT_BRX'],$page['TR_VERT_BRY'],$image,$page['VERT_WIDTH'],int_divide($page['VERT_WIDTH'],3));
+    $b[] = horiliney($page['TR_HORI_TLX'],$page['TR_HORI_TLY'],$page['TR_HORI_BRX'],$page['TR_HORI_BRY'],$image,$page['HORI_WIDTH'],int_divide($page['HORI_WIDTH'],3));
+
+    $b[] = vertlinex($page['BL_VERT_TLX'],$page['BL_VERT_TLY'],$page['BL_VERT_BRX'],$page['BL_VERT_BRY'],$image,$page['VERT_WIDTH'],int_divide($page['VERT_WIDTH'],3));
+    $b[] = horiliney($page['BL_HORI_TLX'],$page['BL_HORI_TLY'],$page['BL_HORI_BRX'],$page['BL_HORI_BRY'],$image,$page['HORI_WIDTH'],int_divide($page['HORI_WIDTH'],3));
+
+    $b[] = vertlinex($page['BR_VERT_TLX'],$page['BR_VERT_TLY'],$page['BR_VERT_BRX'],$page['BR_VERT_BRY'],$image,$page['VERT_WIDTH'],int_divide($page['VERT_WIDTH'],3));
+    $b[] = horiliney($page['BR_HORI_TLX'],$page['BR_HORI_TLY'],$page['BR_HORI_BRX'],$page['BR_HORI_BRY'],$image,$page['HORI_WIDTH'],int_divide($page['HORI_WIDTH'],3));
+
+    $lineerrors = 0;
+    foreach($b as $bb)
+      if ($bb == 0) $lineerrors++;
+
+    //check which one has the least number of errors
+
+    if ($lineerrors < $boxerrors)
+      $d = $b;
+  }
+
+
+	if ($compare == 0) return $d;
 
 	$xa =0;
 	$xb = 0;
@@ -650,16 +685,15 @@ function fillratio($image,$a)
 /* Find a horizontal line and return it's position
  *
  */
-function horiliney($tlx,$tly,$brx,$bry,$image,$approxw)
+function horiliney($tlx,$tly,$brx,$bry,$image,$approxw,$tolerance = 2,$attempts = 10,$searchlongest = true)
 {
 	//0 is black, 1 is white
 	$y = 0;
-	//try 10 times to find start of line
-	$xadd = int_divide(($brx - $tlx), 10);
+	//try $attempts times to find start of line
+	$xadd = int_divide(($brx - $tlx), $attempts);
 	$s = array();
 	$count = 0;
 	$avg = 0;
-	$tolerance = int_divide($approxw, 3);
 	for ($x = $tlx; $x < $brx; $x+=$xadd) {
 		$col = imagecolorat($image, $x, $y);
 		$width = 1;
@@ -684,10 +718,16 @@ function horiliney($tlx,$tly,$brx,$bry,$image,$approxw)
 	}
 	//s is an array of with key being y val of middle of line, value being x val
 
+  if (empty($s)) return 0;
+
 	//print_r($s);
 
-	//run a scanline through the key val to determine the longest line
-	$line = 0;
+	//run a scanline through the key val to determine the longest/shortest line
+  $line = 0;
+  
+  if ($searchlongest == false) //if searching for shortest
+    $line = 100000;
+;
 	$longest = key($s);
 	foreach($s as $y => $xval)
 	{
@@ -696,12 +736,23 @@ function horiliney($tlx,$tly,$brx,$bry,$image,$approxw)
 		for($x = $tlx; $x < $brx; $x += 1)
 		{
 			$rgb = imagecolorat($image, $x, $y);
-			if ($rgb != $col){
-				if ($width > $line && $col == 0)
-				{
-					$longest= $y;
-					$line = $width;
-				}
+      if ($rgb != $col){
+        if ($searchlongest)
+        {
+  				if ($width > $line && $col == 0)
+  				{
+  					$longest= $y;
+  					$line = $width;
+  				}
+        }
+        else
+        {
+      		if (abs($width - $approxw) < $line && $col == 0)
+  				{
+  					$longest= $y;
+  					$line = abs($width - $approxw);
+  				}
+        }
 				$width = 0;
 				$col = $rgb;
 			}
@@ -718,16 +769,15 @@ function horiliney($tlx,$tly,$brx,$bry,$image,$approxw)
  *
  *
  */
-function vertlinex($tlx,$tly,$brx,$bry,$image,$approxw)
+function vertlinex($tlx,$tly,$brx,$bry,$image,$approxw,$tolerance = 2,$attempts = 10,$searchlongest = true)
 {
 	//0 is black, 1 is white
 	$x = 0;
-	//try 10 times to find start of line
-	$yadd = int_divide(($bry - $tly) ,10);
+	//try $attempts times to find start of line
+	$yadd = int_divide(($bry - $tly) ,$attempts);
 	$s = array();
 	$count = 0;
 	$avg = 0;
-	$tolerance = int_divide($approxw, 3);
 	for ($y = $tly; $y < $bry; $y+=$yadd) {
 		$col = imagecolorat($image, $x, $y);
 		$width = 0;
@@ -750,11 +800,16 @@ function vertlinex($tlx,$tly,$brx,$bry,$image,$approxw)
 		//print "<br/>\n";
 	}
 
+  if (empty($s)) return 0;
+
 	//add ability to search for the line closest to a certain length - not just the longest which
 	//may be a page artifact. need to define CORNER_LINE_LENGTH in pixels and enablels
 
 
-	$line = 0;
+  $line = 0;
+  if ($searchlongest == false)
+    $line = 100000;
+
 	$longest = key($s);
 	foreach($s as $x => $yval)
 	{
@@ -764,12 +819,23 @@ function vertlinex($tlx,$tly,$brx,$bry,$image,$approxw)
 		{
 			$rgb = imagecolorat($image, $x, $y);
 			if ($rgb != $col){
-				//print "X LINE: $x width: $width COL: $col<br/>";
-				if ($width > $line && $col == 0)
-				{
-					$longest= $x;
-					$line = $width;
-				}
+        //print "X LINE: $x width: $width COL: $col<br/>";
+        if ($searchlongest)
+        {
+   				if ($width > $line && $col == 0)
+  				{
+  					$longest= $x;
+	  				$line = $width;
+          }
+        }
+        else
+        {
+  				if (abs($width - $approxw) < $line && $col == 0)
+  				{
+  					$longest= $x;
+	  				$line = abs($width - $approxw);
+          }
+        }
 				$width = 0;
 				$col = $rgb;
 			}

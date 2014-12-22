@@ -66,7 +66,11 @@ function defaultpage($width,$height,$qid=0,$pid=0,$data="")
 			//Line widths default	
 			'VERT_WIDTH' => VERT_WIDTH,
 			'HORI_WIDTH' => HORI_WIDTH,
-	
+
+			//Edge box widths default	
+			'VERT_WIDTH_BOX' => VERT_WIDTH_BOX,
+			'HORI_WIDTH_BOX' => HORI_WIDTH_BOX,
+
 			//Top left horizontal
 			'TL_HORI_TLX' => 10,
 			'TL_HORI_TLY' => 10,
@@ -200,8 +204,32 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 
 			//imagepng($barcode,"/mnt/iss/tmp/temp$n.png");
 
-			//check for barcode
-			$pid = barcode($barcode,1,BARCODE_LENGTH_PID);
+      //check for barcode
+      $pid = barcode($barcode,1,BARCODE_LENGTH_PID);
+
+  
+      //if failed try second location
+      if (!$pid)
+      {
+        $btlx = floor(BARCODE_TLX_PORTION2 * $width);
+      	if ($btlx <= 0) $btlx = 1;
+
+      	$btly = floor(BARCODE_TLY_PORTION2 * $height);
+        if ($btly <= 0) $btly = 1;
+
+        $bbrx = floor(BARCODE_BRX_PORTION2 * $width);
+        if ($bbrx <= 0) $bbrx = 1;
+
+        $bbry = floor(BARCODE_BRY_PORTION2 * $height);
+        if ($bbry <= 0) $bbry = 1;
+      
+        $barcode = crop($image,array("tlx" => $btlx, "tly" => $btly, "brx" => $bbrx, "bry" => $bbry));
+
+        //check for barcode
+        $pid = barcode($barcode,1,BARCODE_LENGTH_PID2);
+      }
+  
+
 			if ($pid)
 			{
 				$pages++;
@@ -704,7 +732,31 @@ function import($filename,$description = false)
 			$barcode = crop($image,array("tlx" => $btlx, "tly" => $btly, "brx" => $bbrx, "bry" => $bbry));
 
 			//check for barcode
-			$pid = barcode($barcode,1,BARCODE_LENGTH_PID);
+      $pid = barcode($barcode,1,BARCODE_LENGTH_PID);
+
+      //if failed try second location
+      if (!$pid)
+      {
+        $btlx = floor(BARCODE_TLX_PORTION2 * $width);
+      	if ($btlx <= 0) $btlx = 1;
+
+      	$btly = floor(BARCODE_TLY_PORTION2 * $height);
+        if ($btly <= 0) $btly = 1;
+
+        $bbrx = floor(BARCODE_BRX_PORTION2 * $width);
+        if ($bbrx <= 0) $bbrx = 1;
+
+        $bbry = floor(BARCODE_BRY_PORTION2 * $height);
+        if ($bbry <= 0) $bbry = 1;
+      
+        $barcode = crop($image,array("tlx" => $btlx, "tly" => $btly, "brx" => $bbrx, "bry" => $bbry));
+
+        //check for barcode
+        $pid = barcode($barcode,1,BARCODE_LENGTH_PID2);
+      }
+ 
+
+
 			if ($pid)
 			{
 				//print "BARCODE: $pid<br/>";
@@ -787,8 +839,29 @@ function import($filename,$description = false)
 				//check for barcode
 				$barcode = crop($image,array("tlx" => $btlx, "tly" => $btly, "brx" => $bbrx, "bry" => $bbry));
 				
-				$pid = barcode($barcode,1,BARCODE_LENGTH_PID);
+        $pid = barcode($barcode,1,BARCODE_LENGTH_PID);
 
+        //if failed try second location
+        if (!$pid)
+        {
+          $btlx = floor(BARCODE_TLX_PORTION2 * $width);
+        	if ($btlx <= 0) $btlx = 1;
+  
+        	$btly = floor(BARCODE_TLY_PORTION2 * $height);
+          if ($btly <= 0) $btly = 1;
+  
+          $bbrx = floor(BARCODE_BRX_PORTION2 * $width);
+          if ($bbrx <= 0) $bbrx = 1;
+  
+          $bbry = floor(BARCODE_BRY_PORTION2 * $height);
+          if ($bbry <= 0) $bbry = 1;
+        
+          $barcode = crop($image,array("tlx" => $btlx, "tly" => $btly, "brx" => $bbrx, "bry" => $bbry));
+  
+          //check for barcode
+          $pid = barcode($barcode,1,BARCODE_LENGTH_PID2);
+        }
+ 
 				if ($pid)
 				{
 					print T_("Processing pid") . ": $pid...";

@@ -130,6 +130,36 @@ function definetomap($zoom,$pid,$filename)
 
 	print "<div id='barcodebox'  style='position: absolute; top:" . $btly / $zoom. "px; left: " . $btlx / $zoom. "px; width:" . ($bbrx-$btlx)/ $zoom. "px; height:" . ($bbry-$btly)/ $zoom. "px; background-color: brown; opacity: 0.6;' class='drsElement'><div class='drsMoveHandle'>$barcode</div></div>";
 
+
+  $btlx = floor(BARCODE_TLX_PORTION2 * $width);
+	if ($btlx <= 0) $btlx = 1;
+
+	$btly = floor(BARCODE_TLY_PORTION2 * $height);
+	if ($btly <= 0) $btly = 1;
+
+	$bbrx = floor(BARCODE_BRX_PORTION2 * $width);
+	if ($bbrx <= 0) $bbrx = 1;
+
+	$bbry = floor(BARCODE_BRY_PORTION2 * $height);
+	if ($bbry <= 0) $bbry = 1;
+
+	$barcodeimage = crop($image,array("tlx" => $btlx, "tly" => $btly, "brx" => $bbrx, "bry" => $bbry));
+
+	$barcode = barcode($barcodeimage);
+
+	if ($barcode === false) 
+		$barcode = T_("NO BARCODE DETECTED");
+	else
+	{
+		if (strlen($barcode) != BARCODE_LENGTH_PID2)
+			$barcode = T_("Detected but not BARCODE_LENGTH_PID2 length") . ": " . $barcode;
+		else
+			$barcode = T_("Detected") . ": " . $barcode;
+	}
+	
+
+	print "<div id='barcodebox'  style='position: absolute; top:" . $btly / $zoom. "px; left: " . $btlx / $zoom. "px; width:" . ($bbrx-$btlx)/ $zoom. "px; height:" . ($bbry-$btly)/ $zoom. "px; background-color: brown; opacity: 0.6;' class='drsElement'><div class='drsMoveHandle'>$barcode</div></div>";
+
 }
 
 xhtml_head(T_("Page test"),true,array("../css/dragresize.css","../css/pagetest.css"),array("../js/prototype-1.6.0.2.js","../js/pagelayout.js"));

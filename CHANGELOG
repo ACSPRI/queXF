@@ -1,3 +1,6 @@
+ALTER TABLE `pages` ADD `VERT_WIDTH_BOX` INT NOT NULL DEFAULT '54',
+ADD `HORI_WIDTH_BOX` INT NOT NULL DEFAULT '54';
+
 queXF 1.16.0 - Changes since 1.15.0
 
 *New Feature: Verification - replaced GET to submit with POST and autofocus to assign button for faster form submission
