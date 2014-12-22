@@ -229,71 +229,138 @@ function createboxes($sx,$sy,$x,$y,$pid,$qid)
 
 	global $db;
 
-	$sql = "SELECT image 
-		FROM pages
-		WHERE pid = $pid";
+  //first see if boxes exist within this selection - if so merge them in to one 
+  //box group
+  //
+  $sql = "SELECT count(DISTINCT bgid)
+          FROM boxes
+          WHERE pid = '$pid'
+          AND tlx > '$sx' AND brx > '$sx'
+          AND tly > '$sy' AND bry > '$sy'
+          AND tlx < '$x' AND brx < '$x' 
+          AND tly < '$y' AND bry < '$y'";
 
-	$row = $db->GetRow($sql);
+  $groups = $db->GetOne($sql);
 
-	if (empty($row)) exit;
+  if ($groups == 0)
+  {
+    //no existing boxes in this selection so create a new box group
 
-	$image = imagecreatefromstring($row['image']);
+    $sql = "SELECT image 
+      FROM pages
+      WHERE pid = $pid";
 
-	$barcode = crop($image,array("tlx" => $sx, "tly" => $sy, "brx" => $x, "bry" => $y));
+    $row = $db->GetRow($sql);
 
-	//check for barcode
-	$barcodenum = barcode($barcode);
-	if ($barcodenum)
-	{
-		$a = array();
-		$a[] = array($sx);
-		$a[] = array($sy);
-		$a[] = array($x);
-		$a[] = array($y);
-		$barcodewidth = strlen($barcodenum);
-	}
-	else
-	{
-		$lw = lineWidth($sx,$sy,$x,$y,$image);
+    if (empty($row)) exit;
 
-		$a = 0;
+    $image = imagecreatefromstring($row['image']);
 
-		//print_r($lw);
+    $barcode = crop($image,array("tlx" => $sx, "tly" => $sy, "brx" => $x, "bry" => $y));
 
-		$a = vasBoxDetection($lw);				
-		if ($a == false)
-		{
-			if (($x - $sx) > ($y - $sy))
-				$a = horiBoxDetection($lw);
-			else
-				$a = vertBoxDetection($lw);
-		}
-	}
+    //check for barcode
+    $barcodenum = barcode($barcode,1,false,true);
+    if ($barcodenum)
+    {
+      $a = array();
+      $a[] = array($sx);
+      $a[] = array($sy);
+      $a[] = array($x);
+      $a[] = array($y);
+      $barcodewidth = strlen($barcodenum);
+    }
+    else
+    {
+      $lw = lineWidth($sx,$sy,$x,$y,$image);
 
-	$boxes = count($a[0]);
+      $a = 0;
 
-	//convert to box format
-	$boxes = array();
-	for ($i = 0; $i < count($a[0]); $i++)
-	{
-		$box = array();
-		$box['tlx'] = $a[0][$i];
-		$box['tly'] = $a[1][$i];
-		$box['brx'] = $a[2][$i];
-		$box['bry'] = $a[3][$i];					
-		$boxes[] = $box;
-	}
+      //print_r($lw);
 
-	$crop = array();
-	$crop['tlx'] = $sx;
-	$crop['tly'] = $sy;
-	$crop['brx'] = $x;
-	$crop['bry'] = $y;
+      $a = vasBoxDetection($lw);				
+      if ($a == false)
+      {
+        if (($x - $sx) > ($y - $sy))
+          $a = horiBoxDetection($lw);
+        else
+          $a = vertBoxDetection($lw);
+      }
+    }
 
-	if ($barcodenum) //create barcode box group
-		$bgid = createboxgroup($boxes,$barcodewidth,'tmpbarcode',$pid,5);
-	else 	//create single choice box group by default
-	$bgid = createboxgroup($boxes,1,'tmp',$pid,1);
+    //convert to box format
+    $boxes = array();
+    for ($i = 0; $i < count($a[0]); $i++)
+    {
+      $box = array();
+      $box['tlx'] = $a[0][$i];
+      $box['tly'] = $a[1][$i];
+      $box['brx'] = $a[2][$i];
+      $box['bry'] = $a[3][$i];					
+      $boxes[] = $box;
+    }
+
+    $crop = array();
+    $crop['tlx'] = $sx;
+    $crop['tly'] = $sy;
+    $crop['brx'] = $x;
+    $crop['bry'] = $y;
+
+    if ($barcodenum) //create barcode box group
+      $bgid = createboxgroup($boxes,$barcodewidth,'tmpbarcode',$pid,5);
+    else if (count($boxes) > 0) 	//create single choice box group by default
+      $bgid = createboxgroup($boxes,1,'tmp',$pid,1);
+    else //nothing detected -  create a text box
+      $bgid = createboxgroup(array($crop),1,'tmpbox',$pid,6);
+  }
+  else if ($groups > 1)
+  {
+    //existing boxes in this selection that are part of more than one box group
+
+    $db->StartTrans();
+
+    //make them all part of the first box group
+    $sql = "SELECT bgid
+          FROM boxes
+          WHERE pid = '$pid'
+          AND tlx > '$sx' AND brx > '$sx'
+          AND tly > '$sy' AND bry > '$sy'
+          AND tlx < '$x' AND brx < '$x' 
+          AND tly < '$y' AND bry < '$y'";
+
+     $group = $db->GetOne($sql);
+
+    $sql = "SELECT DISTINCT bgid
+          FROM boxes
+          WHERE pid = '$pid'
+          AND tlx > '$sx' AND brx > '$sx'
+          AND tly > '$sy' AND bry > '$sy'
+          AND tlx < '$x' AND brx < '$x' 
+          AND tly < '$y' AND bry < '$y'
+         AND bgid != '$group'";
+
+    $rs = $db->GetAll($sql);
+
+    foreach($rs as $r)
+    {
+      $sql = "DELETE FROM boxgroupstype WHERE bgid = {$r['bgid']}";
+
+      $db->Execute($sql);
+    }
+ 
+    $sql = "UPDATE boxes
+            SET bgid = '$group'
+            WHERE pid = '$pid'
+            AND tlx > '$sx' AND brx > '$sx'
+            AND tly > '$sy' AND bry > '$sy'
+            AND tlx < '$x' AND brx < '$x' 
+            AND tly < '$y' AND bry < '$y'";
+    
+    $db->Execute($sql);
+
+
+    $db->CompleteTrans();
+  }
+  
 
 }
 
