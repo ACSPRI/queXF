@@ -283,7 +283,8 @@ else if (isset($_GET['char']))
 		JOIN boxgroupstype as bg ON (bg.bgid = b.bgid and (bg.btid = 3 or bg.btid = 4))
 		JOIN forms AS fm ON fm.fid = f.fid
 		LEFT JOIN ocrtrain as oc ON (oc.fid = f.fid AND oc.vid = c.vid AND oc.bid = b.bid)
-		WHERE c.val = '$char'
+    WHERE c.val = '$char'
+    AND c.vid != 0
 		AND fm.qid = '$qid'
 		$verifiers
 		AND oc.ocrtid IS NULL
