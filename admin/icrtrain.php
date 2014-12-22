@@ -48,9 +48,17 @@ div.float {
 </style>
 
 <script type='text/javascript'>
-function toggle(eid)
+
+function prevdef(e)
 {
-	d = document.getElementById('div_' + eid);
+  e.stopPropagation();
+}
+
+function toggle(eid,e)
+{
+  e.preventDefault();
+  
+  d = document.getElementById('div_' + eid);
 	i = document.getElementById('input_' + eid);
 
 	if (i.disabled == "")
@@ -98,7 +106,7 @@ if (isset($_POST['submit']))
 			$box = array('tlx'=>$a[2] + BOX_EDGE,'tly'=>$a[3] + BOX_EDGE,'brx'=>$a[4] - BOX_EDGE,'bry'=>$a[5] - BOX_EDGE);
 			$vid = $a[6];
 			$bid = $a[7];
-			$val = $a[8];
+//			$val = $a[8];
 
 			if ($cpid != $pid || $cfid != $fid)
 			{
@@ -309,7 +317,7 @@ else if (isset($_GET['char']))
 		$bry = $r['bry'];
 		$fid = $r['fid'];
 
-		print "<div class='float' id='div_".$pid."_".$fid."_".$tlx."_".$tly."_".$brx."_".$bry."_".$vid."_".$bid."_".$char."' onclick=\"toggle('".$pid."_".$fid."_".$tlx."_".$tly."_".$brx."_".$bry."_".$vid."_".$bid."_".$char."')\"><img alt='ocrimage' src='../showpage.php?pid=$pid&amp;bid=$bid&amp;fid=$fid'/><br/><p><input id='input_".$pid."_".$fid."_".$tlx."_".$tly."_".$brx."_".$bry."_".$vid."_".$bid."_".$char."' name='".$pid."_".$fid."_".$tlx."_".$tly."_".$brx."_".$bry."_".$vid."_".$bid."_".$char."' type='text' value='{$r['val']}' size='3' /></p></div>";
+		print "<div class='float' id='div_".$pid."_".$fid."_".$tlx."_".$tly."_".$brx."_".$bry."_".$vid."_".$bid."_".$char."' onclick=\"toggle('".$pid."_".$fid."_".$tlx."_".$tly."_".$brx."_".$bry."_".$vid."_".$bid."_".$char."',event)\"><img alt='ocrimage' src='../showpage.php?pid=$pid&amp;bid=$bid&amp;fid=$fid'/><br/><p><input onclick='prevdef(event);' id='input_".$pid."_".$fid."_".$tlx."_".$tly."_".$brx."_".$bry."_".$vid."_".$bid."_".$char."' name='".$pid."_".$fid."_".$tlx."_".$tly."_".$brx."_".$bry."_".$vid."_".$bid."_".$char."' type='text' value='{$r['val']}' size='3' maxlength='1' /></p></div>";
 
 	}
 	print "</p><p><label for='text'>" . T_("Description for knowledge base:") . "</label><input name='text' id='text' type='text' value='$desc'/></p><p><input name='submit' id='submit' type='submit' value='" . T_("Train") . "'/></p></form>";
