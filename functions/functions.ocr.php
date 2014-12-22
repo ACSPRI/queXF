@@ -227,27 +227,26 @@ function ocr_guess($image,$btid,$qid)
 
 	$sql = "SELECT val,
 			(
-			(pow((". M_E ." - IFNULL((pow((m1-'{$f[0][1]}'),2)/(2*v1)),0)),2)*pow((m1-'{$f[0][1]}'),2)) +
-			(pow((". M_E ." - IFNULL((pow((m2-'{$f[0][2]}'),2)/(2*v2)),0)),2)*pow((m2-'{$f[0][2]}'),2)) +
-			(pow((". M_E ." - IFNULL((pow((m3-'{$f[0][3]}'),2)/(2*v3)),0)),2)*pow((m3-'{$f[0][3]}'),2)) +
-			(pow((". M_E ." - IFNULL((pow((m4-'{$f[0][4]}'),2)/(2*v4)),0)),2)*pow((m4-'{$f[0][4]}'),2)) +
-			(pow((". M_E ." - IFNULL((pow((m5-'{$f[0][5]}'),2)/(2*v5)),0)),2)*pow((m5-'{$f[0][5]}'),2)) +
-			(pow((". M_E ." - IFNULL((pow((m6-'{$f[0][6]}'),2)/(2*v6)),0)),2)*pow((m6-'{$f[0][6]}'),2)) +
-			(pow((". M_E ." - IFNULL((pow((m7-'{$f[0][7]}'),2)/(2*v7)),0)),2)*pow((m7-'{$f[0][7]}'),2)) +
-			(pow((". M_E ." - IFNULL((pow((m8-'{$f[0][8]}'),2)/(2*v8)),0)),2)*pow((m8-'{$f[0][8]}'),2)) +
-			(pow((". M_E ." - IFNULL((pow((m9-'{$f[0][9]}'),2)/(2*v9)),0)),2)*pow((m9-'{$f[0][9]}'),2)) +
-			(pow((". M_E ." - IFNULL((pow((m10-'{$f[0][10]}'),2)/(2*v10)),0)),2)*pow((m10-'{$f[0][10]}'),2)) +
-			(pow((". M_E ." - IFNULL((pow((m11-'{$f[0][11]}'),2)/(2*v11)),0)),2)*pow((m11-'{$f[0][11]}'),2)) +
-			(pow((". M_E ." - IFNULL((pow((m12-'{$f[0][12]}'),2)/(2*v12)),0)),2)*pow((m12-'{$f[0][12]}'),2)) +
-			(pow((". M_E ." - IFNULL((pow((m13-'{$f[1][1]}'),2)/(2*v13)),0)),2)*pow((m13-'{$f[1][1]}'),2)) +
-			(pow((". M_E ." - IFNULL((pow((m14-'{$f[1][2]}'),2)/(2*v14)),0)),2)*pow((m14-'{$f[1][2]}'),2)) +
-			(pow((". M_E ." - IFNULL((pow((m15-'{$f[1][3]}'),2)/(2*v15)),0)),2)*pow((m15-'{$f[1][3]}'),2)) +
-			(pow((". M_E ." - IFNULL((pow((m16-'{$f[1][4]}'),2)/(2*v16)),0)),2)*pow((m16-'{$f[1][4]}'),2))
+			(pow(exp( - IFNULL((pow((m1-'{$f[0][1]}'),2)/(2*v1)),0)),2)) +
+			(pow(exp( - IFNULL((pow((m2-'{$f[0][2]}'),2)/(2*v2)),0)),2)) +
+			(pow(exp( - IFNULL((pow((m3-'{$f[0][3]}'),2)/(2*v3)),0)),2)) +
+			(pow(exp( - IFNULL((pow((m4-'{$f[0][4]}'),2)/(2*v4)),0)),2)) +
+			(pow(exp( - IFNULL((pow((m5-'{$f[0][5]}'),2)/(2*v5)),0)),2)) +
+			(pow(exp( - IFNULL((pow((m6-'{$f[0][6]}'),2)/(2*v6)),0)),2)) +
+			(pow(exp( - IFNULL((pow((m7-'{$f[0][7]}'),2)/(2*v7)),0)),2)) +
+			(pow(exp( - IFNULL((pow((m8-'{$f[0][8]}'),2)/(2*v8)),0)),2)) +
+			(pow(exp( - IFNULL((pow((m9-'{$f[0][9]}'),2)/(2*v9)),0)),2)) +
+			(pow(exp( - IFNULL((pow((m10-'{$f[0][10]}'),2)/(2*v10)),0)),2)) +
+			(pow(exp( - IFNULL((pow((m11-'{$f[0][11]}'),2)/(2*v11)),0)),2)) +
+			(pow(exp( - IFNULL((pow((m12-'{$f[0][12]}'),2)/(2*v12)),0)),2)) +
+			(pow(exp( - IFNULL((pow((m13-'{$f[1][1]}'),2)/(2*v13)),0)),2)) +
+			(pow(exp( - IFNULL((pow((m14-'{$f[1][2]}'),2)/(2*v14)),0)),2)) +
+			(pow(exp( - IFNULL((pow((m15-'{$f[1][3]}'),2)/(2*v15)),0)),2)) +
+			(pow(exp( - IFNULL((pow((m16-'{$f[1][4]}'),2)/(2*v16)),0)),2))
 			) as calc
 		FROM ocrkbdata
 		JOIN ocrkbboxgroup ON (ocrkbdata.kb = ocrkbboxgroup.kb AND ocrkbboxgroup.btid = '$btid' AND ocrkbboxgroup.qid = '$qid')
-		ORDER BY calc ASC";
-
+		ORDER BY calc DESC";
 
 	$guess = $db->GetRow($sql);
 
@@ -369,7 +368,10 @@ function sector_distance(&$image)
 
 	for($i = 1; $i <= 12; $i++)
 	{
-		$scount = count($s[$i]);
+		$scount = 0;
+		if(isset($s[$i])) {
+			$scount = count($s[$i]);
+		}
 
 		//calc occupancy
 		if ($i <= 3) $o[1] += $scount;
@@ -441,10 +443,34 @@ function resize_bounding(&$image, $x = 44, $y = 34)
 	if ($width < 1) $width = 1;
 	if ($height < 1) $height = 1;
 
-	// Resize
-	imagecopyresized($new, $image, 0, 0, $tlx, $tly, $x, $y, $width, $height);
+	// Find the centre
+	$xc = $width/2 + $tlx;
+	$yc = $height/2 + $tly;
 
-	
+	// Preserve aspect ratio to an extent
+	if ($width < $height) {
+		$aspect = $width / $height;
+		$aspect2 = pow($aspect, 1/3);
+		$height2 = $height;
+		$width2 = $height * $aspect2;
+		$dx = ($width2 - $width) / 2;
+
+		// Resize
+		$blank = imagecreate($width2, $height2);
+		imagecopy($blank, $image, $dx, 0, $tlx, $tly, $width, $height);
+		imagecopyresized($new, $blank, 0, 0, 0, 0, $x, $y, $width2, $height2);
+	} else {
+		$aspect = $height / $width;
+		$aspect2 = pow($aspect, 1/3);
+		$width2 = $width;
+		$height2 = $width * $aspect2;
+		$dy = ($height2 - $height) / 2;
+
+		// Resize
+		$blank = imagecreate($width2, $height2);
+		imagecopy($blank, $image, 0, $dy, $tlx, $tly, $width, $height);
+		imagecopyresized($new, $blank, 0, 0, 0, 0, $x, $y, $width2, $height2);
+	}
 	return $new;
 }
 
