@@ -175,7 +175,7 @@ else if (isset($_GET['pid']))
 			if (isset($_GET['zoom']))
 			{
 				header("Content-type: image/png");
-				echo ($row['image']);
+				imagepng($im);
 			}
 			else
 			{
