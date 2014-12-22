@@ -73,7 +73,12 @@ if (is_file($gsbin)) {
 	$ver = exec(GS_BIN . " --version");
 	if ($ver)
 	{
-		print "<p>" . T_("Found GhostScript version") . " $ver</p>";
+    print "<p>" . T_("Found GhostScript version") . " $ver</p>";
+    if (trim($ver) == "9.10")
+    {
+      print "<p><a href='https://bugs.launchpad.net/quexf/+bug/1328917'>" .T_("This version of GhostScript has a bug that makes it incompatible with queXF") . "<a/></p>";
+      $fail = true;
+    }
 	}
 	else
 	{
