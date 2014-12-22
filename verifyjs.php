@@ -209,7 +209,10 @@ if (isset($_POST['complete']) && isset($_SESSION['boxes']))
 		if ($box['btid'] == 1 || $box['btid'] == 2)
     {
       //delete old data
-      $db->Execute("DELETE FROM formboxverifychar WHERE vid = 0 AND bid = '$key' AND fid = '$fid'");
+      if (DELETE_ON_VERIFICATION)
+      {
+        $db->Execute("DELETE FROM formboxverifychar WHERE vid = 0 AND bid = '$key' AND fid = '$fid'");
+      }
 
       if ($box['val'] > 0)
       {
@@ -219,7 +222,10 @@ if (isset($_POST['complete']) && isset($_SESSION['boxes']))
 		if ($box['btid'] == 3 || $box['btid'] == 4)
 		{
       //delete old data
-      $db->Execute("DELETE FROM formboxverifychar WHERE vid = 0 AND bid = '$key' AND fid = '$fid'");
+      if (DELETE_ON_VERIFICATION)
+      {
+        $db->Execute("DELETE FROM formboxverifychar WHERE vid = 0 AND bid = '$key' AND fid = '$fid'");
+      }
 
 			if ($box['val'] == "" || $box['val'] == " ")
 			{
@@ -248,8 +254,11 @@ if (isset($_POST['complete']) && isset($_SESSION['boxes']))
     }
 
     //Delete unneeded box data
-    $sql = "DELETE IGNORE FROM formboxes WHERE fid = '$fid' AND bid = '$key'";
-    $db->Execute($sql);
+    if (DELETE_ON_VERIFICATION)
+    {
+      $sql = "DELETE IGNORE FROM formboxes WHERE fid = '$fid' AND bid = '$key'";
+      $db->Execute($sql);
+    }
 
 		//print "$sql</br>";
 	}

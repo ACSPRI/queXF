@@ -1,3 +1,10 @@
+queXF 1.17.0 - Changes since 1.16.0
+
+*New Feature: DELETE_ON_VERIFICATION will delete system generated data on verification to keep the database lean
+
+
+*Database changes required:
+
 ALTER TABLE `pages` ADD `VERT_WIDTH_BOX` INT NOT NULL DEFAULT '54',
 ADD `HORI_WIDTH_BOX` INT NOT NULL DEFAULT '54';
 

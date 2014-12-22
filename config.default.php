@@ -188,7 +188,8 @@ if (!defined('SINGLE_CHOICE_AUTOMATIC_VERIFICATION')) define('SINGLE_CHOICE_AUTO
 if (!defined('IMAGES_IN_DATABASE')) define('IMAGES_IN_DATABASE', true);
 if (!defined('IMAGES_DIRECTORY')) define('IMAGES_DIRECTORY', dirname(__FILE__) . '/images/');
 
-
+//Whether to delete system detected records on verification (default)
+if (!defined('DELETE_ON_VERIFICATION')) define('DELETE_ON_VERIFICATION', true);
 
 
 
