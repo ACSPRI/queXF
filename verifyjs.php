@@ -207,7 +207,10 @@ if (isset($_POST['complete']) && isset($_SESSION['boxes']))
 
 		$sql = "";
 		if ($box['btid'] == 1 || $box['btid'] == 2)
-		{
+    {
+      //delete old data
+      $db->Execute("DELETE FROM formboxverifychar WHERE vid = 0 AND bid = '$key' AND fid = '$fid'");
+
       if ($box['val'] > 0)
       {
   			$sql = "INSERT INTO formboxverifychar (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid','1')";
@@ -215,6 +218,9 @@ if (isset($_POST['complete']) && isset($_SESSION['boxes']))
 		}
 		if ($box['btid'] == 3 || $box['btid'] == 4)
 		{
+      //delete old data
+      $db->Execute("DELETE FROM formboxverifychar WHERE vid = 0 AND bid = '$key' AND fid = '$fid'");
+
 			if ($box['val'] == "" || $box['val'] == " ")
 			{
 				//$sql = "INSERT INTO formboxverifychar (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid',NULL)";
@@ -240,6 +246,11 @@ if (isset($_POST['complete']) && isset($_SESSION['boxes']))
     {
   		$db->Execute($sql);
     }
+
+    //Delete unneeded box data
+    $sql = "DELETE IGNORE FROM formboxes WHERE fid = '$fid' AND bid = '$key'";
+    $db->Execute($sql);
+
 		//print "$sql</br>";
 	}
 
