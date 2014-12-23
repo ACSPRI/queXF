@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*	Copyright Deakin University 2007,2008
  *	Written by Adam Zammit - adam.zammit@deakin.edu.au
@@ -74,13 +74,13 @@ else
 	}
 
 	?>	
-	<h1><? echo T_("Directory"); ?></h1>
+	<h1><?php echo T_("Directory"); ?></h1>
 	<form enctype="multipart/form-data" action="?" method="post">
-	<p><? echo T_("Enter directory local to the server (eg /mnt/iss/tmp/images)"); ?>: <input name="dir" type="text" value="<? echo realpath("../doc/filled"); ?>"/></p>
-	<p><input name='process' id='process' type="submit" value="<? echo T_("Process directory: browser window must remain open"); ?>" /></p>
-	<p><input name='watch' id='watch' type="submit" value="<? echo T_("Watch this directory in the background (recommended)"); ?>" /></p>
+	<p><?php echo T_("Enter directory local to the server (eg /mnt/iss/tmp/images)"); ?>: <input name="dir" type="text" value="<?php echo realpath("../doc/filled"); ?>"/></p>
+	<p><input name='process' id='process' type="submit" value="<?php echo T_("Process directory: browser window must remain open"); ?>" /></p>
+	<p><input name='watch' id='watch' type="submit" value="<?php echo T_("Watch this directory in the background (recommended)"); ?>" /></p>
 	</form>
-	<?
+	<?php
 
 	print "<h2>" . T_("Outcome of last process run (if any)") . "</h2>";
 	

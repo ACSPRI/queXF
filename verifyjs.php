@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*	Copyright Deakin University 2007,2008
  *	Written by Adam Zammit - adam.zammit@deakin.edu.au
@@ -625,7 +625,7 @@ else if ($pid == "")
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title><? echo T_("Verifier"); ?> - <? print "QID:$qid FID:$fid DESC:$description"; ?></title>
+<title><?php echo T_("Verifier"); ?> - <?php print "QID:$qid FID:$fid DESC:$description"; ?></title>
 <script type="text/javascript">
 
 /* <![CDATA[ */
@@ -637,7 +637,7 @@ var curbgid = 0;
 var pagedone = 0;
 var newwindow;
 
-<?
+<?php
 
 //print order variable
 $sql = "SELECT boxgroupstype.bgid
@@ -767,7 +767,7 @@ function nextTask()
 
 
 			document.getElementById('boxGroupBox_' + x ).style.visibility = 'visible';
-			document.getElementById('content').scrollTop = document.getElementById('boxGroupBox_' + x).offsetTop - <? echo DISPLAY_GAP;?>;
+			document.getElementById('content').scrollTop = document.getElementById('boxGroupBox_' + x).offsetTop - <?php echo DISPLAY_GAP;?>;
 		 	done = 1;
 		}
 	}
@@ -887,16 +887,16 @@ function checkFocus(bid,bgid) {
 			box.focus();
 			if (box.checked)
 			{
-				image.style.backgroundColor='<? echo BOX_SELECT_COLOUR; ?>';
+				image.style.backgroundColor='<?php echo BOX_SELECT_COLOUR; ?>';
 			} else {
-				image.style.backgroundColor='<? echo BOX_FOCUS_COLOUR; ?>';
+				image.style.backgroundColor='<?php echo BOX_FOCUS_COLOUR; ?>';
 			}
 		} else {
 			if (box.checked)
 			{
-				image.style.backgroundColor='<? echo BOX_SELECT_COLOUR; ?>';
+				image.style.backgroundColor='<?php echo BOX_SELECT_COLOUR; ?>';
 			} else {
-				image.style.backgroundColor='<? echo BOX_BACKGROUND_COLOUR; ?>';
+				image.style.backgroundColor='<?php echo BOX_BACKGROUND_COLOUR; ?>';
 			}
 	
 		}
@@ -944,16 +944,16 @@ function radioChange(bid,bgid) {
 			if (box.checked)
 			{
 				box.checked = '';
-				image.style.backgroundColor='<? echo BOX_BACKGROUND_COLOUR; ?>';
+				image.style.backgroundColor='<?php echo BOX_BACKGROUND_COLOUR; ?>';
 			} else {
 				box.checked = 'checked';
-				image.style.backgroundColor='<? echo BOX_SELECT_COLOUR; ?>';
+				image.style.backgroundColor='<?php echo BOX_SELECT_COLOUR; ?>';
 				box.focus();
 			}
 		} else {
 
 			box.checked = '';
-			image.style.backgroundColor='<? echo BOX_BACKGROUND_COLOUR; ?>';
+			image.style.backgroundColor='<?php echo BOX_BACKGROUND_COLOUR; ?>';
 		}
 	}
 
@@ -974,14 +974,14 @@ function radioUpdate(bid,bgid) {
 			if (box.checked)
 			{
 				box.checked = 'checked';
-				image.style.backgroundColor='<? echo BOX_SELECT_COLOUR; ?>';
+				image.style.backgroundColor='<?php echo BOX_SELECT_COLOUR; ?>';
 			} else {
 				box.checked = '';
-				image.style.backgroundColor='<? echo BOX_BACKGROUND_COLOUR; ?>';
+				image.style.backgroundColor='<?php echo BOX_BACKGROUND_COLOUR; ?>';
 			}
 		} else {
 			box.checked = '';
-			image.style.backgroundColor='<? echo BOX_BACKGROUND_COLOUR; ?>';
+			image.style.backgroundColor='<?php echo BOX_BACKGROUND_COLOUR; ?>';
 		}
 	}
 
@@ -1004,10 +1004,10 @@ function checkChange(bid,bgid) {
 
 	if(box.checked) {
 		box.checked = '';
-		image.style.backgroundColor='<? echo BOX_BACKGROUND_COLOUR; ?>';
+		image.style.backgroundColor='<?php echo BOX_BACKGROUND_COLOUR; ?>';
 	} else {
 		box.checked = 'checked';
-		image.style.backgroundColor='<? echo BOX_SELECT_COLOUR; ?>';
+		image.style.backgroundColor='<?php echo BOX_SELECT_COLOUR; ?>';
 		box.focus();
 	}
 }
@@ -1035,10 +1035,10 @@ function checkUpdate(bid,bgid) {
 	image = document.getElementById('checkImage' + bid);
 
 	if(box.checked) {
-		image.style.backgroundColor='<? echo BOX_SELECT_COLOUR; ?>';
+		image.style.backgroundColor='<?php echo BOX_SELECT_COLOUR; ?>';
 		box.focus();
 	} else {
-		image.style.backgroundColor='<? echo BOX_BACKGROUND_COLOUR; ?>';
+		image.style.backgroundColor='<?php echo BOX_BACKGROUND_COLOUR; ?>';
 	}
 
 
@@ -1253,7 +1253,7 @@ window.onload = init;
 
 
 
-<?
+<?php
 
 $zoom = 1;
 if (isset($_GET['zoom'])) $zoom = intval($_GET['zoom']);

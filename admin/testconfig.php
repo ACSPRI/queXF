@@ -1,4 +1,4 @@
-<?
+<?php
 
 include_once("../config.inc.php");
 include_once("../db.inc.php");
@@ -7,10 +7,10 @@ include_once("../lang.inc.php");
 ?>
 <html>
 <head>
-<title><? echo T_("Test configuration"); ?></title>
+<title><?php echo T_("Test configuration"); ?></title>
 </head>
 <body>
-<?
+<?php
 
 
 global $db;

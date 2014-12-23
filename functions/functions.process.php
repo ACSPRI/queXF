@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Functions related to the backgrounding of processes and the process table in the database
  *

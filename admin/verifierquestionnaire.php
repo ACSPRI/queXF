@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*	Copyright Deakin University 2007,2008
  *	Written by Adam Zammit - adam.zammit@deakin.edu.au
@@ -108,7 +108,7 @@ xhtml_head(T_("Assign verifier to questionnaire"),false,array("../css/table.css"
 ?>
 <script type="text/javascript">
 
-<?
+<?php
 print "qid = new Array(";
 
 $s = "";
@@ -188,7 +188,7 @@ function checkVid(v)
 </head>
 <body>
 
-<?
+<?php
 
 
 

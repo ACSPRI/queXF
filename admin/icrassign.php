@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*	Copyright Australian Consortium for Social and Political Research Incorporated (ACSPRI) 2011
  *	Written by Adam Zammit - adam.zammit@acspri.org.au
@@ -109,7 +109,7 @@ if (isset($_GET['qid']))
 	?>
 	<script type="text/javascript">
 
-	<?
+	<?php
 	print "kb = new Array(";
 
 	$s = "";
@@ -189,7 +189,7 @@ if (isset($_GET['qid']))
 	</head>
 	<body>
 
-	<?
+	<?php
 
 
 

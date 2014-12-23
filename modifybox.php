@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*	Copyright Deakin University 2007,2008
  *	Written by Adam Zammit - adam.zammit@deakin.edu.au
@@ -200,7 +200,7 @@ if (isset($_GET['bgid']) || isset($_GET['bid']))
 	//display the cropped boxes
 	print "<img src=\"showpage.php?bgid=$bgid\"/>";
 
-	?><form method="post" action="<?php echo $_SERVER['PHP_SELF'] . "?bgid=$bgid";?>"><?
+	?><form method="post" action="<?php echo $_SERVER['PHP_SELF'] . "?bgid=$bgid";?>"><?php
 
 	//display group selection
 	$sql = "SELECT description,btid as value, CASE WHEN btid = '$btid' THEN 'selected=\'selected\'' ELSE '' END AS selected
@@ -213,16 +213,16 @@ if (isset($_GET['bgid']) || isset($_GET['bid']))
 	display_chooser($rs,"btid","btid",false,false,false,false,false);
 
 	//display variable name
-	?><br/><? echo T_("Variable name:"); ?> <input type="text" size="12" value="<? echo $varname; ?>" name="varname"><br/><?
+	?><br/><?php echo T_("Variable name:"); ?> <input type="text" size="12" value="<?php echo $varname; ?>" name="varname"><br/><?php
 
 	//display width
-	?><? echo T_("Width:"); ?> <input type="text" size="12" value="<? echo $width; ?>" name="width"><br/><?
+	?><?php echo T_("Width:"); ?> <input type="text" size="12" value="<?php echo $width; ?>" name="width"><br/><?php
 
-	?><input  TYPE="hidden" VALUE="<? echo $bgid; ?>" NAME="bgid"><br/><input type="submit" value="<? echo T_("Submit"); ?>" name="submit"/></form><?
+	?><input  TYPE="hidden" VALUE="<?php echo $bgid; ?>" NAME="bgid"><br/><input type="submit" value="<?php echo T_("Submit"); ?>" name="submit"/></form><?php
 
-	?><p><a href="<?php echo $_SERVER['PHP_SELF'] . "?deletebgid=$bgid";?>"><? echo T_("Delete this group"); ?></a></p>
-		<p><a href="<?php echo $_SERVER['PHP_SELF'] . "?deleteinbetween=$bgid&amp;bgid=$bgid";?>"><? echo T_("Delete in between boxes"); ?></a></p>
-	<?
+	?><p><a href="<?php echo $_SERVER['PHP_SELF'] . "?deletebgid=$bgid";?>"><?php echo T_("Delete this group"); ?></a></p>
+		<p><a href="<?php echo $_SERVER['PHP_SELF'] . "?deleteinbetween=$bgid&amp;bgid=$bgid";?>"><?php echo T_("Delete in between boxes"); ?></a></p>
+	<?php
 
 	xhtml_foot();
 }

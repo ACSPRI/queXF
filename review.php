@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*	Copyright Deakin University 2007,2008
  *	Written by Adam Zammit - adam.zammit@deakin.edu.au
@@ -78,7 +78,7 @@ if (isset($_GET['var']))
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title><? echo T_("Review Form"); ?> - <? print "FID:$fid"; ?></title>
+<title><?php echo T_("Review Form"); ?> - <?php print "FID:$fid"; ?></title>
 <style type="text/css">
 #topper {
   position : fixed;
@@ -121,7 +121,7 @@ if (isset($_GET['var']))
 
 
 
-<?
+<?php
 
 
 
@@ -137,13 +137,13 @@ print "<div id=\"header\">";
 ?>
 
 	<form action="" method="get">
-	<div><? echo T_("Form:"); ?> <input type="text" size="5" name="fid" value="<? echo $fid ?>"/>
-		<? echo T_("Variable:"); ?> <input type="text" size="9" name="var" value="<? echo $var ?>"/>
-		<? echo T_("Page:"); ?> <input type="text" size="4" name="pid" value="<? echo $pid ?>"/>
+	<div><?php echo T_("Form:"); ?> <input type="text" size="5" name="fid" value="<?php echo $fid ?>"/>
+		<?php echo T_("Variable:"); ?> <input type="text" size="9" name="var" value="<?php echo $var ?>"/>
+		<?php echo T_("Page:"); ?> <input type="text" size="4" name="pid" value="<?php echo $pid ?>"/>
 		<input type="submit"/></div>
 	</form>
 
-<?
+<?php
 
 	/*
 	foreach($_SESSION['boxgroups'] as $key => $val)

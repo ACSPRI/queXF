@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*	Copyright Australian Consortium for Social and Political Research Incorporated (ACSPRI) 2012
  *	Written by Adam Zammit - adam.zammit@acspri.org.au
@@ -292,27 +292,27 @@ else
 	//form to upload a document
 ?>
 
-<h1><? echo T_("Page test"); ?></h1>
-<h2><? echo T_("When using banding XML:");?></h2>
-<p><? echo  T_("You must import the original PDF and banding XML file (not a scanned version)"); ?></p>
-<h2><? echo T_("When manually banding:");?></h2>
-<p><? echo T_("You will get the best results if you:"); ?></p>
+<h1><?php echo T_("Page test"); ?></h1>
+<h2><?php echo T_("When using banding XML:");?></h2>
+<p><?php echo  T_("You must import the original PDF and banding XML file (not a scanned version)"); ?></p>
+<h2><?php echo T_("When manually banding:");?></h2>
+<p><?php echo T_("You will get the best results if you:"); ?></p>
 <ul>
-<li><? echo T_("Print out the form using the same method that you will for all the printed forms"); ?></li>
-<li><? echo T_("Scan the form to a PDF using the same options that you will for the filled forms"); ?></li>
-<li><? echo T_("Best options for scanning in are:"); ?>
-<ul><li><? echo T_("Monochrome (1 bit)"); ?></li>
-<li><? echo T_("300DPI Resolution"); ?></li></ul>
+<li><?php echo T_("Print out the form using the same method that you will for all the printed forms"); ?></li>
+<li><?php echo T_("Scan the form to a PDF using the same options that you will for the filled forms"); ?></li>
+<li><?php echo T_("Best options for scanning in are:"); ?>
+<ul><li><?php echo T_("Monochrome (1 bit)"); ?></li>
+<li><?php echo T_("300DPI Resolution"); ?></li></ul>
 </li>
 </ul>
 
 <form enctype="multipart/form-data" action="" method="post">
 	<p><input type="hidden" name="MAX_FILE_SIZE" value="1000000000" /></p>
-	<p><? echo T_("Select PDF file to upload:"); ?><input name="form" type="file" /></p>
-	<p><input type="submit" value="<? echo T_("Upload form"); ?>"/></p>
+	<p><?php echo T_("Select PDF file to upload:"); ?><input name="form" type="file" /></p>
+	<p><input type="submit" value="<?php echo T_("Upload form"); ?>"/></p>
 </form>
 
-<?
+<?php
 
 }
 

@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*	Copyright Australian Consortium for Social and Political Research Incorporated (ACSPRI) 2011
  *	Written by Adam Zammit - adam.zammit@acspri.org.au
@@ -34,7 +34,7 @@ global $db;
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title><? print T_("ICR Training"); ?></title>
+<title><?php print T_("ICR Training"); ?></title>
 <link rel='stylesheet' href='../css/table.css' type='text/css'></link>
 <style type='text/css'>
 div.float {
@@ -76,7 +76,7 @@ function toggle(eid,e)
 </script>
 </head>
 <body>
-<?
+<?php
 
 
 if (isset($_POST['submit']))

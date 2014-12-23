@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*	Copyright Deakin University 2007,2008
  *	Written by Adam Zammit - adam.zammit@deakin.edu.au
@@ -74,7 +74,7 @@ function toggle(eid)
 
 
 
-<?
+<?php
 
 if (isset($_POST['submit']))
 {

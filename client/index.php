@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*	Copyright Deakin University 2007,2008
  *	Written by Adam Zammit - adam.zammit@deakin.edu.au
@@ -53,13 +53,13 @@ if ($cid)
 	
 	?>
 	<form action="" method="get">
-	<div><? echo T_("Form:"); ?> <input type="text" size="5" name="fid" value="<? echo $fid ?>"/>
-		<? echo T_("Variable:"); ?> <input type="text" size="9" name="var" value="<? echo $var ?>"/>
-		<? echo T_("Page:"); ?> <input type="text" size="4" name="pid" value="<? echo $pid ?>"/>
-		<input type="submit" value="<? echo T_("Review"); ?>"/></div>
+	<div><?php echo T_("Form:"); ?> <input type="text" size="5" name="fid" value="<?php echo $fid ?>"/>
+		<?php echo T_("Variable:"); ?> <input type="text" size="9" name="var" value="<?php echo $var ?>"/>
+		<?php echo T_("Page:"); ?> <input type="text" size="4" name="pid" value="<?php echo $pid ?>"/>
+		<input type="submit" value="<?php echo T_("Review"); ?>"/></div>
 	</form>
 	
-	<?
+	<?php
 	print "</div>";
 
 

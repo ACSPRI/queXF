@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*	Copyright Deakin University 2007,2008
  *	Written by Adam Zammit - adam.zammit@deakin.edu.au
@@ -102,12 +102,12 @@ session_start();
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title><? echo T_("Band"); ?></title>
+<title><?php echo T_("Band"); ?></title>
 
 <script type="text/javascript">
 function init()
 {
-<?
+<?php
 	
 
 	if (isset($_GET['start']))
@@ -156,7 +156,7 @@ window.onload = init;
 </head>		
 <body>
 <div id="content">
-<?
+<?php
 
 
 if (isset($_GET['qid']))

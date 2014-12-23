@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * A list of database strings for translation
  *

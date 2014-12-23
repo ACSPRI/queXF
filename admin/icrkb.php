@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*	Copyright Australian Consortium for Social and Political Research Incorporated (ACSPRI) 2010
  *	Written by Adam Zammit - adam.zammit@acspri.org.au
@@ -63,11 +63,11 @@ $rs = $db->GetAll($sql);
 
 <form enctype="multipart/form-data" action="" method="post">
 	<p><input type="hidden" name="MAX_FILE_SIZE" value="1000000000" /></p>
-	<p><? echo T_("Select ICR KB XML file"); ?>: <input name="icrxml" type="file" /></p>
-	<p><input type="submit" value="<? echo T_("Upload XML"); ?>" /></p>
+	<p><?php echo T_("Select ICR KB XML file"); ?>: <input name="icrxml" type="file" /></p>
+	<p><input type="submit" value="<?php echo T_("Upload XML"); ?>" /></p>
 </form>
 
-<?
+<?php
 
 print "<h2>" . T_("Export ICR KB to XML") . "</h2>";
 xhtml_table($rs,array("link"),array(T_("ICR KB")));

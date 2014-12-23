@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*	Copyright Australian Consortium for Social and Political Research Incorporated (ACSPRI) 2009
  *	Written by Adam Zammit - adam.zammit@acspri.org.au

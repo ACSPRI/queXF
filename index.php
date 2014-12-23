@@ -1,4 +1,4 @@
-<?
+<?php
 /*	Copyright Deakin University 2007,2008
  *	Written by Adam Zammit - adam.zammit@deakin.edu.au
  *	For the Deakin Computer Assisted Research Facility: http://www.deakin.edu.au/dcarf/
@@ -27,11 +27,11 @@ include("lang.inc.php");
 xhtml_head();
 ?>
 
-<h1><? echo T_("queXF"); ?></h1>
-<p><a href="verifyjs.php"><? echo T_("Verify"); ?></a></p>
-<p><a href="review.php"><? echo T_("Review a form"); ?></a></p>
+<h1><?php echo T_("queXF"); ?></h1>
+<p><a href="verifyjs.php"><?php echo T_("Verify"); ?></a></p>
+<p><a href="review.php"><?php echo T_("Review a form"); ?></a></p>
 
-<?
+<?php
 xhtml_foot();
 
 //display list of jobs

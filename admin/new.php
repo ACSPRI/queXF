@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*	Copyright Deakin University 2007,2008
  *	Written by Adam Zammit - adam.zammit@deakin.edu.au
@@ -97,13 +97,13 @@ print "<li>" . T_("300DPI Resolution") . "</li></ul></li></ul>";
 
 <form enctype="multipart/form-data" action="" method="post">
 	<p><input type="hidden" name="MAX_FILE_SIZE" value="1000000000" /></p>
-	<p><? echo T_("Select PDF file to create form from"); ?>: <input name="form" type="file" /></p>
-	<p><? echo T_("(Optional): Select banding XML file"); ?>: <input name="bandingxml" type="file" /></p>
-	<p><? echo T_("Enter description of form"); ?>: <input name="desc" type="text"/><br/></p>
-	<p><input type="submit" value="<? echo T_("Upload form"); ?>" /></p>
+	<p><?php echo T_("Select PDF file to create form from"); ?>: <input name="form" type="file" /></p>
+	<p><?php echo T_("(Optional): Select banding XML file"); ?>: <input name="bandingxml" type="file" /></p>
+	<p><?php echo T_("Enter description of form"); ?>: <input name="desc" type="text"/><br/></p>
+	<p><input type="submit" value="<?php echo T_("Upload form"); ?>" /></p>
 </form>
 
-<?
+<?php
 
 xhtml_foot();
 ?>

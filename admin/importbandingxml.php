@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*	Copyright Australian Consortium for Social and Political Research Incorporated (ACSPRI) 2010
  *	Written by Adam Zammit - adam.zammit@acspri.org.au
@@ -57,12 +57,12 @@ $rs = $db->GetAll($sql);
 
 <form enctype="multipart/form-data" action="" method="post">
 	<p><input type="hidden" name="MAX_FILE_SIZE" value="1000000000" /></p>
-	<p><? echo T_("Select banding XML file"); ?>: <input name="bandingxml" type="file" /></p>
-	<p><? echo T_("Select questionnaire"); ?>: <? display_chooser($rs, 'qid', 'qid', true, false, false, false,false);  ?><br/></p>
-	<p><input type="submit" value="<? echo T_("Upload XML"); ?>" /></p>
+	<p><?php echo T_("Select banding XML file"); ?>: <input name="bandingxml" type="file" /></p>
+	<p><?php echo T_("Select questionnaire"); ?>: <?php display_chooser($rs, 'qid', 'qid', true, false, false, false,false);  ?><br/></p>
+	<p><input type="submit" value="<?php echo T_("Upload XML"); ?>" /></p>
 </form>
 
-<?
+<?php
 
 xhtml_foot();
 ?>

@@ -1,4 +1,4 @@
-<?
+<?php
 
 /*	Copyright Deakin University 2007,2008
  *	Written by Adam Zammit - adam.zammit@deakin.edu.au
@@ -147,7 +147,7 @@ if (isset($_GET['npid']) && isset($_GET['mpid']) && isset($_GET['fid']))
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title><? echo T_("Undetected Pages"); ?></title>
+<title><?php echo T_("Undetected Pages"); ?></title>
 <style type="text/css">
 #topper {
   position : fixed;
@@ -202,7 +202,7 @@ if (isset($_GET['npid']) && isset($_GET['mpid']) && isset($_GET['fid']))
 </head>
 <body>
 
-<?
+<?php
 
 //get forms with missing pages
 //
