@@ -535,7 +535,7 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true,$unverif
 					if (strlen(trim($val['value'])) == 0)
 						print str_pad($count, max(strlen($desc[$bgid]['count']),$desc[$bgid]['width']), " ", STR_PAD_LEFT); //pad to width
 					else
-						print str_pad($val['value'], max(strlen($desc[$bgid]['count']),$desc[$bgid]['width']), " ", STR_PAD_LEFT); //pad to width
+						print str_pad(trim($val['value']), max(strlen($desc[$bgid]['count']),$desc[$bgid]['width']), " ", STR_PAD_LEFT); //pad to width
 
 					$done = 1;
 				}
