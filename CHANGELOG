@@ -1,12 +1,24 @@
 queXF 1.17.0 - Changes since 1.16.0
 
+*New Feature: Update banding to allow for the merging of box groups (select over existing boxgroups to merge) and the creation of free text boxes on empty space
 *New Feature: DELETE_ON_VERIFICATION will delete system generated data on verification to keep the database lean
+*New Feature: Box edge detection as well as corner edge detection
+*New Feature: OCR_ENABLED can be set to allow for form OCR using tesseract (can use as page identifiers or just to read printed text)
+*New Feature: Secondary position for a form barcode can be defined in the config file
 
+*Fixed Bug: Give error message if GS 9.10 installed which has bug - Added reference to bug lp:1328917 in testconfig
+*Fixed Bug: ICR Improvements (Thanks to Damien Zammit) - Updated detection algorithm -  Reduce narrowness in aspect ratio when thinning
+*Fixed Bug: lp:1386971 ICR reject or reassign an image when manual training
+*Fixed Bug: ICR - Selecting all images at once exhausts memory
+*Fixed Bug: Image not displaying when zoomed and not in database
+*Fixed Bug: lp:1388658 Training ICR includes unverified images
+*Fixed Bug: Replace short tags with full php tags
 
 *Database changes required:
 
 ALTER TABLE `pages` ADD `VERT_WIDTH_BOX` INT NOT NULL DEFAULT '54',
 ADD `HORI_WIDTH_BOX` INT NOT NULL DEFAULT '54';
+
 
 queXF 1.16.0 - Changes since 1.15.0
 
