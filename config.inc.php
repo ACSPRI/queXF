@@ -34,9 +34,9 @@
  */
 
 define('DB_USER', 'root');
-define('DB_PASS', 'Asrin2003Cati');
+define('DB_PASS', '');
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'quexf_dev');
+define('DB_NAME', 'quexf');
 
 define('ADODB_DIR', '/usr/share/php/adodb/');
 
@@ -49,10 +49,6 @@ define('GS_BIN', "/usr/bin/gs");
 
 //Temporary directory
 define('TEMPORARY_DIRECTORY', "/tmp");
-
-define('DEBUG', true);
-
-define('IMAGES_IN_DATABASE',false);
 
 //Do not remove the following line:
 include(dirname(__FILE__) . '/config.default.php');
