@@ -274,15 +274,25 @@ function barcode($image, $step = 1, $length = false, $numsonly = false)
     //use tesseract to find the "barcode" or any text as OCR
     $tmp = tempnam(TEMPORARY_DIRECTORY, "BARCODE");
     imagepng($image,$tmp);
-    exec(TESSERACT_BIN . " $tmp $tmp -psm 7"); //run tessearct in single line mode
+    exec(TESSERACT_BIN . " $tmp $tmp -psm 3"); //run tessearct in single line mode
     $result = file_get_contents($tmp . ".txt");
     unlink($tmp);
     unlink($tmp . ".txt");
   
     if (!empty($result))
     {
-      $nums = preg_replace('/\D+/', '', $result); // numbers only
       //check length if set to check
+      //
+      //
+      if ($length && !$numsonly)
+      {
+        $res = preg_match("/([0-9]{".$length."})/",$result,$matches);
+        if ($res)
+          return $matches[0];
+      }
+
+      $nums = preg_replace('/\D+/', '', $result); // numbers only
+
       if ($length && strlen($nums) == $length)
         return $nums; //if length is set and matching in length then return
       else if (!$length && !$numsonly)
