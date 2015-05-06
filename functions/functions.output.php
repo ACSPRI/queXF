@@ -1184,7 +1184,7 @@ function export_pspp($qid,$unverified = false)
 	{
 		$varname = $col['varname'];
 	
-		if ($col['btid'] == 1 || $col['btid'] == 2)
+		if ($col['btid'] == 1)
 		{
 			$sql = "SELECT value,label
 				FROM boxes
@@ -1209,7 +1209,39 @@ function export_pspp($qid,$unverified = false)
 						}
 						echo pspp_escape($r['label']) . "'";
 					}
-			}
+      }
+    }
+      else	if ($col['btid'] == 2)
+		  {
+			$sql = "SELECT value,label
+				FROM boxes
+				WHERE bgid = '{$col['bgid']}'";
+
+			$rs = $db->GetAll($sql);
+
+      $i = 1;
+
+			if (!empty($rs))
+			{
+        foreach ($rs as $r)
+        {
+          echo " /$varname" . "_" . $i;
+					if ($r['value'] != "")
+					{
+						if (!isset($col['is_string']))
+							echo " {$r['value']} '";
+						else
+						{
+							echo " '";
+							//make label same width
+							echo str_pad($r['value'], $col['width']," ", STR_PAD_LEFT);
+							echo "' '"; 
+						}
+						echo pspp_escape($r['label']) . "'";
+          }
+          $i++;
+        }
+      }
 		}
 	}
 
