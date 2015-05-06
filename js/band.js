@@ -61,6 +61,12 @@ function updateVarname(bgid, varname) {
 
 }
 
+function updateVarlabel(bgid, varlabel) {
+	va = getUrlVars();
+	new Ajax.Request('bandajax.php', {parameters: 'bgid=' + bgid + '&varlabel=' + varlabel + '&pid=' + va['pid'] + '&zoom=' + va['zoom'] + '&qid=' + va['qid'],  method: 'get' });
+
+}
+
 function updateValue(bid, value) {
 	va = getUrlVars();
 	new Ajax.Request('bandajax.php', {parameters: 'bid=' + bid + '&value=' + value + '&pid=' + va['pid'] + '&zoom=' + va['zoom'] + '&qid=' + va['qid'],  method: 'get' });

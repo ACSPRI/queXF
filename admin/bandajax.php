@@ -37,7 +37,7 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 {
 	global $db;
 
-	$sql = "SELECT b.tlx,b.tly,b.brx,b.bry,b.bid,bg.btid,b.bgid,bg.varname,b.value,b.label
+	$sql = "SELECT b.tlx,b.tly,b.brx,b.bry,b.bid,bg.btid,b.bgid,bg.varname,b.value,b.label,bg.label as varlabel
 		FROM boxes as b, boxgroupstype as bg
 		WHERE b.pid = $pid
 		AND bg.bgid = b.bgid
@@ -51,6 +51,7 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 
 	$bgid = $boxes[0]['bgid'];
 	$varname = $boxes[0]['varname'];
+	$varlabel = $boxes[0]['varlabel'];
 	$lastx = 0;
 	$lasty = 0;
 
@@ -59,6 +60,8 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 		if ($bgid != $box['bgid'])
 		{
 			print "<input id=\"boxgroupname$bgid\" style=\"position:absolute; top:" . $lasty ."px; left:".$lastx."px; z-index: 100;\" name=\"boxgroupname$bgid\" type=\"text\" value=\"$varname\" size=\"4\" onchange=\"updateVarname($bgid,this.value);\"/>";
+      $lasty += (70 / $zoom);
+			print "<input id=\"boxgrouplabel$bgid\" style=\"position:absolute; top:" . $lasty ."px; left:".$lastx."px; z-index: 100;\" name=\"boxgrouplabel$bgid\" type=\"text\" value=\"$varlabel\" size=\"12\" onchange=\"updateVarlabel($bgid,this.value);\"/>";
 			$bgid =$box['bgid'];
 		}
 		$colour = TEMPORARY_COLOUR;
@@ -90,10 +93,13 @@ function pidtomap($pid,$zoom = BAND_DEFAULT_ZOOM)
 		$lastx = $box['brx'] / $zoom;
 		$lasty = $box['bry'] / $zoom;
 		$varname = $box['varname'];
+		$varlabel = $box['varlabel'];
 
 		$showcount++;
 	}
-	print "<input id=\"boxgroupname$bgid\" style=\"position:absolute; top:" . $lasty ."px; left:".$lastx."px; z-index:100;\" name=\"boxgroupname$bgid\" type=\"text\" value=\"$varname\" size=\"4\" onchange=\"updateVarname($bgid,this.value);\"/>";
+  print "<input id=\"boxgroupname$bgid\" style=\"position:absolute; top:" . $lasty ."px; left:".$lastx."px; z-index:100;\" name=\"boxgroupname$bgid\" type=\"text\" value=\"$varname\" size=\"4\" onchange=\"updateVarname($bgid,this.value);\"/>";
+  $lasty += (70 / $zoom);
+	print "<input id=\"boxgrouplabel$bgid\" style=\"position:absolute; top:" . $lasty ."px; left:".$lastx."px; z-index: 100;\" name=\"boxgrouplabel$bgid\" type=\"text\" value=\"$varlabel\" size=\"12\" onchange=\"updateVarlabel($bgid,this.value);\"/>";
 	
 
 	print "<script type=\"text/javascript\">";
@@ -403,6 +409,19 @@ function updatevarname($bgid,$varname)
 	$db->Execute($sql);
 }
 
+function updatevarlabel($bgid,$varlabel)
+{
+	global $db;
+
+	$varlabel = $db->qstr($varlabel);
+
+	$sql = "UPDATE `boxgroupstype`
+		SET `label` = $varlabel
+		WHERE `bgid` = '$bgid'";
+
+	$db->Execute($sql);
+}
+
 function updatevalue($bid,$value)
 {
 	global $db;
@@ -570,6 +589,13 @@ if (isset($_GET['pid']) && isset($_GET['qid']) && isset($_GET['zoom']))
 	if (isset($_GET['varname']) && isset($_GET['bgid']))
 	{
 		updatevarname(intval($_GET['bgid']), $_GET['varname']);
+		//pidtomap($pid,$zoom);
+		exit();
+	}	
+
+	if (isset($_GET['varlabel']) && isset($_GET['bgid']))
+	{
+		updatevarlabel(intval($_GET['bgid']), $_GET['varlabel']);
 		//pidtomap($pid,$zoom);
 		exit();
 	}	
