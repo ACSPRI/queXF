@@ -170,6 +170,8 @@ if (isset($_GET['copy']))
 					$db->Execute($sql);
 				}
 
+  $sql = "UPDATE pages SET usepagesetup = '{$copy['usepagesetup']}' WHERE qid = '$qid' and pid != '$pid'";
+  $db->Execute($sql);
 }
 
 
@@ -216,17 +218,13 @@ if (isset($_GET['done']))
 			$c++;
 		}
 		unset($image);
-	}
+  }
 
-	if ($error == "")
-	{
-		//no errors
-		xhtml_head(T_("Set page layout"));
-		print "<div>" . T_("Page layout has been updated") . "</div>";
-		print "<div><a href='bandajax.php?qid=$qid'>" . T_("Continue with banding") . "</a></div>";
-		xhtml_foot();
-		die();
-	}	
+  $usepagesetup = 0;
+  if (isset($_GET['enable'])) $usepagesetup = 1;
+
+  $sql = "UPDATE pages SET usepagesetup = '$usepagesetup' WHERE qid = '$qid'";
+  $db->Execute($sql);
 }
 
 
@@ -285,8 +283,14 @@ if (isset($_GET['qid']))
 		print "\">" . T_("Decrease zoom") . "</a><br/> ";
 
 		print "<div><a href='?zoom=$zoom&amp;pid=$pid&amp;qid=$qid&amp;copy=copy'>" . T_("Copy settings from this page to all other pages") . "</a><br/></div>";
-		
-		print "<div><a href='?zoom=$zoom&amp;pid=$pid&amp;qid=$qid&amp;done=done'>" . T_("Finished page setup") . "</a><br/></div>";
+
+    $ups = $db->GetOne("SELECT usepagesetup FROM pages WHERE pid = '$pid'");
+
+    if ($ups == 0)
+  		print "<div><a href='?zoom=$zoom&amp;pid=$pid&amp;qid=$qid&amp;done=done&amp;enable=enable'>" . T_("Page setup disabled (click to enable)") . "</a><br/></div>";
+    else
+  		print "<div><a href='?zoom=$zoom&amp;pid=$pid&amp;qid=$qid&amp;done=done'>" . T_("Page setup ENABLED (click to disable)") . "</a><br/></div>";
+
 
 
 		//show image with no coords selected

@@ -68,7 +68,7 @@ if ($a)
 		}
 		if ($suc == true)
 		{
-			print "<div><a href='pagesetup.php?qid=$r'>" . T_("Continue by setting up page edge detection (page setup)") . "</a></div>";
+			//print "<div><a href='pagesetup.php?qid=$r'>" . T_("Continue by setting up page edge detection (page setup)") . "</a></div>";
 			xhtml_foot();
 			die();
 		}

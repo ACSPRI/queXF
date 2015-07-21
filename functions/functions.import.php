@@ -28,6 +28,64 @@ include_once(dirname(__FILE__).'/../db.inc.php');
 include_once('functions.barcode.php');
 include_once('functions.image.php');
 
+function defaultpageboxes($width,$height)
+{
+ 	$xwidth = floor(PAGE_GUIDE_X_PORTION * $width);
+	$yheight =  floor(PAGE_GUIDE_Y_PORTION * $height);
+
+  $record = array(
+  //Top left horizontal
+  'TL_HORI_TLX' => 10,
+  'TL_HORI_TLY' => 10,
+  'TL_HORI_BRX' => $xwidth,
+  'TL_HORI_BRY' => $yheight,
+
+  //Top left vertical
+  'TL_VERT_TLX' => 10,
+  'TL_VERT_TLY' => 10,
+  'TL_VERT_BRX' => $xwidth,
+  'TL_VERT_BRY' => $yheight,
+
+  //Top right horizontal
+  'TR_HORI_TLX' => ($width - $xwidth) + 10,
+  'TR_HORI_TLY' => 10,
+  'TR_HORI_BRX' => $width,
+  'TR_HORI_BRY' => $yheight,
+
+  //Top right vertical
+  'TR_VERT_TLX' => ($width - $xwidth) + 10,
+  'TR_VERT_TLY' => 10,
+  'TR_VERT_BRX' => $width,
+  'TR_VERT_BRY' => $yheight,
+
+  //Bottom left horizontal
+  'BL_HORI_TLX' => 10,
+  'BL_HORI_TLY' => $height - $yheight,
+  'BL_HORI_BRX' => $xwidth,
+  'BL_HORI_BRY' => $height - 10,
+
+  //Bottom left vertical
+  'BL_VERT_TLX' => 10,
+  'BL_VERT_TLY' => $height - $yheight,
+  'BL_VERT_BRX' => $xwidth,
+  'BL_VERT_BRY' => $height - 10,
+
+  //Bottom right horizontal
+  'BR_HORI_TLX' => $width - $xwidth,
+  'BR_HORI_TLY' => $height - $yheight,
+  'BR_HORI_BRX' => $width - 10, 
+  'BR_HORI_BRY' => $height - 10,
+
+  //Bottom right vertical
+  'BR_VERT_TLX' => $width - $xwidth,
+  'BR_VERT_TLY' => $height - $yheight,
+  'BR_VERT_BRX' => $width - 10,
+  'BR_VERT_BRY' => $height - 10);
+
+  return $record;
+}
+
+
 /**
  * Return an array with the default page layout
  * 
@@ -43,9 +101,6 @@ include_once('functions.image.php');
  */
 function defaultpage($width,$height,$qid=0,$pid=0,$data="")
 {
-
-	$xwidth = floor(PAGE_GUIDE_X_PORTION * $width);
-	$yheight =  floor(PAGE_GUIDE_Y_PORTION * $height);
 
 	$record = array('pid' => "NULL",
 			'qid' => $qid,
@@ -69,55 +124,9 @@ function defaultpage($width,$height,$qid=0,$pid=0,$data="")
 
 			//Edge box widths default	
 			'VERT_WIDTH_BOX' => VERT_WIDTH_BOX,
-			'HORI_WIDTH_BOX' => HORI_WIDTH_BOX,
+			'HORI_WIDTH_BOX' => HORI_WIDTH_BOX);
 
-			//Top left horizontal
-			'TL_HORI_TLX' => 10,
-			'TL_HORI_TLY' => 10,
-			'TL_HORI_BRX' => $xwidth,
-			'TL_HORI_BRY' => $yheight,
-
-			//Top left vertical
-			'TL_VERT_TLX' => 10,
-			'TL_VERT_TLY' => 10,
-			'TL_VERT_BRX' => $xwidth,
-			'TL_VERT_BRY' => $yheight,
-
-			//Top right horizontal
-			'TR_HORI_TLX' => ($width - $xwidth) + 10,
-			'TR_HORI_TLY' => 10,
-			'TR_HORI_BRX' => $width,
-			'TR_HORI_BRY' => $yheight,
-
-			//Top right vertical
-			'TR_VERT_TLX' => ($width - $xwidth) + 10,
-			'TR_VERT_TLY' => 10,
-			'TR_VERT_BRX' => $width,
-			'TR_VERT_BRY' => $yheight,
-
-			//Bottom left horizontal
-			'BL_HORI_TLX' => 10,
-			'BL_HORI_TLY' => $height - $yheight,
-			'BL_HORI_BRX' => $xwidth,
-			'BL_HORI_BRY' => $height - 10,
-
-			//Bottom left vertical
-			'BL_VERT_TLX' => 10,
-			'BL_VERT_TLY' => $height - $yheight,
-			'BL_VERT_BRX' => $xwidth,
-			'BL_VERT_BRY' => $height - 10,
-
-			//Bottom right horizontal
-			'BR_HORI_TLX' => $width - $xwidth,
-			'BR_HORI_TLY' => $height - $yheight,
-			'BR_HORI_BRX' => $width - 10, 
-			'BR_HORI_BRY' => $height - 10,
-
-			//Bottom right vertical
-			'BR_VERT_TLX' => $width - $xwidth,
-			'BR_VERT_TLY' => $height - $yheight,
-			'BR_VERT_BRX' => $width - 10,
-			'BR_VERT_BRY' => $height - 10);
+  $record = array_merge($record,defaultpageboxes($width,$height));
 
 	return $record;
 }
@@ -250,6 +259,17 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 					$height = imagesy($image);
 				
 					$record = defaultpage($width - 1,$height - 1,$qid,$pid,$data);
+
+          //get page edges
+          $offset = offset($image,0,0,$record);
+
+          $off = array("tlx","tly","trx","try","blx","bly","brx","bry");
+
+          //combine with key
+          $offset = array_combine($off,$offset);
+
+          //merge
+          $record = array_merge($record,$offset);
 
 					$db->AutoExecute('pages',$record,'INSERT');	
 					//save image to db including offset and rotation
@@ -890,10 +910,14 @@ function import($filename,$description = false)
 					{
 						if ($page['store'] == 1)
 						{
-		
-							//calc offset
-							//$offset = offset($image,$page,1);
-			
+
+		          //check if page setup is being used otherwise replace with 
+              //defaultpageboxes
+              if ($page['usepagesetup'] == 0)
+              {
+                  $page = array_merge($page,defaultpageboxes($width,$height));
+              }
+
 							//calc transforms
 							$transforms = detecttransforms($image,$page);
 
@@ -1073,7 +1097,15 @@ function import($filename,$description = false)
 			$image = imagecreatefromstring($row['mpimage']);
 
 			if ($row['store'] == 1)
-			{
+      {
+
+        //check if page setup is being used otherwise replace with 
+        //defaultpageboxes
+        if ($row['usepagesetup'] == 0)
+        {
+            $row = array_merge($row,defaultpageboxes($width,$height));
+        }
+
 				//calc transforms
 				$transforms = detecttransforms($image,$row);
 
