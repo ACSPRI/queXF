@@ -1,3 +1,20 @@
+queXF 1.18.0 - Changes since 1.17.0
+
+*New Feature: Don't use manual page setup by default as doesn't handle page scaling
+*New Feature: Variable labelling when banding
+
+*Fixed Bug: lp:1475507 Manual page setup doesn't take into account scaling of scanned document
+*Fixed Bug: lp:1392161 Page setup not automatically populated on form import
+*Fixed Bug: Multiple choice output of variable labels to PSPP/SPSS 
+*Fixed Bug: Better handle barcodes read as text
+*Fixed Bug: Missing php tag
+
+*Updated translations: Thank you for the recent Russian translation!
+
+*Database changes required:
+
+ALTER TABLE `pages` ADD `usepagesetup` TINYINT( 1 ) NOT NULL DEFAULT '0' AFTER `BR_HORI_BRY`;
+
 queXF 1.17.0 - Changes since 1.16.0
 
 *New Feature: Update banding to allow for the merging of box groups (select over existing boxgroups to merge) and the creation of free text boxes on empty space
