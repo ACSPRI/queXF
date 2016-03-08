@@ -41,7 +41,6 @@ function bgidtocss($zoom = 1,$fid,$pid)
 		WHERE b.pid = '$pid'
 		AND bg.bgid = b.bgid
 		AND bg.btid > 0
-		AND bg.btid != 5
 		GROUP BY bg.bgid
 		ORDER BY bg.sortorder ASC";
 
@@ -58,7 +57,6 @@ function bgidtocss($zoom = 1,$fid,$pid)
 		WHERE b.pid = '$pid'
 		AND bg.bgid = b.bgid
 		AND bg.btid > 0
-		AND bg.btid != 5
 		ORDER BY bg.sortorder ASC, b.bid ASC";
 
 	$boxes = $db->GetAll($sql);
@@ -152,7 +150,7 @@ function bgidtocss($zoom = 1,$fid,$pid)
 		
 			print "<div id=\"textImage$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: " . BOX_BACKGROUND_COLOUR . "; text-align:center; font-weight:bold;\" onclick=\"textClick('$bid','$bbgid');\">$val</div>";
 		}
-		else if ($btid == 6)
+		else if ($btid == 6 || $btid == 5)
 		{
 			$val = htmlspecialchars($val);
 	
@@ -236,7 +234,7 @@ if (isset($_POST['complete']) && isset($_SESSION['boxes']))
 				$sql = "INSERT INTO formboxverifychar (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid',$bval)";
 			}
 		}
-		if ($box['btid'] == 6)
+		if ($box['btid'] == 6 || $box['btid'] == 5)
 		{
 			if ($box['val'] == "" || $box['val'] == " ")
 			{
@@ -413,12 +411,13 @@ $description = $qid_desc['description'];
 if (!isset($_SESSION['boxes'])) {
 	//nothing yet known about this form
 	
-	$sql = "SELECT b.bid as bid, b.tlx as tlx, b.tly as tly, b.brx as brx, b.bry as bry, b.pid as pid, bg.btid as btid, b.bgid as bgid, $fid as fid, bg.sortorder as sortorder, fb.filled, c.val as val
+	$sql = "SELECT b.bid as bid, b.tlx as tlx, b.tly as tly, b.brx as brx, b.bry as bry, b.pid as pid, bg.btid as btid, b.bgid as bgid, $fid as fid, bg.sortorder as sortorder, fb.filled, CASE WHEN d.fid IS NOT NULL THEN d.val ELSE c.val END as val
 		FROM boxes AS b
-		JOIN boxgroupstype as bg ON (bg.bgid = b.bgid AND bg.btid > 0 AND bg.btid != 5)
+		JOIN boxgroupstype as bg ON (bg.bgid = b.bgid AND bg.btid > 0)
     JOIN pages as p ON (p.pid = b.pid AND p.qid = '$qid')
     LEFT JOIN formboxes as fb ON (fb.bid = b.bid AND fb.fid = '$fid')
 		LEFT JOIN formboxverifychar AS c ON (c.fid = '$fid' AND c.vid = 0 AND c.bid = b.bid)
+		LEFT JOIN formboxverifytext AS d ON (d.fid = '$fid' AND d.vid = 0 AND d.bid = b.bid)
 		ORDER BY bg.sortorder ASC";
 
 	
@@ -428,7 +427,6 @@ if (!isset($_SESSION['boxes'])) {
 		AND bg.bgid = b.bgid
 		AND p.qid = '$qid' 
 		AND bg.btid > 0
-		AND bg.btid != 5
 		GROUP BY bg.bgid
 		ORDER BY bg.sortorder ASC";
 
@@ -644,7 +642,6 @@ $sql = "SELECT boxgroupstype.bgid
 	FROM boxgroupstype
 	JOIN boxes ON boxes.bgid = boxgroupstype.bgid
 	WHERE boxgroupstype.pid = '$pid'
-	AND boxgroupstype.btid != 5
 	GROUP BY boxgroupstype.bgid
 	ORDER BY boxgroupstype.sortorder ASC";
 		
@@ -729,7 +726,7 @@ function nextTask()
 		x = bgidorder[i];
 		document.getElementById('boxGroupBox_' + x ).style.visibility = 'hidden';
 
-		if (bgidtype[x] == 3 || bgidtype[x] == 4 || bgidtype[x] == 6)
+		if (bgidtype[x] == 3 || bgidtype[x] == 4 || bgidtype[x] == 5 || bgidtype[x] == 6)
 		{	
 			for (y in bgidbid[x])
 			{
@@ -743,7 +740,7 @@ function nextTask()
 		{
 			curbgid = x;
 
-			if (bgidtype[x] == 3 || bgidtype[x] == 4 || bgidtype[x] == 6)
+			if (bgidtype[x] == 3 || bgidtype[x] == 4 || bgidtype[x] == 5 || bgidtype[x] == 6)
 			{	
 				for (y in bgidbid[x])
 				{

@@ -269,15 +269,9 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $retu
 		UNION
 		(SELECT b.bid,b.bgid,g.btid,f.val,sortorder,b.value,b.label,g.varname
 		FROM boxes as b
-		JOIN  boxgroupstype as g on (b.bgid = g.bgid and g.btid = 6)
+		JOIN  boxgroupstype as g on (b.bgid = g.bgid and g.btid IN (5,6))
 		JOIN pages as p on  (p.pid = b.pid and p.qid = '$qid')
 		LEFT JOIN formboxverifytext as f on (f.bid = b.bid and f.vid = '{$form['vid']}' and f.fid = '{$form['fid']}'))
-		UNION
-		(SELECT b.bid,b.bgid,g.btid,f.val,sortorder,b.value,b.label,g.varname
-		FROM boxes as b
-		JOIN  boxgroupstype as g on (b.bgid = g.bgid and g.btid = 5)
-		JOIN pages as p on  (p.pid = b.pid and p.qid = '$qid')
-		LEFT JOIN formboxverifytext as f on (f.bid = b.bid and f.vid = 0 and f.fid = '{$form['fid']}'))
   	ORDER BY sortorder asc,bid asc";
 
 		$data =  $db->GetAll($sql);
@@ -494,15 +488,9 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true,$unverif
 		UNION
 		(select b.bid,b.bgid,g.btid,f.val,g.sortorder,b.value
 		from boxes as b
-		JOIN  boxgroupstype as g on (b.bgid = g.bgid and g.btid = 6)
+		JOIN  boxgroupstype as g on (b.bgid = g.bgid and g.btid IN (5,6))
 		JOIN pages as p on  (p.pid = b.pid and p.qid = '$qid')
 		LEFT JOIN formboxverifytext as f on (f.bid = b.bid and f.vid = '{$form['vid']}' and f.fid = '{$form['fid']}'))
-		UNION
-		(select b.bid,b.bgid,g.btid,f.val,g.sortorder,b.value
-		from boxes as b
-		JOIN  boxgroupstype as g on (b.bgid = g.bgid and g.btid = 5)
-		JOIN pages as p on  (p.pid = b.pid and p.qid = '$qid')
-		LEFT JOIN formboxverifytext as f on (f.bid = b.bid and f.vid = 0 and f.fid = '{$form['fid']}'))
 		order by sortorder asc,bid asc";
 
 
