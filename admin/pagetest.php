@@ -35,13 +35,13 @@ if (isset($_FILES['form']))
 {
 	$a = true;
 	$filename = $_FILES['form']['tmp_name'];
-	$type = "pngmono";
+	$type = "pnggray";
 
 	//generate temp file
 	$tmp = tempnam(TEMPORARY_DIRECTORY, "FORM");
 
 	//use ghostscript to convert to PNG
-	exec(GS_BIN . " -sDEVICE=$type -r300 -sOutputFile=\"$tmp\"%d.png -dNOPAUSE -dBATCH \"$filename\"");
+  exec(GS_BIN . " -sDEVICE=$type -r300 -sOutputFile=\"$tmp\"%d.png -dNOPAUSE -dBATCH \"$filename\"");
 }
 
 
@@ -52,7 +52,10 @@ function definetomap($zoom,$pid,$filename)
 	$vh = array('vert','hori');
 	$el = array('tlx','tly','brx','bry');
 
-	$image = imagecreatefrompng($filename . $pid . ".png");	
+  $image = imagecreatefrompng($filename . $pid . ".png");	
+  //convert to monochrome
+  $image = convertmono($image);
+
 	$width = imagesx($image);
 	$height = imagesy($image);
 	$page = defaultpage($width - 1,$height - 1);

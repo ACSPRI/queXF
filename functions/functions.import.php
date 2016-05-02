@@ -137,7 +137,7 @@ function defaultpage($width,$height,$qid=0,$pid=0,$data="")
  *
  */
 
-function newquestionnaire($filename,$desc = "",$type="pngmono"){
+function newquestionnaire($filename,$desc = "",$type="pnggray"){
 
 	global $db;
 
@@ -179,7 +179,8 @@ function newquestionnaire($filename,$desc = "",$type="pngmono"){
 		//print "PAGE $n: ";
 		//open file
 		$data = file_get_contents($file);
-		$image = imagecreatefromstring($data);
+    $image = imagecreatefromstring($data);
+    $image = convertmono($image); //convert to monochrome
 		
 		$images = split_scanning($image);
 		unset($image);
@@ -708,7 +709,7 @@ function import($filename,$description = false)
 	$tmp = tempnam(TEMPORARY_DIRECTORY, "FORM");
 	
 	//use ghostscript to convert to individual PNG pages
-	exec(GS_BIN . " -sDEVICE=pngmono -r300 -sOutputFile=\"$tmp\"%d.png -dNOPAUSE -dBATCH \"$filename\"");
+	exec(GS_BIN . " -sDEVICE=pnggray -r300 -sOutputFile=\"$tmp\"%d.png -dNOPAUSE -dBATCH \"$filename\"");
 
 	//$qid = 1;
 
@@ -725,7 +726,8 @@ function import($filename,$description = false)
 
 		//open file
 		$data = file_get_contents($file);
-		$image = imagecreatefromstring($data);
+    $image = imagecreatefromstring($data);
+    $image = convertmono($image);
 		unset($data);
 
 		$images = split_scanning($image);
@@ -826,7 +828,8 @@ function import($filename,$description = false)
 		{
 			//open file
 			$data = file_get_contents($file);
-			$image = imagecreatefromstring($data);
+      $image = imagecreatefromstring($data);
+      $image = convertmono($image);
 
 			$images = split_scanning($image);
 			unset($data);

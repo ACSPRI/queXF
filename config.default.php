@@ -191,6 +191,9 @@ if (!defined('IMAGES_DIRECTORY')) define('IMAGES_DIRECTORY', dirname(__FILE__) .
 //Whether to delete system detected records on verification (default)
 if (!defined('DELETE_ON_VERIFICATION')) define('DELETE_ON_VERIFICATION', true);
 
+//The gray/grey scale level to cut off at when converting to monochrome (0-255)
+if (!defined('IMAGE_THRESHOLD')) define('IMAGE_THRESHOLD', 221);
+
 
 
 ?>

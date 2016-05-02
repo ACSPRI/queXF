@@ -24,6 +24,34 @@
 
 include_once(dirname(__FILE__).'/../config.inc.php');
 
+
+function convertmono($image)
+{
+  if (imagecolorstotal($image) > 2)
+  {
+    //assume grayscale, convert to b&w no dithering
+    $xdim = imagesx($image);
+    $ydim = imagesy($image);
+  
+    $nimage = imagecreate($xdim,$ydim);
+    $white = imagecolorallocate($nimage, 255, 255, 255);
+    $black = imagecolorallocate($nimage, 0, 0, 0);
+  
+    for ($x = 0; $x < $xdim; $x++) {
+      for ($y = 0; $y < $ydim; $y++) {
+        $rgb = imagecolorat($image, $x, $y);
+        if ($rgb < IMAGE_THRESHOLD)
+          imagesetpixel($nimage,$x,$y,$black);
+      }
+    }
+    return $nimage;
+  }
+  return $image;
+}
+
+
+
+
 /**
  * Calculate the variance and mean of values in an array
  *
