@@ -551,7 +551,7 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true,$unverif
 		{
 			print str_pad($form['fid'], 10, " ", STR_PAD_LEFT);
       print str_pad($form['rpc_id'], 10, " ", STR_PAD_LEFT);
-			print str_pad($form['description'], 255, " ", STR_PAD_LEFT);
+			print str_pad($form['description'], 255, " ", STR_PAD_RIGHT);
 		}
 
 
@@ -1149,7 +1149,7 @@ function export_pspp($qid,$unverified = false)
 
   $startpos = $startpos + 10;
 	$endpos = $startpos + 254;
-	echo "filename $startpos-$endpos  ";
+	echo "filename $startpos-$endpos (A)  ";
 
 
 
