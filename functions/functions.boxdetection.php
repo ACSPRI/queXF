@@ -35,7 +35,6 @@ function horiBoxDetection($lw)
 	//get most common width, assume it is box size
 	$e = array_count_values($lw[0]);
 	arsort($e);
-
 	$tmp = array();
 
 	//step through close values
@@ -68,6 +67,7 @@ function horiBoxDetection($lw)
 			break;
 		next($tmp);
 	}
+
 
 	$min = $asize - ($asize / 8);
 	$max = $asize + ($asize / 8);
@@ -289,8 +289,37 @@ function vertBoxDetection($lw)
 	//get most common width, assume it is box size
 	$e = array_count_values($lw[0]);
 	arsort($e);
-	//print_r($e);
-	$asize = key($e);
+
+	//step through close values
+	foreach ($e as $key => $val)
+	{
+		$nkey = "";
+		for ($i = -9; $i < 10; $i++)
+		{
+			if (isset($tmp[$key + $i])) 
+			{
+				$nkey  = $key + $i;
+				break;
+			}
+		}
+		if ($nkey == "")
+			$tmp[$key] = $val;
+		else
+			$tmp[$nkey] = $tmp[$nkey] + $val;
+
+	}
+
+	arsort($tmp);
+
+	//Make sure that we are not using unworkable size boxes
+
+	for ($i = 0; $i <= count($tmp); $i++)
+	{
+		$asize = key($tmp);
+		if ($asize >= MIN_BOX_WIDTH)
+			break;
+		next($tmp);
+	}
 
 	$min = $asize - ($asize / 8);
 	$max = $asize + ($asize / 8);
@@ -335,7 +364,7 @@ function vertBoxDetection($lw)
 
 	$bsy[] = key($starty);
 
-	$aliasArray =& $starty;
+	$aliasArray = &$starty;
 
 	foreach($aliasArray as $key => $value)
 	{
@@ -345,7 +374,7 @@ function vertBoxDetection($lw)
 			$key2 = key($aliasArray);
 			$value2 = current($aliasArray);
 	
-			//print "$key2 - $key < $asize / 4<br/>";
+		//	print "$key2 - $key < $asize / 4<br/>";
 	
 			//if they are close
 			if (($key2 - $key) < ($asize / 3))
@@ -363,7 +392,7 @@ function vertBoxDetection($lw)
 				//start box
 				$bey[] = $key;
 				$bsy[] = $key2;
-				//print "$key2 - $key < $asize / 4<br/>";
+			//	print "sb: $key2 - $key < $asize / 4<br/>";
 
 			}
 	
@@ -374,8 +403,8 @@ function vertBoxDetection($lw)
 	end($aliasArray);
 	$bey[] = key($aliasArray);
 
-	//print_r($bsy);
-	//print_r($bey);
+//	print_r($bsy);
+//	print_r($bey);
 
 	$atlx = array();
 	$atly = array();
@@ -434,7 +463,6 @@ function lineWidth($tlx,$tly,$brx,$bry,$image)
 	
 	$startx = $tlx;
 	$starty = $tly;
-	
 
 	$col = imagecolorat($image, $tlx, $tly);
 	for ($y = $tly; $y < $bry; $y++){

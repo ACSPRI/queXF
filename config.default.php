@@ -135,7 +135,7 @@ if (!defined('VAS_BOXES')) define('VAS_BOXES',100); //Number of boxes to generat
 if (!defined('VAS_BOX_WIDTH')) define('VAS_BOX_WIDTH',12); //width of VAS boxes generated in pixels
 
 //Box widths
-if (!defined('MIN_BOX_WIDTH')) define('MIN_BOX_WIDTH',4); //minimum width of a box in pixels
+if (!defined('MIN_BOX_WIDTH')) define('MIN_BOX_WIDTH',20); //minimum width of a box in pixels
 
 //Time to wait before checking directory for new files (in seconds)
 if (!defined('PROCESS_SLEEP')) define('PROCESS_SLEEP',3600); 
