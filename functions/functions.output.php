@@ -114,6 +114,7 @@ function uploadrpc($fid)
 		//formid not recognised by limesurvey
 		unset($assoc['formid']);
 		unset($assoc['rpc_id']);
+		unset($assoc['filename']);
 
 		//make sure token won't interfere with normal operation of questionnaire
 		$assoc['token'] = "queXF-" . $fid;
@@ -239,6 +240,7 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $retu
 
 	$rv[] = "formid";
 	$rv[] = "rpc_id";
+	$rv[] = "filename";
 
 	//print the header row
 	if (!$return)
@@ -405,6 +407,7 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $retu
 
 		$rr[] = $form['fid']; //print str_pad($form['fid'], 10, " ", STR_PAD_LEFT);
 		$rr[] = $form['rpc_id'];
+		$rr[] = $form['description'];
 
 		//print_r($rr);
 		if (!$return)
@@ -547,7 +550,8 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true,$unverif
 		if ($appendformid)
 		{
 			print str_pad($form['fid'], 10, " ", STR_PAD_LEFT);
-			print str_pad($form['rpc_id'], 10, " ", STR_PAD_LEFT);
+      print str_pad($form['rpc_id'], 10, " ", STR_PAD_LEFT);
+			print str_pad($form['description'], 255, " ", STR_PAD_LEFT);
 		}
 
 
@@ -970,6 +974,12 @@ function export_ddi($qid)
 	foreach ($nvlocations as $nvlocation)
 		$nvlocation->set_attribute("width", "10");
 
+	$nvar = variable_ddi($dom,255,"filename","filename",$startpos,"number");
+	$d->append_child($nvar);
+	$nvlocations = $nvar->get_elements_by_tagname("location");     
+	foreach ($nvlocations as $nvlocation)
+		$nvlocation->set_attribute("width", "255");
+
 
 	//return a formatted version of the DDI file as as string
 
@@ -1137,6 +1147,11 @@ function export_pspp($qid,$unverified = false)
 	$endpos = $startpos + 9;
 	echo "rpc_id $startpos-$endpos  ";
 
+  $startpos = $startpos + 10;
+	$endpos = $startpos + 254;
+	echo "filename $startpos-$endpos  ";
+
+
 
 	echo " .\nVARIABLE LABELS ";
 
@@ -1164,7 +1179,7 @@ function export_pspp($qid,$unverified = false)
 			echo "$varname '$vardescription' ";
 		}
 	}
-	echo "/formid 'queXF Form ID' /rpc_id 'queXF RPC ID' .\n";
+	echo "/formid 'queXF Form ID' /rpc_id 'queXF RPC ID' /filename 'Original filename' .\n";
 
 	echo "VALUE LABELS ";
 
