@@ -717,7 +717,7 @@ function fillratio($image,$a)
 /* Find a horizontal line and return it's position
  *
  */
-function horiliney($tlx,$tly,$brx,$bry,$image,$approxw,$tolerance = 2,$attempts = 10,$searchlongest = true)
+function horiliney($tlx,$tly,$brx,$bry,$image,$approxw,$tolerance = 2,$attempts = 10,$searchlongest = true,$dgaps = 3)
 {
 	//0 is black, 1 is white
 	$y = 0;
@@ -729,7 +729,8 @@ function horiliney($tlx,$tly,$brx,$bry,$image,$approxw,$tolerance = 2,$attempts 
 	for ($x = $tlx; $x < $brx; $x+=$xadd) {
 		$col = imagecolorat($image, $x, $y);
 		$width = 1;
-		$start = $y;
+    $start = $y;
+    $dgapst = $dgaps;
 		for ($y = $tly; $y < $bry; $y++) {
 			$rgb = imagecolorat($image, $x, $y);
 			if ($rgb != $col){
@@ -737,14 +738,21 @@ function horiliney($tlx,$tly,$brx,$bry,$image,$approxw,$tolerance = 2,$attempts 
 					//record middle of line
 					$s[$start + int_divide($width, 2)] = $x;
 					//$count++;
-					//$avg += $start;
-				}
-				$width = 0;
+				  $width = 0;
+          $start = $y;
+ 				//$avg += $start;
+        }
+        if ($dgapst <= 0)
+        {
+				  $width = 0;
+          $start = $y;
+          $dgapst = $dgaps + 1;
+        }
 				$col = $rgb;
-				$start = $y;
 			}
 			$width++;
-			//print $rgb;
+      //print $rgb;
+      $dgapst--;
 		}
 		//print "<br/>\n";
 	}
@@ -801,7 +809,7 @@ function horiliney($tlx,$tly,$brx,$bry,$image,$approxw,$tolerance = 2,$attempts 
  *
  *
  */
-function vertlinex($tlx,$tly,$brx,$bry,$image,$approxw,$tolerance = 2,$attempts = 10,$searchlongest = true)
+function vertlinex($tlx,$tly,$brx,$bry,$image,$approxw,$tolerance = 2,$attempts = 10,$searchlongest = true,$dgaps = 3)
 {
 	//0 is black, 1 is white
 	$x = 0;
@@ -813,19 +821,28 @@ function vertlinex($tlx,$tly,$brx,$bry,$image,$approxw,$tolerance = 2,$attempts 
 	for ($y = $tly; $y < $bry; $y+=$yadd) {
 		$col = imagecolorat($image, $x, $y);
 		$width = 0;
-		$start = $x;
+    $start = $x;
+    $dgapst = $dgaps; //allow for gaps due to dithering
 		for ($x = $tlx; $x < $brx; $x++) {
 			$rgb = imagecolorat($image, $x, $y);
 			if ($rgb != $col){
 				if ($width >= $approxw - $tolerance && $width <= $approxw + $tolerance && $col == 0){
 					$s[$start + int_divide($width, 2)] = $y;
 					$count++;
-					$avg += $start;
-				}
-				$width = 0;
+				  $width = 0;
+          $start = $x;
+      			$avg += $start;
+        }
+       
+        if ($dgapst <= 0)
+        {
+				  $width = 0;
+          $start = $x;
+          $dgapst = $dgaps + 1;
+        }
 				$col = $rgb;
-				$start = $x;
-			}
+      }
+      $dgapst--;
 			$width++;
 			//print $rgb;
 		}
