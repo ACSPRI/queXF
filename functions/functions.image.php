@@ -33,9 +33,10 @@ function convertmono($image)
     $xdim = imagesx($image);
     $ydim = imagesy($image);
   
-    $nimage = imagecreate($xdim,$ydim);
+    $nimage = imagecreatetruecolor($xdim,$ydim);
     $white = imagecolorallocate($nimage, 255, 255, 255);
     $black = imagecolorallocate($nimage, 0, 0, 0);
+    imagefill($nimage,0,0,$white);
   
     for ($x = 0; $x < $xdim; $x++) {
       for ($y = 0; $y < $ydim; $y++) {

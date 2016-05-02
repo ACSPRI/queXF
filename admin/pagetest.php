@@ -55,6 +55,7 @@ function definetomap($zoom,$pid,$filename)
   $image = imagecreatefrompng($filename . $pid . ".png");	
   //convert to monochrome
   $image = convertmono($image);
+  imagepng($image,$filename . $pid .".png");
 
 	$width = imagesx($image);
 	$height = imagesy($image);
@@ -199,7 +200,8 @@ if (isset($_GET['filename']))
 			$file = $_GET['filename'] . $n . ".png";
 			//split all the files
 			$data = file_get_contents($file);
-			$image = imagecreatefromstring($data);
+      $image = imagecreatefromstring($data);
+      $image = convertmono($image);
 			$images = split_scanning($image);
 			if (count($images) == 2)
 			{		
