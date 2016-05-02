@@ -697,7 +697,10 @@ function fillratio($image,$a)
 	$count = 0;
 	for ($x = $a['tlx']; $x < $a['brx']; $x++) {
 		for ($y = $a['tly']; $y < $a['bry']; $y++) {
-			$rgb = imagecolorat($image, $x, $y);
+      $rgb = imagecolorat($image, $x, $y);
+      if ($rgb > 0) {
+        $rgb = 1;
+      }
 			//$r = ($rgb >> 16) & 0xFF;
 			//$g = ($rgb >> 8) & 0xFF;
 			//$b = $rgb & 0xFF;
