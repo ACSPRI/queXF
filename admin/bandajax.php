@@ -316,7 +316,7 @@ function createboxes($sx,$sy,$x,$y,$pid,$qid)
     else if (count($boxes) > 0) 	//create single choice box group by default
       $bgid = createboxgroup($boxes,1,'tmp',$pid,1);
     else //nothing detected -  create a text box
-      $bgid = createboxgroup(array($crop),1,'tmpbox',$pid,6);
+      $bgid = createboxgroup(array($crop),1024,'tmpbox',$pid,6);
   }
   else if ($groups > 1)
   {
@@ -432,7 +432,27 @@ function updatevalue($bid,$value)
 		SET value = $value
 		WHERE bid = '$bid'";
 
-	$db->Execute($sql);
+  $db->Execute($sql);
+
+  //also check width
+  $sql = "SELECT bgid
+          FROM boxes
+          WHERE bid = '$bid'";
+
+  $bgid = $db->GetOne($sql);
+
+  $sql = "SELECT MAX(LENGTH(`value`))
+          FROM boxes
+          WHERE bgid = '$bgid'";
+
+  $ml = $db->GetOne($sql);
+    
+  $sql = "UPDATE boxgroupstype
+          SET `width` = '$ml'
+          WHERE bgid = '$bgid'";
+
+  $db->Execute($sql);
+
 }
 
 function updatelabel($bid,$label)
