@@ -24,10 +24,34 @@
 
 include_once(dirname(__FILE__).'/../config.inc.php');
 
+/**
+ * Count the number of colours in the image
+ * php function imagecolourstotal just counts the palette colours
+ */
+function imagecolorcount($image)
+{
+  $xdim = imagesx($image);
+  $ydim = imagesy($image);
+  
+  $ca = array();
+
+  // Use a 1/25th sample of the image
+  for ($x = 0; $x < $xdim; $x+=5) {
+    for ($y = 0; $y < $ydim; $y+=5) {
+      $rgb = imagecolorat($image, $x, $y);
+      if (!isset($ca[$rgb]))
+        $ca[$rgb] = 1;
+      else
+        $ca[$rgb] += 1;
+    }
+  }
+  return count($ca);
+}
+
 
 function convertmono($image)
 {
-  if (imagecolorstotal($image) > 2)
+  if (imagecolorcount($image) > 2)
   {
     //assume grayscale, convert to b&w no dithering
     $xdim = imagesx($image);
