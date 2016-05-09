@@ -7,15 +7,137 @@ msgid ""
 msgstr ""
 "Project-Id-Version: quexf\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-12-23 10:49+1000\n"
+"POT-Creation-Date: 2015-07-20 16:28+1000\n"
 "PO-Revision-Date: 2013-08-15 02:50+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-07-20 06:24+0000\n"
-"X-Generator: Launchpad (build 17628)\n"
+"X-Launchpad-Export-Date: 2016-05-06 03:44+0000\n"
+"X-Generator: Launchpad (build 17995)\n"
+
+#: review.php:81
+msgid "Review Form"
+msgstr "Revisar o Cuestionario"
+
+#: review.php:140 client/index.php:56
+msgid "Form:"
+msgstr "Cuestionario:"
+
+#: review.php:141 client/index.php:57
+msgid "Variable:"
+msgstr "Variábel:"
+
+#: review.php:142 client/index.php:58
+msgid "Page:"
+msgstr "Páxina:"
+
+#: functions/functions.database.php:136
+msgid "ERROR: Multiple forms assigned, please see a technical officer"
+msgstr ""
+"ERRO: Asignáronse múltiples cuestionarios. Por favor, consulte a un/unha "
+"técnico/a"
+
+#: functions/functions.import.php:245
+msgid "BARCODE"
+msgstr "CÓDIGO DE BARRAS"
+
+#: functions/functions.import.php:289
+msgid "INVALID - IGNORING BLANK PAGE"
+msgstr "NON VÁLIDA - A IGNORAR A PÁXINA EN BRANCO"
+
+#: functions/functions.import.php:306
+msgid "Failed to import as no pages were detected"
+msgstr ""
+
+#: functions/functions.import.php:684 admin/index.php:58
+msgid "Importing"
+msgstr "A importar"
+
+#: functions/functions.import.php:719
+msgid "Finding qid"
+msgstr "Achando o qid"
+
+#: functions/functions.import.php:805
+msgid "Got qid"
+msgstr "qid obtido"
+
+#: functions/functions.import.php:882
+msgid "Processing pid"
+msgstr "A procesar o pid"
+
+#: functions/functions.import.php:893
+msgid "Pid not identified for this page, inserting into missing pages..."
+msgstr ""
+"Non se identificou o pid desta páxina, a inserilo nas páxinas perdidas..."
+
+#: functions/functions.import.php:964
+msgid "Blank page: ignoring"
+msgstr "Páxina en branco: a ignorar"
+
+#: functions/functions.import.php:969
+msgid "Could not get pid, inserting into missing pages..."
+msgstr "Non se puido obter o pid, a inserilo nas páxinas perdidas..."
+
+#: functions/functions.import.php:1029
+msgid "Could not get qid..."
+msgstr "Non se puido obter o qid..."
+
+#: functions/functions.import.php:1089
+msgid ""
+"Automatically processing the 1 missing page for this form - assuming pid:"
+msgstr ""
+"A procesar automaticamente a única páxina perdida para este cuestionario - a "
+"asumir o pid:"
+
+#: functions/functions.import.php:1156
+msgid "Deleting missing pages as all form page slots filled"
+msgstr ""
+"Borrar as páxinas perdidas conforme se enchen os cargadores de páxinas do "
+"cuestionario"
+
+#: functions/functions.import.php:1387
+msgid "File already in database"
+msgstr "O ficheiro xa está na base de datos"
+
+#: functions/functions.output.php:134 functions/functions.output.php:144
+msgid "XML RPC Error: "
+msgstr ""
+
+#: functions/functions.output.php:197 functions/functions.output.php:470
+#: functions/functions.output.php:1026
+msgid "unverified"
+msgstr ""
+
+#: include/php-gettext-1.0.11/examples/pigs_fallback.php:76
+#: include/php-gettext-1.0.11/examples/pigs_dropin.php:77
+msgid ""
+"This is how the story goes.\n"
+"\n"
+msgstr ""
+"Así é como funciona isto.\n"
+"\n"
+
+#: client/index.php:32
+msgid "Review forms"
+msgstr "Revisar os cuestionarios"
+
+#: client/index.php:59
+msgid "Review"
+msgstr "Revisar"
+
+#: client/index.php:75
+msgid ""
+"This form not available for you to review. Please enter a form id in the box "
+"on the left"
+msgstr ""
+"Este cuestionario non está dispoñíbel apara a súa revisión. Por favor, "
+"introduza un id de cuestionario na caixa da esquerda"
+
+#: client/index.php:134
+msgid "You are not authorised to review any forms"
+msgstr "Non está autorizado a verificar cuestionario ningún"
 
 #: verifyjs.php:177
 msgid "Please log in"
@@ -49,8 +171,8 @@ msgstr "Asignar o cuestionario seguinte"
 msgid "Assigning next form: Please wait..."
 msgstr "A asignar o cuestionario seguinte: Por favor agarde..."
 
-#: verifyjs.php:398 admin/listforms.php:77 admin/performance.php:66
-#: admin/listpagenotes.php:56
+#: verifyjs.php:398 admin/listpagenotes.php:56 admin/performance.php:66
+#: admin/listforms.php:77
 msgid "Operator"
 msgstr "Operador"
 
@@ -94,7 +216,7 @@ msgstr "Limpar todos os datos introducidos e revisar outra vez"
 msgid "Submitting: Please wait..."
 msgstr "A enviar: Por favor agarde..."
 
-#: verifyjs.php:628 admin/icrtrain.php:405 admin/limesurvey.php:88
+#: verifyjs.php:628 admin/limesurvey.php:88 admin/icrtrain.php:405
 msgid "Verifier"
 msgstr "Verificador/a"
 
@@ -126,672 +248,155 @@ msgstr "A cargar o panel..."
 msgid "Error, try with Firefox"
 msgstr "Erro, ténteo con Firefox"
 
-#: index.php:30
-msgid "queXF"
-msgstr "queXF"
-
-#: index.php:31
-msgid "Verify"
-msgstr "Comprobar"
-
-#: index.php:32
-msgid "Review a form"
-msgstr "Revisar un cuestionario"
-
-#: modifybox.php:176
-msgid "Modify box"
-msgstr ""
-
-#: modifybox.php:211
-msgid "Group type:"
-msgstr "Clase de grupo:"
-
-#: modifybox.php:216
-msgid "Variable name:"
-msgstr "Nome da variábel:"
-
-#: modifybox.php:219
-msgid "Width:"
-msgstr "Largo:"
-
-#: modifybox.php:221
-msgid "Submit"
-msgstr "Enviar"
-
-#: modifybox.php:223
-msgid "Delete this group"
-msgstr "Borrar este grupo"
-
-#: modifybox.php:224 admin/bandajax.php:176
-msgid "Delete in between boxes"
-msgstr "Borrar as caixas intermedias"
-
-#: review.php:81
-msgid "Review Form"
-msgstr "Revisar o Cuestionario"
-
-#: review.php:140 client/index.php:56
-msgid "Form:"
-msgstr "Cuestionario:"
-
-#: review.php:141 client/index.php:57
-msgid "Variable:"
-msgstr "Variábel:"
-
-#: review.php:142 client/index.php:58
-msgid "Page:"
-msgstr "Páxina:"
-
-#: pagenote.php:60
-msgid "Page note:"
-msgstr "Nota de páxina:"
-
-#: pagenote.php:65
-msgid "Add note"
-msgstr "Engadir unha nota"
-
-#: db.inc.php:32
-msgid ""
-"ERROR: Please modify config.inc.php to point to your ADODb installation"
-msgstr ""
-
-#: admin/band.php:105 admin/band.php:378 admin/bandajax.php:602
-#: admin/bandajax.php:679
-msgid "Band"
-msgstr "Marcar"
-
-#: admin/band.php:176 admin/bandajax.php:647
-msgid "Choose another questionnaire"
-msgstr "Escolla outro cuestionario"
-
-#: admin/band.php:176 admin/bandajax.php:647 admin/pagesetup.php:283
-#: admin/pagetest.php:253
-msgid "Increase zoom"
-msgstr "Ampliar o zoom"
-
-#: admin/band.php:176 admin/bandajax.php:647 admin/pagesetup.php:285
-#: admin/pagetest.php:256
-msgid "Decrease zoom"
-msgstr "Reducir o zoom"
-
-#: admin/clientquestionnaire.php:144 admin/clientquestionnaire.php:265
-msgid "Assign clients to questionnaires"
-msgstr "Asignar clientes aos cuestionarios"
-
-#: admin/bandajax.php:103
-msgid "Disable this box group"
-msgstr "Desactivar este grupo de caixas"
-
-#: admin/bandajax.php:111 admin/bandajax.php:119 admin/bandajax.php:127
-#: admin/bandajax.php:135 admin/bandajax.php:143 admin/bandajax.php:151
-msgid "Set to type:"
-msgstr "Establecer a clase:"
-
-#: admin/bandajax.php:111 admin/databasestrings.php:34
-msgid "Single choice"
-msgstr "Resposta simple"
-
-#: admin/bandajax.php:119 admin/databasestrings.php:35
-msgid "Multiple choice"
-msgstr "Resposta múltipla"
-
-#: admin/bandajax.php:127
-msgid "Text and Numbers"
-msgstr "Texto e Números"
-
-#: admin/bandajax.php:135
-msgid "Numbers only"
-msgstr "Só números"
-
-#: admin/bandajax.php:143 admin/databasestrings.php:38
-msgid "Barcode"
-msgstr "Código de barras"
-
-#: admin/bandajax.php:151 admin/databasestrings.php:39
-msgid "Long text"
-msgstr "Texto extenso"
-
-#: admin/bandajax.php:160
-msgid "Delete this box"
-msgstr "Borrar esta caixa"
-
-#: admin/bandajax.php:168
-msgid "Delete this box group"
-msgstr "Borrar este grupo de caixa"
-
-#: admin/import.directory.php:47 admin/import.directory.php:68
-#: admin/index.php:59
-msgid "Import a directory of PDF files"
-msgstr "Importar un directorio de ficheiros PDF"
-
-#: admin/import.directory.php:49 admin/icrmonitor.php:43
-#: admin/icrmonitor.php:75
-msgid "Process"
-msgstr "Proceso"
-
-#: admin/import.directory.php:49 admin/icrmonitor.php:75
-msgid "running..."
-msgstr "a executar..."
-
-#: admin/import.directory.php:53 admin/icrmonitor.php:47
-msgid "Kill signal sent: Please wait..."
-msgstr "Sinal de remate enviado: Por favor, agarde..."
-
-#: admin/import.directory.php:54 admin/icrmonitor.php:48
-msgid "Mark the proces as killed (i.e. when the server is rebooted)"
-msgstr ""
-
-#: admin/import.directory.php:57 admin/icrmonitor.php:51
-msgid "Kill the running process"
-msgstr "Matar os procesos activos"
-
-#: admin/import.directory.php:57 admin/icrmonitor.php:51
-msgid "may take up to a few minutes to take effect"
-msgstr "pode tomar varios minutos para se efectivizar"
-
-#: admin/import.directory.php:62 admin/import.directory.php:90
-#: admin/icrmonitor.php:56 admin/icrmonitor.php:88
-msgid "Log id"
-msgstr ""
-
-#: admin/import.directory.php:62 admin/import.directory.php:90
-#: admin/icrmonitor.php:56 admin/icrmonitor.php:88 admin/listfiles.php:69
-msgid "Date"
-msgstr "Data"
-
-#: admin/import.directory.php:62 admin/import.directory.php:90
-#: admin/icrmonitor.php:56 admin/icrmonitor.php:88
-msgid "Log entry"
-msgstr ""
-
-#: admin/import.directory.php:77
-msgid "Directory"
-msgstr "Directorio"
-
-#: admin/import.directory.php:79
-msgid "Enter directory local to the server (eg /mnt/iss/tmp/images)"
-msgstr "Introduza o directorio local do servidor (ex.: /mnt/iss/tmp/images)"
-
-#: admin/import.directory.php:80
-msgid "Process directory: browser window must remain open"
-msgstr ""
-"Directorio de procesamento: a xanela do navegador debe permanecer aberta"
-
-#: admin/import.directory.php:81
-msgid "Watch this directory in the background (recommended)"
-msgstr "Supervisar este directorio no segundo plano (recomendado)"
-
-#: admin/import.directory.php:85 admin/icrmonitor.php:83
-msgid "Outcome of last process run (if any)"
-msgstr "Resultado do último proceso executado (se houber)"
-
-#: admin/index.php:31 admin/index.php:36
-msgid "queXF Admin Functions"
-msgstr "Funcións de Administración do queXF"
-
-#: admin/index.php:38
-msgid "Form setup"
-msgstr "Configuración do cuestionario"
-
-#: admin/index.php:39
-msgid "Test form compatibility with queXF"
-msgstr ""
-
-#: admin/index.php:40
-msgid "Import a new form from a PDF file"
-msgstr "Importar un cuestionario novo desde un ficheiro PDF"
-
-#: admin/index.php:41
-msgid "Import/Update banding from XML"
-msgstr ""
-
-#: admin/index.php:42
-msgid "Delete a form (only if no forms yet imported)"
-msgstr "Borrar un cuestionario (só se aínda non se importaron exemplares)"
-
-#: admin/index.php:43
-msgid "Touch-up a form"
-msgstr ""
-
-#: admin/index.php:44
-msgid "Band a form"
-msgstr "Marcar un cuestionario"
-
-#: admin/index.php:45
-msgid "Band a form using interactive banding"
-msgstr "Marcar un cuestionario usando o marcado interactivo"
-
-#: admin/index.php:46
-msgid "Order variables on the form"
-msgstr "Ordenar as variábeis do cuestionario"
-
-#: admin/index.php:47 admin/limesurvey.php:31 admin/limesurvey.php:101
+#: admin/limesurvey.php:31 admin/limesurvey.php:101 admin/index.php:47
 msgid "queXS and Limesurvey integration"
 msgstr ""
 
-#: admin/index.php:48
-msgid "Users"
-msgstr "Usuarios/as"
-
-#: admin/index.php:49
-msgid "Add operators"
-msgstr "Engadir operadores/as"
-
-#: admin/index.php:50
-msgid "Assign forms to operators"
-msgstr "Asignar cuestionarios aos/ás operadores/as"
-
-#: admin/index.php:52
-msgid "ICR"
-msgstr ""
-
-#: admin/index.php:53
-msgid "Train ICR"
-msgstr ""
-
-#: admin/index.php:54
-msgid "Monitor ICR training process"
-msgstr ""
-
-#: admin/index.php:55
-msgid "Import and Export ICR KB"
-msgstr ""
-
-#: admin/index.php:56 admin/icrassign.php:97 admin/icrassign.php:228
-#: admin/icrassign.php:242
-msgid "Assign ICR KB to questionnaire"
-msgstr ""
-
-#: admin/index.php:58 functions/functions.import.php:669
-msgid "Importing"
-msgstr "A importar"
-
-#: admin/index.php:60
-msgid "Successfully imported files"
-msgstr "Ficheiros importados con suceso"
-
-#: admin/index.php:61
-msgid "Failed imported files"
-msgstr "Ficheiros con erros na importación"
-
-#: admin/index.php:62
-msgid "Duplicate forms"
-msgstr "Cuestionarios duplicados"
-
-#: admin/index.php:63
-msgid "Reverify forms"
-msgstr "Volver comprobar os cuestionarios"
-
-#: admin/index.php:64
-msgid "List page notes"
-msgstr "Listar as notas de páxina"
-
-#: admin/index.php:65 admin/pagesmissing.php:64
-msgid "Pages missing from scan"
-msgstr ""
-
-#: admin/index.php:66 admin/pagesmissing.php:67
-msgid "Handle undetected pages"
-msgstr ""
-
-#: admin/index.php:67
-msgid "Output"
-msgstr "Saída"
-
-#: admin/index.php:68 admin/outputunverified.php:67
-msgid "Output unverified data"
-msgstr ""
-
-#: admin/index.php:69
-msgid "Output data/ddi"
-msgstr "Datos de saída/ddi"
-
-#: admin/index.php:70 admin/progress.php:33
-msgid "Progress"
-msgstr "Progreso"
-
-#: admin/index.php:71
-msgid "Display progress of form verification"
-msgstr "Amosar o proceso da verificación dos cuestionarios"
-
-#: admin/index.php:72
-msgid "Display performance of verifiers (Completions per hour)"
-msgstr "Amosar o rendemento dos/das verificadores/as (completos por hora)"
-
-#: admin/index.php:73
-msgid "Clients"
-msgstr "Clientes"
-
-#: admin/index.php:74
-msgid "Add clients"
-msgstr "Engadir clientes"
-
-#: admin/index.php:75
-msgid "Assign clients to forms"
-msgstr "Asignar clientes aos cuestionarios"
-
-#: admin/index.php:76
-msgid "System setup"
-msgstr "Configuración do sistema"
-
-#: admin/index.php:77 admin/pagesetup.php:433
-msgid "Page setup"
-msgstr "Configuración da páxina"
-
-#: admin/index.php:78 admin/testconfig.php:10
-msgid "Test configuration"
-msgstr ""
-
-#: admin/touchup.php:83 admin/listforms.php:75 admin/limesurvey.php:42
+#: admin/limesurvey.php:42 admin/listforms.php:75 admin/touchup.php:83
 #: admin/icrassign.php:105
 msgid "Go back"
 msgstr ""
 
-#: admin/touchup.php:96
-msgid "Download"
+#: admin/limesurvey.php:67
+msgid ""
+"RPC Server URL (example: "
+"http://user:password@localhost/quexs/include/limesurvey/admin/remotecontrol.p"
+"hp)"
 msgstr ""
 
-#: admin/touchup.php:96
-msgid "to edit"
+#: admin/limesurvey.php:68
+msgid "RPC Username"
 msgstr ""
 
-#: admin/touchup.php:96
-msgid "Upload here"
+#: admin/limesurvey.php:69
+msgid "RPC Password"
 msgstr ""
 
-#: admin/touchup.php:99
-msgid "Upload pages"
+#: admin/limesurvey.php:70
+msgid "Limesurvey Survey ID"
 msgstr ""
 
-#: admin/touchup.php:111
-msgid "Touch up"
+#: admin/limesurvey.php:71
+msgid "Update settings"
 msgstr ""
 
-#: admin/outputunverified.php:70 admin/outputunverified.php:84
-#: admin/output.php:76 admin/output.php:89
-msgid "Data"
-msgstr "Datos"
-
-#: admin/outputunverified.php:71 admin/outputunverified.php:84
-#: admin/output.php:77 admin/output.php:89
-msgid "DDI"
+#: admin/limesurvey.php:76 admin/limesurvey.php:88
+msgid "Upload"
 msgstr ""
 
-#: admin/outputunverified.php:72 admin/outputunverified.php:84
-#: admin/output.php:78 admin/output.php:89
-msgid "CSV"
+#: admin/limesurvey.php:86
+msgid "No forms to upload"
 msgstr ""
 
-#: admin/outputunverified.php:73 admin/outputunverified.php:84
-#: admin/output.php:80 admin/output.php:89
-msgid "CSV Labelled"
-msgstr ""
+#: admin/limesurvey.php:88 admin/listpagenotes.php:56 admin/listforms.php:77
+#: admin/pagesmissing.php:85
+msgid "Form ID"
+msgstr "ID do cuestionario"
 
-#: admin/outputunverified.php:74 admin/outputunverified.php:84
-#: admin/output.php:81 admin/output.php:89
-msgid "PSPP (SPSS)"
-msgstr ""
+#: admin/delete.php:70
+msgid "Delete a questionnaire"
+msgstr "Borrar un cuestionario"
 
-#: admin/outputunverified.php:75 admin/outputunverified.php:84
-#: admin/output.php:82 admin/output.php:89
-msgid "Banding XML"
-msgstr ""
+#: admin/delete.php:85
+msgid "Click to delete questionnaire"
+msgstr "Prema para borrar o cuestionario"
 
-#: admin/outputunverified.php:82
-msgid "Warning: the data downloaded from here is unverified"
-msgstr ""
+#: admin/delete.php:86
+msgid ""
+"The following questionnaires have no forms associated with them so are safe "
+"to delete"
+msgstr "Os cuestionarios seguintes non teñen exemplares asociados, así que"
 
-#: admin/outputunverified.php:84 admin/listforms.php:77
-#: admin/pagesmissing.php:85 admin/listduplicates.php:113 admin/reorder.php:49
-#: admin/output.php:89 admin/performance.php:104 admin/listpagenotes.php:56
-#: admin/progress.php:55
-msgid "Questionnaire"
-msgstr "Cuestionario"
-
-#: admin/missingpages.php:150
-msgid "Undetected Pages"
-msgstr ""
-
-#: admin/missingpages.php:228
-msgid "Undetected page"
-msgstr ""
-
-#: admin/missingpages.php:275
-msgid "Page"
-msgstr "Páxina"
-
-#: admin/missingpages.php:275
-msgid "of Form"
-msgstr "do Cuestionario"
-
-#: admin/missingpages.php:284 admin/pagesmissing.php:85
-msgid "Form"
-msgstr ""
-
-#: admin/missingpages.php:289
-msgid "Accept"
-msgstr "Aceptar"
-
-#: admin/missingpages.php:289 admin/listduplicates.php:113 admin/delete.php:90
+#: admin/delete.php:90 admin/listduplicates.php:113 admin/missingpages.php:289
 msgid "Delete"
 msgstr "Borrar"
 
-#: admin/missingpages.php:294
-msgid "No undetected pages"
-msgstr ""
+#: admin/bandajax.php:109
+msgid "Disable this box group"
+msgstr "Desactivar este grupo de caixas"
 
-#: admin/pagesetup.php:206
-msgid "Cannot detect page edge on page"
-msgstr ""
+#: admin/bandajax.php:117 admin/bandajax.php:125 admin/bandajax.php:133
+#: admin/bandajax.php:141 admin/bandajax.php:149 admin/bandajax.php:157
+msgid "Set to type:"
+msgstr "Establecer a clase:"
 
-#: admin/pagesetup.php:224 admin/pagesetup.php:234
-msgid "Set page layout"
-msgstr "Establecer o formato de páxina"
+#: admin/bandajax.php:117 admin/databasestrings.php:34
+msgid "Single choice"
+msgstr "Resposta simple"
 
-#: admin/pagesetup.php:225
-msgid "Page layout has been updated"
-msgstr ""
+#: admin/bandajax.php:125 admin/databasestrings.php:35
+msgid "Multiple choice"
+msgstr "Resposta múltipla"
 
-#: admin/pagesetup.php:226
-msgid "Continue with banding"
-msgstr ""
+#: admin/bandajax.php:133
+msgid "Text and Numbers"
+msgstr "Texto e Números"
 
-#: admin/pagesetup.php:287
-msgid "Copy settings from this page to all other pages"
-msgstr ""
+#: admin/bandajax.php:141
+msgid "Numbers only"
+msgstr "Só números"
 
-#: admin/pagesetup.php:289
-msgid "Finished page setup"
-msgstr ""
+#: admin/bandajax.php:149 admin/databasestrings.php:38
+msgid "Barcode"
+msgstr "Código de barras"
 
-#: admin/icrtrain.php:37
-msgid "ICR Training"
-msgstr ""
+#: admin/bandajax.php:157 admin/databasestrings.php:39
+msgid "Long text"
+msgstr "Texto extenso"
 
-#: admin/icrtrain.php:141
-msgid "Found duplicate"
-msgstr ""
+#: admin/bandajax.php:166
+msgid "Delete this box"
+msgstr "Borrar esta caixa"
 
-#: admin/icrtrain.php:166 admin/processicr.php:134
-msgid "Trained"
-msgstr ""
+#: admin/bandajax.php:174
+msgid "Delete this box group"
+msgstr "Borrar este grupo de caixa"
 
-#: admin/icrtrain.php:166
-msgid "characters"
-msgstr ""
+#: admin/bandajax.php:182 modifybox.php:224
+msgid "Delete in between boxes"
+msgstr "Borrar as caixas intermedias"
 
-#: admin/icrtrain.php:171 admin/processicr.php:151
-msgid "Generated KB"
-msgstr ""
+#: admin/bandajax.php:628 admin/bandajax.php:705 admin/band.php:105
+#: admin/band.php:378
+msgid "Band"
+msgstr "Marcar"
 
-#: admin/icrtrain.php:216
-msgid "Chars"
-msgstr ""
+#: admin/bandajax.php:673 admin/band.php:176
+msgid "Choose another questionnaire"
+msgstr "Escolla outro cuestionario"
 
-#: admin/icrtrain.php:216 admin/icrtrain.php:285
-msgid "from"
-msgstr ""
+#: admin/bandajax.php:673 admin/band.php:176 admin/pagesetup.php:281
+#: admin/pagetest.php:253
+msgid "Increase zoom"
+msgstr "Ampliar o zoom"
 
-#: admin/icrtrain.php:257
-msgid "Started training process"
-msgstr ""
+#: admin/bandajax.php:673 admin/band.php:176 admin/pagesetup.php:283
+#: admin/pagetest.php:256
+msgid "Decrease zoom"
+msgstr "Reducir o zoom"
 
-#: admin/icrtrain.php:285 admin/icrtrain.php:374
-msgid "Character"
-msgstr ""
+#: admin/listpagenotes.php:45 admin/listforms.php:59
+msgid "Listing of forms"
+msgstr "Listaxe de cuestionarios"
 
-#: admin/icrtrain.php:306
-msgid ""
-"Make sure the letter in the box matches the image. If you do not want to "
-"import a box, click on it to disable it (click again to enable)."
-msgstr ""
+#: admin/listpagenotes.php:47 admin/listpagenotes.php:56
+msgid "Delete note"
+msgstr "Borrar a nota"
 
-#: admin/icrtrain.php:323
-msgid "Description for knowledge base:"
-msgstr ""
+#: admin/listpagenotes.php:56
+msgid "Page ID"
+msgstr "ID de páxina"
 
-#: admin/icrtrain.php:323
-msgid "Train"
-msgstr ""
+#: admin/listpagenotes.php:56 admin/listduplicates.php:113
+#: admin/progress.php:55 admin/performance.php:104
+#: admin/outputunverified.php:84 admin/listforms.php:77 admin/reorder.php:49
+#: admin/output.php:89 admin/pagesmissing.php:85
+msgid "Questionnaire"
+msgstr "Cuestionario"
 
-#: admin/icrtrain.php:356 admin/icrtrain.php:374
-msgid "Manually train"
-msgstr ""
-
-#: admin/icrtrain.php:371
-msgid "Please choose which characters to include in training"
-msgstr ""
-
-#: admin/icrtrain.php:374
-msgid "Number of instances"
-msgstr ""
-
-#: admin/icrtrain.php:374 admin/icrtrain.php:405
-msgid "Include in training?"
-msgstr ""
-
-#: admin/icrtrain.php:384
-msgid "Start training process in background"
-msgstr ""
-
-#: admin/icrtrain.php:402
-msgid "Please choose which verifiers to include in training"
-msgstr ""
-
-#: admin/icrtrain.php:405
-msgid "Number of forms"
-msgstr ""
-
-#: admin/icrtrain.php:408
-msgid "Continue training"
-msgstr ""
-
-#: admin/icrtrain.php:423
-msgid "ICR Train"
-msgstr ""
-
-#: admin/icrmonitor.php:30
-msgid "Monitor ICR process"
-msgstr ""
-
-#: admin/icrmonitor.php:80
-msgid "No process running"
-msgstr ""
-
-#: admin/pagetest.php:121 admin/pagetest.php:151
-msgid "NO BARCODE DETECTED"
-msgstr ""
-
-#: admin/pagetest.php:125
-msgid "Detected but not BARCODE_LENGTH_PID length"
-msgstr ""
-
-#: admin/pagetest.php:127 admin/pagetest.php:157
-msgid "Detected"
-msgstr ""
-
-#: admin/pagetest.php:155
-msgid "Detected but not BARCODE_LENGTH_PID2 length"
-msgstr ""
-
-#: admin/pagetest.php:165 admin/pagetest.php:281 admin/pagetest.php:295
-msgid "Page test"
-msgstr ""
-
-#: admin/pagetest.php:282
-msgid ""
-"Confirm that there is a detected unique barcode for each page and that the "
-"barcode fits inside the pink box. If not, edit the BARCODE_PORTION variables "
-"in the configuration file"
-msgstr ""
-
-#: admin/pagetest.php:283
-msgid "Confirm that the barcode is of length"
-msgstr ""
-
-#: admin/pagetest.php:283
-msgid ""
-"Otherwise edit the BARCODE_LENGTH_PID variable in the configuration file"
-msgstr ""
-
-#: admin/pagetest.php:284
-msgid ""
-"Confirm the corner edges fit within the green/brown boxes and that the blue "
-"lines appear to be drawn over the corner edges (for each 4 corners, both "
-"horizonal and vertical lines. If not, edit the PAGE_GUIDE_X_PORTION, "
-"HORI_WIDTH and VERT_WIDTH variables in the configuration file"
-msgstr ""
-
-#: admin/pagetest.php:296 admin/new.php:86
-msgid "When using banding XML:"
-msgstr ""
-
-#: admin/pagetest.php:297 admin/new.php:87
-msgid ""
-"You must import the original PDF and banding XML file (not a scanned version)"
-msgstr ""
-
-#: admin/pagetest.php:298 admin/new.php:88
-msgid "When manually banding:"
-msgstr ""
-
-#: admin/pagetest.php:299 admin/new.php:89
-msgid "You will get the best results if you:"
-msgstr "Obterá os mellores resultados se:"
-
-#: admin/pagetest.php:301 admin/new.php:90
-msgid ""
-"Print out the form using the same method that you will for all the printed "
-"forms"
-msgstr ""
-"Imprime o cuestionario usando o mesmo método que empregará para todos os "
-"cuestionarios impresos"
-
-#: admin/pagetest.php:302
-msgid ""
-"Scan the form to a PDF using the same options that you will for the filled "
-"forms"
-msgstr ""
-
-#: admin/pagetest.php:303 admin/new.php:92
-msgid "Best options for scanning in are:"
-msgstr "As mellores opcións de escanado son:"
-
-#: admin/pagetest.php:304 admin/new.php:93
-msgid "Monochrome (1 bit)"
-msgstr "Monocromo (1 bit)"
-
-#: admin/pagetest.php:305 admin/new.php:94
-msgid "300DPI Resolution"
-msgstr "Resolución de 300 ppp"
-
-#: admin/pagetest.php:311
-msgid "Select PDF file to upload:"
-msgstr ""
-
-#: admin/pagetest.php:312 admin/new.php:103
-msgid "Upload form"
-msgstr "Cargar o cuestionario"
+#: admin/listpagenotes.php:56
+msgid "Note"
+msgstr "Nota"
 
 #: admin/operators.php:34 admin/operators.php:64
 msgid "Add an operator"
@@ -855,132 +460,6 @@ msgstr "Introduza o nome do/a operador/a:"
 msgid "Add user"
 msgstr "Engadir un/unha usuario/a"
 
-#: admin/listforms.php:59 admin/listpagenotes.php:45
-msgid "Listing of forms"
-msgstr "Listaxe de cuestionarios"
-
-#: admin/listforms.php:66 admin/listforms.php:77
-msgid "Re verify"
-msgstr "Volver comprobar"
-
-#: admin/listforms.php:77 admin/pagesmissing.php:85 admin/limesurvey.php:88
-#: admin/listpagenotes.php:56
-msgid "Form ID"
-msgstr "ID do cuestionario"
-
-#: admin/listforms.php:90
-msgid "List"
-msgstr ""
-
-#: admin/new.php:30
-msgid "Add new questionnaire"
-msgstr "Engadir un cuestionario novo"
-
-#: admin/new.php:55
-msgid "Successfully inserted new questionnaire"
-msgstr "O cuestionario novo inseriuse con suceso"
-
-#: admin/new.php:61 admin/importbandingxml.php:42
-msgid "Successfully loaded banding XML file"
-msgstr ""
-
-#: admin/new.php:65 admin/importbandingxml.php:44
-msgid "Failed to load banding XML file"
-msgstr ""
-
-#: admin/new.php:71
-msgid "Continue by setting up page edge detection (page setup)"
-msgstr ""
-
-#: admin/new.php:78
-msgid "Failed to insert new questionnaire. Could have conflicting page id's"
-msgstr ""
-"Erro ao inserir o cuestionario novo. Pode ter IDs de páxina conflitivos"
-
-#: admin/new.php:79
-msgid "Test form to check for problems"
-msgstr ""
-
-#: admin/new.php:85
-msgid "New questionnaire"
-msgstr "Cuestionario novo"
-
-#: admin/new.php:91
-msgid ""
-"Scan the (blank) form to a PDF using the same options that you will for the "
-"filled forms"
-msgstr ""
-"Escanee o cuestoinario baleiro nun PDF usando as mesmas opcións que irá usar "
-"cos cuestionarios cubertos"
-
-#: admin/new.php:100
-msgid "Select PDF file to create form from"
-msgstr "Escolla o ficheiro PDF para crear o cuestionario a partir de"
-
-#: admin/new.php:101
-msgid "(Optional): Select banding XML file"
-msgstr ""
-
-#: admin/new.php:102
-msgid "Enter description of form"
-msgstr "Introducir a descrición do cuestionario"
-
-#: admin/pagesmissing.php:67 admin/pagesmissing.php:85
-msgid "Delete form and allow importing again"
-msgstr ""
-
-#: admin/processicr.php:56
-msgid "Processing KB"
-msgstr ""
-
-#: admin/processicr.php:134
-msgid "to knowledge base"
-msgstr ""
-
-#: admin/processicr.php:154 admin/processicr.php:157
-msgid "Did not generate KB as not all records trained"
-msgstr ""
-
-#: admin/listfiles.php:49
-msgid "Listing of imported files by status"
-msgstr "Listaxe de ficheiros importados por estado"
-
-#: admin/listfiles.php:56
-msgid "Forms successfully imported"
-msgstr "Os cuestionarios importáronse ben"
-
-#: admin/listfiles.php:58
-msgid "Forms not imported"
-msgstr "Os cuestionarios non se importaron"
-
-#: admin/listfiles.php:69
-msgid "File"
-msgstr "Ficheiro"
-
-#: admin/listfiles.php:69
-msgid "SHA1"
-msgstr "SHA1"
-
-#: admin/listfiles.php:69
-msgid "Allow import again?"
-msgstr "Permitir outra importación?"
-
-#: admin/listfiles.php:71 admin/reorder.php:131
-msgid "Save changes"
-msgstr "Gardar os cambios"
-
-#: admin/databasestrings.php:33
-msgid "Temporary"
-msgstr "Temporal"
-
-#: admin/databasestrings.php:36
-msgid "Text"
-msgstr "Texto"
-
-#: admin/databasestrings.php:37
-msgid "Number"
-msgstr "Número"
-
 #: admin/listduplicates.php:67
 msgid "Listing of duplicate forms"
 msgstr "Listar os cuestionarios duplicados"
@@ -1009,107 +488,25 @@ msgstr "PFID"
 msgid "Delete selected forms"
 msgstr ""
 
-#: admin/process.php:54
-msgid "Processing directory"
-msgstr "A procesar o cartafol"
+#: admin/progress.php:33 admin/index.php:70
+msgid "Progress"
+msgstr "Progreso"
 
-#: admin/process.php:65
-msgid "Watching..."
-msgstr "A revisar..."
+#: admin/progress.php:55
+msgid "Done"
+msgstr "Feito"
 
-#: admin/process.php:83
-msgid ""
-"Cannot process this directory - check that it is valid and permissions are "
-"correct"
-msgstr ""
-"Non se puido procesar este cartafol - comprobe que é válido e que os "
-"permisos están ben"
+#: admin/progress.php:55
+msgid "Remain"
+msgstr "Restante"
 
-#: admin/reorder.php:47 admin/reorder.php:84
-msgid "Reorder variables"
-msgstr "Reordenar as variábeis"
+#: admin/progress.php:55
+msgid "Total forms imported"
+msgstr "Total de cuestionarios importados"
 
-#: admin/reorder.php:61
-msgid "Manual reorder"
-msgstr "Reordenación manual"
-
-#: admin/reorder.php:61
-msgid "Reorder by position"
-msgstr "Rordenar por posición"
-
-#: admin/reorder.php:61
-msgid "Reorder by variable name"
-msgstr "Reordenar por nome de variábel"
-
-#: admin/reorder.php:120
-msgid ""
-"Reorder variables by dragging and dropping, then clicking on 'Save Changes' "
-"below"
-msgstr ""
-"Reordenar as variábeis arrastrándoas e calcando embaixo en 'Gardar Cambios' "
-"despois"
-
-#: admin/reorder.php:122
-msgid "Click here"
-msgstr "Calque aquí"
-
-#: admin/reorder.php:122
-msgid "to return without saving changes"
-msgstr "para voltar sen gardar os cambios"
-
-#: admin/clients.php:68
-msgid "There may already be an client of this name"
-msgstr "Pode que xa exista un cliente con ese nome"
-
-#: admin/clients.php:73 admin/clients.php:82
-msgid "Add a client"
-msgstr "Engadir un cliente"
-
-#: admin/clients.php:83
-msgid ""
-"Adding a client here will allow them to access project information in the "
-"client subdirectory. You can assign a client to a particular project using "
-"the"
-msgstr ""
-"Engadir un cliente aquí permitiralle acceder a información do proxecto no "
-"subdirectorio do cliente. Pode asignar un cliente a un proxecto particular "
-"usando o"
-
-#: admin/clients.php:83
-msgid "Assign client to Form"
-msgstr "Asignar un cliente ao Cuestionario"
-
-#: admin/clients.php:83
-msgid "tool."
-msgstr "ferramenta."
-
-#: admin/clients.php:84
-msgid ""
-"Use this form to enter the username of a user based on your directory "
-"security system. For example, if you have secured the base directory of "
-"queXF using Apache file based security, enter the usernames of the users "
-"here."
-msgstr ""
-"Use este formulario para introducir o nome dun/dunha usuario/a baseado no "
-"sistema de seguranza de directorio. Se segurou o directorio base de queXF "
-"usando a seguranza baseada en ficheiros de Apache, introduza os nomes de "
-"usuario/a aquí."
-
-#: admin/clients.php:86
-msgid "Enter the username of a client to add:"
-msgstr "Introduz o nome de usuario/a do cliente a engadir:"
-
-#: admin/clients.php:87
-msgid "Enter the description of the client to add:"
-msgstr "Introduza a descrición do cliente a engadir:"
-
-#: admin/output.php:73
-msgid "Output data"
-msgstr "Datos de saída"
-
-#: admin/output.php:79 admin/output.php:89
-msgid "CSV Merged"
-msgstr ""
+#: admin/progress.php:77
+msgid "Total"
+msgstr "Total"
 
 #: admin/performance.php:33
 msgid "Performance"
@@ -1119,55 +516,61 @@ msgstr "Rendemento"
 msgid "Assign verifier to questionnaire"
 msgstr "Asignar un/unha verificador/a ao cuestionario"
 
-#: admin/limesurvey.php:67
-msgid ""
-"RPC Server URL (example: "
-"http://user:password@localhost/quexs/include/limesurvey/admin/remotecontrol.p"
-"hp)"
+#: admin/icrmonitor.php:30
+msgid "Monitor ICR process"
 msgstr ""
 
-#: admin/limesurvey.php:68
-msgid "RPC Username"
+#: admin/icrmonitor.php:43 admin/icrmonitor.php:75
+#: admin/import.directory.php:49
+msgid "Process"
+msgstr "Proceso"
+
+#: admin/icrmonitor.php:47 admin/import.directory.php:53
+msgid "Kill signal sent: Please wait..."
+msgstr "Sinal de remate enviado: Por favor, agarde..."
+
+#: admin/icrmonitor.php:48 admin/import.directory.php:54
+msgid "Mark the proces as killed (i.e. when the server is rebooted)"
 msgstr ""
 
-#: admin/limesurvey.php:69
-msgid "RPC Password"
+#: admin/icrmonitor.php:51 admin/import.directory.php:57
+msgid "Kill the running process"
+msgstr "Matar os procesos activos"
+
+#: admin/icrmonitor.php:51 admin/import.directory.php:57
+msgid "may take up to a few minutes to take effect"
+msgstr "pode tomar varios minutos para se efectivizar"
+
+#: admin/icrmonitor.php:56 admin/icrmonitor.php:88
+#: admin/import.directory.php:62 admin/import.directory.php:90
+msgid "Log id"
 msgstr ""
 
-#: admin/limesurvey.php:70
-msgid "Limesurvey Survey ID"
+#: admin/icrmonitor.php:56 admin/icrmonitor.php:88
+#: admin/import.directory.php:62 admin/import.directory.php:90
+#: admin/listfiles.php:69
+msgid "Date"
+msgstr "Data"
+
+#: admin/icrmonitor.php:56 admin/icrmonitor.php:88
+#: admin/import.directory.php:62 admin/import.directory.php:90
+msgid "Log entry"
 msgstr ""
 
-#: admin/limesurvey.php:71
-msgid "Update settings"
+#: admin/icrmonitor.php:75 admin/import.directory.php:49
+msgid "running..."
+msgstr "a executar..."
+
+#: admin/icrmonitor.php:80
+msgid "No process running"
 msgstr ""
 
-#: admin/limesurvey.php:76 admin/limesurvey.php:88
-msgid "Upload"
-msgstr ""
+#: admin/icrmonitor.php:83 admin/import.directory.php:85
+msgid "Outcome of last process run (if any)"
+msgstr "Resultado do último proceso executado (se houber)"
 
-#: admin/limesurvey.php:86
-msgid "No forms to upload"
-msgstr ""
-
-#: admin/importbandingxml.php:30 admin/importbandingxml.php:48
-msgid "Update banding from XML"
-msgstr ""
-
-#: admin/importbandingxml.php:49
-msgid "WARNING: All previous banding will be erased"
-msgstr ""
-
-#: admin/importbandingxml.php:60
-msgid "Select banding XML file"
-msgstr ""
-
-#: admin/importbandingxml.php:61
-msgid "Select questionnaire"
-msgstr ""
-
-#: admin/importbandingxml.php:62 admin/icrkb.php:67
-msgid "Upload XML"
+#: admin/testconfig.php:10 admin/index.php:78
+msgid "Test configuration"
 msgstr ""
 
 #: admin/testconfig.php:26
@@ -1276,47 +679,205 @@ msgstr ""
 msgid "Passed Configuration Test"
 msgstr ""
 
-#: admin/listpagenotes.php:47 admin/listpagenotes.php:56
-msgid "Delete note"
-msgstr "Borrar a nota"
+#: admin/outputunverified.php:67 admin/index.php:68
+msgid "Output unverified data"
+msgstr ""
 
-#: admin/listpagenotes.php:56
-msgid "Page ID"
-msgstr "ID de páxina"
+#: admin/outputunverified.php:70 admin/outputunverified.php:84
+#: admin/output.php:76 admin/output.php:89
+msgid "Data"
+msgstr "Datos"
 
-#: admin/listpagenotes.php:56
-msgid "Note"
-msgstr "Nota"
+#: admin/outputunverified.php:71 admin/outputunverified.php:84
+#: admin/output.php:77 admin/output.php:89
+msgid "DDI"
+msgstr ""
 
-#: admin/delete.php:70
-msgid "Delete a questionnaire"
-msgstr "Borrar un cuestionario"
+#: admin/outputunverified.php:72 admin/outputunverified.php:84
+#: admin/output.php:78 admin/output.php:89
+msgid "CSV"
+msgstr ""
 
-#: admin/delete.php:85
-msgid "Click to delete questionnaire"
-msgstr "Prema para borrar o cuestionario"
+#: admin/outputunverified.php:73 admin/outputunverified.php:84
+#: admin/output.php:80 admin/output.php:89
+msgid "CSV Labelled"
+msgstr ""
 
-#: admin/delete.php:86
+#: admin/outputunverified.php:74 admin/outputunverified.php:84
+#: admin/output.php:81 admin/output.php:89
+msgid "PSPP (SPSS)"
+msgstr ""
+
+#: admin/outputunverified.php:75 admin/outputunverified.php:84
+#: admin/output.php:82 admin/output.php:89
+msgid "Banding XML"
+msgstr ""
+
+#: admin/outputunverified.php:82
+msgid "Warning: the data downloaded from here is unverified"
+msgstr ""
+
+#: admin/listforms.php:66 admin/listforms.php:77
+msgid "Re verify"
+msgstr "Volver comprobar"
+
+#: admin/listforms.php:90
+msgid "List"
+msgstr ""
+
+#: admin/touchup.php:96
+msgid "Download"
+msgstr ""
+
+#: admin/touchup.php:96
+msgid "to edit"
+msgstr ""
+
+#: admin/touchup.php:96
+msgid "Upload here"
+msgstr ""
+
+#: admin/touchup.php:99
+msgid "Upload pages"
+msgstr ""
+
+#: admin/touchup.php:111
+msgid "Touch up"
+msgstr ""
+
+#: admin/processicr.php:56
+msgid "Processing KB"
+msgstr ""
+
+#: admin/processicr.php:134 admin/icrtrain.php:166
+msgid "Trained"
+msgstr ""
+
+#: admin/processicr.php:134
+msgid "to knowledge base"
+msgstr ""
+
+#: admin/processicr.php:151 admin/icrtrain.php:171
+msgid "Generated KB"
+msgstr ""
+
+#: admin/processicr.php:154 admin/processicr.php:157
+msgid "Did not generate KB as not all records trained"
+msgstr ""
+
+#: admin/reorder.php:47 admin/reorder.php:84
+msgid "Reorder variables"
+msgstr "Reordenar as variábeis"
+
+#: admin/reorder.php:61
+msgid "Manual reorder"
+msgstr "Reordenación manual"
+
+#: admin/reorder.php:61
+msgid "Reorder by position"
+msgstr "Rordenar por posición"
+
+#: admin/reorder.php:61
+msgid "Reorder by variable name"
+msgstr "Reordenar por nome de variábel"
+
+#: admin/reorder.php:120
 msgid ""
-"The following questionnaires have no forms associated with them so are safe "
-"to delete"
-msgstr "Os cuestionarios seguintes non teñen exemplares asociados, así que"
+"Reorder variables by dragging and dropping, then clicking on 'Save Changes' "
+"below"
+msgstr ""
+"Reordenar as variábeis arrastrándoas e calcando embaixo en 'Gardar Cambios' "
+"despois"
 
-#: admin/progress.php:55
-msgid "Done"
-msgstr "Feito"
+#: admin/reorder.php:122
+msgid "Click here"
+msgstr "Calque aquí"
 
-#: admin/progress.php:55
-msgid "Remain"
-msgstr "Restante"
+#: admin/reorder.php:122
+msgid "to return without saving changes"
+msgstr "para voltar sen gardar os cambios"
 
-#: admin/progress.php:55
-msgid "Total forms imported"
-msgstr "Total de cuestionarios importados"
+#: admin/reorder.php:131 admin/listfiles.php:71
+msgid "Save changes"
+msgstr "Gardar os cambios"
 
-#: admin/progress.php:77
-msgid "Total"
-msgstr "Total"
+#: admin/icrtrain.php:37
+msgid "ICR Training"
+msgstr ""
+
+#: admin/icrtrain.php:141
+msgid "Found duplicate"
+msgstr ""
+
+#: admin/icrtrain.php:166
+msgid "characters"
+msgstr ""
+
+#: admin/icrtrain.php:216
+msgid "Chars"
+msgstr ""
+
+#: admin/icrtrain.php:216 admin/icrtrain.php:285
+msgid "from"
+msgstr ""
+
+#: admin/icrtrain.php:257
+msgid "Started training process"
+msgstr ""
+
+#: admin/icrtrain.php:285 admin/icrtrain.php:374
+msgid "Character"
+msgstr ""
+
+#: admin/icrtrain.php:306
+msgid ""
+"Make sure the letter in the box matches the image. If you do not want to "
+"import a box, click on it to disable it (click again to enable)."
+msgstr ""
+
+#: admin/icrtrain.php:323
+msgid "Description for knowledge base:"
+msgstr ""
+
+#: admin/icrtrain.php:323
+msgid "Train"
+msgstr ""
+
+#: admin/icrtrain.php:356 admin/icrtrain.php:374
+msgid "Manually train"
+msgstr ""
+
+#: admin/icrtrain.php:371
+msgid "Please choose which characters to include in training"
+msgstr ""
+
+#: admin/icrtrain.php:374
+msgid "Number of instances"
+msgstr ""
+
+#: admin/icrtrain.php:374 admin/icrtrain.php:405
+msgid "Include in training?"
+msgstr ""
+
+#: admin/icrtrain.php:384
+msgid "Start training process in background"
+msgstr ""
+
+#: admin/icrtrain.php:402
+msgid "Please choose which verifiers to include in training"
+msgstr ""
+
+#: admin/icrtrain.php:405
+msgid "Number of forms"
+msgstr ""
+
+#: admin/icrtrain.php:408
+msgid "Continue training"
+msgstr ""
+
+#: admin/icrtrain.php:423
+msgid "ICR Train"
+msgstr ""
 
 #: admin/icrkb.php:38 admin/icrkb.php:55
 msgid "Import ICR KB from XML"
@@ -1334,6 +895,10 @@ msgstr ""
 msgid "Select ICR KB XML file"
 msgstr ""
 
+#: admin/icrkb.php:67 admin/importbandingxml.php:62
+msgid "Upload XML"
+msgstr ""
+
 #: admin/icrkb.php:72
 msgid "Export ICR KB to XML"
 msgstr ""
@@ -1342,104 +907,532 @@ msgstr ""
 msgid "ICR KB"
 msgstr ""
 
-#: functions/functions.output.php:134 functions/functions.output.php:144
-msgid "XML RPC Error: "
+#: admin/output.php:73
+msgid "Output data"
+msgstr "Datos de saída"
+
+#: admin/output.php:79 admin/output.php:89
+msgid "CSV Merged"
 msgstr ""
 
-#: functions/functions.output.php:197 functions/functions.output.php:470
-#: functions/functions.output.php:1026
-msgid "unverified"
-msgstr ""
+#: admin/process.php:54
+msgid "Processing directory"
+msgstr "A procesar o cartafol"
 
-#: functions/functions.database.php:136
-msgid "ERROR: Multiple forms assigned, please see a technical officer"
-msgstr ""
-"ERRO: Asignáronse múltiples cuestionarios. Por favor, consulte a un/unha "
-"técnico/a"
+#: admin/process.php:65
+msgid "Watching..."
+msgstr "A revisar..."
 
-#: functions/functions.import.php:236
-msgid "BARCODE"
-msgstr "CÓDIGO DE BARRAS"
-
-#: functions/functions.import.php:274
-msgid "INVALID - IGNORING BLANK PAGE"
-msgstr "NON VÁLIDA - A IGNORAR A PÁXINA EN BRANCO"
-
-#: functions/functions.import.php:291
-msgid "Failed to import as no pages were detected"
-msgstr ""
-
-#: functions/functions.import.php:704
-msgid "Finding qid"
-msgstr "Achando o qid"
-
-#: functions/functions.import.php:790
-msgid "Got qid"
-msgstr "qid obtido"
-
-#: functions/functions.import.php:867
-msgid "Processing pid"
-msgstr "A procesar o pid"
-
-#: functions/functions.import.php:878
-msgid "Pid not identified for this page, inserting into missing pages..."
-msgstr ""
-"Non se identificou o pid desta páxina, a inserilo nas páxinas perdidas..."
-
-#: functions/functions.import.php:945
-msgid "Blank page: ignoring"
-msgstr "Páxina en branco: a ignorar"
-
-#: functions/functions.import.php:950
-msgid "Could not get pid, inserting into missing pages..."
-msgstr "Non se puido obter o pid, a inserilo nas páxinas perdidas..."
-
-#: functions/functions.import.php:1010
-msgid "Could not get qid..."
-msgstr "Non se puido obter o qid..."
-
-#: functions/functions.import.php:1070
+#: admin/process.php:83
 msgid ""
-"Automatically processing the 1 missing page for this form - assuming pid:"
+"Cannot process this directory - check that it is valid and permissions are "
+"correct"
 msgstr ""
-"A procesar automaticamente a única páxina perdida para este cuestionario - a "
-"asumir o pid:"
+"Non se puido procesar este cartafol - comprobe que é válido e que os "
+"permisos están ben"
 
-#: functions/functions.import.php:1129
-msgid "Deleting missing pages as all form page slots filled"
+#: admin/missingpages.php:150
+msgid "Undetected Pages"
 msgstr ""
-"Borrar as páxinas perdidas conforme se enchen os cargadores de páxinas do "
-"cuestionario"
 
-#: functions/functions.import.php:1360
-msgid "File already in database"
-msgstr "O ficheiro xa está na base de datos"
+#: admin/missingpages.php:228
+msgid "Undetected page"
+msgstr ""
 
-#: client/index.php:32
-msgid "Review forms"
-msgstr "Revisar os cuestionarios"
+#: admin/missingpages.php:275
+msgid "Page"
+msgstr "Páxina"
 
-#: client/index.php:59
-msgid "Review"
-msgstr "Revisar"
+#: admin/missingpages.php:275
+msgid "of Form"
+msgstr "do Cuestionario"
 
-#: client/index.php:75
+#: admin/missingpages.php:284 admin/pagesmissing.php:85
+msgid "Form"
+msgstr ""
+
+#: admin/missingpages.php:289
+msgid "Accept"
+msgstr "Aceptar"
+
+#: admin/missingpages.php:294
+msgid "No undetected pages"
+msgstr ""
+
+#: admin/clients.php:68
+msgid "There may already be an client of this name"
+msgstr "Pode que xa exista un cliente con ese nome"
+
+#: admin/clients.php:73 admin/clients.php:82
+msgid "Add a client"
+msgstr "Engadir un cliente"
+
+#: admin/clients.php:83
 msgid ""
-"This form not available for you to review. Please enter a form id in the box "
-"on the left"
+"Adding a client here will allow them to access project information in the "
+"client subdirectory. You can assign a client to a particular project using "
+"the"
 msgstr ""
-"Este cuestionario non está dispoñíbel apara a súa revisión. Por favor, "
-"introduza un id de cuestionario na caixa da esquerda"
+"Engadir un cliente aquí permitiralle acceder a información do proxecto no "
+"subdirectorio do cliente. Pode asignar un cliente a un proxecto particular "
+"usando o"
 
-#: client/index.php:134
-msgid "You are not authorised to review any forms"
-msgstr "Non está autorizado a verificar cuestionario ningún"
+#: admin/clients.php:83
+msgid "Assign client to Form"
+msgstr "Asignar un cliente ao Cuestionario"
 
-#: include/php-gettext-1.0.11/examples/pigs_dropin.php:77
-#: include/php-gettext-1.0.11/examples/pigs_fallback.php:76
+#: admin/clients.php:83
+msgid "tool."
+msgstr "ferramenta."
+
+#: admin/clients.php:84
 msgid ""
-"This is how the story goes.\n"
-"\n"
+"Use this form to enter the username of a user based on your directory "
+"security system. For example, if you have secured the base directory of "
+"queXF using Apache file based security, enter the usernames of the users "
+"here."
 msgstr ""
-"Así é como funciona isto.\n"
-"\n"
+"Use este formulario para introducir o nome dun/dunha usuario/a baseado no "
+"sistema de seguranza de directorio. Se segurou o directorio base de queXF "
+"usando a seguranza baseada en ficheiros de Apache, introduza os nomes de "
+"usuario/a aquí."
+
+#: admin/clients.php:86
+msgid "Enter the username of a client to add:"
+msgstr "Introduz o nome de usuario/a do cliente a engadir:"
+
+#: admin/clients.php:87
+msgid "Enter the description of the client to add:"
+msgstr "Introduza a descrición do cliente a engadir:"
+
+#: admin/pagesmissing.php:64 admin/index.php:65
+msgid "Pages missing from scan"
+msgstr ""
+
+#: admin/pagesmissing.php:67 admin/index.php:66
+msgid "Handle undetected pages"
+msgstr ""
+
+#: admin/pagesmissing.php:67 admin/pagesmissing.php:85
+msgid "Delete form and allow importing again"
+msgstr ""
+
+#: admin/clientquestionnaire.php:144 admin/clientquestionnaire.php:265
+msgid "Assign clients to questionnaires"
+msgstr "Asignar clientes aos cuestionarios"
+
+#: admin/pagesetup.php:208
+msgid "Cannot detect page edge on page"
+msgstr ""
+
+#: admin/pagesetup.php:232
+msgid "Set page layout"
+msgstr "Establecer o formato de páxina"
+
+#: admin/pagesetup.php:285
+msgid "Copy settings from this page to all other pages"
+msgstr ""
+
+#: admin/pagesetup.php:290
+msgid "Page setup disabled (click to enable)"
+msgstr ""
+
+#: admin/pagesetup.php:292
+msgid "Page setup ENABLED (click to disable)"
+msgstr ""
+
+#: admin/pagesetup.php:437 admin/index.php:77
+msgid "Page setup"
+msgstr "Configuración da páxina"
+
+#: admin/import.directory.php:47 admin/import.directory.php:68
+#: admin/index.php:59
+msgid "Import a directory of PDF files"
+msgstr "Importar un directorio de ficheiros PDF"
+
+#: admin/import.directory.php:77
+msgid "Directory"
+msgstr "Directorio"
+
+#: admin/import.directory.php:79
+msgid "Enter directory local to the server (eg /mnt/iss/tmp/images)"
+msgstr "Introduza o directorio local do servidor (ex.: /mnt/iss/tmp/images)"
+
+#: admin/import.directory.php:80
+msgid "Process directory: browser window must remain open"
+msgstr ""
+"Directorio de procesamento: a xanela do navegador debe permanecer aberta"
+
+#: admin/import.directory.php:81
+msgid "Watch this directory in the background (recommended)"
+msgstr "Supervisar este directorio no segundo plano (recomendado)"
+
+#: admin/importbandingxml.php:30 admin/importbandingxml.php:48
+msgid "Update banding from XML"
+msgstr ""
+
+#: admin/importbandingxml.php:42 admin/new.php:61
+msgid "Successfully loaded banding XML file"
+msgstr ""
+
+#: admin/importbandingxml.php:44 admin/new.php:65
+msgid "Failed to load banding XML file"
+msgstr ""
+
+#: admin/importbandingxml.php:49
+msgid "WARNING: All previous banding will be erased"
+msgstr ""
+
+#: admin/importbandingxml.php:60
+msgid "Select banding XML file"
+msgstr ""
+
+#: admin/importbandingxml.php:61
+msgid "Select questionnaire"
+msgstr ""
+
+#: admin/index.php:31 admin/index.php:36
+msgid "queXF Admin Functions"
+msgstr "Funcións de Administración do queXF"
+
+#: admin/index.php:38
+msgid "Form setup"
+msgstr "Configuración do cuestionario"
+
+#: admin/index.php:39
+msgid "Test form compatibility with queXF"
+msgstr ""
+
+#: admin/index.php:40
+msgid "Import a new form from a PDF file"
+msgstr "Importar un cuestionario novo desde un ficheiro PDF"
+
+#: admin/index.php:41
+msgid "Import/Update banding from XML"
+msgstr ""
+
+#: admin/index.php:42
+msgid "Delete a form (only if no forms yet imported)"
+msgstr "Borrar un cuestionario (só se aínda non se importaron exemplares)"
+
+#: admin/index.php:43
+msgid "Touch-up a form"
+msgstr ""
+
+#: admin/index.php:44
+msgid "Band a form"
+msgstr "Marcar un cuestionario"
+
+#: admin/index.php:45
+msgid "Band a form using interactive banding"
+msgstr "Marcar un cuestionario usando o marcado interactivo"
+
+#: admin/index.php:46
+msgid "Order variables on the form"
+msgstr "Ordenar as variábeis do cuestionario"
+
+#: admin/index.php:48
+msgid "Users"
+msgstr "Usuarios/as"
+
+#: admin/index.php:49
+msgid "Add operators"
+msgstr "Engadir operadores/as"
+
+#: admin/index.php:50
+msgid "Assign forms to operators"
+msgstr "Asignar cuestionarios aos/ás operadores/as"
+
+#: admin/index.php:52
+msgid "ICR"
+msgstr ""
+
+#: admin/index.php:53
+msgid "Train ICR"
+msgstr ""
+
+#: admin/index.php:54
+msgid "Monitor ICR training process"
+msgstr ""
+
+#: admin/index.php:55
+msgid "Import and Export ICR KB"
+msgstr ""
+
+#: admin/index.php:56 admin/icrassign.php:97 admin/icrassign.php:228
+#: admin/icrassign.php:242
+msgid "Assign ICR KB to questionnaire"
+msgstr ""
+
+#: admin/index.php:60
+msgid "Successfully imported files"
+msgstr "Ficheiros importados con suceso"
+
+#: admin/index.php:61
+msgid "Failed imported files"
+msgstr "Ficheiros con erros na importación"
+
+#: admin/index.php:62
+msgid "Duplicate forms"
+msgstr "Cuestionarios duplicados"
+
+#: admin/index.php:63
+msgid "Reverify forms"
+msgstr "Volver comprobar os cuestionarios"
+
+#: admin/index.php:64
+msgid "List page notes"
+msgstr "Listar as notas de páxina"
+
+#: admin/index.php:67
+msgid "Output"
+msgstr "Saída"
+
+#: admin/index.php:69
+msgid "Output data/ddi"
+msgstr "Datos de saída/ddi"
+
+#: admin/index.php:71
+msgid "Display progress of form verification"
+msgstr "Amosar o proceso da verificación dos cuestionarios"
+
+#: admin/index.php:72
+msgid "Display performance of verifiers (Completions per hour)"
+msgstr "Amosar o rendemento dos/das verificadores/as (completos por hora)"
+
+#: admin/index.php:73
+msgid "Clients"
+msgstr "Clientes"
+
+#: admin/index.php:74
+msgid "Add clients"
+msgstr "Engadir clientes"
+
+#: admin/index.php:75
+msgid "Assign clients to forms"
+msgstr "Asignar clientes aos cuestionarios"
+
+#: admin/index.php:76
+msgid "System setup"
+msgstr "Configuración do sistema"
+
+#: admin/listfiles.php:49
+msgid "Listing of imported files by status"
+msgstr "Listaxe de ficheiros importados por estado"
+
+#: admin/listfiles.php:56
+msgid "Forms successfully imported"
+msgstr "Os cuestionarios importáronse ben"
+
+#: admin/listfiles.php:58
+msgid "Forms not imported"
+msgstr "Os cuestionarios non se importaron"
+
+#: admin/listfiles.php:69
+msgid "File"
+msgstr "Ficheiro"
+
+#: admin/listfiles.php:69
+msgid "SHA1"
+msgstr "SHA1"
+
+#: admin/listfiles.php:69
+msgid "Allow import again?"
+msgstr "Permitir outra importación?"
+
+#: admin/pagetest.php:121 admin/pagetest.php:151
+msgid "NO BARCODE DETECTED"
+msgstr ""
+
+#: admin/pagetest.php:125
+msgid "Detected but not BARCODE_LENGTH_PID length"
+msgstr ""
+
+#: admin/pagetest.php:127 admin/pagetest.php:157
+msgid "Detected"
+msgstr ""
+
+#: admin/pagetest.php:155
+msgid "Detected but not BARCODE_LENGTH_PID2 length"
+msgstr ""
+
+#: admin/pagetest.php:165 admin/pagetest.php:281 admin/pagetest.php:295
+msgid "Page test"
+msgstr ""
+
+#: admin/pagetest.php:282
+msgid ""
+"Confirm that there is a detected unique barcode for each page and that the "
+"barcode fits inside the pink box. If not, edit the BARCODE_PORTION variables "
+"in the configuration file"
+msgstr ""
+
+#: admin/pagetest.php:283
+msgid "Confirm that the barcode is of length"
+msgstr ""
+
+#: admin/pagetest.php:283
+msgid ""
+"Otherwise edit the BARCODE_LENGTH_PID variable in the configuration file"
+msgstr ""
+
+#: admin/pagetest.php:284
+msgid ""
+"Confirm the corner edges fit within the green/brown boxes and that the blue "
+"lines appear to be drawn over the corner edges (for each 4 corners, both "
+"horizonal and vertical lines. If not, edit the PAGE_GUIDE_X_PORTION, "
+"HORI_WIDTH and VERT_WIDTH variables in the configuration file"
+msgstr ""
+
+#: admin/pagetest.php:296 admin/new.php:86
+msgid "When using banding XML:"
+msgstr ""
+
+#: admin/pagetest.php:297 admin/new.php:87
+msgid ""
+"You must import the original PDF and banding XML file (not a scanned version)"
+msgstr ""
+
+#: admin/pagetest.php:298 admin/new.php:88
+msgid "When manually banding:"
+msgstr ""
+
+#: admin/pagetest.php:299 admin/new.php:89
+msgid "You will get the best results if you:"
+msgstr "Obterá os mellores resultados se:"
+
+#: admin/pagetest.php:301 admin/new.php:90
+msgid ""
+"Print out the form using the same method that you will for all the printed "
+"forms"
+msgstr ""
+"Imprime o cuestionario usando o mesmo método que empregará para todos os "
+"cuestionarios impresos"
+
+#: admin/pagetest.php:302
+msgid ""
+"Scan the form to a PDF using the same options that you will for the filled "
+"forms"
+msgstr ""
+
+#: admin/pagetest.php:303 admin/new.php:92
+msgid "Best options for scanning in are:"
+msgstr "As mellores opcións de escanado son:"
+
+#: admin/pagetest.php:304 admin/new.php:93
+msgid "Monochrome (1 bit)"
+msgstr "Monocromo (1 bit)"
+
+#: admin/pagetest.php:305 admin/new.php:94
+msgid "300DPI Resolution"
+msgstr "Resolución de 300 ppp"
+
+#: admin/pagetest.php:311
+msgid "Select PDF file to upload:"
+msgstr ""
+
+#: admin/pagetest.php:312 admin/new.php:103
+msgid "Upload form"
+msgstr "Cargar o cuestionario"
+
+#: admin/new.php:30
+msgid "Add new questionnaire"
+msgstr "Engadir un cuestionario novo"
+
+#: admin/new.php:55
+msgid "Successfully inserted new questionnaire"
+msgstr "O cuestionario novo inseriuse con suceso"
+
+#: admin/new.php:78
+msgid "Failed to insert new questionnaire. Could have conflicting page id's"
+msgstr ""
+"Erro ao inserir o cuestionario novo. Pode ter IDs de páxina conflitivos"
+
+#: admin/new.php:79
+msgid "Test form to check for problems"
+msgstr ""
+
+#: admin/new.php:85
+msgid "New questionnaire"
+msgstr "Cuestionario novo"
+
+#: admin/new.php:91
+msgid ""
+"Scan the (blank) form to a PDF using the same options that you will for the "
+"filled forms"
+msgstr ""
+"Escanee o cuestoinario baleiro nun PDF usando as mesmas opcións que irá usar "
+"cos cuestionarios cubertos"
+
+#: admin/new.php:100
+msgid "Select PDF file to create form from"
+msgstr "Escolla o ficheiro PDF para crear o cuestionario a partir de"
+
+#: admin/new.php:101
+msgid "(Optional): Select banding XML file"
+msgstr ""
+
+#: admin/new.php:102
+msgid "Enter description of form"
+msgstr "Introducir a descrición do cuestionario"
+
+#: admin/databasestrings.php:33
+msgid "Temporary"
+msgstr "Temporal"
+
+#: admin/databasestrings.php:36
+msgid "Text"
+msgstr "Texto"
+
+#: admin/databasestrings.php:37
+msgid "Number"
+msgstr "Número"
+
+#: index.php:30
+msgid "queXF"
+msgstr "queXF"
+
+#: index.php:31
+msgid "Verify"
+msgstr "Comprobar"
+
+#: index.php:32
+msgid "Review a form"
+msgstr "Revisar un cuestionario"
+
+#: db.inc.php:32
+msgid ""
+"ERROR: Please modify config.inc.php to point to your ADODb installation"
+msgstr ""
+
+#: modifybox.php:176
+msgid "Modify box"
+msgstr ""
+
+#: modifybox.php:211
+msgid "Group type:"
+msgstr "Clase de grupo:"
+
+#: modifybox.php:216
+msgid "Variable name:"
+msgstr "Nome da variábel:"
+
+#: modifybox.php:219
+msgid "Width:"
+msgstr "Largo:"
+
+#: modifybox.php:221
+msgid "Submit"
+msgstr "Enviar"
+
+#: modifybox.php:223
+msgid "Delete this group"
+msgstr "Borrar este grupo"
+
+#: pagenote.php:60
+msgid "Page note:"
+msgstr "Nota de páxina:"
+
+#: pagenote.php:65
+msgid "Add note"
+msgstr "Engadir unha nota"

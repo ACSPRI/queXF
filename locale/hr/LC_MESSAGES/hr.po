@@ -7,15 +7,126 @@ msgid ""
 msgstr ""
 "Project-Id-Version: quexf\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-12-23 10:49+1000\n"
+"POT-Creation-Date: 2015-07-20 16:28+1000\n"
 "PO-Revision-Date: 2013-08-15 02:50+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-07-20 06:24+0000\n"
-"X-Generator: Launchpad (build 17628)\n"
+"X-Launchpad-Export-Date: 2016-05-06 03:44+0000\n"
+"X-Generator: Launchpad (build 17995)\n"
+
+#: review.php:81
+msgid "Review Form"
+msgstr "Pregled obrasca"
+
+#: review.php:140 client/index.php:56
+msgid "Form:"
+msgstr "Obrazac:"
+
+#: review.php:141 client/index.php:57
+msgid "Variable:"
+msgstr "Varijabla:"
+
+#: review.php:142 client/index.php:58
+msgid "Page:"
+msgstr "Stranica:"
+
+#: functions/functions.database.php:136
+msgid "ERROR: Multiple forms assigned, please see a technical officer"
+msgstr ""
+
+#: functions/functions.import.php:245
+msgid "BARCODE"
+msgstr "BARKOD"
+
+#: functions/functions.import.php:289
+msgid "INVALID - IGNORING BLANK PAGE"
+msgstr ""
+
+#: functions/functions.import.php:306
+msgid "Failed to import as no pages were detected"
+msgstr ""
+
+#: functions/functions.import.php:684 admin/index.php:58
+msgid "Importing"
+msgstr "Uvoz u tijeku"
+
+#: functions/functions.import.php:719
+msgid "Finding qid"
+msgstr ""
+
+#: functions/functions.import.php:805
+msgid "Got qid"
+msgstr ""
+
+#: functions/functions.import.php:882
+msgid "Processing pid"
+msgstr ""
+
+#: functions/functions.import.php:893
+msgid "Pid not identified for this page, inserting into missing pages..."
+msgstr ""
+
+#: functions/functions.import.php:964
+msgid "Blank page: ignoring"
+msgstr ""
+
+#: functions/functions.import.php:969
+msgid "Could not get pid, inserting into missing pages..."
+msgstr ""
+
+#: functions/functions.import.php:1029
+msgid "Could not get qid..."
+msgstr ""
+
+#: functions/functions.import.php:1089
+msgid ""
+"Automatically processing the 1 missing page for this form - assuming pid:"
+msgstr ""
+
+#: functions/functions.import.php:1156
+msgid "Deleting missing pages as all form page slots filled"
+msgstr ""
+
+#: functions/functions.import.php:1387
+msgid "File already in database"
+msgstr ""
+
+#: functions/functions.output.php:134 functions/functions.output.php:144
+msgid "XML RPC Error: "
+msgstr "XML RPC Greška: "
+
+#: functions/functions.output.php:197 functions/functions.output.php:470
+#: functions/functions.output.php:1026
+msgid "unverified"
+msgstr "(nije potvrđen)"
+
+#: include/php-gettext-1.0.11/examples/pigs_fallback.php:76
+#: include/php-gettext-1.0.11/examples/pigs_dropin.php:77
+msgid ""
+"This is how the story goes.\n"
+"\n"
+msgstr ""
+
+#: client/index.php:32
+msgid "Review forms"
+msgstr ""
+
+#: client/index.php:59
+msgid "Review"
+msgstr "Provjera"
+
+#: client/index.php:75
+msgid ""
+"This form not available for you to review. Please enter a form id in the box "
+"on the left"
+msgstr ""
+
+#: client/index.php:134
+msgid "You are not authorised to review any forms"
+msgstr ""
 
 #: verifyjs.php:177
 msgid "Please log in"
@@ -49,8 +160,8 @@ msgstr "Dodjela slijedećeg formulara"
 msgid "Assigning next form: Please wait..."
 msgstr "Dodjeljivanje slijedećeg formulara: Molim sačekajte.."
 
-#: verifyjs.php:398 admin/listforms.php:77 admin/performance.php:66
-#: admin/listpagenotes.php:56
+#: verifyjs.php:398 admin/listpagenotes.php:56 admin/performance.php:66
+#: admin/listforms.php:77
 msgid "Operator"
 msgstr "Operater"
 
@@ -94,7 +205,7 @@ msgstr "Poništavanje svih podataka i ponovni pregled"
 msgid "Submitting: Please wait..."
 msgstr "Slanje: Molimo sačekajte.."
 
-#: verifyjs.php:628 admin/icrtrain.php:405 admin/limesurvey.php:88
+#: verifyjs.php:628 admin/limesurvey.php:88 admin/icrtrain.php:405
 msgid "Verifier"
 msgstr "Kontolor"
 
@@ -126,676 +237,158 @@ msgstr "Učitavanje panela..."
 msgid "Error, try with Firefox"
 msgstr "Greška, pokušajte sa Firefox-om"
 
-#: index.php:30
-msgid "queXF"
-msgstr "queXF"
-
-#: index.php:31
-msgid "Verify"
-msgstr "Kontrola"
-
-#: index.php:32
-msgid "Review a form"
-msgstr "Pregled obrasca"
-
-#: modifybox.php:176
-msgid "Modify box"
-msgstr ""
-
-#: modifybox.php:211
-msgid "Group type:"
-msgstr "Tip grupe"
-
-#: modifybox.php:216
-msgid "Variable name:"
-msgstr "Naziv varijable"
-
-#: modifybox.php:219
-msgid "Width:"
-msgstr "Širina:"
-
-#: modifybox.php:221
-msgid "Submit"
-msgstr "Slanje"
-
-#: modifybox.php:223
-msgid "Delete this group"
-msgstr "Brisanje grupe"
-
-#: modifybox.php:224 admin/bandajax.php:176
-msgid "Delete in between boxes"
-msgstr "Brisanje između kutijica"
-
-#: review.php:81
-msgid "Review Form"
-msgstr "Pregled obrasca"
-
-#: review.php:140 client/index.php:56
-msgid "Form:"
-msgstr "Obrazac:"
-
-#: review.php:141 client/index.php:57
-msgid "Variable:"
-msgstr "Varijabla:"
-
-#: review.php:142 client/index.php:58
-msgid "Page:"
-msgstr "Stranica:"
-
-#: pagenote.php:60
-msgid "Page note:"
-msgstr "Zabilješkaa stranice:"
-
-#: pagenote.php:65
-msgid "Add note"
-msgstr "Dodavanje bilješke"
-
-#: db.inc.php:32
-msgid ""
-"ERROR: Please modify config.inc.php to point to your ADODb installation"
-msgstr ""
-"GREŠKA: Molimo izmjenite config.inc.php da pokazuje prema Vašoj ADODb "
-"instalaciji"
-
-#: admin/band.php:105 admin/band.php:378 admin/bandajax.php:602
-#: admin/bandajax.php:679
-msgid "Band"
-msgstr "Pojas"
-
-#: admin/band.php:176 admin/bandajax.php:647
-msgid "Choose another questionnaire"
-msgstr "Odaberite drugi upitnik"
-
-#: admin/band.php:176 admin/bandajax.php:647 admin/pagesetup.php:283
-#: admin/pagetest.php:253
-msgid "Increase zoom"
-msgstr "Povećaj zum"
-
-#: admin/band.php:176 admin/bandajax.php:647 admin/pagesetup.php:285
-#: admin/pagetest.php:256
-msgid "Decrease zoom"
-msgstr "Smanji zum"
-
-#: admin/clientquestionnaire.php:144 admin/clientquestionnaire.php:265
-msgid "Assign clients to questionnaires"
-msgstr "Dodjeli klijente upitniku"
-
-#: admin/bandajax.php:103
-msgid "Disable this box group"
-msgstr "Onemogući ovu grupu"
-
-#: admin/bandajax.php:111 admin/bandajax.php:119 admin/bandajax.php:127
-#: admin/bandajax.php:135 admin/bandajax.php:143 admin/bandajax.php:151
-msgid "Set to type:"
-msgstr "Postavi na tip:"
-
-#: admin/bandajax.php:111 admin/databasestrings.php:34
-msgid "Single choice"
-msgstr "Jedan izbor"
-
-#: admin/bandajax.php:119 admin/databasestrings.php:35
-msgid "Multiple choice"
-msgstr "Višestruki izbor"
-
-#: admin/bandajax.php:127
-msgid "Text and Numbers"
-msgstr "Tekst i brojevi"
-
-#: admin/bandajax.php:135
-msgid "Numbers only"
-msgstr "Samo brojevi"
-
-#: admin/bandajax.php:143 admin/databasestrings.php:38
-msgid "Barcode"
-msgstr "Barkod"
-
-#: admin/bandajax.php:151 admin/databasestrings.php:39
-msgid "Long text"
-msgstr "Dugačak tekst"
-
-#: admin/bandajax.php:160
-msgid "Delete this box"
-msgstr "Obriši polje"
-
-#: admin/bandajax.php:168
-msgid "Delete this box group"
-msgstr "Obriši grupu polja"
-
-#: admin/import.directory.php:47 admin/import.directory.php:68
-#: admin/index.php:59
-msgid "Import a directory of PDF files"
-msgstr "Uvezi direktorij PDF datoteka"
-
-#: admin/import.directory.php:49 admin/icrmonitor.php:43
-#: admin/icrmonitor.php:75
-msgid "Process"
-msgstr "Proces"
-
-#: admin/import.directory.php:49 admin/icrmonitor.php:75
-msgid "running..."
-msgstr "pokretanje..."
-
-#: admin/import.directory.php:53 admin/icrmonitor.php:47
-msgid "Kill signal sent: Please wait..."
-msgstr "Signal za gašenje poslan. Molimo sačekajte..."
-
-#: admin/import.directory.php:54 admin/icrmonitor.php:48
-msgid "Mark the proces as killed (i.e. when the server is rebooted)"
-msgstr "Označi proces kao ugašen (npr. kad se server restarta)"
-
-#: admin/import.directory.php:57 admin/icrmonitor.php:51
-msgid "Kill the running process"
-msgstr "Ugasi pokrenuti proces"
-
-#: admin/import.directory.php:57 admin/icrmonitor.php:51
-msgid "may take up to a few minutes to take effect"
-msgstr "može potrajati par minuta"
-
-#: admin/import.directory.php:62 admin/import.directory.php:90
-#: admin/icrmonitor.php:56 admin/icrmonitor.php:88
-msgid "Log id"
-msgstr "ID loga"
-
-#: admin/import.directory.php:62 admin/import.directory.php:90
-#: admin/icrmonitor.php:56 admin/icrmonitor.php:88 admin/listfiles.php:69
-msgid "Date"
-msgstr "Datum"
-
-#: admin/import.directory.php:62 admin/import.directory.php:90
-#: admin/icrmonitor.php:56 admin/icrmonitor.php:88
-msgid "Log entry"
-msgstr "Zapis u logu"
-
-#: admin/import.directory.php:77
-msgid "Directory"
-msgstr "Direktorij"
-
-#: admin/import.directory.php:79
-msgid "Enter directory local to the server (eg /mnt/iss/tmp/images)"
-msgstr "Unesite lokalni direktorij servera (npr. /mnt/iss/tmp/slike)"
-
-#: admin/import.directory.php:80
-msgid "Process directory: browser window must remain open"
-msgstr "Obrađujem direktorij: prozor preglednika mora ostati otvoren"
-
-#: admin/import.directory.php:81
-msgid "Watch this directory in the background (recommended)"
-msgstr "Nadzri ovaj direktorij u pozadini (preporučeno)"
-
-#: admin/import.directory.php:85 admin/icrmonitor.php:83
-msgid "Outcome of last process run (if any)"
-msgstr "Rezultat zadnjeg procesa (ukoliko postoji)"
-
-#: admin/index.php:31 admin/index.php:36
-msgid "queXF Admin Functions"
-msgstr "Administracijske funkcije queXF"
-
-#: admin/index.php:38
-msgid "Form setup"
-msgstr "Postavka obrasca"
-
-#: admin/index.php:39
-msgid "Test form compatibility with queXF"
-msgstr ""
-
-#: admin/index.php:40
-msgid "Import a new form from a PDF file"
-msgstr "Uvezi novi obrazac iz PDF datoteke"
-
-#: admin/index.php:41
-msgid "Import/Update banding from XML"
-msgstr "Uvezi/ažuriraj pojase iz XML-a"
-
-#: admin/index.php:42
-msgid "Delete a form (only if no forms yet imported)"
-msgstr "Obriši obrazac"
-
-#: admin/index.php:43
-msgid "Touch-up a form"
-msgstr "Dotjeraj obrazac"
-
-#: admin/index.php:44
-msgid "Band a form"
-msgstr "Pojasi u obrascu"
-
-#: admin/index.php:45
-msgid "Band a form using interactive banding"
-msgstr "Interaktivno uređivanja pojasa u obrascu"
-
-#: admin/index.php:46
-msgid "Order variables on the form"
-msgstr "Poredaj promjenjive u obrascu"
-
-#: admin/index.php:47 admin/limesurvey.php:31 admin/limesurvey.php:101
+#: admin/limesurvey.php:31 admin/limesurvey.php:101 admin/index.php:47
 msgid "queXS and Limesurvey integration"
 msgstr "queXS i Limesurvey integracija"
 
-#: admin/index.php:48
-msgid "Users"
-msgstr "Korisnici"
-
-#: admin/index.php:49
-msgid "Add operators"
-msgstr "Dodjeli operatere"
-
-#: admin/index.php:50
-msgid "Assign forms to operators"
-msgstr "Dodjeli obrasce operaterima"
-
-#: admin/index.php:52
-msgid "ICR"
-msgstr "ICR"
-
-#: admin/index.php:53
-msgid "Train ICR"
-msgstr ""
-
-#: admin/index.php:54
-msgid "Monitor ICR training process"
-msgstr "Nadziri proces učenja ICR-a"
-
-#: admin/index.php:55
-msgid "Import and Export ICR KB"
-msgstr "Uvoz/izvoz baze znanja ICR"
-
-#: admin/index.php:56 admin/icrassign.php:97 admin/icrassign.php:228
-#: admin/icrassign.php:242
-msgid "Assign ICR KB to questionnaire"
-msgstr "Dodjeli ICR bazu znanja upitniku"
-
-#: admin/index.php:58 functions/functions.import.php:669
-msgid "Importing"
-msgstr "Uvoz u tijeku"
-
-#: admin/index.php:60
-msgid "Successfully imported files"
-msgstr "Uspješno uvezene datoteke"
-
-#: admin/index.php:61
-msgid "Failed imported files"
-msgstr "Uvoz nije uspio"
-
-#: admin/index.php:62
-msgid "Duplicate forms"
-msgstr "Duplicirani obrasci"
-
-#: admin/index.php:63
-msgid "Reverify forms"
-msgstr "Ponovno provjerite obrasce"
-
-#: admin/index.php:64
-msgid "List page notes"
-msgstr "Spisak napomena stranice"
-
-#: admin/index.php:65 admin/pagesmissing.php:64
-msgid "Pages missing from scan"
-msgstr "Stranice nedostaju u skenu"
-
-#: admin/index.php:66 admin/pagesmissing.php:67
-msgid "Handle undetected pages"
-msgstr "Upravljanje nedetektiranim stranicama"
-
-#: admin/index.php:67
-msgid "Output"
-msgstr "Izlaz"
-
-#: admin/index.php:68 admin/outputunverified.php:67
-msgid "Output unverified data"
-msgstr "Izlaz neverificiranih podataka"
-
-#: admin/index.php:69
-msgid "Output data/ddi"
-msgstr "Izlaz podataka/dd:"
-
-#: admin/index.php:70 admin/progress.php:33
-msgid "Progress"
-msgstr "Napredak"
-
-#: admin/index.php:71
-msgid "Display progress of form verification"
-msgstr "Prikaz progresa verifikacije"
-
-#: admin/index.php:72
-msgid "Display performance of verifiers (Completions per hour)"
-msgstr "Prikaz performansi verifikatora"
-
-#: admin/index.php:73
-msgid "Clients"
-msgstr "Klijenti"
-
-#: admin/index.php:74
-msgid "Add clients"
-msgstr "Dodavanje klijenata"
-
-#: admin/index.php:75
-msgid "Assign clients to forms"
-msgstr "Dodjela klijenta obrascu"
-
-#: admin/index.php:76
-msgid "System setup"
-msgstr "Postavke sustava"
-
-#: admin/index.php:77 admin/pagesetup.php:433
-msgid "Page setup"
-msgstr "Postavke stranice"
-
-#: admin/index.php:78 admin/testconfig.php:10
-msgid "Test configuration"
-msgstr "Test konfiguracije"
-
-#: admin/touchup.php:83 admin/listforms.php:75 admin/limesurvey.php:42
+#: admin/limesurvey.php:42 admin/listforms.php:75 admin/touchup.php:83
 #: admin/icrassign.php:105
 msgid "Go back"
 msgstr "Natrag"
 
-#: admin/touchup.php:96
-msgid "Download"
-msgstr "Preuzimanje"
+#: admin/limesurvey.php:67
+msgid ""
+"RPC Server URL (example: "
+"http://user:password@localhost/quexs/include/limesurvey/admin/remotecontrol.p"
+"hp)"
+msgstr ""
+"URL RPC Servera (example: "
+"http://user:password@localhost/quexs/include/limesurvey/admin/remotecontrol.p"
+"hp)"
 
-#: admin/touchup.php:96
-msgid "to edit"
-msgstr "za uređivanje"
+#: admin/limesurvey.php:68
+msgid "RPC Username"
+msgstr "RPC korisničko ime"
 
-#: admin/touchup.php:96
-msgid "Upload here"
-msgstr "Upload ovdje"
+#: admin/limesurvey.php:69
+msgid "RPC Password"
+msgstr "RPC lozinka"
 
-#: admin/touchup.php:99
-msgid "Upload pages"
-msgstr "Upload stranica"
+#: admin/limesurvey.php:70
+msgid "Limesurvey Survey ID"
+msgstr "Limesurvey Survey ID"
 
-#: admin/touchup.php:111
-msgid "Touch up"
-msgstr "Dotjerivanje"
+#: admin/limesurvey.php:71
+msgid "Update settings"
+msgstr "Ažuriranje postavki"
 
-#: admin/outputunverified.php:70 admin/outputunverified.php:84
-#: admin/output.php:76 admin/output.php:89
-msgid "Data"
-msgstr "Podaci"
+#: admin/limesurvey.php:76 admin/limesurvey.php:88
+msgid "Upload"
+msgstr "Upload"
 
-#: admin/outputunverified.php:71 admin/outputunverified.php:84
-#: admin/output.php:77 admin/output.php:89
-msgid "DDI"
-msgstr "DDI"
+#: admin/limesurvey.php:86
+msgid "No forms to upload"
+msgstr "Nema obrazaca za upload"
 
-#: admin/outputunverified.php:72 admin/outputunverified.php:84
-#: admin/output.php:78 admin/output.php:89
-msgid "CSV"
-msgstr "CSV"
+#: admin/limesurvey.php:88 admin/listpagenotes.php:56 admin/listforms.php:77
+#: admin/pagesmissing.php:85
+msgid "Form ID"
+msgstr "ID obrasca"
 
-#: admin/outputunverified.php:73 admin/outputunverified.php:84
-#: admin/output.php:80 admin/output.php:89
-msgid "CSV Labelled"
-msgstr "CSV označen"
+#: admin/delete.php:70
+msgid "Delete a questionnaire"
+msgstr ""
 
-#: admin/outputunverified.php:74 admin/outputunverified.php:84
-#: admin/output.php:81 admin/output.php:89
-msgid "PSPP (SPSS)"
-msgstr "PSPP (SPSS)"
+#: admin/delete.php:85
+msgid "Click to delete questionnaire"
+msgstr ""
 
-#: admin/outputunverified.php:75 admin/outputunverified.php:84
-#: admin/output.php:82 admin/output.php:89
-msgid "Banding XML"
-msgstr "XML sa pojasima"
+#: admin/delete.php:86
+msgid ""
+"The following questionnaires have no forms associated with them so are safe "
+"to delete"
+msgstr ""
 
-#: admin/outputunverified.php:82
-msgid "Warning: the data downloaded from here is unverified"
-msgstr "Upozorenje: podaci downloadani odavde nisu provjereni"
-
-#: admin/outputunverified.php:84 admin/listforms.php:77
-#: admin/pagesmissing.php:85 admin/listduplicates.php:113 admin/reorder.php:49
-#: admin/output.php:89 admin/performance.php:104 admin/listpagenotes.php:56
-#: admin/progress.php:55
-msgid "Questionnaire"
-msgstr "Upitnik"
-
-#: admin/missingpages.php:150
-msgid "Undetected Pages"
-msgstr "Nedetektirane stranice"
-
-#: admin/missingpages.php:228
-msgid "Undetected page"
-msgstr "Nedetektirana stranica"
-
-#: admin/missingpages.php:275
-msgid "Page"
-msgstr "Stranica"
-
-#: admin/missingpages.php:275
-msgid "of Form"
-msgstr "Obrasca"
-
-#: admin/missingpages.php:284 admin/pagesmissing.php:85
-msgid "Form"
-msgstr "Obrazac"
-
-#: admin/missingpages.php:289
-msgid "Accept"
-msgstr "Prihvati"
-
-#: admin/missingpages.php:289 admin/listduplicates.php:113 admin/delete.php:90
+#: admin/delete.php:90 admin/listduplicates.php:113 admin/missingpages.php:289
 msgid "Delete"
 msgstr "Obriši"
 
-#: admin/missingpages.php:294
-msgid "No undetected pages"
-msgstr "Nema nedetektiranih stranica"
+#: admin/bandajax.php:109
+msgid "Disable this box group"
+msgstr "Onemogući ovu grupu"
 
-#: admin/pagesetup.php:206
-msgid "Cannot detect page edge on page"
-msgstr "Nije bilo moguće detektirati rubove stranice"
+#: admin/bandajax.php:117 admin/bandajax.php:125 admin/bandajax.php:133
+#: admin/bandajax.php:141 admin/bandajax.php:149 admin/bandajax.php:157
+msgid "Set to type:"
+msgstr "Postavi na tip:"
 
-#: admin/pagesetup.php:224 admin/pagesetup.php:234
-msgid "Set page layout"
-msgstr "Podesi raspored stranice"
+#: admin/bandajax.php:117 admin/databasestrings.php:34
+msgid "Single choice"
+msgstr "Jedan izbor"
 
-#: admin/pagesetup.php:225
-msgid "Page layout has been updated"
-msgstr "Raspored stranice podešen"
+#: admin/bandajax.php:125 admin/databasestrings.php:35
+msgid "Multiple choice"
+msgstr "Višestruki izbor"
 
-#: admin/pagesetup.php:226
-msgid "Continue with banding"
-msgstr "Nastavi sa pojasima"
+#: admin/bandajax.php:133
+msgid "Text and Numbers"
+msgstr "Tekst i brojevi"
 
-#: admin/pagesetup.php:287
-msgid "Copy settings from this page to all other pages"
-msgstr "Kopiraj postavke stranice na sve druge stranice"
+#: admin/bandajax.php:141
+msgid "Numbers only"
+msgstr "Samo brojevi"
 
-#: admin/pagesetup.php:289
-msgid "Finished page setup"
-msgstr "Završeno podešavanje stranice"
+#: admin/bandajax.php:149 admin/databasestrings.php:38
+msgid "Barcode"
+msgstr "Barkod"
 
-#: admin/icrtrain.php:37
-msgid "ICR Training"
-msgstr "Učenje ICR-a"
+#: admin/bandajax.php:157 admin/databasestrings.php:39
+msgid "Long text"
+msgstr "Dugačak tekst"
 
-#: admin/icrtrain.php:141
-msgid "Found duplicate"
-msgstr "Duplikat pronađen"
+#: admin/bandajax.php:166
+msgid "Delete this box"
+msgstr "Obriši polje"
 
-#: admin/icrtrain.php:166 admin/processicr.php:134
-msgid "Trained"
-msgstr "Naučen"
+#: admin/bandajax.php:174
+msgid "Delete this box group"
+msgstr "Obriši grupu polja"
 
-#: admin/icrtrain.php:166
-msgid "characters"
-msgstr "znakovi"
+#: admin/bandajax.php:182 modifybox.php:224
+msgid "Delete in between boxes"
+msgstr "Brisanje između kutijica"
 
-#: admin/icrtrain.php:171 admin/processicr.php:151
-msgid "Generated KB"
-msgstr "Generirana baza znanja"
+#: admin/bandajax.php:628 admin/bandajax.php:705 admin/band.php:105
+#: admin/band.php:378
+msgid "Band"
+msgstr "Pojas"
 
-#: admin/icrtrain.php:216
-msgid "Chars"
-msgstr "Znakovi"
+#: admin/bandajax.php:673 admin/band.php:176
+msgid "Choose another questionnaire"
+msgstr "Odaberite drugi upitnik"
 
-#: admin/icrtrain.php:216 admin/icrtrain.php:285
-msgid "from"
-msgstr "iz"
+#: admin/bandajax.php:673 admin/band.php:176 admin/pagesetup.php:281
+#: admin/pagetest.php:253
+msgid "Increase zoom"
+msgstr "Povećaj zum"
 
-#: admin/icrtrain.php:257
-msgid "Started training process"
-msgstr "Pokrenut proces učenja"
+#: admin/bandajax.php:673 admin/band.php:176 admin/pagesetup.php:283
+#: admin/pagetest.php:256
+msgid "Decrease zoom"
+msgstr "Smanji zum"
 
-#: admin/icrtrain.php:285 admin/icrtrain.php:374
-msgid "Character"
-msgstr "Znak"
+#: admin/listpagenotes.php:45 admin/listforms.php:59
+msgid "Listing of forms"
+msgstr "Izlistavanje obrazaca"
 
-#: admin/icrtrain.php:306
-msgid ""
-"Make sure the letter in the box matches the image. If you do not want to "
-"import a box, click on it to disable it (click again to enable)."
-msgstr ""
-"Pobrinite se da slovo u polju odgovara slici. Ukoliko ne želite uvesti "
-"polje, kliknite na njega da ga onemogućite (kliknite ponovo da ga omogućite)"
+#: admin/listpagenotes.php:47 admin/listpagenotes.php:56
+msgid "Delete note"
+msgstr "Obriši bilješku"
 
-#: admin/icrtrain.php:323
-msgid "Description for knowledge base:"
-msgstr "Opis baze znanja"
+#: admin/listpagenotes.php:56
+msgid "Page ID"
+msgstr "ID stranice"
 
-#: admin/icrtrain.php:323
-msgid "Train"
-msgstr "Učenje"
+#: admin/listpagenotes.php:56 admin/listduplicates.php:113
+#: admin/progress.php:55 admin/performance.php:104
+#: admin/outputunverified.php:84 admin/listforms.php:77 admin/reorder.php:49
+#: admin/output.php:89 admin/pagesmissing.php:85
+msgid "Questionnaire"
+msgstr "Upitnik"
 
-#: admin/icrtrain.php:356 admin/icrtrain.php:374
-msgid "Manually train"
-msgstr "Ručno učenje"
-
-#: admin/icrtrain.php:371
-msgid "Please choose which characters to include in training"
-msgstr "Odaberite koje znakove koristite u učenju"
-
-#: admin/icrtrain.php:374
-msgid "Number of instances"
-msgstr "Broj instanci"
-
-#: admin/icrtrain.php:374 admin/icrtrain.php:405
-msgid "Include in training?"
-msgstr "Uključi u učenje"
-
-#: admin/icrtrain.php:384
-msgid "Start training process in background"
-msgstr "Pokreni proces učenja u pozadini"
-
-#: admin/icrtrain.php:402
-msgid "Please choose which verifiers to include in training"
-msgstr "Odaberite verifikatore uključene u učenje"
-
-#: admin/icrtrain.php:405
-msgid "Number of forms"
-msgstr "Broj obrazaca"
-
-#: admin/icrtrain.php:408
-msgid "Continue training"
-msgstr "Nastavak učenja"
-
-#: admin/icrtrain.php:423
-msgid "ICR Train"
-msgstr "CIR učenje"
-
-#: admin/icrmonitor.php:30
-msgid "Monitor ICR process"
-msgstr "Nadzor ICR procesa"
-
-#: admin/icrmonitor.php:80
-msgid "No process running"
-msgstr "Nijedan proces ne radi"
-
-#: admin/pagetest.php:121 admin/pagetest.php:151
-msgid "NO BARCODE DETECTED"
-msgstr ""
-
-#: admin/pagetest.php:125
-msgid "Detected but not BARCODE_LENGTH_PID length"
-msgstr ""
-
-#: admin/pagetest.php:127 admin/pagetest.php:157
-msgid "Detected"
-msgstr ""
-
-#: admin/pagetest.php:155
-msgid "Detected but not BARCODE_LENGTH_PID2 length"
-msgstr ""
-
-#: admin/pagetest.php:165 admin/pagetest.php:281 admin/pagetest.php:295
-msgid "Page test"
-msgstr ""
-
-#: admin/pagetest.php:282
-msgid ""
-"Confirm that there is a detected unique barcode for each page and that the "
-"barcode fits inside the pink box. If not, edit the BARCODE_PORTION variables "
-"in the configuration file"
-msgstr ""
-
-#: admin/pagetest.php:283
-msgid "Confirm that the barcode is of length"
-msgstr ""
-
-#: admin/pagetest.php:283
-msgid ""
-"Otherwise edit the BARCODE_LENGTH_PID variable in the configuration file"
-msgstr ""
-
-#: admin/pagetest.php:284
-msgid ""
-"Confirm the corner edges fit within the green/brown boxes and that the blue "
-"lines appear to be drawn over the corner edges (for each 4 corners, both "
-"horizonal and vertical lines. If not, edit the PAGE_GUIDE_X_PORTION, "
-"HORI_WIDTH and VERT_WIDTH variables in the configuration file"
-msgstr ""
-
-#: admin/pagetest.php:296 admin/new.php:86
-msgid "When using banding XML:"
-msgstr "Kada koristite XML sa pojasima:"
-
-#: admin/pagetest.php:297 admin/new.php:87
-msgid ""
-"You must import the original PDF and banding XML file (not a scanned version)"
-msgstr ""
-"Morate uvesti originalni PDF i XML sa pojasima (ne skeniranu verziju)"
-
-#: admin/pagetest.php:298 admin/new.php:88
-msgid "When manually banding:"
-msgstr "Kada ručno uređujete pojase:"
-
-#: admin/pagetest.php:299 admin/new.php:89
-msgid "You will get the best results if you:"
-msgstr "Postiči ćete najbolje rezultate ako:"
-
-#: admin/pagetest.php:301 admin/new.php:90
-msgid ""
-"Print out the form using the same method that you will for all the printed "
-"forms"
-msgstr ""
-"Ispišete obrazackoristeći istu metodu kojom printate obrascee koje se "
-"popunjavaju"
-
-#: admin/pagetest.php:302
-msgid ""
-"Scan the form to a PDF using the same options that you will for the filled "
-"forms"
-msgstr ""
-
-#: admin/pagetest.php:303 admin/new.php:92
-msgid "Best options for scanning in are:"
-msgstr "Najbolje opcije za skeniranj su:"
-
-#: admin/pagetest.php:304 admin/new.php:93
-msgid "Monochrome (1 bit)"
-msgstr "Monokromatsko (1bit)"
-
-#: admin/pagetest.php:305 admin/new.php:94
-msgid "300DPI Resolution"
-msgstr "Rezolucija 300dpi"
-
-#: admin/pagetest.php:311
-msgid "Select PDF file to upload:"
-msgstr ""
-
-#: admin/pagetest.php:312 admin/new.php:103
-msgid "Upload form"
-msgstr "Upload obrasca"
+#: admin/listpagenotes.php:56
+msgid "Note"
+msgstr "Napomene"
 
 #: admin/operators.php:34 admin/operators.php:64
 msgid "Add an operator"
@@ -859,132 +452,6 @@ msgstr "Unesite ime operatera (npr. Ivan):"
 msgid "Add user"
 msgstr "Dodaj korisnika"
 
-#: admin/listforms.php:59 admin/listpagenotes.php:45
-msgid "Listing of forms"
-msgstr "Izlistavanje obrazaca"
-
-#: admin/listforms.php:66 admin/listforms.php:77
-msgid "Re verify"
-msgstr "Ponovna provjera"
-
-#: admin/listforms.php:77 admin/pagesmissing.php:85 admin/limesurvey.php:88
-#: admin/listpagenotes.php:56
-msgid "Form ID"
-msgstr "ID obrasca"
-
-#: admin/listforms.php:90
-msgid "List"
-msgstr ""
-
-#: admin/new.php:30
-msgid "Add new questionnaire"
-msgstr "Dodaj novi upitnik"
-
-#: admin/new.php:55
-msgid "Successfully inserted new questionnaire"
-msgstr "Uspješno unesen novi upitnik"
-
-#: admin/new.php:61 admin/importbandingxml.php:42
-msgid "Successfully loaded banding XML file"
-msgstr "Uspješno učitan XML datoteka sa pojasima"
-
-#: admin/new.php:65 admin/importbandingxml.php:44
-msgid "Failed to load banding XML file"
-msgstr "Nije uspjelo učitavanje XML datoteke sa pojasima"
-
-#: admin/new.php:71
-msgid "Continue by setting up page edge detection (page setup)"
-msgstr "Nastavite podešavanjem detekcije rubova stranice"
-
-#: admin/new.php:78
-msgid "Failed to insert new questionnaire. Could have conflicting page id's"
-msgstr ""
-"Nije uspio unos novog upitnika. Možda postoje ID stranica u konfliktu"
-
-#: admin/new.php:79
-msgid "Test form to check for problems"
-msgstr ""
-
-#: admin/new.php:85
-msgid "New questionnaire"
-msgstr "Novi upitnik"
-
-#: admin/new.php:91
-msgid ""
-"Scan the (blank) form to a PDF using the same options that you will for the "
-"filled forms"
-msgstr ""
-"Skenirate blanko obrazac u PDF koriteći iste opcije koje ćete koristiti za "
-"skeniranje popunjenih obrazaca"
-
-#: admin/new.php:100
-msgid "Select PDF file to create form from"
-msgstr "Odaberite PDF datoteku iz koje ćete izraditi obrazac"
-
-#: admin/new.php:101
-msgid "(Optional): Select banding XML file"
-msgstr "(Opcionalno): Odaberite XML datoteku sa pojasima"
-
-#: admin/new.php:102
-msgid "Enter description of form"
-msgstr "Unesite opis obrasca"
-
-#: admin/pagesmissing.php:67 admin/pagesmissing.php:85
-msgid "Delete form and allow importing again"
-msgstr "Brisanje obrasca i ponovni uvoz"
-
-#: admin/processicr.php:56
-msgid "Processing KB"
-msgstr "Procesiranje baze znanja"
-
-#: admin/processicr.php:134
-msgid "to knowledge base"
-msgstr "u bazu znanja"
-
-#: admin/processicr.php:154 admin/processicr.php:157
-msgid "Did not generate KB as not all records trained"
-msgstr "Ne generiraj bazu znanja jer svi zapisi nisu naučeni"
-
-#: admin/listfiles.php:49
-msgid "Listing of imported files by status"
-msgstr "Ispis uvezenih datoteka po statusu"
-
-#: admin/listfiles.php:56
-msgid "Forms successfully imported"
-msgstr "Obrasci uspješno uvezeni"
-
-#: admin/listfiles.php:58
-msgid "Forms not imported"
-msgstr "Obrasci nisu uvezeni"
-
-#: admin/listfiles.php:69
-msgid "File"
-msgstr "Datoteka"
-
-#: admin/listfiles.php:69
-msgid "SHA1"
-msgstr "SHA1"
-
-#: admin/listfiles.php:69
-msgid "Allow import again?"
-msgstr "Dozvoli ponovni uvoz"
-
-#: admin/listfiles.php:71 admin/reorder.php:131
-msgid "Save changes"
-msgstr "Spremi promjene"
-
-#: admin/databasestrings.php:33
-msgid "Temporary"
-msgstr "Privremeno"
-
-#: admin/databasestrings.php:36
-msgid "Text"
-msgstr "Tekst"
-
-#: admin/databasestrings.php:37
-msgid "Number"
-msgstr "Broj"
-
 #: admin/listduplicates.php:67
 msgid "Listing of duplicate forms"
 msgstr "Ispis dupliciranih obrazaca"
@@ -1013,105 +480,25 @@ msgstr "PFID"
 msgid "Delete selected forms"
 msgstr ""
 
-#: admin/process.php:54
-msgid "Processing directory"
-msgstr "Direktorij obrade"
+#: admin/progress.php:33 admin/index.php:70
+msgid "Progress"
+msgstr "Napredak"
 
-#: admin/process.php:65
-msgid "Watching..."
-msgstr "Nadzirem..."
+#: admin/progress.php:55
+msgid "Done"
+msgstr "Završeno"
 
-#: admin/process.php:83
-msgid ""
-"Cannot process this directory - check that it is valid and permissions are "
-"correct"
-msgstr ""
-"Ne mogu obraditi direktorij - provjeri da je isprava i dozvole su točne."
-
-#: admin/reorder.php:47 admin/reorder.php:84
-msgid "Reorder variables"
+#: admin/progress.php:55
+msgid "Remain"
 msgstr ""
 
-#: admin/reorder.php:61
-msgid "Manual reorder"
+#: admin/progress.php:55
+msgid "Total forms imported"
 msgstr ""
 
-#: admin/reorder.php:61
-msgid "Reorder by position"
-msgstr ""
-
-#: admin/reorder.php:61
-msgid "Reorder by variable name"
-msgstr "Rasporedi po nazivu promjenjive"
-
-#: admin/reorder.php:120
-msgid ""
-"Reorder variables by dragging and dropping, then clicking on 'Save Changes' "
-"below"
-msgstr ""
-"Rasporedi varijable povlačenjem i spuštanjem, potom klikni na 'Spremi "
-"izmjene' ispod"
-
-#: admin/reorder.php:122
-msgid "Click here"
-msgstr "Klikni ovdje"
-
-#: admin/reorder.php:122
-msgid "to return without saving changes"
-msgstr "za povratak bez spremanja izmjena"
-
-#: admin/clients.php:68
-msgid "There may already be an client of this name"
-msgstr "Možda već postoji klijent ovog naziva"
-
-#: admin/clients.php:73 admin/clients.php:82
-msgid "Add a client"
-msgstr "Dodaj klijenta"
-
-#: admin/clients.php:83
-msgid ""
-"Adding a client here will allow them to access project information in the "
-"client subdirectory. You can assign a client to a particular project using "
-"the"
-msgstr ""
-"Dodavanje klijenta ovdje omogućit će im pristu projektnim informacijama u "
-"poddirektoriju klijenta. Možete dodjeliti klijenta određenom projektu "
-"korištenjem"
-
-#: admin/clients.php:83
-msgid "Assign client to Form"
-msgstr "Dodjeli klijenta obrascu"
-
-#: admin/clients.php:83
-msgid "tool."
-msgstr "alat"
-
-#: admin/clients.php:84
-msgid ""
-"Use this form to enter the username of a user based on your directory "
-"security system. For example, if you have secured the base directory of "
-"queXF using Apache file based security, enter the usernames of the users "
-"here."
-msgstr ""
-"Koristite ovaj obrazac da unesete korisničko ime korisnika bazirano na vašem "
-"direktorijskom sigurnosnom sustavu, npr. ako ste osigurali direktorij queXF "
-"koristeči Apache datotečnu sigurnost, unesite imena korisnika ovdje."
-
-#: admin/clients.php:86
-msgid "Enter the username of a client to add:"
-msgstr "Unesi korisničko ime klijenta"
-
-#: admin/clients.php:87
-msgid "Enter the description of the client to add:"
-msgstr "Unesi opis klijenta"
-
-#: admin/output.php:73
-msgid "Output data"
-msgstr "Izlaz podataka"
-
-#: admin/output.php:79 admin/output.php:89
-msgid "CSV Merged"
-msgstr ""
+#: admin/progress.php:77
+msgid "Total"
+msgstr "Ukupno"
 
 #: admin/performance.php:33
 msgid "Performance"
@@ -1121,59 +508,62 @@ msgstr "Performanse"
 msgid "Assign verifier to questionnaire"
 msgstr "Dodjeli verifikatora upitniku"
 
-#: admin/limesurvey.php:67
-msgid ""
-"RPC Server URL (example: "
-"http://user:password@localhost/quexs/include/limesurvey/admin/remotecontrol.p"
-"hp)"
-msgstr ""
-"URL RPC Servera (example: "
-"http://user:password@localhost/quexs/include/limesurvey/admin/remotecontrol.p"
-"hp)"
+#: admin/icrmonitor.php:30
+msgid "Monitor ICR process"
+msgstr "Nadzor ICR procesa"
 
-#: admin/limesurvey.php:68
-msgid "RPC Username"
-msgstr "RPC korisničko ime"
+#: admin/icrmonitor.php:43 admin/icrmonitor.php:75
+#: admin/import.directory.php:49
+msgid "Process"
+msgstr "Proces"
 
-#: admin/limesurvey.php:69
-msgid "RPC Password"
-msgstr "RPC lozinka"
+#: admin/icrmonitor.php:47 admin/import.directory.php:53
+msgid "Kill signal sent: Please wait..."
+msgstr "Signal za gašenje poslan. Molimo sačekajte..."
 
-#: admin/limesurvey.php:70
-msgid "Limesurvey Survey ID"
-msgstr "Limesurvey Survey ID"
+#: admin/icrmonitor.php:48 admin/import.directory.php:54
+msgid "Mark the proces as killed (i.e. when the server is rebooted)"
+msgstr "Označi proces kao ugašen (npr. kad se server restarta)"
 
-#: admin/limesurvey.php:71
-msgid "Update settings"
-msgstr "Ažuriranje postavki"
+#: admin/icrmonitor.php:51 admin/import.directory.php:57
+msgid "Kill the running process"
+msgstr "Ugasi pokrenuti proces"
 
-#: admin/limesurvey.php:76 admin/limesurvey.php:88
-msgid "Upload"
-msgstr "Upload"
+#: admin/icrmonitor.php:51 admin/import.directory.php:57
+msgid "may take up to a few minutes to take effect"
+msgstr "može potrajati par minuta"
 
-#: admin/limesurvey.php:86
-msgid "No forms to upload"
-msgstr "Nema obrazaca za upload"
+#: admin/icrmonitor.php:56 admin/icrmonitor.php:88
+#: admin/import.directory.php:62 admin/import.directory.php:90
+msgid "Log id"
+msgstr "ID loga"
 
-#: admin/importbandingxml.php:30 admin/importbandingxml.php:48
-msgid "Update banding from XML"
-msgstr "Upload pojasa iz XML-a"
+#: admin/icrmonitor.php:56 admin/icrmonitor.php:88
+#: admin/import.directory.php:62 admin/import.directory.php:90
+#: admin/listfiles.php:69
+msgid "Date"
+msgstr "Datum"
 
-#: admin/importbandingxml.php:49
-msgid "WARNING: All previous banding will be erased"
-msgstr "UPOZORENJE: Svi prethodni pojasi biti će izbrisani"
+#: admin/icrmonitor.php:56 admin/icrmonitor.php:88
+#: admin/import.directory.php:62 admin/import.directory.php:90
+msgid "Log entry"
+msgstr "Zapis u logu"
 
-#: admin/importbandingxml.php:60
-msgid "Select banding XML file"
-msgstr "Odaberi XML datoteku pojasa"
+#: admin/icrmonitor.php:75 admin/import.directory.php:49
+msgid "running..."
+msgstr "pokretanje..."
 
-#: admin/importbandingxml.php:61
-msgid "Select questionnaire"
-msgstr "Odaberi upitnik"
+#: admin/icrmonitor.php:80
+msgid "No process running"
+msgstr "Nijedan proces ne radi"
 
-#: admin/importbandingxml.php:62 admin/icrkb.php:67
-msgid "Upload XML"
-msgstr "Upload XML-a"
+#: admin/icrmonitor.php:83 admin/import.directory.php:85
+msgid "Outcome of last process run (if any)"
+msgstr "Rezultat zadnjeg procesa (ukoliko postoji)"
+
+#: admin/testconfig.php:10 admin/index.php:78
+msgid "Test configuration"
+msgstr "Test konfiguracije"
 
 #: admin/testconfig.php:26
 msgid "Could not connect to database. Make sure the database: "
@@ -1288,47 +678,207 @@ msgstr "NIJE USPJELO"
 msgid "Passed Configuration Test"
 msgstr ""
 
-#: admin/listpagenotes.php:47 admin/listpagenotes.php:56
-msgid "Delete note"
-msgstr "Obriši bilješku"
+#: admin/outputunverified.php:67 admin/index.php:68
+msgid "Output unverified data"
+msgstr "Izlaz neverificiranih podataka"
 
-#: admin/listpagenotes.php:56
-msgid "Page ID"
-msgstr "ID stranice"
+#: admin/outputunverified.php:70 admin/outputunverified.php:84
+#: admin/output.php:76 admin/output.php:89
+msgid "Data"
+msgstr "Podaci"
 
-#: admin/listpagenotes.php:56
-msgid "Note"
-msgstr "Napomene"
+#: admin/outputunverified.php:71 admin/outputunverified.php:84
+#: admin/output.php:77 admin/output.php:89
+msgid "DDI"
+msgstr "DDI"
 
-#: admin/delete.php:70
-msgid "Delete a questionnaire"
+#: admin/outputunverified.php:72 admin/outputunverified.php:84
+#: admin/output.php:78 admin/output.php:89
+msgid "CSV"
+msgstr "CSV"
+
+#: admin/outputunverified.php:73 admin/outputunverified.php:84
+#: admin/output.php:80 admin/output.php:89
+msgid "CSV Labelled"
+msgstr "CSV označen"
+
+#: admin/outputunverified.php:74 admin/outputunverified.php:84
+#: admin/output.php:81 admin/output.php:89
+msgid "PSPP (SPSS)"
+msgstr "PSPP (SPSS)"
+
+#: admin/outputunverified.php:75 admin/outputunverified.php:84
+#: admin/output.php:82 admin/output.php:89
+msgid "Banding XML"
+msgstr "XML sa pojasima"
+
+#: admin/outputunverified.php:82
+msgid "Warning: the data downloaded from here is unverified"
+msgstr "Upozorenje: podaci downloadani odavde nisu provjereni"
+
+#: admin/listforms.php:66 admin/listforms.php:77
+msgid "Re verify"
+msgstr "Ponovna provjera"
+
+#: admin/listforms.php:90
+msgid "List"
 msgstr ""
 
-#: admin/delete.php:85
-msgid "Click to delete questionnaire"
+#: admin/touchup.php:96
+msgid "Download"
+msgstr "Preuzimanje"
+
+#: admin/touchup.php:96
+msgid "to edit"
+msgstr "za uređivanje"
+
+#: admin/touchup.php:96
+msgid "Upload here"
+msgstr "Upload ovdje"
+
+#: admin/touchup.php:99
+msgid "Upload pages"
+msgstr "Upload stranica"
+
+#: admin/touchup.php:111
+msgid "Touch up"
+msgstr "Dotjerivanje"
+
+#: admin/processicr.php:56
+msgid "Processing KB"
+msgstr "Procesiranje baze znanja"
+
+#: admin/processicr.php:134 admin/icrtrain.php:166
+msgid "Trained"
+msgstr "Naučen"
+
+#: admin/processicr.php:134
+msgid "to knowledge base"
+msgstr "u bazu znanja"
+
+#: admin/processicr.php:151 admin/icrtrain.php:171
+msgid "Generated KB"
+msgstr "Generirana baza znanja"
+
+#: admin/processicr.php:154 admin/processicr.php:157
+msgid "Did not generate KB as not all records trained"
+msgstr "Ne generiraj bazu znanja jer svi zapisi nisu naučeni"
+
+#: admin/reorder.php:47 admin/reorder.php:84
+msgid "Reorder variables"
 msgstr ""
 
-#: admin/delete.php:86
+#: admin/reorder.php:61
+msgid "Manual reorder"
+msgstr ""
+
+#: admin/reorder.php:61
+msgid "Reorder by position"
+msgstr ""
+
+#: admin/reorder.php:61
+msgid "Reorder by variable name"
+msgstr "Rasporedi po nazivu promjenjive"
+
+#: admin/reorder.php:120
 msgid ""
-"The following questionnaires have no forms associated with them so are safe "
-"to delete"
+"Reorder variables by dragging and dropping, then clicking on 'Save Changes' "
+"below"
 msgstr ""
+"Rasporedi varijable povlačenjem i spuštanjem, potom klikni na 'Spremi "
+"izmjene' ispod"
 
-#: admin/progress.php:55
-msgid "Done"
-msgstr "Završeno"
+#: admin/reorder.php:122
+msgid "Click here"
+msgstr "Klikni ovdje"
 
-#: admin/progress.php:55
-msgid "Remain"
+#: admin/reorder.php:122
+msgid "to return without saving changes"
+msgstr "za povratak bez spremanja izmjena"
+
+#: admin/reorder.php:131 admin/listfiles.php:71
+msgid "Save changes"
+msgstr "Spremi promjene"
+
+#: admin/icrtrain.php:37
+msgid "ICR Training"
+msgstr "Učenje ICR-a"
+
+#: admin/icrtrain.php:141
+msgid "Found duplicate"
+msgstr "Duplikat pronađen"
+
+#: admin/icrtrain.php:166
+msgid "characters"
+msgstr "znakovi"
+
+#: admin/icrtrain.php:216
+msgid "Chars"
+msgstr "Znakovi"
+
+#: admin/icrtrain.php:216 admin/icrtrain.php:285
+msgid "from"
+msgstr "iz"
+
+#: admin/icrtrain.php:257
+msgid "Started training process"
+msgstr "Pokrenut proces učenja"
+
+#: admin/icrtrain.php:285 admin/icrtrain.php:374
+msgid "Character"
+msgstr "Znak"
+
+#: admin/icrtrain.php:306
+msgid ""
+"Make sure the letter in the box matches the image. If you do not want to "
+"import a box, click on it to disable it (click again to enable)."
 msgstr ""
+"Pobrinite se da slovo u polju odgovara slici. Ukoliko ne želite uvesti "
+"polje, kliknite na njega da ga onemogućite (kliknite ponovo da ga omogućite)"
 
-#: admin/progress.php:55
-msgid "Total forms imported"
-msgstr ""
+#: admin/icrtrain.php:323
+msgid "Description for knowledge base:"
+msgstr "Opis baze znanja"
 
-#: admin/progress.php:77
-msgid "Total"
-msgstr "Ukupno"
+#: admin/icrtrain.php:323
+msgid "Train"
+msgstr "Učenje"
+
+#: admin/icrtrain.php:356 admin/icrtrain.php:374
+msgid "Manually train"
+msgstr "Ručno učenje"
+
+#: admin/icrtrain.php:371
+msgid "Please choose which characters to include in training"
+msgstr "Odaberite koje znakove koristite u učenju"
+
+#: admin/icrtrain.php:374
+msgid "Number of instances"
+msgstr "Broj instanci"
+
+#: admin/icrtrain.php:374 admin/icrtrain.php:405
+msgid "Include in training?"
+msgstr "Uključi u učenje"
+
+#: admin/icrtrain.php:384
+msgid "Start training process in background"
+msgstr "Pokreni proces učenja u pozadini"
+
+#: admin/icrtrain.php:402
+msgid "Please choose which verifiers to include in training"
+msgstr "Odaberite verifikatore uključene u učenje"
+
+#: admin/icrtrain.php:405
+msgid "Number of forms"
+msgstr "Broj obrazaca"
+
+#: admin/icrtrain.php:408
+msgid "Continue training"
+msgstr "Nastavak učenja"
+
+#: admin/icrtrain.php:423
+msgid "ICR Train"
+msgstr "CIR učenje"
 
 #: admin/icrkb.php:38 admin/icrkb.php:55
 msgid "Import ICR KB from XML"
@@ -1346,6 +896,10 @@ msgstr ""
 msgid "Select ICR KB XML file"
 msgstr ""
 
+#: admin/icrkb.php:67 admin/importbandingxml.php:62
+msgid "Upload XML"
+msgstr "Upload XML-a"
+
 #: admin/icrkb.php:72
 msgid "Export ICR KB to XML"
 msgstr ""
@@ -1354,93 +908,544 @@ msgstr ""
 msgid "ICR KB"
 msgstr "ICR KB"
 
-#: functions/functions.output.php:134 functions/functions.output.php:144
-msgid "XML RPC Error: "
-msgstr "XML RPC Greška: "
+#: admin/output.php:73
+msgid "Output data"
+msgstr "Izlaz podataka"
 
-#: functions/functions.output.php:197 functions/functions.output.php:470
-#: functions/functions.output.php:1026
-msgid "unverified"
-msgstr "(nije potvrđen)"
-
-#: functions/functions.database.php:136
-msgid "ERROR: Multiple forms assigned, please see a technical officer"
+#: admin/output.php:79 admin/output.php:89
+msgid "CSV Merged"
 msgstr ""
 
-#: functions/functions.import.php:236
-msgid "BARCODE"
-msgstr "BARKOD"
+#: admin/process.php:54
+msgid "Processing directory"
+msgstr "Direktorij obrade"
 
-#: functions/functions.import.php:274
-msgid "INVALID - IGNORING BLANK PAGE"
-msgstr ""
+#: admin/process.php:65
+msgid "Watching..."
+msgstr "Nadzirem..."
 
-#: functions/functions.import.php:291
-msgid "Failed to import as no pages were detected"
-msgstr ""
-
-#: functions/functions.import.php:704
-msgid "Finding qid"
-msgstr ""
-
-#: functions/functions.import.php:790
-msgid "Got qid"
-msgstr ""
-
-#: functions/functions.import.php:867
-msgid "Processing pid"
-msgstr ""
-
-#: functions/functions.import.php:878
-msgid "Pid not identified for this page, inserting into missing pages..."
-msgstr ""
-
-#: functions/functions.import.php:945
-msgid "Blank page: ignoring"
-msgstr ""
-
-#: functions/functions.import.php:950
-msgid "Could not get pid, inserting into missing pages..."
-msgstr ""
-
-#: functions/functions.import.php:1010
-msgid "Could not get qid..."
-msgstr ""
-
-#: functions/functions.import.php:1070
+#: admin/process.php:83
 msgid ""
-"Automatically processing the 1 missing page for this form - assuming pid:"
+"Cannot process this directory - check that it is valid and permissions are "
+"correct"
 msgstr ""
+"Ne mogu obraditi direktorij - provjeri da je isprava i dozvole su točne."
 
-#: functions/functions.import.php:1129
-msgid "Deleting missing pages as all form page slots filled"
-msgstr ""
+#: admin/missingpages.php:150
+msgid "Undetected Pages"
+msgstr "Nedetektirane stranice"
 
-#: functions/functions.import.php:1360
-msgid "File already in database"
-msgstr ""
+#: admin/missingpages.php:228
+msgid "Undetected page"
+msgstr "Nedetektirana stranica"
 
-#: client/index.php:32
-msgid "Review forms"
-msgstr ""
+#: admin/missingpages.php:275
+msgid "Page"
+msgstr "Stranica"
 
-#: client/index.php:59
-msgid "Review"
-msgstr "Provjera"
+#: admin/missingpages.php:275
+msgid "of Form"
+msgstr "Obrasca"
 
-#: client/index.php:75
+#: admin/missingpages.php:284 admin/pagesmissing.php:85
+msgid "Form"
+msgstr "Obrazac"
+
+#: admin/missingpages.php:289
+msgid "Accept"
+msgstr "Prihvati"
+
+#: admin/missingpages.php:294
+msgid "No undetected pages"
+msgstr "Nema nedetektiranih stranica"
+
+#: admin/clients.php:68
+msgid "There may already be an client of this name"
+msgstr "Možda već postoji klijent ovog naziva"
+
+#: admin/clients.php:73 admin/clients.php:82
+msgid "Add a client"
+msgstr "Dodaj klijenta"
+
+#: admin/clients.php:83
 msgid ""
-"This form not available for you to review. Please enter a form id in the box "
-"on the left"
+"Adding a client here will allow them to access project information in the "
+"client subdirectory. You can assign a client to a particular project using "
+"the"
 msgstr ""
+"Dodavanje klijenta ovdje omogućit će im pristu projektnim informacijama u "
+"poddirektoriju klijenta. Možete dodjeliti klijenta određenom projektu "
+"korištenjem"
 
-#: client/index.php:134
-msgid "You are not authorised to review any forms"
-msgstr ""
+#: admin/clients.php:83
+msgid "Assign client to Form"
+msgstr "Dodjeli klijenta obrascu"
 
-#: include/php-gettext-1.0.11/examples/pigs_dropin.php:77
-#: include/php-gettext-1.0.11/examples/pigs_fallback.php:76
+#: admin/clients.php:83
+msgid "tool."
+msgstr "alat"
+
+#: admin/clients.php:84
 msgid ""
-"This is how the story goes.\n"
-"\n"
+"Use this form to enter the username of a user based on your directory "
+"security system. For example, if you have secured the base directory of "
+"queXF using Apache file based security, enter the usernames of the users "
+"here."
 msgstr ""
+"Koristite ovaj obrazac da unesete korisničko ime korisnika bazirano na vašem "
+"direktorijskom sigurnosnom sustavu, npr. ako ste osigurali direktorij queXF "
+"koristeči Apache datotečnu sigurnost, unesite imena korisnika ovdje."
+
+#: admin/clients.php:86
+msgid "Enter the username of a client to add:"
+msgstr "Unesi korisničko ime klijenta"
+
+#: admin/clients.php:87
+msgid "Enter the description of the client to add:"
+msgstr "Unesi opis klijenta"
+
+#: admin/pagesmissing.php:64 admin/index.php:65
+msgid "Pages missing from scan"
+msgstr "Stranice nedostaju u skenu"
+
+#: admin/pagesmissing.php:67 admin/index.php:66
+msgid "Handle undetected pages"
+msgstr "Upravljanje nedetektiranim stranicama"
+
+#: admin/pagesmissing.php:67 admin/pagesmissing.php:85
+msgid "Delete form and allow importing again"
+msgstr "Brisanje obrasca i ponovni uvoz"
+
+#: admin/clientquestionnaire.php:144 admin/clientquestionnaire.php:265
+msgid "Assign clients to questionnaires"
+msgstr "Dodjeli klijente upitniku"
+
+#: admin/pagesetup.php:208
+msgid "Cannot detect page edge on page"
+msgstr "Nije bilo moguće detektirati rubove stranice"
+
+#: admin/pagesetup.php:232
+msgid "Set page layout"
+msgstr "Podesi raspored stranice"
+
+#: admin/pagesetup.php:285
+msgid "Copy settings from this page to all other pages"
+msgstr "Kopiraj postavke stranice na sve druge stranice"
+
+#: admin/pagesetup.php:290
+msgid "Page setup disabled (click to enable)"
+msgstr ""
+
+#: admin/pagesetup.php:292
+msgid "Page setup ENABLED (click to disable)"
+msgstr ""
+
+#: admin/pagesetup.php:437 admin/index.php:77
+msgid "Page setup"
+msgstr "Postavke stranice"
+
+#: admin/import.directory.php:47 admin/import.directory.php:68
+#: admin/index.php:59
+msgid "Import a directory of PDF files"
+msgstr "Uvezi direktorij PDF datoteka"
+
+#: admin/import.directory.php:77
+msgid "Directory"
+msgstr "Direktorij"
+
+#: admin/import.directory.php:79
+msgid "Enter directory local to the server (eg /mnt/iss/tmp/images)"
+msgstr "Unesite lokalni direktorij servera (npr. /mnt/iss/tmp/slike)"
+
+#: admin/import.directory.php:80
+msgid "Process directory: browser window must remain open"
+msgstr "Obrađujem direktorij: prozor preglednika mora ostati otvoren"
+
+#: admin/import.directory.php:81
+msgid "Watch this directory in the background (recommended)"
+msgstr "Nadzri ovaj direktorij u pozadini (preporučeno)"
+
+#: admin/importbandingxml.php:30 admin/importbandingxml.php:48
+msgid "Update banding from XML"
+msgstr "Upload pojasa iz XML-a"
+
+#: admin/importbandingxml.php:42 admin/new.php:61
+msgid "Successfully loaded banding XML file"
+msgstr "Uspješno učitan XML datoteka sa pojasima"
+
+#: admin/importbandingxml.php:44 admin/new.php:65
+msgid "Failed to load banding XML file"
+msgstr "Nije uspjelo učitavanje XML datoteke sa pojasima"
+
+#: admin/importbandingxml.php:49
+msgid "WARNING: All previous banding will be erased"
+msgstr "UPOZORENJE: Svi prethodni pojasi biti će izbrisani"
+
+#: admin/importbandingxml.php:60
+msgid "Select banding XML file"
+msgstr "Odaberi XML datoteku pojasa"
+
+#: admin/importbandingxml.php:61
+msgid "Select questionnaire"
+msgstr "Odaberi upitnik"
+
+#: admin/index.php:31 admin/index.php:36
+msgid "queXF Admin Functions"
+msgstr "Administracijske funkcije queXF"
+
+#: admin/index.php:38
+msgid "Form setup"
+msgstr "Postavka obrasca"
+
+#: admin/index.php:39
+msgid "Test form compatibility with queXF"
+msgstr ""
+
+#: admin/index.php:40
+msgid "Import a new form from a PDF file"
+msgstr "Uvezi novi obrazac iz PDF datoteke"
+
+#: admin/index.php:41
+msgid "Import/Update banding from XML"
+msgstr "Uvezi/ažuriraj pojase iz XML-a"
+
+#: admin/index.php:42
+msgid "Delete a form (only if no forms yet imported)"
+msgstr "Obriši obrazac"
+
+#: admin/index.php:43
+msgid "Touch-up a form"
+msgstr "Dotjeraj obrazac"
+
+#: admin/index.php:44
+msgid "Band a form"
+msgstr "Pojasi u obrascu"
+
+#: admin/index.php:45
+msgid "Band a form using interactive banding"
+msgstr "Interaktivno uređivanja pojasa u obrascu"
+
+#: admin/index.php:46
+msgid "Order variables on the form"
+msgstr "Poredaj promjenjive u obrascu"
+
+#: admin/index.php:48
+msgid "Users"
+msgstr "Korisnici"
+
+#: admin/index.php:49
+msgid "Add operators"
+msgstr "Dodjeli operatere"
+
+#: admin/index.php:50
+msgid "Assign forms to operators"
+msgstr "Dodjeli obrasce operaterima"
+
+#: admin/index.php:52
+msgid "ICR"
+msgstr "ICR"
+
+#: admin/index.php:53
+msgid "Train ICR"
+msgstr ""
+
+#: admin/index.php:54
+msgid "Monitor ICR training process"
+msgstr "Nadziri proces učenja ICR-a"
+
+#: admin/index.php:55
+msgid "Import and Export ICR KB"
+msgstr "Uvoz/izvoz baze znanja ICR"
+
+#: admin/index.php:56 admin/icrassign.php:97 admin/icrassign.php:228
+#: admin/icrassign.php:242
+msgid "Assign ICR KB to questionnaire"
+msgstr "Dodjeli ICR bazu znanja upitniku"
+
+#: admin/index.php:60
+msgid "Successfully imported files"
+msgstr "Uspješno uvezene datoteke"
+
+#: admin/index.php:61
+msgid "Failed imported files"
+msgstr "Uvoz nije uspio"
+
+#: admin/index.php:62
+msgid "Duplicate forms"
+msgstr "Duplicirani obrasci"
+
+#: admin/index.php:63
+msgid "Reverify forms"
+msgstr "Ponovno provjerite obrasce"
+
+#: admin/index.php:64
+msgid "List page notes"
+msgstr "Spisak napomena stranice"
+
+#: admin/index.php:67
+msgid "Output"
+msgstr "Izlaz"
+
+#: admin/index.php:69
+msgid "Output data/ddi"
+msgstr "Izlaz podataka/dd:"
+
+#: admin/index.php:71
+msgid "Display progress of form verification"
+msgstr "Prikaz progresa verifikacije"
+
+#: admin/index.php:72
+msgid "Display performance of verifiers (Completions per hour)"
+msgstr "Prikaz performansi verifikatora"
+
+#: admin/index.php:73
+msgid "Clients"
+msgstr "Klijenti"
+
+#: admin/index.php:74
+msgid "Add clients"
+msgstr "Dodavanje klijenata"
+
+#: admin/index.php:75
+msgid "Assign clients to forms"
+msgstr "Dodjela klijenta obrascu"
+
+#: admin/index.php:76
+msgid "System setup"
+msgstr "Postavke sustava"
+
+#: admin/listfiles.php:49
+msgid "Listing of imported files by status"
+msgstr "Ispis uvezenih datoteka po statusu"
+
+#: admin/listfiles.php:56
+msgid "Forms successfully imported"
+msgstr "Obrasci uspješno uvezeni"
+
+#: admin/listfiles.php:58
+msgid "Forms not imported"
+msgstr "Obrasci nisu uvezeni"
+
+#: admin/listfiles.php:69
+msgid "File"
+msgstr "Datoteka"
+
+#: admin/listfiles.php:69
+msgid "SHA1"
+msgstr "SHA1"
+
+#: admin/listfiles.php:69
+msgid "Allow import again?"
+msgstr "Dozvoli ponovni uvoz"
+
+#: admin/pagetest.php:121 admin/pagetest.php:151
+msgid "NO BARCODE DETECTED"
+msgstr ""
+
+#: admin/pagetest.php:125
+msgid "Detected but not BARCODE_LENGTH_PID length"
+msgstr ""
+
+#: admin/pagetest.php:127 admin/pagetest.php:157
+msgid "Detected"
+msgstr ""
+
+#: admin/pagetest.php:155
+msgid "Detected but not BARCODE_LENGTH_PID2 length"
+msgstr ""
+
+#: admin/pagetest.php:165 admin/pagetest.php:281 admin/pagetest.php:295
+msgid "Page test"
+msgstr ""
+
+#: admin/pagetest.php:282
+msgid ""
+"Confirm that there is a detected unique barcode for each page and that the "
+"barcode fits inside the pink box. If not, edit the BARCODE_PORTION variables "
+"in the configuration file"
+msgstr ""
+
+#: admin/pagetest.php:283
+msgid "Confirm that the barcode is of length"
+msgstr ""
+
+#: admin/pagetest.php:283
+msgid ""
+"Otherwise edit the BARCODE_LENGTH_PID variable in the configuration file"
+msgstr ""
+
+#: admin/pagetest.php:284
+msgid ""
+"Confirm the corner edges fit within the green/brown boxes and that the blue "
+"lines appear to be drawn over the corner edges (for each 4 corners, both "
+"horizonal and vertical lines. If not, edit the PAGE_GUIDE_X_PORTION, "
+"HORI_WIDTH and VERT_WIDTH variables in the configuration file"
+msgstr ""
+
+#: admin/pagetest.php:296 admin/new.php:86
+msgid "When using banding XML:"
+msgstr "Kada koristite XML sa pojasima:"
+
+#: admin/pagetest.php:297 admin/new.php:87
+msgid ""
+"You must import the original PDF and banding XML file (not a scanned version)"
+msgstr ""
+"Morate uvesti originalni PDF i XML sa pojasima (ne skeniranu verziju)"
+
+#: admin/pagetest.php:298 admin/new.php:88
+msgid "When manually banding:"
+msgstr "Kada ručno uređujete pojase:"
+
+#: admin/pagetest.php:299 admin/new.php:89
+msgid "You will get the best results if you:"
+msgstr "Postiči ćete najbolje rezultate ako:"
+
+#: admin/pagetest.php:301 admin/new.php:90
+msgid ""
+"Print out the form using the same method that you will for all the printed "
+"forms"
+msgstr ""
+"Ispišete obrazackoristeći istu metodu kojom printate obrascee koje se "
+"popunjavaju"
+
+#: admin/pagetest.php:302
+msgid ""
+"Scan the form to a PDF using the same options that you will for the filled "
+"forms"
+msgstr ""
+
+#: admin/pagetest.php:303 admin/new.php:92
+msgid "Best options for scanning in are:"
+msgstr "Najbolje opcije za skeniranj su:"
+
+#: admin/pagetest.php:304 admin/new.php:93
+msgid "Monochrome (1 bit)"
+msgstr "Monokromatsko (1bit)"
+
+#: admin/pagetest.php:305 admin/new.php:94
+msgid "300DPI Resolution"
+msgstr "Rezolucija 300dpi"
+
+#: admin/pagetest.php:311
+msgid "Select PDF file to upload:"
+msgstr ""
+
+#: admin/pagetest.php:312 admin/new.php:103
+msgid "Upload form"
+msgstr "Upload obrasca"
+
+#: admin/new.php:30
+msgid "Add new questionnaire"
+msgstr "Dodaj novi upitnik"
+
+#: admin/new.php:55
+msgid "Successfully inserted new questionnaire"
+msgstr "Uspješno unesen novi upitnik"
+
+#: admin/new.php:78
+msgid "Failed to insert new questionnaire. Could have conflicting page id's"
+msgstr ""
+"Nije uspio unos novog upitnika. Možda postoje ID stranica u konfliktu"
+
+#: admin/new.php:79
+msgid "Test form to check for problems"
+msgstr ""
+
+#: admin/new.php:85
+msgid "New questionnaire"
+msgstr "Novi upitnik"
+
+#: admin/new.php:91
+msgid ""
+"Scan the (blank) form to a PDF using the same options that you will for the "
+"filled forms"
+msgstr ""
+"Skenirate blanko obrazac u PDF koriteći iste opcije koje ćete koristiti za "
+"skeniranje popunjenih obrazaca"
+
+#: admin/new.php:100
+msgid "Select PDF file to create form from"
+msgstr "Odaberite PDF datoteku iz koje ćete izraditi obrazac"
+
+#: admin/new.php:101
+msgid "(Optional): Select banding XML file"
+msgstr "(Opcionalno): Odaberite XML datoteku sa pojasima"
+
+#: admin/new.php:102
+msgid "Enter description of form"
+msgstr "Unesite opis obrasca"
+
+#: admin/databasestrings.php:33
+msgid "Temporary"
+msgstr "Privremeno"
+
+#: admin/databasestrings.php:36
+msgid "Text"
+msgstr "Tekst"
+
+#: admin/databasestrings.php:37
+msgid "Number"
+msgstr "Broj"
+
+#: index.php:30
+msgid "queXF"
+msgstr "queXF"
+
+#: index.php:31
+msgid "Verify"
+msgstr "Kontrola"
+
+#: index.php:32
+msgid "Review a form"
+msgstr "Pregled obrasca"
+
+#: db.inc.php:32
+msgid ""
+"ERROR: Please modify config.inc.php to point to your ADODb installation"
+msgstr ""
+"GREŠKA: Molimo izmjenite config.inc.php da pokazuje prema Vašoj ADODb "
+"instalaciji"
+
+#: modifybox.php:176
+msgid "Modify box"
+msgstr ""
+
+#: modifybox.php:211
+msgid "Group type:"
+msgstr "Tip grupe"
+
+#: modifybox.php:216
+msgid "Variable name:"
+msgstr "Naziv varijable"
+
+#: modifybox.php:219
+msgid "Width:"
+msgstr "Širina:"
+
+#: modifybox.php:221
+msgid "Submit"
+msgstr "Slanje"
+
+#: modifybox.php:223
+msgid "Delete this group"
+msgstr "Brisanje grupe"
+
+#: pagenote.php:60
+msgid "Page note:"
+msgstr "Zabilješkaa stranice:"
+
+#: pagenote.php:65
+msgid "Add note"
+msgstr "Dodavanje bilješke"
+
+#~ msgid "Finished page setup"
+#~ msgstr "Završeno podešavanje stranice"
+
+#~ msgid "Page layout has been updated"
+#~ msgstr "Raspored stranice podešen"
+
+#~ msgid "Continue with banding"
+#~ msgstr "Nastavi sa pojasima"
+
+#~ msgid "Continue by setting up page edge detection (page setup)"
+#~ msgstr "Nastavite podešavanjem detekcije rubova stranice"
