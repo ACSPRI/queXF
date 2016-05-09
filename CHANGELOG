@@ -1,3 +1,18 @@
+queXF 1.18.1 - Changes since 1.18.0
+
+*New feature: Allow for gaps in boxes due to dithering (default width is 3 pixels)
+*New feature: Add filename to output
+*New feature: Import images as grayscale to avoid Ghostscripts dithering 
+*New feature: New configuration item IMAGE_THRESHOLD to determine cutoff to monochrome
+*New feature: Allow for barcode/OCR fields to be verified
+
+*Fixed bug: Set default output width of text field to 1024
+*Fixed bug: Update variable width automatically when editing labels
+*Fixed bug: Update box detection to handle minimum width better 
+*Fixed bug: Add UTF-8 encoding for correct translations
+
+*Updated translations - thank you for contributing!
+
 queXF 1.18.0 - Changes since 1.17.0
 
 *New Feature: Don't use manual page setup by default as doesn't handle page scaling
