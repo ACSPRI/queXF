@@ -74,11 +74,6 @@ if (is_file($gsbin)) {
 	if ($ver)
 	{
     print "<p>" . T_("Found GhostScript version") . " $ver</p>";
-    if (trim($ver) == "9.10")
-    {
-      print "<p><a href='https://bugs.launchpad.net/quexf/+bug/1328917'>" .T_("This version of GhostScript has a bug that makes it incompatible with queXF") . "<a/></p>";
-      $fail = true;
-    }
 	}
 	else
 	{
@@ -104,10 +99,11 @@ if (OCR_ENABLED)
 {
 	
   if (is_file(TESSERACT_BIN)) {
-  $ver = exec(TESSERACT_BIN . " -v 2>&1");
-	print "<p>" . T_("Found Tesseract version") . " $ver</p>";
-} else {
-	echo "<p>"  . T_("Could not find Tesseract in path: ")  . TESSERACT_BIN .  "</p><p>" . T_("Please modify config.inc.php, TESSERACT_BIN to point to the tesseract executable or disable OCR by changing OCR_ENABLED to false") ."</p>";
+    $v = array();
+    $ver = exec(TESSERACT_BIN . " -v 2>&1",$v);
+    print "<p>" . T_("Found Tesseract version") . " " . $v[0] . " </p>";
+  } else {
+	  echo "<p>"  . T_("Could not find Tesseract in path: ")  . TESSERACT_BIN .  "</p><p>" . T_("Please modify config.inc.php, TESSERACT_BIN to point to the tesseract executable or disable OCR by changing OCR_ENABLED to false") ."</p>";
 		$fail = true;
 }
 
