@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `boxgroupstype` (
   `width` int(10) unsigned NOT NULL,
   `pid` int(10) unsigned NOT NULL,
   `varname` text COLLATE utf8_unicode_ci NOT NULL,
-  `sortorder` int(11) NOT NULL,
+  `sortorder` int(11) NOT NULL DEFAULT '1',
   `label` text COLLATE utf8_unicode_ci,
   `sid` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`bgid`),

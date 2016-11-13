@@ -1,3 +1,6 @@
+ALTER TABLE boxgroupstype MODIFY COLUMN sortorder INT(11) NOT NULL DEFAULT '1';
+
+
 queXF 1.18.1 - Changes since 1.18.0
 
 *New feature: Allow for gaps in boxes due to dithering (default width is 3 pixels)
