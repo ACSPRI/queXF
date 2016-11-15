@@ -102,9 +102,12 @@ function horiBoxDetection($lw)
 
 	$aliasArray =& $startx;
 
-	foreach($aliasArray as $key => $value)
-	{
-		if (current($aliasArray))
+  for ($i = 0; $i < count($aliasArray); $i++)
+  {
+    $key = key($aliasArray);
+    $value = current($aliasArray);
+                 
+    if (next($aliasArray))
 		{
 			//if there is a next element, move to it
 			$key2 = key($aliasArray);
@@ -366,10 +369,13 @@ function vertBoxDetection($lw)
 
 	$aliasArray = &$starty;
 
-	foreach($aliasArray as $key => $value)
-	{
-		if (current($aliasArray))
-		{
+  for ($i = 0; $i < count($aliasArray); $i++)
+  {
+    $key = key($aliasArray);
+    $value = current($aliasArray);
+                 
+    if (next($aliasArray))	
+    {
 			//if there is a next element, move to it
 			$key2 = key($aliasArray);
 			$value2 = current($aliasArray);
