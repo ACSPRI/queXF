@@ -58,7 +58,7 @@ if (isset($_GET['var']))
 	$vars = $db->qstr($_GET['var']);
 
 	$sql = "SELECT b.pid
-		FROM boxes as b, pages as p
+		FROM boxgroupstype as b, pages as p
 		WHERE b.varname LIKE $vars
 		AND p.pid = b.pid
 		AND p.qid = '$qid'";
