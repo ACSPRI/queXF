@@ -54,6 +54,8 @@ define('OCR_ENABLED',false);
 //Temporary directory
 define('TEMPORARY_DIRECTORY', "/tmp");
 
+define('PROCESS_SLEEP',600); 
+
 //Do not remove the following line:
 include(dirname(__FILE__) . '/config.default.php');
 ?>
