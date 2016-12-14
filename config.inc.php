@@ -47,6 +47,10 @@ define('PROCESS_MISSING_PAGES',true);
 //REQUIRED: Ghostscript binary
 define('GS_BIN', "/usr/bin/gs");
 
+define('DEBUG', false);
+
+define('OCR_ENABLED',false);
+
 //Temporary directory
 define('TEMPORARY_DIRECTORY', "/tmp");
 
