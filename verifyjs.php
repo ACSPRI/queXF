@@ -421,7 +421,7 @@ if (!isset($_SESSION['boxes'])) {
 		ORDER BY bg.sortorder ASC";
 
 	
-	$sql2 = "SELECT b.bgid,0 as done,b.pid,bg.varname,bg.btid
+	$sql2 = "SELECT b.bgid,0 as done,MIN(b.pid) as pid,bg.varname,bg.btid
 		FROM boxes as b, boxgroupstype as bg, pages as p
 		WHERE p.pid = b.pid
 		AND bg.bgid = b.bgid
@@ -430,13 +430,13 @@ if (!isset($_SESSION['boxes'])) {
 		GROUP BY bg.bgid
 		ORDER BY bg.sortorder ASC";
 
-	$sql3 = "SELECT b.pid,b.bgid,0 as done, fp.width, fp.height, fp.fid
+	$sql3 = "SELECT b.pid,MIN(b.bgid) as bgid,0 as done, fp.width, fp.height, fp.fid
 		FROM boxes as b
 		JOIN pages as p ON (p.qid = '$qid' AND b.pid = p.pid)
 		JOIN boxgroupstype as bg ON (bg.bgid = b.bgid)
 		LEFT JOIN formpages as fp ON (fp.fid = '$fid' AND fp.pid = p.pid)
 		GROUP BY b.pid
-		ORDER BY bg.sortorder ASC";
+		ORDER BY MIN(bg.sortorder) ASC";
 
 	$a = $db->GetAssoc($sql);
 	if (empty($a)) 
