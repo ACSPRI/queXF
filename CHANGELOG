@@ -1,5 +1,11 @@
-ALTER TABLE boxgroupstype MODIFY COLUMN sortorder INT(11) NOT NULL DEFAULT '1';
+queXF 1.18.2 - Changes since 1.18.1
 
+*Added support for PHP 7 and MySQL 5.7
+*Fixed bug: Can't search by Varname
+
+*Database changes required (only if support for Mysql 5.7 required):
+
+ALTER TABLE boxgroupstype MODIFY COLUMN sortorder INT(11) NOT NULL DEFAULT '1';
 
 queXF 1.18.1 - Changes since 1.18.0
 
