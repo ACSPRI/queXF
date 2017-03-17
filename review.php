@@ -30,6 +30,9 @@ include_once("functions/functions.database.php");
 global $db;
 
 
+
+
+
 $fid = "";
 $pid = "";
 $var = "";
@@ -145,18 +148,6 @@ print "<div id=\"header\">";
 
 <?php
 
-	/*
-	foreach($_SESSION['boxgroups'] as $key => $val)
-	{
-		if ($val['pid'] == $pid)
-		{
-			//if ($bgid == $key)
-				print "<strong>{$val['varname']}</strong><br/>";
-			//else
-			//	print "<a id=\"link$key\" href=\"" . $_SERVER['PHP_SELF'] . "?bgid=$key&amp;fid=$fid#boxGroup\">{$val['varname']}</a><br/>";
-		}	
-	}*/
-	
 print "</div>";
 
 //show list of pid for this fid
