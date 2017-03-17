@@ -30,25 +30,8 @@ xhtml_head();
 <h1><?php echo T_("queXF"); ?></h1>
 <p><a href="verifyjs.php"><?php echo T_("Verify"); ?></a></p>
 <p><a href="review.php"><?php echo T_("Review a form"); ?></a></p>
+<p><a href="./upload"><?php echo T_("Upload scanned forms (PDF)"); ?></a></p>
+<p><a href="./admin"><?php echo T_("Administer queXF"); ?></a></p>
 
 <?php
 xhtml_foot();
-
-//display list of jobs
-//display totals for work done
-
-$sql = "
-SELECT f.assigned_vid as vid, v.description, v.fid, TIME_TO_SEC( TIMEDIFF( completed, assigned ) ) AS secondstaken, DATE( assigned ) AS dateassigned, f.qid, q.description
-FROM verifiers AS v, forms AS f, questionnaires AS q
-WHERE w.vid = v.vid
-AND w.fid = f.fid
-AND f.qid = q.qid
-ORDER BY w.completed
-";
-
-
-
-
-
-
-?>

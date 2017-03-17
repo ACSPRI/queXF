@@ -95,6 +95,16 @@ else
   $fail = true;
 }
 
+if (is_writable(SCANS_DIRECTORY))
+{
+  print "<p>" . T_("Scans upload directory writeable") . "</p>";
+}
+else
+{
+  print "<p>" . T_("Scans upload directory NOT writeable") . " - " . SCANS_DIRECTORY .  "</p>";
+  $fail = true;
+}
+
 if (OCR_ENABLED)
 {
 	

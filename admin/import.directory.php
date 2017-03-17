@@ -76,7 +76,7 @@ else
 	?>	
 	<h1><?php echo T_("Directory"); ?></h1>
 	<form enctype="multipart/form-data" action="?" method="post">
-	<p><?php echo T_("Enter directory local to the server (eg /mnt/iss/tmp/images)"); ?>: <input name="dir" type="text" value="<?php echo realpath("../doc/filled"); ?>"/></p>
+	<p><?php echo T_("Enter directory local to the server (eg /mnt/iss/tmp/images)"); ?>: <input name="dir" type="text" value="<?php echo SCANS_DIRECTORY; ?>"/></p>
 	<p><input name='process' id='process' type="submit" value="<?php echo T_("Process directory: browser window must remain open"); ?>" /></p>
 	<p><input name='watch' id='watch' type="submit" value="<?php echo T_("Watch this directory in the background (recommended)"); ?>" /></p>
 	</form>
