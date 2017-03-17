@@ -26,11 +26,119 @@
 include_once("config.inc.php");
 include_once("db.inc.php");
 include_once("functions/functions.database.php");
+include_once("functions/functions.image.php");
 				
 global $db;
 
 
+function bgidtocss($zoom = 1,$fid,$pid)
+{
+	global $db;
 
+	$sql = "SELECT MIN(b.tlx) as tlx,MIN(b.tly) as tly,MAX(b.brx) as brx,MAX(b.bry) as bry, b.pid as pid, bg.btid as btid, b.bgid as bgid
+		FROM boxes as b, boxgroupstype as bg
+		WHERE b.pid = '$pid'
+		AND bg.bgid = b.bgid
+		AND bg.btid > 0
+		GROUP BY bg.bgid
+		ORDER BY bg.sortorder ASC";
+
+  $boxgroups = $db->GetAll($sql);
+
+	$sql = "SELECT offx,offy,centroidx,centroidy,costheta,sintheta,scalex,scaley,width,height
+		FROM formpages as f
+		WHERE f.pid = $pid and f.fid = $fid";
+	
+	$row = $db->GetRow($sql);
+
+  $sql = "SELECT assigned_vid
+          FROM forms
+          WHERE fid = '$fid'";
+
+  $vid = $db->GetOne($sql);
+
+	$sql = "(SELECT b.bid,f.val,b.bgid,g.btid,g.sortorder,b.tly,b.tlx,b.bry,b.brx
+    FROM boxes as b
+    JOIN boxgroupstype as g ON (b.bgid = g.bgid AND g.btid > 0 AND g.btid < 5)
+    LEFT JOIN formboxverifychar as f ON (f.bid = b.bid AND f.vid = '{$vid}' and f.fid = '{$fid}')
+    WHERE b.pid = '$pid'
+    )
+		UNION
+		(SELECT b.bid,f.val,b.bgid,g.btid,g.sortorder,b.tly,b.tlx,b.bry,b.brx
+		FROM boxes as b
+		JOIN  boxgroupstype as g on (b.bgid = g.bgid and g.btid IN (5,6))
+    LEFT JOIN formboxverifytext as f on (f.bid = b.bid and f.vid = '{$vid}' and f.fid = '{$fid}')
+    WHERE b.pid = '$pid')
+    ORDER BY sortorder asc,bid asc";
+
+    $boxes = $db->GetAssoc($sql);
+	$vis = "visible";
+
+	if (!isset($row['offx']) && !isset($row['offy']))
+	{ 
+		$row = array();
+		$row['offx'] = 0;
+		$row['offy'] = 0;
+		$row['centroidx'] = PAGE_WIDTH / 2;
+		$row['centroidy'] = PAGE_HEIGHT / 2;
+		$row['costheta'] = 1;
+		$row['sintheta'] = 0;
+		$row['scalex'] = 1;
+		$row['scaley'] = 1;
+	}
+
+	//fix for upgrades
+	if ($row['width'] == 0) $row['width'] = PAGE_WIDTH;
+	if ($row['height'] == 0) $row['height'] = PAGE_HEIGHT;
+
+	foreach($boxes as $bid => $rest)
+	{
+		$box = $rest;
+
+		$val = $rest['val'];
+		$bbgid = $rest['bgid'];
+		$btid = $rest['btid'];
+
+		$box = applytransforms($box,$row);
+
+		if ($btid == 1) //single
+		{
+				if ($val == 0) {$checked = ""; $colour = BOX_BACKGROUND_COLOUR; } else {$checked = "checked=\"checked\""; $colour = BOX_SELECT_COLOUR;}
+				print "<div id=\"checkImage$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" .  BOX_OPACITY . "; \"></div>";
+	
+		}
+		else if ($btid == 2) //multiple
+		{
+	
+				if ($val == 0) {$checked = ""; $colour = BOX_BACKGROUND_COLOUR; } else {$checked = "checked=\"checked\""; $colour = BOX_SELECT_COLOUR;}
+				print "<div id=\"checkImage$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" .  BOX_OPACITY . ";  \"></div>";
+
+		}
+		else if ($btid == 3 || $btid == 4) //text or number
+		{
+			$maxlength = "maxlength=\"1\"";
+
+			if ($btid == 4)
+			{
+				if (!is_numeric($val)) $val = "";
+			}
+
+			$val = htmlspecialchars($val);
+	
+			print "<div id=\"textImage$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: " . BOX_BACKGROUND_COLOUR . "; text-align:center; font-weight:bold;\">$val</div>";
+		}
+		else if ($btid == 6 || $btid == 5)
+		{
+			$val = htmlspecialchars($val);
+		
+			print "<div id=\"textImage$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: " . BOX_BACKGROUND_COLOUR . "; text-align:center; font-weight:bold;\">$val</div>";
+
+
+		}
+	}
+
+
+}
 
 
 $fid = "";
@@ -129,9 +237,16 @@ if (isset($_GET['var']))
 
 
 //show content
+//
+//
 print "<div id=\"content\">";
-	print "<div style=\"position:relative;\"><img src=\"showpage.php?pid=$pid&amp;fid=$fid\" style=\"width:800px;\" alt=\"Image of page $pid, form $fid\" />";
-print "</div></div>";
+		print "<div style=\"position:relative;\"><img src=\"showpage.php?pid=$pid&amp;fid=$fid\" style=\"width:" . DISPLAY_PAGE_WIDTH . "px;\" alt=\"" . T_("Image of page") . " $pid, " . T_("form") . " $fid\" />";
+print "<div id=\"overlay\">";
+bgidtocss((PAGE_WIDTH/DISPLAY_PAGE_WIDTH),$fid,$pid);
+	print "</div>";
+	print "</div>";
+	print "</div>";
+
 
 //show list of bgid for this fid
 print "<div id=\"header\">";
@@ -145,6 +260,20 @@ print "<div id=\"header\">";
 		<?php echo T_("Page:"); ?> <input type="text" size="4" name="pid" value="<?php echo $pid ?>"/>
 		<input type="submit"/></div>
 	</form>
+
+  <p>
+  <script type="text/javascript">
+  function toggleoverlay() {
+      var x = document.getElementById('overlay');
+      if (x.style.display === 'none') {
+          x.style.display = 'block';
+      } else {
+          x.style.display = 'none';
+      }
+}
+  </script>
+    <button onclick="toggleoverlay()"><?php echo T_("Toggle overlay");?></button>
+</p>
 
 <?php
 
