@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: queXF\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-09 12:17+1000\n"
+"POT-Creation-Date: 2017-03-21 10:11+1100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Adam Zammit <adam.zammit@acspri.org.au>\n"
 "Language-Team: \n"
@@ -16,23 +16,47 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: review.php:81
+#: upload/index.php:32
+msgid "Upload forms"
+msgstr ""
+
+#: upload/index.php:39
+msgid "Upload your forms here"
+msgstr ""
+
+#: upload/index.php:47
+msgid "Error, the scans directory is not writeable."
+msgstr ""
+
+#: review.php:192
 msgid "Review Form"
 msgstr ""
 
-#: review.php:140 client/index.php:56
+#: review.php:243 verifyjs.php:1349
+msgid "Image of page"
+msgstr ""
+
+#: review.php:243 verifyjs.php:1349
+msgid "form"
+msgstr ""
+
+#: review.php:258 client/index.php:56
 msgid "Form:"
 msgstr ""
 
-#: review.php:141 client/index.php:57
+#: review.php:259 client/index.php:57
 msgid "Variable:"
 msgstr ""
 
-#: review.php:142 client/index.php:58
+#: review.php:260 client/index.php:58
 msgid "Page:"
 msgstr ""
 
-#: functions/functions.database.php:136
+#: review.php:275
+msgid "Toggle overlay"
+msgstr ""
+
+#: functions/functions.database.php:128
 msgid "ERROR: Multiple forms assigned, please see a technical officer"
 msgstr ""
 
@@ -48,7 +72,7 @@ msgstr ""
 msgid "Failed to import as no pages were detected"
 msgstr ""
 
-#: functions/functions.import.php:690 admin/index.php:58
+#: functions/functions.import.php:690 admin/index.php:59
 msgid "Importing"
 msgstr ""
 
@@ -93,12 +117,16 @@ msgstr ""
 msgid "File already in database"
 msgstr ""
 
-#: functions/functions.output.php:135 functions/functions.output.php:145
+#: functions/functions.output.php:180
+msgid "Json RPC Error: "
+msgstr ""
+
+#: functions/functions.output.php:250 functions/functions.output.php:260
 msgid "XML RPC Error: "
 msgstr ""
 
-#: functions/functions.output.php:198 functions/functions.output.php:467
-#: functions/functions.output.php:1024
+#: functions/functions.output.php:313 functions/functions.output.php:582
+#: functions/functions.output.php:1139
 msgid "unverified"
 msgstr ""
 
@@ -131,113 +159,113 @@ msgstr ""
 msgid "Please log in"
 msgstr ""
 
-#: verifyjs.php:329 verifyjs.php:444
+#: verifyjs.php:385 verifyjs.php:500
 msgid "Verify: No more work"
 msgstr ""
 
-#: verifyjs.php:330 verifyjs.php:445
+#: verifyjs.php:386 verifyjs.php:501
 msgid "NO MORE WORK"
 msgstr ""
 
-#: verifyjs.php:331 verifyjs.php:446
+#: verifyjs.php:387 verifyjs.php:502
 msgid "Check for more work"
 msgstr ""
 
-#: verifyjs.php:345
+#: verifyjs.php:401
 msgid "Verify: Assign form"
 msgstr ""
 
-#: verifyjs.php:347
+#: verifyjs.php:403
 msgid "There is no form currently assigned to you"
 msgstr ""
 
-#: verifyjs.php:349
+#: verifyjs.php:405
 msgid "Assign next form"
 msgstr ""
 
-#: verifyjs.php:352
+#: verifyjs.php:408
 msgid "Assigning next form: Please wait..."
 msgstr ""
 
-#: verifyjs.php:396 admin/listpagenotes.php:56 admin/performance.php:66
+#: verifyjs.php:452 admin/listpagenotes.php:56 admin/performance.php:66
 #: admin/listforms.php:77
 msgid "Operator"
 msgstr ""
 
-#: verifyjs.php:396 admin/performance.php:66 admin/performance.php:104
+#: verifyjs.php:452 admin/performance.php:66 admin/performance.php:104
 msgid "Completed Forms"
 msgstr ""
 
-#: verifyjs.php:396 admin/performance.php:66 admin/performance.php:104
+#: verifyjs.php:452 admin/performance.php:66 admin/performance.php:104
 msgid "Completions Per Hour"
 msgstr ""
 
-#: verifyjs.php:396 admin/performance.php:66 admin/performance.php:104
+#: verifyjs.php:452 admin/performance.php:66 admin/performance.php:104
 msgid "Pages Per Hour"
 msgstr ""
 
-#: verifyjs.php:398
+#: verifyjs.php:454
 msgid "Remain to verify"
 msgstr ""
 
-#: verifyjs.php:603
+#: verifyjs.php:659
 msgid "Verify: Done"
 msgstr ""
 
-#: verifyjs.php:604 verifyjs.php:1265
+#: verifyjs.php:660 verifyjs.php:1327
 msgid "The required fields have been filled"
 msgstr ""
 
-#: verifyjs.php:606 verifyjs.php:1267
+#: verifyjs.php:662 verifyjs.php:1329
 msgid "Submit completed form to database"
 msgstr ""
 
-#: verifyjs.php:608 verifyjs.php:1268
+#: verifyjs.php:664 verifyjs.php:1330
 msgid "Review all questions again"
 msgstr ""
 
-#: verifyjs.php:609 verifyjs.php:1269
+#: verifyjs.php:665 verifyjs.php:1331
 msgid "Clear all entered data and review again"
 msgstr ""
 
-#: verifyjs.php:611 verifyjs.php:1272
+#: verifyjs.php:667 verifyjs.php:1334
 msgid "Submitting: Please wait..."
 msgstr ""
 
-#: verifyjs.php:627 admin/limesurvey.php:88 admin/icrtrain.php:405
+#: verifyjs.php:683 admin/limesurvey.php:88 admin/icrtrain.php:405
 msgid "Verifier"
 msgstr ""
 
-#: verifyjs.php:1282
+#: verifyjs.php:1344
 msgid "Page is missing from scan"
 msgstr ""
 
-#: verifyjs.php:1287
-msgid "Image of page"
-msgstr ""
-
-#: verifyjs.php:1287
-msgid "form"
-msgstr ""
-
-#: verifyjs.php:1299
+#: verifyjs.php:1361
 msgid "Centre Page"
 msgstr ""
 
-#: verifyjs.php:1300
+#: verifyjs.php:1362
 msgid "Accept page"
 msgstr ""
 
-#: verifyjs.php:1302
+#: verifyjs.php:1364
 msgid "Loading panel..."
 msgstr ""
 
-#: verifyjs.php:1302
+#: verifyjs.php:1364
 msgid "Error, try with Firefox"
 msgstr ""
 
+#: verifyjs.php:1375
+msgid "Assign to supervisor"
+msgstr ""
+
+#: verifyjs.php:1388
+msgid "Refer back to regular verifier"
+msgstr ""
+
 #: admin/limesurvey.php:31 admin/limesurvey.php:101 admin/index.php:47
-msgid "queXS and Limesurvey integration"
+msgid "Limesurvey integration"
 msgstr ""
 
 #: admin/limesurvey.php:42 admin/listforms.php:75 admin/touchup.php:83
@@ -247,8 +275,8 @@ msgstr ""
 
 #: admin/limesurvey.php:67
 msgid ""
-"RPC Server URL (example: http://user:password@localhost/quexs/include/"
-"limesurvey/admin/remotecontrol.php)"
+"RPC Server URL (example: https://localhost/limesurvey/index.php/admin/"
+"remotecontrol)"
 msgstr ""
 
 #: admin/limesurvey.php:68
@@ -466,7 +494,7 @@ msgstr ""
 msgid "Delete selected forms"
 msgstr ""
 
-#: admin/progress.php:33 admin/index.php:70
+#: admin/progress.php:33 admin/index.php:71
 msgid "Progress"
 msgstr ""
 
@@ -547,7 +575,7 @@ msgstr ""
 msgid "Outcome of last process run (if any)"
 msgstr ""
 
-#: admin/testconfig.php:10 admin/index.php:78
+#: admin/testconfig.php:10 admin/index.php:79
 msgid "Test configuration"
 msgstr ""
 
@@ -605,59 +633,62 @@ msgstr ""
 msgid "Found GhostScript version"
 msgstr ""
 
-#: admin/testconfig.php:79
-msgid ""
-"This version of GhostScript has a bug that makes it incompatible with queXF"
-msgstr ""
-
-#: admin/testconfig.php:85
+#: admin/testconfig.php:80
 msgid ""
 " exists but can not execute it. Please make sure you are pointing to the "
 "executable file, not just the directory of Ghostscript"
 msgstr ""
 
-#: admin/testconfig.php:89
+#: admin/testconfig.php:84
 msgid "Could not find GhostScript in path: "
 msgstr ""
 
-#: admin/testconfig.php:89
+#: admin/testconfig.php:84
 msgid ""
 "Please modify config.inc.php, GS_BIN to point to the gs executable. Also "
 "please make sure you are pointing to the executable file, not just the "
 "directory of Ghostscript"
 msgstr ""
 
-#: admin/testconfig.php:95
+#: admin/testconfig.php:90
 msgid "Images directory writeable"
 msgstr ""
 
-#: admin/testconfig.php:99
+#: admin/testconfig.php:94
 msgid "Images directory NOT writeable"
 msgstr ""
 
-#: admin/testconfig.php:108
+#: admin/testconfig.php:100
+msgid "Scans upload directory writeable"
+msgstr ""
+
+#: admin/testconfig.php:104
+msgid "Scans upload directory NOT writeable"
+msgstr ""
+
+#: admin/testconfig.php:114
 msgid "Found Tesseract version"
 msgstr ""
 
-#: admin/testconfig.php:110
+#: admin/testconfig.php:116
 msgid "Could not find Tesseract in path: "
 msgstr ""
 
-#: admin/testconfig.php:110
+#: admin/testconfig.php:116
 msgid ""
 "Please modify config.inc.php, TESSERACT_BIN to point to the tesseract "
 "executable or disable OCR by changing OCR_ENABLED to false"
 msgstr ""
 
-#: admin/testconfig.php:118
+#: admin/testconfig.php:124
 msgid "FAILED"
 msgstr ""
 
-#: admin/testconfig.php:122
+#: admin/testconfig.php:128
 msgid "Passed Configuration Test"
 msgstr ""
 
-#: admin/outputunverified.php:67 admin/index.php:68
+#: admin/outputunverified.php:67 admin/index.php:69
 msgid "Output unverified data"
 msgstr ""
 
@@ -883,6 +914,16 @@ msgstr ""
 msgid "ICR KB"
 msgstr ""
 
+#: admin/supervisorquestionnaire.php:106 admin/supervisorquestionnaire.php:229
+msgid "Assign supervisor to questionnaire"
+msgstr ""
+
+#: admin/supervisorquestionnaire.php:108
+msgid ""
+"If supervisor(s) is/are assigned to a questionnaire - operators will be able "
+"to assign their current form to a supervisor to verify and move on."
+msgstr ""
+
 #: admin/output.php:73
 msgid "Output data"
 msgstr ""
@@ -972,11 +1013,11 @@ msgstr ""
 msgid "Enter the description of the client to add:"
 msgstr ""
 
-#: admin/pagesmissing.php:64 admin/index.php:65
+#: admin/pagesmissing.php:64 admin/index.php:66
 msgid "Pages missing from scan"
 msgstr ""
 
-#: admin/pagesmissing.php:67 admin/index.php:66
+#: admin/pagesmissing.php:67 admin/index.php:67
 msgid "Handle undetected pages"
 msgstr ""
 
@@ -1008,12 +1049,12 @@ msgstr ""
 msgid "Page setup ENABLED (click to disable)"
 msgstr ""
 
-#: admin/pagesetup.php:437 admin/index.php:77
+#: admin/pagesetup.php:437 admin/index.php:78
 msgid "Page setup"
 msgstr ""
 
 #: admin/import.directory.php:47 admin/import.directory.php:68
-#: admin/index.php:59
+#: admin/index.php:60
 msgid "Import a directory of PDF files"
 msgstr ""
 
@@ -1109,76 +1150,80 @@ msgstr ""
 msgid "Assign forms to operators"
 msgstr ""
 
-#: admin/index.php:52
-msgid "ICR"
+#: admin/index.php:51
+msgid "Assign supervisors to forms"
 msgstr ""
 
 #: admin/index.php:53
-msgid "Train ICR"
+msgid "ICR"
 msgstr ""
 
 #: admin/index.php:54
-msgid "Monitor ICR training process"
+msgid "Train ICR"
 msgstr ""
 
 #: admin/index.php:55
+msgid "Monitor ICR training process"
+msgstr ""
+
+#: admin/index.php:56
 msgid "Import and Export ICR KB"
 msgstr ""
 
-#: admin/index.php:56 admin/icrassign.php:97 admin/icrassign.php:228
+#: admin/index.php:57 admin/icrassign.php:97 admin/icrassign.php:228
 #: admin/icrassign.php:242
 msgid "Assign ICR KB to questionnaire"
 msgstr ""
 
-#: admin/index.php:60
+#: admin/index.php:61
 msgid "Successfully imported files"
 msgstr ""
 
-#: admin/index.php:61
+#: admin/index.php:62
 msgid "Failed imported files"
 msgstr ""
 
-#: admin/index.php:62
+#: admin/index.php:63
 msgid "Duplicate forms"
 msgstr ""
 
-#: admin/index.php:63
+#: admin/index.php:64
 msgid "Reverify forms"
 msgstr ""
 
-#: admin/index.php:64
+#: admin/index.php:65
 msgid "List page notes"
 msgstr ""
 
-#: admin/index.php:67
+#: admin/index.php:68
 msgid "Output"
 msgstr ""
 
-#: admin/index.php:69
+#: admin/index.php:70
 msgid "Output data/ddi"
 msgstr ""
 
-#: admin/index.php:71
+#: admin/index.php:72
 msgid "Display progress of form verification"
 msgstr ""
 
-#: admin/index.php:72
+#: admin/index.php:73
 msgid "Display performance of verifiers (Completions per hour)"
 msgstr ""
 
-#: admin/index.php:73
+#: admin/index.php:74
 msgid "Clients"
 msgstr ""
 
-#: admin/index.php:74
+#: admin/index.php:75
 msgid "Add clients"
 msgstr ""
 
-#: admin/index.php:75
+#: admin/index.php:76
 msgid "Assign clients to forms"
 msgstr ""
 
-#: admin/index.php:76
+#: admin/index.php:77
 msgid "System setup"
 msgstr ""
 
@@ -1359,6 +1404,14 @@ msgstr ""
 
 #: index.php:32
 msgid "Review a form"
+msgstr ""
+
+#: index.php:33
+msgid "Upload scanned forms (PDF)"
+msgstr ""
+
+#: index.php:34
+msgid "Administer queXF"
 msgstr ""
 
 #: db.inc.php:32
