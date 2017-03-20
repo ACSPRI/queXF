@@ -1387,7 +1387,7 @@ function import_directory($dir)
 		while (false !== ($file = readdir($handle))) {
 			if ($file != "." && $file != ".." && substr($file,-4) != "done")
 			{
-				if (substr($file,-3) == "pdf")
+				if (strtolower(substr($file,-3)) == "pdf")
 				{
 					//print "<p>$file</p>";
 			                $r = import("$dir/$file");

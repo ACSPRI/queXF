@@ -68,7 +68,7 @@ while (!is_process_killed($process_id)) //check if process killed every $sleepin
 			if (is_process_killed($process_id)){break;}
 			if ($file != "." && $file != ".." && substr($file,-4) != "done")
 			{
-				if (substr($file,-3) == "pdf")
+				if (strtolower(substr($file,-3)) == "pdf")
 				{
 			                $r = import("$dir/$file");
 					//unlink($file);
