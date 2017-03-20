@@ -28,12 +28,12 @@ include_once("../db.inc.php");
 include("../functions/functions.database.php");
 include("../functions/functions.xhtml.php");
 
-xhtml_head(T_("queXS and Limesurvey integration"),true,array("../css/table.css"));
+xhtml_head(T_("Limesurvey integration"),true,array("../css/table.css"));
 
 if (isset($_GET['fid']))
 {
 	include_once("../functions/functions.output.php");
-	uploadrpc(intval($_GET['fid']));
+	uploadrpcJson(intval($_GET['fid']));
 }
 
 			
@@ -64,7 +64,7 @@ if (isset($_GET['qid']))
 
 	print "<h2>" . $q['description'] . "</h2>";
 	print "<form action='?qid=$qid' method='post'>";
-	print "<p><label for='rpc_server_url'>" . T_("RPC Server URL (example: http://user:password@localhost/quexs/include/limesurvey/admin/remotecontrol.php)") . "</label> <input id='rpc_server_url' name='rpc_server_url' type='text' value='{$q['rpc_server_url']}' size='100'/></p>";
+	print "<p><label for='rpc_server_url'>" . T_("RPC Server URL (example: https://localhost/limesurvey/index.php/admin/remotecontrol)") . "</label> <input id='rpc_server_url' name='rpc_server_url' type='text' value='{$q['rpc_server_url']}' size='100'/></p>";
 	print "<p><label for='rpc_username'>" . T_("RPC Username") . "</label> <input id='rpc_username' name='rpc_username' type='text' value='{$q['rpc_username']}'/></p>";
 	print "<p><label for='rpc_password'>" . T_("RPC Password") . "</label> <input id='rpc_password' name='rpc_password' type='text' value='{$q['rpc_password']}'/></p>";
 	print "<p><label for='limesurvey_sid'>" . T_("Limesurvey Survey ID") . "</label> <input id='limesurvey_sid' name='limesurvey_sid' type='text' value='{$q['limesurvey_sid']}'/></p>";
@@ -98,7 +98,7 @@ else
 
 	foreach($qs as $q)
 	{
-		print "<a href=\"?qid={$q['qid']}\">". T_("queXS and Limesurvey integration") . ": {$q['description']}</a>";
+		print "<a href=\"?qid={$q['qid']}\">". T_("Limesurvey integration") . ": {$q['description']}</a>";
 		print "<br/>";
 	}
 

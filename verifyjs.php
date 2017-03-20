@@ -353,7 +353,7 @@ else if (isset($_POST['complete']) && isset($_SESSION['boxes'])) {
 	{
 		//upload form via RPC
 		include_once("functions/functions.output.php");
-		uploadrpc($fid);
+		uploadrpcJson($fid);
 	}
 	
 	$fid = false;

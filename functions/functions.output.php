@@ -69,6 +69,119 @@ function csv($fields = array(), $delimiter = ',', $enclosure = '"')
     return $str;
 }
 
+/**
+ * Upload a data record from the given fid to the Limesurvey JSON RPC
+ * 
+ * @param int $fid The formid to upload
+ * 
+ * @return
+ * @author Benedickt Wurz <benedikt.wurz@gmx.net>
+ * @since  2017-02-24
+ */
+
+function uploadrpcJson($fid) {
+
+  global $db;
+
+  //get url, qid
+  $sql = "SELECT q.rpc_server_url,q.rpc_username,q.rpc_password,f.qid,q.limesurvey_sid
+           FROM forms as f, questionnaires as q
+           WHERE f.fid = '$fid'
+           AND f.qid = q.qid";
+
+  $rs = $db->GetRow($sql);
+
+  if (!empty($rs['rpc_server_url'])) {
+   $url = $rs['rpc_server_url'];
+   $qid = $rs['qid'];
+   $surveyid = $rs['limesurvey_sid'];
+
+   include_once(dirname(__FILE__) . "/../include/JsonRPCClient.php");
+
+   //formid not recognised by limesurvey
+   unset($assoc['formid']);
+   unset($assoc['rpc_id']);
+   unset($assoc['filename']);
+
+   // create Session ID
+   $client = new  \org\jsonrpcphp\JsonRPCClient($url, false);
+
+   $sessionKey = $client->get_session_key($rs['rpc_username'],$rs['rpc_password']);
+
+
+   // get list from all questions
+   $questionResult = $client->list_questions($sessionKey, $surveyid);
+
+   $qidmain = array();
+
+   foreach ($questionResult as $data) {
+     if ($data['parent_qid'] == 0) {
+       $qidmain[$data['qid']] = $data;
+       //$qid[$data['qid']]=
+     }
+   }
+
+   //var_dump($qidmain);
+   //return true;
+
+   // build translate array
+   foreach ($questionResult as $data) {
+     if ($data['parent_qid'] != 0) {
+      $pqid = $data['parent_qid'];
+
+      if ($qidmain[$pqid]['type'] == 'M') {
+        $que[$data['title']] = $data['sid'] . 'X' . $data['gid'] . 'X' . $data['parent_qid'] . $data['title'];
+      } else {
+        $que[$qidmain[$pqid]['title'] . '_' . $data['title']] = $data['sid'] . 'X' . $qidmain[$pqid]['gid'] . 'X' . $qidmain[$pqid]['qid'] . $data['title'];
+      }
+     } else {
+        $que[$data['title']] = $data['sid'] . 'X' . $data['gid'] . 'X' . $data['qid'];
+     }
+    }
+   
+    //var_dump($que);
+    // get data
+    list($head, $data) = outputdatacsv($qid, $fid, false, false, true);
+    $assoc = array();
+
+
+    for ($i = 0; $i < count($head); $i++) {
+         //concat if same variable name
+         if (isset($assoc[$head[$i]])) {
+             $assoc[$head[$i]] .= $data[$i];
+             $data[$que[$head[$i]]] .= $data[$i];
+         } else {
+             $assoc[$head[$i]] = $data[$i];
+             $data[$que[$head[$i]]] = $data[$i];
+         }
+     }
+
+     //make sure token won't interfere with normal operation of questionnaire
+     $data['token'] = "queXF-" . $fid;
+
+     //var_dump($data);
+     // send data to lime
+     $result = $client->add_response($sessionKey, $surveyid, $data);
+
+     #return true;
+     // // error handling
+     if (is_numeric($result)) {
+         //echo 'OK: got '.$result;
+         //update forms table with rpc_id
+         $sql = "UPDATE forms
+                 SET rpc_id = '" . $result . "'
+                 WHERE fid = '$fid'";
+
+         $db->Execute($sql);
+     } else {
+         var_dump($result);
+         echo T_("Json RPC Error: ") . $result;
+     }
+     // exit session
+     $client->release_session_key($sessionKey);
+  }
+}
+
 
 /**
  * Upload a data record from the given fid to the RPC server
