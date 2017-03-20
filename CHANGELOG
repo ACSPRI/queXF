@@ -1,3 +1,27 @@
+queXS 1.19.0 - Changes since 1.18.2
+
+*New feature: Refer to supervisor function
+*New feature: Review of results overlay function
+*New feature: Web based upload function
+
+*Directory changes required:
+
+mkdir scans
+chown www-data:www-data scans
+Use .htaccess to protect the uploads and scans directory
+
+Example .htaccess file:
+order deny,allow
+deny from all
+
+*Database changes required:
+
+CREATE TABLE IF NOT EXISTS `supervisorquestionnaire` (
+  `vid` smallint(5) unsigned NOT NULL,
+  `qid` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`vid`,`qid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 queXF 1.18.2 - Changes since 1.18.1
 
 *Added support for PHP 7 and MySQL 5.7
