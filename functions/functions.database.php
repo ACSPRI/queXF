@@ -108,19 +108,11 @@ function assign_to($vid)
 
 	$db->StartTrans();
 
-/*
-	$sql = "SELECT f.fid as fid
-		FROM forms as f
-		WHERE f.done = 0 and f.assigned_vid is NULL
-		ORDER BY f.fid ASC 
-		LIMIT 1";
- */
-
 	//only assign a form if none currently assigned
 	//
 	$sql = "SELECT f.fid as fid
 		FROM forms as f
-		WHERE f.done = 0
+		WHERE f.done IN (0,2)
 		AND f.assigned_vid = '$vid'";
 
 	$rs = $db->GetAll($sql);
@@ -138,44 +130,59 @@ function assign_to($vid)
 		}
 	}
 
+  $fid = false;
 
-	//only get forms that are assigned to this verifier
+	//check for supervisor forms first
 
 	$sql = "SELECT f.fid AS fid
 		FROM forms AS f
-		JOIN verifierquestionnaire AS v ON (v.vid = '$vid' AND f.qid = v.qid) ";
+		JOIN supervisorquestionnaire AS v ON (v.vid = '$vid' AND f.qid = v.qid) ";
 
-	if (!MISSING_PAGE_ASSIGN){
-		$sql .= " LEFT JOIN missingpages AS m ON (f.fid = m.fid) ";
-	}
-
-	$sql .= " WHERE f.done =0
+	$sql .= " WHERE f.done =2
 		AND f.assigned_vid IS NULL ";
 
-	if (!MISSING_PAGE_ASSIGN) {
-		$sql .= " AND m.fid IS NULL ";
-	}
-
-	if (!VERIFY_WITH_MISSING_PAGES)
-	{
-		$sql .= "AND NOT EXISTS(
-				SELECT p.pid
-				FROM pages AS p
-				WHERE  p.qid = f.qid
-				AND NOT EXISTS 
-				(SELECT fp.fid 
-					FROM formpages AS fp 
-					WHERE fp.fid = f.fid 
-					AND fp.pid = p.pid))";
-	}
-
-        $sql .= " ORDER BY f.fid ASC
-		LIMIT 1";
-
+        $sql .= " ORDER BY f.fid ASC LIMIT 1";
 
 	$rs = $db->GetRow($sql);
 
-	$fid = false;
+  if (empty($rs))
+	{
+    //only get forms that are assigned to this verifier
+
+    $sql = "SELECT f.fid AS fid
+      FROM forms AS f
+      JOIN verifierquestionnaire AS v ON (v.vid = '$vid' AND f.qid = v.qid) ";
+
+    if (!MISSING_PAGE_ASSIGN){
+      $sql .= " LEFT JOIN missingpages AS m ON (f.fid = m.fid) ";
+    }
+
+    $sql .= " WHERE f.done =0
+      AND f.assigned_vid IS NULL ";
+
+    if (!MISSING_PAGE_ASSIGN) {
+      $sql .= " AND m.fid IS NULL ";
+    }
+
+    if (!VERIFY_WITH_MISSING_PAGES)
+    {
+      $sql .= "AND NOT EXISTS(
+          SELECT p.pid
+          FROM pages AS p
+          WHERE  p.qid = f.qid
+          AND NOT EXISTS 
+          (SELECT fp.fid 
+            FROM formpages AS fp 
+            WHERE fp.fid = f.fid 
+            AND fp.pid = p.pid))";
+    }
+
+          $sql .= " ORDER BY f.fid ASC
+      LIMIT 1";
+
+
+    $rs = $db->GetRow($sql);
+  }
 
 	if (!empty($rs))
 	{
@@ -262,7 +269,7 @@ function get_fid($vid = "")
 	$sql = "SELECT fid
 		FROM forms
 		WHERE assigned_vid = '$vid'
-		AND done = 0";
+		AND done IN (0,2)";
 
 	$rs = $db->GetRow($sql);
 

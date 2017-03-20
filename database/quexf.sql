@@ -531,6 +531,18 @@ CREATE TABLE IF NOT EXISTS `sessions2` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `supervisorquestoinnaire`
+--
+
+CREATE TABLE IF NOT EXISTS `supervisorquestionnaire` (
+  `vid` smallint(5) unsigned NOT NULL,
+  `qid` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`vid`,`qid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `verifierquestionnaire`
 --
 

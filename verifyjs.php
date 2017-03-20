@@ -80,7 +80,7 @@ function bgidtocss($zoom = 1,$fid,$pid)
 	if ($row['width'] == 0) $row['width'] = PAGE_WIDTH;
 	if ($row['height'] == 0) $row['height'] = PAGE_HEIGHT;
 
-	print "<form method=\"post\" action=\"{$_SERVER['PHP_SELF']}\">";
+	print "<form id=\"mainform\" method=\"post\" action=\"{$_SERVER['PHP_SELF']}\">";
 
 	foreach ($boxgroups as $boxgroup)
 	{
@@ -196,8 +196,65 @@ if (!empty($fid))
 	$description = $qid_desc['description'];
 }
 
-if (isset($_POST['complete']) && isset($_SESSION['boxes']))
-{
+if (isset($_POST['supervisor'])) {
+
+	$db->StartTrans();
+
+  $sql = "UPDATE forms
+		SET done = 2, assigned_vid = NULL, assigned = NULL, completed = NULL
+		WHERE assigned_vid = '$vid'
+		AND fid = '$fid'";
+
+	$db->Execute($sql);
+
+	unset($_SESSION['boxgroups']);
+	unset($_SESSION['pages']);
+	unset($_SESSION['boxes']);
+	session_unset();
+
+	$sql = "UPDATE verifiers
+		SET currentfid = NULL
+		WHERE vid = '$vid'";
+
+	//print "$sql</br>";
+	$db->Execute($sql);
+
+	$db->CompleteTrans();
+
+  $fid = false;
+
+}
+else if (isset($_POST['supervisorreturn'])) {
+
+  $db->StartTrans();
+
+  $sql = "UPDATE forms
+		SET done = 0, assigned_vid = NULL, assigned = NULL, completed = NULL
+		WHERE assigned_vid = '$vid'
+		AND fid = '$fid'";
+
+	$db->Execute($sql);
+
+	unset($_SESSION['boxgroups']);
+	unset($_SESSION['pages']);
+	unset($_SESSION['boxes']);
+	session_unset();
+
+	$sql = "UPDATE verifiers
+		SET currentfid = NULL
+		WHERE vid = '$vid'";
+
+	//print "$sql</br>";
+	$db->Execute($sql);
+
+	$db->CompleteTrans();
+
+  $fid = false;
+
+
+
+}
+else if (isset($_POST['complete']) && isset($_SESSION['boxes'])) {
 
 	
 	foreach($_SESSION['boxes'] as $key => $box)
@@ -267,8 +324,7 @@ if (isset($_POST['complete']) && isset($_SESSION['boxes']))
   $sql = "UPDATE forms
 		SET done = 1, assigned = FROM_UNIXTIME({$_SESSION['assigned']}), completed = NOW()
 		WHERE assigned_vid = '$vid'
-		AND fid = '$fid'
-		AND done = 0";
+		AND fid = '$fid'";
 
 	$db->Execute($sql);
 
@@ -369,7 +425,7 @@ if ($fid == false)
 		$sql = "SELECT count(*) as rem
 			FROM forms
 			WHERE qid = '$pqid'
-			AND done = 0";
+			AND done IN (0,2)";
 
 		$remain = $db->GetOne($sql);
 
@@ -712,7 +768,7 @@ function allDone()
                 document.getElementById('bgid' + x ).checked = 'checked';
                 document.getElementById('bgid' + x ).val = '1';
         }
-        document.forms[0].submit();
+        document.forms.namedItem("mainform").submit();
 }
 
 
@@ -773,7 +829,7 @@ function nextTask()
 	if (done == 0)
 	{
 		//if (pagedone == 1)
-			document.forms[0].submit();
+			document.forms.namedItem("mainform").submit();
 		//else
 		//	pagedone = 1;
 	}
@@ -1239,6 +1295,12 @@ window.onload = init;
   width : 100%;
   height : 200px;
 }
+
+#supervisor {
+  width : 100%;
+  height : 200px;
+}
+
 .embeddedobject {
   width:100%;
   height:100%;
@@ -1299,7 +1361,33 @@ else
 	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?pid=$pid&amp;fid=$fid&amp;centre=centre\">" . T_("Centre Page") . "</a></p>";
 	print "<p><a href=\"javascript:void(0)\" onclick=\"allDone();\">" . T_("Accept page") . "</a></p>";
 
-	print "<div id='note'><object class='embeddedobject' id='mainobj' data='pagenote.php?pid=$pid&amp;fid=$fid&amp;vid=$vid' standby='" . T_("Loading panel...") . "' type='application/xhtml+xml'><div>" . T_("Error, try with Firefox") . "</div></object></div>";
+  print "<div id='note'><object class='embeddedobject' id='mainobj' data='pagenote.php?pid=$pid&amp;fid=$fid&amp;vid=$vid' standby='" . T_("Loading panel...") . "' type='application/xhtml+xml'><div>" . T_("Error, try with Firefox") . "</div></object></div>";
+
+  $sql = "SELECT count(*)
+          FROM supervisorquestionnaire
+          WHERE qid = $qid and vid != $vid";
+
+  $sq = $db->GetOne($sql);
+
+  if ($sq > 0) {
+    print "<div id='supervisor'>";
+    print "<form method='post' action='?' name='formsuper' id='formsuper'>";
+    print "<input type=\"submit\" name=\"supervisor\" value=\"" . T_("Assign to supervisor") . "\"/>";
+    print "</form><div>";
+  }
+
+  $sql = "SELECT count(*)
+          FROM supervisorquestionnaire
+          WHERE qid = $qid and vid = $vid";
+
+  $sq = $db->GetOne($sql);
+
+  if ($sq > 0) {
+    print "<div id='supervisor'>";
+    print "<form method='post' action='?' name='formsuper' id='formsuper'>";
+    print "<input type=\"submit\" name=\"supervisorreturn\" value=\"" . T_("Refer back to regular verifier") . "\"/>";
+    print "</form><div>";
+  }
 	
 	foreach($_SESSION['boxgroups'] as $key => $val)
 	{
