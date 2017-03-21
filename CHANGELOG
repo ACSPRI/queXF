@@ -1,3 +1,9 @@
+queXS 1.19.1 - Changes since 1.19.0
+
+*New feature: Integration with newer version of Limesurvey (> 2.0) - Thanks Benedikt!
+
+*Fixed bug: Can't import PDF files with uppercase extension
+
 queXS 1.19.0 - Changes since 1.18.2
 
 *New feature: Refer to supervisor function
