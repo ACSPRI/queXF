@@ -35,9 +35,13 @@ if (isset($_FILES['form']))
 {
 	$a = true;
 	$filename = $_FILES['form']['tmp_name'];
+  $desc = $_POST['desc'];
+  $double_entry = 0;
+  if (isset($_POST['double_entry']))
+    $double_entry = 1;
 	$desc = $_POST['desc'];
 
-	$r = newquestionnaire($filename,$desc);
+	$r = newquestionnaire($filename,$desc,"pnggray",$double_entry);
 	
 	if (!is_array($r) && isset($_FILES['bandingxml']) && !empty($_FILES['bandingxml']['tmp_name']))
 	{
@@ -100,6 +104,7 @@ print "<li>" . T_("300DPI Resolution") . "</li></ul></li></ul>";
 	<p><?php echo T_("Select PDF file to create form from"); ?>: <input name="form" type="file" /></p>
 	<p><?php echo T_("(Optional): Select banding XML file"); ?>: <input name="bandingxml" type="file" /></p>
 	<p><?php echo T_("Enter description of form"); ?>: <input name="desc" type="text"/><br/></p>
+	<p><?php echo T_("Double entry? (Two operators to verify each form)"); ?>: <input name="double_entry" type="checkbox"/><br/></p>
 	<p><input type="submit" value="<?php echo T_("Upload form"); ?>" /></p>
 </form>
 

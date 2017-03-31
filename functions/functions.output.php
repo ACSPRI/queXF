@@ -228,6 +228,7 @@ function uploadrpc($fid)
 		unset($assoc['formid']);
 		unset($assoc['rpc_id']);
 		unset($assoc['filename']);
+		unset($assoc['vstatus']);
 
 		//make sure token won't interfere with normal operation of questionnaire
 		$assoc['token'] = "queXF-" . $fid;
@@ -293,14 +294,19 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $retu
 	//get completed forms for this qid
 
 	if ($unverified)
-		$sql = "SELECT 0 AS vid, f.fid as fid, f.qid as qid, f.description as description, f.rpc_id
+    $sql = "SELECT 0 AS vid, f.fid as fid, f.qid as qid, f.description as description, f.rpc_id, 
+            ''" . T_("Unverified") . "' as vstatus
 			FROM forms as f
 			WHERE f.qid = '$qid'"; 
 	else
-		$sql = "SELECT f.assigned_vid AS vid, f.fid AS fid, f.assigned AS assigned, f.completed AS completed, f.qid AS qid, f.description AS description, f.rpc_id
+    $sql = "SELECT CASE WHEN done = 1 THEN f.assigned_vid ELSE f.assigned_vid2 END AS vid, f.fid AS fid, 
+                    CASE WHEN done = 1 THEN f.assigned ELSE f.assigned2 END AS assigned, 
+                    CASE WHEN done = 1 THEN f.completed ELSE f.completed2 END AS completed, 
+                    f.qid AS qid, f.description AS description, f.rpc_id, 
+                    CASE WHEN (done =1 AND assigned_vid IS NOT NULL and assigned_vid2 IS NOT NULL) THEN '".T_("Double") . "' ELSE '".T_("Single")."' END AS vstatus
       FROM forms AS f
       WHERE f.qid = '$qid'
-      AND done = 1 ";
+      AND done IN (1,3) ";
 
 	if ($fid != "")
 		$sql .= " AND f.fid = '$fid'";
@@ -354,6 +360,7 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $retu
 	$rv[] = "formid";
 	$rv[] = "rpc_id";
 	$rv[] = "filename";
+	$rv[] = "vstatus";
 
 	//print the header row
 	if (!$return)
@@ -521,6 +528,7 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $retu
 		$rr[] = $form['fid']; //print str_pad($form['fid'], 10, " ", STR_PAD_LEFT);
 		$rr[] = $form['rpc_id'];
 		$rr[] = $form['description'];
+		$rr[] = $form['vstatus'];
 
 		//print_r($rr);
 		if (!$return)
@@ -558,16 +566,20 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true,$unverif
 	$desc = $db->GetAssoc($sql);
 
 	//get completed forms for this qid
-
 	if ($unverified)
-		$sql = "SELECT 0 AS vid, f.fid as fid, f.qid as qid, f.description as description, f.rpc_id
+    $sql = "SELECT 0 AS vid, f.fid as fid, f.qid as qid, f.description as description, f.rpc_id, 
+            ''" . T_("Unverified") . "' as vstatus
 			FROM forms as f
 			WHERE f.qid = '$qid'"; 
 	else
-		$sql = "SELECT f.assigned_vid AS vid, f.fid AS fid, f.assigned AS assigned, f.completed AS completed, f.qid AS qid, f.description AS description, f.rpc_id
-			FROM forms AS f 
+    $sql = "SELECT CASE WHEN done = 1 THEN f.assigned_vid ELSE f.assigned_vid2 END AS vid, f.fid AS fid, 
+                    CASE WHEN done = 1 THEN f.assigned ELSE f.assigned2 END AS assigned, 
+                    CASE WHEN done = 1 THEN f.completed ELSE f.completed2 END AS completed, 
+                    f.qid AS qid, f.description AS description, f.rpc_id, 
+                    CASE WHEN (done =1 AND assigned_vid IS NOT NULL and assigned_vid2 IS NOT NULL) THEN '".T_("Double") . "' ELSE '".T_("Single")."' END AS vstatus
+      FROM forms AS f
       WHERE f.qid = '$qid'
-      AND done = 1 ";
+      AND done IN (1,3) ";
 
 	if ($fid != "")
 		$sql .= " AND f.fid = '$fid'";
@@ -665,6 +677,7 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true,$unverif
 			print str_pad($form['fid'], 10, " ", STR_PAD_LEFT);
       print str_pad($form['rpc_id'], 10, " ", STR_PAD_LEFT);
 			print str_pad($form['description'], 255, " ", STR_PAD_RIGHT);
+			print str_pad($form['vstatus'], 255, " ", STR_PAD_RIGHT);
 		}
 
 
@@ -1083,11 +1096,19 @@ function export_ddi($qid)
 
 	$nvar = variable_ddi($dom,10,"rpc_id","rpc_id",$startpos,"number");
 	$d->append_child($nvar);
+	$startpos += 10;
 	$nvlocations = $nvar->get_elements_by_tagname("location");     
 	foreach ($nvlocations as $nvlocation)
 		$nvlocation->set_attribute("width", "10");
 
 	$nvar = variable_ddi($dom,255,"filename","filename",$startpos,"number");
+	$d->append_child($nvar);
+	$startpos += 255;
+	$nvlocations = $nvar->get_elements_by_tagname("location");     
+	foreach ($nvlocations as $nvlocation)
+		$nvlocation->set_attribute("width", "255");
+
+	$nvar = variable_ddi($dom,255,"vstatus","vstatus",$startpos,"number");
 	$d->append_child($nvar);
 	$nvlocations = $nvar->get_elements_by_tagname("location");     
 	foreach ($nvlocations as $nvlocation)
@@ -1264,6 +1285,10 @@ function export_pspp($qid,$unverified = false)
 	$endpos = $startpos + 254;
 	echo "filename $startpos-$endpos (A)  ";
 
+  $startpos = $startpos + 255;
+	$endpos = $startpos + 254;
+	echo "vstatus $startpos-$endpos (A)  ";
+
 
 
 	echo " .\nVARIABLE LABELS ";
@@ -1292,7 +1317,7 @@ function export_pspp($qid,$unverified = false)
 			echo "$varname '$vardescription' ";
 		}
 	}
-	echo "/formid 'queXF Form ID' /rpc_id 'queXF RPC ID' /filename 'Original filename' .\n";
+	echo "/formid 'queXF Form ID' /rpc_id 'queXF RPC ID' /filename 'Original filename' /vstatus 'Verification status' .\n";
 
 	echo "VALUE LABELS ";
 

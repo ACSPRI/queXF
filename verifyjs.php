@@ -193,7 +193,8 @@ if (!empty($fid))
 {
 	$qid_desc = get_qid_description($fid);
 	$qid = $qid_desc['qid'];
-	$description = $qid_desc['description'];
+  $description = $qid_desc['description'];
+  $double_entry = $qid_desc['double_entry'];
 }
 
 if (isset($_POST['supervisor'])) {
@@ -321,14 +322,36 @@ else if (isset($_POST['complete']) && isset($_SESSION['boxes'])) {
 	//make sure worklog and update occurs at the same time
 	$db->StartTrans();
 
-  $sql = "UPDATE forms
-		SET done = 1, assigned = FROM_UNIXTIME({$_SESSION['assigned']}), completed = NOW()
-		WHERE assigned_vid = '$vid'
-		AND fid = '$fid'";
+  $dstatus = 1;
 
-	$db->Execute($sql);
+  if ($double_entry) {
+    $sql = "SELECT done
+            FROM forms
+            WHERE fid = '$fid'";
+  
+    $dstatus = $db->GetOne($sql);
+  }
 
-	unset($_SESSION['boxgroups']);
+  if ($dstatus == 1 || $dstatus == 3) { //not double entry or double entry second go
+    $sql = "UPDATE forms
+		  SET done = 1, assigned = FROM_UNIXTIME({$_SESSION['assigned']}), completed = NOW()
+  		WHERE assigned_vid = '$vid'
+  		AND fid = '$fid'"; 
+  } else if ($dstatus == 0) { //double entry, first go
+     $sql = "UPDATE forms
+      SET done = 3, 
+      assigned_vid = NULL,
+      assigned2 = FROM_UNIXTIME({$_SESSION['assigned']}), 
+      completed2 = NOW(),
+      assigned_vid2 = $vid
+  		WHERE assigned_vid = '$vid'
+  		AND fid = '$fid'";
+  } 
+
+  $db->Execute($sql);
+
+
+  unset($_SESSION['boxgroups']);
 	unset($_SESSION['pages']);
 	unset($_SESSION['boxes']);
 	session_unset();
@@ -342,20 +365,24 @@ else if (isset($_POST['complete']) && isset($_SESSION['boxes'])) {
 
 	$db->CompleteTrans();
 
-	//if XMLRPC is set - upload this form via XMLRPC
-	$sql = "SELECT rpc_server_url 
-		FROM questionnaires
-		WHERE qid = '$qid'";
+  //only do RPC on final verification
+  if ($dstatus == 1 || ($double_entry && $dstatus == 3)) {
 
-	$rpc = $db->GetRow($sql);
+    //if XMLRPC is set - upload this form via XMLRPC
+    $sql = "SELECT rpc_server_url 
+      FROM questionnaires
+      WHERE qid = '$qid'";
 
-	if (isset($rpc['rpc_server_url']) && !empty($rpc['rpc_server_url']))
-	{
-		//upload form via RPC
-		include_once("functions/functions.output.php");
-		uploadrpcJson($fid);
-	}
-	
+    $rpc = $db->GetRow($sql);
+
+    if (isset($rpc['rpc_server_url']) && !empty($rpc['rpc_server_url']))
+    {
+      //upload form via RPC
+      include_once("functions/functions.output.php");
+      uploadrpcJson($fid);
+    }
+  }
+
 	$fid = false;
 }
 
@@ -463,17 +490,29 @@ if ($fid == false)
 $qid_desc = get_qid_description($fid);
 $qid = $qid_desc['qid'];
 $description = $qid_desc['description'];
+$double_entry = $qid_desc['double_entry'];
 
 if (!isset($_SESSION['boxes'])) {
 	//nothing yet known about this form
-	
+
+  $ovid = 0;
+
+  $sql = "SELECT done,assigned_vid2
+          FROM forms
+          WHERE fid = $fid";
+  
+  $dstatus = $db->GetRow($sql);
+
+  if ($dstatus['done'] == 3)
+    $ovid = $dstatus['assigned_vid2'];
+
 	$sql = "SELECT b.bid as bid, b.tlx as tlx, b.tly as tly, b.brx as brx, b.bry as bry, b.pid as pid, bg.btid as btid, b.bgid as bgid, $fid as fid, bg.sortorder as sortorder, fb.filled, CASE WHEN d.fid IS NOT NULL THEN d.val ELSE c.val END as val
 		FROM boxes AS b
 		JOIN boxgroupstype as bg ON (bg.bgid = b.bgid AND bg.btid > 0)
     JOIN pages as p ON (p.pid = b.pid AND p.qid = '$qid')
     LEFT JOIN formboxes as fb ON (fb.bid = b.bid AND fb.fid = '$fid')
-		LEFT JOIN formboxverifychar AS c ON (c.fid = '$fid' AND c.vid = 0 AND c.bid = b.bid)
-		LEFT JOIN formboxverifytext AS d ON (d.fid = '$fid' AND d.vid = 0 AND d.bid = b.bid)
+		LEFT JOIN formboxverifychar AS c ON (c.fid = '$fid' AND c.vid = '$ovid' AND c.bid = b.bid)
+		LEFT JOIN formboxverifytext AS d ON (d.fid = '$fid' AND d.vid = '$ovid' AND d.bid = b.bid)
 		ORDER BY bg.sortorder ASC";
 
 	
@@ -494,7 +533,7 @@ if (!isset($_SESSION['boxes'])) {
 		GROUP BY b.pid
 		ORDER BY MIN(bg.sortorder) ASC";
 
-	$a = $db->GetAssoc($sql);
+  $a = $db->GetAssoc($sql);
 	if (empty($a)) 
 	{
     xhtml_head(T_("Verify: No more work"),true,false,false,"onload='document.form1.assign.focus();'");

@@ -137,7 +137,7 @@ function defaultpage($width,$height,$qid=0,$pid=0,$data="")
  *
  */
 
-function newquestionnaire($filename,$desc = "",$type="pnggray"){
+function newquestionnaire($filename,$desc = "",$type="pnggray",$double_entry){
 
 	global $db;
 
@@ -161,8 +161,8 @@ function newquestionnaire($filename,$desc = "",$type="pnggray"){
 
 	$db->StartTrans();
 
-	$sql = "INSERT INTO questionnaires (qid,description,sheets)
-		VALUES (NULL,'$desc',0)";
+	$sql = "INSERT INTO questionnaires (qid,description,sheets,double_entry)
+		VALUES (NULL,'$desc',0,$double_entry)";
 
 	$db->Execute($sql);
 

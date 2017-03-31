@@ -1,3 +1,9 @@
+
+ALTER TABLE `questionnaires` ADD `double_entry` TINYINT( 1 ) NOT NULL DEFAULT '0';
+ALTER TABLE `forms` ADD `assigned_vid2` SMALLINT( 5 ) NULL DEFAULT NULL ,
+ADD `assigned2` DATETIME NULL DEFAULT NULL ,
+ADD `completed2` DATETIME NULL DEFAULT NULL ;
+
 queXS 1.19.1 - Changes since 1.19.0
 
 *New feature: Integration with newer version of Limesurvey (> 2.0) - Thanks Benedikt!

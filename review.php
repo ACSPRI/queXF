@@ -51,7 +51,7 @@ function bgidtocss($zoom = 1,$fid,$pid)
 	
 	$row = $db->GetRow($sql);
 
-  $sql = "SELECT assigned_vid
+  $sql = "SELECT CASE WHEN done = 1 THEN assigned_vid ELSE assigned_vid2 END AS assigned_vid
           FROM forms
           WHERE fid = '$fid'";
 
@@ -276,6 +276,9 @@ print "<div id=\"header\">";
 </p>
 
 <?php
+
+//note here who verified and then allow for double entry if not already double 
+  //entered
 
 print "</div>";
 

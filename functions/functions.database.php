@@ -112,7 +112,7 @@ function assign_to($vid)
 	//
 	$sql = "SELECT f.fid as fid
 		FROM forms as f
-		WHERE f.done IN (0,2)
+		WHERE f.done IN (0,2,3)
 		AND f.assigned_vid = '$vid'";
 
 	$rs = $db->GetAll($sql);
@@ -157,8 +157,10 @@ function assign_to($vid)
       $sql .= " LEFT JOIN missingpages AS m ON (f.fid = m.fid) ";
     }
 
-    $sql .= " WHERE f.done =0
-      AND f.assigned_vid IS NULL ";
+    $sql .= " WHERE ((f.done =0
+      AND f.assigned_vid IS NULL) OR
+        (f.done = 3 AND f.assigned_vid IS NULL AND f.assigned_vid2 != '$vid')
+      ) ";
 
     if (!MISSING_PAGE_ASSIGN) {
       $sql .= " AND m.fid IS NULL ";
@@ -177,7 +179,7 @@ function assign_to($vid)
             AND fp.pid = p.pid))";
     }
 
-          $sql .= " ORDER BY f.fid ASC
+          $sql .= " ORDER BY f.done,f.fid ASC
       LIMIT 1";
 
 
@@ -269,7 +271,7 @@ function get_fid($vid = "")
 	$sql = "SELECT fid
 		FROM forms
 		WHERE assigned_vid = '$vid'
-		AND done IN (0,2)";
+		AND done IN (0,2,3)";
 
 	$rs = $db->GetRow($sql);
 
@@ -350,9 +352,10 @@ function get_qid_description($fid)
 {
 	global $db;
 
-	$sql = "SELECT qid,description
-		FROM `forms` 
-		WHERE fid = '$fid'";
+	$sql = "SELECT f.qid,f.description,q.double_entry
+		FROM `forms` as f, questionnaires as q 
+    WHERE f.fid = '$fid'
+    AND q.qid = f.qid";
 
 	$rs = $db->GetRow($sql);
 
