@@ -30,6 +30,12 @@ include("../functions/functions.xhtml.php");
 
 if (isset($_POST['submit']))
 {
+  $sql = "UPDATE processforms
+          SET allowanother = 0
+          WHERE 1";
+
+  $db->Execute($sql);
+
 	//submitted, now update database
 	foreach($_POST as $key => $val)
 	{
@@ -57,18 +63,20 @@ if ($status == 1)
 if ($status == 2)
 	print "<h1>" . T_("Forms not imported") . "</h1>";
 
-$sql = "SELECT pfid,filepath,filehash,date,status, CONCAT('<input type=\'radio\' value=\'1\' name=\'pfid', pfid, '\' ', CASE WHEN allowanother = '1' THEN 'checked=\'checked\'' ELSE '' END, '/> Yes <input type=\'radio\' value=\'0\' name=\'pfid', pfid, '\' ', CASE WHEN allowanother = '0' THEN 'checked=\'checked\'' ELSE '' END, '/> No') as allowanother
+$sql = "SELECT pfid,filepath,filehash,date,status, CONCAT('<input type=\'checkbox\' value=\'1\' name=\'pfid', pfid, '\' ', CASE WHEN allowanother = '1' THEN 'checked=\'checked\'' ELSE '' END, '/>' ) as allowanother
 	FROM processforms
 	WHERE status = $status
-	ORDER BY date ASC";
+	ORDER BY date DESC";
 
 $fs = $db->GetAll($sql);
 
 print "<form method='post' action=''>";
 
+print "<p><input name='status' type='hidden' id='status' value='$status'/><input name='submit' type='submit' value='" . T_("Save changes") . "'/></p>";
+
 xhtml_table($fs,array('filepath','filehash','date','allowanother'),array(T_('File'),T_('SHA1'),T_('Date'),T_('Allow import again?')));
 
-print "<p><input name='status' type='hidden' id='status' value='$status'/><input name='submit' type='submit' value='" . T_("Save changes") . "'/></p></form>";
+print "</form>";
 
 xhtml_foot();
 
