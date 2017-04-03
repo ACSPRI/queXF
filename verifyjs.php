@@ -452,7 +452,7 @@ if ($fid == false)
 		$sql = "SELECT count(*) as rem
 			FROM forms
 			WHERE qid = '$pqid'
-			AND done IN (0,2)";
+			AND done IN (0,2,3)";
 
 		$remain = $db->GetOne($sql);
 

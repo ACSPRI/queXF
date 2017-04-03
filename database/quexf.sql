@@ -223,7 +223,10 @@ CREATE TABLE IF NOT EXISTS `forms` (
   `rpc_id` int(10) unsigned DEFAULT NULL,
   `assigned` datetime DEFAULT NULL,
   `completed` datetime DEFAULT NULL,
-  PRIMARY KEY (`fid`),
+  `assigned_vid2` smallint(5) unsigned DEFAULT NULL,
+  `assigned2` datetime DEFAULT NULL,
+  `completed2` datetime DEFAULT NULL,
+PRIMARY KEY (`fid`),
   KEY `assigned_vid` (`assigned_vid`),
   KEY `done` (`done`),
   KEY `pfid` (`pfid`),
@@ -492,6 +495,7 @@ CREATE TABLE IF NOT EXISTS `questionnaires` (
   `rpc_username` text COLLATE utf8_unicode_ci,
   `rpc_password` text COLLATE utf8_unicode_ci,
   `limesurvey_sid` int(11) DEFAULT NULL,
+  `double_entry` TINYINT(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`qid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

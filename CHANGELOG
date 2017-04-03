@@ -1,3 +1,11 @@
+queXS 1.20.0 - Changes since 1.19.1
+
+*New Feature: Double entry verification
+
+*Fixed bug: Too many variables to post on Successful form input page
+*Fixed bug: Order of form input page incorrect
+
+*Database changes required:
 
 ALTER TABLE `questionnaires` ADD `double_entry` TINYINT( 1 ) NOT NULL DEFAULT '0';
 ALTER TABLE `forms` ADD `assigned_vid2` SMALLINT( 5 ) NULL DEFAULT NULL ,
