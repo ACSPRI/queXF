@@ -277,8 +277,46 @@ print "<div id=\"header\">";
 
 <?php
 
-//note here who verified and then allow for double entry if not already double 
-  //entered
+  if (isset($_GET['doubleentry'])) {
+    $sql = "UPDATE forms
+            SET done = 3,
+            completed2 = completed,
+            assigned_vid2 = assigned_vid,
+            assigned2 = assigned,
+            assigned = NULL,
+            completed = NULL,
+            assigned_vid = NULL
+            WHERE fid = $fid
+            AND done = 1
+            AND completed2 IS NULL";
+
+    $db->Execute($sql);  
+  }
+
+
+//note here who verified and then allow for double entry if not already double entered
+
+$sql = "SELECT f.done,v1.description,v2.description as description2,f.completed,f.completed2
+        FROM forms as f
+        LEFT JOIN verifiers as v1 on (v1.vid = f.assigned_vid)
+        LEFT JOIN verifiers as v2 on (v2.vid = f.assigned_vid2)
+        WHERE f.fid = $fid";
+
+$ver = $db->GetRow($sql);
+
+if ($ver['done'] == 1 && empty($ver['completed2'])) { //verified once
+  print "<div>" . T_("Verified by:") . $ver['description']  . "</div>";
+  print "<form action='?' method='get'><div><input type='hidden' name='doubleentry' value='doubleentry'><input type='hidden' name='fid' value='$fid'><input type='hidden' name='pid' value='$pid'><input type='hidden' name='var' value='$var'><input type='submit' value='". T_("Verify again by another verifier (double entry)") ."'/></div></form>";
+} else if ($ver['done'] == 3) {
+  print "<div>" . T_("Verified by:") . $ver['description2']  . "</div>";
+  print "<div>". T_("Awaiting double entry") . "</div>";
+} else if ($ver['done'] == 1 && !empty($ver['completed2'])) {
+  print "<div>" . T_("Verified first by:") . $ver['description2']  ."</div>";
+  print "<div>" . T_("Verified second by:") . $ver['description']  ."</div>";
+} else {
+  print "<div>" . T_("Not yet verified") ."</div>";
+}
+
 
 print "</div>";
 
