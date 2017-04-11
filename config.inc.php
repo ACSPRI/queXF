@@ -51,6 +51,10 @@ define('DEBUG', false);
 
 define('OCR_ENABLED',false);
 
+define('IMAGES_DIRECTORY', dirname(__FILE__) . '/images/');
+
+define('SCANS_DIRECTORY', dirname(__FILE__) . '/scans/');
+
 //Temporary directory
 define('TEMPORARY_DIRECTORY', "/tmp");
 
