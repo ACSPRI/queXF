@@ -1,4 +1,4 @@
-queXS 1.20.0 - Changes since 1.19.1
+queXF 1.20.0 - Changes since 1.19.1
 
 *New Feature: Double entry verification
 
@@ -12,13 +12,13 @@ ALTER TABLE `forms` ADD `assigned_vid2` SMALLINT( 5 ) NULL DEFAULT NULL ,
 ADD `assigned2` DATETIME NULL DEFAULT NULL ,
 ADD `completed2` DATETIME NULL DEFAULT NULL ;
 
-queXS 1.19.1 - Changes since 1.19.0
+queXF 1.19.1 - Changes since 1.19.0
 
 *New feature: Integration with newer version of Limesurvey (> 2.0) - Thanks Benedikt!
 
 *Fixed bug: Can't import PDF files with uppercase extension
 
-queXS 1.19.0 - Changes since 1.18.2
+queXF 1.19.0 - Changes since 1.18.2
 
 *New feature: Refer to supervisor function
 *New feature: Review of results overlay function
