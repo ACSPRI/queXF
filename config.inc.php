@@ -60,6 +60,21 @@ define('TEMPORARY_DIRECTORY', "/tmp");
 
 define('PROCESS_SLEEP',600); 
 
+define('HORI_WIDTH_BOX',54);
+define('VERT_WIDTH_BOX',54);
+
+define('BARCODE_TLX_PORTION',0.5); //Top left X
+define('BARCODE_TLY_PORTION',0); //Top left Y
+define('BARCODE_BRX_PORTION',1); //Bottom right X
+define('BARCODE_BRY_PORTION',0.2); //Bottom right Y
+
+define('BARCODE_TLX_PORTION2',0); //Top left X
+define('BARCODE_TLY_PORTION2',0.8); //Top left Y
+define('BARCODE_BRX_PORTION2',0.5); //Bottom right X
+define('BARCODE_BRY_PORTION2',1); //Bottom right Y
+
+
+
 //Do not remove the following line:
 include(dirname(__FILE__) . '/config.default.php');
 ?>
