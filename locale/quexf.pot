@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: queXF\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-03 12:21+1000\n"
+"POT-Creation-Date: 2017-06-01 15:13+1000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Adam Zammit <adam.zammit@acspri.org.au>\n"
 "Language-Team: \n"
@@ -32,11 +32,11 @@ msgstr ""
 msgid "Review Form"
 msgstr ""
 
-#: review.php:243 verifyjs.php:1388
+#: review.php:243 verifyjs.php:1394
 msgid "Image of page"
 msgstr ""
 
-#: review.php:243 verifyjs.php:1388
+#: review.php:243 verifyjs.php:1394
 msgid "form"
 msgstr ""
 
@@ -195,15 +195,15 @@ msgstr ""
 msgid "Please log in"
 msgstr ""
 
-#: verifyjs.php:412 verifyjs.php:539
+#: verifyjs.php:412 verifyjs.php:545
 msgid "Verify: No more work"
 msgstr ""
 
-#: verifyjs.php:413 verifyjs.php:540
+#: verifyjs.php:413 verifyjs.php:546
 msgid "NO MORE WORK"
 msgstr ""
 
-#: verifyjs.php:414 verifyjs.php:541
+#: verifyjs.php:414 verifyjs.php:547
 msgid "Check for more work"
 msgstr ""
 
@@ -223,80 +223,84 @@ msgstr ""
 msgid "Assigning next form: Please wait..."
 msgstr ""
 
-#: verifyjs.php:479 admin/listpagenotes.php:56 admin/performance.php:66
+#: verifyjs.php:486 admin/listpagenotes.php:56 admin/performance.php:66
 #: admin/listforms.php:77
 msgid "Operator"
 msgstr ""
 
-#: verifyjs.php:479 admin/performance.php:66 admin/performance.php:104
+#: verifyjs.php:486 admin/performance.php:66 admin/performance.php:104
 msgid "Completed Forms"
 msgstr ""
 
-#: verifyjs.php:479 admin/performance.php:66 admin/performance.php:104
+#: verifyjs.php:486 admin/performance.php:66 admin/performance.php:104
 msgid "Completions Per Hour"
 msgstr ""
 
-#: verifyjs.php:479 admin/performance.php:66 admin/performance.php:104
+#: verifyjs.php:486 admin/performance.php:66 admin/performance.php:104
 msgid "Pages Per Hour"
 msgstr ""
 
-#: verifyjs.php:481
+#: verifyjs.php:488
 msgid "Remain to verify"
 msgstr ""
 
-#: verifyjs.php:698
+#: verifyjs.php:489 admin/progress.php:62
+msgid "Waiting for double entry"
+msgstr ""
+
+#: verifyjs.php:704
 msgid "Verify: Done"
 msgstr ""
 
-#: verifyjs.php:699 verifyjs.php:1366
+#: verifyjs.php:705 verifyjs.php:1372
 msgid "The required fields have been filled"
 msgstr ""
 
-#: verifyjs.php:701 verifyjs.php:1368
+#: verifyjs.php:707 verifyjs.php:1374
 msgid "Submit completed form to database"
 msgstr ""
 
-#: verifyjs.php:703 verifyjs.php:1369
+#: verifyjs.php:709 verifyjs.php:1375
 msgid "Review all questions again"
 msgstr ""
 
-#: verifyjs.php:704 verifyjs.php:1370
+#: verifyjs.php:710 verifyjs.php:1376
 msgid "Clear all entered data and review again"
 msgstr ""
 
-#: verifyjs.php:706 verifyjs.php:1373
+#: verifyjs.php:712 verifyjs.php:1379
 msgid "Submitting: Please wait..."
 msgstr ""
 
-#: verifyjs.php:722 admin/limesurvey.php:88 admin/icrtrain.php:405
+#: verifyjs.php:728 admin/limesurvey.php:88 admin/icrtrain.php:405
 msgid "Verifier"
 msgstr ""
 
-#: verifyjs.php:1383
+#: verifyjs.php:1389
 msgid "Page is missing from scan"
 msgstr ""
 
-#: verifyjs.php:1400
+#: verifyjs.php:1406
 msgid "Centre Page"
 msgstr ""
 
-#: verifyjs.php:1401
+#: verifyjs.php:1407
 msgid "Accept page"
 msgstr ""
 
-#: verifyjs.php:1403
+#: verifyjs.php:1409
 msgid "Loading panel..."
 msgstr ""
 
-#: verifyjs.php:1403
+#: verifyjs.php:1409
 msgid "Error, try with Firefox"
 msgstr ""
 
-#: verifyjs.php:1414
+#: verifyjs.php:1420
 msgid "Assign to supervisor"
 msgstr ""
 
-#: verifyjs.php:1427
+#: verifyjs.php:1433
 msgid "Refer back to regular verifier"
 msgstr ""
 
@@ -439,7 +443,7 @@ msgid "Page ID"
 msgstr ""
 
 #: admin/listpagenotes.php:56 admin/listduplicates.php:113
-#: admin/progress.php:55 admin/performance.php:104
+#: admin/progress.php:62 admin/performance.php:104
 #: admin/outputunverified.php:84 admin/listforms.php:77 admin/reorder.php:49
 #: admin/output.php:89 admin/pagesmissing.php:85 admin/doubleentry.php:67
 msgid "Questionnaire"
@@ -534,19 +538,19 @@ msgstr ""
 msgid "Progress"
 msgstr ""
 
-#: admin/progress.php:55
+#: admin/progress.php:62
 msgid "Done"
 msgstr ""
 
-#: admin/progress.php:55
+#: admin/progress.php:62
 msgid "Remain"
 msgstr ""
 
-#: admin/progress.php:55
+#: admin/progress.php:62
 msgid "Total forms imported"
 msgstr ""
 
-#: admin/progress.php:77
+#: admin/progress.php:86
 msgid "Total"
 msgstr ""
 

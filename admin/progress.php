@@ -32,10 +32,10 @@ include("../functions/functions.xhtml.php");
 
 xhtml_head(T_("Progress"),true,array("../css/table.css"));
 
-$sql = "SELECT q.description, f1.c AS done, f2.c AS remain
+$sql = "SELECT q.description, f1.c AS done, f2.c AS remain, f3.c AS verify
 	FROM questionnaires AS q
 	LEFT JOIN (
-	
+
 	SELECT count( fid ) AS c, qid
 	FROM forms
 	WHERE done =1
@@ -48,20 +48,29 @@ $sql = "SELECT q.description, f1.c AS done, f2.c AS remain
 	WHERE done =0
 	GROUP BY qid
 	) AS f2 ON ( f2.qid = q.qid )
+	LEFT JOIN (
+	
+	SELECT count( fid ) AS c, qid
+	FROM forms
+	WHERE done =3
+	GROUP BY qid
+	) AS f3 ON ( f3.qid = q.qid )
 	ORDER BY q.qid DESC";
 	
 $qs = $db->GetAll($sql);
 
-print "<table class='tclass'><tr><th>" . T_("Questionnaire") . "</th><th>" . T_("Done") . "</th><th>" . T_("Remain") . "</th><th>" . T_("Total forms imported") . "</th></tr>";
+print "<table class='tclass'><tr><th>" . T_("Questionnaire") . "</th><th>" . T_("Done") . "</th><th>" . T_("Waiting for double entry") . "</th><th>" . T_("Remain") . "</th><th>" . T_("Total forms imported") . "</th></tr>";
 $done = 0;
 $remain = 0;
+$verify = 0;
 $rtotal = 0;
 $odd = 1;
 $class = "class='odd'";
 foreach($qs as $q)
 {
-	$rtotal = $q['done'] + $q['remain'];
+	$rtotal = $q['done'] + $q['remain'] + $q['verify'];
 	$remain += $q['remain'];
+	$verify += $q['verify'];
 	$done += $q['done'];
 	print "<tr ";
 	if ($odd)
@@ -71,10 +80,10 @@ foreach($qs as $q)
 	}
 	else
 		$odd = 1;
-	print "><td>{$q['description']}</td><td>{$q['done']}</td><td>{$q['remain']}</td><td>$rtotal</td></tr>";
+	print "><td>{$q['description']}</td><td>{$q['done']}</td><td>{$q['verify']}</td><td>{$q['remain']}</td><td>$rtotal</td></tr>";
 }
-$rtotal = $done + $remain;
-print "<tr><td>" . T_("Total") . ":</td><td>$done</td><td>$remain</td><td>$rtotal</td></tr>";
+$rtotal = $done + $remain + $verify;
+print "<tr><td>" . T_("Total") . ":</td><td>$done</td><td>$verify</td><td>$remain</td><td>$rtotal</td></tr>";
 print "</table>";
 
 xhtml_foot();

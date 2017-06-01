@@ -444,7 +444,7 @@ if ($fid == false)
 
 	$prs = $db->GetAll($sql);
 
-	foreach($prs as $pr)
+  foreach($prs as $pr)
 	{
 		$pqid = $pr['qid'];
 		$pdes = $pr['description'];
@@ -452,9 +452,16 @@ if ($fid == false)
 		$sql = "SELECT count(*) as rem
 			FROM forms
 			WHERE qid = '$pqid'
-			AND done IN (0,2,3)";
+			AND done IN (0,2)";
 
 		$remain = $db->GetOne($sql);
+
+		$sql = "SELECT count(*) as ver
+			FROM forms
+			WHERE qid = '$pqid'
+			AND done IN (3)";
+
+		$verify = $db->GetOne($sql);
 
 		$sql = "SELECT q.description as qu, v.description as ve,f.qid,f.assigned_vid as vid , count( * ) AS c, count( * ) / ( SUM( TIMESTAMPDIFF(
 			SECOND , f.assigned, f.completed ) ) /3600 ) AS CPH, (
@@ -479,9 +486,8 @@ if ($fid == false)
 		xhtml_table($prss,array('ve','c','CPH','PPH'),array(T_("Operator"),T_("Completed Forms"),T_("Completions Per Hour"),T_("Pages Per Hour")),"tclass",array
 ("vid" => $vid));
 		print "<p>" . T_("Remain to verify") . ": $remain</p>";
+		print "<p>" . T_("Waiting for double entry") . ": $verify</p>";
 	}
-	
-
 
 	xhtml_foot();
 	exit();
