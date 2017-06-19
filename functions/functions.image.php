@@ -340,17 +340,17 @@ function offset($image,$a,$compare = 1,$page)
 	}
 
   //line edge detection
-  $d[] = vertlinex($page['TL_VERT_TLX'],$page['TL_VERT_TLY'],$page['TL_VERT_BRX'],$page['TL_VERT_BRY'],$image,$page['VERT_WIDTH_BOX'],int_divide($page['VERT_WIDTH_BOX'],10),50,false);
-  $d[] = horiliney($page['TL_HORI_TLX'],$page['TL_HORI_TLY'],$page['TL_HORI_BRX'],$page['TL_HORI_BRY'],$image,$page['HORI_WIDTH_BOX'],int_divide($page['HORI_WIDTH_BOX'],10),50,false);
+  $d[] = vertlinex($page['TL_VERT_TLX'],$page['TL_VERT_TLY'],$page['TL_VERT_BRX'],$page['TL_VERT_BRY'],$image,$page['VERT_WIDTH_BOX'],int_divide($page['VERT_WIDTH_BOX'],10),100,false);
+  $d[] = horiliney($page['TL_HORI_TLX'],$page['TL_HORI_TLY'],$page['TL_HORI_BRX'],$page['TL_HORI_BRY'],$image,$page['HORI_WIDTH_BOX'],int_divide($page['HORI_WIDTH_BOX'],10),100,false);
 
-  $d[] = vertlinex($page['TR_VERT_TLX'],$page['TR_VERT_TLY'],$page['TR_VERT_BRX'],$page['TR_VERT_BRY'],$image,$page['VERT_WIDTH_BOX'],int_divide($page['VERT_WIDTH_BOX'],10),50,false);
-  $d[] = horiliney($page['TR_HORI_TLX'],$page['TR_HORI_TLY'],$page['TR_HORI_BRX'],$page['TR_HORI_BRY'],$image,$page['HORI_WIDTH_BOX'],int_divide($page['HORI_WIDTH_BOX'],10),50,false);
+  $d[] = vertlinex($page['TR_VERT_TLX'],$page['TR_VERT_TLY'],$page['TR_VERT_BRX'],$page['TR_VERT_BRY'],$image,$page['VERT_WIDTH_BOX'],int_divide($page['VERT_WIDTH_BOX'],10),100,false);
+  $d[] = horiliney($page['TR_HORI_TLX'],$page['TR_HORI_TLY'],$page['TR_HORI_BRX'],$page['TR_HORI_BRY'],$image,$page['HORI_WIDTH_BOX'],int_divide($page['HORI_WIDTH_BOX'],10),100,false);
 
-  $d[] = vertlinex($page['BL_VERT_TLX'],$page['BL_VERT_TLY'],$page['BL_VERT_BRX'],$page['BL_VERT_BRY'],$image,$page['VERT_WIDTH_BOX'],int_divide($page['VERT_WIDTH_BOX'],10),50,false);
-  $d[] = horiliney($page['BL_HORI_TLX'],$page['BL_HORI_TLY'],$page['BL_HORI_BRX'],$page['BL_HORI_BRY'],$image,$page['HORI_WIDTH_BOX'],int_divide($page['HORI_WIDTH_BOX'],10),50,false);
+  $d[] = vertlinex($page['BL_VERT_TLX'],$page['BL_VERT_TLY'],$page['BL_VERT_BRX'],$page['BL_VERT_BRY'],$image,$page['VERT_WIDTH_BOX'],int_divide($page['VERT_WIDTH_BOX'],10),100,false);
+  $d[] = horiliney($page['BL_HORI_TLX'],$page['BL_HORI_TLY'],$page['BL_HORI_BRX'],$page['BL_HORI_BRY'],$image,$page['HORI_WIDTH_BOX'],int_divide($page['HORI_WIDTH_BOX'],10),100,false);
 
-  $d[] = vertlinex($page['BR_VERT_TLX'],$page['BR_VERT_TLY'],$page['BR_VERT_BRX'],$page['BR_VERT_BRY'],$image,$page['VERT_WIDTH_BOX'],int_divide($page['VERT_WIDTH_BOX'],10),50,false);
-  $d[] = horiliney($page['BR_HORI_TLX'],$page['BR_HORI_TLY'],$page['BR_HORI_BRX'],$page['BR_HORI_BRY'],$image,$page['HORI_WIDTH_BOX'],int_divide($page['HORI_WIDTH_BOX'],10),50,false);
+  $d[] = vertlinex($page['BR_VERT_TLX'],$page['BR_VERT_TLY'],$page['BR_VERT_BRX'],$page['BR_VERT_BRY'],$image,$page['VERT_WIDTH_BOX'],int_divide($page['VERT_WIDTH_BOX'],10),100,false);
+  $d[] = horiliney($page['BR_HORI_TLX'],$page['BR_HORI_TLY'],$page['BR_HORI_BRX'],$page['BR_HORI_BRY'],$image,$page['HORI_WIDTH_BOX'],int_divide($page['HORI_WIDTH_BOX'],10),100,false);
 
 
   //check to see how many are 0 - if none are - proceed, otherwise try for box 
@@ -791,13 +791,24 @@ function horiliney($tlx,$tly,$brx,$bry,$image,$approxw,$tolerance = 2,$attempts 
   
   if ($searchlongest == false) //if searching for shortest
     $line = 100000;
-;
 	$longest = key($s);
 	foreach($s as $y => $xval)
 	{
-		$col = imagecolorat($image, $tlx, $y);
 		$width = 1;
-		for($x = $tlx; $x < $brx; $x += 1)
+    if ($searchlongest) {
+      $xmin = $tlx;
+      $xmax = $brx;
+    } else {
+  		//reduce search area
+  		$xmin = $xval - ($approxw + $tolerance);
+  		$xmax = $xval + ($approxw + $tolerance);
+  		if ($xmin < $tlx) $xmin = $tlx;
+  		if ($xmax > $brx) $xmax = $brx;
+    }
+
+		$col = imagecolorat($image, $xmin, $y);
+
+		for($x = $xmin; $x < $xmax; $x += 1)
 		{
 			$rgb = imagecolorat($image, $x, $y);
       if ($rgb != $col){
@@ -886,9 +897,22 @@ function vertlinex($tlx,$tly,$brx,$bry,$image,$approxw,$tolerance = 2,$attempts 
 	$longest = key($s);
 	foreach($s as $x => $yval)
 	{
-		$col = imagecolorat($image, $x, $tly);
 		$width = 0;
-		for($y = $tly; $y < $bry; $y += 1)
+
+    if ($searchlongest) {
+      $ymin = $tly;
+      $ymax = $bry;
+    } else {
+  		//reduce search area
+  		$ymin = $yval - ($approxw + $tolerance);
+  		$ymax = $yval + ($approxw + $tolerance);
+  		if ($ymin < $tly) $ymin = $tly;
+      if ($ymax > $bry) $ymax = $bry;
+    }
+   
+    $col = imagecolorat($image, $x, $ymin);
+
+		for($y = $ymin; $y < $ymax; $y += 1)
 		{
 			$rgb = imagecolorat($image, $x, $y);
 			if ($rgb != $col){
