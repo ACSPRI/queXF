@@ -1,3 +1,9 @@
+queXF 1.20.1 - Changes since 1.20.0
+
+*Improve box edge detection by reducing search area
+*Fixed issue: Doule entry labels (see: https://github.com/ACSPRI/queXF/issues/1)
+*Make more variables available for updating in config.inc.php
+
 queXF 1.20.0 - Changes since 1.19.1
 
 *New Feature: Double entry verification
