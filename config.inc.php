@@ -73,6 +73,7 @@ define('BARCODE_TLY_PORTION2',0.8); //Top left Y
 define('BARCODE_BRX_PORTION2',0.5); //Bottom right X
 define('BARCODE_BRY_PORTION2',1); //Bottom right Y
 
+define('DISPLAY_PAGE_WIDTH',800); //width of page display
 
 
 //Do not remove the following line:
