@@ -1381,28 +1381,20 @@ function import_bandingxml($xml,$qid,$erase = false)
  */
 function import_directory($dir)
 {
-
-	if ($handle = opendir($dir)) {
-	
-		while (false !== ($file = readdir($handle))) {
-			if ($file != "." && $file != ".." && substr($file,-4) != "done")
+  foreach(scandir($dir) as $key => $file) {
+		if ($file != "." && $file != ".." && substr($file,-4) != "done")
+		{
+			if (strtolower(substr($file,-3)) == "pdf")
 			{
-				if (strtolower(substr($file,-3)) == "pdf")
-				{
-					//print "<p>$file</p>";
-			                $r = import("$dir/$file");
-					if ($r == false)
-						print T_("File already in database");
-					 //unlink($file);
-					 //rename("$dir/$file","$dir/$file.done");
-				}
+				//print "<p>$file</p>";
+			  $r = import("$dir/$file");
+				if ($r == false)
+				  print T_("File already in database");
+			  //unlink($file);
+			  //rename("$dir/$file","$dir/$file.done");
 			}
 		}
-	
-		closedir($handle);
-	
 	}
-
 }
 
 
