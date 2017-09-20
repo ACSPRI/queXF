@@ -57,29 +57,24 @@ $sleepinterval = 10;
 
 while (!is_process_killed($process_id)) //check if process killed every $sleepinterval
 {
-	//read directory listing and process one file at a time
-	$handle = opendir($dir);
-	
-	if ($handle) 
-	{
-		print date(DATE_RFC822) . " " . T_("Watching...");
-		while ((false !== ($file = readdir($handle)))) 
-		{
-			if (is_process_killed($process_id)){break;}
-			if ($file != "." && $file != ".." && substr($file,-4) != "done")
-			{
-				if (strtolower(substr($file,-3)) == "pdf")
-				{
-			                $r = import("$dir/$file");
-					//unlink($file);
-					//rename("$dir/$file","$dir/$file.done");
-				}
-			}
-		}
-		closedir($handle);
-	}
-	else
-	{
+  //read directory listing and process one file at a time
+  $list = scandir($dir);
+  if ($list !== FALSE) {
+    print date(DATE_RFC822) . " " . T_("Watching...");
+    foreach($list as $key => $file) 
+    {
+  	  if (is_process_killed($process_id)){break;}
+    	if ($file != "." && $file != ".." && substr($file,-4) != "done")
+    	{
+    		if (strtolower(substr($file,-3)) == "pdf")
+    		{
+          $r = import("$dir/$file");
+    			//unlink($file);
+    			//rename("$dir/$file","$dir/$file.done");
+    		}
+    	}
+    }
+  }	else	{
 		print T_("Cannot process this directory - check that it is valid and permissions are correct");
 		break; //break the loop
 	}
