@@ -905,7 +905,7 @@ function previous() {
 function detectEvent(e) {
 	var evt = e || event;
 
-	if (evt.ctrlKey)
+	if (evt.ctrlKey && !evt.altKey)
 	{
 		previous();
 		nextTask();
