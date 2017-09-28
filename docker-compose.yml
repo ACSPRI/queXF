@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+
+  quexf:
+    image: acspri/quexf:latest
+    ports:
+      - 8081:80
+    environment:
+      QUEXF_DB_PASSWORD: example
+      QUEXF_ADMIN_PASSWORD: password
+      QUEXF_OCR_ENABLED: 1
+      QUEXF_HORI_WIDTH_BOX: 75
+      QUEXF_VERT_WIDTH_BOX: 75
+      QUEXF_BARCODE_TLX_PORTION: 0.75
+      QUEXF_BARCODE_BRY_PORTION: 0.1
+      QUEXF_BARCODE_TLY_PORTION2: 0.9
+      QUEXF_BARCODE_BRX_PORTION2: 0.25
+    volumes:
+      - ./:/var/www/html
+
+
+
+  mysql:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: example
