@@ -743,7 +743,8 @@ var newwindow;
 $sql = "SELECT boxgroupstype.bgid
 	FROM boxgroupstype
 	JOIN boxes ON boxes.bgid = boxgroupstype.bgid
-	WHERE boxgroupstype.pid = '$pid'
+  WHERE boxgroupstype.pid = '$pid'
+  AND boxgroupstype.btid > 0
 	GROUP BY boxgroupstype.bgid
 	ORDER BY boxgroupstype.sortorder ASC";
 		
