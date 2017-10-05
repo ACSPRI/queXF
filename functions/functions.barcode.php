@@ -100,14 +100,19 @@ function widthsToNW($widths,$narrow,$wide)
 		else $string .= "J"; //J for junk
 	}
 
-	//remove junk bits from start and end of string
-	$firstJ = strpos($string,'J');
-	if ($firstJ <= ((strlen($string) /4)))
-		$string = substr($string,$firstJ + 1);
+  //remove junk bits from start and end of string
+  //try twice
+  for ($i=0;$i<2;$i++) {
+  	$firstJ = strpos($string,'J');
+  	if ($firstJ <= ((strlen($string) /4)))
+  		$string = substr($string,$firstJ + 1);
+  }
 
-	$lastJ = strpos($string,'J', ((strlen($string) / 4) * 3));
-	if ($lastJ >= ((strlen($string)/4)*3))
-		$string = substr($string,0,$lastJ);
+  for ($i=0;$i<2;$i++) {
+    $lastJ = strpos($string,'J', ((strlen($string) / 4) * 3));
+  	if ($lastJ >= ((strlen($string)/4)*3))
+      $string = substr($string,0,$lastJ);
+  }
 
 	return $string;
 }
@@ -250,7 +255,7 @@ function barcode($image, $step = 1, $length = false, $numsonly = false)
 		$a = barWidth($image,$i);
 		$w = nwWidth($a);
 		if ($w['n'] != 0 && $w['w'] != 0){
-			$s = widthsToNW($a,$w['n'],$w['w']);
+      $s = widthsToNW($a,$w['n'],$w['w']);
 			if(validate($s)){
 				$code = NWtoCode($s);
 				if ($code != "false" && (!$length || strlen($code) == $length))
