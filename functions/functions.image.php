@@ -53,6 +53,7 @@ function convertmono($image)
 {
   if (imagecolorcount($image) > 2)
   {
+    set_time_limit(60); //this is slow
     //assume grayscale, convert to b&w no dithering
     $xdim = imagesx($image);
     $ydim = imagesy($image);
