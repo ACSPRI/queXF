@@ -1,3 +1,9 @@
+queXF 1.20.3 - Changes since 1.20.2
+
+*Fixed issue: Trimming too much from barcode
+*Fixed issue: Converting to monochrome timing out in large questionnaires
+*Fixed issue: lp:1721420 Barcode not detected where close to corner edge line
+
 queXF 1.20.2 - Changes since 1.20.1
 
 *New feature: Read files in alpha order instead of filesystem order (for process)
