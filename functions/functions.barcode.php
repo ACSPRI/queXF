@@ -102,15 +102,16 @@ function widthsToNW($widths,$narrow,$wide)
 
   //remove junk bits from start and end of string
   //try twice
+
   for ($i=0;$i<2;$i++) {
-  	$firstJ = strpos($string,'J');
-  	if ($firstJ <= ((strlen($string) /4)))
-  		$string = substr($string,$firstJ + 1);
+    $firstJ = strpos($string,'J');
+  	if ($firstJ !== false && $firstJ <= ((strlen($string) /4)))
+      $string = substr($string,$firstJ + 1);
   }
 
   for ($i=0;$i<2;$i++) {
     $lastJ = strpos($string,'J', ((strlen($string) / 4) * 3));
-  	if ($lastJ >= ((strlen($string)/4)*3))
+  	if ($lastJ !== false && $lastJ >= ((strlen($string)/4)*3))
       $string = substr($string,0,$lastJ);
   }
 
