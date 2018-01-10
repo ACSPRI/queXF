@@ -62,6 +62,7 @@ xhtml_head(T_("queXF Admin Functions"),true,array("../css/admin.css"));
 <ul><li><a href="?page=import.directory.php"><?php echo T_("Import a directory of PDF files"); ?></a></li>
 <li><a href="?page=listfiles.php?status=1"><?php echo T_("Successfully imported files"); ?></a></li>
 <li><a href="?page=listfiles.php?status=2"><?php echo T_("Failed imported files"); ?></a></li>
+<li><a href="?page=deleteforms.php"><?php echo T_("Delete forms"); ?></a></li>
 <li><a href="?page=listduplicates.php"><?php echo T_("Duplicate forms"); ?></a></li>
 <li><a href="?page=listforms.php"><?php echo T_("Reverify forms"); ?></a></li>
 <li><a href="?page=listpagenotes.php"><?php echo T_("List page notes"); ?></a></li>
