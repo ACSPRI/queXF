@@ -1,3 +1,12 @@
+queXF 1.20.4 - Changes since 1.20.3
+
+*New feature: Allow adding/updating users directly to HTPASSWD file via HTPASSWD_PATH define
+*New feature: Added delete form function
+
+*Fixed issue: Error that DEFAULT_LOCALE was not set
+*Fixed issue: Malformed SQL for unverified data output
+*Fixed issue: Box fills not available directly from Docker container
+
 queXF 1.20.3 - Changes since 1.20.2
 
 *Fixed issue: Trimming too much from barcode
