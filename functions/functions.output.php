@@ -295,7 +295,7 @@ function outputdatacsv($qid,$fid = "",$labels = false,$unverified = false, $retu
 
 	if ($unverified)
     $sql = "SELECT 0 AS vid, f.fid as fid, f.qid as qid, f.description as description, f.rpc_id, 
-            ''" . T_("Unverified") . "' as vstatus
+            '" . T_("Unverified") . "' as vstatus
 			FROM forms as f
 			WHERE f.qid = '$qid'"; 
 	else
@@ -568,7 +568,7 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true,$unverif
 	//get completed forms for this qid
 	if ($unverified)
     $sql = "SELECT 0 AS vid, f.fid as fid, f.qid as qid, f.description as description, f.rpc_id, 
-            ''" . T_("Unverified") . "' as vstatus
+            '" . T_("Unverified") . "' as vstatus
 			FROM forms as f
 			WHERE f.qid = '$qid'"; 
 	else
