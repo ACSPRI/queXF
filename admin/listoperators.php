@@ -40,9 +40,9 @@ if (isset($_POST['operatorid']) && isset($_POST['password']) && isset($_POST['d'
 	$d = $db->qstr($_POST['d'],get_magic_quotes_gpc());
 	if (!empty($_POST['operatorid']))
   {
-    $oop = $db->GetOne("SELECT operator FROM verifiers WHERE vid = $operatorid");
+    $oop = $db->GetOne("SELECT http_username FROM verifiers WHERE vid = $operatorid");
 
-		$sql = "UPDATE verifiers SET `description` = $d, `operator` = $operator WHERE vid = $operatorid";
+		$sql = "UPDATE verifiers SET `description` = $d, `http_username` = $operator WHERE vid = $operatorid";
 	
 		if ($db->Execute($sql))
     {
@@ -57,6 +57,9 @@ if (isset($_POST['operatorid']) && isset($_POST['password']) && isset($_POST['d'
 
          $htp->deleteUser($oop);
          $htg->deleteUserFromGroup($oop,HTGROUP_VERIFIER);
+         if ($operatorid != 1) {
+           $htg->deleteUserFromGroup($oop,HTGROUP_ADMIN);
+		 }
          $htp->addUser($_POST['operator'],$_POST['password']);
          $htg->addUserToGroup($_POST['operator'],HTGROUP_VERIFIER);
          if (isset($_POST['s'])) {
@@ -85,14 +88,15 @@ $operatorid = intval($_GET['operatorid']);
 
 $sql = "SELECT * FROM verifiers where vid = $operatorid";
 
-$rs = $db->GetOne($sql);
+$rs = $db->GetRow($sql);
 
 ?>
 <h1><?php echo T_("Update an operator"); ?></h1>
 <form enctype="multipart/form-data" action="" method="post">
-<p><?php echo T_("Enter the username (as in the security system, eg: azammit) of an operator to add:"); ?> <input name="operator" type="text" value="<?php echo $rs['operator']; ?>"/></p>
+<p><?php echo T_("Enter the username (as in the security system, eg: azammit) of an operator to add:"); ?> <input name="operator" type="text" value="<?php echo $rs['http_username']; ?>"/></p>
 <?php if (HTPASSWD_PATH !== false) {?>
   <p><?php echo T_("Enter the password to set:"); ?> <input name="password" type="text"/></p>
+  <p><?php echo T_("Is this operator an administrator?"); ?> <input name="s" type="checkbox"/></p>
 <?php }?>
 <p><?php echo T_("Enter the name of the operator (eg Adam):"); ?> <input name="d" type="text" value="<?php echo $rs['description']; ?>"/></p>
 <p><input type="hidden" name="operatorid" value="<?php echo $operatorid; ?>" /></p>
@@ -106,7 +110,7 @@ $sql = "SELECT * FROM verifiers";
 $rs = $db->GetAll($sql);
 
 foreach($rs as $r) {
-  print "<p>Edit: <a href='?operatorid={$r['vid']}'>{$r['description']}</p>";
+  print "<p>Edit: <a href='?operatorid={$r['vid']}'>{$r['description']}</a></p>";
 
 }
 

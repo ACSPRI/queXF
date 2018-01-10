@@ -53,6 +53,9 @@ if (isset($_POST['operator']) && isset($_POST['d']))
          $htg = New Htgroup(HTGROUP_PATH);
          $htp->addUser($_POST['operator'],$_POST['password']);
          $htg->addUserToGroup($_POST['operator'],HTGROUP_VERIFIER);
+         if (isset($_POST['s'])) {
+           $htg->addUserToGroup($_POST['operator'],HTGROUP_ADMIN);
+         }
       }
 
 			$a = T_("Added") . ": $operator";	
@@ -77,6 +80,7 @@ if ($a)
 <p><?php echo T_("Enter the username (as in the security system, eg: azammit) of an operator to add:"); ?> <input name="operator" type="text"/></p>
 <?php if (HTPASSWD_PATH !== false) {?>
   <p><?php echo T_("Enter the password to set:"); ?> <input name="password" type="text"/></p>
+  <p><?php echo T_("Is this operator an administrator?"); ?> <input name="s" type="checkbox"/></p>
 <?php }?>
 <p><?php echo T_("Enter the name of the operator (eg Adam):"); ?> <input name="d" type="text"/></p>
 <p><input type="submit" value="<?php echo T_("Add user"); ?>" /></p>
