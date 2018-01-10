@@ -115,9 +115,18 @@ if (OCR_ENABLED)
   } else {
 	  echo "<p>"  . T_("Could not find Tesseract in path: ")  . TESSERACT_BIN .  "</p><p>" . T_("Please modify config.inc.php, TESSERACT_BIN to point to the tesseract executable or disable OCR by changing OCR_ENABLED to false") ."</p>";
 		$fail = true;
+  }
 }
 
+if (HTPASSWD_PATH !== false) {
+  if (is_writable(HTPASSWD_PATH)) {
+    print "<p>" . T_("HTPasswd file writeable") . "</p>";
+  } else {
+    print "<p>" . T_("HTPasswd file NOT writeable") . " - " . HTPASSWD_PATH . "</p>";
+    $fail = true;
+  }
 }
+
 
 if ($fail)
 {

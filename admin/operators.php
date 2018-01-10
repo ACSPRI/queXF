@@ -45,7 +45,16 @@ if (isset($_POST['operator']) && isset($_POST['d']))
 			VALUES (NULL , $d, NULL , $operator);";
 	
 		if ($db->Execute($sql))
-		{
+    {
+      if (HTPASSWD_PATH !== false && HTGROUP_PATH !== false) {
+         //Get password and add it to the configured htpassword
+         include_once("../functions/functions.htpasswd.php");
+         $htp = New Htpasswd(HTPASSWD_PATH);
+         $htg = New Htgroup(HTGROUP_PATH);
+         $htp->addUser($_POST['operator'],$_POST['password']);
+         $htg->addUserToGroup($_POST['operator'],HTGROUP_VERIFIER);
+      }
+
 			$a = T_("Added") . ": $operator";	
 		}else
 		{
@@ -66,6 +75,9 @@ if ($a)
 <p><?php echo T_("Use this form to enter the username of a user based on your directory security system. For example, if you have secured the base directory of queXF using Apache file based security, enter the usernames of the users here. When the user accesses the verification page, they will uniquely be assigned a form."); ?></p>
 <form enctype="multipart/form-data" action="" method="post">
 <p><?php echo T_("Enter the username (as in the security system, eg: azammit) of an operator to add:"); ?> <input name="operator" type="text"/></p>
+<?php if (HTPASSWD_PATH !== false) {?>
+  <p><?php echo T_("Enter the password to set:"); ?> <input name="password" type="text"/></p>
+<?php }?>
 <p><?php echo T_("Enter the name of the operator (eg Adam):"); ?> <input name="d" type="text"/></p>
 <p><input type="submit" value="<?php echo T_("Add user"); ?>" /></p>
 </form>

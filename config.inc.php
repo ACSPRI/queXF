@@ -75,6 +75,15 @@ define('BARCODE_BRY_PORTION2',1); //Bottom right Y
 
 define('DISPLAY_PAGE_WIDTH',800); //width of page display
 
+define('MULTIPLE_CHOICE_MIN_FILLED', 0.85);
+define('MULTIPLE_CHOICE_MAX_FILLED', 0.60);
+define('SINGLE_CHOICE_MIN_FILLED', 0.85);
+define('SINGLE_CHOICE_MAX_FILLED', 0.60);
+
+define('HTPASSWD_PATH', false);
+define('HTGROUP_PATH', false);
+
+
 
 //Do not remove the following line:
 include(dirname(__FILE__) . '/config.default.php');

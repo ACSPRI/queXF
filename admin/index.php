@@ -48,6 +48,7 @@ xhtml_head(T_("queXF Admin Functions"),true,array("../css/admin.css"));
 <li><a href="?page=limesurvey.php"><?php echo T_("Limesurvey integration"); ?></a></li></ul></li>
 <li><h3><?php echo T_("Users"); ?></h3>
 <ul><li><a href="?page=operators.php"><?php echo T_("Add operators"); ?></a></li>
+<li><a href="?page=listoperators.php"><?php echo T_("List operators"); ?></a></li>
 <li><a href="?page=verifierquestionnaire.php"><?php echo T_("Assign forms to operators"); ?></a></li>
 <li><a href="?page=supervisorquestionnaire.php"><?php echo T_("Assign supervisors to forms"); ?></a></li></ul></li>
 <?php if (ICR_ENABLED) { ?>

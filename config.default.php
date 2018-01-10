@@ -198,5 +198,11 @@ if (!defined('DELETE_ON_VERIFICATION')) define('DELETE_ON_VERIFICATION', true);
 if (!defined('IMAGE_THRESHOLD')) define('IMAGE_THRESHOLD', 221);
 
 
+//HTpassword update
+if (!defined('HTPASSWD_PATH')) define('HTPASSWD_PATH', false);
+if (!defined('HTGROUP_PATH')) define('HTGROUP_PATH', false);
+if (!defined('HTGROUP_ADMIN')) define('HTGROUP_ADMIN', 'admin');
+if (!defined('HTGROUP_VERIFIER')) define('HTGROUP_VERIFIER', 'verifier');
+
 
 ?>
