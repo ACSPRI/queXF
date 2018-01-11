@@ -40,30 +40,32 @@ if (isset($_POST['operator']) && isset($_POST['d']))
 	if ($d == "") $d = $operator;
 	if (!empty($_POST['operator']))
 	{
-		$sql = "INSERT INTO verifiers
-			(`vid` ,`description` ,`currentfid` ,`http_username`)
-			VALUES (NULL , $d, NULL , $operator);";
+        if (isset($_POST['password']) && empty($_POST['password'])) {
+            $a = T_("Password cannot be blank");
+		} else {
+			$sql = "INSERT INTO verifiers
+				(`vid` ,`description` ,`currentfid` ,`http_username`)
+				VALUES (NULL , $d, NULL , $operator);";
 	
-		if ($db->Execute($sql))
-    {
-      if (HTPASSWD_PATH !== false && HTGROUP_PATH !== false) {
-         //Get password and add it to the configured htpassword
-         include_once("../functions/functions.htpasswd.php");
-         $htp = New Htpasswd(HTPASSWD_PATH);
-         $htg = New Htgroup(HTGROUP_PATH);
-         $htp->addUser($_POST['operator'],$_POST['password']);
-         $htg->addUserToGroup($_POST['operator'],HTGROUP_VERIFIER);
-         if (isset($_POST['s'])) {
-           $htg->addUserToGroup($_POST['operator'],HTGROUP_ADMIN);
-         }
-      }
-
-			$a = T_("Added") . ": $operator";	
-		}else
-		{
-			$a = T_("Could not add") . " $operator.". T_("There may already be an operator of this name");
-		}
-	}
+			if ($db->Execute($sql))
+	    	{
+		      if (HTPASSWD_PATH !== false && HTGROUP_PATH !== false) {
+	         	//Get password and add it to the configured htpassword
+		         include_once("../functions/functions.htpasswd.php");
+		         $htp = New Htpasswd(HTPASSWD_PATH);
+		         $htg = New Htgroup(HTGROUP_PATH);
+		         $htp->addUser($_POST['operator'],$_POST['password']);
+		         $htg->addUserToGroup($_POST['operator'],HTGROUP_VERIFIER);
+		         if (isset($_POST['s'])) {
+		           $htg->addUserToGroup($_POST['operator'],HTGROUP_ADMIN);
+		         }
+			   }
+               $a = T_("Added") . ": $operator";	
+			} else {
+			   $a = T_("Could not add") . " $operator.". T_("There may already be an operator of this name");
+		    }
+        }
+    }
 }
 
 if ($a)
