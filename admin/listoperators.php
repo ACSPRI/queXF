@@ -59,7 +59,7 @@ if (isset($_POST['operatorid']) && isset($_POST['d']))
 		            //old operator
 	    	        $htp->deleteUser($oop);
 	    	        $htg->deleteUserFromGroup($oop,HTGROUP_VERIFIER);
-	    	        if ($operatorid != 1) {
+	    	        if ($_POST['operatorid'] != 1) {
 		              $htg->deleteUserFromGroup($oop,HTGROUP_ADMIN);
 	    	   	    }
 	    	        $htp->addUser($_POST['operator'],$_POST['password']);
@@ -100,7 +100,7 @@ $rs = $db->GetRow($sql);
 <p><?php echo T_("Enter the username (as in the security system, eg: azammit) of an operator to add:"); ?> <input name="operator" type="text" value="<?php echo $rs['http_username']; ?>"/></p>
 <?php if (HTPASSWD_PATH !== false) {?>
   <p><?php echo T_("Enter the password to set:"); ?> <input name="password" type="text"/></p>
-  <p><?php echo T_("Is this operator an administrator?"); ?> <input name="s" type="checkbox"/></p>
+  <p><?php echo T_("Is this operator an administrator?"); ?> <input name="s" type="checkbox" <?php if($operatorid == 1) { echo "checked=checked"; }?>/></p>
 <?php }?>
 <p><?php echo T_("Enter the name of the operator (eg Adam):"); ?> <input name="d" type="text" value="<?php echo $rs['description']; ?>"/></p>
 <p><input type="hidden" name="operatorid" value="<?php echo $operatorid; ?>" /></p>
