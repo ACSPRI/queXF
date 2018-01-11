@@ -38,7 +38,7 @@ if (isset($_POST['operator']) && isset($_POST['d']))
 	$operator = $db->qstr($_POST['operator'],get_magic_quotes_gpc());
 	$d = $db->qstr($_POST['d'],get_magic_quotes_gpc());
 	if ($d == "") $d = $operator;
-	if (!empty($_POST['operator']))
+	if (!empty($_POST['operator']) && stripos($_POST['operator'],' ') === false)
 	{
         if (isset($_POST['password']) && empty($_POST['password'])) {
             $a = T_("Password cannot be blank");
@@ -65,6 +65,8 @@ if (isset($_POST['operator']) && isset($_POST['d']))
 			   $a = T_("Could not add") . " $operator.". T_("There may already be an operator of this name");
 		    }
         }
+    } else {
+        $a= T_("The username must not be empty or contain a space");
     }
 }
 
