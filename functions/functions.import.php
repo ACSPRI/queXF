@@ -683,6 +683,14 @@ function import($filename,$description = false)
 			$pfid = $pf[0]['pfid'];
 		else
 			return false; //this form has already been processed	
+	} else {
+		//insert a new record as no existing for this form
+		$sql = "INSERT INTO processforms (pfid,filepath,filehash,date,status,allowanother)
+			VALUES (NULL,'$filename','$filehash',NOW(),1,0)";
+
+		$db->Execute($sql);
+
+		$pfid = $db->Insert_ID();
 	}
 	
 
@@ -998,19 +1006,7 @@ function import($filename,$description = false)
 			unset($images);
 		}
 
-		//Update or insert record in to processforms log database
-		if ($pfid == false)
-		{
-			//insert a new record as no existing for this form
-			$sql = "INSERT INTO processforms (pfid,filepath,filehash,date,status,allowanother)
-				VALUES (NULL,'$filename','$filehash',NOW(),1,0)";
-
-			$db->Execute($sql);
-
-			$pfid = $db->Insert_ID();
-		}
-		else
-		{	
+		//Update record in to processforms log database
 			//update exisiting record
 			$sql = "UPDATE processforms
 				SET date = NOW(),
@@ -1021,7 +1017,6 @@ function import($filename,$description = false)
 				WHERE pfid = '$pfid'";
 
 			$db->Execute($sql);
-		}
 
 		//Update form table with pfid
 		$sql = "UPDATE forms
@@ -1037,16 +1032,6 @@ function import($filename,$description = false)
 		print T_("Could not get qid...");
 	
 		//Update or insert record in to processforms log database
-		if ($pfid == false)
-		{
-			//insert a new record as no existing for this form
-			$sql = "INSERT INTO processforms (pfid,filepath,filehash,date,status,allowanother)
-				VALUES (NULL,'$filename','$filehash',NOW(),2,0)";
-
-			$db->Execute($sql);
-		}
-		else
-		{	
 			//update exisiting record
 			$sql = "UPDATE processforms
 				SET date = NOW(),
@@ -1057,7 +1042,6 @@ function import($filename,$description = false)
 				WHERE pfid = '$pfid'";
 
 			$db->Execute($sql);
-		}
 	}
 
 
