@@ -1,3 +1,11 @@
+queXF 1.20.5 - Changes since 1.20.4
+
+*Fixed issue: docker-compose had missing default values
+*Fixed issue: Duplicate imports were allowed in some cases (fix  by setting pfid early)
+*Fixed issue: Only admin operator could be wiped disallowing access
+*Fixed issue: Operator usernames with spaces were allowed
+*Fixed issue: Empty passwords were removing users
+
 queXF 1.20.4 - Changes since 1.20.3
 
 *New feature: Allow adding/updating users directly to HTPASSWD file via HTPASSWD_PATH define
