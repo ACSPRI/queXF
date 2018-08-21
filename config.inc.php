@@ -33,10 +33,10 @@
  *
  */
 
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'quexf');
+define('DB_USER','root');
+define('DB_PASS','example');
+define('DB_HOST','mysql');
+define('DB_NAME','quexf');
 
 define('ADODB_DIR', '/usr/share/php/adodb/');
 
@@ -49,39 +49,39 @@ define('GS_BIN', "/usr/bin/gs");
 
 define('DEBUG', false);
 
-define('OCR_ENABLED',false);
+define('OCR_ENABLED','true');
 
-define('IMAGES_DIRECTORY', dirname(__FILE__) . '/images/');
+define('IMAGES_DIRECTORY','/images/');
 
-define('SCANS_DIRECTORY', dirname(__FILE__) . '/scans/');
+define('SCANS_DIRECTORY','/forms/');
 
 //Temporary directory
 define('TEMPORARY_DIRECTORY', "/tmp");
 
 define('PROCESS_SLEEP',600); 
 
-define('HORI_WIDTH_BOX',54);
-define('VERT_WIDTH_BOX',54);
+define('HORI_WIDTH_BOX','75');
+define('VERT_WIDTH_BOX','75');
 
-define('BARCODE_TLX_PORTION',0.5); //Top left X
-define('BARCODE_TLY_PORTION',0); //Top left Y
-define('BARCODE_BRX_PORTION',1); //Bottom right X
-define('BARCODE_BRY_PORTION',0.2); //Bottom right Y
+define('BARCODE_TLX_PORTION','0.75');
+define('BARCODE_TLY_PORTION','0');
+define('BARCODE_BRX_PORTION','1');
+define('BARCODE_BRY_PORTION','0.1');
 
-define('BARCODE_TLX_PORTION2',0); //Top left X
-define('BARCODE_TLY_PORTION2',0.8); //Top left Y
-define('BARCODE_BRX_PORTION2',0.5); //Bottom right X
-define('BARCODE_BRY_PORTION2',1); //Bottom right Y
+define('BARCODE_TLX_PORTION2','0');
+define('BARCODE_TLY_PORTION2','0.9');
+define('BARCODE_BRX_PORTION2','0.25');
+define('BARCODE_BRY_PORTION2','1');
 
 define('DISPLAY_PAGE_WIDTH',800); //width of page display
 
-define('MULTIPLE_CHOICE_MIN_FILLED', 0.85);
-define('MULTIPLE_CHOICE_MAX_FILLED', 0.60);
-define('SINGLE_CHOICE_MIN_FILLED', 0.85);
-define('SINGLE_CHOICE_MAX_FILLED', 0.60);
+define('MULTIPLE_CHOICE_MIN_FILLED','0.75');
+define('MULTIPLE_CHOICE_MAX_FILLED','0.4');
+define('SINGLE_CHOICE_MIN_FILLED','0.75');
+define('SINGLE_CHOICE_MAX_FILLED','0.4');
 
-define('HTPASSWD_PATH', false);
-define('HTGROUP_PATH', false);
+define('HTPASSWD_PATH','/opt/quexf/password');
+define('HTGROUP_PATH','/opt/quexf/group');
 
 
 

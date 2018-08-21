@@ -812,7 +812,7 @@ function horiliney($tlx,$tly,$brx,$bry,$image,$approxw,$tolerance = 2,$attempts 
 		for($x = $xmin; $x < $xmax; $x += 1)
 		{
 			$rgb = imagecolorat($image, $x, $y);
-      if ($rgb != $col){
+      if ($rgb != $col || $x == ($xmax - 1)){
         if ($searchlongest)
         {
   				if ($width > $line && $col == 0)
@@ -916,7 +916,7 @@ function vertlinex($tlx,$tly,$brx,$bry,$image,$approxw,$tolerance = 2,$attempts 
 		for($y = $ymin; $y < $ymax; $y += 1)
 		{
 			$rgb = imagecolorat($image, $x, $y);
-			if ($rgb != $col){
+			if ($rgb != $col || $ymax == ($ymax - 1)){
         //print "X LINE: $x width: $width COL: $col<br/>";
         if ($searchlongest)
         {
