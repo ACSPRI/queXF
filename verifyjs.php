@@ -82,6 +82,15 @@ function bgidtocss($zoom = 1,$fid,$pid)
 
 	print "<form id=\"mainform\" method=\"post\" action=\"{$_SERVER['PHP_SELF']}\">";
 
+  //display alignment markers
+  $sql = "SELECT tlx,tly,trx,try,blx,bly,brx,bry FROM pages WHERE pid = $pid";
+  $pmark = $db->GetRow($sql);
+  print "<div id='tla' class='mydiv' style='top:" . $pmark['tly'] / $zoom . "px; left:" . $pmark['tlx'] / $zoom . "px; display:none;'><div id='tlaheader' class='mydivheader'>TL</div></div>";
+  print "<div id='tra' class='mydiv' style='top:" . $pmark['try'] / $zoom . "px; left:" . $pmark['trx'] / $zoom . "px; display:none;'><div id='traheader' class='mydivheader'>TR</div></div>";
+  print "<div id='bla' class='mydiv' style='top:" . $pmark['bly'] / $zoom . "px; left:" . $pmark['blx'] / $zoom . "px; display:none;'><div id='blaheader' class='mydivheader'>BL</div></div>";
+  print "<div id='bra' class='mydiv' style='top:" . $pmark['bry'] / $zoom . "px; left:" . $pmark['brx'] / $zoom . "px; display:none;'><div id='braheader' class='mydivheader'>BR</div></div>";
+
+
 	foreach ($boxgroups as $boxgroup)
 	{
 		$crop = applytransforms($boxgroup,$row);
@@ -175,6 +184,49 @@ $vid = get_vid();
 if($vid == false){ print T_("Please log in"); exit;}
 
 $fid = get_fid($vid);
+
+
+if (isset($_GET['align']) && isset($_GET['fid']) && isset($_GET['pid']) )
+{
+	$pid = $_GET['pid'];
+
+  //get the page id from the page table
+  $sql = "SELECT * FROM pages
+      WHERE pid = '$pid'";
+
+    $page = $db->GetRow($sql);
+
+  $zoom = floatval($_GET['zoom']);
+
+    $offset = array();
+    $offset[] = floatval($_GET['tlax']) * $zoom;
+    $offset[] = floatval($_GET['tlay']) * $zoom;
+    $offset[] = floatval($_GET['trax']) * $zoom;
+    $offset[] = floatval($_GET['tray']) * $zoom;
+    $offset[] = floatval($_GET['blax']) * $zoom;
+    $offset[] = floatval($_GET['blay']) * $zoom;
+    $offset[] = floatval($_GET['brax']) * $zoom;
+    $offset[] = floatval($_GET['bray']) * $zoom;
+
+
+  //calc transforms
+        $transforms = detecttransforms(false,$page,$offset);
+
+    unset($transforms['width']);
+    unset($transforms['height']);
+        //save image to db including offset
+        $sql = "UPDATE formpages SET ";
+							
+							foreach($transforms as $key => $val)
+								$sql .= " $key = $val,";
+
+              $sql = substr($sql,0,-1);
+
+              $sql .=  " WHERE pid = $pid AND fid = " . $_GET['fid'];
+
+							$db->Execute($sql);
+	
+}
 
 
 if (isset($_GET['centre']) && isset($_GET['fid']) && isset($_GET['pid']) )
@@ -817,6 +869,27 @@ function allDone()
         document.forms.namedItem("mainform").submit();
 }
 
+function showAlign()
+{
+  document.getElementById('tla').style.display = 'block';
+  document.getElementById('tra').style.display = 'block';
+  document.getElementById('bla').style.display = 'block';
+  document.getElementById('bra').style.display = 'block';
+  document.getElementById('acceptalign').style.display = 'block';
+}
+
+function acceptAlign(pid,fid,zoom)
+{
+ window.location='verifyjs.php?align=align&pid=' + pid + '&fid=' + fid + '&zoom=' + zoom + 
+                   '&tlax=' + document.getElementById('tla').style.left +
+                   '&tlay=' + document.getElementById('tla').style.top  +
+                   '&trax=' + document.getElementById('tra').style.left +
+                   '&tray=' + document.getElementById('tra').style.top +
+                   '&blax=' + document.getElementById('bla').style.left +
+                   '&blay=' + document.getElementById('bla').style.top +
+                   '&brax=' + document.getElementById('bra').style.left +
+                   '&bray=' + document.getElementById('bra').style.top;
+}
 
 
 function nextTask()
@@ -1281,7 +1354,55 @@ function poptastic(url)
 }
 
 
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    /* if present, the header is where you move the DIV from:*/
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+    
+  } else {
+    /* otherwise, move the DIV from anywhere inside the DIV:*/
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
+
+
 function init() {
+	dragElement(document.getElementById("tla"));
+	dragElement(document.getElementById("tra"));
+	dragElement(document.getElementById("bla"));
+	dragElement(document.getElementById("bra"));
 	document['onkeydown'] = detectEvent;
 	nextTask();
 //	focusText(0);
@@ -1302,6 +1423,23 @@ window.onload = init;
 /* ]]> */
 </script>
 <style type="text/css">
+
+.mydiv {
+    position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    background-image: url('css/arrow.png');
+    text-align: center;
+    border: 1px solid #d3d3d3;
+}
+
+.mydivheader {
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+    color: black;
+}
+
 #topper {
   position : fixed;
   width : 100%;
@@ -1406,6 +1544,8 @@ else
 	print "<p>Q:$qid F:$fid P:$pid</p>";
 	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?pid=$pid&amp;fid=$fid&amp;centre=centre\">" . T_("Centre Page") . "</a></p>";
 	print "<p><a href=\"javascript:void(0)\" onclick=\"allDone();\">" . T_("Accept page") . "</a></p>";
+	print "<p><a href=\"javascript:void(0)\" onclick=\"showAlign();\">" . T_("Align page") . "</a></p>";
+	print "<p style='display:none' id='acceptalign'><a href=\"javascript:void(0)\" onclick=\"acceptAlign($pid,$fid," . ($pw/DISPLAY_PAGE_WIDTH) . ");\">" . T_("Accept alignment of page") . "</a></p>";
 
   print "<div id='note'><object class='embeddedobject' id='mainobj' data='pagenote.php?pid=$pid&amp;fid=$fid&amp;vid=$vid' standby='" . T_("Loading panel...") . "' type='application/xhtml+xml'><div>" . T_("Error, try with Firefox") . "</div></object></div>";
 

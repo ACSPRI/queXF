@@ -482,19 +482,21 @@ function sanitizepage($page,$width,$height)
 * Use the template page offsets for calculations of scale and offset
 *
 */
-function detecttransforms($image,$page)
+function detecttransforms($image,$page,$offset = false)
 {
-	$width = imagesx($image);
-	$height = imagesy($image);
+  if ($offset === false) {
+  	$width = imagesx($image);
+  	$height = imagesy($image);
 
-	$page = sanitizepage($page,$width,$height);
+  	$page = sanitizepage($page,$width,$height);
 
-  $offset = offset($image,false,0,$page);
-
-  //correct offset if possible (multiple runs to correct for possible multiple errors)
-  $offset = validate_offset($offset,$page);
-  $offset = validate_offset($offset,$page);
-  $offset = validate_offset($offset,$page);
+   $offset = offset($image,false,0,$page);
+  
+    //correct offset if possible (multiple runs to correct for possible multiple errors)
+    $offset = validate_offset($offset,$page);
+    $offset = validate_offset($offset,$page);
+    $offset = validate_offset($offset,$page);
+  }
 
 	if (!in_array("",$offset)) //all edges detected
 	{
