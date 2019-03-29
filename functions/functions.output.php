@@ -122,6 +122,7 @@ function uploadrpcJson($fid) {
    }
 
    //var_dump($qidmain);
+   //var_dump($questionResult);
    //return true;
 
    // build translate array
@@ -130,7 +131,7 @@ function uploadrpcJson($fid) {
       $pqid = $data['parent_qid'];
 
       if ($qidmain[$pqid]['type'] == 'M') {
-        $que[$data['title']] = $data['sid'] . 'X' . $data['gid'] . 'X' . $data['parent_qid'] . $data['title'];
+        $que[$qidmain[$pqid]['title'] . '_' . $data['title']] = $data['sid'] . 'X' . $data['gid'] . 'X' . $data['parent_qid'] . $data['title'];
       } else {
         $que[$qidmain[$pqid]['title'] . '_' . $data['title']] = $data['sid'] . 'X' . $qidmain[$pqid]['gid'] . 'X' . $qidmain[$pqid]['qid'] . $data['title'];
       }
@@ -144,6 +145,7 @@ function uploadrpcJson($fid) {
     list($head, $data) = outputdatacsv($qid, $fid, false, false, true);
     $assoc = array();
 
+    //var_dump($head);
 
     for ($i = 0; $i < count($head); $i++) {
          //concat if same variable name
