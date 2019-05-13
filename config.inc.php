@@ -37,6 +37,7 @@ define('DB_USER','root');
 define('DB_PASS','example');
 define('DB_HOST','mysql');
 define('DB_NAME','quexf');
+define('DB_SSL',null);
 
 define('ADODB_DIR', '/usr/share/php/adodb/');
 

@@ -40,6 +40,7 @@ if (!defined('DB_PASS')) define('DB_PASS', 'quexf');
 if (!defined('DB_HOST')) define('DB_HOST', 'localhost');
 if (!defined('DB_NAME')) define('DB_NAME', 'quexf');
 if (!defined('DB_TYPE')) define('DB_TYPE', 'mysqli');
+if (!defined('DB_SSL')) define('DB_SSL', null);
 
 if (!defined('ADODB_DIR')) define('ADODB_DIR', '/usr/share/php/adodb/');
 

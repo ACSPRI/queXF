@@ -39,6 +39,7 @@ if (!(include_once(ADODB_DIR . 'adodb.inc.php')))
 
 //global database variable
 $db = newADOConnection(DB_TYPE);
+$db->ssl_ca = DB_SSL;
 $db->Connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 $db->SetFetchMode(ADODB_FETCH_ASSOC);
 
