@@ -517,24 +517,6 @@ CREATE TABLE IF NOT EXISTS `sections` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sessions2`
---
-
-CREATE TABLE IF NOT EXISTS `sessions2` (
-  `sesskey` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `expiry` datetime NOT NULL,
-  `expireref` varchar(250) COLLATE utf8_unicode_ci DEFAULT '',
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  `sessdata` longtext COLLATE utf8_unicode_ci,
-  PRIMARY KEY (`sesskey`),
-  KEY `sess2_expiry` (`expiry`),
-  KEY `sess2_expireref` (`expireref`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `supervisorquestoinnaire`
 --
 
