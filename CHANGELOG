@@ -1,3 +1,12 @@
+queXF 1.20.6 - Changes since 1.20.5
+
+*New feature: Align page feature
+*New feature: Initial support for DB over SSL
+
+*Fixed issue: Remove uneccesary session2 table
+*Fixed issue: Multiple choice answers not imported to limesurvey
+*Fixed issue: Not detecting longest line if it takes up entire box detection area
+
 queXF 1.20.5 - Changes since 1.20.4
 
 *Fixed issue: docker-compose had missing default values
