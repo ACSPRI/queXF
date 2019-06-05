@@ -706,11 +706,15 @@ function crop($image,$a)
 {
 	$newwidth = $a['brx']-$a['tlx'];
 	$newheight = $a['bry']-$a['tly'];
-	$new = imagecreatetruecolor($newwidth, $newheight);
-	imagepalettecopy($new,$image);
-	imagecopyresized($new, $image, 0, 0, $a['tlx'], $a['tly'], $newwidth, $newheight, $newwidth, $newheight);
-	//print "$tlx $tly $newwidth $newheight<br/>";
-	return $new;
+	if ($newwidth > 1 && $newheight > 1)
+	{
+		$new = imagecreatetruecolor($newwidth, $newheight);
+		imagepalettecopy($new,$image);
+		imagecopyresized($new, $image, 0, 0, $a['tlx'], $a['tly'], $newwidth, $newheight, $newwidth, $newheight);
+		//print "$tlx $tly $newwidth $newheight<br/>";
+		return $new;
+	}
+    return false;
 }
 
 /*return the fill ratio of an area of an image

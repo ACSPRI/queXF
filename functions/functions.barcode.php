@@ -233,6 +233,8 @@ function validateCodaBar($s)
  */
 function barcode($image, $step = 1, $length = false, $numsonly = false)
 {
+	if (!is_resource($image)) return false;
+
 	if (function_exists('imagefilter') &&
 		function_exists('imagetruecolortopalette') &&
 		function_exists('imagecolorset') &&
