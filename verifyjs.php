@@ -1342,8 +1342,10 @@ function focusText(field)
 {
 	if (document.getElementById('textBox'+field))
 	{
-		document.getElementById('textBox'+field).focus();
-		document.getElementById('textBox'+field).select();
+    	window.setTimeout(function () {
+			document.getElementById('textBox'+field).focus();
+			document.getElementById('textBox'+field).select();
+		}, 0);
 	}
 }
 
