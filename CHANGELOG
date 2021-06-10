@@ -1,3 +1,9 @@
+queXF 1.20.8 - Changes since 1.20.7
+
+*Fixed issue with barcode detection in monochrome scans
+*Fixed issue with focus on Chrome browsers
+*Fixes issue lp:1895071 - Deprecated message regarding constructor name
+
 queXF 1.20.7 - Changes since 1.20.6
 
 *Fixed issue: Fix to support ADODB 5.21
