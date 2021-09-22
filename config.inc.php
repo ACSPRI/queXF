@@ -64,7 +64,7 @@ define('PROCESS_SLEEP',600);
 define('HORI_WIDTH_BOX','75');
 define('VERT_WIDTH_BOX','75');
 
-define('BARCODE_TLX_PORTION','0.75');
+define('BARCODE_TLX_PORTION','0.5');
 define('BARCODE_TLY_PORTION','0');
 define('BARCODE_BRX_PORTION','1');
 define('BARCODE_BRY_PORTION','0.1');
