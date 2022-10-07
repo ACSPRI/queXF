@@ -282,7 +282,7 @@ function barcode($image, $step = 1, $length = false, $numsonly = false)
     //use tesseract to find the "barcode" or any text as OCR
     $tmp = tempnam(TEMPORARY_DIRECTORY, "BARCODE");
     imagepng($image,$tmp);
-    exec(TESSERACT_BIN . " $tmp $tmp -psm 3"); //run tessearct in single line mode
+    exec(TESSERACT_BIN . " $tmp $tmp"); //run tessearct in single line mode
     $result = file_get_contents($tmp . ".txt");
     unlink($tmp);
     unlink($tmp . ".txt");
