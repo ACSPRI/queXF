@@ -1,3 +1,8 @@
+queXF 1.20.9 - Changes since 1.20.8
+
+*Fixed issue with tesseract failing to detect
+*Fixed issue with default barcode width
+
 queXF 1.20.8 - Changes since 1.20.7
 
 *Fixed issue with barcode detection in monochrome scans
