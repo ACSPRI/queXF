@@ -32,7 +32,7 @@ include("functions/functions.xhtml.php");
 include("functions/functions.database.php");
 				
 
-function bgidtocss($zoom = 1,$fid,$pid)
+function bgidtocss($zoom,$fid,$pid)
 {
 	global $db;
 
@@ -152,7 +152,9 @@ function bgidtocss($zoom = 1,$fid,$pid)
 				if (!is_numeric($val)) $val = "";
 			}
 
-			$val = htmlspecialchars($val);
+            if ($val !== null) {
+    			$val = htmlspecialchars($val);
+            }
 	
 			print "<div><input type=\"text\" name=\"bid$bid\" id=\"textBox$bid\" value=\"$val\" $maxlength style=\"z-index: 1; position:absolute; top:" . (($box['tly'] / $zoom) + (($box['bry'] - $box['tly'] ) / $zoom)) . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px;\" onclick=\"\" onfocus=\"select()\" $onkeypress /></div>";
 
@@ -161,8 +163,9 @@ function bgidtocss($zoom = 1,$fid,$pid)
 		}
 		else if ($btid == 6 || $btid == 5)
 		{
-			$val = htmlspecialchars($val);
-	
+            if ($val !== null) {
+			    $val = htmlspecialchars($val);
+            }	
 			print "<div><textarea name=\"bid$bid\" id=\"textBox$bid\" style=\"z-index: 1; position:absolute; top:" . (($box['tly'] / $zoom) + (($box['bry'] - $box['tly'] ) / $zoom)) . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px;\" onclick=\"\" onfocus=\"select()\" rows=\"20\" cols=\"80\">$val</textarea></div>";
 
 		

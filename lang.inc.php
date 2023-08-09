@@ -49,8 +49,10 @@ function translate_array(&$a,$b)
 }
 
 
-
-$locale = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+$locale = "";
+if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+	$locale = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+}
 if (empty($locale)) $locale = 'en';
 T_setlocale(LC_MESSAGES, $locale);
 T_bindtextdomain($locale,  dirname(__FILE__)."/locale");

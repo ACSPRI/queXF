@@ -53,8 +53,8 @@ $a = false;
 
 if (isset($_POST['client']))
 {
-	$client = $db->qstr($_POST['client'],get_magic_quotes_gpc());
-	$description = $db->qstr($_POST['description'],get_magic_quotes_gpc());
+	$client = $db->qstr($_POST['client']);
+	$description = $db->qstr($_POST['description']);
 	
 	if (!empty($_POST['client']))
 	{

@@ -326,7 +326,7 @@ function validate_offset($offset,$page)
 //and original page id
 //given an image and the tlx,tly,trx,try,blx,bly,brx,bry as an array
 //
-function offset($image,$a,$compare = 1,$page)
+function offset($image,$a,$compare,$page)
 {
 	$b = array();
 	$c = array();
@@ -642,7 +642,7 @@ function calcrotate($a,$ret = false)
 *
 *
 */
-function rotate($angle=false,$point,$centroid,$costheta=false,$sintheta=false)
+function rotate($angle,$point,$centroid,$costheta=false,$sintheta=false)
 {
 	if ($angle !== false)
 	{
@@ -917,8 +917,13 @@ function vertlinex($tlx,$tly,$brx,$bry,$image,$approxw,$tolerance = 2,$attempts 
       if ($ymax > $bry) $ymax = $bry;
     }
    
+    $col = false;
+    try {
     $col = imagecolorat($image, $x, $ymin);
-
+     } catch (Exception $e) {
+       $col = false;
+     }
+        if ($col !== false) {
 		for($y = $ymin; $y < $ymax; $y += 1)
 		{
 			$rgb = imagecolorat($image, $x, $y);
@@ -945,6 +950,7 @@ function vertlinex($tlx,$tly,$brx,$bry,$image,$approxw,$tolerance = 2,$attempts 
 			}
 			$width++;
 		}
+        }
 
 	}
 

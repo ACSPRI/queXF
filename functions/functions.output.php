@@ -26,9 +26,6 @@
 include_once(dirname(__FILE__).'/../config.inc.php');
 include_once(dirname(__FILE__).'/../db.inc.php');
 
-if (version_compare(PHP_VERSION,'5','>='))
- include_once(dirname(__FILE__).'/domxml-php4-to-php5.php');
-
 set_time_limit(600);
 
 
@@ -38,12 +35,13 @@ function csv($fields = array(), $delimiter = ',', $enclosure = '"')
     $escape_char = '\\';
     foreach ($fields as $value)
     {
-      if (strpos($value, $delimiter) !== false ||
+      if ($value !== null && (
+          strpos($value, $delimiter) !== false ||
           strpos($value, $enclosure) !== false ||
           strpos($value, "\n") !== false ||
           strpos($value, "\r") !== false ||
           strpos($value, "\t") !== false ||
-          strpos($value, ' ') !== false)
+          strpos($value, ' ') !== false))
       {
         $str2 = $enclosure;
         $escaped = 0;
@@ -664,7 +662,7 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true,$unverif
 			}
 			else
 			{
-				print str_pad($val['val'],1," ",STR_PAD_LEFT);
+				print str_pad((string)$val['val'],1," ",STR_PAD_LEFT);
 			}
 
 			$count++;
@@ -677,7 +675,7 @@ function outputdata($qid,$fid = "", $header =true, $appendformid = true,$unverif
 		if ($appendformid)
 		{
 			print str_pad($form['fid'], 10, " ", STR_PAD_LEFT);
-      print str_pad($form['rpc_id'], 10, " ", STR_PAD_LEFT);
+      print str_pad((string)$form['rpc_id'], 10, " ", STR_PAD_LEFT);
 			print str_pad($form['description'], 255, " ", STR_PAD_RIGHT);
 			print str_pad($form['vstatus'], 255, " ", STR_PAD_RIGHT);
 		}
@@ -707,22 +705,21 @@ function variable_ddi($doc,$width,$varname,$vardescription,$startpos,$vartype,$c
 
 	*/
 
-	$var = $doc->create_element("var");
-		$var->set_attribute("ID", "$varname");
-		$var->set_attribute("name", "$varname");
-		$var->set_attribute("dcml", "0");
+	$var = $doc->createElement("var");
+		$var->setAttribute("ID", "$varname");
+		$var->setAttribute("name", "$varname");
+		$var->setAttribute("dcml", "0");
 
-	$location = $doc->create_element("location");
-		$location->set_attribute("StartPos", "$startpos");
-		$location->set_attribute("width", "$width");
+	$location = $doc->createElement("location");
+		$location->setAttribute("StartPos", "$startpos");
+		$location->setAttribute("width", "$width");
 
-	$var->append_child($location);
+	$var->appendChild($location);
 	
-	$labl = $doc->create_element("labl");
-		$labl->set_attribute("level", "variable");
-		$labl->set_content("$vardescription");
+	$labl = $doc->createElement("labl", $vardescription);
+	$labl->setAttribute("level", "variable");
 
-	$var->append_child($labl);
+	$var->appendChild($labl);
 
 	if ($cats !== false)
 	{
@@ -731,27 +728,24 @@ function variable_ddi($doc,$width,$varname,$vardescription,$startpos,$vartype,$c
 			$value = $cat['value'];
 			$label = $cat['label'];
 
-			$c = $doc->create_element("catgry");
-			$c->set_attribute("missing","N");
+			$c = $doc->createElement("catgry");
+			$c->setAttribute("missing","N");
 			
-			$v = $doc->create_element("catValu");
-			$v->set_content($value);
-			$c->append_child($v);
+			$v = $doc->createElement("catValu",$value);
+			$c->appendChild($v);
 
-			$l = $doc->create_element("labl");
-			$l->set_attribute("level","category");
-			$l->set_content($label);
-			$c->append_child($l);
+			$l = $doc->createElement("labl",$label);
+			$l->setAttribute("level","category");
+			$c->appendChild($l);
 
-			$var->append_child($c);
+			$var->appendChild($c);
 		}
 	}
 
-	$varformat =  $doc->create_element("varFormat");
-		$varformat->set_attribute("type",$vartype);
-		$varformat->set_content("ASCII");
+	$varformat =  $doc->createElement("varFormat","ACSII");
+		$varformat->setAttribute("type",$vartype);
 
-	$var->append_child($varformat);	
+	$var->appendChild($varformat);	
 
 	return $var;
 }
@@ -766,18 +760,17 @@ function export_icr($kb)
 {
 	global $db;
 
-	$dom = domxml_new_doc("1.0");
+    $dom = new DOMDocument('1.0', 'UTF-8');
 
-	$c = $dom->create_element("queXF");
-	$dom->append_child($c); 
+	$c = $dom->createElement("queXF");
+	$dom->appendChild($c); 
 
-	$q = $dom->create_element("kb");
+	$q = $dom->createElement("kb");
 
-	$tmp = $dom->create_element("id");
-	$tmp->set_content($kb);
-	$q->append_child($tmp);
+	$tmp = $dom->createElement("id",$kb);
+	$q->appendChild($tmp);
 		
-	$c->append_child($q);
+	$c->appendChild($q);
 	
 	//Export description
 	$sql = "SELECT description
@@ -786,9 +779,8 @@ function export_icr($kb)
 
 	$rs = $db->GetRow($sql);
 	
-	$tmp = $dom->create_element("description");
-	$tmp->set_content($rs['description']);
-	$q->append_child($tmp);
+	$tmp = $dom->createElement("description",$rs['description']);
+	$q->appendChild($tmp);
 
 	//Export kb data
 	$sql = "SELECT *
@@ -799,21 +791,21 @@ function export_icr($kb)
 
 	foreach($rs as $r)
 	{
-		$o = $dom->create_element("ocrkbdata");
+		$o = $dom->createElement("ocrkbdata");
 
 		foreach($r as $battr => $bval)
 		{
 			if ($battr != "kb")
 			{
-				$tmp = $dom->create_element($battr);
-				$tmp->set_content($bval);
-				$o->append_child($tmp);
+				$tmp = $dom->createElement($battr,$bval);
+				$o->appendChild($tmp);
 			}
 		}
-		$q->append_child($o);
+		$q->appendChild($o);
 	}
 
-	$ret = $dom->dump_mem(true);	
+    $dom->formatOutput = true;
+	$ret = $dom->saveXML();	
 	
 	header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 	header ("Content-Type: text/xml");
@@ -831,17 +823,16 @@ function export_banding($qid)
 {
 	global $db;
 
-	$dom = domxml_new_doc("1.0");
+    $dom = new DOMDocument('1.0', 'UTF-8');
 
-	$c = $dom->create_element("queXF");
-	$dom->append_child($c); 
+	$c = $dom->createElement("queXF");
+	$dom->appendChild($c); 
 
-	$q = $dom->create_element("questionnaire");
-	$tmp = $dom->create_element("id");
-	$tmp->set_content($qid);
-	$q->append_child($tmp);
+	$q = $dom->createElement("questionnaire");
+	$tmp = $dom->createElement("id",$qid);
+	$q->appendChild($tmp);
 		
-	$c->append_child($q);
+	$c->appendChild($q);
 	
 	//Export sections
 	$sql = "SELECT sid,title,description
@@ -853,18 +844,16 @@ function export_banding($qid)
 	
 	foreach($rs as $r)
 	{
-		$s = $dom->create_element("section");
+		$s = $dom->createElement("section");
 
-		$tmp = $dom->create_element("title");
-		$tmp->set_content($r['title']);
-		$s->append_child($tmp);
+		$tmp = $dom->createElement("title",$r['title']);
+		$s->appendChild($tmp);
 
-		$tmp = $dom->create_element("label");
-		$tmp->set_content($r['description']);
-		$s->append_child($tmp);
+		$tmp = $dom->createElement("label",$r['description']);
+		$s->appendChild($tmp);
 
-		$s->set_attribute("id",$r['sid']);
-		$q->append_child($s);
+		$s->setAttribute("id",$r['sid']);
+		$q->appendChild($s);
 	}
 
 	//Export pages
@@ -879,13 +868,12 @@ function export_banding($qid)
 	{
 		$pid = $r['pid'];	
 
-		$p = $dom->create_element("page");
+		$p = $dom->createElement("page");
 
 		foreach($r as $pattr => $pval)
 		{
-			$tmp = $dom->create_element($pattr);
-			$tmp->set_content($pval);
-			$p->append_child($tmp);
+			$tmp = $dom->createElement($pattr,$pval);
+			$p->appendChild($tmp);
 		}
 
 		//Box groups
@@ -900,17 +888,15 @@ function export_banding($qid)
 		{
 			$bgid = $r2['id'];
 
-			$bg = $dom->create_element("boxgroup");
+			$bg = $dom->createElement("boxgroup");
 
 			foreach($r2 as $battr => $bval)
 			{
 				
-				$tmp = $dom->create_element($battr);
+				$tmp = $dom->createElement($battr,$bval);
 				if ($battr == 'groupsection' && !empty($bval))
-					$tmp->set_attribute("idref",$bval);
-				else
-					$tmp->set_content($bval);
-				$bg->append_child($tmp);
+					$tmp->setAttribute("idref",$bval);
+				$bg->appendChild($tmp);
 			}
 
 			//Boxes
@@ -923,24 +909,24 @@ function export_banding($qid)
 
 			foreach($rs3 as $r3)
 			{
-				$b = $dom->create_element("box");
+				$b = $dom->createElement("box");
 
 				foreach($r3 as $battr => $bval)
 				{
-					$tmp = $dom->create_element($battr);
-					$tmp->set_content($bval);
-					$b->append_child($tmp);
+					$tmp = $dom->createElement($battr,$bval);
+					$b->appendChild($tmp);
 				}
 
-				$bg->append_child($b);
+				$bg->appendChild($b);
 			}
 			
-			$p->append_child($bg);
+			$p->appendChild($bg);
 		}
-		$q->append_child($p);
+		$q->appendChild($p);
 	}
 	
-	$ret = $dom->dump_mem(true);	
+    $dom->formatOutput = true;
+	$ret = $dom->saveXML();	
 	
 	header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 	header ("Content-Type: text/xml");
@@ -960,15 +946,14 @@ function export_ddi($qid)
 	global $db;
 
 	//get the ddi file
-	$dom = domxml_new_doc("1.0");  //create new file
+    $dom = new DOMDocument('1.0', 'UTF-8');
+
+	$c = $dom->createElement("codeBook");
+	$dom->appendChild($c);
 
 
-	$c = $dom->create_element("codeBook");
-	$dom->append_child($c);
-
-
-	$d = $dom->create_element("dataDscr");
-	$c->append_child($d);		//create dataDscr element
+	$d = $dom->createElement("dataDscr");
+	$c->appendChild($d);		//create dataDscr element
 
 
 	//add section information
@@ -994,15 +979,14 @@ function export_ddi($qid)
 		foreach ($varnames as $varname)
 			$varstring .= $varname['varname'] . " ";
 
-		$v = $dom->create_element("varGrp");
-		$v->set_attribute("var", $varstring);
+		$v = $dom->createElement("varGrp");
+		$v->setAttribute("var", $varstring);
 		
-		$l = $dom->create_element("labl");
-		$l->set_attribute("level", "VAR GROUP");
-		$l->set_content($section['description']);
+		$l = $dom->createElement("labl",$section['description']);
+		$l->setAttribute("level", "VAR GROUP");
 
-		$v->append_child($l);
-		$d->append_child($v);		
+		$v->appendChild($l);
+		$d->appendChild($v);		
 	}
 
 	$startpos = 1;
@@ -1046,11 +1030,11 @@ function export_ddi($qid)
 				$nam = $name . "_$i";
 				$nvar = variable_ddi($dom,$length,$nam,$nam,$startpos,$vartype,array(array("value" => 1, "label" => "Selected")));
 		
-				$d->append_child($nvar);
+				$d->appendChild($nvar);
 		
-				$nvlocations = $nvar->get_elements_by_tagname("location");     
+				$nvlocations = $nvar->getElementsByTagName("location");     
 				foreach ($nvlocations as $nvlocation)
-					$nvlocation->set_attribute("width", "$length");
+					$nvlocation->setAttribute("width", "$length");
 		
 				$startpos += $length;
 
@@ -1077,11 +1061,11 @@ function export_ddi($qid)
 
 			$nvar = variable_ddi($dom,$length,$name,$varlabel,$startpos,$vartype,$cats);
 	
-			$d->append_child($nvar);
+			$d->appendChild($nvar);
 	
-			$nvlocations = $nvar->get_elements_by_tagname("location");     
+			$nvlocations = $nvar->getElementsByTagName("location");     
 			foreach ($nvlocations as $nvlocation)
-				$nvlocation->set_attribute("width", "$length");
+				$nvlocation->setAttribute("width", "$length");
 
 			$startpos += $length;
 		}
@@ -1089,37 +1073,38 @@ function export_ddi($qid)
 
 
 	$nvar = variable_ddi($dom,10,"formid","formid",$startpos,"number");
-	$d->append_child($nvar);
+	$d->appendChild($nvar);
 	$startpos += 10;
-	$nvlocations = $nvar->get_elements_by_tagname("location");     
+	$nvlocations = $nvar->getElementsByTagName("location");     
 	foreach ($nvlocations as $nvlocation)
-		$nvlocation->set_attribute("width", "10");
+		$nvlocation->setAttribute("width", "10");
 
 
 	$nvar = variable_ddi($dom,10,"rpc_id","rpc_id",$startpos,"number");
-	$d->append_child($nvar);
+	$d->appendChild($nvar);
 	$startpos += 10;
-	$nvlocations = $nvar->get_elements_by_tagname("location");     
+	$nvlocations = $nvar->getElementsByTagName("location");     
 	foreach ($nvlocations as $nvlocation)
-		$nvlocation->set_attribute("width", "10");
+		$nvlocation->setAttribute("width", "10");
 
 	$nvar = variable_ddi($dom,255,"filename","filename",$startpos,"number");
-	$d->append_child($nvar);
+	$d->appendChild($nvar);
 	$startpos += 255;
-	$nvlocations = $nvar->get_elements_by_tagname("location");     
+	$nvlocations = $nvar->getElementsByTagName("location");     
 	foreach ($nvlocations as $nvlocation)
-		$nvlocation->set_attribute("width", "255");
+		$nvlocation->setAttribute("width", "255");
 
 	$nvar = variable_ddi($dom,255,"vstatus","vstatus",$startpos,"number");
-	$d->append_child($nvar);
-	$nvlocations = $nvar->get_elements_by_tagname("location");     
+	$d->appendChild($nvar);
+	$nvlocations = $nvar->getElementsByTagName("location");     
 	foreach ($nvlocations as $nvlocation)
-		$nvlocation->set_attribute("width", "255");
+		$nvlocation->setAttribute("width", "255");
 
 
 	//return a formatted version of the DDI file as as string
 
-	$ret = $dom->dump_mem(true);	
+    $dom->formatOutput = true;
+	$ret = $dom->saveXML();	
 	
 	header ("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 	header ("Content-Type: text/xml");

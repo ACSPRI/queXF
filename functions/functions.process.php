@@ -188,7 +188,7 @@ function process_append_data($process_id,$data)
 {
 	global $db;
 
-	$data = $db->qstr($data,get_magic_quotes_gpc());
+	$data = $db->qstr($data);
 
 	$sql = "INSERT INTO `process_log` (process_log_id,process_id,datetime,data)
 		VALUES (NULL,'$process_id',NOW(),$data)";

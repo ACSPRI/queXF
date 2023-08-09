@@ -137,7 +137,7 @@ function defaultpage($width,$height,$qid=0,$pid=0,$data="")
  *
  */
 
-function newquestionnaire($filename,$desc = "",$type="pnggray",$double_entry){
+function newquestionnaire($filename,$desc = "",$type="pnggray",$double_entry=0){
 
 	global $db;
 
@@ -1180,8 +1180,8 @@ function import_icr($xml)
 
 	foreach ($b->kb as $q)
 	{
-		$id = current($q->id);
-		$desc = $db->qstr(current($q->description));
+		$id = (string)$q->id;
+		$desc = $db->qstr((string)$q->description);
 
 		$sql = "INSERT INTO ocrkb (kb,description)
 			VALUES (NULL,$desc)";
@@ -1253,7 +1253,7 @@ function import_bandingxml($xml,$qid,$erase = false)
 
 	foreach ($b->questionnaire as $q)
 	{
-		$id = current($q->id);
+		$id = (string)$q->id;
 
 		$sql = "UPDATE questionnaires
 			SET limesurvey_sid = '$id'
@@ -1264,9 +1264,9 @@ function import_bandingxml($xml,$qid,$erase = false)
 		$sections = array();
 		foreach ($q->section as $s)
 		{
-			$sid = current($s['id']);
-			$label = $db->qstr(current($s->label));
-			$title = $db->qstr(current($s->title));
+			$sid = (string)$s['id'];
+			$label = $db->qstr((string)$s->label);
+			$title = $db->qstr((string)$s->title);
 
 			$sql = "INSERT INTO sections (sid,qid,description,title)
 				VALUES (NULL,'$qid',$label,$title)";
@@ -1281,7 +1281,7 @@ function import_bandingxml($xml,$qid,$erase = false)
 
 		foreach($q->page as $p)
 		{
-			$id = current($p->id);
+			$id = (string)$p->id;
 			
 			//Get the queXF page id given this qid and pidentifierval
 			$sql = "SELECT pid
@@ -1308,7 +1308,7 @@ function import_bandingxml($xml,$qid,$erase = false)
 			{
 				if (isset($p->$e))
 				{
-					$val = $db->qstr(current($p->$e));
+					$val = $db->qstr((string)$p->$e);
 					$sql = "UPDATE pages
 						SET `$e` = $val
 						WHERE qid = '$qid'
@@ -1324,10 +1324,9 @@ function import_bandingxml($xml,$qid,$erase = false)
 				$varname = $db->qstr($bg->varname);
 				$sortorder = intval($bg->sortorder);
 				$label = $db->qstr($bg->label);
-				$gs = current($bg->groupsection);
 				$sid = "NULL";
-				if (isset($sections[$gs['idref']]))
-					$sid = $sections[$gs['idref']];
+				if (isset($bg->groupsection['idref']) && isset($sections[intval($bg->groupsection['idref'])]))
+					$sid = $sections[intval($bg->groupsection['idref'])];
 				
 				$sql = "INSERT INTO boxgroupstype (bgid,btid,width,pid,varname,sortorder,label,sid)
 					VALUES (NULL,$type,$width,$pid,$varname,$sortorder,$label,$sid)";

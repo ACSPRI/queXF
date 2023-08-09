@@ -35,9 +35,9 @@ xhtml_head(T_("List operators"));
 
 if (isset($_POST['operatorid']) && isset($_POST['d']))
 {
-	$operatorid = $db->qstr($_POST['operatorid'],get_magic_quotes_gpc());
-	$operator = $db->qstr($_POST['operator'],get_magic_quotes_gpc());
-	$d = $db->qstr($_POST['d'],get_magic_quotes_gpc());
+	$operatorid = $db->qstr($_POST['operatorid']);
+	$operator = $db->qstr($_POST['operator']);
+	$d = $db->qstr($_POST['d']);
 	if (!empty($_POST['operatorid']))
     {
       if (isset($_POST['password']) && empty($_POST['password'])) {

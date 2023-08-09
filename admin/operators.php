@@ -35,8 +35,8 @@ xhtml_head(T_("Add an operator"));
 
 if (isset($_POST['operator']) && isset($_POST['d']))
 {
-	$operator = $db->qstr($_POST['operator'],get_magic_quotes_gpc());
-	$d = $db->qstr($_POST['d'],get_magic_quotes_gpc());
+	$operator = $db->qstr($_POST['operator']);
+	$d = $db->qstr($_POST['d']);
 	if ($d == "") $d = $operator;
 	if (!empty($_POST['operator']) && stripos($_POST['operator'],' ') === false)
 	{

@@ -61,25 +61,25 @@ define('TEMPORARY_DIRECTORY', "/tmp");
 
 define('PROCESS_SLEEP',600); 
 
-define('HORI_WIDTH_BOX','75');
-define('VERT_WIDTH_BOX','75');
+define('HORI_WIDTH_BOX','58');
+define('VERT_WIDTH_BOX','58');
 
 define('BARCODE_TLX_PORTION','0.5');
 define('BARCODE_TLY_PORTION','0');
 define('BARCODE_BRX_PORTION','1');
 define('BARCODE_BRY_PORTION','0.1');
 
-define('BARCODE_TLX_PORTION2','0');
+define('BARCODE_TLX_PORTION2','0.5');
 define('BARCODE_TLY_PORTION2','0.9');
 define('BARCODE_BRX_PORTION2','0.25');
 define('BARCODE_BRY_PORTION2','1');
 
 define('DISPLAY_PAGE_WIDTH',800); //width of page display
 
-define('MULTIPLE_CHOICE_MIN_FILLED','0.75');
-define('MULTIPLE_CHOICE_MAX_FILLED','0.4');
-define('SINGLE_CHOICE_MIN_FILLED','0.75');
-define('SINGLE_CHOICE_MAX_FILLED','0.4');
+define('MULTIPLE_CHOICE_MIN_FILLED','0.85');
+define('MULTIPLE_CHOICE_MAX_FILLED','0.6');
+define('SINGLE_CHOICE_MIN_FILLED','0.85');
+define('SINGLE_CHOICE_MAX_FILLED','0.6');
 
 define('HTPASSWD_PATH','/opt/quexf/password');
 define('HTGROUP_PATH','/opt/quexf/group');

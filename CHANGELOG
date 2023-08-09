@@ -1,3 +1,7 @@
+queXF 1.21.0 - Changes since 1.20.9
+
+*Supports PHP 8.1 - removes support for earlier than PHP 7
+
 queXF 1.20.9 - Changes since 1.20.8
 
 *Fixed issue with tesseract failing to detect

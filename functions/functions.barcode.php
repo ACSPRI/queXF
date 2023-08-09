@@ -70,8 +70,8 @@ function nwWidth($array)
 		return $a;
 	}
 
-	$a['n'] = $array[(($elements/4)+1)];
-	$a['w'] = $array[($elements-(($elements/4)+1))];
+	$a['n'] = $array[round(($elements/4)+1)];
+	$a['w'] = $array[round(($elements-(($elements/4)+1)))];
 
 	//print ("N: {$a['n']} W: {$a['w']}<br/>");
 
@@ -110,7 +110,7 @@ function widthsToNW($widths,$narrow,$wide)
   }
 
   for ($i=0;$i<2;$i++) {
-    $lastJ = strpos($string,'J', ((strlen($string) / 4) * 3));
+    $lastJ = strpos($string,'J', round((strlen($string) / 4) * 3));
   	if ($lastJ !== false && $lastJ >= ((strlen($string)/4)*3))
       $string = substr($string,0,$lastJ);
   }
@@ -233,7 +233,9 @@ function validateCodaBar($s)
  */
 function barcode($image, $step = 1, $length = false, $numsonly = false)
 {
-	if (!is_resource($image)) return false;
+    if (!(gettype($image) == "object" && get_class($image) == "GdImage")) {
+        return false;
+    }
 
 	if (function_exists('imagefilter') &&
 		function_exists('imagetruecolortopalette') &&
