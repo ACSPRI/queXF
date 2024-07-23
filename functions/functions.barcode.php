@@ -70,8 +70,8 @@ function nwWidth($array)
 		return $a;
 	}
 
-	$a['n'] = $array[round(($elements/4)+1)];
-	$a['w'] = $array[round(($elements-(($elements/4)+1)))];
+	$a['n'] = $array[round(($elements/8)+1)];
+	$a['w'] = $array[round(($elements-(($elements/8)+1)))];
 
 	//print ("N: {$a['n']} W: {$a['w']}<br/>");
 
@@ -86,7 +86,7 @@ function widthsToNW($widths,$narrow,$wide)
 {
 	//give a large tolerance
 
-	$tolerance = (($wide - $narrow)) / 2;
+	$tolerance = (($wide - $narrow) + 1) / 2;
 	$string = "";
 
 	$nmin = ($narrow - $tolerance);
