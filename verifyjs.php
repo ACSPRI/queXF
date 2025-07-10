@@ -129,7 +129,7 @@ function bgidtocss($zoom,$fid,$pid)
 
 		if ($btid == 1) //single
 		{
-				if ($val == 0) {$checked = ""; $colour = BOX_BACKGROUND_COLOUR; } else {$checked = "checked=\"checked\""; $colour = BOX_SELECT_COLOUR;}
+				if (empty($val)) {$checked = ""; $colour = BOX_BACKGROUND_COLOUR; } else {$checked = "checked=\"checked\""; $colour = BOX_SELECT_COLOUR;}
 				print "<div><input type=\"checkbox\" name=\"bid$bid\" id=\"checkBox$bid\" value=\"$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; opacity:0.0; \" onclick=\"radioUpdate('$bid','$bbgid'); \" $checked onkeypress=\"checkEnter(event,$bbgid,$bid)\"/></div>";
 				print "<div id=\"checkImage$bid\" onkeypress=\"checkEnter(event,$bbgid,$bid)\" onclick=\"radioChange('$bid','$bbgid'); \" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" .  BOX_OPACITY . "; \"></div>";
 	
@@ -137,7 +137,7 @@ function bgidtocss($zoom,$fid,$pid)
 		else if ($btid == 2) //multiple
 		{
 	
-				if ($val == 0) {$checked = ""; $colour = BOX_BACKGROUND_COLOUR; } else {$checked = "checked=\"checked\""; $colour = BOX_SELECT_COLOUR;}
+				if (empty($val)) {$checked = ""; $colour = BOX_BACKGROUND_COLOUR; } else {$checked = "checked=\"checked\""; $colour = BOX_SELECT_COLOUR;}
 				print "<div><input type=\"checkbox\" name=\"bid$bid\" id=\"checkBox$bid\" value=\"$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; opacity:0.0; \" onclick=\"checkUpdate('$bid','$bbgid'); \" $checked onkeypress=\"checkEnter(event,$bbgid,$bid)\" /></div>";
 				print "<div id=\"checkImage$bid\" onkeypress=\"checkEnter(event,$bbgid,$bid)\" onclick=\"checkChange('$bid','$bbgid'); \" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" .  BOX_OPACITY . ";  \"></div>";
 

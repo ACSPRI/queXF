@@ -1,5 +1,3 @@
-version: '2'
-
 services:
 
   quexf:
@@ -33,6 +31,6 @@ services:
 
 
   mysql:
-    image: mariadb
+    image: mariadb:10.5
     environment:
       MYSQL_ROOT_PASSWORD: example
