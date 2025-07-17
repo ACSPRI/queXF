@@ -1,4 +1,4 @@
-#queXF
+# queXF
 
 An Open Source, web based paper form verification and data entry system
 
@@ -10,4 +10,4 @@ queXF removes the need to manually enter form data, therefore reducing error and
 
 Operators need little knowledge of the form design as queXF breaks down the verification task in to a question by question process. The operator works in a web browser and does not need to install any other software on their computer, therefore can work from any location with network access.
 
-Development for queXF occurs on Launchpad: https://launchpad.net/quexf
+Development for queXF occurs on GitHub: https://github.com/ACSPRI/queXF
