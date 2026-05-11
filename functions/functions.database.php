@@ -362,6 +362,113 @@ function get_qid_description($fid)
 	return $rs;
 }
 
+function reload_session_from_database($fid, $vid, $reviewMode = false)
+{
+    session_reset();
+    session_start();
+    global $db;
 
+    $fid = intval($fid);
+    $vid = intval($vid);
 
+    $qid_desc = get_qid_description($fid);
+    if (empty($qid_desc)) {
+        return false;
+    }
+
+    $qid = intval($qid_desc['qid']);
+
+    /*
+     * En mode review, on relit les dernières valeurs vérifiées.
+     * Ici on prend en priorité la valeur du vérificateur courant,
+     * sinon une valeur existante pour ce formulaire.
+     */
+    $sql = "SELECT b.bid as bid,
+                   b.tlx as tlx,
+                   b.tly as tly,
+                   b.brx as brx,
+                   b.bry as bry,
+                   b.pid as pid,
+                   bg.btid as btid,
+                   b.bgid as bgid,
+                   $fid as fid,
+                   bg.sortorder as sortorder,
+                   fb.filled,
+                   CASE
+                       WHEN d.fid IS NOT NULL THEN d.val
+                       WHEN c.fid IS NOT NULL THEN c.val
+                       ELSE NULL
+                   END as val
+            FROM boxes AS b
+            JOIN boxgroupstype as bg ON (bg.bgid = b.bgid AND bg.btid > 0)
+            JOIN pages as p ON (p.pid = b.pid AND p.qid = '$qid')
+            LEFT JOIN formboxes as fb ON (fb.bid = b.bid AND fb.fid = '$fid')
+            LEFT JOIN formboxverifychar AS c ON (
+                c.fid = '$fid'
+                AND c.bid = b.bid
+                AND c.vid = (
+                    SELECT c2.vid
+                    FROM formboxverifychar c2
+                    WHERE c2.fid = '$fid'
+                    AND c2.bid = b.bid
+                    ORDER BY c2.fbvcid DESC
+                    LIMIT 1
+                )
+            )
+            LEFT JOIN formboxverifytext AS d ON (
+                d.fid = '$fid'
+                AND d.bid = b.bid
+                AND d.vid = (
+                    SELECT d2.vid
+                    FROM formboxverifytext d2
+                    WHERE d2.fid = '$fid'
+                    AND d2.bid = b.bid
+                    ORDER BY d2.fbvtid DESC
+                    LIMIT 1
+                )
+            )
+            ORDER BY bg.sortorder ASC";
+
+    $sql2 = "SELECT b.bgid,
+                    " . ($reviewMode ? "0" : "0") . " as done,
+                    MIN(b.pid) as pid,
+                    bg.varname,
+                    bg.btid
+             FROM boxes as b, boxgroupstype as bg, pages as p
+             WHERE p.pid = b.pid
+             AND bg.bgid = b.bgid
+             AND p.qid = '$qid'
+             AND bg.btid > 0
+             GROUP BY bg.bgid
+             ORDER BY bg.sortorder ASC";
+
+    $sql3 = "SELECT b.pid,
+                    MIN(b.bgid) as bgid,
+                    0 as done,
+                    fp.width,
+                    fp.height,
+                    fp.fid
+             FROM boxes as b
+             JOIN pages as p ON (p.qid = '$qid' AND b.pid = p.pid)
+             JOIN boxgroupstype as bg ON (bg.bgid = b.bgid)
+             LEFT JOIN formpages as fp ON (fp.fid = '$fid' AND fp.pid = p.pid)
+             GROUP BY b.pid
+             ORDER BY MIN(bg.sortorder) ASC";
+
+    $boxes = $db->GetAssoc($sql);
+    $boxgroups = $db->GetAssoc($sql2);
+    $pages = $db->GetAssoc($sql3);
+
+    if (empty($boxes)) {
+        return false;
+    }
+
+    $_SESSION['boxes'] = $boxes;
+    $_SESSION['boxgroups'] = $boxgroups;
+    $_SESSION['pages'] = $pages;
+    $_SESSION['assigned'] = time();
+    $_SESSION['review_mode'] = $reviewMode ? 1 : 0;
+
+    return true;
+}
 ?>

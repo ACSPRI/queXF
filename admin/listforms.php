@@ -32,6 +32,11 @@ if (isset($_GET['fid']))
 {
 	$fid = intval($_GET['fid']);
 	$vid = intval($_GET['vid']);
+	
+	if (isset($_GET['revise'])) {
+		$vid = get_vid();
+		reload_session_from_database($fid, $vid);
+	}
 
 	$db->StartTrans();
 
@@ -47,13 +52,24 @@ if (isset($_GET['fid']))
 
 	$db->Execute($sql);
 
-	$sql = "UPDATE forms
-		SET assigned_vid = NULL, done = 0, rpc_id = NULL, assigned = NULL, completed = NULL
-		WHERE fid = '$fid'";
+	if (isset($_GET['revise'])) {
+		$sql = "UPDATE forms
+			SET assigned_vid = '$vid', done = 0
+			WHERE fid = '$fid'";
+	} else {
+		$sql = "UPDATE forms
+			SET assigned_vid = NULL, done = 0, rpc_id = NULL, assigned = NULL, completed = NULL
+			WHERE fid = '$fid'";
+	}
 
 	$db->Execute($sql);
 
-	$db->CompleteTrans();	
+	$db->CompleteTrans();
+	
+	if (isset($_GET['revise'])) {
+		header("Location: ../verifyjs.php?fid=" . $fid);
+		exit;
+	}
 }
 
 xhtml_head(T_("Listing of forms"),true,array("../css/table.css"));
@@ -63,7 +79,7 @@ if (isset($_GET['qid']))
 {
   $qid = intval($_GET['qid']);
 
-  $sql = "SELECT f.fid, v.description as name, q.description as quest, CONCAT('<a href=\"?qid=$qid&amp;fid=', f.fid ,'&amp;vid=', f.assigned_vid ,'\">" . T_("Re verify") . "</a>') as link
+  $sql = "SELECT f.fid, v.description as name, q.description as quest, CONCAT('<a href=\"?qid=$qid&amp;fid=', f.fid ,'&amp;vid=', f.assigned_vid ,'\">" . T_("Re verify") . "</a>') as link, CONCAT('<a href=\"?revise&amp;qid=$qid&amp;fid=', f.fid ,'&amp;vid=', f.assigned_vid ,'\">" . T_("Revise") . "</a>') as linkrevise
   	FROM forms as f
   	JOIN questionnaires AS q ON (f.qid = q.qid AND q.qid = '$qid')
   	LEFT JOIN verifiers AS v ON (v.vid = f.assigned_vid)
@@ -74,7 +90,7 @@ if (isset($_GET['qid']))
 
   print "<div><a href=\"?\">" . T_("Go back") . "</a>";
 
-  xhtml_table($fs,array('fid','name','quest','link'),array(T_('Form ID'),T_('Operator'),T_('Questionnaire'),T_('Re verify')));
+  xhtml_table($fs,array('fid','name','quest','link','linkrevise'),array(T_('Form ID'),T_('Operator'),T_('Questionnaire'),T_('Re verify'),T_('Revise')));
 }
 else
 {
