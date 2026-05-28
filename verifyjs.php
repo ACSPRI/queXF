@@ -1,5 +1,4 @@
 <?php
-
 /*	Copyright Deakin University 2007,2008
  *	Written by Adam Zammit - adam.zammit@deakin.edu.au
  *	For the Deakin Computer Assisted Research Facility: http://www.deakin.edu.au/dcarf/
@@ -24,13 +23,12 @@
 
 
 //verifier
-
 include_once("config.inc.php");
 include_once("db.inc.php");
 include("functions/functions.image.php");
 include("functions/functions.xhtml.php");
 include("functions/functions.database.php");
-				
+
 
 function bgidtocss($zoom,$fid,$pid)
 {
@@ -82,13 +80,13 @@ function bgidtocss($zoom,$fid,$pid)
 
 	print "<form id=\"mainform\" method=\"post\" action=\"{$_SERVER['PHP_SELF']}\">";
 
-  //display alignment markers
-  $sql = "SELECT tlx,tly,trx,try,blx,bly,brx,bry FROM pages WHERE pid = $pid";
-  $pmark = $db->GetRow($sql);
-  print "<div id='tla' class='mydiv' style='top:" . $pmark['tly'] / $zoom . "px; left:" . $pmark['tlx'] / $zoom . "px; display:none;'><div id='tlaheader' class='mydivheader'>TL</div></div>";
-  print "<div id='tra' class='mydiv' style='top:" . $pmark['try'] / $zoom . "px; left:" . $pmark['trx'] / $zoom . "px; display:none;'><div id='traheader' class='mydivheader'>TR</div></div>";
-  print "<div id='bla' class='mydiv' style='top:" . $pmark['bly'] / $zoom . "px; left:" . $pmark['blx'] / $zoom . "px; display:none;'><div id='blaheader' class='mydivheader'>BL</div></div>";
-  print "<div id='bra' class='mydiv' style='top:" . $pmark['bry'] / $zoom . "px; left:" . $pmark['brx'] / $zoom . "px; display:none;'><div id='braheader' class='mydivheader'>BR</div></div>";
+	//display alignment markers
+	$sql = "SELECT tlx,tly,trx,try,blx,bly,brx,bry FROM pages WHERE pid = $pid";
+	$pmark = $db->GetRow($sql);
+	print "<div id='tla' class='mydiv' style='top:" . $pmark['tly'] / $zoom . "px; left:" . $pmark['tlx'] / $zoom . "px; display:none;'><div id='tlaheader' class='mydivheader'>TL</div></div>";
+	print "<div id='tra' class='mydiv' style='top:" . $pmark['try'] / $zoom . "px; left:" . $pmark['trx'] / $zoom . "px; display:none;'><div id='traheader' class='mydivheader'>TR</div></div>";
+	print "<div id='bla' class='mydiv' style='top:" . $pmark['bly'] / $zoom . "px; left:" . $pmark['blx'] / $zoom . "px; display:none;'><div id='blaheader' class='mydivheader'>BL</div></div>";
+	print "<div id='bra' class='mydiv' style='top:" . $pmark['bry'] / $zoom . "px; left:" . $pmark['brx'] / $zoom . "px; display:none;'><div id='braheader' class='mydivheader'>BR</div></div>";
 
 
 	foreach ($boxgroups as $boxgroup)
@@ -102,11 +100,7 @@ function bgidtocss($zoom,$fid,$pid)
 		if ($ttop < 0) $ttop = 0;
 
 		print "<div id=\"boxGroup_$bgid\" style=\"position:absolute; top:" . $ttop . "px; width:1px; height:1px; background-color: " . BOX_BACKGROUND_COLOUR . ";opacity:.0;\"></div>";
-
-
 		print "<div id=\"boxGroupBox_$bgid\" onclick=\"groupChange('$bgid');\" style=\"position:absolute; top:" . $crop['tly'] / $zoom . "px; left:" . $crop['tlx'] / $zoom . "px; width:" . ($crop['brx'] - $crop['tlx'] ) / $zoom . "px; height:" . ($crop['bry'] - $crop['tly'] ) / $zoom . "px; background-color: " . BOX_GROUP_BACKGROUND_COLOUR . ";opacity:" .  BOX_GROUP_BACKGROUND_OPACITY . "; visibility: $vis;\"></div>";
-
-
 		print "<div><input type=\"checkbox\" name=\"bgid$bgid\" id=\"bgid$bgid\" style=\"opacity:0.0; \"/></div>";
 
 		$vis = "hidden";
@@ -116,11 +110,8 @@ function bgidtocss($zoom,$fid,$pid)
 	foreach($boxes as $bi)
 	{
 		$bid = $bi['bid'];
-
 		//if (!isset($_SESSION['boxes'][$bid])) break;
-
 		$box = $_SESSION['boxes'][$bid];
-
 		$val = $_SESSION['boxes'][$bid]['val'];
 		$bbgid = $_SESSION['boxes'][$bid]['bgid'];
 		$btid = $_SESSION['boxes'][$bid]['btid'];
@@ -129,18 +120,15 @@ function bgidtocss($zoom,$fid,$pid)
 
 		if ($btid == 1) //single
 		{
-				if (empty($val)) {$checked = ""; $colour = BOX_BACKGROUND_COLOUR; } else {$checked = "checked=\"checked\""; $colour = BOX_SELECT_COLOUR;}
-				print "<div><input type=\"checkbox\" name=\"bid$bid\" id=\"checkBox$bid\" value=\"$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; opacity:0.0; \" onclick=\"radioUpdate('$bid','$bbgid'); \" $checked onkeypress=\"checkEnter(event,$bbgid,$bid)\"/></div>";
-				print "<div id=\"checkImage$bid\" onkeypress=\"checkEnter(event,$bbgid,$bid)\" onclick=\"radioChange('$bid','$bbgid'); \" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" .  BOX_OPACITY . "; \"></div>";
-	
+			if (empty($val)) {$checked = ""; $colour = BOX_BACKGROUND_COLOUR; } else {$checked = "checked=\"checked\""; $colour = BOX_SELECT_COLOUR;}
+			print "<div><input type=\"checkbox\" name=\"bid$bid\" id=\"checkBox$bid\" value=\"$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; opacity:0.0; \" onclick=\"radioUpdate('$bid','$bbgid'); \" $checked onkeypress=\"checkEnter(event,$bbgid,$bid)\"/></div>";
+			print "<div id=\"checkImage$bid\" onkeypress=\"checkEnter(event,$bbgid,$bid)\" onclick=\"radioChange('$bid','$bbgid'); \" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" .  BOX_OPACITY . "; \"></div>";
 		}
 		else if ($btid == 2) //multiple
 		{
-	
-				if (empty($val)) {$checked = ""; $colour = BOX_BACKGROUND_COLOUR; } else {$checked = "checked=\"checked\""; $colour = BOX_SELECT_COLOUR;}
-				print "<div><input type=\"checkbox\" name=\"bid$bid\" id=\"checkBox$bid\" value=\"$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; opacity:0.0; \" onclick=\"checkUpdate('$bid','$bbgid'); \" $checked onkeypress=\"checkEnter(event,$bbgid,$bid)\" /></div>";
-				print "<div id=\"checkImage$bid\" onkeypress=\"checkEnter(event,$bbgid,$bid)\" onclick=\"checkChange('$bid','$bbgid'); \" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" .  BOX_OPACITY . ";  \"></div>";
-
+			if (empty($val)) {$checked = ""; $colour = BOX_BACKGROUND_COLOUR; } else {$checked = "checked=\"checked\""; $colour = BOX_SELECT_COLOUR;}
+			print "<div><input type=\"checkbox\" name=\"bid$bid\" id=\"checkBox$bid\" value=\"$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; opacity:0.0; \" onclick=\"checkUpdate('$bid','$bbgid'); \" $checked onkeypress=\"checkEnter(event,$bbgid,$bid)\" /></div>";
+			print "<div id=\"checkImage$bid\" onkeypress=\"checkEnter(event,$bbgid,$bid)\" onclick=\"checkChange('$bid','$bbgid'); \" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: $colour;opacity:" .  BOX_OPACITY . ";  \"></div>";
 		}
 		else if ($btid == 3 || $btid == 4) //text or number
 		{
@@ -152,32 +140,24 @@ function bgidtocss($zoom,$fid,$pid)
 				if (!is_numeric($val)) $val = "";
 			}
 
-            if ($val !== null) {
-    			$val = htmlspecialchars($val);
-            }
-	
-			print "<div><input type=\"text\" name=\"bid$bid\" id=\"textBox$bid\" value=\"$val\" $maxlength style=\"z-index: 1; position:absolute; top:" . (($box['tly'] / $zoom) + (($box['bry'] - $box['tly'] ) / $zoom)) . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px;\" onclick=\"\" onfocus=\"select()\" $onkeypress /></div>";
+			if ($val !== null) {
+				$val = htmlspecialchars($val);
+			}
 
-		
+			print "<div><input type=\"text\" name=\"bid$bid\" id=\"textBox$bid\" value=\"$val\" $maxlength style=\"z-index: 1; position:absolute; top:" . (($box['tly'] / $zoom) + (($box['bry'] - $box['tly'] ) / $zoom)) . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px;\" onclick=\"\" onfocus=\"select()\" $onkeypress /></div>";
 			print "<div id=\"textImage$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: " . BOX_BACKGROUND_COLOUR . "; text-align:center; font-weight:bold;\" onclick=\"textClick('$bid','$bbgid');\">$val</div>";
 		}
 		else if ($btid == 6 || $btid == 5)
 		{
-            if ($val !== null) {
-			    $val = htmlspecialchars($val);
-            }	
+			if ($val !== null) {
+				$val = htmlspecialchars($val);
+			}
 			print "<div><textarea name=\"bid$bid\" id=\"textBox$bid\" style=\"z-index: 1; position:absolute; top:" . (($box['tly'] / $zoom) + (($box['bry'] - $box['tly'] ) / $zoom)) . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px;\" onclick=\"\" onfocus=\"select()\" rows=\"20\" cols=\"80\">$val</textarea></div>";
-
-		
 			print "<div id=\"textImage$bid\" style=\"position:absolute; top:" . $box['tly'] / $zoom . "px; left:" . $box['tlx'] / $zoom . "px; width:" . ($box['brx'] - $box['tlx'] ) / $zoom . "px; height:" . ($box['bry'] - $box['tly'] ) / $zoom . "px; background-color: " . BOX_BACKGROUND_COLOUR . "; text-align:center; font-weight:bold;\" onclick=\"textClick('$bid','$bbgid');\">$val</div>";
-
-
 		}
 	}
 	print "<div><input type=\"hidden\" name=\"piddone\" value=\"$pid\"/></div>";
 	print "</form>";
-
-
 }
 
 session_start();
@@ -193,42 +173,40 @@ if (isset($_GET['align']) && isset($_GET['fid']) && isset($_GET['pid']) )
 {
 	$pid = $_GET['pid'];
 
-  //get the page id from the page table
-  $sql = "SELECT * FROM pages
-      WHERE pid = '$pid'";
+	//get the page id from the page table
+	$sql = "SELECT * FROM pages
+		WHERE pid = '$pid'";
 
-    $page = $db->GetRow($sql);
+	$page = $db->GetRow($sql);
 
-  $zoom = floatval($_GET['zoom']);
+	$zoom = floatval($_GET['zoom']);
 
-    $offset = array();
-    $offset[] = floatval($_GET['tlax']) * $zoom;
-    $offset[] = floatval($_GET['tlay']) * $zoom;
-    $offset[] = floatval($_GET['trax']) * $zoom;
-    $offset[] = floatval($_GET['tray']) * $zoom;
-    $offset[] = floatval($_GET['blax']) * $zoom;
-    $offset[] = floatval($_GET['blay']) * $zoom;
-    $offset[] = floatval($_GET['brax']) * $zoom;
-    $offset[] = floatval($_GET['bray']) * $zoom;
+	$offset = array();
+	$offset[] = floatval($_GET['tlax']) * $zoom;
+	$offset[] = floatval($_GET['tlay']) * $zoom;
+	$offset[] = floatval($_GET['trax']) * $zoom;
+	$offset[] = floatval($_GET['tray']) * $zoom;
+	$offset[] = floatval($_GET['blax']) * $zoom;
+	$offset[] = floatval($_GET['blay']) * $zoom;
+	$offset[] = floatval($_GET['brax']) * $zoom;
+	$offset[] = floatval($_GET['bray']) * $zoom;
 
 
-  //calc transforms
-        $transforms = detecttransforms(false,$page,$offset);
+	//calc transforms
+	$transforms = detecttransforms(false,$page,$offset);
 
-    unset($transforms['width']);
-    unset($transforms['height']);
-        //save image to db including offset
-        $sql = "UPDATE formpages SET ";
-							
-							foreach($transforms as $key => $val)
-								$sql .= " $key = $val,";
+	unset($transforms['width']);
+	unset($transforms['height']);
+	//save image to db including offset
+	$sql = "UPDATE formpages SET ";
+		foreach($transforms as $key => $val)
+		{
+			$sql .= " $key = $val,";
+		}
+		$sql = substr($sql,0,-1);
+		$sql .=  " WHERE pid = $pid AND fid = " . $_GET['fid'];
 
-              $sql = substr($sql,0,-1);
-
-              $sql .=  " WHERE pid = $pid AND fid = " . $_GET['fid'];
-
-							$db->Execute($sql);
-	
+	$db->Execute($sql);
 }
 
 
@@ -248,15 +226,15 @@ if (!empty($fid))
 {
 	$qid_desc = get_qid_description($fid);
 	$qid = $qid_desc['qid'];
-  $description = $qid_desc['description'];
-  $double_entry = $qid_desc['double_entry'];
+	$description = $qid_desc['description'];
+	$double_entry = $qid_desc['double_entry'];
 }
 
 if (isset($_POST['supervisor'])) {
 
 	$db->StartTrans();
 
-  $sql = "UPDATE forms
+	$sql = "UPDATE forms
 		SET done = 2, assigned_vid = NULL, assigned = NULL, completed = NULL
 		WHERE assigned_vid = '$vid'
 		AND fid = '$fid'";
@@ -277,14 +255,14 @@ if (isset($_POST['supervisor'])) {
 
 	$db->CompleteTrans();
 
-  $fid = false;
+	$fid = false;
 
 }
 else if (isset($_POST['supervisorreturn'])) {
 
-  $db->StartTrans();
+	$db->StartTrans();
 
-  $sql = "UPDATE forms
+	$sql = "UPDATE forms
 		SET done = 0, assigned_vid = NULL, assigned = NULL, completed = NULL
 		WHERE assigned_vid = '$vid'
 		AND fid = '$fid'";
@@ -305,38 +283,32 @@ else if (isset($_POST['supervisorreturn'])) {
 
 	$db->CompleteTrans();
 
-  $fid = false;
-
-
-
+	$fid = false;
 }
 else if (isset($_POST['complete']) && isset($_SESSION['boxes'])) {
-
-	
 	foreach($_SESSION['boxes'] as $key => $box)
 	{
-
 		$sql = "";
 		if ($box['btid'] == 1 || $box['btid'] == 2)
-    {
-      //delete old data
-      if (DELETE_ON_VERIFICATION)
-      {
-        $db->Execute("DELETE FROM formboxverifychar WHERE vid = 0 AND bid = '$key' AND fid = '$fid'");
-      }
+		{
+			//delete old data
+			if (DELETE_ON_VERIFICATION)
+			{
+				$db->Execute("DELETE FROM formboxverifychar WHERE vid = 0 AND bid = '$key' AND fid = '$fid'");
+			}
 
-      if ($box['val'] > 0)
-      {
-  			$sql = "INSERT INTO formboxverifychar (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid','1')";
-      }
+			if ($box['val'] > 0)
+			{
+				$sql = "INSERT INTO formboxverifychar (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid','1')";
+			}
 		}
 		if ($box['btid'] == 3 || $box['btid'] == 4)
 		{
-      //delete old data
-      if (DELETE_ON_VERIFICATION)
-      {
-        $db->Execute("DELETE FROM formboxverifychar WHERE vid = 0 AND bid = '$key' AND fid = '$fid'");
-      }
+			//delete old data
+			if (DELETE_ON_VERIFICATION)
+			{
+				$db->Execute("DELETE FROM formboxverifychar WHERE vid = 0 AND bid = '$key' AND fid = '$fid'");
+			}
 
 			if ($box['val'] == "" || $box['val'] == " ")
 			{
@@ -349,6 +321,12 @@ else if (isset($_POST['complete']) && isset($_SESSION['boxes'])) {
 		}
 		if ($box['btid'] == 6 || $box['btid'] == 5)
 		{
+			//delete old data
+			if (DELETE_ON_VERIFICATION)
+			{
+				$db->Execute("DELETE FROM formboxverifytext WHERE vid = 0 AND bid = '$key' AND fid = '$fid'");
+			}
+			
 			if ($box['val'] == "" || $box['val'] == " ")
 			{
 				//$sql = "INSERT INTO formboxverifytext (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid',NULL)";
@@ -357,19 +335,18 @@ else if (isset($_POST['complete']) && isset($_SESSION['boxes'])) {
 				$bval = $db->qstr($box['val']);
 				$sql = "INSERT INTO formboxverifytext (`vid`,`bid`,`fid`,`val`) VALUES ('$vid','$key','$fid',$bval)";
 			}
+		}
+		if ($sql != "")
+		{
+			$db->Execute($sql);
+		}
 
-    }
-    if ($sql != "")
-    {
-  		$db->Execute($sql);
-    }
-
-    //Delete unneeded box data
-    if (DELETE_ON_VERIFICATION)
-    {
-      $sql = "DELETE IGNORE FROM formboxes WHERE fid = '$fid' AND bid = '$key'";
-      $db->Execute($sql);
-    }
+		//Delete unneeded box data
+		if (DELETE_ON_VERIFICATION)
+		{
+			$sql = "DELETE IGNORE FROM formboxes WHERE fid = '$fid' AND bid = '$key'";
+			$db->Execute($sql);
+		}
 
 		//print "$sql</br>";
 	}
@@ -377,36 +354,35 @@ else if (isset($_POST['complete']) && isset($_SESSION['boxes'])) {
 	//make sure worklog and update occurs at the same time
 	$db->StartTrans();
 
-  $dstatus = 1;
+	$dstatus = 1;
 
-  if ($double_entry) {
-    $sql = "SELECT done
-            FROM forms
-            WHERE fid = '$fid'";
+	if ($double_entry) {
+		$sql = "SELECT done
+			FROM forms
+			WHERE fid = '$fid'";
   
-    $dstatus = $db->GetOne($sql);
-  }
+		$dstatus = $db->GetOne($sql);
+	}
 
-  if ($dstatus == 1 || $dstatus == 3) { //not double entry or double entry second go
-    $sql = "UPDATE forms
-		  SET done = 1, assigned = FROM_UNIXTIME({$_SESSION['assigned']}), completed = NOW()
-  		WHERE assigned_vid = '$vid'
-  		AND fid = '$fid'"; 
-  } else if ($dstatus == 0) { //double entry, first go
-     $sql = "UPDATE forms
-      SET done = 3, 
-      assigned_vid = NULL,
-      assigned2 = FROM_UNIXTIME({$_SESSION['assigned']}), 
-      completed2 = NOW(),
-      assigned_vid2 = $vid
-  		WHERE assigned_vid = '$vid'
-  		AND fid = '$fid'";
-  } 
+	if ($dstatus == 1 || $dstatus == 3 || $dstatus == 4) { //not double entry or double entry second go or revise
+		$sql = "UPDATE forms
+			SET done = 1, assigned = FROM_UNIXTIME({$_SESSION['assigned']}), completed = NOW()
+			WHERE assigned_vid = '$vid'
+			AND fid = '$fid'"; 
+	} else if ($dstatus == 0) { //double entry, first go
+		$sql = "UPDATE forms
+			SET done = 3, 
+			assigned_vid = NULL,
+			assigned2 = FROM_UNIXTIME({$_SESSION['assigned']}), 
+			completed2 = NOW(),
+			assigned_vid2 = $vid
+			WHERE assigned_vid = '$vid'
+			AND fid = '$fid'";
+	} 
 
-  $db->Execute($sql);
+	$db->Execute($sql);
 
-
-  unset($_SESSION['boxgroups']);
+	unset($_SESSION['boxgroups']);
 	unset($_SESSION['pages']);
 	unset($_SESSION['boxes']);
 	session_unset();
@@ -420,23 +396,24 @@ else if (isset($_POST['complete']) && isset($_SESSION['boxes'])) {
 
 	$db->CompleteTrans();
 
-  //only do RPC on final verification
-  if ($dstatus == 1 || ($double_entry && $dstatus == 3)) {
+	//only do RPC on final verification
+	// TODO: update on re-verify or revise
+	if ($dstatus == 1 || ($double_entry && $dstatus == 3)) {
 
-    //if XMLRPC is set - upload this form via XMLRPC
-    $sql = "SELECT rpc_server_url 
-      FROM questionnaires
-      WHERE qid = '$qid'";
+		//if XMLRPC is set - upload this form via XMLRPC
+		$sql = "SELECT rpc_server_url 
+			FROM questionnaires
+			WHERE qid = '$qid'";
 
-    $rpc = $db->GetRow($sql);
+		$rpc = $db->GetRow($sql);
 
-    if (isset($rpc['rpc_server_url']) && !empty($rpc['rpc_server_url']))
-    {
-      //upload form via RPC
-      include_once("functions/functions.output.php");
-      uploadrpcJson($fid);
-    }
-  }
+		if (isset($rpc['rpc_server_url']) && !empty($rpc['rpc_server_url']))
+		{
+			//upload form via RPC
+			include_once("functions/functions.output.php");
+			uploadrpcJson($fid);
+		}
+	}
 
 	$fid = false;
 }
@@ -464,12 +441,12 @@ if (isset($_POST['assign']))
 	$fid = assign_to($vid);
 	if ($fid == false) 
 	{
-    xhtml_head(T_("Verify: No more work"),true,false,false,"onload='document.form1.assign.focus();'");
+		xhtml_head(T_("Verify: No more work"),true,false,false,"onload='document.form1.assign.focus();'");
 		print "<p>" . T_("NO MORE WORK") . "</p>";
 		print "<form name=\"form1\" action=\"" . $_SERVER['PHP_SELF'] . "\" method=\"post\"><input type=\"submit\" name=\"assign\" value=\"" . T_("Check for more work") . "\"/></form>";
 		unset($_SESSION['boxgroups']);
 		unset($_SESSION['boxes']);
-		unset($_SESSION['pages']);	
+		unset($_SESSION['pages']);
 		session_unset();
 		xhtml_foot();
 		exit();
@@ -484,7 +461,7 @@ if ($fid == false)
 	print "<div id=\"links\">";
 	print "<p>" . T_("There is no form currently assigned to you") . "</p>";
 //	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?assign=assign\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">" . T_("Assign next form") . "</a></p>";
-  print "<form name=\"form1\" action=\"" . $_SERVER['PHP_SELF'] . "\" method=\"post\"><input type=\"submit\" name=\"assign\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\"  value=\"" . T_("Assign next form") . "\"/></form>";
+	print "<form name=\"form1\" action=\"" . $_SERVER['PHP_SELF'] . "\" method=\"post\"><input type=\"submit\" name=\"assign\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\"  value=\"" . T_("Assign next form") . "\"/></form>";
 	print "</div>";
 	print "<div id=\"wait\" style=\"visibility: hidden;\">
 <p>" .  T_("Assigning next form: Please wait...") . "</p>
@@ -499,7 +476,7 @@ if ($fid == false)
 
 	$prs = $db->GetAll($sql);
 
-  foreach($prs as $pr)
+	foreach($prs as $pr)
 	{
 		$pqid = $pr['qid'];
 		$pdes = $pr['description'];
@@ -510,6 +487,12 @@ if ($fid == false)
 			AND done IN (0,2)";
 
 		$remain = $db->GetOne($sql);
+		
+		$sql = "SELECT count(*) as rem
+			FROM forms
+			WHERE qid = '$pqid'
+			AND done = 4";
+		$remainrev = $db->GetOne($sql);
 
 		$sql = "SELECT count(*) as ver
 			FROM forms
@@ -538,10 +521,10 @@ if ($fid == false)
 		$prss = $db->GetAll($sql);
 
 		print "<h3>$pdes</h3>";
-		xhtml_table($prss,array('ve','c','CPH','PPH'),array(T_("Operator"),T_("Completed Forms"),T_("Completions Per Hour"),T_("Pages Per Hour")),"tclass",array
-("vid" => $vid));
+		xhtml_table($prss,array('ve','c','CPH','PPH'),array(T_("Operator"),T_("Completed Forms"),T_("Completions Per Hour"),T_("Pages Per Hour")),"tclass",array("vid" => $vid));
 		print "<p>" . T_("Remain to verify") . ": $remain</p>";
 		print "<p>" . T_("Waiting for double entry") . ": $verify</p>";
+		print "<p>" . T_("Remain to revise") . ": $remainrev</p>";
 	}
 
 	xhtml_foot();
@@ -556,27 +539,26 @@ $double_entry = $qid_desc['double_entry'];
 if (!isset($_SESSION['boxes'])) {
 	//nothing yet known about this form
 
-  $ovid = 0;
+	$ovid = 0;
 
-  $sql = "SELECT done,assigned_vid2
-          FROM forms
-          WHERE fid = $fid";
+	$sql = "SELECT done,assigned_vid2
+		FROM forms
+		WHERE fid = $fid";
   
-  $dstatus = $db->GetRow($sql);
+	$dstatus = $db->GetRow($sql);
 
-  if ($dstatus['done'] == 3)
-    $ovid = $dstatus['assigned_vid2'];
+	if ($dstatus['done'] == 3)
+		$ovid = $dstatus['assigned_vid2'];
 
 	$sql = "SELECT b.bid as bid, b.tlx as tlx, b.tly as tly, b.brx as brx, b.bry as bry, b.pid as pid, bg.btid as btid, b.bgid as bgid, $fid as fid, bg.sortorder as sortorder, fb.filled, CASE WHEN d.fid IS NOT NULL THEN d.val ELSE c.val END as val
 		FROM boxes AS b
 		JOIN boxgroupstype as bg ON (bg.bgid = b.bgid AND bg.btid > 0)
-    JOIN pages as p ON (p.pid = b.pid AND p.qid = '$qid')
-    LEFT JOIN formboxes as fb ON (fb.bid = b.bid AND fb.fid = '$fid')
+		JOIN pages as p ON (p.pid = b.pid AND p.qid = '$qid')
+		LEFT JOIN formboxes as fb ON (fb.bid = b.bid AND fb.fid = '$fid')
 		LEFT JOIN formboxverifychar AS c ON (c.fid = '$fid' AND c.vid = '$ovid' AND c.bid = b.bid)
 		LEFT JOIN formboxverifytext AS d ON (d.fid = '$fid' AND d.vid = '$ovid' AND d.bid = b.bid)
 		ORDER BY bg.sortorder ASC";
 
-	
 	$sql2 = "SELECT b.bgid,0 as done,MIN(b.pid) as pid,bg.varname,bg.btid
 		FROM boxes as b, boxgroupstype as bg, pages as p
 		WHERE p.pid = b.pid
@@ -594,10 +576,10 @@ if (!isset($_SESSION['boxes'])) {
 		GROUP BY b.pid
 		ORDER BY MIN(bg.sortorder) ASC";
 
-  $a = $db->GetAssoc($sql);
+	$a = $db->GetAssoc($sql);
 	if (empty($a)) 
 	{
-    xhtml_head(T_("Verify: No more work"),true,false,false,"onload='document.form1.assign.focus();'");
+		xhtml_head(T_("Verify: No more work"),true,false,false,"onload='document.form1.assign.focus();'");
 		print "<p>" . T_("NO MORE WORK") . "</p>";
 		print "<form name=\"form1\" action=\"" . $_SERVER['PHP_SELF'] . "\" method=\"post\"><input type=\"submit\" name=\"assign\" value=\"" . T_("Check for more work") . "\"/></form>";
 		//print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?assign=assign\">" . T_("Check for more work") . "</a></p>";
@@ -619,53 +601,51 @@ if (!isset($_SESSION['boxes'])) {
 	$_SESSION['assigned'] = time();
 
 
-  if (SINGLE_CHOICE_AUTOMATIC_VERIFICATION)
-  {
+	if (SINGLE_CHOICE_AUTOMATIC_VERIFICATION)
+	{
+		//see if any boxes should be automatically marked as verified
+		//search for single choice boxes (btid == 1), within box groups where > 1 box is available
+		//if there is one and only one box within the filled range, and val is set as 1, then mark as done
+
+		$tmpt = current($a);
+		//set to first bgid
+		$tmpbgid = $tmpt['bgid'];
+		$tmpgroup = array();
+		foreach($_SESSION['boxes'] as $key => $val)
+		{
+			if ($val['bgid'] != $tmpbgid)
+			{ 
+				//check the number of boxes in this group that fall within the restrictions
+				$within = 0;
+				$withinkey = 0;
+				$withincount = 0;
+				foreach($tmpgroup as $tkey => $tval)
+				{
+					if ($tval['filled'] < SINGLE_CHOICE_MIN_FILLED && $tval['filled'] > SINGLE_CHOICE_MAX_FILLED)
+					{
+						$within++;
+						$withinkey = $tkey;
+					}
+					$withincount++;
+				}
   
-    //see if any boxes should be automatically marked as verified
+				//if one box within and also this is the selected box - mark this box group as done
+				if ($withincount > 1 && $within == 1 && $_SESSION['boxes'][$withinkey]['val'] == 1)
+				{
+					$_SESSION['boxgroups'][$_SESSION['boxes'][$withinkey]['bgid']]['done'] = 1;
+				}
+
+				$tmpbgid = $val['bgid'];
+				$tmpgroup = array();
+			}
   
-    //search for single choice boxes (btid == 1), within box groups where > 1 box is available
-    //if there is one and only one box within the filled range, and val is set as 1, then mark as done
-  
-    $tmpt = current($a);
-    //set to first bgid
-    $tmpbgid = $tmpt['bgid'];
-    $tmpgroup = array();
-    foreach($_SESSION['boxes'] as $key => $val)
-    {
-      if ($val['bgid'] != $tmpbgid)
-      { 
-        //check the number of boxes in this group that fall within the restrictions
-        $within = 0;
-        $withinkey = 0;
-        $withincount = 0;
-        foreach($tmpgroup as $tkey => $tval)
-        {
-          if ($tval['filled'] < SINGLE_CHOICE_MIN_FILLED && $tval['filled'] > SINGLE_CHOICE_MAX_FILLED)
-          {
-            $within++;
-            $withinkey = $tkey;
-          }
-          $withincount++;
-        }
-  
-        //if one box within and also this is the selected box - mark this box group as done
-        if ($withincount > 1 && $within == 1 && $_SESSION['boxes'][$withinkey]['val'] == 1)
-        {
-          $_SESSION['boxgroups'][$_SESSION['boxes'][$withinkey]['bgid']]['done'] = 1;
-        }
-  
-        $tmpbgid = $val['bgid'];
-        $tmpgroup = array();
-      }
-  
-      //only for single choice boxes
-      if ($val['btid'] == 1)
-      {
-        $tmpgroup[$key] = $val;
-      }
-    }
-  }
+			//only for single choice boxes
+			if ($val['btid'] == 1)
+			{
+				$tmpgroup[$key] = $val;
+			}
+		}
+	}
 }
 
 
@@ -696,9 +676,6 @@ if (isset($_POST['piddone']))
 			{
 				$_SESSION['boxes'][$bb['bid']]['val'] = "";
 			}
-
-
-
 		}
 	}
 
@@ -713,8 +690,6 @@ if (isset($_POST['piddone']))
 			$_SESSION['boxes'][$bid]['val'] = $getval;
 		}
 	}
-
-
 }
 
 $bgid = "";
@@ -741,7 +716,6 @@ else
 	}
 }
 
-
 if ($bgid != "")
 {
 	$sql = "SELECT pid
@@ -755,30 +729,26 @@ if ($bgid != "")
 else if ($pid == "") 
 {
 	//we are done
-//	xhtml_head(T_("Verify: Done"));
-  xhtml_head(T_("Verify: Done"),true,false,false,"onload='document.form1.complete.focus();'");
+	//xhtml_head(T_("Verify: Done"));
+	xhtml_head(T_("Verify: Done"),true,false,false,"onload='document.form1.complete.focus();'");
 	print "<p>" . T_("The required fields have been filled") . "</p>";
 	print "<div id=\"links\">";
-  print "<form name=\"form1\" action=\"" . $_SERVER['PHP_SELF'] . "\" method=\"post\"><input type=\"submit\" name=\"complete\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\"  value=\"" . T_("Submit completed form to database") . "\"/></form>";
+	print "<form name=\"form1\" action=\"" . $_SERVER['PHP_SELF'] . "\" method=\"post\"><input type=\"submit\" name=\"complete\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\"  value=\"" . T_("Submit completed form to database") . "\"/></form>";
 //	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?complete=complete\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">" . T_("Submit completed form to database") . "</a></p>";
 	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?review=review#boxGroup\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">" . T_("Review all questions again") . "</a></p>";
 	print "<p><a href=\"" . $_SERVER['PHP_SELF'] . "?clear=clear#boxGroup\" onclick=\"document.getElementById('links').style.visibility='hidden'; document.getElementById('wait').style.visibility='visible';\">" . T_("Clear all entered data and review again") . "</a></p></div>";
-
 	print "<div id=\"wait\" style=\"visibility: hidden;\"><p>" .  T_("Submitting: Please wait...") . "</p></div>";
 	xhtml_foot();
-
 	exit();
-}	
-	
-
+}
 
 
 print "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-      <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title><?php echo T_("Verifier"); ?> - <?php print "QID:$qid FID:$fid DESC:$description"; ?></title>
 <script type="text/javascript">
@@ -798,32 +768,29 @@ var newwindow;
 $sql = "SELECT boxgroupstype.bgid
 	FROM boxgroupstype
 	JOIN boxes ON boxes.bgid = boxgroupstype.bgid
-  WHERE boxgroupstype.pid = '$pid'
-  AND boxgroupstype.btid > 0
+	WHERE boxgroupstype.pid = '$pid'
+	AND boxgroupstype.btid > 0
 	GROUP BY boxgroupstype.bgid
 	ORDER BY boxgroupstype.sortorder ASC";
-		
+
 $b = $db->GetAll($sql);
-			
+
 print "bgidorder = new Array(";
-		
+
 $s = "";
-		
-foreach($b as $bb)
-{
+
+foreach($b as $bb) {
 	$s .= "'{$bb['bgid']}',";
 }
-		
-$s = substr($s,0,strlen($s) - 1);
-		
-print "$s);\n";
 
+$s = substr($s,0,strlen($s) - 1);
+
+print "$s);\n";
 
 
 //print array of done/not done box groups for this page
 //print all bgid box groups for this page containing a list of boxes in that box group
-foreach($_SESSION['boxgroups'] as $key => $val)
-{
+foreach($_SESSION['boxgroups'] as $key => $val) {
 	if ($val['pid'] == $pid)
 	{
 		if ($val['done'] == 0 || $destroypage == 1)
@@ -852,51 +819,42 @@ foreach($_SESSION['boxgroups'] as $key => $val)
 		$s = substr($s,0,strlen($s) - 1);
 	
 		print "$s);\n";
-
-
-
-
 	}
 }
 ?>
 
-function allDone()
-{
-        for (var i=0; i < bgidorder.length; i++)
-        {
-                x = bgidorder[i];
-                bgiddone[x] = 1;
-                document.getElementById('bgid' + x ).checked = 'checked';
-                document.getElementById('bgid' + x ).val = '1';
-        }
-        document.forms.namedItem("mainform").submit();
+function allDone() {
+	for (var i=0; i < bgidorder.length; i++)
+	{
+		x = bgidorder[i];
+		bgiddone[x] = 1;
+		document.getElementById('bgid' + x ).checked = 'checked';
+		document.getElementById('bgid' + x ).val = '1';
+	}
+	document.forms.namedItem("mainform").submit();
 }
 
-function showAlign()
-{
-  document.getElementById('tla').style.display = 'block';
-  document.getElementById('tra').style.display = 'block';
-  document.getElementById('bla').style.display = 'block';
-  document.getElementById('bra').style.display = 'block';
-  document.getElementById('acceptalign').style.display = 'block';
+function showAlign() {
+	document.getElementById('tla').style.display = 'block';
+	document.getElementById('tra').style.display = 'block';
+	document.getElementById('bla').style.display = 'block';
+	document.getElementById('bra').style.display = 'block';
+	document.getElementById('acceptalign').style.display = 'block';
 }
 
-function acceptAlign(pid,fid,zoom)
-{
- window.location='verifyjs.php?align=align&pid=' + pid + '&fid=' + fid + '&zoom=' + zoom + 
-                   '&tlax=' + document.getElementById('tla').style.left +
-                   '&tlay=' + document.getElementById('tla').style.top  +
-                   '&trax=' + document.getElementById('tra').style.left +
-                   '&tray=' + document.getElementById('tra').style.top +
-                   '&blax=' + document.getElementById('bla').style.left +
-                   '&blay=' + document.getElementById('bla').style.top +
-                   '&brax=' + document.getElementById('bra').style.left +
-                   '&bray=' + document.getElementById('bra').style.top;
+function acceptAlign(pid,fid,zoom) {
+	window.location='verifyjs.php?align=align&pid=' + pid + '&fid=' + fid + '&zoom=' + zoom + 
+		'&tlax=' + document.getElementById('tla').style.left +
+		'&tlay=' + document.getElementById('tla').style.top  +
+		'&trax=' + document.getElementById('tra').style.left +
+		'&tray=' + document.getElementById('tra').style.top +
+		'&blax=' + document.getElementById('bla').style.left +
+		'&blay=' + document.getElementById('bla').style.top +
+		'&brax=' + document.getElementById('bra').style.left +
+		'&bray=' + document.getElementById('bra').style.top;
 }
 
-
-function nextTask()
-{
+function nextTask() {
 	var done = 0;
 	var focusdone = 0;
 
@@ -955,13 +913,9 @@ function nextTask()
 		//else
 		//	pagedone = 1;
 	}
-
-
-
 }
 
 function previous() {
-
 	if (curbgid == 0) return;
 
 	prev = 0;
@@ -977,7 +931,6 @@ function previous() {
 
 	bgiddone[prev] = 0;
 }
-
 
 function detectEvent(e) {
 	var evt = e || event;
@@ -1014,9 +967,7 @@ function detectEvent(e) {
 	return false;
 }
 
-
-function focusRadio()
-{
+function focusRadio() {
 	//alert('curbgid: ' + curbgid + ' bgidbid: ' + bgidbid[curbgid]);
 	document.getElementById('checkBox' + bgidbid[curbgid][0]).focus();
 	document.getElementById('checkBox' + bgidbid[curbgid][0]).select();
@@ -1034,14 +985,9 @@ function focusRadio()
 			box.select();
 		}
 	}
-
-
 }
 
-
-
 function checkFocus(bid,bgid) {
-
 	if (curbgid != bgid)
 	{
 		//goto selected bgid	
@@ -1077,12 +1023,9 @@ function checkFocus(bid,bgid) {
 	
 		}
 	}
-
 }
 
-
 function groupChange(bgid) {
-
 	if (curbgid != bgid)
 	{
 		//goto selected bgid	
@@ -1093,12 +1036,9 @@ function groupChange(bgid) {
 
 	//else do nothing
 	return;
-
 }
 
-
 function radioChange(bid,bgid) {
-
 	if (curbgid != bgid)
 	{
 		//goto selected bgid	
@@ -1132,18 +1072,15 @@ function radioChange(bid,bgid) {
 			image.style.backgroundColor='<?php echo BOX_BACKGROUND_COLOUR; ?>';
 		}
 	}
-
 }
 
 function radioUpdate(bid,bgid) {
-
 	for (x in bgidbid[bgid])
 	{
 		x = bgidbid[bgid][x];
 
 		box = document.getElementById('checkBox' + x);
 		image = document.getElementById('checkImage' + x);
-
 
 		if (x == bid)
 		{
@@ -1160,12 +1097,10 @@ function radioUpdate(bid,bgid) {
 			image.style.backgroundColor='<?php echo BOX_BACKGROUND_COLOUR; ?>';
 		}
 	}
-
 }
 
 //change the checkbox status and the replacement image
 function checkChange(bid,bgid) {
-
 	if (curbgid != bgid)
 	{
 		//goto selected bgid
@@ -1173,7 +1108,6 @@ function checkChange(bid,bgid) {
 		nextTask();		
 		return;
 	}
-
 
 	box = document.getElementById('checkBox' + bid);
 	image = document.getElementById('checkImage' + bid);
@@ -1191,7 +1125,6 @@ function checkChange(bid,bgid) {
 
 //change the checkbox status and the replacement image
 function textClick(bid,bgid) {
-
 	if (curbgid != bgid)
 	{
 		//goto selected bgid	
@@ -1199,14 +1132,9 @@ function textClick(bid,bgid) {
 		nextTask();
 		return;
 	}
-
-
 }
 
-
-
 function checkUpdate(bid,bgid) {
-
 	box = document.getElementById('checkBox' + bid);
 	image = document.getElementById('checkImage' + bid);
 
@@ -1216,13 +1144,9 @@ function checkUpdate(bid,bgid) {
 	} else {
 		image.style.backgroundColor='<?php echo BOX_BACKGROUND_COLOUR; ?>';
 	}
-
-
 }
 
-
-
-function checkEnter(e,bgid,bid){ //e is event object passed from function invocation
+function checkEnter(e,bgid,bid) { //e is event object passed from function invocation
 	var characterCode //literal character code will be stored in this variable
 	var whi = 0;
 	var current = 0;
@@ -1293,9 +1217,7 @@ function checkEnter(e,bgid,bid){ //e is event object passed from function invoca
 	return true;
 }
 
-
-
-function textPress(th,e,bgid,bid){ //e is event object passed from function invocation
+function textPress(th,e,bgid,bid) { //e is event object passed from function invocation
 	var characterCode //literal character code will be stored in this variable
 	var current = 0;
 	var next = 0;
@@ -1305,7 +1227,6 @@ function textPress(th,e,bgid,bid){ //e is event object passed from function invo
 	if (e.keyCode == 13) return false; //ignore uppercase/shift
 
 	characterCode = e.keyCode //character code is contained in IE's keyCode property
-
 
 	for (y in bgidbid[bgid])
 	{
@@ -1341,8 +1262,7 @@ function textPress(th,e,bgid,bid){ //e is event object passed from function invo
 	return true;
 }
 
-function focusText(field)
-{
+function focusText(field) {
 	if (document.getElementById('textBox'+field))
 	{
     	window.setTimeout(function () {
@@ -1352,56 +1272,51 @@ function focusText(field)
 	}
 }
 
-function poptastic(url)
-{
+function poptastic(url) {
 	newwindow=window.open(url,'name','height=600,width=350,resizable=yes,scrollbars=yes,toolbar=no,status=no');
 	if (window.focus) {newwindow.focus()}
 }
 
-
 function dragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById(elmnt.id + "header")) {
-    /* if present, the header is where you move the DIV from:*/
-    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-    
-  } else {
-    /* otherwise, move the DIV from anywhere inside the DIV:*/
-    elmnt.onmousedown = dragMouseDown;
-  }
+	var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+	if (document.getElementById(elmnt.id + "header")) {
+		/* if present, the header is where you move the DIV from:*/
+		document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+	} else {
+		/* otherwise, move the DIV from anywhere inside the DIV:*/
+		elmnt.onmousedown = dragMouseDown;
+	}
 
-  function dragMouseDown(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // get the mouse cursor position at startup:
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
-  }
+	function dragMouseDown(e) {
+		e = e || window.event;
+		e.preventDefault();
+		// get the mouse cursor position at startup:
+		pos3 = e.clientX;
+		pos4 = e.clientY;
+		document.onmouseup = closeDragElement;
+		// call a function whenever the cursor moves:
+		document.onmousemove = elementDrag;
+	}
 
-  function elementDrag(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // calculate the new cursor position:
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-  }
+	function elementDrag(e) {
+		e = e || window.event;
+		e.preventDefault();
+		// calculate the new cursor position:
+		pos1 = pos3 - e.clientX;
+		pos2 = pos4 - e.clientY;
+		pos3 = e.clientX;
+		pos4 = e.clientY;
+		// set the element's new position:
+		elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+		elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+	}
 
-  function closeDragElement() {
-    /* stop moving when mouse button is released:*/
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
+	function closeDragElement() {
+		/* stop moving when mouse button is released:*/
+		document.onmouseup = null;
+		document.onmousemove = null;
+	}
 }
-
-
 
 function init() {
 	dragElement(document.getElementById("tla"));
@@ -1410,18 +1325,16 @@ function init() {
 	dragElement(document.getElementById("bra"));
 	document['onkeydown'] = detectEvent;
 	nextTask();
-//	focusText(0);
+	//	focusText(0);
 
-//	for(var i=0; i < inputs.length; i++)
-//	{
-//		if (inputs[i].checked)
-//		{
-//			inputs[i].focus();
-//		}
-//	}
-
+	//	for(var i=0; i < inputs.length; i++)
+	//	{
+	//		if (inputs[i].checked)
+	//		{
+	//			inputs[i].focus();
+	//		}
+	//	}
 }
-
 
 window.onload = init;
 
@@ -1552,33 +1465,33 @@ else
 	print "<p><a href=\"javascript:void(0)\" onclick=\"showAlign();\">" . T_("Align page") . "</a></p>";
 	print "<p style='display:none' id='acceptalign'><a href=\"javascript:void(0)\" onclick=\"acceptAlign($pid,$fid," . ($pw/DISPLAY_PAGE_WIDTH) . ");\">" . T_("Accept alignment of page") . "</a></p>";
 
-  print "<div id='note'><object class='embeddedobject' id='mainobj' data='pagenote.php?pid=$pid&amp;fid=$fid&amp;vid=$vid' standby='" . T_("Loading panel...") . "' type='application/xhtml+xml'><div>" . T_("Error, try with Firefox") . "</div></object></div>";
+	print "<div id='note'><object class='embeddedobject' id='mainobj' data='pagenote.php?pid=$pid&amp;fid=$fid&amp;vid=$vid' standby='" . T_("Loading panel...") . "' type='application/xhtml+xml'><div>" . T_("Error, try with Firefox") . "</div></object></div>";
 
-  $sql = "SELECT count(*)
-          FROM supervisorquestionnaire
-          WHERE qid = $qid and vid != $vid";
+	$sql = "SELECT count(*)
+		FROM supervisorquestionnaire
+		WHERE qid = $qid and vid != $vid";
 
-  $sq = $db->GetOne($sql);
+	$sq = $db->GetOne($sql);
 
-  if ($sq > 0) {
-    print "<div id='supervisor'>";
-    print "<form method='post' action='?' name='formsuper' id='formsuper'>";
-    print "<input type=\"submit\" name=\"supervisor\" value=\"" . T_("Assign to supervisor") . "\"/>";
-    print "</form><div>";
-  }
+	if ($sq > 0) {
+		print "<div id='supervisor'>";
+		print "<form method='post' action='?' name='formsuper' id='formsuper'>";
+		print "<input type=\"submit\" name=\"supervisor\" value=\"" . T_("Assign to supervisor") . "\"/>";
+		print "</form><div>";
+	}
 
-  $sql = "SELECT count(*)
-          FROM supervisorquestionnaire
-          WHERE qid = $qid and vid = $vid";
+	$sql = "SELECT count(*)
+		FROM supervisorquestionnaire
+		WHERE qid = $qid and vid = $vid";
 
-  $sq = $db->GetOne($sql);
+	$sq = $db->GetOne($sql);
 
-  if ($sq > 0) {
-    print "<div id='supervisor'>";
-    print "<form method='post' action='?' name='formsuper' id='formsuper'>";
-    print "<input type=\"submit\" name=\"supervisorreturn\" value=\"" . T_("Refer back to regular verifier") . "\"/>";
-    print "</form><div>";
-  }
+	if ($sq > 0) {
+		print "<div id='supervisor'>";
+		print "<form method='post' action='?' name='formsuper' id='formsuper'>";
+		print "<input type=\"submit\" name=\"supervisorreturn\" value=\"" . T_("Refer back to regular verifier") . "\"/>";
+		print "</form><div>";
+	}
 	
 	foreach($_SESSION['boxgroups'] as $key => $val)
 	{
@@ -1591,11 +1504,10 @@ else
 		}	
 	}
 	
-print "</div>";
+	print "</div>";
 
-//show list of pid for this fid
+	//show list of pid for this fid
 	print "<div id=\"topper\">";
-
 
 	//print_r($_SESSION['pages']);
 
@@ -1609,10 +1521,7 @@ print "</div>";
 		$count++;
 
 	}
-	
-print "</div>";
-
-
+	print "</div>";
 }
 
 

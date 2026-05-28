@@ -1,5 +1,4 @@
 <?php
-
 /*	Copyright Australian Consortium for Social and Political Research Incorporated (ACSPRI) 2009
  *	Written by Adam Zammit - adam.zammit@acspri.org.au
  *	For ACSPRI: http://www.acspri.org.au/
@@ -21,8 +20,6 @@
  *	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  *
  */
-
-
 include_once("../config.inc.php");
 include_once("../db.inc.php");
 include("../functions/functions.database.php");
@@ -32,73 +29,69 @@ if (isset($_GET['fid']))
 {
 	$fid = intval($_GET['fid']);
 	$vid = intval($_GET['vid']);
-	
-	if (isset($_GET['revise'])) {
-		$vid = get_vid();
-		reload_session_from_database($fid, $vid);
-	}
 
 	$db->StartTrans();
 
-	$sql = "DELETE FROM formboxverifychar
-		WHERE fid = '$fid'
-		AND vid = '$vid'";
-		
-	$db->Execute($sql);
-
-	$sql = "DELETE FROM formboxverifytext
-		WHERE fid = '$fid'
-		AND vid = '$vid'";
-
-	$db->Execute($sql);
-
 	if (isset($_GET['revise'])) {
 		$sql = "UPDATE forms
-			SET assigned_vid = '$vid', done = 0
+			SET assigned_vid = '$vid', done = 4
 			WHERE fid = '$fid'";
+		$db->Execute($sql);
+		// set vid=0 for delete old data on verifyjs.php->complete
+		$sql2 = "UPDATE formboxverifychar
+			SET vid = 0
+			WHERE fid = '$fid'";
+		$db->Execute($sql2);
+		$sql3 = "UPDATE formboxverifytext
+			SET vid = 0
+			WHERE fid = '$fid'";
+		$db->Execute($sql3);
 	} else {
+		$sql = "DELETE FROM formboxverifychar
+			WHERE fid = '$fid'
+			AND vid = '$vid'";
+		$db->Execute($sql);
+
+		$sql = "DELETE FROM formboxverifytext
+			WHERE fid = '$fid'
+			AND vid = '$vid'";
+		$db->Execute($sql);
+		
 		$sql = "UPDATE forms
 			SET assigned_vid = NULL, done = 0, rpc_id = NULL, assigned = NULL, completed = NULL
 			WHERE fid = '$fid'";
+		$db->Execute($sql);
 	}
-
-	$db->Execute($sql);
 
 	$db->CompleteTrans();
-	
-	if (isset($_GET['revise'])) {
-		header("Location: ../verifyjs.php?fid=" . $fid);
-		exit;
-	}
 }
 
 xhtml_head(T_("Listing of forms"),true,array("../css/table.css"));
 
-
 if (isset($_GET['qid']))
 {
-  $qid = intval($_GET['qid']);
+	$qid = intval($_GET['qid']);
 
-  $sql = "SELECT f.fid, v.description as name, q.description as quest, CONCAT('<a href=\"?qid=$qid&amp;fid=', f.fid ,'&amp;vid=', f.assigned_vid ,'\">" . T_("Re verify") . "</a>') as link, CONCAT('<a href=\"?revise&amp;qid=$qid&amp;fid=', f.fid ,'&amp;vid=', f.assigned_vid ,'\">" . T_("Revise") . "</a>') as linkrevise
-  	FROM forms as f
-  	JOIN questionnaires AS q ON (f.qid = q.qid AND q.qid = '$qid')
-  	LEFT JOIN verifiers AS v ON (v.vid = f.assigned_vid)
-  	WHERE f.done = 1
-  	ORDER BY f.fid ASC";
-  
-  $fs = $db->GetAll($sql);
+	$sql = "SELECT f.fid, v.description as name, q.description as quest, CONCAT('<a href=\"?qid=$qid&amp;fid=', f.fid ,'&amp;vid=', f.assigned_vid ,'\">" . T_("Re verify") . "</a>') as link, CONCAT('<a href=\"?revise&amp;qid=$qid&amp;fid=', f.fid ,'&amp;vid=', f.assigned_vid ,'\">" . T_("Revise") . "</a>') as linkrevise
+		FROM forms as f
+		JOIN questionnaires AS q ON (f.qid = q.qid AND q.qid = '$qid')
+		LEFT JOIN verifiers AS v ON (v.vid = f.assigned_vid)
+		WHERE f.done = 1
+		ORDER BY f.fid ASC";
 
-  print "<div><a href=\"?\">" . T_("Go back") . "</a>";
+	$fs = $db->GetAll($sql);
 
-  xhtml_table($fs,array('fid','name','quest','link','linkrevise'),array(T_('Form ID'),T_('Operator'),T_('Questionnaire'),T_('Re verify'),T_('Revise')));
+	print "<div><a href=\"?\">" . T_("Go back") . "</a>";
+
+	xhtml_table($fs,array('fid','name','quest','link','linkrevise'),array(T_('Form ID'),T_('Operator'),T_('Questionnaire'),T_('Re verify'),T_('Revise')));
 }
 else
 {
-  //print available questionnaires
+	//print available questionnaires
 	$sql = "SELECT qid,description
-    FROM questionnaires
-    ORDER BY qid DESC";
-	
+		FROM questionnaires
+		ORDER BY qid DESC";
+
 	$qs = $db->GetAll($sql);
 
 	foreach($qs as $q)
@@ -107,7 +100,5 @@ else
 	}
 }
 
-
 xhtml_foot();
-
 ?>
