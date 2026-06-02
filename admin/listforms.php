@@ -72,7 +72,7 @@ if (isset($_GET['qid']))
 {
 	$qid = intval($_GET['qid']);
 
-	$sql = "SELECT f.fid, v.description as name, q.description as quest, CONCAT('<a href=\"?qid=$qid&amp;fid=', f.fid ,'&amp;vid=', f.assigned_vid ,'\">" . T_("Re verify") . "</a>') as link, CONCAT('<a href=\"?revise&amp;qid=$qid&amp;fid=', f.fid ,'&amp;vid=', f.assigned_vid ,'\">" . T_("Revise") . "</a>') as linkrevise
+	$sql = "SELECT f.fid, v.description as name, q.description as quest, f.description as scan, CONCAT('<a href=\"?qid=$qid&amp;fid=', f.fid ,'&amp;vid=', f.assigned_vid ,'\">" . T_("Re verify") . "</a>') as link, CONCAT('<a href=\"?revise&amp;qid=$qid&amp;fid=', f.fid ,'&amp;vid=', f.assigned_vid ,'\">" . T_("Revise") . "</a>') as linkrevise
 		FROM forms as f
 		JOIN questionnaires AS q ON (f.qid = q.qid AND q.qid = '$qid')
 		LEFT JOIN verifiers AS v ON (v.vid = f.assigned_vid)
@@ -83,7 +83,7 @@ if (isset($_GET['qid']))
 
 	print "<div><a href=\"?\">" . T_("Go back") . "</a>";
 
-	xhtml_table($fs,array('fid','name','quest','link','linkrevise'),array(T_('Form ID'),T_('Operator'),T_('Questionnaire'),T_('Re verify'),T_('Revise')));
+	xhtml_table($fs,array('fid','name','quest','scan','link','linkrevise'),array(T_('Form ID'),T_('Operator'),T_('Questionnaire'),T_('Uploaded file'),T_('Re verify'),T_('Revise')));
 }
 else
 {
