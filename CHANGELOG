@@ -1,3 +1,10 @@
+queXF 1.22.0 - Changes since 1.21.1
+
+*Supports PHP 8.4
+*New feature: Revise questionnaire (thanks for contributing)
+*Fixed issue: Out of bounds notice on import (thanks for contributing)
+*Updated translations - thank you!
+
 queXF 1.21.0 - Changes since 1.20.9
 
 *Supports PHP 8.1 - removes support for earlier than PHP 7

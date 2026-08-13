@@ -1,2 +1,7 @@
 .idea
 .venv
+mysql
+admin
+client
+BaltimoreCyberTrustRoot.crt.pem
+.htaccess
