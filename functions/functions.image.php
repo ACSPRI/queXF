@@ -750,97 +750,89 @@ function fillratio($image,$a)
  */
 function horiliney($tlx,$tly,$brx,$bry,$image,$approxw,$tolerance = 2,$attempts = 10,$searchlongest = true,$dgaps = 3)
 {
+	$img_w = imagesx($image);
+	$img_h = imagesy($image);
+
+	// Sanitize bounds against actual image dimensions
+	$tlx = max(0, min((int)$tlx, $img_w - 1));
+	$brx = max(0, min((int)$brx, $img_w - 1));
+	$tly = max(0, min((int)$tly, $img_h - 1));
+	$bry = max(0, min((int)$bry, $img_h - 1));
+
 	//0 is black, 1 is white
-	$y = 0;
-	//try $attempts times to find start of line
 	$xadd = int_divide(($brx - $tlx), $attempts);
+	if ($xadd <= 0) $xadd = 1;
+
 	$s = array();
 	$count = 0;
 	$avg = 0;
 	for ($x = $tlx; $x < $brx; $x+=$xadd) {
+		$y = $tly; // FIX: Reset $y to $tly for each $x step
 		$col = imagecolorat($image, $x, $y);
 		$width = 1;
-    $start = $y;
-    $dgapst = $dgaps;
+		$start = $y;
+		$dgapst = $dgaps;
 		for ($y = $tly; $y < $bry; $y++) {
 			$rgb = imagecolorat($image, $x, $y);
 			if ($rgb != $col){
 				if ($width >= $approxw - $tolerance && $width <= $approxw + $tolerance && $col == 0){
-					//record middle of line
 					$s[$start + int_divide($width, 2)] = $x;
-					//$count++;
-				  $width = 0;
-          $start = $y;
- 				//$avg += $start;
-        }
-        if ($dgapst <= 0)
-        {
-				  $width = 0;
-          $start = $y;
-          $dgapst = $dgaps + 1;
-        }
+					$width = 0;
+					$start = $y;
+				}
+				if ($dgapst <= 0) {
+					$width = 0;
+					$start = $y;
+					$dgapst = $dgaps + 1;
+				}
 				$col = $rgb;
 			}
 			$width++;
-      //print $rgb;
-      $dgapst--;
+			$dgapst--;
 		}
-		//print "<br/>\n";
 	}
-	//s is an array of with key being y val of middle of line, value being x val
 
-  if (empty($s)) return 0;
+	if (empty($s)) return 0;
 
-	//print_r($s);
-
-	//run a scanline through the key val to determine the longest/shortest line
-  $line = 0;
-  
-  if ($searchlongest == false) //if searching for shortest
-    $line = 100000;
+	$line = 0;
+	if ($searchlongest == false) $line = 100000;
 	$longest = key($s);
+
 	foreach($s as $y => $xval)
 	{
 		$width = 1;
-    if ($searchlongest) {
-      $xmin = $tlx;
-      $xmax = $brx;
-    } else {
-  		//reduce search area
-  		$xmin = $xval - ($approxw + $tolerance);
-  		$xmax = $xval + ($approxw + $tolerance);
-  		if ($xmin < $tlx) $xmin = $tlx;
-  		if ($xmax > $brx) $xmax = $brx;
-    }
+		if ($searchlongest) {
+			$xmin = $tlx;
+			$xmax = $brx;
+		} else {
+			$xmin = $xval - ($approxw + $tolerance);
+			$xmax = $xval + ($approxw + $tolerance);
+			if ($xmin < $tlx) $xmin = $tlx;
+			if ($xmax > $brx) $xmax = $brx;
+		}
 
 		$col = imagecolorat($image, $xmin, $y);
 
 		for($x = $xmin; $x < $xmax; $x += 1)
 		{
 			$rgb = imagecolorat($image, $x, $y);
-      if ($rgb != $col || $x == ($xmax - 1)){
-        if ($searchlongest)
-        {
-  				if ($width > $line && $col == 0)
-  				{
-  					$longest= $y;
-  					$line = $width;
-  				}
-        }
-        else
-        {
-      		if (abs($width - $approxw) < $line && $col == 0)
-  				{
-  					$longest= $y;
-  					$line = abs($width - $approxw);
-  				}
-        }
+			if ($rgb != $col || $x == ($xmax - 1)){
+				if ($searchlongest) {
+					if ($width > $line && $col == 0) {
+						$longest = $y;
+						$line = $width;
+					}
+				} else {
+					if (abs($width - $approxw) < $line && $col == 0) {
+						$longest = $y;
+						$line = abs($width - $approxw);
+					}
+				}
 				$width = 0;
 				$col = $rgb;
 			}
 			$width++;
 		}
-
 	}
 
 	return $longest;
@@ -853,111 +845,98 @@ function horiliney($tlx,$tly,$brx,$bry,$image,$approxw,$tolerance = 2,$attempts 
  */
 function vertlinex($tlx,$tly,$brx,$bry,$image,$approxw,$tolerance = 2,$attempts = 10,$searchlongest = true,$dgaps = 3)
 {
+	$img_w = imagesx($image);
+	$img_h = imagesy($image);
+
+	// Sanitize bounds against actual image dimensions
+	$tlx = max(0, min((int)$tlx, $img_w - 1));
+	$brx = max(0, min((int)$brx, $img_w - 1));
+	$tly = max(0, min((int)$tly, $img_h - 1));
+	$bry = max(0, min((int)$bry, $img_h - 1));
+
 	//0 is black, 1 is white
-	$x = 0;
-	//try $attempts times to find start of line
-	$yadd = int_divide(($bry - $tly) ,$attempts);
+	$yadd = int_divide(($bry - $tly), $attempts);
+	if ($yadd <= 0) $yadd = 1;
+
 	$s = array();
 	$count = 0;
 	$avg = 0;
 	for ($y = $tly; $y < $bry; $y+=$yadd) {
+		$x = $tlx; // FIX: Reset $x to $tlx for each $y step
 		$col = imagecolorat($image, $x, $y);
 		$width = 0;
-    $start = $x;
-    $dgapst = $dgaps; //allow for gaps due to dithering
+		$start = $x;
+		$dgapst = $dgaps;
 		for ($x = $tlx; $x < $brx; $x++) {
 			$rgb = imagecolorat($image, $x, $y);
 			if ($rgb != $col){
 				if ($width >= $approxw - $tolerance && $width <= $approxw + $tolerance && $col == 0){
 					$s[$start + int_divide($width, 2)] = $y;
 					$count++;
-				  $width = 0;
-          $start = $x;
-      			$avg += $start;
-        }
-       
-        if ($dgapst <= 0)
-        {
-				  $width = 0;
-          $start = $x;
-          $dgapst = $dgaps + 1;
-        }
+					$width = 0;
+					$start = $x;
+					$avg += $start;
+				}
+				if ($dgapst <= 0) {
+					$width = 0;
+					$start = $x;
+					$dgapst = $dgaps + 1;
+				}
 				$col = $rgb;
-      }
-      $dgapst--;
+			}
+			$dgapst--;
 			$width++;
-			//print $rgb;
 		}
-		//print "<br/>\n";
 	}
 
-  if (empty($s)) return 0;
+	if (empty($s)) return 0;
 
-	//add ability to search for the line closest to a certain length - not just the longest which
-	//may be a page artifact. need to define CORNER_LINE_LENGTH in pixels and enablels
-
-
-  $line = 0;
-  if ($searchlongest == false)
-    $line = 100000;
+	$line = 0;
+	if ($searchlongest == false) $line = 100000;
 
 	$longest = key($s);
 	foreach($s as $x => $yval)
 	{
 		$width = 0;
 
-    if ($searchlongest) {
-      $ymin = $tly;
-      $ymax = $bry;
-    } else {
-  		//reduce search area
-  		$ymin = $yval - ($approxw + $tolerance);
-  		$ymax = $yval + ($approxw + $tolerance);
-  		if ($ymin < $tly) $ymin = $tly;
-      if ($ymax > $bry) $ymax = $bry;
-    }
-   
-    $col = false;
-    try {
-    $col = imagecolorat($image, $x, $ymin);
-     } catch (Exception $e) {
-       $col = false;
-     }
-        if ($col !== false) {
-		for($y = $ymin; $y < $ymax; $y += 1)
-		{
-			$rgb = imagecolorat($image, $x, $y);
-			if ($rgb != $col || $ymax == ($ymax - 1)){
-        //print "X LINE: $x width: $width COL: $col<br/>";
-        if ($searchlongest)
-        {
-   				if ($width > $line && $col == 0)
-  				{
-  					$longest= $x;
-	  				$line = $width;
-          }
-        }
-        else
-        {
-  				if (abs($width - $approxw) < $line && $col == 0)
-  				{
-  					$longest= $x;
-	  				$line = abs($width - $approxw);
-          }
-        }
-				$width = 0;
-				$col = $rgb;
-			}
-			$width++;
+		if ($searchlongest) {
+			$ymin = $tly;
+			$ymax = $bry;
+		} else {
+			$ymin = $yval - ($approxw + $tolerance);
+			$ymax = $yval + ($approxw + $tolerance);
+			if ($ymin < $tly) $ymin = $tly;
+			if ($ymax > $bry) $ymax = $bry;
 		}
-        }
 
+		$col = imagecolorat($image, $x, $ymin);
+
+		if ($col !== false) {
+			for($y = $ymin; $y < $ymax; $y += 1)
+			{
+				$rgb = imagecolorat($image, $x, $y);
+				if ($rgb != $col || $ymax == ($ymax - 1)){
+					if ($searchlongest) {
+						if ($width > $line && $col == 0) {
+							$longest = $x;
+							$line = $width;
+						}
+					} else {
+						if (abs($width - $approxw) < $line && $col == 0) {
+							$longest = $x;
+							$line = abs($width - $approxw);
+						}
+					}
+					$width = 0;
+					$col = $rgb;
+				}
+				$width++;
+			}
+		}
 	}
 
 	return $longest;
-
 }
-
 
 function overlay($image, $boxes)
 {
